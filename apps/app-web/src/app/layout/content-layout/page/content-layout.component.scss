@@ -1,0 +1,313 @@
+.wrapper{
+  height: 100vh;
+  transition: all .5s;
+}
+.main-content{
+  min-height: 83vh;
+}
+.split-home{
+  min-height:96vh;
+  background: #fdfdfd;
+}
+
+/* --------------------------------------------------
+---------- Hamburger and Navigation Starts ----------
+----------------------------------------------------*/
+.mat-icon{
+  font-size: 30px;
+  // color: #111111;
+}
+
+.nav-trigger {
+  padding: 8px;
+  position: fixed;
+  top: 25px;
+  right: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  /* border:1px dotted; */
+	/* border-color: var(--primario-default); */
+	z-index: 111;
+  transition: all 400ms ease-in;
+}
+
+.is-active.nav-trigger {
+	background-color: var(--primario-default);
+}
+
+.hamburger {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  transition: transform 500ms ease-in-out;
+}
+
+.nav-trigger:active .hamburger {
+  transition: transform 50ms;
+  transform: scale(.95);
+}
+
+.hamburger::before, .hamburger::after, .hamburger .icon {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 2px;
+	left: 2px;
+  background: #111111;
+  transform-origin: 100% 50%;
+  transition: all 100ms ease-in-out;
+}
+
+.hamburger::before {
+  top: 5px;
+}
+.hamburger .icon {
+	width: 21px;
+  top: 11px;
+  transform-origin: 50% 50%;
+}
+.hamburger::after {
+  top: 17px;
+}
+/*
+.is-active .hamburger {
+  transform: rotateZ(-360deg);
+}
+.is-active .nav-trigger:active .hamburger {
+  transform: scale(.95) rotateZ(-360deg);
+}
+*/
+.is-active .hamburger::before,
+.is-active .hamburger::after,
+.is-active .hamburger .icon {
+  background: #111111;
+}
+
+.is-active .hamburger::before {
+  transform: translate3d(-4px, -1px, 0) rotateZ(-45deg);
+}
+.is-active .hamburger .icon {
+  transform: rotateY(-90deg);
+  transition: transform 100ms, background-color 400ms ease-in-out;
+}
+.is-active .hamburger::after {
+  transform: translate3d(-4px, 2px, 0) rotateZ(45deg);
+}
+
+/* ----- Dimming Main Content When Navigation is Active -----*/
+
+.main::before {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.1) !important;
+  opacity: 0;
+  z-index: 100;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: opacity 0.5s ease, height 1ms 0.5s ease;
+  -moz-transition: opacity 0.5s ease, height 1ms 0.5s ease;
+  -o-transition: opacity 0.5s ease, height 1ms 0.5s ease;
+transition: opacity 0.5s ease, height 1ms 0.5s ease !important;
+}
+
+.main.is-active.main::before{
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  height: 100%;
+  opacity: 1
+}
+
+
+/* --------------------------------------------------
+---------- Hamburger and Navigation Starts ----------
+----------------------------------------------------*/
+
+
+.hamburger {
+	position: relative;
+	width: 25px;
+	height: 25px;
+	transition: transform 500ms ease-in-out;
+  }
+
+  .nav-trigger:active .hamburger {
+	transition: transform 50ms;
+	transform: scale(.95);
+  }
+
+  .hamburger::before, .hamburger::after, .hamburger .icon {
+	content: '';
+	position: absolute;
+	width: 22px;
+	height: 2px;
+	  left: 2px;
+	background: #111111;
+	transform-origin: 100% 50%;
+	transition: all 100ms ease-in-out;
+  }
+
+  .hamburger::before {
+	top: 5px;
+  }
+  .hamburger .icon {
+	  width: 21px;
+	top: 11px;
+	transform-origin: 50% 50%;
+  }
+  .hamburger::after {
+	top: 17px;
+  }
+  /*
+  .is-active .hamburger {
+	transform: rotateZ(-360deg);
+  }
+  .is-active .nav-trigger:active .hamburger {
+	transform: scale(.95) rotateZ(-360deg);
+  }
+  */
+  .is-active .hamburger::before,
+  .is-active .hamburger::after,
+  .is-active .hamburger .icon {
+	background: #111111;
+  }
+
+  .is-active .hamburger::before {
+	transform: translate3d(-4px, -1px, 0) rotateZ(-45deg);
+  }
+  .is-active .hamburger .icon {
+	transform: rotateY(-90deg);
+	transition: transform 100ms, background-color 400ms ease-in-out;
+  }
+  .is-active .hamburger::after {
+	transform: translate3d(-4px, 2px, 0) rotateZ(45deg);
+  }
+
+  /*-----------------------------------------------------
+  ----------- Hamburger Menu Styling Ends ---------------
+  ------------------------------------------------------*/
+
+  /* ------ Nav Menu Styling -----*/
+
+  #nav-menu {
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 110;
+	width: 100%;
+	/* background-color: #e6ecef; */
+	  background-size: cover;
+	  overflow-y: auto;
+	-webkit-transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	  -webkit-transform: translateX(100%);
+	  -moz-transform: translateX(100%);
+	  -ms-transform: translateX(100%);
+	  -o-transform: translateX(100%);
+	  transform: translateX(100%);
+	-webkit-transition: all .6s;
+	-moz-transition: all .6s;
+	  transition: all .6s;
+	-webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+  }
+
+
+  /* ----- Dimming Main Content When Navigation is Active -----*/
+
+  .main::before {
+	  display: block;
+	  content: "";
+	  width: 100%;
+	  height: 0;
+	  position: fixed;
+	  left: 0;
+	  top: 0;
+	  background: rgba(0, 0, 0, 0.5) !important;
+	  opacity: 0;
+	  z-index: 100;
+	  -webkit-transform: translate3d(0, 0, 0);
+	  -moz-transform: translate3d(0, 0, 0);
+	  -ms-transform: translate3d(0, 0, 0);
+	  -o-transform: translate3d(0, 0, 0);
+	  transform: translate3d(0, 0, 0);
+	  -webkit-backface-visibility: hidden;
+	  -moz-backface-visibility: hidden;
+	  -ms-backface-visibility: hidden;
+	  -o-backface-visibility: hidden;
+	  backface-visibility: hidden;
+	  -webkit-transition: opacity 0.5s ease, height 1ms 0.5s ease;
+	  -moz-transition: opacity 0.5s ease, height 1ms 0.5s ease;
+	  -o-transition: opacity 0.5s ease, height 1ms 0.5s ease;
+	  transition: opacity 0.5s ease, height 1ms 0.5s ease !important;
+  }
+
+  .main.is-active.main::before{
+	  -webkit-transition: opacity 0.5s ease;
+	  -moz-transition: opacity 0.5s ease;
+	  -o-transition: opacity 0.5s ease;
+	  transition: opacity 0.5s ease;
+	  height: 100%;
+	  opacity: 1
+  }
+
+
+  #nav-menu.is-active {
+	-webkit-transform: translateX(0);
+	-moz-transform: translateX(0);
+	-ms-transform: translateX(0);
+	-o-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+	-webkit-overflow-scrolling: touch;
+  }
+
+
+  #nav-menu.is-active li {
+	  -webkit-transform: translateX(0px);
+	  -moz-transform: translateX(0px);
+	  transform: translateX(0px);
+	  -webkit-transition: .8s 0s;
+	  -moz-transition: .8s 0s;
+	  transition: .8s 0s;
+  }
+
+  @media only screen and (min-width: 768px) {
+
+    #nav-menu {
+      width: 100%;
+    }
+
+    .nav-social ul {
+      padding: 0.4em;
+    }
+  }
+
+
+  @media only screen and (min-width: 1024px) {
+
+		#nav-menu {
+			width: max-content;
+		}
+	}
+
+  /* --------------------------------------------------
+  ------------ Hamburger and Navigation Ends ----------
+  ----------------------------------------------------*/

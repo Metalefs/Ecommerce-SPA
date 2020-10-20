@@ -1,0 +1,21 @@
+<mat-card>
+  <mat-card-header class="w-full">
+    <mat-card-title class="w-full">
+      <div class="columns">
+        <div class="column is-8">
+          <h1 class="subtitle">Gerenciar Produtos</h1>
+        </div>
+        <div class="column is-4">
+          <button mat-fab color="primary" (click)="Criar()" class="ab-b-r">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="dashboard-card-content columns is-multiline">
+    <div *ngFor="let produto of Produtos$ | async" class="produto-card column is-3">
+      <personalizados-lopes-edicao-card-produto (Isdeleted)="Refresh()" [Produto]="produto"></personalizados-lopes-edicao-card-produto>
+    </div>
+  </mat-card-content>
+</mat-card>

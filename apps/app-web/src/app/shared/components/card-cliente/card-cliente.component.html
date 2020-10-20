@@ -1,0 +1,12 @@
+<div class = 'comentContent'  [@sliderAnimations] = "animationsStates ? 'animationsStates[position]': '1'">
+  <div class="bigContent">
+    <div class="text-content">
+      {{Cliente?.Comentario}}
+    </div>
+    <div class="textHiden"></div>
+    <div class="userInfo">
+      <img class = 'userLogo' [src] = 'Cliente?.Foto'>
+      <div class = 'userName'>{{Cliente?.Nome}}</div>
+    </div>
+  </div>
+</div>

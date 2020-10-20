@@ -1,0 +1,46 @@
+<div class="flex-w flex-c">
+  <h1 class="title is-5 is-uppercase">Usuários interessados em receber notícias da empresa.</h1>
+  <mat-spinner *ngIf="Loading"></mat-spinner>
+</div>
+<div class="columns">
+
+  <div class="column">
+    <p>Configurar mensagem de e-mail</p>
+    <ckeditor></ckeditor>
+  </div>
+  <div class="column">
+    <button mat-raised-button (click)="CheckAll()">Todos</button>
+    <button mat-mini-fab (click)="Criar()"><mat-icon>add</mat-icon></button>
+    <table mat-table [dataSource]="emailTable.dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="checked">
+        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element?.Email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element?.Nome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Acoes">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let element">
+              <button mat-mini-fab (click)="Editar(element)"><mat-icon>edit</mat-icon></button>
+              <button mat-mini-fab (click)="Remover(element)"><mat-icon>remove</mat-icon></button>
+          </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="emailTable.displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: emailTable.displayedColumns;"></tr>
+    </table>
+  </div>
+
+</div>

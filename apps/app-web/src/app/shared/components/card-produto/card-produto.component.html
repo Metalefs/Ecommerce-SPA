@@ -1,0 +1,45 @@
+<ng-container *ngIf="MostarOpcoes then Padrao else Minimalista"></ng-container>
+
+<ng-template #Padrao>
+  <mat-card class="flex-w flex-c portfolio-item">
+    <img src="{{Produto?.Imagem[0]}}"
+     alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+    <mat-card-header class="flex-w flex-c">
+      <mat-card-title>{{Produto?.Nome}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="flex-w flex-c" >
+      <div class="portfolio-overlay w-full">
+        <div class="overlay-items w-full flex-w flex-c">
+          <p>
+            {{Produto?.Nome}}
+          </p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions class="flex-w flex-c flex-m w-full mx-0">
+      <a pageScroll
+        href="#topo" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active">
+        <button class="w-full background-dark has-text-white" mat-raised-button>Veja Mais</button>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<ng-template #Minimalista>
+  <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom">
+    <a pageScroll
+      href="#PRODUTO" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active" >
+      <img src="{{Produto?.Imagem[0]}}"
+      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+      <mat-card-content class="flex-w flex-c" >
+        <div class="portfolio-overlay w-full">
+          <div class="overlay-items w-full flex-w flex-c">
+            <p>
+              {{Produto?.Nome}}
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </a>
+  </mat-card>
+</ng-template>

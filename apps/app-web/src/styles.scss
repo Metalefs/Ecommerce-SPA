@@ -1,0 +1,164 @@
+@import './_variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import '~ngx-sharebuttons/themes/default/default-theme';
+@import '~ngx-sharebuttons/themes/modern/modern-light-theme';
+@import '~ngx-sharebuttons/themes/modern/modern-dark-theme';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+p{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 122.19%;
+  /* or 27px */
+  letter-spacing: 0.04em;
+}
+.hoverable{
+  opacity: .8;
+  transition: .21s all ease-in-out;
+  &:hover{
+    opacity: 1;
+    // box-shadow:1px 1px 30px rgba(0, 05, 0, 0.80)
+  }
+}
+.color-primary-cold{
+  color:$capri;
+}
+
+.color-primary-hot{
+  color:$red;
+}
+
+.background-primary{
+  background: $red2;
+}
+
+.background-dark{
+  background: $dark;
+  transition: .5s all ease-in-out;
+  &:hover{
+    background: black;
+  }
+}
+
+.background-primary-cold{
+  background: $capri;
+}
+
+.background-light-blue{
+  background: #1DA1F2;
+  @extend .hoverable;
+}
+
+
+.background-dark-blue{
+  background: #3B5999;
+  @extend .hoverable;
+}
+
+.background-light-red{
+  background: #D66363;
+  &:hover{
+    background: $red2;
+  }
+}
+
+.color-light-red{
+  color: #D66363;
+  &:hover{
+    color: $red2;
+  }
+}
+
+.background-primary-warmer{
+  background: $crayola;
+}
+
+.card-text{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 122.19%;
+  /* or 27px */
+
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  letter-spacing: 0.04em;
+
+
+  color: #000000;
+}
+
+
+.titulo{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: large;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.07em;
+  text-transform: capitalize;
+}
+
+.header{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bolder;
+  font-size: large;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.07em;
+  text-transform: capitalize;
+  color: $red2;
+}
+
+.empresa-card{
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 11px;
+  padding:20% 46px !important;
+  margin-bottom:28px;
+  width: 100%;
+  max-width: 722px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+
+
+/* ----------------------------------------------------
+----------- Portfolio Filter Styling Starts -----------
+-----------------------------------------------------*/
+
+.portfolio nav {
+ padding-bottom: 30px;
+ text-align: center;
+}
+
+.portfolio .categories ul li {
+  display: inline;
+  list-style: none;
+}
+
+.portfolio .categories ul li a {
+   display: inline;
+   line-height: 2.5;
+   text-decoration: none;
+   margin-right: 20px;
+}
+
+.portfolio .categories ul li a.active {
+   text-decoration: line-through;
+   color: #000000;
+}
+
+.portfolio_filter {
+   padding-left: 0;
+}

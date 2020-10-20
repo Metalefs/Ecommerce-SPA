@@ -1,0 +1,20 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "personalizadosLopes",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "personalizados-lopes",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
+  }
+}

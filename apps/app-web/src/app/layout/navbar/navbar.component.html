@@ -1,0 +1,25 @@
+<div class="card vh-full">
+  <ul class="navigation" >
+    <li *ngFor="let link of links">
+      <a
+       (pageScrollFinish)="ToggleNav(0)"
+       [routerLink]="link.href"
+       routerLinkActive="Active"
+       pageScroll
+       href="#{{link.name}}"
+       >
+       {{link.name}}
+      </a>
+      <mat-divider></mat-divider>
+    </li>
+    <li *ngIf="user?.Tipo == 1">
+      <button mat-icon-button (click)="Logout()" title="logout">
+        <mat-icon>login</mat-icon>
+      </button>
+    </li>
+  </ul>
+  <div class="flex-w flex-m flex-c w-full">
+    <personalizados-lopes-social-network-links ></personalizados-lopes-social-network-links>
+  </div>
+  <p class="mt-6 copyright-text">{{Copyright}}</p>
+</div>

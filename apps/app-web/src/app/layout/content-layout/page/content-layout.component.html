@@ -1,0 +1,27 @@
+<div (click)="ToggleNav(0)" class="nav-trigger is-hidden-desktop" [ngClass]="NavState.open? 'is-active': ''"
+  role="button" title="Menu">
+
+  <mat-icon>
+    list
+  </mat-icon>
+
+</div>
+
+<div id="nav-menu" [ngClass]="NavState.open? 'is-active': ''" class="is-hidden-desktop">
+  <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
+</div>
+<personalizados-lopes-header></personalizados-lopes-header>
+<div class="wrapper" id="topo">
+  <!-- [@routeAnimations]="prepareRoute(outlet)" -->
+  <div @fadeIn [ngClass]="NavState.open? 'main is-active': ''" (mouseover)="CloseNav()">
+    <section class="split-home">
+      <div class="main-content">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </div>
+      <personalizados-lopes-footer></personalizados-lopes-footer>
+    </section>
+    <personalizados-lopes-icone-whatsapp [Whatsapp]="(InformacoesContato$|async)?.Whatsapp" [Mensagem]="Mensagem">
+    </personalizados-lopes-icone-whatsapp>
+    <personalizados-lopes-scroll-top></personalizados-lopes-scroll-top>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid my-3">
+  <div class="columns">
+    <div class="column is-12 p-0 allContent">
+      <!-- testimonial content -->
+      <div class="titleContent py-3">
+        <p class = 'testimonial-title title is-3 has-text-weight-bold'>
+          Casos de sucesso
+        </p>
+      </div>
+      <div class="testimonialContent noselect" #sliderContent (mousemove) = 'sliderMuve($event)'
+      (mousedown) = 'mousedownInSlider($event)' (mouseup) = 'leftSlider()' (mouseleave) = 'leftSlider()'>
+
+          <mat-card class = 'commentContent' *ngFor = 'let item of sliderData; let i = index;' [@sliderAnimations] = 'animationsStates[i]'>
+            <mat-card-content>
+              <div class="flex-w flex-sb w-full">
+                <!-- <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon> -->
+                <p class="title text-content">
+                  "{{item?.Comentario}}"
+                </p>
+                <!-- <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon> -->
+              </div>
+              <div class="userInfo">
+                <img class = 'userLogo' [src] = 'item?.Foto'>
+                <div class = 'userName has-text-weight-medium'>{{item?.Nome}}</div>
+                <div class = 'userName'>{{item?.Tipo}} {{item?.Origem}}</div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+
+      </div>
+    </div>
+  </div>
+</div>

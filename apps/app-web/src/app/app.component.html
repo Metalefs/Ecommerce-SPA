@@ -1,0 +1,4 @@
+<ng-container [ngSwitch]="DeployState">
+  <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
+  <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction>
+</ng-container>

@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{Method}}</h1>
+<div mat-dialog-content>
+    <p>{{Method}} {{Name}}</p>
+</div>
+<div mat-dialog-content>
+
+  <div *ngFor="let question of questions" class="form-row">
+    <app-question [question]="question" [form]="form"></app-question>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="basic" class="" [mat-dialog-close]="questions">{{MethodButtonName}}</button>
+  <button mat-raised-button color="basic" class="" (click)="onNoClick()" cdkFocusInitial>Cancelar</button>
+</div>

@@ -1,0 +1,30 @@
+<div class="flex-w flex-c">
+  <h1 class="title is-5 is-uppercase">Mensagens que serão enviadas automaticamente para o cliente no caso de solicitação de orçamento.</h1>
+
+</div>
+
+<button mat-mini-fab (click)="Criar()"><mat-icon>add</mat-icon></button>
+<table mat-table [dataSource]="MensagemTable.dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="Whatsapp">
+      <th mat-header-cell *matHeaderCellDef> Whatsapp </th>
+      <td mat-cell *matCellDef="let element"> {{element?.Whatsapp}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="EmailRecebimentoOrcamento">
+      <th mat-header-cell *matHeaderCellDef> Email Recebimento Orcamento </th>
+      <td mat-cell *matCellDef="let element"> {{element?.EmailRecebimentoOrcamento}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Acoes">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element">
+          <button mat-mini-fab (click)="Editar(element)"><mat-icon>edit</mat-icon></button>
+          <button mat-mini-fab (click)="Remover(element)"><mat-icon>remove</mat-icon></button>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="MensagemTable.displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: MensagemTable.displayedColumns;"></tr>
+</table>
+

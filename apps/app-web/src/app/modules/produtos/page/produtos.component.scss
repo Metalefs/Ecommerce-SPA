@@ -1,0 +1,30 @@
+.portfolio{
+  position: sticky;
+}
+.section{
+
+}
+.mat-standard-chip{
+  border-radius: 5px;
+}
+.mat-chip.active{
+  background: #bfbfbf;
+}
+.categories{
+  top:0;
+  position: sticky;
+  padding:10px;
+  height: min-content;
+  width: 100%;
+  background:rgba(255, 255, 255, 0.671);
+  z-index: 100;
+}
+.produto-column{
+  border-left: 2px solid rgba(211, 211, 211, 0.342);
+}
+@media (min-width: 1024px) {
+  .portfolio-container{
+    // max-height: 90vh;
+    // overflow-y: scroll;
+  }
+}

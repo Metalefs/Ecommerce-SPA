@@ -1,0 +1,76 @@
+.comentContent{
+  height: 400px;
+  box-shadow: 0 80px 80px 0 rgba(30,35,66,.07);
+  background-color: white;
+  padding: 32px;
+  border-radius: 5px;
+}
+.bigContent{
+  position: relative;
+}
+.text-content{
+  position: relative;
+  font-size: 24px;
+  color: #11132b;
+  line-height: 48px;
+  height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+  padding-bottom: 100px;
+}
+.text-content::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+.userInfo{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.userLogo{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+.userName {
+  text-transform: uppercase;
+  padding-left: 15px;
+  opacity: .5;
+  color: #1e2342;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 12px;
+}
+.textHidden{
+  width: 100%;
+  height: 100px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0),rgb(253, 253, 253), rgb(253, 253, 253));
+  position: absolute;
+  bottom: 48px;
+  left: 0px;
+}
+@media only screen and (max-width: 1200px) {
+  .comentContent{
+      height: 300px;
+  }
+  .text-content{
+      height: 200px;
+      font-size: 20px;
+      line-height: 30px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .comentContent{
+      height: 300px;
+  }
+  .text-content{
+      height: 200px;
+      font-size: 18px;
+      line-height: 25px;
+  }
+  .title{
+      font-size: 28px;
+      line-height: 38px;
+  }
+}

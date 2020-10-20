@@ -1,0 +1,46 @@
+<footer data-aos="fade-up" class="footer footer-color px-6 flex-w flex-sb pb-5">
+
+  <div class="columns px-6">
+    <div class="column">
+      <h3 class="footer-title">Sobre</h3>
+      <p class="txt-justify footer-text">{{(Sobre$ | async)?.Historia}}</p>
+    </div>
+    <div class="column text-center">
+      <h3 class="pl-4 mb-2 footer-title">Acesso Rápido</h3>
+      <mat-list class="pt-0">
+        <mat-list-item *ngFor="let link of Links">
+          <a class="footer-text" pageScroll href="#{{link.id}}" [routerLink]="[link.href]" routerLinkActive="active">{{link.name}}</a>
+        </mat-list-item>
+       </mat-list>
+    </div>
+    <div class="column">
+      <h3 class="pl-4 mb-2 footer-title">Contate-nos</h3>
+      <mat-list>
+        <mat-list-item class="mb-0 pb-0">
+          <p class="footer-text">Telefone: {{(InformacoesContato$ | async)?.Telefone}}</p>
+        </mat-list-item>
+        <mat-list-item class="mb-0 pb-0">
+          <p class="footer-text">Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p class="footer-text">{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p class="footer-text">{{(InformacoesContato$ | async)?.Endereco}}</p>
+        </mat-list-item>
+       </mat-list>
+    </div>
+  </div>
+
+</footer>
+<section class="py-3 my-0 px-6 z-top has-background-grey-dark">
+  <div class="flex-sb flex-w spacer">
+    <span><mat-icon>alternate_email</mat-icon> {{(Sobre$ | async)?.Nome}}</span>
+    <span class="spacer"></span>
+    <span class="px-3 py-2">
+      <a class="has-text-grey-light">SOBRE </a>
+      |
+      <a class="has-text-grey-light"> FALE-CONOSCO</a>
+    </span>
+  </div>
+</section>

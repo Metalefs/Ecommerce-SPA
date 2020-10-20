@@ -1,0 +1,65 @@
+
+@import '../../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.logo{
+  width: 130.35px;
+  top: -8px;
+  position: absolute;
+  margin-left: 10px;
+}
+.link-section{
+  padding-right: 25px;
+  margin-right: 50px;
+}
+.mat-toolbar {
+  height: 90px;
+  background: rgba($color: white, $alpha: 0.99);
+  margin-top:5px;
+}
+
+// @media (min-width: 320px ) and (max-width: 1023px) {
+
+//   .mat-toolbar {
+//     margin-top:5px;
+//   }
+
+// }
+.nav-link{
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  padding: 0.3rem;
+  line-height: 30px;
+  transition: 0.25s all ease-in-out;
+  color: #4b4b4d;
+  &:hover{
+    color:#000000;
+  }
+  border-color: #4d4c4c;
+  border-left-style: solid;
+  border-left-width: 1px;
+  padding-left: 13px;
+  margin-left: -13px;
+}
+.inicio{
+  border-left: none;
+}
+.active-nav{
+  color: #000000;
+  font-weight: 500;
+  animation: selected 2s ease-out forwards;
+}
+@keyframes selected{
+  0%{
+    color: $capri;
+  }
+  100%{
+    color: #000000;
+  }
+}
+.container{
+  background: transparent;
+}
+.sticky-nav{
+  background: rgba(255, 255, 255, 0.97);
+}

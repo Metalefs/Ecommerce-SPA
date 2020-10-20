@@ -1,0 +1,47 @@
+import { entities, enums } from '@personalizados-lopes/data';
+import { Produto, Usuario } from 'libs/data/src/lib/classes';
+
+import { Repository } from '../repositories/repository';
+var ObjectId = require('mongodb').ObjectID;
+export class ProdutoService {
+    async Ler(){
+        return  Repository.List(entities.Produto.NomeID).then(x => {
+            return x;
+        });
+    }
+    async Gostar(id:string){
+      return  Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
+          x.Likes += 1;
+          return Repository.Edit(entities.Produto.NomeID, x._id, {Likes: x.Likes}).then(y => {
+            return y;
+        });
+      });
+  }
+    async Filtrar(filter:{}){
+        return Repository.Filter(entities.Produto.NomeID, filter).then(x => {
+            return x;
+        });
+    }
+    async Alterar(Usuario:entities.Usuario, Produto:entities.Produto){
+        if (Usuario.Tipo == enums.TipoUsuario.admin) {
+            return Repository.Edit(entities.Produto.NomeID, Produto._id, Produto).then(x => {
+                return x;
+            });
+        }
+    }
+    async Deletar(Usuario:entities.Usuario, id:string){
+        if (Usuario.Tipo == enums.TipoUsuario.admin) {
+            return Repository.Remove(entities.Produto.NomeID, id).then(x => {
+                return x;
+            });
+        }
+    }
+    async Inserir(Usuario:entities.Usuario, Produto:entities.Produto){
+        if (Usuario.Tipo == enums.TipoUsuario.admin) {
+            return Repository.Insert(entities.Produto.NomeID, Produto).then(x => {
+                return x;
+            });
+        }
+    }
+
+}

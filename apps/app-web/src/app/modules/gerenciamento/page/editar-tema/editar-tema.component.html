@@ -1,0 +1,27 @@
+<table mat-table [dataSource]="TemaTable.dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="CorPrimaria">
+      <th mat-header-cell *matHeaderCellDef> Cor Primaria </th>
+      <td mat-cell *matCellDef="let element"> {{element.CorPrimaria}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="CorSecundaria">
+      <th mat-header-cell *matHeaderCellDef> Cor Secundaria </th>
+      <td mat-cell *matCellDef="let element"> {{element.CorSecundaria}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="CorTerciaria">
+      <th mat-header-cell *matHeaderCellDef> Cor Terciaria </th>
+      <td mat-cell *matCellDef="let element"> {{element.CorTerciaria}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Acoes">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element">
+          <button class="button button-primary" (click)="Editar(element)">Editar</button>
+      </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="TemaTable.displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: TemaTable.displayedColumns;"></tr>
+</table>

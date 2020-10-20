@@ -1,0 +1,33 @@
+<div class="bg-img1 size1 overlay1" style="background-image: url('assets/images/construction/clark-street-mercantile-P3pI6xzovu0-unsplash.jpg');">
+    <div class="size1 p-l-15 p-r-15 p-t-50 p-b-50">
+
+        <div data-aos="zoom-in" class="wsize1 m-lr-auto">
+            <p class="txt-center l1-txt3 p-b-0 flex-w flex-c flex-m">
+              <a href="#"><img src="assets/images/icons/Logo2.png" width="300" alt="LOGO"></a>
+            </p>
+
+            <p class="txt-center l1-txt1 p-b-20">
+              Siga-nos para obter atualizações!
+            </p>
+            <mat-divider></mat-divider>
+
+            <div class="w-full flex-w flex-c-m validate-form">
+              <div class="wrap-input100 validate-input m-b-20" data-validate = "Valid email is required: ex@abc.xyz">
+                <input [(ngModel)]="Email" class="input100 placeholder0 m1-txt1" type="text" name="email" placeholder="Seu e-email">
+                <span class="focus-input100"></span>
+              </div>
+
+              <button (click)="EnviarEmail()" class="flex-c-m size3 m1-txt2 how-btn1 trans-04 m-b-20">
+                Inscrever-se
+              </button>
+            </div>
+
+            <p class="txt-center s1-txt1 p-t-5">
+              E não se preocupe, nós também não gostamos de spam! Você pode cancelar a qualquer momento.
+            </p>
+        </div>
+
+        <personalizados-lopes-count-down></personalizados-lopes-count-down>
+
+    </div>
+</div>

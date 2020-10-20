@@ -1,0 +1,27 @@
+@import '../../../../variables';
+.how-social {
+  color: #999999;
+  font-size: 15px;
+  transition:all .5s ease-in;
+  box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.how-social.facebook:hover {
+  background-color: #4267B2;
+  color: #fff;
+}
+.how-social.instagram:hover {
+  background: linear-gradient(to top, #b224ef, #7579ff);;
+  color: #fff;
+}
+.how-social.orcamento:hover {
+  background-color: $capri;
+  color: #fff;
+}
+.size4 {
+  width: 36px;
+  height: 36px;
+}

@@ -1,0 +1,103 @@
+<ng-container *ngIf="this.compact then Iscompact else normal"></ng-container>
+
+<ng-template #Iscompact>
+  <form>
+
+    <mat-form-field class="w-full">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
+        placeholder="Ex. Fulano de tal">
+      <mat-error *ngIf="nomeFormControl.hasError('required')">
+        É necessário inserir um <strong>nome</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="flex-w flex-c columns">
+      <div class="column">
+        <mat-form-field class="w-full">
+          <mat-label>Email</mat-label>
+          <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
+            placeholder="Ex. meu@email.com">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Insira um e-mail válido
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            É necessário inserir um <strong>e-mail</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="column">
+        <mat-form-field class="w-full">
+          <mat-label>Telefone</mat-label>
+          <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
+            placeholder="0 0000 0000">
+          <mat-error *ngIf="phoneFormControl.hasError() && !phoneFormControl.hasError('required')">
+            Insira um telefone válido
+          </mat-error>
+          <mat-error *ngIf="phoneFormControl.hasError('required')">
+            É necessário inserir um <strong>telefone</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+
+    <mat-form-field class="w-full">
+      <mat-label>Mensagem</mat-label>
+      <textarea matInput [formControl]="messageFormControl"  [(ngModel)]="Orcamento.Mensagem"></textarea>
+      <mat-error *ngIf="phoneFormControl.hasError('required')">
+          É necessário inserir uma <strong>Mensagem</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</ng-template>
+
+<ng-template #normal>
+  <form>
+
+    <mat-form-field class="w-full">
+      <mat-label>Nome</mat-label>
+      <input matInput [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
+        placeholder="Ex. Fulano de tal">
+      <mat-error *ngIf="nomeFormControl.hasError('required')">
+        É necessário inserir seu <strong>nome</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
+        placeholder="Ex. meu@email.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Insira um e-mail válido
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        É necessário inserir seu <strong>e-mail</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Telefone</mat-label>
+      <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
+        placeholder="0 0000 0000">
+      <mat-error *ngIf="phoneFormControl.hasError() && !phoneFormControl.hasError('required')">
+        Insira um telefone válido
+      </mat-error>
+      <mat-error *ngIf="phoneFormControl.hasError('required')">
+        É necessário inserir seu <strong>telefone</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Mensagem</mat-label>
+      <textarea matInput [formControl]="messageFormControl"  [(ngModel)]="Orcamento.Mensagem"></textarea>
+      <mat-error *ngIf="phoneFormControl.hasError('required')">
+          É necessário inserir sua <strong>Mensagem</strong>
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</ng-template>

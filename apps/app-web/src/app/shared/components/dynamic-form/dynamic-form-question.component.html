@@ -1,0 +1,61 @@
+<div>
+
+  <div [ngSwitch]="question.controlType" class="w-full">
+
+    <div *ngSwitchCase="'textbox'" class="w-full">
+      <mat-form-field class="w-full">
+        <mat-label>{{question.label}}</mat-label>
+        <input matInput type="text" class="input w-full" [id]="question.key"
+          [type]="question.type" [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
+          title={{question.key}} name="{{question.key}}" required />
+      </mat-form-field>
+    </div>
+
+    <div *ngSwitchCase="'textarea'" class="w-full">
+      <mat-form-field class="w-full">
+        <mat-label>{{question.label}}</mat-label>
+        <textarea matInput class="textarea w-full" [id]="question.key"
+          [type]="question.type" [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
+          title={{question.key}} name="{{question.key}}" required></textarea>
+      </mat-form-field>
+    </div>
+
+    <div *ngSwitchCase="'file'">
+      <!-- <mat-form-field class="example-full-width"> -->
+      <label>{{question.label}}</label>
+      <input class="file" [id]="question.key" [type]="'file'" style="width: 100%" (change)="fileChangeEvent($event)"
+        placeholder="{{question.key}}" title="{{question.key}}" name="{{question.key}}" required />
+      <!-- </mat-form-field> -->
+    </div>
+
+    <div *ngSwitchCase="'color'">
+      <!-- <mat-form-field class="example-full-width"> -->
+      <label>{{question.label}}</label>
+      <input class="file" [id]="question.key" [type]="'color'" style="width: 100%" [(ngModel)]="question.value"
+        placeholder="{{question.key}}" title="{{question.key}}" name="{{question.key}}" required />
+      <!-- </mat-form-field> -->
+    </div>
+
+    <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'">
+      <mat-label>{{question.label}}</mat-label>
+      <mat-select matNativeControl [id]="question.key" [formControlName]="question.key">
+        <mat-option *ngFor="let opt of question.options" [value]="opt.key">
+          {{opt.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngSwitchCase="'email-messaging'" class="w-full">
+      <label>{{question.label}}</label>
+      <ckeditor [(ngModel)]="question.value" [data]="question.value" ></ckeditor>
+    </div>
+
+  </div>
+
+</div>
+
+<!--
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->

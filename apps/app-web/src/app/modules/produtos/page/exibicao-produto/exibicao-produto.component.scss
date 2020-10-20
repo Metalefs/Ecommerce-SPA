@@ -1,0 +1,98 @@
+gallery{
+  background-color:transparent !important;
+}
+.heartbutton {
+  font-size: larger;
+  transition: .21s  all ease-in-out;
+}
+.heartbutton.liked{
+  opacity: 1;
+  color:red;
+  font-size: xx-large;
+  margin: 10px;
+  cursor: default;
+}
+.section{
+  min-height: 82vh;
+}
+.heartbutton:hover {
+  bottom: 1px;
+}
+.share-button{
+  min-width: 221px;
+  border-radius: 9px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 122.19%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.04em;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.share-button-text{
+  max-width: 188px;
+  overflow-wrap: break-word;
+}
+.share-button-image{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.titulo-produto{
+  font-family: Roboto;
+  font-size: x-large;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.cor-produto{
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+.descricao-produto{
+  font-family: Roboto;
+  font-size: large;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 33px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+}
+.mh-70{
+  min-height: 70%;
+}
+.img-orcamento{
+  display: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.img-orcamento.active{
+  display: block;
+  position: absolute;
+  z-index: 10;
+  animation: flyToCart 2s ease-out forwards;
+}
+
+@keyframes flyToCart{
+  0%{
+    bottom: 0px;
+    right: 35%;
+  }
+  95%{
+    bottom: 100%;
+    right: 5%;
+    opacity: .7;
+  }
+  100%{
+    bottom: 95%;
+    right: 10%;
+    // display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
+}

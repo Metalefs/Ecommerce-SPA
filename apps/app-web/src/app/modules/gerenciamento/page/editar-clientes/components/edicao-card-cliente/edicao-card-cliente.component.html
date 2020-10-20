@@ -1,0 +1,13 @@
+
+<div @fadeIn>
+
+  <button mat-fab-button class="more-button" mat-raised-button color="accent" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button mat-menu-item (click)="Editar()">Editar</button>
+    <button mat-menu-item (click)="Remover()">Remover</button>
+  </mat-menu>
+  <personalizados-lopes-card-cliente @fadeIn [Cliente]="Cliente"></personalizados-lopes-card-cliente>
+
+</div>

@@ -1,0 +1,16 @@
+<div class="section" id="showcase">
+
+  <div class="flex-s w-full container">
+    <h1 class="title is-3 header">Showcase</h1>
+    <h2 class="subtitle is-capitalized txt-indent-20">últimos Produtos</h2>
+  </div>
+
+  <div class="px-6 pt-4">
+    <div class="columns is-multiline portfolio-container">
+      <div class="column is-4" *ngFor="let produto of Produtos$ | async">
+        <personalizados-lopes-card-produto class="portfolio-item" [Produto]="produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>
+      </div>
+    </div>
+  </div>
+
+</div>

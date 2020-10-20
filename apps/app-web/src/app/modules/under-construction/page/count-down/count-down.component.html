@@ -1,0 +1,21 @@
+<div class="flex-w flex-c-m cd100 wsize1 m-lr-auto p-t-65">
+    <div data-aos="flip-up" data-aos-offset="130" data-aos-delay="15" class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
+        <span class="l1-txt3 p-b-9 days">{{DaysLeft}}</span>
+        <span class="s1-txt2">Dias</span>
+    </div>
+
+    <div data-aos="flip-up" data-aos-offset="110" data-aos-delay="15" class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
+        <span class="l1-txt3 p-b-9 hours">{{Hours?.toString().padStart(2,"0")}}</span>
+        <span class="s1-txt2">Horas</span>
+    </div>
+
+    <div data-aos="flip-up" data-aos-offset="130" data-aos-delay="15" class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
+        <span class="l1-txt3 p-b-9 minutes">{{Minutes?.toString().padStart(2,"0")}}</span>
+        <span class="s1-txt2">Minutos</span>
+    </div>
+
+    <div data-aos="flip-up" data-aos-offset="130" data-aos-delay="15" class="flex-col-c-m size2 bor1 m-l-10 m-r-10 m-b-15">
+        <span class="l1-txt3 p-b-9 seconds">{{Seconds?.toString().padStart(2,"0")}}</span>
+        <span class="s1-txt2">Segundos</span>
+    </div>
+</div>

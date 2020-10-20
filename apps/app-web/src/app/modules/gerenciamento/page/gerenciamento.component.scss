@@ -1,0 +1,21 @@
+.mat-tab-body-wrapper{
+  min-height: 151px;
+}
+.bg-light{
+  background: #e9e9e991;
+}
+:host ::ng-deep .mat-dialog-container{
+  border: 20px solid lightgoldenrodyellow;
+  border-radius: 1rem;
+}
+.min-h-50{
+  min-height: 50vh !important;
+}
+.active-nav{
+  background: #5252522b;
+  transition: 1s all ease-in-out;
+  opacity: 1;
+}
+.nav{
+  opacity: .7;
+}

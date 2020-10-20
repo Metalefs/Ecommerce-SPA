@@ -1,0 +1,45 @@
+<div class="login-wrapper has-background-white-t box" *ngIf="!Logado">
+
+  <form clrForm class="login">
+      <h1>Login </h1>
+      <div class="login-group pt-0">
+          <mat-form-field class="w-full">
+              <mat-label>E-mail</mat-label>
+              <input matInput
+               aria-mat-label="E-mail"
+               type="email"
+               name="Email"
+               autocomplete="email"
+               placeholder="E-mail"
+               [(ngModel)]="form.Email"
+               #emailControl="ngModel"
+               required />
+              <mat-error *ngIf="emailControl.hasError('required')">O Campo de e-mail é necessário para o login</mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-full">
+              <mat-label>Senha</mat-label>
+              <input matInput
+                aria-mat-label="Senha"
+                type="password"
+                autocomplete="current-password"
+                name="Senha"
+                placeholder="Senha"
+                [(ngModel)]="form.Senha"
+                #SenhaControl="ngModel"
+                required />
+              <mat-error *ngIf="SenhaControl.hasError('required')">
+                Senha inválida
+              </mat-error>
+            </mat-form-field>
+            <div *ngIf="iserror">
+              Nome ou senha inválidos
+              <p>
+               <em>Erro: {{error}}</em>
+              </p>
+            </div>
+            <button mat-flat-button type="submit" class="btn btn-primary" (click)="Login()">Login</button>
+
+      </div>
+  </form>
+
+</div>

@@ -1,0 +1,21 @@
+<div class="flex-w flex-sa bg">
+  <div class="{{card.class}} my-1" *ngFor="let card of Cards;let i = index;">
+    <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
+    <div>
+      <mat-card [attr.data-aos]="i == 0 ? '' : 'flip-left'">
+        <mat-card-header>
+          <div mat-card-avatar [style.backgroundColor]="card?.color">
+            <mat-icon>{{card.icon}}</mat-icon>
+          </div>
+          <mat-card-title>
+            <h1 class="is-uppercase has-text-weight-medium">{{card.title}}</h1>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p [innerHtml]="card.content" class="has-text-justified mt-3">
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+@import '../../../../variables';
+
+.testimonial{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.bg{
+  background:rgb(255, 255, 255);
+  // background:#3ab8ff;
+  z-index: -1;
+}
+.shadow{
+  box-shadow: 0 10px 60px #00000057;
+}

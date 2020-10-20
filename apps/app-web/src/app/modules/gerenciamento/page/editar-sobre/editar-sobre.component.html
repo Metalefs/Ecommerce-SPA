@@ -1,0 +1,82 @@
+<mat-accordion class="mh-full">
+  <mat-expansion-panel [expanded]="true" class="mh-full">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <!-- Sobre -->
+      </mat-panel-title>
+      <mat-panel-description>
+        Gerenciar informações sobre a empresa
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+
+          <button mat-raised-button color="accent" class="ab-b-r" (click)="Editar()">
+            <mat-icon>edit</mat-icon>Editar
+          </button>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="dashboard-card-content">
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Nome
+              </mat-panel-title>
+              <mat-panel-description>
+                Alterar Nome
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{(Sobre$ | async)?.Nome}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Descricao
+              </mat-panel-title>
+              <mat-panel-description>
+                Alterar Descricao
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{(Sobre$ | async)?.Descricao}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Historia
+              </mat-panel-title>
+              <mat-panel-description>
+                Alterar Historia
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{(Sobre$ | async)?.Historia}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Fabricacao
+              </mat-panel-title>
+              <mat-panel-description>
+                Alterar Fabricacao
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{(Sobre$ | async)?.Fabricacao}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-expansion-panel>
+</mat-accordion>
