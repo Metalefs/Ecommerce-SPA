@@ -1,6 +1,10 @@
 gallery{
   background-color:transparent !important;
 }
+:host ::ng-deep gallery-slider:hover{
+  transition: 2s all ease-in-out;
+  transform:scale(1.1);
+}
 .heartbutton {
   font-size: larger;
   transition: .21s  all ease-in-out;
