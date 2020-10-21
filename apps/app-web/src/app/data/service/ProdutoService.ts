@@ -53,28 +53,6 @@ export class ProdutoService {
 
     }
 
-    async EditarImagens(item:Produto) : Promise<Produto>{
-      if(!isEmpty(item.FileList)){
-
-        alert("Imagens diferentes")
-        return this.RemoverImagens(item).then(async()=>{
-          return await this.UploadItemImages(item);
-        })
-      }
-    }
-
-    async RemoverImagens(item:Produto){
-      for(let i =0; i<= item.Imagem.length ; i++){
-
-        try{
-          if(item.Imagem != []){
-            await this.servicoImagem.deleteImage(item.Imagem[i]);
-          }
-        }catch(EX){ console.log(EX); continue;}
-
-      }
-    }
-
     Gostar(id:string) :Observable<entities.Produto> {
       return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.GostarProduto, {id:id}).pipe(
           retry(3),
@@ -107,6 +85,28 @@ export class ProdutoService {
         catchError(this.handleError)
       );
 
+    }
+
+    async EditarImagens(item:Produto) : Promise<Produto>{
+      if(!isEmpty(item.FileList)){
+
+        alert("Imagens diferentes")
+        return this.RemoverImagens(item).then(async()=>{
+          return await this.UploadItemImages(item);
+        })
+      }
+    }
+
+    async RemoverImagens(item:Produto){
+      for(let i =0; i<= item.Imagem.length ; i++){
+
+        try{
+          if(item.Imagem != []){
+            await this.servicoImagem.deleteImage(item.Imagem[i]);
+          }
+        }catch(EX){ console.log(EX); continue;}
+
+      }
     }
 
     async UploadItemImages(item:entities.Produto) : Promise<entities.Produto>{

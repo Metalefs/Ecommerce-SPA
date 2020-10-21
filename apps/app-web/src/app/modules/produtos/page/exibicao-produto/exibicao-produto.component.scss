@@ -12,8 +12,10 @@ gallery{
   margin: 10px;
   cursor: default;
 }
-.section{
-  min-height: 82vh;
+@media (min-width: 1024px) {
+  .section{
+    min-height: 82vh;
+  }
 }
 .heartbutton:hover {
   bottom: 1px;

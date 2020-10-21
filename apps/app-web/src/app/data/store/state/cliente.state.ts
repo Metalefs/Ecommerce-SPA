@@ -60,8 +60,8 @@ export class ClienteState {
   }
 
   @Action(EditarCliente)
-  Editar({getState,setState}: StateContext<ClienteStateModel>, {payload, id} : EditarCliente){
-    return this.ClienteService.Editar(payload).pipe(
+  async Editar({getState,setState}: StateContext<ClienteStateModel>, {payload, id} : EditarCliente){
+    return (await this.ClienteService.Editar(payload)).pipe(
       tap(result => {
         const state = getState();
         const ListaClientes = [...state.Clientes];

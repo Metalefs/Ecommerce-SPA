@@ -1,7 +1,7 @@
 <ng-container *ngIf="MostarOpcoes then Padrao else Minimalista"></ng-container>
 
 <ng-template #Padrao>
-  <mat-card class="flex-w flex-c portfolio-item">
+  <mat-card class="flex-w flex-c portfolio-item" [style.backgroundColor]="Produto.Categoria.Cor">
     <img src="{{Produto?.Imagem[0]}}"
      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
     <mat-card-header class="flex-w flex-c">

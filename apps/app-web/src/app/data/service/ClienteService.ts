@@ -7,6 +7,10 @@ import { environment } from '../../../environments/environment';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
+import { ImagemService } from '.';
+import { Cliente } from 'libs/data/src/lib/classes';
+import { isEmpty } from '../../helper/ObjHelper';
+import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 
 
 @Injectable({
@@ -15,7 +19,8 @@ import { AuthenticationService } from '../../core/service/authentication/authent
 
 export class ClienteService {
     constructor(private http: HttpClient,
-        private AuthenticationService: AuthenticationService) { }
+        private AuthenticationService: AuthenticationService,
+        private servicoImagem:ImagemService) { }
 
     Ler(): Observable<entities.Cliente[]> {
         return this.http.get<entities.Cliente[]>(environment.endpoint + RouteDictionary.Cliente).pipe(
@@ -24,14 +29,17 @@ export class ClienteService {
         );
     }
 
-    Editar(item: entities.Cliente): Observable<entities.Cliente> {
-        let payload = this.AuthenticationService.tokenize({Cliente:item});
-        console.log(payload);
-        return this.http.put<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente,
-            payload).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
-        );
+    async Editar(item: entities.Cliente): Promise<Observable<entities.Cliente>> {
+        return this.EditarImagens(item).then(x=> {
+          item = x;
+          let payload = this.AuthenticationService.tokenize({Cliente:item});
+          console.log(payload);
+          return this.http.put<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente,
+              payload).pipe(
+              retry(3), // retry a failed request up to 3 times
+              catchError(this.handleError) // then handle the error
+          );
+        })
     }
 
     Remover(id: string): Observable<any>{
@@ -48,6 +56,36 @@ export class ClienteService {
           retry(3),
           catchError(this.handleError)
       );
+    }
+
+    async EditarImagens(item:Cliente) : Promise<Cliente>{
+      if(!isEmpty(item.Foto)){
+
+        alert("Imagens diferentes")
+        return this.RemoverImagens(item).then(async()=>{
+          return await this.UploadItemImages(item);
+        })
+      }
+    }
+
+    async RemoverImagens(item:Cliente){
+        try{
+          if(item.Foto != ''){
+            await this.servicoImagem.deleteImage(item.Foto);
+          }
+          else{
+            return item;
+          }
+        }catch(EX){ console.log(EX); }
+    }
+
+    async UploadItemImages(item:entities.Cliente) : Promise<entities.Cliente>{
+      if(item.Foto){
+        await this.servicoImagem.storeImage(PathDictionary.clientes,item.Foto).then(async x=>{
+          item.Foto = await this.servicoImagem.getRef((await x).metadata.fullPath, item.Nome, "Cliente");
+        })
+        return item;
+      }
     }
 
     handleError(error) {

@@ -59,7 +59,7 @@
           </nav>
           <ng-container *ngFor="let produto of Produtos$ |async">
             <div @fadeIn
-              class="column is-4"
+              class="column is-3"
               *ngIf = "CategoriaAtiva?.Nome == produto.NomeCategoria || CategoriaAtiva?.Nome == 'Todos'">
               <personalizados-lopes-card-produto @fadeIn
                 class=" portfolio-item"
