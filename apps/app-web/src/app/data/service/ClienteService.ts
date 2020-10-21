@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-import { ImagemService } from '.';
+import { ImagemService } from './ImagemService';
 import { Cliente } from 'libs/data/src/lib/classes';
 import { isEmpty } from '../../helper/ObjHelper';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';

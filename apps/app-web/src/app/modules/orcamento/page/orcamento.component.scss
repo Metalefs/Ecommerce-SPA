@@ -5,3 +5,9 @@
 .submit{
   text-transform: uppercase;
 }
+@media (max-width:768px){
+  .reverse-col-mobile{
+    flex-direction: column-reverse;
+    display: flex;
+  }
+}

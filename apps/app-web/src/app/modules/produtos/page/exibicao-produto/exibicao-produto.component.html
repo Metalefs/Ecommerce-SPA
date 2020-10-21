@@ -32,7 +32,7 @@
           <p class="descricao-produto">{{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}</p>
           <mat-form-field>
             <mat-label>Qtd</mat-label>
-            <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" matInput type="number" min="{{Produto?.QuantidadeMinima}}" class="quantidade-produto" [(ngModel)]="Produto.Quantidade">
+            <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" matInput type="number" min="{{Produto?.QuantidadeMinima}}" class="quantidade-produto" [(ngModel)]="(Produto).Quantidade">
           </mat-form-field>
           <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
         </div>

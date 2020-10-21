@@ -13,7 +13,7 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
         if(req.query.id){
           ProdutoService.Filtrar({_id: req.query.id}).then(x=>{
             res.send(x);
-        });
+          });
         }
         else{
           ProdutoService.Ler().then(x=>{
@@ -42,7 +42,6 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
 }).post(RouteDictionary.GostarProduto, (req: any, res) => {
   try {
     let ProdutoService:Services.ProdutoService = new Services.ProdutoService();
-
     ProdutoService.Gostar(req.body.id).then(x=>{
         res.send(x);
     });

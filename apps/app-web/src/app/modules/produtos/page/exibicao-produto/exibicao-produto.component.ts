@@ -76,9 +76,10 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   Like(){
     if(!localStorage.getItem(`heartproduto${this.Produto._id}`)){
-      this.store.dispatch(new GostarProduto(this.Produto._id));
-      this.Liked = true;
-      localStorage.setItem(`heartproduto${this.Produto._id}`,'true');
+      this.store.dispatch(new GostarProduto(this.Produto._id)).subscribe(x=>{
+        this.Liked = true;
+        localStorage.setItem(`heartproduto${this.Produto._id}`,'true');
+      });
     }
     else
       return

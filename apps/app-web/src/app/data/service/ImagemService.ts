@@ -22,30 +22,41 @@ export class ImagemService {
 
   async getRef(foto,nome,tipo) : Promise<string>{
     return new Promise((resolve, reject) => {
-      this.AF.storage.ref(foto).getDownloadURL().then(x=>{
-        this.Incluir(new Imagem(x,nome,tipo)).subscribe();
-        alert("getting image url "+ x)
-        resolve(x);
-      });
+      try{
+        this.AF.storage.ref(foto).getDownloadURL().then(x=>{
+          this.Incluir(new Imagem(x,nome,tipo)).subscribe();
+          // alert("getting image url "+ x)
+          resolve(x);
+        });
+      }
+      catch(ex){}
     })
   }
 
   async storeImage(dir,caminho) : Promise<AngularFireUploadTask>{
     return new Promise((resolve, reject) => {
-      this.AF.upload(dir+`${Math.random()}${caminho.name}`,caminho).then(x=>{
-        alert("store image " + x.task.snapshot.metadata.fullPath)
-        resolve(x);
-      });
+      try{
+        this.AF.upload(dir+`${Math.random()}${caminho.name}`,caminho).then(x=>{
+          // alert("store image " + x.task.snapshot.metadata.fullPath)
+          resolve(x);
+        });
+      }
+      catch(ex){}
     })
   }
 
   async deleteImage(caminho) : Promise<AngularFireUploadTask>{
     return new Promise((resolve, reject) => {
-      this.AF.storage.refFromURL(caminho).delete().then(x=>{
-        console.log(x);
-        this.Remover(caminho);
-        resolve(x);
-      });
+      try{
+        this.AF.storage.refFromURL(caminho).delete().then(x=>{
+          console.log(x);
+          this.Remover(caminho);
+          resolve(x);
+        });
+      }
+      catch(ex){
+
+      }
     })
   }
 

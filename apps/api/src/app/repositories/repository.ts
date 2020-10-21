@@ -186,7 +186,6 @@ export module Repository {
                         reject(err);
                     }
                     db.close();
-                    console.log(result);
                     resolve(result)
                 });
             });
@@ -208,7 +207,6 @@ export module Repository {
                     reject(err);
                 }
                 let dbo = db.db(MongoDBName);
-                console.log(collection, query, id);
                 dbo.collection(collection).updateOne({ "_id": new ObjectId(id) }, { $set: query }, async function (err: any, result: any) {
                     if (err) {
                         logger.log(err)
@@ -216,7 +214,7 @@ export module Repository {
                     }
                     console.log("Editado", result.n)
                     db.close();
-                    resolve(await FindOne(collection,query));
+                    resolve(await FindOne(collection,{ _id: id }));
                 });
             });
         });

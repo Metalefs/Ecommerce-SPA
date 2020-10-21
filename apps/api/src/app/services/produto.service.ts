@@ -10,17 +10,22 @@ export class ProdutoService {
         });
     }
     async Gostar(id:string){
-      return  Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
+      return Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
           x.Likes += 1;
           return Repository.Edit(entities.Produto.NomeID, x._id, {Likes: x.Likes}).then(y => {
             return y;
         });
       });
-  }
+    }
     async Filtrar(filter:{}){
-        return Repository.Filter(entities.Produto.NomeID, filter).then(x => {
-            return x;
-        });
+      return Repository.Filter(entities.Produto.NomeID, filter).then(x => {
+          return x;
+      });
+    }
+    async FiltrarUm(filter:{}){
+      return Repository.FindOne(entities.Produto.NomeID, filter).then(x => {
+          return x;
+      });
     }
     async Alterar(Usuario:entities.Usuario, Produto:entities.Produto){
         if (Usuario.Tipo == enums.TipoUsuario.admin) {
