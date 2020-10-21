@@ -39,35 +39,40 @@ export class ProdutoService {
     }
 
     async Editar(item: entities.Produto): Promise<Observable<entities.Produto>> {
-        let imagensDeletadas = 0;
-        if(!isEmpty(item.FileList[0])){
-          alert("Imagens diferentes")
-          for(let i =0; i<= item.Imagem.length ; i++){
+        return this.EditarImagens(item).then(x=>{
 
-            try{
-              if(item.Imagem != []){
-                await this.servicoImagem.deleteImage(item.Imagem[i]);
-                imagensDeletadas ++;
-              }
-            }catch(EX){ console.log(EX); continue;}
+          let payload = this.AuthenticationService.tokenize({Produto:item});
+          alert("Editando !");
+          console.log(item);
+          return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produto,
+            payload).pipe(
+            retry(3), // retry a failed request up to 3 times
+            catchError(this.handleError)
+          )
+        });
 
+    }
+
+    async EditarImagens(item:Produto) : Promise<Produto>{
+      if(!isEmpty(item.FileList)){
+
+        alert("Imagens diferentes")
+        return this.RemoverImagens(item).then(async()=>{
+          return await this.UploadItemImages(item);
+        })
+      }
+    }
+
+    async RemoverImagens(item:Produto){
+      for(let i =0; i<= item.Imagem.length ; i++){
+
+        try{
+          if(item.Imagem != []){
+            await this.servicoImagem.deleteImage(item.Imagem[i]);
           }
-          for(let i =0; i< item.FileList.length ; i++){
-            this.servicoImagem.storeImage(PathDictionary.produtos,item.FileList[i]).then(async x=>{
-              item.Imagem[i] = await this.servicoImagem.getRef((await x).metadata.fullPath, item.Nome,"Produto");
-            })
-          }
+        }catch(EX){ console.log(EX); continue;}
 
-        }
-
-        let payload = this.AuthenticationService.tokenize({Produto:item});
-        console.log("Editando !",payload);
-
-        return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produto,
-          payload).pipe(
-          retry(3), // retry a failed request up to 3 times
-          catchError(this.handleError)
-        )
+      }
     }
 
     Gostar(id:string) :Observable<entities.Produto> {

@@ -11,6 +11,8 @@ import { Tema } from './tema';
 import { EmailNotificacao } from './email-notificacao';
 import { Mensagem } from './mensagem';
 import { Imagem } from './imagem';
+import { Carousel } from './carousel';
+import { ItemCarousel } from './item-carousel';
 
 export {
     Categoria,
@@ -25,5 +27,7 @@ export {
     Tema,
     EmailNotificacao,
     Mensagem,
-    Imagem
+    Imagem,
+    Carousel,
+    ItemCarousel
 }

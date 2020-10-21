@@ -11,7 +11,9 @@ import { EditarProdutoComponent } from './page/editar-produto/editar-produto.com
 import { EditarServicoComponent } from './page/editar-servico/editar-servico.component';
 import { EditarSobreComponent } from './page/editar-sobre/editar-sobre.component';
 import { EditarTemaComponent } from './page/editar-tema/editar-tema.component';
+import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.component';
 import { GerenciamentoComponent } from './page/gerenciamento.component';
+
 
 export const routes: Routes = [
   {
@@ -52,6 +54,12 @@ export const routes: Routes = [
         path: 'servico',
         // canActivate: [AuthGuard],
         component: EditarServicoComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'carrosel',
+        // canActivate: [AuthGuard],
+        component: EditarCarouselComponent,
         pathMatch: 'full',
       },
       {

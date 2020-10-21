@@ -53,6 +53,7 @@ export class GerenciamentoComponent implements OnInit {
       {name: "Sobre", href: "sobre"},
       {name: "Informações de contato", href: "informacaocontato"},
       {name: "Serviços", href: "servico"},
+      {name: "Carrosel", href: "carrosel"},
       {name: "Mensagens", href: "mensagem"},
       {name: "Emails", href: "emails"},
       {name: "Imagens", href: "imagens"},

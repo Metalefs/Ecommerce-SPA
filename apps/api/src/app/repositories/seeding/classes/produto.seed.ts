@@ -8,6 +8,7 @@ export let Produto = [
         "Serigrafia",
         [""],
         0,
+        0,
         "",
         "",
         0

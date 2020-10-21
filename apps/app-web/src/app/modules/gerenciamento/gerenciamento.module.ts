@@ -28,6 +28,7 @@ import { EdicaoCardClienteComponent } from './page/editar-clientes/components/ed
 import { EditarMensagemComponent } from './page/editar-mensagem/editar-mensagem.component';
 import { EditarEmailsComponent } from './page/editar-emails/editar-emails.component';
 import { EditarImagemComponent } from './page/editar-imagem/editar-imagem.component';
+import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditarImagemComponent } from './page/editar-imagem/editar-imagem.compon
     CriarClienteDialogComponent,
     EditarMensagemComponent,
     EditarEmailsComponent,
-    EditarImagemComponent
+    EditarImagemComponent,
+    EditarCarouselComponent
   ],
   imports: [
     CommonModule,
