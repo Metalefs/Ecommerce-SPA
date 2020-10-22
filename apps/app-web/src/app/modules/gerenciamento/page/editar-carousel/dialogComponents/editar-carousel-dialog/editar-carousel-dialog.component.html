@@ -1,29 +1,133 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Configurações do Carrosel</h1>
 <div mat-dialog-content>
-  height: string = '52vh';
-  minHeight: string;
-  arrowSize: string = '30px';
-  showArrows: boolean = true;
-  disableSwiping: boolean = false;
-  autoPlay: boolean = true;
-  autoPlayInterval: number = 10333;
-  stopAutoPlayOnSlide: boolean = true;
-  debug: boolean = false;
-  backgroundSize: string = 'cover';
-  backgroundPosition: string = 'center center';
-  backgroundRepeat: string = 'no-repeat';
-  showDots: boolean = true;
-  dotColor: string = '#FFF';
-  showCaptions: boolean = true;
-  captionColor: string = '#FFF';
-  captionBackground: string = 'rgba(0, 0, 0, .35)';
-  lazyLoad: boolean = false;
-  hideOnNoSlides: boolean = false;
-  width: string = '100%';
-  fullscreen: boolean = false;
-  enableZoom: boolean = false;
-  enablePan: boolean = false;
-  noLoop: boolean = false;
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Altura</mat-label>
+    <input matInput [(ngModel)]="Carousel.height"  placeholder= '52vh' title="">
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Altura minima</mat-label>
+    <input matInput [(ngModel)]="Carousel.minHeight"  placeholder="52vh" title="Altura">
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Tamanho da seta</mat-label>
+    <input matInput [(ngModel)]="Carousel.arrowSize"  placeholder='30px' title="tamanho da seta">
+  </mat-form-field>
+
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.showArrows"  [checked]="true">
+    Mostrar setas
+  </mat-checkbox>
+
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.disableSwiping"  [checked]= "false">
+    Desabilitar Gestos
+  </mat-checkbox>
+
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.autoPlay"  [checked]= "true">
+    AutoPlay
+  </mat-checkbox>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Intervalo do auto-play</mat-label>
+    <input type="number" matInput [(ngModel)]="Carousel.autoPlayInterval"  placeholder="10333" title="Intervalo do auto-play">
+  </mat-form-field>
+
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.stopAutoPlayOnSlide"  [checked]= "true">
+    Parar autoplay no slide
+  </mat-checkbox>
+
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.debug"  [checked]= "false">
+    Debugar
+  </mat-checkbox>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Tamanho do fundo</mat-label>
+    <mat-select matNativeControl [(ngModel)]="Carousel.backgroundSize"  [value]="Carousel.backgroundSize">
+      <mat-option *ngFor="let opt of backgroundSizes" [value]="opt.value">
+        {{opt.Nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Posição do fundo</mat-label>
+    <mat-select matNativeControl [(ngModel)]="Carousel.backgroundPosition"  [value]="Carousel.backgroundPosition">
+      <mat-option *ngFor="let opt of BackgroundPositions" [value]="opt.value">
+        {{opt.Nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Repetição da imagem</mat-label>
+    <mat-select matNativeControl [(ngModel)]="Carousel.backgroundRepeat"  [value]="Carousel.backgroundRepeat">
+      <mat-option *ngFor="let opt of backgroundRepeats" [value]="opt.value">
+        {{opt.Nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-label>Indicadores</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.showDots"  [checked]= "true">
+    Mostrar indicadores
+  </mat-checkbox>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Cor dos indicadores</mat-label>
+    <input type="color" matInput [(ngModel)]="Carousel.dotColor"  placeholder= '#FFF' title="Cor dos indicadores">
+  </mat-form-field>
+
+  <mat-label>Legenda</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.showCaptions"  [checked]= "true">
+    Mostrar legendas
+  </mat-checkbox>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Cor da legenda</mat-label>
+    <input type="color" matInput [(ngModel)]="Carousel.captionColor"  placeholder= '#FFF' title="Cor da legenda">
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Cor de fundo da legenda</mat-label>
+    <input type="color" matInput [(ngModel)]="Carousel.captionBackground"  placeholder= 'rgba(0, 0, 0, .35)' title="Cor de Fundo da legenda">
+  </mat-form-field>
+
+  <mat-label>Lazy loading</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.lazyLoad"  [checked]= "false">
+    Lazyloading
+  </mat-checkbox>
+
+  <mat-label></mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.hideOnNoSlides"  [checked]= "false">
+    Esconder quando sem slide
+  </mat-checkbox>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Largura</mat-label>
+    <input matInput [(ngModel)]="Carousel.width"  placeholder= '100%' title="Largura">
+  </mat-form-field>
+
+  <mat-label>Tela cheia</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.fullscreen"  [checked]= "false">
+    Tela cheia
+  </mat-checkbox>
+
+  <mat-label>Zoom</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.enableZoom"  [checked]= "false">
+    Habilitar Zoom
+  </mat-checkbox>
+
+  <mat-label>Panning</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.enablePan"  [checked]= "false">
+    Habilitar panning
+  </mat-checkbox>
+
+  <mat-label>Loop</mat-label>
+  <mat-checkbox matNativeControl [(ngModel)]="Carousel.noLoop"  [checked]= "false">
+    Sem loop
+  </mat-checkbox>
+
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="basic" [mat-dialog-close]="Carousel">

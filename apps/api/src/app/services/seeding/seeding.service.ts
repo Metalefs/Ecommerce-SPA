@@ -9,5 +9,10 @@ export class SeedingService {
             return Repository.SeedCollections();
         //}
     }
+    async SeedCarousel(Usuario:entities.Usuario){
+        //if (Usuario.Tipo == enums.TipoUsuario.admin) {
+            return Repository.SeedCarousel();
+        //}
+    }
 
 }

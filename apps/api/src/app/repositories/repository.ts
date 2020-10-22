@@ -37,6 +37,17 @@ export module Repository {
             console.log(err);
         }
     }
+
+    export async function SeedCarousel() {
+        let collectionsToSeed = Seeder.SeedCarousel();
+        try {
+            Insert(collectionsToSeed.name, collectionsToSeed.value)
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+
     /*----------------------------*/
 
     export function InsertMany(collection: any, value: any) { // upserts many

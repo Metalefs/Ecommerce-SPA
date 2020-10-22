@@ -2,10 +2,21 @@ import { entities } from 'libs/data/src/index';
 import * as seed from './classes';
 
 export module Seeder {
-
+      export function SeedCarousel(){
+         return {
+            name:entities.Carousel.NomeID,
+            value:seed.carousel,
+            array:false
+          }
+      }
       export function SeedCollections (){ // data for seeding the active repository
 
             return [
+                  {
+                        name:entities.Carousel.NomeID,
+                        value:seed.carousel,
+                        array:false
+                  },
                   {
                         name:entities.Sobre.NomeID,
                         value:seed.Sobre,

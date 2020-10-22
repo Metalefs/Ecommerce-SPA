@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemCarousel } from 'libs/data/src/lib/classes';
-
+import { BackgroundPositions, backgroundSizes, backgroundRepeats} from '../../../../../../data/models/css-background-properties';
 @Component({
   selector: 'personalizados-lopes-criar-item-carousel',
   templateUrl: './criar-item-carousel-dialog.component.html',
@@ -16,17 +16,9 @@ export class CriarItemCarouselDialogComponent implements OnInit {
     "",
     "",
   )
-  backgroundSizes:Select[] = [
-    {"Nome":"Cobrir","value":"cover"},
-    {"Nome":"Conter","value":"contain"},
-  ]
-  BackgroundPositions:Select[] = [
-    {"Nome":"Topo","value":"top"},
-    {"Nome":"Inferior","value":"bottom"},
-    {"Nome":"Center","value":"center"},
-    {"Nome":"Esquerda","value":"left"},
-    {"Nome":"Direita","value":"right"},
-  ]
+  BackgroundPositions = BackgroundPositions;
+  backgroundSizes = backgroundSizes;
+  backgroundRepeats = backgroundRepeats;
   constructor(public dialogRef: MatDialogRef<CriarItemCarouselDialogComponent>) { }
 
   ngOnInit(): void {
@@ -39,8 +31,4 @@ export class CriarItemCarouselDialogComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-}
-interface Select {
-  Nome:string;
-  value:string;
 }

@@ -8,6 +8,7 @@ import { Servico } from './servico.seed';
 import { Sobre } from './sobre.seed';
 import { Cliente } from './cliente.seed';
 import { Mensagem } from './mensagem.seed';
+import { carousel } from './carousel.seed';
 
 export {
     Categoria,
@@ -19,5 +20,6 @@ export {
     Produto,
     Servico,
     Sobre,
-    Mensagem
+    Mensagem,
+    carousel
 }

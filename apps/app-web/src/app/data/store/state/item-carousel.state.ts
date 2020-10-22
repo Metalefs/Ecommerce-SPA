@@ -65,9 +65,8 @@ export class ItemCarouselState {
   }
 
   @Action(EditarItemCarousel)
-  Editar({getState,setState}: StateContext<ItemCarouselStateModel>, {payload, id} : EditarItemCarousel){
-    return this.ItemCarouselService.Editar(payload).pipe(
-      tap(result => {
+  async Editar({getState,setState}: StateContext<ItemCarouselStateModel>, {payload, id} : EditarItemCarousel){
+    return (await (await this.ItemCarouselService.Editar(payload)).subscribe(result => {
         const state = getState();
         const ListaItemsCarousel = [...state.ItemsCarousel];
         const index = ListaItemsCarousel.findIndex(item => item._id === id);

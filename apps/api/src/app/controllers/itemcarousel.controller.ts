@@ -10,7 +10,6 @@ const ItemCarouselRouter = express();
 ItemCarouselRouter.get(RouteDictionary.ItemCarousel, (req: any, res) => {
     try {
         let ItemCarouselService:Services.ItemCarouselService = new Services.ItemCarouselService();
-
         ItemCarouselService.Ler().then(x=>{
             res.send(x);
         });

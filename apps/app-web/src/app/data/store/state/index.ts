@@ -22,6 +22,7 @@ export let States = [
   ServicoState,
   CategoriaState,
   FiltroProdutoState,
+  ItemCarouselState,
   CarouselState
 ]
 

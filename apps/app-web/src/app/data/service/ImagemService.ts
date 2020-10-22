@@ -29,7 +29,7 @@ export class ImagemService {
           resolve(x);
         });
       }
-      catch(ex){}
+      catch(ex){alert("erro ao obter imagem");console.error(ex);reject(ex)}
     })
   }
 
@@ -42,7 +42,7 @@ export class ImagemService {
           resolve(x);
         });
       }
-      catch(ex){console.error(ex)}
+      catch(ex){alert("erro ao armazenar imagem");console.error(ex);reject(ex)}
     })
   }
 
@@ -56,7 +56,9 @@ export class ImagemService {
         });
       }
       catch(ex){
-
+        alert("erro ao deletar imagem");
+        console.error(ex);
+        reject(ex);
       }
     })
   }

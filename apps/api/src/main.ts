@@ -27,5 +27,10 @@ app.post("/seed", function (req,res) {
   seedingService.Seed(null);
   res.send("Seeding...")
 });
+app.post("/seedCar", function (req,res) {
+  let seedingService:SeedingService = new SeedingService();
+  seedingService.SeedCarousel(null);
+  res.send("Seeding...")
+});
 
 app.listen(port, () => console.log(`Running on port ${port}`));

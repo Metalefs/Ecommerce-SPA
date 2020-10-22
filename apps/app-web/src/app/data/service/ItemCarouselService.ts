@@ -35,15 +35,17 @@ export class ItemCarouselService {
       );
     }
 
-    Editar(item: entities.ItemCarousel): Observable<entities.ItemCarousel> {
-      let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
-      alert("Editando !");
-      console.log(item);
-      return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
-        payload).pipe(
-        retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError)
-      )
+    async Editar(item: entities.ItemCarousel): Promise<Observable<entities.ItemCarousel>> {
+      return this.EditarImagens(item).then(x=>{
+          let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
+          alert("Editando !");
+          console.log(item);
+          return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
+            payload).pipe(
+            retry(3), // retry a failed request up to 3 times
+            catchError(this.handleError)
+          )
+      });
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
@@ -60,7 +62,7 @@ export class ItemCarouselService {
         );
     }
     async EditarImagens(item:ItemCarousel) : Promise<ItemCarousel>{
-      if(!isEmpty(item.url)){
+      if(item.url){
 
         alert("Imagens diferentes")
         return this.RemoverImagens(item).then(async()=>{
@@ -77,7 +79,7 @@ export class ItemCarouselService {
           else{
             return item;
           }
-        }catch(EX){ console.log(EX); }
+        }catch(EX){ console.log(EX); return item;}
     }
 
     async UploadItemImages(item:entities.ItemCarousel) : Promise<entities.ItemCarousel>{
