@@ -1,0 +1,103 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { throwError, Observable } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+
+import { entities } from '@personalizados-lopes/data';
+import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import { AuthenticationService } from '../../core/service/authentication/authentication.service';
+import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
+import { isEmpty } from '../../helper/ObjHelper';
+import { ItemCarousel } from 'libs/data/src/lib/classes';
+import { ImagemService } from './ImagemService';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class ItemCarouselService {
+    constructor(private http: HttpClient,
+    private AuthenticationService: AuthenticationService,
+    private servicoImagem: ImagemService) { }
+
+    Ler(): Observable<entities.ItemCarousel[]> {
+        return this.http.get<entities.ItemCarousel[]>(environment.endpoint + RouteDictionary.ItemCarousel).pipe(
+            retry(3), // retry a failed request up to 3 times
+            catchError(this.handleError) // then handle the error
+        );
+    }
+
+    Filtrar(id:any): Observable<entities.ItemCarousel[]> {
+      return this.http.get<entities.ItemCarousel[]>(environment.endpoint + RouteDictionary.ItemCarousel + `?id = ${id}`).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.handleError) // then handle the error
+      );
+    }
+
+    Editar(item: entities.ItemCarousel): Observable<entities.ItemCarousel> {
+      let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
+      alert("Editando !");
+      console.log(item);
+      return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
+        payload).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.handleError)
+      )
+    }
+    Remover(id: string): Observable<any>{
+      let token = this.AuthenticationService.tokenize({id});
+      return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente + `?id=${id}&token=${token.token}`).pipe(
+          retry(3),
+          catchError(this.handleError)
+      );
+    }
+    Incluir(item: entities.ItemCarousel):  Observable<ItemCarousel> {
+        let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
+        return this.http.post<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel, payload).pipe(
+          retry(3),
+          catchError(this.handleError)
+        );
+    }
+    async EditarImagens(item:ItemCarousel) : Promise<ItemCarousel>{
+      if(!isEmpty(item.url)){
+
+        alert("Imagens diferentes")
+        return this.RemoverImagens(item).then(async()=>{
+          return await this.UploadItemImages(item);
+        })
+      }
+    }
+
+    async RemoverImagens(item:ItemCarousel){
+        try{
+          if(item.url != ''){
+            await this.servicoImagem.deleteImage(item.url);
+          }
+          else{
+            return item;
+          }
+        }catch(EX){ console.log(EX); }
+    }
+
+    async UploadItemImages(item:entities.ItemCarousel) : Promise<entities.ItemCarousel>{
+      await this.servicoImagem.storeImage(PathDictionary.carousel,item.url).then(async x=>{
+        item.url = await this.servicoImagem.getRef((await x).metadata.fullPath, item.nome, "ItemCarousel");
+      })
+      return item;
+      // if(item.url){
+      // }
+    }
+
+    handleError(error) {
+        let errorMessage = '';
+        if(error.error instanceof ErrorEvent) {
+            // Get client-side error
+            errorMessage = error.error.message;
+        } else {
+            // Get server-side error
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+        }
+        return throwError(errorMessage);
+    }
+}

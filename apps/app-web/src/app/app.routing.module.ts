@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './core/interceptor';
-import { NoAuthGuard } from './core/guard/no-auth.guard';
-
 import { LayoutModule } from './layout/layout.module';
 import { GerenciamentoModule } from './modules/gerenciamento/gerenciamento.module';
 import { LoginModule } from './modules/login/login.module';

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { ItemCarouselState } from 'apps/app-web/src/app/data/store/state';
+import { ItemCarousel } from 'libs/data/src/lib/classes';
+import { Observable } from 'rxjs';
 import { ObterImagensCarousel } from '../../../../helper/FileHelper';
 @Component({
   selector: 'personalizados-lopes-carrousel',
@@ -6,11 +10,9 @@ import { ObterImagensCarousel } from '../../../../helper/FileHelper';
   styleUrls: ['./carrousel.component.scss']
 })
 export class CarrouselComponent implements OnInit {
-
+  @Select(ItemCarouselState.ObterListaItemsCarousel) ItemsCarousel$: Observable<ItemCarousel[]>;
   imageUrls: (string | IImage)[] = [
-    { url: ObterImagensCarousel()[0], href: '#headerGfooter', backgroundSize: 'cover', backgroundPosition: 'top' },
-    { url: 'assets/images/inicio/carousel/equipamentos-necessarios-empresa-serigrafia.jpg', caption: '', backgroundSize: 'cover', backgroundPosition: 'center' },
-    { url: 'assets/images/inicio/carousel/serigrafia.jpeg', caption: 'Serigrafia', backgroundSize: 'cover', backgroundPosition: 'center' },
+
   ];
   height: string = '52vh';
   minHeight: string;
@@ -41,6 +43,13 @@ export class CarrouselComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.ItemsCarousel$.subscribe(x=>{
+      if(x)
+      x.forEach(img=>{
+        this.imageUrls.push(img);
+      })
+    })
+
   }
 
 }

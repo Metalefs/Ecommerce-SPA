@@ -42,10 +42,6 @@ export class CriarProdutoDialogComponent implements OnInit {
     this.CarregarCategorias();
   }
 
-  upload($event){
-    this.Produto.FileList = $event.target.files;
-    console.log(this.Produto.FileList);
-  }
 
   SelecionarCategoria($event){
     console.log($event);
@@ -53,6 +49,10 @@ export class CriarProdutoDialogComponent implements OnInit {
     console.log(this.Produto.Categoria)
   }
 
+  upload($event){
+    this.Produto.FileList = $event.target.files;
+    console.log(this.Produto.FileList);
+  }
   onNoClick(): void {
     this.dialogRef.close();
   }

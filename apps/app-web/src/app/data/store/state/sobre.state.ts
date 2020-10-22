@@ -53,7 +53,6 @@ export class SobreState {
       tap(result => {
         const state = getState();
         const Sobre = result;
-        localStorage.setItem("cacheSobreState",JSON.stringify(Sobre));
         setState({
           ...state,
           Sobre: Sobre,

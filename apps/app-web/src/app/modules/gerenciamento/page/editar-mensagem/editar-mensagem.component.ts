@@ -9,8 +9,6 @@ import { EmailMessageQuestion } from '../../../../shared/components/dynamic-form
 import { QuestionBase, DynFormQuestions } from '../../../../shared/components/dynamic-form/question-base';
 
 import { entities } from '@personalizados-lopes/data';
-import { MensagemService } from '../../../../data/service/';
-import { fade } from 'apps/app-web/src/app/animations';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Mensagem } from 'libs/data/src/lib/classes';
 import { MensagemState } from 'apps/app-web/src/app/data/store/state';

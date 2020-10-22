@@ -10,6 +10,8 @@ import { ServicoService } from './ServicoService';
 import { OrcamentoService } from './OrcamentoService';
 import { MensagemService } from './MensagemService';
 import { ImagemService } from './ImagemService';
+import { ItemCarouselService } from './ItemCarouselService';
+import { CarouselService } from './CarouselService';
 
 export {
   SobreService,
@@ -23,7 +25,9 @@ export {
   ServicoService,
   OrcamentoService,
   MensagemService,
-  ImagemService
+  ImagemService,
+  ItemCarouselService,
+  CarouselService
 }
 
 export let Services = [
@@ -37,5 +41,7 @@ export let Services = [
   ServicoService,
   OrcamentoService,
   MensagemService,
-  ImagemService
+  ImagemService,
+  ItemCarouselService,
+  CarouselService
 ]

@@ -10,6 +10,8 @@ import {TemaService} from './tema.service';
 import {EmailNotificacaoService} from './email-notificacao.service';
 import {MensagemService} from './mensagem.service';
 import {ImagemService} from './imagem.service';
+import {ItemCarouselService} from './item-carousel.service';
+import {CarouselService} from './carousel.service';
 
 export {
     UsuarioService,
@@ -23,5 +25,7 @@ export {
     TemaService,
     EmailNotificacaoService,
     MensagemService,
-    ImagemService
+    ImagemService,
+    ItemCarouselService,
+    CarouselService,
 }

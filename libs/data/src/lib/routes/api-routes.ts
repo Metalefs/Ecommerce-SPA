@@ -15,6 +15,9 @@ export let RouteDictionary = {
     Mensagem : "/mensagem/",
     Imagem : "/imagem/",
 
+    Carousel: '/carousel/',
+    ItemCarousel: '/itemcarousel/',
+
     Seed:"/seed/",
 
     Usuario: "/usuario/",

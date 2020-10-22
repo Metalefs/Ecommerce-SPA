@@ -214,7 +214,7 @@ export module Repository {
                     }
                     console.log("Editado", result.n)
                     db.close();
-                    resolve(await FindOne(collection,{ _id: id }));
+                    resolve(await FindOne(collection, { "_id": new ObjectId(id) }));
                 });
             });
         });

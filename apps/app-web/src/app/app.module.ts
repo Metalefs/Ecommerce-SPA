@@ -24,7 +24,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { States } from './data/store/state';
-import { EmailNotificacaoService, OrcamentoService, ProdutoService, Services, SobreService } from './data/service';
+import { EmailNotificacaoService, ItemCarouselService, OrcamentoService, ProdutoService, Services, SobreService } from './data/service';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @NgModule({
@@ -64,6 +64,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
     { provide: SobreService },
     { provide: OrcamentoService },
     { provide: EmailNotificacaoService },
+    { provide: ItemCarouselService },
     { provide: MediaMatcher },
     {
       provide: RouteReuseStrategy,

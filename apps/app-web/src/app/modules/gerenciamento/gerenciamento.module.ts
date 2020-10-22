@@ -29,6 +29,9 @@ import { EditarMensagemComponent } from './page/editar-mensagem/editar-mensagem.
 import { EditarEmailsComponent } from './page/editar-emails/editar-emails.component';
 import { EditarImagemComponent } from './page/editar-imagem/editar-imagem.component';
 import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.component';
+import { EditarItemCarouselComponent } from './page/editar-carousel/editar-item-carousel/editar-item-carousel.component';
+import { CriarItemCarouselDialogComponent } from './page/editar-carousel/dialogComponents/criar-item-carousel-dialog/criar-item-carousel-dialog.component';
+import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComponents/editar-carousel-dialog/editar-carousel-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.
     EditarMensagemComponent,
     EditarEmailsComponent,
     EditarImagemComponent,
-    EditarCarouselComponent
+    EditarCarouselComponent,
+    EditarItemCarouselComponent,
+    CriarItemCarouselDialogComponent,
+    EditarCarouselDialogComponent,
   ],
   imports: [
     CommonModule,

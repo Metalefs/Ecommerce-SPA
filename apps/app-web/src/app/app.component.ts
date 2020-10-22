@@ -12,6 +12,7 @@ import { LerMensagem } from './data/store/actions/Mensagem.actions';
 import { LerProduto } from './data/store/actions/Produto.actions';
 import { LerServico } from './data/store/actions/Servico.actions';
 import { LerSobre } from './data/store/actions/sobre.actions';
+import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 @Component({
   selector: 'personalizados-lopes-root',
   templateUrl: './app.component.html',
@@ -25,6 +26,7 @@ export class AppComponent {
   constructor(private store: Store){  }
 
   LerServicosAPI(){
+    this.store.dispatch(new LerItemCarousel()      ).subscribe();
     this.store.dispatch(new LerInformacoesContato()).subscribe();
     this.store.dispatch(new LerCliente()           ).subscribe();
     this.store.dispatch(new LerSobre()             ).subscribe();

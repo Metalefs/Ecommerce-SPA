@@ -8,6 +8,8 @@ import {MensagemState} from './mensagem.state';
 import {ServicoState} from './servico.state';
 import {CategoriaState} from './categoria.state';
 import {FiltroProdutoState} from './filtroproduto.state';
+import {ItemCarouselState} from './item-carousel.state';
+import {CarouselState} from './carousel.state';
 
 export let States = [
   ProdutoState,
@@ -19,7 +21,8 @@ export let States = [
   MensagemState,
   ServicoState,
   CategoriaState,
-  FiltroProdutoState
+  FiltroProdutoState,
+  CarouselState
 ]
 
 export {
@@ -32,6 +35,8 @@ export {
   MensagemState,
   ServicoState,
   CategoriaState,
-  FiltroProdutoState
+  FiltroProdutoState,
+  ItemCarouselState,
+  CarouselState
 }
 

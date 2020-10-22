@@ -9,6 +9,8 @@ import { EmailNotificacaoRouter } from './email-notificacao.controller';
 import { ClienteRouter } from './cliente.controller';
 import { MensagemRouter } from './mensagem.controller';
 import { ImagemRouter } from './imagem.controller';
+import { ItemCarouselRouter } from './itemcarousel.controller';
+import { CarouselRouter } from './carousel.controller';
 
 export let Routers = [
     CategoriaRouter,
@@ -32,4 +34,8 @@ export let Routers = [
     MensagemRouter,
 
     ImagemRouter,
+
+    ItemCarouselRouter,
+
+    CarouselRouter,
 ];
