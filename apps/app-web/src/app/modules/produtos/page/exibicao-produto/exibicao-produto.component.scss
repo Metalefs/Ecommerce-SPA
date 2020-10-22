@@ -3,7 +3,8 @@ gallery{
 }
 :host ::ng-deep gallery-slider:hover{
   transition: 2s all ease-in-out;
-  transform:scale(1.1);
+  cursor: grab;
+  transform:scale(1);
 }
 .heartbutton {
   font-size: larger;
