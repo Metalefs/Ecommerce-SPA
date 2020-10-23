@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Select, Store } from '@ngxs/store';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { fade } from '../../../animations';
+import { AdicionarOrcamento } from '../../../data/store/actions/Orcamento.actions';
 import { OrcamentoState } from '../../../data/store/state';
 
 @Component({
@@ -14,9 +16,9 @@ import { OrcamentoState } from '../../../data/store/state';
 })
 export class OrcamentoComponent implements OnInit {
 
-  @Select(OrcamentoState.ObterListaOrcamentos) Orcamento$: Observable<Orcamento>;
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Usuario:Usuario;
-  constructor() {
+  constructor(private store:Store, private snack:MatSnackBar) {
 
   }
 
@@ -24,8 +26,8 @@ export class OrcamentoComponent implements OnInit {
   }
 
   EnviarOrcamento(){
-    // this.Orcamento$.subscribe(x=>{
-
-    // })
+    this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
+      this.snack.open("Orçamento enviado! Responderemos dentro de 24 horas", "Fechar");
+    });
   }
 }

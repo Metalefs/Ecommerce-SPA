@@ -32,6 +32,7 @@ import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.
 import { EditarItemCarouselComponent } from './page/editar-carousel/editar-item-carousel/editar-item-carousel.component';
 import { CriarItemCarouselDialogComponent } from './page/editar-carousel/dialogComponents/criar-item-carousel-dialog/criar-item-carousel-dialog.component';
 import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComponents/editar-carousel-dialog/editar-carousel-dialog.component';
+import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComp
     EditarItemCarouselComponent,
     CriarItemCarouselDialogComponent,
     EditarCarouselDialogComponent,
+    EditarOrcamentoComponent,
   ],
   imports: [
     CommonModule,

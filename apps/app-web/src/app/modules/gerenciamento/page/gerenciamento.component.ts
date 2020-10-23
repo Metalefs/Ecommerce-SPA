@@ -48,6 +48,7 @@ export class GerenciamentoComponent implements OnInit {
 
     this.navs = [
       {name: "Produtos", href: "."},
+      {name: "Orcamentos", href: "orcamento"},
       {name: "Categorias", href: "categoria"},
       {name: "Clientes", href: "cliente"},
       {name: "Sobre", href: "sobre"},

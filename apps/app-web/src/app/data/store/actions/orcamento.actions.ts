@@ -12,7 +12,7 @@ export class AdicionarOrcamento {
 
   static readonly type = '[Orcamento] Add'
 
-  constructor(public payload: entities.Orcamento) {}
+  constructor() {}
 }
 
 
@@ -39,7 +39,7 @@ export class EditarOrcamento {
 
 export class EditarOrcamentoLocal {
 
-  static readonly type = '[Orcamento] Edit'
+  static readonly type = '[Orcamento] Edit Local'
 
   constructor(public payload: entities.Orcamento, public id:string) {}
 }

@@ -7,7 +7,7 @@
 
   <ng-container matColumnDef="Total">
     <th mat-header-cell *matHeaderCellDef> Total </th>
-    <td @fadeIn mat-cell *matCellDef="let element"> {{(TOTAL(element)|async)}} </td>
+    <td @fadeIn mat-cell *matCellDef="let element"> {{element.Quantidade}}</td>
   </ng-container>
 
   <ng-container matColumnDef="Acoes">

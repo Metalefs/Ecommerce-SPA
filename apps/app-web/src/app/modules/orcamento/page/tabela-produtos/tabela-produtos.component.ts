@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Select, Store } from '@ngxs/store';
+import { fade } from 'apps/app-web/src/app/animations';
 import { LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
-import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'personalizados-lopes-tabela-produtos',
   templateUrl: './tabela-produtos.component.html',
-  styleUrls: ['./tabela-produtos.component.scss']
+  styleUrls: ['./tabela-produtos.component.scss'],
+  animations:[fade]
 })
 export class TabelaProdutosComponent implements OnInit {
-  @Select(OrcamentoState.ObterListaOrcamentos) Orcamento$: Observable<Orcamento>;
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   ProdutoTable:MaterialTable;
   constructor(private store:Store) { }
 
@@ -34,14 +36,6 @@ export class TabelaProdutosComponent implements OnInit {
         "Acoes",
       ];
     })
-  }
-
-  TOTAL(Produto){
-    this.Orcamento$.subscribe(x=>{
-      let lista = x.Produto.filter(item => item._id == Produto._id);
-      let total = lista.map(x=>x.Quantidade).reduce((total, num)=>{return total + Math.round(num)});
-      return total;
-    });
   }
 
   removerProduto(Produto:Produto){

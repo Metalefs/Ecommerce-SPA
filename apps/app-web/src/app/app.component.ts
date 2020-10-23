@@ -27,7 +27,8 @@ export class AppComponent {
   constructor(private store: Store){  }
 
   LerServicosAPI(){
-    this.store.dispatch(new LerCarousel()      ).subscribe();
+    this.store.dispatch(new LerCarousel()          ).subscribe();
+    this.store.dispatch(new LerOrcamento()         ).subscribe();
     this.store.dispatch(new LerItemCarousel()      ).subscribe();
     this.store.dispatch(new LerInformacoesContato()).subscribe();
     this.store.dispatch(new LerCliente()           ).subscribe();

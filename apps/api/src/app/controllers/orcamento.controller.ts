@@ -20,15 +20,10 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
     }
 }).post(RouteDictionary.Orcamento, (req: any, res) => {
     try {
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-
-            let OrcamentoService:Services.OrcamentoService = new Services.OrcamentoService();
-
-            OrcamentoService.Inserir(user,req.body.item.Orcamento).then(x=>{
-                res.send(x);
-            });
-
+        let OrcamentoService:Services.OrcamentoService = new Services.OrcamentoService();
+        console.log(req.body)
+        OrcamentoService.Inserir(null,req.body.payload.item.Orcamento).then(x=>{
+            res.send(x);
         });
     }
     catch (err) {

@@ -1,11 +1,12 @@
 import { entities, enums } from '@personalizados-lopes/data';
+import { Mensagem } from 'libs/data/src/lib/classes';
 
 import { Repository } from '../repositories/repository';
 
 export class MensagemService {
 
-    async Ler(){
-        return Repository.List(entities.Mensagem.NomeID).then(x => {
+    async Ler() : Promise<Mensagem[]>{
+        return Repository.List(entities.Mensagem.NomeID).then((x:Mensagem[]) => {
             return x;
         });
     }
@@ -35,5 +36,10 @@ export class MensagemService {
             });
         }
     }
-
+    SubstituirChavesMensagemOrcamento(Mensagem:string, Orcamento:entities.Orcamento){
+      let produtos = "";
+      Orcamento.Produto.forEach(x=>produtos += x + " ,");
+      Mensagem = Mensagem.replace("{{PRODUTO}}", produtos);
+      return Mensagem;
+    }
 }

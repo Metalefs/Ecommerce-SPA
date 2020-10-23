@@ -1,11 +1,12 @@
 import { entities, enums } from '@personalizados-lopes/data';
+import { Sobre } from 'libs/data/src/lib/classes';
 
 import { Repository } from '../repositories/repository';
 
 export class SobreService {
 
-    async Ler(){
-        return  Repository.List(entities.Sobre.NomeID).then(x => {
+    async Ler() : Promise<Sobre> {
+        return  Repository.List(entities.Sobre.NomeID).then((x:Sobre) => {
             return x[0];
         });
     }

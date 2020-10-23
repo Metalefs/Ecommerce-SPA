@@ -13,6 +13,7 @@ import { EditarSobreComponent } from './page/editar-sobre/editar-sobre.component
 import { EditarTemaComponent } from './page/editar-tema/editar-tema.component';
 import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.component';
 import { GerenciamentoComponent } from './page/gerenciamento.component';
+import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 
 
 export const routes: Routes = [
@@ -25,6 +26,11 @@ export const routes: Routes = [
         path: "",
         // canActivate: [AuthGuard],
         component: EditarProdutoComponent,
+      },
+      {
+        path: "orcamento",
+        // canActivate: [AuthGuard],
+        component: EditarOrcamentoComponent,
       },
       {
         path: 'categoria',
