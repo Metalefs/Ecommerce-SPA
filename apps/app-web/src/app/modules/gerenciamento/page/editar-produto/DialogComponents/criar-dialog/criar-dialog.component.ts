@@ -23,6 +23,7 @@ export class CriarProdutoDialogComponent implements OnInit {
       this.Produto = new Produto (
         "",
         "",
+        "",
         null,
         "",
         [""],

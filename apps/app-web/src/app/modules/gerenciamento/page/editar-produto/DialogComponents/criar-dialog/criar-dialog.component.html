@@ -6,6 +6,9 @@
   <mat-form-field class="w-full">
     <input matInput type="text" [(ngModel)]="Produto.Descricao" placeholder="Descricao">
   </mat-form-field>
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
+  </mat-form-field>
   <mat-form-field appearance="">
     <mat-label>Categoria</mat-label>
     <mat-select matNativeControl (selectionChange)="SelecionarCategoria($event)" [(ngModel)]="Produto.NomeCategoria" [value]="Produto.NomeCategoria">

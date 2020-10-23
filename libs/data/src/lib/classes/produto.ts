@@ -5,6 +5,7 @@ import { MongoDocument } from './abstract/MongoDocument';
 export class Produto extends MongoDocument implements entidadeBase{
     Nome:string;
     Descricao:string;
+    Subtitulo:string;
     Categoria:Categoria;
     NomeCategoria:string;
     Preco?:number;
@@ -20,6 +21,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     constructor(
     Nome:string,
     Descricao:string,
+    Subtitulo:string,
     Categoria:Categoria,
     NomeCategoria:string,
     Imagem:string[],
@@ -32,6 +34,7 @@ export class Produto extends MongoDocument implements entidadeBase{
         super();
         this.Nome = Nome;
         this.Descricao = Descricao;
+        this.Subtitulo = Subtitulo;
         this.Categoria = Categoria;
         this.NomeCategoria = NomeCategoria;
         this.Imagem = Imagem;

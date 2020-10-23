@@ -88,12 +88,12 @@ export class ProdutoService {
     }
 
     async EditarImagens(item:Produto) : Promise<Produto>{
-      if(!isEmpty(item.FileList)){
+      return await this.UploadItemImages(item);
+      if(!isEmpty(item.FileList[0])){
 
         alert("Imagens diferentes")
-        return this.RemoverImagens(item).then(async()=>{
-          return await this.UploadItemImages(item);
-        })
+        // return this.RemoverImagens(item).then(async()=>{
+        // })
       }
     }
 

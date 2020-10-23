@@ -5,9 +5,10 @@
     <figure class="image is-128x128">
       <img src="{{Produto?.Imagem[0]}}"alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
     </figure>
-    <mat-card-header>
+    <mat-card-header class="w-full">
       {{Produto.Categoria.Cor}}
-      <mat-card-title class=" has-text-grey">{{Produto?.Nome}}</mat-card-title>
+      <mat-card-title class="w-full txt-center">{{Produto?.Nome}}</mat-card-title>
+      <mat-card-subtitle class="has-text-grey is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="flex-w flex-c" >
       <div class="portfolio-overlay w-full">

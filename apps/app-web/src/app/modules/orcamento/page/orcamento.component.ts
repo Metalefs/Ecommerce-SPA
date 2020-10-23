@@ -3,12 +3,14 @@ import { Select } from '@ngxs/store';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
+import { fade } from '../../../animations';
 import { OrcamentoState } from '../../../data/store/state';
 
 @Component({
   selector: 'personalizados-lopes-orcamento',
   templateUrl: './orcamento.component.html',
-  styleUrls: ['./orcamento.component.scss']
+  styleUrls: ['./orcamento.component.scss'],
+  animations: [fade]
 })
 export class OrcamentoComponent implements OnInit {
 
@@ -21,4 +23,9 @@ export class OrcamentoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  EnviarOrcamento(){
+    // this.Orcamento$.subscribe(x=>{
+
+    // })
+  }
 }

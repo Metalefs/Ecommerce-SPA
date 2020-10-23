@@ -15,27 +15,33 @@ import { Observable } from 'rxjs';
   styleUrls: ['./tabela-produtos.component.scss']
 })
 export class TabelaProdutosComponent implements OnInit {
-
+  @Select(OrcamentoState.ObterListaOrcamentos) Orcamento$: Observable<Orcamento>;
   ProdutoTable:MaterialTable;
   constructor(private store:Store) { }
 
   ngOnInit(): void {
-    this.ProdutoTable = new MaterialTable();
-    let Produtos =  JSON.parse(localStorage.getItem("Orcamento")).Produto;
-    let DistinctProdutos = removeDuplicates(Produtos,"_id");
-    console.log(DistinctProdutos);
-    this.ProdutoTable.dataSource = DistinctProdutos;
+    this.Orcamento$.subscribe(x=>{
 
-    this.ProdutoTable.displayedColumns = [
-      "Produtos",
-      "Total",
-      "Acoes",
-    ];
+      this.ProdutoTable = new MaterialTable();
+      let Produtos =  x.Produto;
+      let DistinctProdutos = removeDuplicates(Produtos,"_id");
+      console.log(DistinctProdutos);
+      this.ProdutoTable.dataSource = DistinctProdutos;
+
+      this.ProdutoTable.displayedColumns = [
+        "Produtos",
+        "Total",
+        "Acoes",
+      ];
+    })
   }
 
   TOTAL(Produto){
-    let lista = JSON.parse(localStorage.getItem("Orcamento")).Produto.filter(item => item._id == Produto._id);
-    return lista[0].Quantidade;
+    this.Orcamento$.subscribe(x=>{
+      let lista = x.Produto.filter(item => item._id == Produto._id);
+      let total = lista.map(x=>x.Quantidade).reduce((total, num)=>{return total + Math.round(num)});
+      return total;
+    });
   }
 
   removerProduto(Produto:Produto){

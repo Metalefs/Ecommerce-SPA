@@ -17,7 +17,7 @@
       <h3 class="pl-4 mb-2 footer-title">Contate-nos</h3>
       <mat-list>
         <mat-list-item class="mb-0 pb-0">
-          <p class="footer-text">Telefone: {{(InformacoesContato$ | async)?.Telefone}}</p>
+          <p class="footer-text">Telefone: <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
         </mat-list-item>
         <mat-list-item class="mb-0 pb-0">
           <p class="footer-text">Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
@@ -38,9 +38,9 @@
     <span><mat-icon>alternate_email</mat-icon> {{(Sobre$ | async)?.Nome}}</span>
     <span class="spacer"></span>
     <span class="px-3 py-2">
-      <a class="has-text-grey-light">SOBRE </a>
+      <a pageScroll href="#SOBRE" [routerLink]="['/empresa']" routerLinkActive="active" class="has-text-grey-light">SOBRE </a>
       |
-      <a class="has-text-grey-light"> FALE-CONOSCO</a>
+      <a pageScroll href="#ORCAMENTO" [routerLink]="['/orcamento']" routerLinkActive="active" class="has-text-grey-light"> FALE-CONOSCO</a>
     </span>
   </div>
 </section>

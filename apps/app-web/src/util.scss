@@ -55,7 +55,11 @@ body, html {
 /*---------------------------------------------*/
 a:focus {outline: none;}
 a:hover {text-decoration: none;}
-
+.reset-a, .reset-a:hover, .reset-a:visited, .reset-a:focus, .reset-a:active  {
+  text-decoration: none;
+  color: inherit;
+  outline: 0;
+}
 /* ------------------------------------ */
 h1,h2,h3,h4,h5,h6,p {margin: 0px;}
 

@@ -37,6 +37,13 @@ export class EditarOrcamento {
   constructor(public payload: entities.Orcamento, public id:string) {}
 }
 
+export class EditarOrcamentoLocal {
+
+  static readonly type = '[Orcamento] Edit'
+
+  constructor(public payload: entities.Orcamento, public id:string) {}
+}
+
 
 export class RemoverOrcamento {
 

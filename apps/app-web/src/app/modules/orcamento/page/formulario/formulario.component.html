@@ -5,7 +5,7 @@
 
     <mat-form-field class="w-full">
       <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
+      <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
         placeholder="Ex. Fulano de tal">
       <mat-error *ngIf="nomeFormControl.hasError('required')">
         É necessário inserir um <strong>nome</strong>
@@ -16,7 +16,7 @@
       <div class="column">
         <mat-form-field class="w-full">
           <mat-label>Email</mat-label>
-          <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
+          <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
             placeholder="Ex. meu@email.com">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Insira um e-mail válido
@@ -30,8 +30,8 @@
       <div class="column">
         <mat-form-field class="w-full">
           <mat-label>Telefone</mat-label>
-          <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
-            placeholder="0 0000 0000">
+          <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
+            placeholder="(00) 0000 0000"  mask="(00) 0000-0000||(00) 0 0000-0000">
           <mat-error *ngIf="phoneFormControl.hasError() && !phoneFormControl.hasError('required')">
             Insira um telefone válido
           </mat-error>
@@ -46,7 +46,7 @@
 
     <mat-form-field class="w-full">
       <mat-label>Mensagem</mat-label>
-      <textarea matInput [formControl]="messageFormControl"  [(ngModel)]="Orcamento.Mensagem"></textarea>
+      <textarea matInput [formControl]="messageFormControl"  (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Mensagem"></textarea>
       <mat-error *ngIf="phoneFormControl.hasError('required')">
           É necessário inserir uma <strong>Mensagem</strong>
       </mat-error>
@@ -60,7 +60,7 @@
 
     <mat-form-field class="w-full">
       <mat-label>Nome</mat-label>
-      <input matInput [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
+      <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
         placeholder="Ex. Fulano de tal">
       <mat-error *ngIf="nomeFormControl.hasError('required')">
         É necessário inserir seu <strong>nome</strong>
@@ -69,7 +69,7 @@
 
     <mat-form-field class="w-full">
       <mat-label>Email</mat-label>
-      <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
+      <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
         placeholder="Ex. meu@email.com">
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Insira um e-mail válido
@@ -81,8 +81,8 @@
 
     <mat-form-field class="w-full">
       <mat-label>Telefone</mat-label>
-      <input class="w-full" matInput [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
-        placeholder="0 0000 0000">
+      <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
+        placeholder="(00) 0 0000 0000"   mask="(00) 0000-0000||(00) 0 0000-0000">
       <mat-error *ngIf="phoneFormControl.hasError() && !phoneFormControl.hasError('required')">
         Insira um telefone válido
       </mat-error>
@@ -93,7 +93,7 @@
 
     <mat-form-field class="w-full">
       <mat-label>Mensagem</mat-label>
-      <textarea matInput [formControl]="messageFormControl"  [(ngModel)]="Orcamento.Mensagem"></textarea>
+      <textarea matInput [formControl]="messageFormControl"  (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Mensagem"></textarea>
       <mat-error *ngIf="phoneFormControl.hasError('required')">
           É necessário inserir sua <strong>Mensagem</strong>
       </mat-error>

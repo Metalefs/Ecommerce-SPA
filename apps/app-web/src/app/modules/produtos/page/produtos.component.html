@@ -20,7 +20,7 @@
                     pageScroll
                     href="#PRODUTOS"
                     *ngFor="let categoria of Categorias$ | async"
-                    [style.borderLeft]="'1px solid '+categoria?.Cor"
+                    [style.backgroundColor]="categoria?.Cor"
                     class="pointer"
                     (click)="SetCategoria(categoria)"
                     [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">

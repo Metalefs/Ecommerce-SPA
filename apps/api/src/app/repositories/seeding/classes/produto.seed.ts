@@ -4,6 +4,7 @@ export let Produto = [
     new entities.Produto(
         "",
         "",
+        "",
         Categoria[0],
         "Serigrafia",
         [""],

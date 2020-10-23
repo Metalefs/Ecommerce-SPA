@@ -7,13 +7,13 @@
 
   <ng-container matColumnDef="Total">
     <th mat-header-cell *matHeaderCellDef> Total </th>
-    <td @fadeIn mat-cell *matCellDef="let element"> {{(TOTAL(element))}} </td>
+    <td @fadeIn mat-cell *matCellDef="let element"> {{(TOTAL(element)|async)}} </td>
   </ng-container>
 
   <ng-container matColumnDef="Acoes">
     <th mat-header-cell *matHeaderCellDef> </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button (click)="removerProduto(element)">
+      <button mat-icon-button title="Remover do orçamento" (click)="removerProduto(element)">
         <mat-icon>remove_circle</mat-icon>
       </button>
     </td>

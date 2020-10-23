@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { OrcamentoService } from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento } from '../actions/Orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal } from '../actions/Orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
@@ -30,18 +30,12 @@ export class OrcamentoState {
 
   @Selector()
   static ObterListaOrcamentos(state: OrcamentoStateModel) {
-    if(localStorage.getItem("Orcamento"))
-      return JSON.parse(localStorage.getItem("Orcamento"));
-    else
-      return state.Orcamentos;
+    return state.Orcamentos;
   }
 
   @Action(LerOrcamento)
   LerOrcamento({getState, setState}: StateContext<OrcamentoStateModel>){
-    if(localStorage.getItem("Orcamento"))
-      return JSON.parse(localStorage.getItem("Orcamento"));
-    else
-      return getState().Orcamentos;
+    return getState().Orcamentos;
   }
 
   @Action(AdicionarOrcamento)
@@ -58,7 +52,6 @@ export class OrcamentoState {
   AdicionarProdutoAoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : AdicionarProdutoAoOrcamento){
     const state = getState();
     state.Orcamentos.Produto.push(payload);
-    localStorage.setItem("Orcamento",JSON.stringify(state.Orcamentos));
     patchState({
         Orcamentos: state.Orcamentos
     });
@@ -68,7 +61,6 @@ export class OrcamentoState {
   RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id} : RemoverProdutoOrcamento){
     const state = getState();
     state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item._id !== id);
-    localStorage.setItem("Orcamento",JSON.stringify(state.Orcamentos));
     patchState({
         Orcamentos: state.Orcamentos
     });
@@ -79,13 +71,21 @@ export class OrcamentoState {
     return this.OrcamentoService.Editar(payload).pipe(
       tap(result => {
         const state = getState();
-        localStorage.setItem("Orcamento",JSON.stringify(state.Orcamentos));
         setState({
           ...state,
           Orcamentos: result,
         });
       })
     );
+  }
+
+  @Action(EditarOrcamentoLocal)
+  EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id} : EditarOrcamento){
+    let state = getState();
+    patchState({
+      ...state,
+      Orcamentos: payload,
+    });
   }
 
   @Action(RemoverOrcamento)

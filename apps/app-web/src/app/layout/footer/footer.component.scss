@@ -16,6 +16,10 @@
   /* identical to box height */
   color:white;
 }
+a{
+  text-decoration: none;
+
+}
 .footer-title{
   @extend .base;
   line-height: 33px;
