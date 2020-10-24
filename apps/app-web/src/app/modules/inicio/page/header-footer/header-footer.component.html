@@ -5,10 +5,10 @@
       <mat-card [attr.data-aos]="i == 0 ? '' : 'flip-left'">
         <mat-card-header>
           <div mat-card-avatar [style.backgroundColor]="card?.color">
-            <mat-icon>{{card.icon}}</mat-icon>
+            <a [routerLink]="card.link" href="{{card.id}}" pageScroll><mat-icon>{{card.icon}}</mat-icon></a>
           </div>
           <mat-card-title>
-            <h1 class="is-uppercase has-text-weight-medium">{{card.title}}</h1>
+            <h1 class="is-capitalized has-text-weight-medium">{{card.title}}</h1>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>

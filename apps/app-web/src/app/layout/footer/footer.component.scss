@@ -28,7 +28,7 @@ a{
   font-weight: 500;
   align-items: center;
   letter-spacing: 0.08em !important;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   border-style: solid;
   border-color: white;
   border-width: 1px;
@@ -47,4 +47,5 @@ a{
 span{
   font-family: Open Sans;
   color: white;
+  text-transform: lowercase;
 }

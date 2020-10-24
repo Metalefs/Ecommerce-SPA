@@ -1,6 +1,6 @@
 .mat-card{
   padding:2rem;
-  min-height:500px;
+  height: 100%;
 }
 .column{
   padding:0;
@@ -13,7 +13,7 @@
   border-radius: 0;
   height: 100%;
 }
-section{
+.section{
   background-size: cover !important;
   background: url('/assets/images/servico/equipamentos-necessarios-empresa-serigrafia.jpg') no-repeat;
 }

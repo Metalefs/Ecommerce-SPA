@@ -26,6 +26,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { States } from './data/store/state';
 import { EmailNotificacaoService, ItemCarouselService, OrcamentoService, ProdutoService, Services, SobreService } from './data/service';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -53,7 +55,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
     NgxsModule.forRoot(States),
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsLoggerPluginModule.forRoot()
+    NgxsLoggerPluginModule.forRoot(),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

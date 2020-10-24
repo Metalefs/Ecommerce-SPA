@@ -10,8 +10,8 @@
         <a
          (click)="SetActiveNav(link)"
          [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-         [ngClass]="link.name == 'INICIO' ? 'inicio': ''"
-         class="nav-link"
+
+         class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"
          [routerLink]="link.href"
          routerLinkActive="true">{{link.name}}</a>
 

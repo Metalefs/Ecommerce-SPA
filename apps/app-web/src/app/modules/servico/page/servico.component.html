@@ -1,8 +1,32 @@
 <section id="SERVICO" class="mt-3 w-full">
 
-  <div class="columns" *ngFor="let card of Cards">
-      <div class="column is-6" data-aos="slide-right" >
-        <mat-card *ngIf="card.class == 'left'" class="w-full card empresa-card">
+  <div class="columns" *ngFor="let card of Cards;let i = index">
+
+    <ng-container  *ngIf="i%2 == 0 then left else right"></ng-container>
+
+    <ng-template #right>
+      <div class="column is-6 section" data-aos="slide-right">
+
+      </div>
+
+      <div class="column is-6">
+        <mat-card class="w-full card empresa-card">
+          <mat-card-header class="py-1 mx-0">
+            <mat-card-title>
+              <p class="header is-uppercase">{{card?.title}}</p>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="txt-justify card-text">{{card?.content}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-template>
+
+
+    <ng-template #left>
+      <div class="column is-6" data-aos="slide-right">
+        <mat-card class="w-full card empresa-card">
           <mat-card-header class="py-1 mx-0">
             <mat-card-title>
               <p class="header is-uppercase">{{card?.title}}</p>
@@ -14,18 +38,11 @@
         </mat-card>
       </div>
 
-      <div class="column is-6">
-        <mat-card *ngIf="card.class == 'right'" class="w-full card empresa-card">
-          <mat-card-header class="py-1 mx-0">
-            <mat-card-title>
-              <p class="header is-uppercase">{{card?.title}}</p>
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p class="txt-justify card-text">{{card?.content}}</p>
-          </mat-card-content>
-        </mat-card>
+      <div class="column is-6 section">
+
       </div>
+    </ng-template>
+
   </div>
 
 </section>

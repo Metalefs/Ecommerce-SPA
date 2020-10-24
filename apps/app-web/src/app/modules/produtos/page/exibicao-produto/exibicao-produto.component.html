@@ -39,11 +39,16 @@
       </div>
       <div class="flex-w flex-col-m w-full">
         <button (click)="Like()" mat-icon-button>
-          <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">{{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+          <mat-icon [ngClass]="Liked? 'liked': ''"
+          [ngClass]="loading ? 'button is-loading':''"
+          class="heartbutton color-light-red">{{Liked? 'favorite': 'favorite_border'}}</mat-icon>
           {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
           {{Liked? 'Obrigado por nos apoiar ' : ''}}
         </button>
-        <button mat-raised-button (click)="AdicionarAoOrcamento()" class="flex-w flex-c share-button background-light-red has-text-white has-text-weight-medium">
+        <button mat-raised-button
+          (click)="AdicionarAoOrcamento()"
+
+          class="flex-w flex-c share-button background-light-red has-text-white has-text-weight-medium">
           <div class="level py-2">
             Adicionar ao orçamento
           </div>

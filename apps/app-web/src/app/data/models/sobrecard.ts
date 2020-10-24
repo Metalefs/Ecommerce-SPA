@@ -5,4 +5,5 @@ export interface SobreCard {
   class:string,
   content:string;
   link:string;
+  id?:string;
 }

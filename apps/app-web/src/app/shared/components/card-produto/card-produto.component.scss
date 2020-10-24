@@ -3,8 +3,7 @@ a {
   font-weight: bolder;
 }
 .mat-card{
-  // height: 511px;
-  height: 400px;
+  min-height: 250px;
   display: flex !important;
   justify-content: center;
   align-items: center;
@@ -15,11 +14,13 @@ a {
 
 }
 .mat-card-actions{
-  position: absolute;
-  bottom: 20px;
+  margin-bottom: 20px;
   width: 92%;
 }
-
+.mat-card-title{
+  font-family: Open Sans;
+  margin:1rem 0;
+}
 .zoom{
   filter: opacity(1);
   transition: .5s all ease-in-out;

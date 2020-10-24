@@ -123,9 +123,19 @@ p{
   padding:20% 46px !important;
   margin-bottom:28px;
   width: 100%;
-  max-width: 722px;
 }
-
+.imagem-empresa{
+  background: url('/assets/images/inicio/carousel/serigraphy.jpg');
+  height: 90vh;
+  min-height: 90vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  vertical-align: middle;
+  width: 100%;
+  background-color: #5b5b5d;
+}
 .spacer {
   flex: 1 1 auto;
 }

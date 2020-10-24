@@ -8,7 +8,17 @@
   border-radius: 5px;
 }
 .mat-chip.active{
-  background: #bfbfbf;
+  background: white;
+  box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;
+}
+.mat-chip.active::after{
+  background: white;
+  box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;
+}
+.mat-standard-chip.active::after{
+  background: white;
 }
 .categories{
   top:0;

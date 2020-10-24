@@ -67,6 +67,7 @@ export class TestimonialComponent implements OnInit, OnDestroy {
     if (this.mobileQuery.matches)  {
       this.makeAnimationStateForSmallSize();
     }
+
   }
   makeAnimationsState() {
     this.animationsStates = [];

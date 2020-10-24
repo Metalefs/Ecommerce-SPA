@@ -39,6 +39,12 @@ export class TabelaProdutosComponent implements OnInit {
   }
 
   removerProduto(Produto:Produto){
-    this.store.dispatch(new RemoverProdutoOrcamento(Produto._id));
+    this.store.dispatch(new RemoverProdutoOrcamento(Produto._id)).subscribe(x=>{
+      this.Orcamento$.subscribe(x=>{
+        let Produtos =  x.Produto;
+        let DistinctProdutos = removeDuplicates(Produtos,"_id");
+        this.ProdutoTable.dataSource = DistinctProdutos;
+      })
+    });
   }
 }

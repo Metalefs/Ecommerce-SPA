@@ -8,6 +8,7 @@ import { tap } from 'rxjs/operators';
 import { SobreCard } from '../../../data/models';
 import { LerServico } from '../../../data/store/actions/Servico.actions';
 import { ServicoState } from '../../../data/store/state';
+import { removeDuplicates } from '../../../helper/ObjHelper';
 
 @Component({
   selector: 'personalizados-lopes-servico',
@@ -29,23 +30,6 @@ export class ServicoComponent implements OnInit {
 
   }
 
-  Atualizar(){
-    this.IsServicoLoadedSub = this.IsServicoLoaded$.pipe(
-      tap((IsServicoLoaded) => {
-
-          if(IsServicoLoaded) {
-
-            this.LerServicosCarregados();
-
-          }
-
-        })
-    ).subscribe(value => {
-      // console.log("Stuff", value);
-    });
-
-  }
-
   LerServicosCarregados(){
     this.Servico$.subscribe(x=>{
       console.log(x);
@@ -62,12 +46,13 @@ export class ServicoComponent implements OnInit {
             content:servico.Descricao
           }
         );
+        this.Cards = removeDuplicates(this.Cards,"title")
       })
     })
   }
 
   ngOnInit(): void {
-    this.Atualizar();
+    this.LerServicosCarregados();
   }
 
 }

@@ -3,7 +3,6 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProdutoService } from 'apps/app-web/src/app/data/service';
 import { Select, Store } from '@ngxs/store';
 import { GostarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/Produto.actions';
 import { ProdutoState } from 'apps/app-web/src/app/data/store/state';
@@ -32,6 +31,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   images: GalleryItem[];
   images$: Observable<GalleryItem[]>;
   isOrcamento:boolean = false;
+  loading:boolean = false;
   constructor(
     breakpointObserver: BreakpointObserver,
     private activeRoute:ActivatedRoute,
@@ -76,9 +76,11 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   Like(){
     if(!localStorage.getItem(`heartproduto${this.Produto._id}`)){
+      this.loading = true;
       this.store.dispatch(new GostarProduto(this.Produto._id)).subscribe(x=>{
         this.Liked = true;
         localStorage.setItem(`heartproduto${this.Produto._id}`,'true');
+        this.loading = false;
       });
     }
     else

@@ -14,6 +14,7 @@ export class HeaderFooterComponent implements OnInit {
       color:"#FD6D13",
       class:"red",
       link:"/showcase",
+      id:"#SHOWCASE",
       content:"Recebemos pedidos personalizados para a arte do seu produto. Criação ou aprimoramento."
     },
     {
@@ -22,6 +23,7 @@ export class HeaderFooterComponent implements OnInit {
       color:"#FFB041",
       class:"yellow",
       link:"/produtos",
+      id:"#PRODUTO",
       content:`Confira nossas canecas, camisetas, almofadas e mais !!`
     },
     {
@@ -30,6 +32,7 @@ export class HeaderFooterComponent implements OnInit {
       color:"#3AB8FF",
       class:"blue",
       link:"/orcamento",
+      id:"#ORCAMENTO",
       content:`Faça seu orçamento e envie o seu pedido direto para a loja. <a href="/orcamento">Clique aqui.</a>`
     },
   ]

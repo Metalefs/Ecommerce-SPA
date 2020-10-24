@@ -1,12 +1,13 @@
 <div id="ORCAMENTO">
 
-  <iframe data-aos="zoom-up" class="w-full vh-25" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=11&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-  <div class="section pl-20 pr-20">
+  <iframe data-aos="zoom-up" class="w-full vh-25 mb-0 pb-0" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=11&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+  <div class="section pt-0 pl-20 pr-20">
     <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
 
     <ng-template #Produtos>
-      <h2 class="titulo is-uppercase">Preencha os dados abaixo para realizar o orçamento.</h2>
-      <div class="columns px-6 mb-6 reverse-col-mobile" data-aos="flip-left">
+      <h2 class="titulo is-uppercase my-5">Preencha os dados abaixo para realizar o orçamento.</h2>
+      <mat-divider></mat-divider>
+      <div class="columns mt-4 px-6 mb-6 reverse-col-mobile" data-aos="flip-left">
         <div class="column">
           <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
           <button mat-raised-button (click)="EnviarOrcamento()" class="is-pulled-right mx-3 my-3 background-light-red has-text-white submit">Enviar orçamento</button>
@@ -22,7 +23,9 @@
       <div class="columns" data-aos="flip-left">
         <div class="column">
           <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
-          <button mat-raised-button (click)="EnviarOrcamento()" class="background-light-red has-text-white submit">Enviar orçamento</button>
+          <div class="w-full flex-w flex-c">
+            <button mat-raised-button (click)="EnviarOrcamento()" class="background-light-red has-text-white submit">Enviar orçamento</button>
+          </div>
         </div>
         <div class="column">
           <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
