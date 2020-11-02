@@ -56,18 +56,18 @@ export const sliderAnimations = trigger('sliderAnimations', [
     })),
 
     // for big device.
-    transition('leftHiden <=> leftHalf', [animate('0.35s')]),
-    transition('leftHalf <=> left', [animate('0.35s')]),
-    transition('left <=> right', [animate('0.35s')]),
-    transition('right <=> rightHalf', [animate('0.35s')]),
-    transition('rightHalf <=> rightHiden', [animate('0.35s')]),
+    transition('leftHiden <=> leftHalf', [animate('0.8s')]),
+    transition('leftHalf <=> left', [animate('0.8s')]),
+    transition('left <=> right', [animate('0.8s')]),
+    transition('right <=> rightHalf', [animate('0.8s')]),
+    transition('rightHalf <=> rightHiden', [animate('0.8s')]),
     // for midle size device.
-    transition('leftHidenMiddle <=> leftHalfMiddle', [animate('0.35s')]),
-    transition('leftHalfMiddle <=> centerMiddle', [animate('0.35s')]),
-    transition('centerMiddle <=> rightHalfMiddle', [animate('0.35s')]),
-    transition('rightHalfMiddle <=> rightHidenMiddle', [animate('0.35s')]),
+    transition('leftHidenMiddle <=> leftHalfMiddle', [animate('0.8s')]),
+    transition('leftHalfMiddle <=> centerMiddle', [animate('0.8s')]),
+    transition('centerMiddle <=> rightHalfMiddle', [animate('0.8s')]),
+    transition('rightHalfMiddle <=> rightHidenMiddle', [animate('0.8s')]),
     // for mobile device.
-    transition('leftHidenSmall <=> centerSmall', [animate('0.35s')]),
-    transition('centerSmall <=> rightHidenSmall', [animate('0.35s')]),
+    transition('leftHidenSmall <=> centerSmall', [animate('0.8s')]),
+    transition('centerSmall <=> rightHidenSmall', [animate('0.8s')]),
   ]);
 

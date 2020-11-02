@@ -1,4 +1,8 @@
 <div class="card vh-full">
+  <div class="w-full mt-4 ml-6">
+    <personalizados-lopes-social-network-links></personalizados-lopes-social-network-links>
+  </div>
+
   <ul class="navigation" >
     <li *ngFor="let link of links">
       <a
@@ -18,8 +22,7 @@
       </button>
     </li>
   </ul>
-  <div class="flex-w flex-m flex-c w-full">
-    <personalizados-lopes-social-network-links ></personalizados-lopes-social-network-links>
+  <div class="flex-w flex-c w-full">
+    <p class="mt-6 copyright-text">{{Copyright}}</p>
   </div>
-  <p class="mt-6 copyright-text">{{Copyright}}</p>
 </div>

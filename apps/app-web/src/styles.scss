@@ -86,11 +86,11 @@ p{
   align-items: center;
   text-align: justify;
   letter-spacing: 0.04em;
-
-
-  color: #000000;
+  font-size: medium
 }
-
+.shadow{
+  box-shadow: 0 10px 60px #00000057;
+}
 
 .titulo{
   font-family: Roboto;
@@ -108,31 +108,36 @@ p{
   font-family: Roboto;
   font-style: normal;
   font-weight: bolder;
-  font-size: large;
+  font-size: 1em;
   line-height: 47px;
   display: flex;
   align-items: center;
   letter-spacing: 0.07em;
   text-transform: capitalize;
-  color: $red2;
+  color: $red;
 }
-
+.header-card{
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 1em;
+  line-height: 47px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
 .empresa-card{
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
   border-radius: 11px;
   padding:20% 46px !important;
   margin-bottom:28px;
   width: 100%;
 }
 .imagem-empresa{
-  background: url('/assets/images/inicio/carousel/serigraphy.jpg');
-  height: 90vh;
-  min-height: 90vh;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  vertical-align: middle;
+  height: 100%;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   width: 100%;
   background-color: #5b5b5d;
 }

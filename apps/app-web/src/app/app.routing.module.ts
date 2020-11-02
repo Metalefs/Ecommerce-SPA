@@ -18,7 +18,7 @@ import { PagenotfoundModule } from './modules/pagenotfound/pagenotfound.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: environment.production? '/construction':'/inicio',
+    redirectTo: '/inicio',
     pathMatch: 'full'
   },
   { path: '**', redirectTo: 'pagenotfound' }

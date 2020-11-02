@@ -3,7 +3,7 @@ export interface SobreCard {
   icon:Object,
   color:string,
   class:string,
-  content:string;
+  content:any;
   link:string;
   id?:string;
 }

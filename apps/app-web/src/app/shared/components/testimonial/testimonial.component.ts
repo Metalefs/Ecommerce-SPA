@@ -46,7 +46,7 @@ export class TestimonialComponent implements OnInit, OnDestroy {
       this.sliderData.push(this.sliderData[i]);
     }
     // if(this.sliderData.length > 6 || this.mobileQuery.matches && this.TabletQuery.matches)
-    this.AutoTurn()
+    //this.AutoTurn()
     this.createResizeListener();
     this.decideSliderSizeFromWindowSize();
   }

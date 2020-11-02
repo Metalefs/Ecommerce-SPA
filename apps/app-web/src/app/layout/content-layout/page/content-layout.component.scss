@@ -21,10 +21,11 @@
 .nav-trigger {
   padding: 8px;
   position: fixed;
-  top: 25px;
+  top: 10px;
   right: 20px;
   border-radius: 25px;
   cursor: pointer;
+  color: black;
   /* border:1px dotted; */
 	/* border-color: var(--primario-default); */
 	z-index: 111;
@@ -63,7 +64,7 @@
 }
 .hamburger .icon {
 	width: 21px;
-  top: 11px;
+  top: 5px;
   transform-origin: 50% 50%;
 }
 .hamburger::after {
@@ -208,7 +209,7 @@ transition: opacity 0.5s ease, height 1ms 0.5s ease !important;
 	right: 0;
 	top: 0;
 	z-index: 110;
-	width: 100%;
+	width: 90%;
 	/* background-color: #e6ecef; */
 	  background-size: cover;
 	  overflow-y: auto;

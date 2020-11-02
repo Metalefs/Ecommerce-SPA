@@ -1,26 +1,26 @@
-<div class="sticky-nav w-full">
+<div class="sticky-nav w-full shadow">
   <mat-toolbar class="pos-sticky flex-m flex-sa container">
   <!-- <button mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button> -->
-    <a href="#"><img class="logo" src="assets/images/icons/Logo.png" width="40.35" alt="LOGO"></a>
+    <a href="#"><img class="logo" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
-    <div class="columns mx-3 mt-3 is-hidden-mobile link-section">
+    <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
         <a
          (click)="SetActiveNav(link)"
          [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
 
-         class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"
+         class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
          [routerLink]="link.href"
          routerLinkActive="true">{{link.name}}</a>
 
       </div>
+      <personalizados-lopes-social-network-links class="is-hidden-mobile"></personalizados-lopes-social-network-links>
+      <button mat-icon-button *ngIf="user?.Tipo == 1" (click)="Logout()" title="logout">
+        <mat-icon>login</mat-icon>
+      </button>
     </div>
-    <personalizados-lopes-social-network-links class="is-hidden-mobile"></personalizados-lopes-social-network-links>
-    <button mat-icon-button *ngIf="user?.Tipo == 1" (click)="Logout()" title="logout">
-      <mat-icon>login</mat-icon>
-    </button>
   </mat-toolbar>
 
 </div>

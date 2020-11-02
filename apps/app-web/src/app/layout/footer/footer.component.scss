@@ -17,8 +17,9 @@
   color:white;
 }
 a{
+  @extend .base;
   text-decoration: none;
-
+  display: inline;
 }
 .footer-title{
   @extend .base;
@@ -41,8 +42,25 @@ a{
   @extend .base;
 }
 .footer-color{
-  background: $red2;
-  // background: #a82626;
+  // background: $red;
+  background: #4b48c185;
+}
+.footer::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  width: 298px;
+  height: 70px;
+  background-repeat: no-repeat;
+  background: url(/assets/images/footer_curve.svg);
+}
+@media only screen and  (min-width: 320px ) and (max-width: 1023px) {
+
+  .footer::before{
+    left: 0;
+  }
+
 }
 span{
   font-family: Open Sans;

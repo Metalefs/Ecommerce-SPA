@@ -9,6 +9,7 @@ import { SobreState, InformacoesContatoState } from 'apps/app-web/src/app/data/s
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
 import { LerInformacoesContato } from '../../data/store/actions/informacoescontato.actions';
+import { NavLinks } from '../../data/models/navlinks';
 @Component({
   selector: 'personalizados-lopes-footer',
   templateUrl: './footer.component.html',
@@ -21,6 +22,7 @@ export class FooterComponent implements OnInit {
     {name:"PRODUTOS",   href:"produtos", id:"PRODUTOS"},
     {name:"ORÇAMENTO",  href:"orcamento", id:"ORCAMENTO"},
   ];
+  links = NavLinks;
   Ano:number = new Date().getFullYear();
 
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;

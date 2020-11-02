@@ -6,6 +6,16 @@
     <input matInput type="text" [(ngModel)]="Cliente.Nome" placeholder="Nome" title="Nome">
   </mat-form-field>
 
+
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="Cliente.Tipo" placeholder="Tipo">
+  </mat-form-field>
+
+
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="Cliente.Origem" placeholder="Origem">
+  </mat-form-field>
+
   <input type="file" class="file" (change)="upload($event)" accept="*.png.jpg" placeholder="Foto">
 
   <mat-form-field class="w-full">

@@ -1,20 +1,34 @@
 <div class="flex-w flex-sa bg">
   <div class="{{card.class}} my-1" *ngFor="let card of Cards;let i = index;">
     <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
-    <div>
-      <mat-card [attr.data-aos]="i == 0 ? '' : 'flip-left'">
-        <mat-card-header>
-          <div mat-card-avatar [style.backgroundColor]="card?.color">
-            <a [routerLink]="card.link" href="{{card.id}}" pageScroll><mat-icon>{{card.icon}}</mat-icon></a>
+    <div class="card-bg" [style.backgroundColor]="card?.color">
+      <mat-card [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
+        <article class="media">
+          <mat-card-header>
+            <div mat-card-avatar [style.backgroundColor]="card?.color">
+              <a [routerLink]="card.link" href="{{card.id}}" pageScroll><mat-icon>{{card.icon}}</mat-icon></a>
+            </div>
+
+          </mat-card-header>
+          <div class="media-content">
+            <div class="content">
+              <mat-card-title>
+                <p class="title header-card">{{card.title}}</p>
+              </mat-card-title>
+
+              <mat-card-content>
+                <p [innerHtml]="card.content" class="has-text-justified mt-3">
+                </p>
+              </mat-card-content>
+            </div>
+            <nav class="level is-mobile">
+              <div class="level-left">
+
+              </div>
+            </nav>
           </div>
-          <mat-card-title>
-            <h1 class="is-capitalized has-text-weight-medium">{{card.title}}</h1>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p [innerHtml]="card.content" class="has-text-justified mt-3">
-          </p>
-        </mat-card-content>
+        </article>
+
       </mat-card>
     </div>
   </div>

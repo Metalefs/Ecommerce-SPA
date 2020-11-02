@@ -1,7 +1,7 @@
-<div class="card">
+<div class="">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Orçamento</mat-card-title>
+      <mat-card-title class="header">Orçamento</mat-card-title>
       <mat-card-subtitle>Entre em contato conosco, será um prazer atendê-lo</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
@@ -14,7 +14,7 @@
             <p>
               <i>Telefone</i>
               <br>
-              <strong>{{(InformacoesContato$ |async)?.Telefone}}</strong>
+              {{(InformacoesContato$ |async)?.Telefone}}
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@
             <p>
               <i>Email</i>
               <br>
-              <strong>{{(InformacoesContato$ |async)?.Email}}</strong>
+              {{(InformacoesContato$ |async)?.Email}}
             </p>
           </div>
         </div>

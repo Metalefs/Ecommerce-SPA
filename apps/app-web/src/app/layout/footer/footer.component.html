@@ -31,16 +31,19 @@
        </mat-list>
     </div>
   </div>
-
+  <span><mat-icon>alternate_email</mat-icon> {{(Sobre$ | async)?.Nome}}</span>
+  <span class="spacer"></span>
+  <section class="py-3 my-0 px-6 z-top">
+    <div class="flex-sb flex-w spacer">
+      <ul class="px-3 py-2 is-hidden-touch">
+       <li>
+         <a *ngFor="let link of links" class="column"
+         [routerLink]="link.href"
+         pageScroll
+         href="#{{link.name}}"
+         routerLinkActive="true">{{link.name}} |</a>
+        </li>
+      </ul>
+    </div>
+  </section>
 </footer>
-<section class="py-3 my-0 px-6 z-top has-background-grey-dark">
-  <div class="flex-sb flex-w spacer">
-    <span><mat-icon>alternate_email</mat-icon> {{(Sobre$ | async)?.Nome}}</span>
-    <span class="spacer"></span>
-    <span class="px-3 py-2">
-      <a pageScroll href="#SOBRE" [routerLink]="['/empresa']" routerLinkActive="active" class="has-text-grey-light">SOBRE </a>
-      |
-      <a pageScroll href="#ORCAMENTO" [routerLink]="['/orcamento']" routerLinkActive="active" class="has-text-grey-light"> FALE-CONOSCO</a>
-    </span>
-  </div>
-</section>

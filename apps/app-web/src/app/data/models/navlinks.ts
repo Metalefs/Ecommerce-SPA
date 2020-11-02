@@ -2,17 +2,17 @@ import { environment } from 'apps/app-web/src/environments/environment';
 
 export let NavLinks:Link[] =
 environment.production ? [
-  {name: "inicio",    href:"inicio"},
-  {name: "sobre",     href:"empresa"},
-  {name: "produtos",  href:"produtos"},
-  {name: "serviços",  href:"servicos"},
-  {name: "orcamentos", href:"orcamento"},
+  {name: "INICIO",    href:"inicio"},
+  {name: "SOBRE",     href:"empresa"},
+  {name: "PRODUTOS",  href:"produtos"},
+  {name: "SERVICOS",  href:"servicos"},
+  {name: "ORCAMENTOS", href:"orcamento"},
 ] : [
-  {name: "inicio",    href:"inicio"},
-  {name: "sobre",     href:"empresa"},
-  {name: "produtos",  href:"produtos"},
-  {name: "serviços",  href:"servicos"},
-  {name: "orcamentos", href:"orcamento"},
+  {name: "INICIO",    href:"inicio"},
+  {name: "SOBRE",     href:"empresa"},
+  {name: "PRODUTOS",  href:"produtos"},
+  {name: "SERVICOS",  href:"servicos"},
+  {name: "ORCAMENTOS", href:"orcamento"},
 ];
 
 

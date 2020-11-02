@@ -43,7 +43,7 @@ export class ServicoComponent implements OnInit {
             color:"#FD6D13",
             class:classe,
             link:"/produto/"+servico.Categoria,
-            content:servico.Descricao
+            content:servico
           }
         );
         this.Cards = removeDuplicates(this.Cards,"title")
