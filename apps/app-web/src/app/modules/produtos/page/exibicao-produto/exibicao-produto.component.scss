@@ -17,6 +17,52 @@ gallery{
   margin: 10px;
   cursor: default;
 }
+.control{
+  border:1px solid #B6B9D0;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 122.19%;
+  padding:11px;
+  height: 56px;
+  border-radius: 4px;
+}
+.control input{
+  border:none;
+  border-color: transparent;
+  overflow: visible;
+
+  max-width: 75px;
+
+  font-size: 20px;
+}
+.less:hover{
+  color:rgb(230, 76, 45);
+}
+.more:hover{
+  color:rgb(13, 199, 139);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.mat-icon{
+  display: inline-block;
+  height: 20px;
+  vertical-align: middle;
+  width: 20px;
+  color:rgb(182, 185, 208);
+}
+.mat-label{
+  color:#312F4F;
+}
 @media (min-width: 1024px) {
   .section{
     min-height: 82vh;
@@ -38,6 +84,7 @@ gallery{
   justify-content: center;
   align-items: center;
   letter-spacing: 0.04em;
+  height: 56px;
 }
 .share-button-text{
   max-width: 188px;
@@ -49,13 +96,9 @@ gallery{
   margin: 0;
 }
 .titulo-produto{
-  font-family: Roboto;
-  font-size: x-large;
+  font-size: 26px;
   line-height: 47px;
-  display: flex;
-  align-items: center;
   color: rgb(49, 47, 79);
-  font-size: 19px;
   line-height: 130%;
   font-weight: 600;
 }
@@ -65,7 +108,6 @@ gallery{
   border: 1px solid rgba(0, 0, 0, 0.25);
 }
 .descricao-produto{
-  font-family: Roboto;
   font-size: large;
   font-style: normal;
   font-weight: normal;

@@ -93,7 +93,9 @@ p{
 .shadow{
   box-shadow: 0 10px 60px #00000057;
 }
-
+.shadow-light{
+  box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
+}
 .titulo{
   font-family: Roboto;
   font-style: normal;

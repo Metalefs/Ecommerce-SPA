@@ -5,26 +5,37 @@
         [thumbWidth]="config.thumbWidth" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
       </gallery>
     </div>
-    <div class="column is-1 is-hidden-touch"></div>
-    <div class="column">
+    <!-- <div class="column is-1 is-hidden-touch"></div> -->
+    <div class="column pl-2">
       <div class="mh-70 px-2 pt-6">
         <div>
           <p class="titulo-produto">{{Produto?.Nome}}</p>
           <p class="descricao-produto"> Tamanho {{Produto?.Tamanho}}</p>
         </div>
+        <mat-label>quantidade</mat-label>
         <div class="columns">
-          <div class="column">
+          <div class="column pr-0" >
             <div class="field">
-              <div class="control is-large">
-                <mat-label>quantidade</mat-label>
-                <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
-                  min="{{Produto?.QuantidadeMinima}}" class="quantidade-produto input"
+              <div class="control is-large flex-c flex-m">
+                <button mat-icon-button (click)="DecrescerQuantidade()">
+                  <mat-icon class="less" >remove</mat-icon>
+                </button>
+                <input
+                  placeholder="{{Produto?.QuantidadeMinima}}"
+                  value="{{Produto?.QuantidadeMinima}}"
+                  type="number"
+                  (change)="VerificarQuantidade($event)"
+                  min="{{Produto?.QuantidadeMinima}}"
+                  class="quantidade-produto input"
                   [(ngModel)]="(Produto).Quantidade">
+                <button mat-icon-button (click)="IncrementarQuantidade()">
+                  <mat-icon class="more" >add</mat-icon>
+                </button>
               </div>
             </div>
             <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
           </div>
-          <div class="column is-10">
+          <div class="column is-10 is-9-desktop">
             <button mat-raised-button (click)="AdicionarAoOrcamento()"
               class="share-button w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
@@ -42,7 +53,8 @@
             <div class="column">
               <share-button button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'"></share-button>
             </div>
-            <div class="column is-6"><button class="w-full py-4 px-4" mat-stroked-button>Entrar em contato</button>
+            <div class="column is-6">
+                <button (click)="EntrarEmContato()" class="w-full py-4 px-4" mat-stroked-button>Entrar em contato</button>
             </div>
           </div>
         </div>
@@ -60,7 +72,7 @@
         <mat-icon [ngClass]="Liked? 'liked': ''" [ngClass]="loading ? 'button is-loading':''"
           class="heartbutton color-light-red">{{Liked? 'favorite': 'favorite_border'}}</mat-icon>
         {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
-        {{Liked? 'Obrigado por nos apoiar ' : ''}}
+        {{Liked? '- Obrigado por nos apoiar ' : ''}}
       </button>
     </div>
 

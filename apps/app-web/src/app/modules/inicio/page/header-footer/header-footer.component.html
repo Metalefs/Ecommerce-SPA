@@ -1,7 +1,7 @@
 <div class="flex-w flex-sa bg">
   <div class="{{card.class}} my-1" *ngFor="let card of Cards;let i = index;">
     <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
-    <div class="card-bg" [style.backgroundColor]="card?.color">
+    <div data-aos="zoom-in-up"  class="card-bg" [style.backgroundColor]="card?.color">
       <mat-card [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
         <article class="media">
           <mat-card-header>

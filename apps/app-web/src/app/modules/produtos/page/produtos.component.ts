@@ -8,7 +8,7 @@ import { fade } from '../../../animations';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
 import { AdicionarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
 import { LerProduto } from '../../../data/store/actions/Produto.actions';
-import { CategoriaState, ProdutoState } from '../../../data/store/state';
+import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -24,6 +24,7 @@ export class ProdutosComponent implements OnInit {
   areCategoriasLoadedSub: Subscription;
 
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
+  @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<Categoria>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   areProdutosLoadedSub: Subscription;
 
@@ -37,6 +38,9 @@ export class ProdutosComponent implements OnInit {
 
   ngOnInit(): void {
     this.Atualizar();
+    this.Filtro$.subscribe(x=>{
+      this.CategoriaAtiva = x;
+    })
   }
 
   Atualizar(){

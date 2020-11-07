@@ -48,7 +48,7 @@
                 <mat-chip *ngFor="let categoria of Categorias$ | async"
                     class="pointer"
                     pageScroll
-                    href="#PRODUTOS"
+                    href="#TOPO"
                     [style.borderBottom]="'1px solid '+categoria?.Cor"
                     (click)="SetCategoria(categoria)"
                     [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">

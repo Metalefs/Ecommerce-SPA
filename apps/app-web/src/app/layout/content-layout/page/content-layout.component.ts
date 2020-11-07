@@ -19,7 +19,7 @@ export class ContentLayoutComponent implements OnInit {
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;
   Mensagem:string;
   constructor(private service: MensagemService) { }
-  NavState:NavState = {open : false};
+  NavState:SideNavState = {open : false};
 
   ngOnInit(): void {
     this.service.Ler().subscribe(x=>{
@@ -46,6 +46,6 @@ export class ContentLayoutComponent implements OnInit {
   }
 
 }
-export interface NavState{
+export interface SideNavState{
   open:boolean
 }

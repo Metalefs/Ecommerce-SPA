@@ -103,8 +103,10 @@ export class EditarCategoriaComponent implements OnInit {
       let Categoria = new entities.Categoria(
         result[0].value,
         result[1].value,
+        result[2].value,
       )
       Categoria._id = id;
+      console.log(Categoria);
       this.store.dispatch(new EditarCategoria(Categoria, Categoria._id)).subscribe(x=> {
         this.AtualizarTabela();
         this._snackBar.open("Categoria alterada com sucesso", "Fechar", {

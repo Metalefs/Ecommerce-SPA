@@ -4,8 +4,8 @@
   </div>
 
   <ul class="navigation" >
-    <li *ngFor="let link of links">
-      <a
+    <li *ngFor="let link of links" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''">
+      <a  (click)="SetActiveNav(link)"
        (pageScrollFinish)="ToggleNav(0)"
        [routerLink]="link.href"
        routerLinkActive="Active"

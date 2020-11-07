@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { Produto } from 'libs/data/src/lib/classes';
+import { InformacoesContato, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GostarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/Produto.actions';
-import { ProdutoState } from 'apps/app-web/src/app/data/store/state';
+import { InformacoesContatoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -27,6 +27,7 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
+  @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;
   areProdutosLoadedSub: Subscription;
   images: GalleryItem[];
   images$: Observable<GalleryItem[]>;
@@ -87,6 +88,25 @@ export class ExibicaoProdutoComponent implements OnInit {
       return
   }
 
+  IncrementarQuantidade(){
+    this.Produto.Quantidade++;
+  }
+  DecrescerQuantidade(){
+    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
+    this.Produto.Quantidade--;
+  }
+  VerificarQuantidade($event){
+    if($event.target.value < this.Produto.QuantidadeMinima)
+      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+  }
+  EntrarEmContato(){
+    this.InformacoesContato$.subscribe(x=>{
+      let Whatsapp = x.Whatsapp;
+      let Mensagem = `Olá, gostaria de ter mais informações sobre *${this.Produto.Nome}* ${this.Url}`;
+
+      window.open( `https://wa.me/${Whatsapp}?text=${Mensagem}`, "_blank");
+    })
+  }
   LerProdutosCarregados(){
     let id = this.activeRoute.snapshot.params['id'];
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
