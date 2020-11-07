@@ -1,76 +1,81 @@
 <div class="section has-background-white-bis">
   <div class="columns has-background-white" id="PRODUTO">
     <div class="column box mb-0">
-      <gallery
-      id="myGallery"
-      *ngIf="galleryConfig$ | async; let config"
-      [counter]="false"
-      [thumbWidth]="config.thumbWidth"
-      [thumbHeight]="config.thumbHeight"
-      [thumbPosition]="config.thumbPosition"></gallery>
+      <gallery id="myGallery" *ngIf="galleryConfig$ | async; let config" [counter]="false"
+        [thumbWidth]="config.thumbWidth" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
+      </gallery>
     </div>
     <div class="column is-1 is-hidden-touch"></div>
     <div class="column">
       <div class="mh-70 px-2 pt-6">
         <div>
           <p class="titulo-produto">{{Produto?.Nome}}</p>
-          <p class="subtitle">{{Produto?.Categoria.Nome}}</p>
+          <p class="descricao-produto"> Tamanho {{Produto?.Tamanho}}</p>
         </div>
+        <div class="columns">
+          <div class="column">
+            <div class="field">
+              <div class="control is-large">
+                <mat-label>quantidade</mat-label>
+                <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
+                  min="{{Produto?.QuantidadeMinima}}" class="quantidade-produto input"
+                  [(ngModel)]="(Produto).Quantidade">
+              </div>
+            </div>
+            <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
+          </div>
+          <div class="column is-10">
+            <button mat-raised-button (click)="AdicionarAoOrcamento()"
+              class="share-button w-full background-light-red has-text-white has-text-weight-medium">
+              <div class="level py-2">
+                Adicionar ao orçamento
+              </div>
+            </button>
+          </div>
+        </div>
+        <div class="flex-w flex-col-m w-full">
+          <div class="columns w-full py-2">
+            <div class="column">
+              <share-button button="facebook" theme="modern-dark" [showText]="true" [text]="'Compartilhar'">
+              </share-button>
+            </div>
+            <div class="column">
+              <share-button button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'"></share-button>
+            </div>
+            <div class="column is-6"><button class="w-full py-4 px-4" mat-stroked-button>Entrar em contato</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="Produto?.Cor">
+        <div class="cor-produto" [style.backgroundColor]="Produto?.Cor"></div>
+      </div>
+      <div>
         <div>
           <p class="descricao-produto">{{Produto?.Descricao}}</p>
         </div>
-        <mat-divider></mat-divider>
-        <div>
-          <p class="descricao-produto">{{Produto?.Tamanho}}</p>
-        </div>
-        <mat-divider></mat-divider>
-        <div *ngIf="Produto?.Cor">
-          Cores:
-          <div class="cor-produto" [style.backgroundColor]="Produto?.Cor"></div>
-        </div>
-        <div>
-          <p class="descricao-produto">{{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}</p>
-          <mat-form-field>
-            <mat-label>Qtd</mat-label>
-            <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" matInput type="number" min="{{Produto?.QuantidadeMinima}}" class="quantidade-produto" [(ngModel)]="(Produto).Quantidade">
-          </mat-form-field>
-          <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
-        </div>
+        <p class="descricao-produto">{{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}</p>
       </div>
-      <div class="flex-w flex-col-m w-full">
-        <button (click)="Like()" mat-icon-button>
-          <mat-icon [ngClass]="Liked? 'liked': ''"
-          [ngClass]="loading ? 'button is-loading':''"
+      <button (click)="Like()" mat-icon-button>
+        <mat-icon [ngClass]="Liked? 'liked': ''" [ngClass]="loading ? 'button is-loading':''"
           class="heartbutton color-light-red">{{Liked? 'favorite': 'favorite_border'}}</mat-icon>
-          {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
-          {{Liked? 'Obrigado por nos apoiar ' : ''}}
-        </button>
-        <button mat-raised-button
-          (click)="AdicionarAoOrcamento()"
-
-          class="flex-w flex-c share-button background-light-red has-text-white has-text-weight-medium">
-          <div class="level py-2">
-            Adicionar ao orçamento
-          </div>
-        </button>
-        <div class="flex-w flex-l w-full py-2">
-          <share-button button="facebook" theme="modern-dark" [showText]="true" [text]="'Compartilhar'"></share-button>
-          <share-button button="twitter"  theme="modern-dark" [showText]="true" [text]="'Twittar'"></share-button>
-        </div>
-      </div>
+        {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
+        {{Liked? 'Obrigado por nos apoiar ' : ''}}
+      </button>
     </div>
+
     <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
       <img src="{{Produto?.Imagem[0]}}" alt="">
     </figure>
   </div>
 </div>
 <div class="w-full pb-0 mb-0 flex-w flex-sa px-6 background-dark has-text-white">
-  <a [routerLink]="'/produtos'" class=" has-text-white">
+  <a [routerLink]="'/produtos'" class="has-text-white">
     <button mat-icon-button>
       <mat-icon>arrow_back_ios</mat-icon>
     </button>
   </a>
-  <a [routerLink]="'/showcase'" class=" has-text-white">
+  <a [routerLink]="'/showcase'" class="has-text-white">
     <button mat-icon-button>
       <mat-icon>collections</mat-icon>
     </button>

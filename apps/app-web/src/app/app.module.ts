@@ -21,6 +21,8 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
+import { CookieLawModule } from 'angular2-cookie-law';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { States } from './data/store/state';
@@ -41,6 +43,7 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     AngularFireStorageModule,
     HammerModule,
+    CookieLawModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCYzAtXmRwAvgeqvVn1J8SNC0TOEM6Jbq4",
       authDomain: "personalizados-lopes-web-app.firebaseapp.com",

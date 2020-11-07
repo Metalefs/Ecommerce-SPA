@@ -5,9 +5,11 @@
 @import '~ngx-sharebuttons/themes/modern/modern-dark-theme';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: soleil, sans-serif;
+  font-style: normal;
+  font-weight: 300;}
 p{
-  font-family: Roboto;
+
   font-style: normal;
   font-weight: normal;
   line-height: 122.19%;

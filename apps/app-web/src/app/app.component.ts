@@ -14,6 +14,9 @@ import { LerServico } from './data/store/actions/Servico.actions';
 import { LerSobre } from './data/store/actions/sobre.actions';
 import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';
+import { Router } from '@angular/router';
+import { NavigationEnd } from '@angular/router';
+declare let gtag: Function;
 @Component({
   selector: 'personalizados-lopes-root',
   templateUrl: './app.component.html',
@@ -24,7 +27,20 @@ export class AppComponent {
   AppDeploymentState = AppDeploymentState;
   DeployState: AppDeploymentState = AppDeploymentState.Deployed;
 
-  constructor(private store: Store){  }
+  constructor(
+    private store: Store,
+    private router: Router,
+  ) {
+      this.router.events.subscribe(event => {
+         if(event instanceof NavigationEnd){
+             gtag('config', 'UA-175817845-1',
+                   {
+                     'page_path': event.urlAfterRedirects
+                   }
+                  );
+          }
+       });
+  }
 
   LerServicosAPI(){
     this.store.dispatch(new LerCarousel()          ).subscribe();

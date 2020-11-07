@@ -4,7 +4,7 @@
     <div class="column is-12-mobile">
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div>
-          <h2 class="title is-3">Produtos<br>Disponíveis</h2>
+          <h2 class="title is-3">Categorias</h2>
           <nav class="categories is-hidden-mobile">
             <ul class="portfolio-filter flex-w flex-c">
               <mat-chip-list aria-label="Categoria selection">
@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="column is-10 is-12-mobile produto-column">
+    <div class="column is-9 is-12-mobile produto-column">
       <div class="pt-4">
         <div class="columns is-multiline portfolio-container">
           <nav class="categories is-hidden-desktop">
@@ -59,7 +59,7 @@
           </nav>
           <ng-container *ngFor="let produto of Produtos$ |async">
             <div @fadeIn
-              class="column is-3"
+              class="column is-4"
               *ngIf = "CategoriaAtiva?.Nome == produto.NomeCategoria || CategoriaAtiva?.Nome == 'Todos'">
               <personalizados-lopes-card-produto @fadeIn
                 class=" portfolio-item"

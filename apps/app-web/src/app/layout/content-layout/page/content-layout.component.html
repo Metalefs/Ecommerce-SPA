@@ -13,7 +13,7 @@
 <personalizados-lopes-header></personalizados-lopes-header>
 <div class="wrapper" id="topo">
   <!-- [@routeAnimations]="prepareRoute(outlet)" -->
-  <div [ngClass]="NavState.open? 'main is-active': ''" (mouseover)="CloseNav()">
+  <div [@routeAnimations]="prepareRoute(outlet)" [ngClass]="NavState.open? 'main is-active': ''" (mouseover)="CloseNav()">
     <section class="split-home">
       <div class="main-content">
         <router-outlet #outlet="outlet"></router-outlet>

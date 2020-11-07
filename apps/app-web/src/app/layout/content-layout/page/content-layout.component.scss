@@ -7,7 +7,7 @@
 }
 .split-home{
   min-height:96vh;
-  background: #ffffffff;
+  background: rgb(234, 234, 244);
 }
 
 /* --------------------------------------------------
@@ -32,6 +32,15 @@
   transition: all 400ms ease-in;
 }
 
+@media (min-width: 320px ) and (max-width: 1023px) {
+
+  .mat-toolbar {
+    height: 90px;
+  }
+  .nav-trigger{
+    top: 25px;
+  }
+}
 .is-active.nav-trigger {
 	background-color: var(--primario-default);
 }

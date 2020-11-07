@@ -1,26 +1,37 @@
 <div class="sticky-nav w-full shadow">
-  <mat-toolbar class="pos-sticky flex-m flex-sa container">
-  <!-- <button mat-icon-button>
+  <mat-toolbar class="pos-sticky flex-m flex-sa container mr-0">
+    <!-- <button mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button> -->
     <a href="#"><img class="logo" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
-        <a
-         (click)="SetActiveNav(link)"
-         [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-
-         class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
-         [routerLink]="link.href"
-         routerLinkActive="true">{{link.name}}</a>
+        <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+          class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" [routerLink]="link.href"
+          routerLinkActive="true">{{link.name}}</a>
 
       </div>
       <personalizados-lopes-social-network-links class="is-hidden-mobile"></personalizados-lopes-social-network-links>
+
       <button mat-icon-button *ngIf="user?.Tipo == 1" (click)="Logout()" title="logout">
         <mat-icon>login</mat-icon>
       </button>
     </div>
+    <a data-aos="fade-up" [routerLink]="['orcamento']" routerLinkActive="Active" title="Orçamento"
+    aria-label="Botão abrir Orçamento" class="size4 flex-c-m how-social orcamento trans-04 m-r-5 m-b-3 m-t-3">
+    <div class="columns ml-6">
+      <div class="column has-text-centered">
+        <p class="cart-title">Seu pedido</p>
+        <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
+        <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
+      </div>
+      <div class="column">
+        <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+        <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+      </div>
+    </div>
+  </a>
   </mat-toolbar>
 
 </div>

@@ -5,11 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { entities } from '@personalizados-lopes/data';
 import { Select, Store } from '@ngxs/store';
 
-import { Sobre } from 'libs/data/src/lib/classes';
+import { Orcamento, Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
-import { NavStateState, SobreState } from '../../data/store/state';
+import { NavStateState, OrcamentoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
 import { NavLinks } from '../../data/models/navlinks';
 
@@ -25,11 +25,12 @@ export class HeaderComponent implements OnInit {
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
   @Select(SobreState.IsSobreLoaded) IsSobreLoaded$;
   IsSobreLoadedSub: Subscription;
-
   links = NavLinks;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   route: string;
 
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
+  carrinhoVazio:boolean = true;
   constructor(
     private AuthenticationService:AuthenticationService,
     private location: Location, private router: Router,
@@ -75,7 +76,10 @@ export class HeaderComponent implements OnInit {
           this.SetActiveNav(x);
       })
     });
-
+    this.Orcamento$.subscribe(x=>{
+      if(x.Produto.length > 1)
+        this.carrinhoVazio = false;
+    });
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
   }
 

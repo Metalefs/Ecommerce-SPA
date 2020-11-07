@@ -1,55 +1,41 @@
 <ng-container *ngIf="MostarOpcoes then Padrao else Minimalista"></ng-container>
 
 <ng-template #Padrao>
-  <mat-card class="flex-w flex-c portfolio-item" [style.backgroundColor]="Produto.Categoria.Cor">
-    <article class="media">
-      <figure class="media is-left image is-128x128">
-        <img src="{{Produto?.Imagem[0]}}"alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+  <a pageScroll href="#topo" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active">
+    <mat-card class="portfolio-item" [style.backgroundColor]="Produto.Categoria.Cor">
+      <figure class="image">
+        <img mat-card-image src="{{Produto?.Imagem[0]}}"
+        alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
       </figure>
-      <div class="media-content">
-        <div class="content">
-          <p>
-            <mat-card-header class="w-full">
-              {{Produto.Categoria.Cor}}
-              <mat-card-title class="w-full txt-center">{{Produto?.Nome}}</mat-card-title>
-              <mat-card-subtitle class="has-text-grey is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
-            </mat-card-header>
-          </p>
-
-          <mat-card-content class="flex-w flex-c" >
+      <mat-card-footer class="px-2">
+        <p>
+          <mat-card-header class="w-full">
+            {{Produto.Categoria.Cor}}
+            <mat-card-title class="w-full txt-center">{{Produto?.Nome}}</mat-card-title>
+            <mat-card-subtitle class="has-text-grey is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
+          </mat-card-header>
+        </p>
+      </mat-card-footer>
+        <div class="media-content">
+          <div class="content">
             <div class="portfolio-overlay w-full">
               <div class="overlay-items w-full flex-w flex-c">
-                <p >
+                <p>
                   {{Produto?.Nome}}
                 </p>
               </div>
             </div>
-          </mat-card-content>
-        </div>
-        <nav class="level is-mobile">
-          <div class="level-left">
-            <mat-card-actions class="flex-w flex-c flex-m w-full mx-0">
-              <a pageScroll
-                href="#topo" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active">
-                <button class="w-full background-dark has-text-white" mat-raised-button>Veja Mais</button>
-              </a>
-            </mat-card-actions>
           </div>
-        </nav>
-      </div>
-      <div class="media-right">
-      </div>
-    </article>
-  </mat-card>
+        </div>
+    </mat-card>
+  </a>
 </ng-template>
 
 <ng-template #Minimalista>
   <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom">
-    <a pageScroll
-      href="#PRODUTO" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active" >
-      <img src="{{Produto?.Imagem[0]}}"
-      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-      <mat-card-content class="flex-w flex-c" >
+    <a pageScroll href="#PRODUTO" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active">
+      <img src="{{Produto?.Imagem[0]}}" alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+      <mat-card-content class="flex-w flex-c">
         <div class="portfolio-overlay w-full">
           <div class="overlay-items w-full flex-w flex-c">
             <p>
