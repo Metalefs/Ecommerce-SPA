@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
+import { EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
@@ -22,7 +22,6 @@ export class ConfirmacaoComponent implements OnInit {
       this.ProdutoTable = new MaterialTable();
       let Produtos =  x.Produto;
       let DistinctProdutos = removeDuplicates(Produtos,"_id");
-      console.log(DistinctProdutos);
       this.ProdutoTable.dataSource = DistinctProdutos;
 
       this.ProdutoTable.displayedColumns = [
@@ -35,11 +34,18 @@ export class ConfirmacaoComponent implements OnInit {
 
   IncrementarQuantidade(element){
     element.Quantidade++;
+    this.EditarOrcamento(element);
   }
   DecrescerQuantidade(element){
     if(element.Quantidade > element.QuantidadeMinima)
     element.Quantidade--;
+    this.EditarOrcamento(element);
   }
+
+  EditarOrcamento(element:Produto){
+    this.store.dispatch(new EditarProdutoOrcamentoLocal(element,element._id));
+  }
+
   VerificarQuantidade($event,element){
     if($event.target.value < element.QuantidadeMinima)
       element.Quantidade = element.QuantidadeMinima;
@@ -53,5 +59,11 @@ export class ConfirmacaoComponent implements OnInit {
         this.ProdutoTable.dataSource = DistinctProdutos;
       })
     });
+  }
+
+  CalcularPreco(produto:Produto){
+    if(produto.Preco)
+      return parseInt(produto.Preco.toString()) * parseInt(produto.Quantidade.toString());
+    return 0;
   }
 }

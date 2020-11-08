@@ -17,6 +17,8 @@ import { VisualizacaoClientesModule } from './components/visualizacao-clientes/v
 import { SocialNetworkLinksComponent } from './components/social-network-links/social-network-links.component';
 import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
 
+import { CountUpModule } from 'ngx-countup';
+
 @NgModule({
   declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent],
   imports: [
@@ -31,7 +33,8 @@ import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
     CardClienteModule,
     RouterModule,
     CKEditorModule,
-    ScrolltopModule
+    ScrolltopModule,
+    CountUpModule
   ],
   exports: [
     CommonModule,
@@ -49,7 +52,8 @@ import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
     RouterModule,
     TestimonialComponent,
     CKEditorModule,
-    ScrolltopModule
+    ScrolltopModule,
+    CountUpModule
   ]
 })
 export class SharedModule { }

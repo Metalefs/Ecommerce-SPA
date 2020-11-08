@@ -66,8 +66,8 @@
 
           </nav>
 
-          <div class="w-full mx-5">
-            <div class="columns is-mobile">
+          <div class="w-full">
+            <div class="columns is-mobile is-multiline px-2">
               <div class="column is-8">
                 <div class="control has-icons-right">
                   <input
@@ -89,7 +89,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="title is-3">{{CategoriaAtiva.Nome}}</h2>
+            <h2 class="title is-3 mx-5">{{CategoriaAtiva.Nome}}</h2>
           </div>
 
           <ng-container *ngFor="let produto of Produtos$ |async">

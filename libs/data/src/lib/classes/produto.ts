@@ -47,4 +47,10 @@ export class Produto extends MongoDocument implements entidadeBase{
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;
     DataHoraExclusao: Date;
+
+    ObterPreco(){
+      if(this.Preco)
+        return this.Preco * this.Quantidade;
+      return 0;
+    }
 };

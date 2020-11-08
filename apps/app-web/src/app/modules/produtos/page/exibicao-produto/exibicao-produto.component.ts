@@ -1,17 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { InformacoesContato, Produto } from 'libs/data/src/lib/classes';
+import { InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GostarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/Produto.actions';
-import { InformacoesContatoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
+import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 
 import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
-import { AdicionarProdutoAoOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
+import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -24,7 +24,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   Url:string;
   Produto:Produto;
   Liked:boolean = false;
-
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;
@@ -68,11 +68,31 @@ export class ExibicaoProdutoComponent implements OnInit {
   }
 
   AdicionarAoOrcamento(){
-    this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
-    this.isOrcamento = true;
-    setTimeout(()=>{
-      this.router.navigateByUrl("/checkout");
-    },1500)
+    this.Orcamento$.subscribe(x=>{
+
+      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+
+      if(ProdutosOrcamento.length == 0){
+
+        this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
+        this.isOrcamento = true;
+        setTimeout(()=>{
+          this.router.navigateByUrl("/checkout");
+        },1500)
+
+      }
+      else{
+
+        this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
+
+        this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
+        this.isOrcamento = true;
+        setTimeout(()=>{
+          this.router.navigateByUrl("/checkout");
+        },1500)
+      }
+
+    });
   }
 
   Like(){

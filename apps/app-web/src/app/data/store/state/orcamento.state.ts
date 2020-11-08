@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { OrcamentoService } from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal } from '../actions/Orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal } from '../actions/Orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
@@ -110,11 +110,25 @@ export class OrcamentoState {
   }
 
   @Action(EditarOrcamentoLocal)
-  EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id} : EditarOrcamento){
+  EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarOrcamento){
     let state = getState();
     patchState({
       ...state,
       Orcamentos: payload,
+    });
+  }
+
+  @Action(EditarProdutoOrcamentoLocal)
+  EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id} : EditarProdutoOrcamentoLocal){
+    let state = getState();
+    const ListaProdutos = [...state.Orcamentos.Produto];
+    const index = ListaProdutos.findIndex(item => item._id === id);
+    ListaProdutos[index] = payload;
+    const orc = state.Orcamentos;
+    orc.Produto = ListaProdutos;
+    patchState({
+      ...state,
+      Orcamentos: orc,
     });
   }
 

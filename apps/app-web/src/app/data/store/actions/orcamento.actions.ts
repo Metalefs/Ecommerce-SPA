@@ -41,7 +41,14 @@ export class EditarOrcamentoLocal {
 
   static readonly type = '[Orcamento] Edit Local'
 
-  constructor(public payload: entities.Orcamento, public id:string) {}
+  constructor(public payload: entities.Orcamento) {}
+}
+
+export class EditarProdutoOrcamentoLocal {
+
+  static readonly type = '[Orcamento] Edit Product Local'
+
+  constructor(public payload: entities.Produto, public id:string) {}
 }
 
 

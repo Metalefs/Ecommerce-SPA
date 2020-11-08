@@ -1,21 +1,30 @@
-<div class="box border">
+<div class="box border w-full">
 
-  <table mat-table [dataSource]="ProdutoTable.dataSource" class="w-half">
+  <table mat-table [dataSource]="ProdutoTable.dataSource" class="w-full" >
 
     <ng-container matColumnDef="Produtos">
       <th mat-header-cell *matHeaderCellDef> Produtos </th>
       <td @fadeIn mat-cell *matCellDef="let element">
-        <div class="columns">
-          <div class="column">
-            <figure class="image is-64x64 is-square">
+        <div class="columns a-i-c mt-3">
+          <div class="column flex-m">
+            <figure class="image is-64x64">
               <img src="{{element.Imagem[0]}}">
             </figure>
-          </div>
-          <div class="column">
             <a
             href="#topo"
             [routerLink]="['/produtos/',element._id]"
-            routerLinkActive="router-link-active">{{element.Nome}}
+            routerLinkActive="router-link-active"
+            class="px-3 titulo-produto is-hidden-desktop"
+            >{{element.Nome}}
+           </a>
+          </div>
+          <div class="column ">
+            <a
+            href="#topo"
+            [routerLink]="['/produtos/',element._id]"
+            routerLinkActive="router-link-active"
+            class="titulo-produto is-hidden-touch"
+            >{{element.Nome}}
            </a>
 
             <button (click)="removerProduto(element)">
@@ -23,10 +32,10 @@
             </button>
           </div>
         </div>
-        <div class="columns is-mobile is-hidden-desktop">
-          <div class="column">
-            <div class="control is-small ">
-              <button mat-icon-button (click)="DecrescerQuantidade()">
+        <div class="columns is-mobile is-hidden-desktop mb-2">
+          <div class="column is-9">
+            <div class="control is-small">
+              <button mat-icon-button (click)="DecrescerQuantidade(element)">
                 <mat-icon class="less" >remove</mat-icon>
               </button>
               <input
@@ -35,15 +44,15 @@
                 type="number"
                 (change)="VerificarQuantidade($event,element)"
                 min="{{element?.QuantidadeMinima}}"
-                class="quantidade-produto input is-small is-rounded"
+                class="quantidade-produto is-rounded"
                 [(ngModel)]="(element).Quantidade">
-              <button mat-icon-button (click)="IncrementarQuantidade()">
+              <button mat-icon-button (click)="IncrementarQuantidade(element)">
                 <mat-icon class="more" >add</mat-icon>
               </button>
             </div>
-            <div class="column">
-              R$ {{element?.Preco || 0}}
-            </div>
+          </div>
+          <div class="column">
+            <span class="preco">R$ {{CalcularPreco(element)}}</span>
           </div>
         </div>
       </td>
@@ -53,7 +62,7 @@
       <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> qtd </th>
       <td @fadeIn mat-cell *matCellDef="let element"  class="is-hidden-touch">
         <div class="control is-small ">
-          <button mat-icon-button (click)="DecrescerQuantidade()">
+          <button mat-icon-button (click)="DecrescerQuantidade(element)">
             <mat-icon class="less" >remove</mat-icon>
           </button>
           <input
@@ -62,9 +71,9 @@
             type="number"
             (change)="VerificarQuantidade($event,element)"
             min="{{element?.QuantidadeMinima}}"
-            class="quantidade-produto input is-small is-rounded"
+            class="quantidade-produto is-rounded"
             [(ngModel)]="(element).Quantidade">
-          <button mat-icon-button (click)="IncrementarQuantidade()">
+          <button mat-icon-button (click)="IncrementarQuantidade(element)">
             <mat-icon class="more" >add</mat-icon>
           </button>
         </div>
@@ -74,7 +83,7 @@
     <ng-container matColumnDef="Subtotal" class="is-hidden-touch">
       <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> Subtotal</th>
       <td mat-cell *matCellDef="let element"  class="is-hidden-touch">
-       R$ {{element?.Preco || 0}}
+       <span  class="preco">R$ <span>{{CalcularPreco(element)}}</span></span>
       </td>
     </ng-container>
 

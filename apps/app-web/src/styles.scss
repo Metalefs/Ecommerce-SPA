@@ -5,9 +5,12 @@
 @import '~ngx-sharebuttons/themes/modern/modern-dark-theme';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: soleil, sans-serif;
+body {
+  margin: 0;
+  font-family: soleil, sans-serif;
   font-style: normal;
-  font-weight: 300;}
+  font-weight: 300;
+}
 table td, table th {
   vertical-align: middle;
 }
@@ -91,7 +94,12 @@ p{
 .background-primary-warmer{
   background: $crayola;
 }
+.preco{
+  font-size: 14px;
+  color:rgb(105, 109, 140);
 
+  font-weight: 500;
+}
 .card-bg{
   z-index: 0;
   content: "";

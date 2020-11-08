@@ -1,4 +1,19 @@
+
 <div class="section has-background-white-bis">
+  <nav class="breadcrumb is-left" aria-label="breadcrumbs">
+    <ul class="">
+      <li class="">
+        <a [routerLink]="'/produtos'" class="">Todos os produtos</a>
+        <div class="">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+      </li>
+      <li class="is-active">
+        <a [routerLink]="'/produtos'" class="">{{Produto?.Categoria.Nome}}</a>
+      </li>
+    </ul>
+  </nav>
+
   <div class="columns has-background-white" id="PRODUTO">
     <div class="column box mb-0">
       <gallery id="myGallery" *ngIf="galleryConfig$ | async; let config" [counter]="false"
@@ -14,22 +29,17 @@
         </div>
         <mat-label>quantidade</mat-label>
         <div class="columns">
-          <div class="column pr-0" >
+          <div class="column pr-0">
             <div class="field">
               <div class="control is-large flex-c flex-m">
                 <button mat-icon-button (click)="DecrescerQuantidade()">
-                  <mat-icon class="less" >remove</mat-icon>
+                  <mat-icon class="less">remove</mat-icon>
                 </button>
-                <input
-                  placeholder="{{Produto?.QuantidadeMinima}}"
-                  value="{{Produto?.QuantidadeMinima}}"
-                  type="number"
-                  (change)="VerificarQuantidade($event)"
-                  min="{{Produto?.QuantidadeMinima}}"
-                  class="quantidade-produto input"
-                  [(ngModel)]="(Produto).Quantidade">
+                <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
+                  (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                  class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
                 <button mat-icon-button (click)="IncrementarQuantidade()">
-                  <mat-icon class="more" >add</mat-icon>
+                  <mat-icon class="more">add</mat-icon>
                 </button>
               </div>
             </div>
@@ -67,11 +77,13 @@
         <div>
           <p class="descricao-produto">{{Produto?.Descricao}}</p>
         </div>
-        <p class="descricao-produto">{{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}</p>
+        <p class="preco hoverable">
+          {{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}
+        </p>
       </div>
       <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
-        <mat-icon [ngClass]="Liked? 'liked': ''"
-          class="heartbutton color-light-red">{{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+        <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
+          {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
         {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
         {{Liked? '- Obrigado por nos apoiar ' : ''}}
       </button>

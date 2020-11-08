@@ -36,6 +36,6 @@ export class FormularioComponent implements OnInit {
   }
 
   AtualizarOrcamento(){
-    this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento,this.Orcamento._id));
+    this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento));
   }
 }
