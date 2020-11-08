@@ -1,22 +1,7 @@
-<section class="section" >
+<section class="section has-background-white-bis pos-relative min-h-50" >
 
-  <div class="af cs i2 i3 i4 flex-c flex-col-c-sa w-full flex-l">
-    <div class="has-text-left">
-      <h2 class="subtitle">Confira o seu pedido</h2>
-      <span class="subtitle">Revise seus produtos e continue para inserir seus dados pessoais.</span>
-    </div>
-
-    <div class="pt-3">
-      <personalizados-lopes-confirmacao></personalizados-lopes-confirmacao>
-    </div>
-
-    <a href="#topo"
-    [routerLink]="['/produtos/']"
-    routerLinkActive="router-link-active"
-    class="py-2"
-    >Escolher mais produtos</a>
-    <button class="button is-success">Finalizar orçamento</button>
-
+  <div class="px-3 py-3 af cs i2 i3 i4 flex-c flex-col-c-sa w-full flex-l">
+    <router-outlet></router-outlet>
   </div>
 
 </section>

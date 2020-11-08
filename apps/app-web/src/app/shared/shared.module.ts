@@ -5,6 +5,9 @@ import { MaterialModule } from './material.module';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 import { CKEditorModule } from 'ckeditor4-angular';
 
 import { DynamicFormModule } from './components/dynamic-form/dynamic-form.module';
@@ -34,7 +37,9 @@ import { CountUpModule } from 'ngx-countup';
     RouterModule,
     CKEditorModule,
     ScrolltopModule,
-    CountUpModule
+    CountUpModule,
+
+    NgxMaskModule.forRoot(),
   ],
   exports: [
     CommonModule,
@@ -53,7 +58,9 @@ import { CountUpModule } from 'ngx-countup';
     TestimonialComponent,
     CKEditorModule,
     ScrolltopModule,
-    CountUpModule
+    CountUpModule,
+
+    NgxMaskModule,
   ]
 })
 export class SharedModule { }

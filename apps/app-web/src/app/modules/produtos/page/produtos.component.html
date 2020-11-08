@@ -18,8 +18,6 @@
                   <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}</mat-icon>
                 </mat-chip>
                 <mat-chip
-                    pageScroll
-                    href="#PRODUTOS"
                     *ngFor="let categoria of Categorias$ | async"
                     [style.backgroundColor]="categoria?.Cor"
                     class="pointer w-full"

@@ -1,1 +1,84 @@
-<p>dados works!</p>
+<section class="section">
+  <div class="dis-flex flex-m has-text-left">
+    <a onclick="window.history.back()" class="preco dis-flex flex-m ">
+      <mat-icon class="">keyboard_arrow_left</mat-icon>
+      voltar
+    </a>
+  </div>
+  <div class="af cs i2 i3 i4 flex-c flex-col-c-sa w-full flex-l m-lr-auto w-full">
+    <div class="has-text-left  w-full">
+      <h2 class="subtitle">Insira seus dados pessoais</h2>
+      <span class="subtitle">Verifique os campos obrigatórios.</span>
+    </div>
+
+    <div class="pt-3">
+      <form>
+
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome"
+            [formControl]="nomeFormControl" placeholder="Ex. Fulano de tal">
+          <mat-error *ngIf="nomeFormControl.hasError('required')">
+            É necessário inserir seu <strong>nome</strong>
+          </mat-error>
+          <span class="icon is-right" *ngIf="nomeFormControl.hasError('required')">
+            <mat-icon class="has-text-danger">warning</mat-icon>
+          </span>
+        </mat-form-field>
+
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input class="w-full" matInput (change)="AtualizarOrcamento()"
+            [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl" placeholder="Ex. meu@email.com">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Insira um e-mail válido
+          </mat-error>
+          <span class="icon is-right" *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            <mat-icon class="has-text-danger">warning</mat-icon>
+          </span>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            É necessário inserir seu <strong>e-mail</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+          <mat-label>Telefone</mat-label>
+          <input class="w-full input" matInput (change)="AtualizarOrcamento()"
+            [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl" placeholder="(00) 0 0000 0000"
+            mask="(00) 0000-0000||(00) 0 0000-0000">
+          <mat-error *ngIf="phoneFormControl.hasError('required')">
+            É necessário inserir seu <strong>telefone</strong>
+          </mat-error>
+          <span class="icon is-right" *ngIf="phoneFormControl.hasError('required')">
+            <mat-icon class="has-text-danger">warning</mat-icon>
+          </span>
+        </mat-form-field>
+
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+          <mat-label>Mensagem</mat-label>
+          <textarea
+            class="control has-icons-right  input"
+            matInput
+            [formControl]="messageFormControl"
+            (change)="AtualizarOrcamento()"
+            [(ngModel)]="Orcamento.Mensagem"
+            ></textarea>
+          <mat-error *ngIf="messageFormControl.hasError('required')">
+            É necessário inserir sua <strong>Mensagem</strong>
+          </mat-error>
+          <span class="icon is-right" *ngIf="messageFormControl.hasError('required')">
+            <mat-icon class="has-text-danger">warning</mat-icon>
+          </span>
+        </mat-form-field>
+
+      </form>
+    </div>
+
+    <p>Insira o número completo do seu telefone</p>
+    <a [routerLink]="['/checkout/endereco/']" routerLinkActive="router-link-active"
+      class="button is-success w-full">Continuar</a>
+
+  </div>
+
+</section>
+<footer class="footer has-background-white-bis"></footer>

@@ -1,93 +1,115 @@
-<div class="box border w-full">
+<div class="has-text-left">
+  <h2 class="subtitle">Confira o seu pedido</h2>
+  <span class="subtitle">Revise seus produtos e continue para inserir seus dados pessoais.</span>
+</div>
+<div class="a-i-c">
 
-  <table mat-table [dataSource]="ProdutoTable.dataSource" class="w-full" >
+  <div class="box border w-full">
 
-    <ng-container matColumnDef="Produtos">
-      <th mat-header-cell *matHeaderCellDef> Produtos </th>
-      <td @fadeIn mat-cell *matCellDef="let element">
-        <div class="columns a-i-c mt-3">
-          <div class="column flex-m">
-            <figure class="image is-64x64">
-              <img src="{{element.Imagem[0]}}">
-            </figure>
-            <a
-            href="#topo"
-            [routerLink]="['/produtos/',element._id]"
-            routerLinkActive="router-link-active"
-            class="px-3 titulo-produto is-hidden-desktop"
-            >{{element.Nome}}
-           </a>
-          </div>
-          <div class="column ">
-            <a
-            href="#topo"
-            [routerLink]="['/produtos/',element._id]"
-            routerLinkActive="router-link-active"
-            class="titulo-produto is-hidden-touch"
-            >{{element.Nome}}
-           </a>
+    <table mat-table [dataSource]="ProdutoTable.dataSource" class="w-full" >
 
-            <button (click)="removerProduto(element)">
-              remover
-            </button>
-          </div>
-        </div>
-        <div class="columns is-mobile is-hidden-desktop mb-2">
-          <div class="column is-9">
-            <div class="control is-small">
-              <button mat-icon-button (click)="DecrescerQuantidade(element)">
-                <mat-icon class="less" >remove</mat-icon>
-              </button>
-              <input
-                placeholder="{{element?.QuantidadeMinima}}"
-                value="{{element?.QuantidadeMinima}}"
-                type="number"
-                (change)="VerificarQuantidade($event,element)"
-                min="{{element?.QuantidadeMinima}}"
-                class="quantidade-produto is-rounded"
-                [(ngModel)]="(element).Quantidade">
-              <button mat-icon-button (click)="IncrementarQuantidade(element)">
-                <mat-icon class="more" >add</mat-icon>
+      <ng-container matColumnDef="Produtos">
+        <th mat-header-cell *matHeaderCellDef> Produtos </th>
+        <td @fadeIn mat-cell *matCellDef="let element">
+          <div class="columns a-i-c mt-3">
+            <div class="column flex-m">
+              <figure class="image is-64x64">
+                <img src="{{element.Imagem[0]}}">
+              </figure>
+              <a
+              href="#topo"
+              [routerLink]="['/produtos/',element._id]"
+              routerLinkActive="router-link-active"
+              class="px-3 titulo-produto is-hidden-desktop"
+              >{{element.Nome}}
+             </a>
+            </div>
+            <div class="column ">
+              <a
+              href="#topo"
+              [routerLink]="['/produtos/',element._id]"
+              routerLinkActive="router-link-active"
+              class="titulo-produto is-hidden-touch"
+              >{{element.Nome}}
+             </a>
+
+              <button (click)="removerProduto(element)">
+                remover
               </button>
             </div>
           </div>
-          <div class="column">
-            <span class="preco">R$ {{CalcularPreco(element)}}</span>
+          <div class="columns is-mobile is-hidden-desktop mb-2">
+            <div class="column is-9">
+              <div class="control is-small">
+                <button mat-icon-button (click)="DecrescerQuantidade(element)">
+                  <mat-icon class="less" >remove</mat-icon>
+                </button>
+                <input
+                  placeholder="{{element?.QuantidadeMinima}}"
+                  value="{{element?.QuantidadeMinima}}"
+                  type="number"
+                  (change)="VerificarQuantidade($event,element)"
+                  min="{{element?.QuantidadeMinima}}"
+                  class="quantidade-produto is-rounded"
+                  [(ngModel)]="(element).Quantidade">
+                <button mat-icon-button (click)="IncrementarQuantidade(element)">
+                  <mat-icon class="more" >add</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div class="column">
+              <span class="preco">R$ {{CalcularPreco(element)}}</span>
+            </div>
           </div>
-        </div>
-      </td>
-    </ng-container>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="Quantidade" class="is-hidden-touch">
-      <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> qtd </th>
-      <td @fadeIn mat-cell *matCellDef="let element"  class="is-hidden-touch">
-        <div class="control is-small ">
-          <button mat-icon-button (click)="DecrescerQuantidade(element)">
-            <mat-icon class="less" >remove</mat-icon>
-          </button>
-          <input
-            placeholder="{{element?.QuantidadeMinima}}"
-            value="{{element?.QuantidadeMinima}}"
-            type="number"
-            (change)="VerificarQuantidade($event,element)"
-            min="{{element?.QuantidadeMinima}}"
-            class="quantidade-produto is-rounded"
-            [(ngModel)]="(element).Quantidade">
-          <button mat-icon-button (click)="IncrementarQuantidade(element)">
-            <mat-icon class="more" >add</mat-icon>
-          </button>
-        </div>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="Quantidade" class="is-hidden-touch">
+        <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> qtd </th>
+        <td @fadeIn mat-cell *matCellDef="let element"  class="is-hidden-touch">
+          <div class="control is-small ">
+            <button mat-icon-button (click)="DecrescerQuantidade(element)">
+              <mat-icon class="less" >remove</mat-icon>
+            </button>
+            <input
+              placeholder="{{element?.QuantidadeMinima}}"
+              value="{{element?.QuantidadeMinima}}"
+              type="number"
+              (change)="VerificarQuantidade($event,element)"
+              min="{{element?.QuantidadeMinima}}"
+              class="quantidade-produto is-rounded"
+              [(ngModel)]="(element).Quantidade">
+            <button mat-icon-button (click)="IncrementarQuantidade(element)">
+              <mat-icon class="more" >add</mat-icon>
+            </button>
+          </div>
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="Subtotal" class="is-hidden-touch">
-      <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> Subtotal</th>
-      <td mat-cell *matCellDef="let element"  class="is-hidden-touch">
-       <span  class="preco">R$ <span>{{CalcularPreco(element)}}</span></span>
-      </td>
-    </ng-container>
+      <ng-container matColumnDef="Subtotal" class="is-hidden-touch">
+        <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> Subtotal</th>
+        <td mat-cell *matCellDef="let element"  class="is-hidden-touch">
+         <span  class="preco">R$ <span>{{CalcularPreco(element)}}</span></span>
+        </td>
+      </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
-  </table>
+      <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
+    </table>
+
+
+
+  </div>
+  <div class="w-full">
+      <button
+      class="py-2  w-full"
+      >
+      <a href="#topo"
+      [routerLink]="['/produtos/']"
+      routerLinkActive="router-link-active">Escolher mais produtos</a>
+    </button>
+    <a  [routerLink]="['/checkout/dados/']"
+    routerLinkActive="router-link-active"
+    class="button is-success w-full">Finalizar orçamento</a>
+  </div>
 </div>
