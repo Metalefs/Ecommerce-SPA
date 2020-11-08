@@ -87,6 +87,29 @@ button:focus {outline: none;}
 
 iframe {border: none;}
 
+input{
+  -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: textfield;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
+    border-image: initial;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT SIZE ]*/
@@ -2359,12 +2382,12 @@ iframe {border: none;}
 	height: 100%;
 }
 .w-full {width: 100%;}
+.w-half {max-width: 512px;}
 .vh-full {height: 100vh;}
 .max-w-full {max-width: 100%;}
 .max-h-full {max-height: 100%;}
 .min-w-full {min-width: 100%;}
 .min-h-full,.mh-full {min-height: 100%;}
-
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -2596,7 +2619,70 @@ iframe {border: none;}
 .left-auto {left: auto;}
 .right-auto {right: auto;}
 
+.ch {
+  color: #312F4F;
+}
+.c0 {
+  line-height: 150%;
+}
+.gx {
+  font-size: 16px;
+}
+.ja {
+  max-width: 66%;
+}
+.jc {
+  min-width: 34%;
+}
+@media screen and (min-width: 592px){
+  .jb {
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 592px){
+  .an {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+  }
+}
+.c3 {
+    display: none;
+}
+@media screen and (min-width: 592px){
 
+  .j9 {
+      padding: 24px;
+  }
+}
+.d6 {
+    padding: 16px;
+}
+.j8 {
+  flex: 0 0 auto;
+}
+.hs {
+  height: auto;
+}
+.h0 {
+  border-radius: 4px;
+}
+.gz {
+  border: 1px solid #B6B9D0;
+}
+.fv {
+  -ms-grid-row-align: center;
+  align-self: center;
+}
+.fl {
+  background: #FFFFFF;
+}
+.af {
+  width: 100%;
+}
 /*------------------------------------------------------------------
 [ Flex ]*/
 /* ------------------------------------ */

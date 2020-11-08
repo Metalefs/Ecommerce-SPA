@@ -69,8 +69,8 @@
         </div>
         <p class="descricao-produto">{{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}</p>
       </div>
-      <button (click)="Like()" mat-icon-button>
-        <mat-icon [ngClass]="Liked? 'liked': ''" [ngClass]="loading ? 'button is-loading':''"
+      <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
+        <mat-icon [ngClass]="Liked? 'liked': ''"
           class="heartbutton color-light-red">{{Liked? 'favorite': 'favorite_border'}}</mat-icon>
         {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
         {{Liked? '- Obrigado por nos apoiar ' : ''}}

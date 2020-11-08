@@ -15,6 +15,7 @@
                  (click)="SetCategoria(null)"
                  [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
                   todos os produtos
+                  <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}</mat-icon>
                 </mat-chip>
                 <mat-chip
                     pageScroll
@@ -25,6 +26,7 @@
                     (click)="SetCategoria(categoria)"
                     [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
                     {{categoria?.Nome}}
+                    <mat-icon>{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : ''}}</mat-icon>
                 </mat-chip>
               </mat-chip-list>
             </ul>

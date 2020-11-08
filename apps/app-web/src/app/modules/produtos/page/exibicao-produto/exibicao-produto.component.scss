@@ -8,13 +8,12 @@ gallery{
 }
 .heartbutton {
   font-size: larger;
-  transition: .21s  all ease-in-out;
+  transition: 1s  all ease-in-out;
 }
-.heartbutton.liked{
+.liked{
   opacity: 1;
-  color:red;
-  font-size: xx-large;
-  margin: 10px;
+
+  color:rgb(182, 185, 208) !important;
   cursor: default;
 }
 .control{
@@ -58,7 +57,6 @@ input[type=number] {
   height: 20px;
   vertical-align: middle;
   width: 20px;
-  color:rgb(182, 185, 208);
 }
 .mat-label{
   color:#312F4F;
