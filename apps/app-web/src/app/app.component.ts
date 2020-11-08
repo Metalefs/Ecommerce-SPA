@@ -16,6 +16,7 @@ import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
+import { AdicionarListaProdutosFiltroProduto } from './data/store/actions/filtroproduto.actions';
 declare let gtag: Function;
 @Component({
   selector: 'personalizados-lopes-root',
@@ -51,7 +52,9 @@ export class AppComponent {
     this.store.dispatch(new LerSobre()             ).subscribe();
     this.store.dispatch(new LerServico()           ).subscribe();
     this.store.dispatch(new LerCategoria()         ).subscribe();
-    this.store.dispatch(new LerProduto()           ).subscribe();
+    this.store.dispatch(new LerProduto()           ).subscribe(x=>{
+      this.store.dispatch(new AdicionarListaProdutosFiltroProduto(x.Produtos.Produtos))
+    });
     this.store.dispatch(new LerMensagem()          ).subscribe();
   }
 

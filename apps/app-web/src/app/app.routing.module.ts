@@ -11,7 +11,7 @@ import { ServicoModule } from './modules/servico/servico.module';
 import { ShowcaseModule } from './modules/showcase/showcase.module';
 import { ProdutosModule } from './modules/produtos/produtos.module';
 import { OrcamentoModule } from './modules/orcamento/orcamento.module';
-import { environment } from '../environments/environment';
+import { CheckoutModule } from './modules/checkout/checkout.module';
 
 import { PagenotfoundModule } from './modules/pagenotfound/pagenotfound.module';
 
@@ -37,6 +37,7 @@ const routes: Routes = [
     ShowcaseModule,
     ProdutosModule,
     OrcamentoModule,
+    CheckoutModule,
     PagenotfoundModule
   ],
   exports: [

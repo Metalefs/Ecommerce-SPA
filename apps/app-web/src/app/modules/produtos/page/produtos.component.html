@@ -70,6 +70,7 @@
                 <div class="control has-icons-right">
                   <input
                     [(ngModel)]="activeSearchFilter"
+                    (change)="atualizarFiltroAtivo()"
                     class="py-2 input"
                     type="text"
                     placeholder="filtrar produtos na categoria {{CategoriaAtiva?.Nome}}">
@@ -80,7 +81,7 @@
               </div>
               <div class="column">
                 <div class="select w-full">
-                  <select class="py-2  w-full" [(ngModel)]="activeOrderFilter">
+                  <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()">
                     <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order.id">{{order.name}}</option>
                   </select>
                 </div>
@@ -92,7 +93,14 @@
           <ng-container *ngFor="let produto of Produtos$ |async">
             <div @fadeIn
               class="column is-4"
-              *ngIf = "filtroAtivo(produto)">
+              *ngIf="loading"
+            >
+              <mat-spinner></mat-spinner>
+
+            </div>
+            <div @fadeIn
+              class="column is-4"
+              *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
                 class=" portfolio-item"
                 [Produto]="produto"

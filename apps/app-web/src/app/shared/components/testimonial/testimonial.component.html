@@ -9,8 +9,9 @@
       </div>
       <div class="testimonialContent noselect" #sliderContent (mousemove) = 'sliderMuve($event)'
       (mousedown) = 'mousedownInSlider($event)' (mouseup) = 'leftSlider()' (mouseleave) = 'leftSlider()'>
+        <div class="card-bg-rot" *ngFor = 'let item of sliderData; let i = index;' >
 
-          <mat-card class = 'commentContent' *ngFor = 'let item of sliderData; let i = index;' [@sliderAnimations] = 'animationsStates[i]'>
+          <mat-card class = 'commentContent ' [@sliderAnimations] = 'animationsStates[i]'>
             <mat-card-content>
               <div class="flex-w flex-sb w-full">
                 <!-- <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon> -->
@@ -26,6 +27,7 @@
               </div>
             </mat-card-content>
           </mat-card>
+        </div>
 
       </div>
     </div>

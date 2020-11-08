@@ -71,7 +71,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
     this.isOrcamento = true;
     setTimeout(()=>{
-      this.router.navigateByUrl("/orcamento");
+      this.router.navigateByUrl("/checkout");
     },1500)
   }
 

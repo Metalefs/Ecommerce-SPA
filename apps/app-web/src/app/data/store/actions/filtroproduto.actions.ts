@@ -1,3 +1,4 @@
+import { Produto } from 'libs/data/src/lib/classes';
 import { FiltroProduto } from '../../models/filtroProduto';
 
 export class LerFiltroProduto {
@@ -15,6 +16,12 @@ export class AdicionarFiltroProduto {
   constructor(public payload: FiltroProduto) {}
 }
 
+export class AdicionarListaProdutosFiltroProduto {
+
+  static readonly type = '[FiltroProduto] Add Product List'
+
+  constructor(public payload: Produto[]) {}
+}
 
 export class EditarFiltroProduto {
 

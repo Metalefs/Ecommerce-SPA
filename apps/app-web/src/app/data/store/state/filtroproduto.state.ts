@@ -2,12 +2,12 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerFiltroProduto, EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto } from '../actions/filtroproduto.actions';
+import { LerFiltroProduto, EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto, AdicionarListaProdutosFiltroProduto } from '../actions/filtroproduto.actions';
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Categoria } from 'libs/data/src/lib/classes';
 import { OrderType } from '../../models/order-type';
-
+let defaultCategory = "Todos os produtos";
 export class FiltroProdutoStateModel{
   FiltroProdutos: entities.Produto[];
   Categoria: entities.Categoria;
@@ -21,7 +21,7 @@ export class FiltroProdutoStateModel{
   name:"FiltroProdutos",
   defaults: {
     FiltroProdutos:[],
-    Categoria: new Categoria("Todos", "Todos"),
+    Categoria: new Categoria(defaultCategory,defaultCategory),
     SearchFilter: "",
     OrderFilter: 1,
     areFiltroProdutosLoaded: false
@@ -30,13 +30,13 @@ export class FiltroProdutoStateModel{
 @Injectable()
 export class FiltroProdutoState {
 
-  constructor(private ProdutoService:ProdutoService){
+  constructor(){
 
   }
 
   @Selector()
   static ObterListaFiltroProdutos(state: FiltroProdutoStateModel) {
-      return state.Categoria;
+      return state;
   }
 
   @Selector()
@@ -49,7 +49,32 @@ export class FiltroProdutoState {
     const current = context.getState();
 
     context.patchState({
-        Categoria : action.payload.Categoria
+        Categoria : action.payload.Categoria,
+        SearchFilter : action.payload.SearchFilter,
+        OrderFilter : action.payload.OrderFilter,
+        FiltroProdutos : action.payload.Produtos
+    });
+  }
+
+  @Action(EditarFiltroProduto)
+  EditarFiltroProduto(context: StateContext<FiltroProdutoStateModel>, action: EditarFiltroProduto) {
+    const current = context.getState();
+
+    context.patchState({
+        Categoria : action.payload.Categoria,
+        SearchFilter : action.payload.SearchFilter,
+        OrderFilter : action.payload.OrderFilter,
+        FiltroProdutos : action.payload.Produtos
+    });
+  }
+
+
+  @Action(AdicionarListaProdutosFiltroProduto)
+  AdicionarListaProdutosFiltroProduto(context: StateContext<FiltroProdutoStateModel>, action: AdicionarListaProdutosFiltroProduto) {
+    const current = context.getState();
+
+    context.patchState({
+      FiltroProdutos : action.payload
     });
   }
 

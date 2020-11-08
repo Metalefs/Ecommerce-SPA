@@ -20,26 +20,28 @@ import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/
   animations: [fade]
 })
 export class ProdutosComponent implements OnInit {
-  CategoriaAtiva:Categoria = new Categoria("Todos","Todos");
+  defaultCategory = "Todos os produtos";
+  CategoriaAtiva:Categoria = new Categoria(this.defaultCategory,this.defaultCategory);
 
   @Select(CategoriaState.ObterListaCategorias) Categorias$: Observable<Categoria[]>;
   @Select(CategoriaState.areCategoriasLoaded) areCategoriasLoaded$;
   areCategoriasLoadedSub: Subscription;
 
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
-  @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<Categoria>;
+  @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<FiltroProduto>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   areProdutosLoadedSub: Subscription;
 
-  defaultCategory = "Todos os produtos";
   activeSearchFilter = "";
-  activeOrderFilter:number = 1;
+  activeOrderFilter:number = TiposOrdenacao.nome;
+
+  loading:boolean = false;
 
   ordertypes:OrderType[]= [
-    {name:'nome (a-z)', id: 1},
-    {name:'nome (z-a)', id: 2},
-    {name:'maior preço', id: 3},
-    {name:'menor preço', id: 4},
+    {name:'nome (a-z)', id: TiposOrdenacao.nome},
+    {name:'nome (z-a)', id: TiposOrdenacao.nomeDesc},
+    {name:'maior preço', id: TiposOrdenacao.preco},
+    {name:'menor preço', id: TiposOrdenacao.precoDesc},
   ]
 
   constructor(
@@ -52,7 +54,9 @@ export class ProdutosComponent implements OnInit {
   ngOnInit(): void {
     this.Atualizar();
     this.Filtro$.subscribe(x=>{
-      this.CategoriaAtiva = x;
+      this.CategoriaAtiva = x.Categoria;
+      this.activeOrderFilter = x.OrderFilter;
+      this.activeSearchFilter = x.SearchFilter;
     })
   }
 
@@ -61,9 +65,59 @@ export class ProdutosComponent implements OnInit {
     this.RecarregarCategorias();
   }
 
+  SetCategoria(categoria:Categoria){
+    this.CategoriaAtiva = categoria == null ?
+    new Categoria(this.defaultCategory,this.defaultCategory)
+    :
+    this.CategoriaAtiva = categoria;
+
+    this.atualizarFiltroAtivo();
+  }
+
+  atualizarFiltroAtivo(){
+    this.loading = true;
+    this.Produtos$.subscribe(async x=>{
+      switch(+this.activeOrderFilter){
+        case 0:
+         x = x.sort((a, b) => a.Nome.localeCompare(b.Nome));
+        break;
+
+        case TiposOrdenacao.nomeDesc:
+         x = x.sort((a, b) => this.order(a,b,true));
+        break;
+
+        case TiposOrdenacao.preco:
+         x = x.sort((a, b) => this.orderPreco(a,b,false));
+        break;
+
+        case TiposOrdenacao.precoDesc:
+         x = x.sort((a, b) => this.orderPreco(a,b,true));
+        break;
+      }
+
+      let FiltroProduto:FiltroProduto = {
+        Categoria:this.CategoriaAtiva,
+        SearchFilter:this.activeSearchFilter,
+        OrderFilter:this.activeOrderFilter,
+        Produtos: x
+      };
+
+      this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe();
+      await this.delay(400).then(x=>{this.loading = x;});
+
+    })
+  }
+  private delay(ms: number): Promise<boolean> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(false);
+      }, ms);
+    });
+  }
+
   filtroAtivo(produto:Produto){
     if(this.matchSearchFilter(produto))
-      return this.CategoriaAtiva?.Nome == this.defaultCategory
+    return this.CategoriaAtiva?.Nome == this.defaultCategory
             ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
   }
 
@@ -96,19 +150,54 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  SetCategoria(categoria:Categoria){
-    if(categoria == null)
-      this.CategoriaAtiva = new Categoria(this.defaultCategory,this.defaultCategory);
-    else
-      this.CategoriaAtiva = categoria;
-
-    let FiltroProduto:FiltroProduto = {
-      Categoria:this.CategoriaAtiva,
-      SearchFilter:this.activeSearchFilter,
-      OrderFilter:this.activeOrderFilter
-    };
-
-    this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe()
+  order(a,b,desc){
+    if(desc){
+      if (a.Nome < b.Nome) {
+        return 1;
+      }
+      if (a.Nome > b.Nome) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    }
+    else{
+      if (a.Nome > b.Nome) {
+        return 1;
+      }
+      if (a.Nome < b.Nome) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    }
   }
-
+  orderPreco(a,b,desc){
+    if(desc){
+      if (a.Preco < b.Preco) {
+        return 1;
+      }
+      if (a.Preco > b.Preco) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    }
+    else{
+      if (a.Preco > b.Preco) {
+        return 1;
+      }
+      if (a.Preco < b.Preco) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    }
+  }
+}
+enum TiposOrdenacao {
+  nome,
+  nomeDesc,
+  preco,
+  precoDesc
 }
