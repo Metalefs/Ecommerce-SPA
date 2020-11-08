@@ -27,7 +27,11 @@ span{
   justify-content: center;
   align-items: center;
   align-content: center;
-
+  background: transparent;
+  padding: 0;
+}
+.mat-card-content{
+  padding:1rem;
 }
 .mat-card:hover{
     background: rgb(255, 255, 255);
@@ -45,8 +49,9 @@ span{
   width: 92%;
 }
 .mat-card-title{
-  font-family: Open Sans;
-  margin:1rem 0;
+  color: rgb(49, 47, 79);
+  font-size: 16px;
+  margin: 0rem 0;
 }
 .zoom{
   filter: opacity(1);

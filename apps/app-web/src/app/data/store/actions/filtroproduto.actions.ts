@@ -1,4 +1,4 @@
-import { entities } from '@personalizados-lopes/data';
+import { FiltroProduto } from '../../models/filtroProduto';
 
 export class LerFiltroProduto {
 
@@ -12,7 +12,7 @@ export class AdicionarFiltroProduto {
 
   static readonly type = '[FiltroProduto] Add'
 
-  constructor(public payload: entities.Categoria) {}
+  constructor(public payload: FiltroProduto) {}
 }
 
 
@@ -20,7 +20,7 @@ export class EditarFiltroProduto {
 
   static readonly type = '[FiltroProduto] Edit'
 
-  constructor(public payload: entities.Categoria, public id:string) {}
+  constructor(public payload: FiltroProduto) {}
 }
 
 

@@ -6,10 +6,13 @@ import { LerFiltroProduto, EditarFiltroProduto, AdicionarFiltroProduto, RemoverF
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Categoria } from 'libs/data/src/lib/classes';
+import { OrderType } from '../../models/order-type';
 
 export class FiltroProdutoStateModel{
   FiltroProdutos: entities.Produto[];
   Categoria: entities.Categoria;
+  SearchFilter: string;
+  OrderFilter: number;
   areFiltroProdutosLoaded: boolean;
 
 }
@@ -19,6 +22,8 @@ export class FiltroProdutoStateModel{
   defaults: {
     FiltroProdutos:[],
     Categoria: new Categoria("Todos", "Todos"),
+    SearchFilter: "",
+    OrderFilter: 1,
     areFiltroProdutosLoaded: false
   }
 })
@@ -44,7 +49,7 @@ export class FiltroProdutoState {
     const current = context.getState();
 
     context.patchState({
-        Categoria : action.payload
+        Categoria : action.payload.Categoria
     });
   }
 

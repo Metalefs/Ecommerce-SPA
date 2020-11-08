@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
@@ -5,8 +6,10 @@ import { Categoria, Produto } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { fade } from '../../../animations';
+import { FiltroProduto } from '../../../data/models/filtroProduto';
+import { OrderType } from '../../../data/models/order-type';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
-import { AdicionarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
+import { AdicionarFiltroProduto, EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
 import { LerProduto } from '../../../data/store/actions/Produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 
@@ -28,11 +31,21 @@ export class ProdutosComponent implements OnInit {
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   areProdutosLoadedSub: Subscription;
 
+  defaultCategory = "Todos os produtos";
+  activeSearchFilter = "";
+  activeOrderFilter:number = 1;
+
+  ordertypes:OrderType[]= [
+    {name:'nome (a-z)', id: 1},
+    {name:'nome (z-a)', id: 2},
+    {name:'maior preço', id: 3},
+    {name:'menor preço', id: 4},
+  ]
+
   constructor(
     private dialog: MatDialog,
     private store: Store,
     ) {
-
 
   }
 
@@ -48,6 +61,19 @@ export class ProdutosComponent implements OnInit {
     this.RecarregarCategorias();
   }
 
+  filtroAtivo(produto:Produto){
+    if(this.matchSearchFilter(produto))
+      return this.CategoriaAtiva?.Nome == this.defaultCategory
+            ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
+  }
+
+  matchSearchFilter(produto:Produto){
+    return this.activeSearchFilter.length > 0 ?
+     produto.Nome.toLocaleLowerCase().includes(this.activeSearchFilter.toLocaleLowerCase())
+     :
+     true;
+  }
+
   RecarregarProdutos(){
     this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
       tap((areProdutosLoaded) => {
@@ -58,6 +84,7 @@ export class ProdutosComponent implements OnInit {
       console.log(value);
     });
   }
+
   RecarregarCategorias(){
     this.areCategoriasLoadedSub = this.areCategoriasLoaded$.pipe(
       tap((areCategoriasLoaded) => {
@@ -71,10 +98,17 @@ export class ProdutosComponent implements OnInit {
 
   SetCategoria(categoria:Categoria){
     if(categoria == null)
-      this.CategoriaAtiva = new Categoria("Todos","Todos");
+      this.CategoriaAtiva = new Categoria(this.defaultCategory,this.defaultCategory);
     else
       this.CategoriaAtiva = categoria;
 
-    this.store.dispatch(new AdicionarFiltroProduto(this.CategoriaAtiva)).subscribe()
+    let FiltroProduto:FiltroProduto = {
+      Categoria:this.CategoriaAtiva,
+      SearchFilter:this.activeSearchFilter,
+      OrderFilter:this.activeOrderFilter
+    };
+
+    this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe()
   }
+
 }
