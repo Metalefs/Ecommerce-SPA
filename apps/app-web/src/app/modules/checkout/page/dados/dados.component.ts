@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Select, Store } from '@ngxs/store';
+import { fade } from 'apps/app-web/src/app/animations';
 import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
@@ -9,7 +10,8 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'personalizados-lopes-dados',
   templateUrl: './dados.component.html',
-  styleUrls: ['./dados.component.scss']
+  styleUrls: ['./dados.component.scss'],
+  animations:[fade]
 })
 export class DadosComponent implements OnInit {
 

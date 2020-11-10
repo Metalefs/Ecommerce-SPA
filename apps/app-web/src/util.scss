@@ -2466,8 +2466,31 @@ button{
 	height: 100%;
 }
 .w-full {width: 100%;}
-.w-half {max-width: 512px;}
+
+@media screen and (min-width: 992px)
+{
+.w-half {
+    max-width: 624px;
+}
+}
+@media screen and (min-width: 768px)
+{
+.w-half {
+    max-width: 544px;
+}
+}
+@media screen and (min-width: 592px)
+{
+.w-half {
+    max-width: 83%;
+}
+}
+.w-half {
+    max-width: 624px;
+}
+
 .vh-full {height: 100vh;}
+.vh-full-nav {height: 80vh;}
 .max-w-full {max-width: 100%;}
 .max-h-full {max-height: 100%;}
 .min-w-full {min-width: 100%;}
@@ -2478,9 +2501,29 @@ button{
 [ BACKGROUND ]*/
 .bgwhite {background-color: white;}
 .bgblack {background-color: black;}
-
-
-
+.ft {
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.de {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+.db {
+  height: 100%;
+}
+.am {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.au {
+  -webkit-box-align: center;
+  align-items: center;
+}
 /*//////////////////////////////////////////////////////////////////
 [ PSEUDO ]*/
 

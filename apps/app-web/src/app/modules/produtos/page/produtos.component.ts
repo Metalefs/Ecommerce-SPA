@@ -122,10 +122,13 @@ export class ProdutosComponent implements OnInit {
   }
 
   matchSearchFilter(produto:Produto){
+    if(this.activeSearchFilter)
     return this.activeSearchFilter.length > 0 ?
      produto.Nome.toLocaleLowerCase().includes(this.activeSearchFilter.toLocaleLowerCase())
      :
      true;
+
+    return true;
   }
 
   RecarregarProdutos(){
@@ -173,21 +176,30 @@ export class ProdutosComponent implements OnInit {
     }
   }
   orderPreco(a,b,desc){
-    if(desc){
-      if (a.Preco < b.Preco) {
+
+    if(!a.Preco)
+    a.Preco = 0;
+
+    if(!b.Preco)
+    b.Preco = 0;
+
+    if(a.Preco && b.Preco)
+
+    if(!desc){
+      if (a?.Preco < b?.Preco) {
         return 1;
       }
-      if (a.Preco > b.Preco) {
+      if (a?.Preco > b?.Preco) {
         return -1;
       }
       // a must be equal to b
       return 0;
     }
     else{
-      if (a.Preco > b.Preco) {
+      if (a?.Preco > b?.Preco) {
         return 1;
       }
-      if (a.Preco < b.Preco) {
+      if (a?.Preco < b?.Preco) {
         return -1;
       }
       // a must be equal to b

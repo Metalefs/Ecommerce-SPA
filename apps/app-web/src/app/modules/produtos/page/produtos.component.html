@@ -33,18 +33,20 @@
       </div>
     </div>
     <div class="column is-9 is-12-mobile produto-column">
-      <div class="pt-4">
+      <div class="pb-6">
         <div class="columns is-multiline portfolio-container">
 
-          <nav class="categories is-hidden-desktop">
+          <nav class="categories is-hidden-desktop has-background-white">
 
             <ul class="portfolio-filter flex-w flex-c">
               <mat-chip-list aria-label="Categoria selection">
 
                 <mat-chip class="pointer"
-                href="#PRODUTOS"
+                  href="#PRODUTOS"
                   (click)="SetCategoria(null)"
-                  [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
+                  [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''"
+                  class="w-full"
+                  >
                   Todos os produtos
                   <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}</mat-icon>
                 </mat-chip>
@@ -55,7 +57,8 @@
                     href="#TOPO"
                     [style.borderBottom]="'1px solid '+categoria?.Cor"
                     (click)="SetCategoria(categoria)"
-                    [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
+                    [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''"
+                    class=""                    >
                     {{categoria?.Nome}}
                     <mat-icon>{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : ''}}</mat-icon>
                   </mat-chip>
@@ -64,7 +67,7 @@
 
           </nav>
 
-          <div class="w-full">
+          <div class="w-full pt-3">
             <div class="columns is-mobile is-multiline px-2">
               <div class="column is-8">
                 <div class="control has-icons-right">

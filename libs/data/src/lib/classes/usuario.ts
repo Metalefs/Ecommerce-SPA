@@ -12,6 +12,7 @@ export class Usuario extends MongoDocument implements entidadeBase{
     Bairro?:string;
     Estado?:string;
     Cidade?:string;
+    Complemento?:string;
     Tipo?:TipoUsuario;
     DataCriacao?:Date;
     token?: string;
@@ -25,6 +26,7 @@ export class Usuario extends MongoDocument implements entidadeBase{
     Bairro?:string,
     Numero?:string,
     Cidade?:string,
+    Complemento?:string,
     Estado?:string,
     Tipo?:TipoUsuario){
         super();
@@ -36,6 +38,7 @@ export class Usuario extends MongoDocument implements entidadeBase{
         this.Bairro = Bairro;
         this.Numero = Numero;
         this.Cidade = Cidade;
+        this.Complemento = Complemento;
         this.Estado = Estado;
         this.Tipo = Tipo;
     }

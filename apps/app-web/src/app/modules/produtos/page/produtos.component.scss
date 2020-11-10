@@ -1,8 +1,11 @@
-.portfolio{
-  position: sticky;
-}
-.section{
 
+@media (min-width: 1024px) {
+  .portfolio{
+    position: sticky;
+  }
+  .categories{
+    position: sticky;
+  }
 }
 .mat-standard-chip{
   border-radius: 5px;
@@ -24,7 +27,6 @@
 }
 .categories{
   top:0;
-  position: sticky;
   padding:10px;
   height: min-content;
   width: 100%;

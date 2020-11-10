@@ -15,6 +15,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { CheckoutPageRoutes } from './checkout.routing';
 import { EnderecoComponent } from './page/endereco/endereco.component';
 
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 @NgModule({
   declarations: [CheckoutComponent,ConfirmacaoComponent,DadosComponent, EnderecoComponent],
   imports: [
@@ -22,6 +24,8 @@ import { EnderecoComponent } from './page/endereco/endereco.component';
     CommonModule,
     SharedModule,
 
+    NgxPageScrollModule,
+    NgxPageScrollCoreModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,

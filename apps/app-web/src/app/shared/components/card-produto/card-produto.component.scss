@@ -17,6 +17,12 @@ h3{
     -webkit-box-pack: center;
     justify-content: center;
 }
+img{
+  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
 span{
   font-size: 16px;
   color: rgb(49, 47, 79);
@@ -30,7 +36,7 @@ span{
   background: transparent;
   padding: 0;
 }
-.mat-card-footer{
+.mat-card-header{
   padding:1rem;
 }
 .mat-card:hover{

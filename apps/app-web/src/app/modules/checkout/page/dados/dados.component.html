@@ -1,11 +1,19 @@
-<section class="section">
-  <div class="dis-flex flex-m has-text-left">
-    <a onclick="window.history.back()" class="preco dis-flex flex-m ">
+<section @fadeIn class="section py-0">
+
+
+  <div class="dis-flex flex-m has-text-left py-4">
+    <a
+      pageScroll
+      href="#TOPO"
+      onclick="window.history.back()"
+      class="preco dis-flex flex-m ">
       <mat-icon class="">keyboard_arrow_left</mat-icon>
       voltar
     </a>
   </div>
-  <div class="af cs i2 i3 i4 flex-c flex-col-c-sa w-full flex-l m-lr-auto w-full">
+
+
+  <div class=" w-full">
     <div class="has-text-left  w-full">
       <h2 class="subtitle">Insira seus dados pessoais</h2>
       <span class="subtitle">Verifique os campos obrigatórios.</span>
@@ -74,8 +82,12 @@
       </form>
     </div>
 
-    <p>Insira o número completo do seu telefone</p>
-    <a [routerLink]="['/checkout/endereco/']" routerLinkActive="router-link-active"
+    <p class="has-text-left w-full">*Insira o número completo do seu telefone</p>
+    <a
+      [routerLink]="['/checkout/endereco/']"
+      routerLinkActive="router-link-active"
+      pageScroll
+      href="#TOPO"
       class="button is-success w-full">Continuar</a>
 
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
+import { fade } from 'apps/app-web/src/app/animations';
 import { EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
@@ -9,7 +10,8 @@ import { Observable, pipe } from 'rxjs';
 @Component({
   selector: 'personalizados-lopes-confirmacao',
   templateUrl: './confirmacao.component.html',
-  styleUrls: ['./confirmacao.component.scss']
+  styleUrls: ['./confirmacao.component.scss'],
+  animations:[fade]
 })
 export class ConfirmacaoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;

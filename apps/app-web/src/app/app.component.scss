@@ -1,5 +1,14 @@
 
-.cookie-law-wrapper{
-  background:rgb(255, 255, 255);
-  color:#696D8C
+:host ::ng-deep .cookie-law-wrapper{
+  // background:rgb(255, 255, 255);
+  box-shadow:rgba(172, 171, 171, 0.3) 0px -1px 10px 0px;
+}
+:host ::ng-deep .cookie-law-wrapper .copy span:nth-child(1){
+  font-size: 14px;
+  // color:#696D8C;
+}
+
+:host ::ng-deep .cookie-law-wrapper .copy span button span{
+  font-size: 14px;
+  color:black;
 }

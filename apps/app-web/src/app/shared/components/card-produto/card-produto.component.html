@@ -13,10 +13,11 @@
             {{Produto.Categoria.Cor}}
             <mat-card-title class="w-full txt-center">{{Produto?.Nome}}</mat-card-title>
             <mat-card-subtitle class="has-text-grey is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
+            <mat-card-subtitle class="has-text-grey is-6 preco">R$ {{Produto?.Preco || '0.00'}}</mat-card-subtitle>
           </mat-card-header>
         </p>
       </mat-card-footer>
-        <div class="media-content">
+        <div class="">
           <div class="content">
             <div class="portfolio-overlay w-full">
               <div class="overlay-items w-full flex-w flex-c">
