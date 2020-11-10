@@ -1,6 +1,11 @@
 gallery{
   background-color:transparent !important;
 }
+@media only screen and (max-width: 823px){
+  gallery{
+    height:40vh;
+  }
+}
 :host ::ng-deep gallery-slider:hover{
   transition: 2s all ease-in-out;
   cursor: grab;
@@ -96,6 +101,7 @@ input[type=number] {
 .titulo-produto{
   font-size: 26px;
   line-height: 47px;
+
   color: rgb(49, 47, 79);
   line-height: 130%;
   font-weight: 600;

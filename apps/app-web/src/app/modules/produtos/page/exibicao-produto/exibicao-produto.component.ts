@@ -48,7 +48,7 @@ export class ExibicaoProdutoComponent implements OnInit {
             return {
               thumbPosition: ThumbnailsPosition.Left,
               thumbWidth: 80,
-              thumbHeight: 80
+              thumbHeight: 80,
             };
           }
           return {

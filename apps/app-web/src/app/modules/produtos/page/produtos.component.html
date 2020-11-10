@@ -11,16 +11,16 @@
                 <mat-chip
                  pageScroll
                  href="#PRODUTOS"
-                 class="pointer w-full"
+                 class="pointer"
                  (click)="SetCategoria(null)"
                  [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
-                  todos os produtos
+                  Todos
                   <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}</mat-icon>
                 </mat-chip>
                 <mat-chip
                     *ngFor="let categoria of Categorias$ | async"
                     [style.backgroundColor]="categoria?.Cor"
-                    class="pointer w-full"
+                    class="pointer"
                     (click)="SetCategoria(categoria)"
                     [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
                     {{categoria?.Nome}}
@@ -34,7 +34,7 @@
     </div>
     <div class="column is-9 is-12-mobile produto-column">
       <div class="pb-6">
-        <div class="columns is-multiline portfolio-container">
+        <div class="columns is-multiline portfolio-container   scroll-y">
 
           <nav class="categories is-hidden-desktop has-background-white">
 
@@ -67,7 +67,7 @@
 
           </nav>
 
-          <div class="w-full pt-3">
+          <div class="w-full pt-3 ">
             <div class="columns is-mobile is-multiline px-2">
               <div class="column is-8">
                 <div class="control has-icons-right">
@@ -90,7 +90,7 @@
                 </div>
               </div>
             </div>
-            <h2 class="title is-3 mx-5">{{CategoriaAtiva.Nome}}</h2>
+            <h2 class="subtitle is-3 mx-5">{{CategoriaAtiva.Nome}}</h2>
           </div>
 
           <ng-container *ngFor="let produto of Produtos$ |async">

@@ -2,9 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../../shared/shared.module';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
-export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -29,7 +26,6 @@ import { CardContatoComponent } from './page/card-contato/card-contato.component
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    NgxMaskModule.forRoot(),
     LayoutModule
   ]
 })

@@ -1,15 +1,15 @@
-<section class="section has-background-white-bis pos-relative pb-6 pt-3 au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6">
+<section class="section mvh-full has-background-white-bis pos-relative pb-6 pt-3 au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
 
   <div [@routeAnimations]="prepareRoute(outlet2)" class="px-3 py-3 af cs i2 i3 i4 w-full am de w-half has-background-white">
     <router-outlet @fadeIn #outlet2></router-outlet>
   </div>
 
+
+  <mat-toolbar class=" flex-m flex-sa py-2 has-background-white-bis py-6">
+
+    <a>aviso legal</a>
+    <span class="spacer"></span>
+    <a href="#"><img class="logo" src="assets/images/icons/Logo_dark.png" alt="LOGO"></a>
+
+  </mat-toolbar>
 </section>
-
-<mat-toolbar class=" flex-m flex-sa py-2 has-background-white-bis">
-
-  <a>aviso legal</a>
-  <span class="spacer"></span>
-  <a href="#"><img class="logo" src="assets/images/icons/Logo_dark.png" alt="LOGO"></a>
-
-</mat-toolbar>

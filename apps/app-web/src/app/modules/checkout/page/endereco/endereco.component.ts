@@ -6,6 +6,8 @@ import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 
+import {CEPService} from '../../../../data/service';
+
 @Component({
   selector: 'personalizados-lopes-endereco',
   templateUrl: './endereco.component.html',
@@ -45,7 +47,7 @@ export class EnderecoComponent implements OnInit {
   estadoFormControl = new FormControl('', [
     Validators.required
   ]);
-  constructor(private store:Store) { }
+  constructor(private store:Store, private CEPService:CEPService) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
@@ -53,8 +55,14 @@ export class EnderecoComponent implements OnInit {
     })
   }
 
-  AtualizarOrcamento(){
-    // this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento));
+  CarregarDetalhesCEP(){
+    // alert(this.Orcamento.Usuario.CEP.replace('-',''));
+    this.CEPService.ObterDetalhes(this.Orcamento.Usuario.CEP.replace('-','')).subscribe(x=>{
+      console.log(x);
+      this.Orcamento.Usuario.Rua = x.logradouro;
+      this.Orcamento.Usuario.Bairro = x.bairro;
+      this.Orcamento.Usuario.Cidade = x.localidade;
+    });
   }
 
 

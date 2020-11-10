@@ -1,6 +1,6 @@
 <section @fadeIn class="section py-0">
 
-  <div class="dis-flex flex-m has-text-left py-4">
+  <div class=" has-text-left py-4">
     <a
       pageScroll
       href="#TOPO"
@@ -12,7 +12,7 @@
   </div>
 
 
-  <div class="af cs i2 i3 i4 flex-c flex-col-c-sa w-full flex-l m-lr-auto w-full">
+  <div class="af cs i2 i3 i4 w-full  w-full">
     <div class="has-text-left  w-full">
       <h2 class="subtitle">Insira seus dados pessoais</h2>
       <span class="subtitle">Verifique os campos obrigatórios.</span>
@@ -23,7 +23,7 @@
 
         <mat-form-field class=" control has-icons-right" appearance="fill">
           <mat-label>CEP</mat-label>
-          <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome"
+          <input matInput (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.CEP"
             [formControl]="cepFormControl" placeholder="     -   "
             mask="00000-000">
           <mat-error *ngIf="cepFormControl.hasError('required')">
@@ -38,7 +38,6 @@
           <mat-label>Endereço</mat-label>
           <input class="w-full input"
             matInput
-            (change)="AtualizarOrcamento()"
             [(ngModel)]="Orcamento.Usuario.Rua"
             [formControl]="enderecoFormControl" placeholder=""
             >
@@ -58,7 +57,6 @@
                 class="control has-icons-right  input"
                 matInput
                 [formControl]="numeroFormControl"
-                (change)="AtualizarOrcamento()"
                 [(ngModel)]="Orcamento.Usuario.Numero"
                 ></textarea>
               <mat-error *ngIf="numeroFormControl.hasError('required')">
@@ -76,7 +74,6 @@
                 class="control has-icons-right  input"
                 matInput
                 [formControl]="complementoFormControl"
-                (change)="AtualizarOrcamento()"
                 [(ngModel)]="Orcamento.Usuario.Complemento"
                 ></textarea>
               <mat-error *ngIf="complementoFormControl.hasError('required')">
@@ -97,7 +94,6 @@
                 class="control has-icons-right  input"
                 matInput
                 [formControl]="bairroFormControl"
-                (change)="AtualizarOrcamento()"
                 [(ngModel)]="Orcamento.Usuario.Bairro"
                 ></textarea>
               <mat-error *ngIf="bairroFormControl.hasError('required')">
@@ -115,7 +111,6 @@
                 class="control has-icons-right  input"
                 matInput
                 [formControl]="cidadeFormControl"
-                (change)="AtualizarOrcamento()"
                 [(ngModel)]="Orcamento.Usuario.Cidade"
                 ></textarea>
               <mat-error *ngIf="cidadeFormControl.hasError('required')">
@@ -134,7 +129,6 @@
             class="control has-icons-right  input"
             matInput
             [formControl]="estadoFormControl"
-            (change)="AtualizarOrcamento()"
             [(ngModel)]="Orcamento.Usuario.Estado"
             ></textarea>
           <mat-error *ngIf="estadoFormControl.hasError('required')">
