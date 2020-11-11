@@ -1,8 +1,9 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { fade } from 'apps/app-web/src/app/animations';
-import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
@@ -17,7 +18,7 @@ export class DadosComponent implements OnInit {
 
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Orcamento: Orcamento;
-
+  ErroCadastro:boolean= false;
   nomeFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -29,13 +30,12 @@ export class DadosComponent implements OnInit {
 
   phoneFormControl = new FormControl('', [
     Validators.required,
-    Validators.pattern("^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$"),
   ]);
 
   messageFormControl = new FormControl('', [
     Validators.required
   ]);
-  constructor(private store:Store) { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
@@ -43,8 +43,19 @@ export class DadosComponent implements OnInit {
     })
   }
 
-  AtualizarOrcamento(){
-    // this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento));
+  SubmeterDadosPessoais(){
+    this.ErroCadastro = true;
+    if(this.ValidarDados()){
+      this.router.navigateByUrl("/checkout/endereco");
+    }
   }
 
+  ValidarDados(){
+    if(this.emailFormControl.valid
+      && this.nomeFormControl.valid
+      && this.phoneFormControl.valid
+      && this.messageFormControl.valid)
+      return true;
+    return false;
+  }
 }

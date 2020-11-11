@@ -14,16 +14,19 @@ export const routes: Routes = [
         path: "",
         // canActivate: [AuthGuard],
         component: ConfirmacaoComponent,
+        data: { animation:'isLeft' },
       },
       {
         path: "dados",
         // canActivate: [AuthGuard],
         component: DadosComponent,
+        data: { animation:'isLeft' },
       },
       {
         path: "endereco",
         // canActivate: [AuthGuard],
         component: EnderecoComponent,
+        data: { animation:'isLeft' },
       },
     ]
   }

@@ -16,6 +16,7 @@ import { Observable, pipe } from 'rxjs';
 export class ConfirmacaoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   ProdutoTable:MaterialTable;
+  ErroCadastro:boolean = false;
   constructor(private store:Store) { }
 
   ngOnInit(): void {

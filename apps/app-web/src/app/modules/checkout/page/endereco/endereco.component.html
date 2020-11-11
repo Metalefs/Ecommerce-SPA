@@ -1,150 +1,191 @@
 <section @fadeIn class="section py-0">
 
-  <div class=" has-text-left py-4">
-    <a
-      pageScroll
-      href="#TOPO"
-      onclick="window.history.back()"
-      class="preco dis-flex flex-m ">
-      <mat-icon class="">keyboard_arrow_left</mat-icon>
-      voltar
-    </a>
-  </div>
 
+  <ng-container *ngIf="!Finalizado then Endereco else Sucesso"></ng-container>
 
-  <div class="af cs i2 i3 i4 w-full  w-full">
-    <div class="has-text-left  w-full">
-      <h2 class="subtitle">Insira seus dados pessoais</h2>
-      <span class="subtitle">Verifique os campos obrigatórios.</span>
+  <ng-template #Sucesso>
+    <div class=" w-full">
+      <figure class="image is-square">
+        <img src="/assets/images/figures/undraw_successful_purchase_uyin.svg">
+
+      </figure>
+    </div>
+    <div class="has-text-left">
+      <h2 class="subtitle mb-0 pt-0">Sucesso, pedido recebido!</h2>
+      <span class="subtitle">Entraremos em contato para combinar a entrega e o pagamento da sua compra.</span>
+    </div>
+    <div class="a-i-c pt-3">
+
+        <a pageScroll
+        href="#TOPO"
+        [routerLink]="['/produtos/']"
+        routerLinkActive="router-link-active">
+        <button mat-stroked-button mat-stroked-button class="button is-success">
+          Confirmar via Whatsapp
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </a>
+    </div>
+  </ng-template>
+
+  <ng-template #Endereco>
+
+    <div class=" has-text-left py-4">
+      <a
+        pageScroll
+        href="#TOPO"
+        onclick="window.history.back()"
+        class="preco dis-flex flex-m ">
+        <mat-icon class="">keyboard_arrow_left</mat-icon>
+        voltar
+      </a>
     </div>
 
-    <div class="pt-3">
-      <form>
 
-        <mat-form-field class=" control has-icons-right" appearance="fill">
-          <mat-label>CEP</mat-label>
-          <input matInput (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.CEP"
-            [formControl]="cepFormControl" placeholder="     -   "
-            mask="00000-000">
-          <mat-error *ngIf="cepFormControl.hasError('required')">
-            Campo obrigatório
-          </mat-error>
-          <span class="icon is-right" *ngIf="cepFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
-          </span>
-        </mat-form-field>
+    <div class="af cs i2 i3 i4 w-full  w-full">
+      <div class="has-text-left  w-full">
+        <h2 class="subtitle">Insira seus dados pessoais</h2>
+        <span class="subtitle">Verifique os campos obrigatórios.</span>
+      </div>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="fill">
-          <mat-label>Endereço</mat-label>
-          <input class="w-full input"
-            matInput
-            [(ngModel)]="Orcamento.Usuario.Rua"
-            [formControl]="enderecoFormControl" placeholder=""
-            >
-          <mat-error *ngIf="enderecoFormControl.hasError('required')">
-            Campo obrigatório
-          </mat-error>
-          <span class="icon is-right" *ngIf="enderecoFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
-          </span>
-        </mat-form-field>
+      <div class="pt-3">
+        <form (ngSubmit)="FinalizarOrcamento()">
 
-        <div class="columns">
-          <div class="column">
-            <mat-form-field class="w-full control has-icons-right" appearance="fill">
-              <mat-label>Número</mat-label>
-              <textarea
-                class="control has-icons-right  input"
-                matInput
-                [formControl]="numeroFormControl"
-                [(ngModel)]="Orcamento.Usuario.Numero"
-                ></textarea>
-              <mat-error *ngIf="numeroFormControl.hasError('required')">
-                Campo obrigatório
-              </mat-error>
-              <span class="icon is-right" *ngIf="numeroFormControl.hasError('required')">
-                <mat-icon class="has-text-danger">warning</mat-icon>
-              </span>
-            </mat-form-field>
+          <mat-form-field class=" control has-icons-right" appearance="fill">
+            <mat-label>CEP</mat-label>
+            <input matInput
+              required (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.CEP"
+              [formControl]="cepFormControl" placeholder="busque pelo CEP"
+              mask="00000-000">
+            <mat-error *ngIf="cepFormControl.hasError('required')">
+              Campo obrigatório
+            </mat-error>
+            <span class="icon is-right" *ngIf="cepFormControl.hasError('required')">
+              <mat-icon class="has-text-danger">warning</mat-icon>
+            </span>
+          </mat-form-field>
+
+          <mat-form-field class="w-full control has-icons-right" appearance="fill">
+            <mat-label>Endereço</mat-label>
+            <input class="w-full input"
+              matInput
+                required
+              [(ngModel)]="Orcamento.Usuario.Rua"
+              [formControl]="enderecoFormControl" placeholder=""
+              >
+            <mat-error *ngIf="enderecoFormControl.hasError('required')">
+              Campo obrigatório
+            </mat-error>
+            <span class="icon is-right" *ngIf="enderecoFormControl.hasError('required')">
+              <mat-icon class="has-text-danger">warning</mat-icon>
+            </span>
+          </mat-form-field>
+
+          <div class="columns">
+            <div class="column">
+              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+                <mat-label>Número</mat-label>
+                <textarea
+                  class="control has-icons-right  input"
+                  matInput
+                    required
+                  [formControl]="numeroFormControl"
+                  [(ngModel)]="Orcamento.Usuario.Numero"
+                  ></textarea>
+                <mat-error *ngIf="numeroFormControl.hasError('required')">
+                  Campo obrigatório
+                </mat-error>
+                <span class="icon is-right" *ngIf="numeroFormControl.hasError('required')">
+                  <mat-icon class="has-text-danger">warning</mat-icon>
+                </span>
+              </mat-form-field>
+            </div>
+            <div class="column">
+              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+                <mat-label>Complemento</mat-label>
+                <textarea
+                  class="control has-icons-right  input"
+                  matInput
+                    required
+                  [formControl]="complementoFormControl"
+                  [(ngModel)]="Orcamento.Usuario.Complemento"
+                  ></textarea>
+                <mat-error *ngIf="complementoFormControl.hasError('required')">
+                  Campo obrigatório
+                </mat-error>
+                <span class="icon is-right" *ngIf="complementoFormControl.hasError('required')">
+                  <mat-icon class="has-text-danger">warning</mat-icon>
+                </span>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="column">
-            <mat-form-field class="w-full control has-icons-right" appearance="fill">
-              <mat-label>Complemento</mat-label>
-              <textarea
-                class="control has-icons-right  input"
-                matInput
-                [formControl]="complementoFormControl"
-                [(ngModel)]="Orcamento.Usuario.Complemento"
-                ></textarea>
-              <mat-error *ngIf="complementoFormControl.hasError('required')">
-                Campo obrigatório
-              </mat-error>
-              <span class="icon is-right" *ngIf="complementoFormControl.hasError('required')">
-                <mat-icon class="has-text-danger">warning</mat-icon>
-              </span>
-            </mat-form-field>
-          </div>
-        </div>
 
-        <div class="columns">
-          <div class="column">
-            <mat-form-field class="w-full control has-icons-right" appearance="fill">
-              <mat-label>Bairro</mat-label>
-              <textarea
-                class="control has-icons-right  input"
-                matInput
-                [formControl]="bairroFormControl"
-                [(ngModel)]="Orcamento.Usuario.Bairro"
-                ></textarea>
-              <mat-error *ngIf="bairroFormControl.hasError('required')">
-                Campo obrigatório
-              </mat-error>
-              <span class="icon is-right" *ngIf="bairroFormControl.hasError('required')">
-                <mat-icon class="has-text-danger">warning</mat-icon>
-              </span>
-            </mat-form-field>
+          <div class="columns">
+            <div class="column">
+              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+                <mat-label>Bairro</mat-label>
+                <textarea
+                  class="control has-icons-right  input"
+                  matInput
+                    required
+                  [formControl]="bairroFormControl"
+                  [(ngModel)]="Orcamento.Usuario.Bairro"
+                  ></textarea>
+                <mat-error *ngIf="bairroFormControl.hasError('required')">
+                  Campo obrigatório
+                </mat-error>
+                <span class="icon is-right" *ngIf="bairroFormControl.hasError('required')">
+                  <mat-icon class="has-text-danger">warning</mat-icon>
+                </span>
+              </mat-form-field>
+            </div>
+            <div class="column">
+              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+                <mat-label>Cidade</mat-label>
+                <textarea
+                  class="control has-icons-right  input"
+                  matInput
+                    required
+                  [formControl]="cidadeFormControl"
+                  [(ngModel)]="Orcamento.Usuario.Cidade"
+                  ></textarea>
+                <mat-error *ngIf="cidadeFormControl.hasError('required')">
+                  Campo obrigatório
+                </mat-error>
+                <span class="icon is-right" *ngIf="cidadeFormControl.hasError('required')">
+                  <mat-icon class="has-text-danger">warning</mat-icon>
+                </span>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="column">
-            <mat-form-field class="w-full control has-icons-right" appearance="fill">
-              <mat-label>Cidade</mat-label>
-              <textarea
-                class="control has-icons-right  input"
-                matInput
-                [formControl]="cidadeFormControl"
-                [(ngModel)]="Orcamento.Usuario.Cidade"
-                ></textarea>
-              <mat-error *ngIf="cidadeFormControl.hasError('required')">
-                Campo obrigatório
-              </mat-error>
-              <span class="icon is-right" *ngIf="cidadeFormControl.hasError('required')">
-                <mat-icon class="has-text-danger">warning</mat-icon>
-              </span>
-            </mat-form-field>
-          </div>
-        </div>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="fill">
-          <mat-label>Estado</mat-label>
-          <textarea
-            class="control has-icons-right  input"
-            matInput
-            [formControl]="estadoFormControl"
-            [(ngModel)]="Orcamento.Usuario.Estado"
-            ></textarea>
-          <mat-error *ngIf="estadoFormControl.hasError('required')">
-            Campo obrigatório
-          </mat-error>
-          <span class="icon is-right" *ngIf="estadoFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
-          </span>
-        </mat-form-field>
-        <a
-          [routerLink]="['/checkout/endereco/']"
-          routerLinkActive="router-link-active"
-          pageScroll
-          href="#TOPO"
-          class="button is-success w-full">Finalizar</a>
-      </form>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Estado</mat-label>
+            <mat-select matNativeControl class="w-full"
+              [(ngModel)]="Orcamento.Usuario.Estado"
+              [formControl]="estadoFormControl">
+              <mat-option *ngFor="let opt of estados" [value]="opt.sigla">
+                {{opt.nome}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="estadoFormControl.hasError('required')">
+              Campo obrigatório
+            </mat-error>
+            <span class="icon is-right" *ngIf="estadoFormControl.hasError('required')">
+              <mat-icon class="has-text-danger">warning</mat-icon>
+            </span>
+          </mat-form-field>
+
+          <div class="notification is-danger" *ngIf="ErroCadastro">
+            <button class="delete" onclick="ErroCadastro = false"></button>
+            Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
+          </div>
+
+          <button
+            class="button is-success w-full">Finalizar</button>
+        </form>
+      </div>
     </div>
-  </div>
+  </ng-template>
+
 </section>

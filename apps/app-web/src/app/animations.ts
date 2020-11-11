@@ -56,3 +56,43 @@ function slideTo(direction) {
     // query(':enter', animateChild()),
   ];
 }
+
+
+export const sliderSide =
+  trigger('routeAnimationsSide', [
+    transition('* => *', slideToSide('left') ),
+    transition('* => *', slideToSide('right') ),
+    transition('* => *', slideToSide('left') ),
+    transition('* => *', slideToSide('right') )
+  ]);
+
+function slideToSide(direction) {
+  const optional = { optional: true };
+  return [
+    query(':enter, :leave', [
+      style({
+        position: 'absolute',
+        // opacity: '.50',
+        top: 0,
+        [direction]: 0,
+        width: '100%'
+      })
+    ], optional),
+    query(':enter', [
+      style({ [direction]: '-100%'})
+    ],optional),
+    group([
+      query(':leave', [
+        animate('1350ms ease-in', style({ [direction]: '100%'}))
+      ], optional),
+      query(':enter', [
+        animate('1350ms ease-out', style({ [direction]: '0%'}))
+      ],optional)
+    ]),
+    // Normalize the page style... Might not be necessary
+
+    // Required only if you have child animations on the page
+    // query(':leave', animateChild()),
+    // query(':enter', animateChild()),
+  ];
+}

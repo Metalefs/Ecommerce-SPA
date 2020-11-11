@@ -42,7 +42,7 @@
         <ng-container matColumnDef="Produtos">
           <th mat-header-cell *matHeaderCellDef> Produtos </th>
           <td @fadeIn mat-cell *matCellDef="let element">
-            <div class="columns a-i-c mt-3">
+            <div @fadeIn class="columns a-i-c mt-3">
               <div class="column flex-m">
                 <figure class="image is-64x64">
                   <img src="{{element.Imagem[0]}}">
@@ -127,8 +127,6 @@
         <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
       </table>
-
-
 
     </div>
     <div class="w-full">

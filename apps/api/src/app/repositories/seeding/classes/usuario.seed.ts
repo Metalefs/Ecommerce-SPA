@@ -12,6 +12,8 @@ export let Usuario:entities.Usuario =
         "",
         "",
         "",
+        "",
+        "",
         TipoUsuario.admin
     );
 

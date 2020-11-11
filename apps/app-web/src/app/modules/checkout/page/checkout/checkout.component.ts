@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { fade, slider } from 'apps/app-web/src/app/animations';
+import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
-  animations:[fade]
+  animations:[sliderSide,fade]
 })
 export class CheckoutComponent implements OnInit {
 

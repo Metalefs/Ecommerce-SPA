@@ -41,7 +41,7 @@ span{
 }
 .mat-card:hover{
     background: rgb(255, 255, 255);
-    cursor: pointer;
+    // cursor: pointer;
     // transform: perspective(1px) scale(1.02);
     transition: all 0.2s ease-in-out 0s;
     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px;
@@ -53,6 +53,7 @@ span{
 .mat-card-actions{
   margin-bottom: 20px;
   width: 92%;
+  margin-top: -35px;
 }
 .mat-card-title{
   color: rgb(49, 47, 79);
@@ -86,13 +87,13 @@ span{
   display: flex;
   flex-direction: column;
   height: 100%;
-
 }
 
 /* ----- Portfolio Filter Styling Ends ----- */
 
 .portfolio-overlay {
- background: rgba(255, 255, 255, 0.20);
+  background: rgba(255, 255, 255, 0.20);
+  pointer-events: none;
  position:absolute;
  top: 0;
  left: 5px;

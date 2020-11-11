@@ -3,20 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
-import { DetalhesCEP } from '../models/DetalhesCEP';
+import { Estado } from '../models/Estado';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class CEPService {
+export class EstadoService {
     constructor(private http: HttpClient){}
 
-    ObterDetalhes(cep:string): Observable<DetalhesCEP> {
+    Listar(): Observable<Estado[]> {
         // alert(`https://viacep.com.br/${cep}/json`);
         // let options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
-        return this.http.get<DetalhesCEP>(`https://viacep.com.br/ws/${cep}/json`).pipe(
+        return this.http.get<Estado[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/`).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.handleError) // then handle the error
         );

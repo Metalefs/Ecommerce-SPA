@@ -20,11 +20,11 @@
     </div>
 
     <div class="pt-3">
-      <form>
+      <form (ngSubmit)="SubmeterDadosPessoais()">
 
         <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>Nome</mat-label>
-          <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome"
+          <input matInput  [(ngModel)]="Orcamento.Usuario.Nome"
             [formControl]="nomeFormControl" placeholder="Ex. Fulano de tal">
           <mat-error *ngIf="nomeFormControl.hasError('required')">
             É necessário inserir seu <strong>nome</strong>
@@ -36,7 +36,7 @@
 
         <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>Email</mat-label>
-          <input class="w-full" matInput (change)="AtualizarOrcamento()"
+          <input class="w-full" matInput
             [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl" placeholder="Ex. meu@email.com">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Insira um e-mail válido
@@ -51,7 +51,7 @@
 
         <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>Telefone</mat-label>
-          <input class="w-full input" matInput (change)="AtualizarOrcamento()"
+          <input class="w-full input" matInput
             [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl" placeholder="(00) 0 0000 0000"
             mask="(00) 0000-0000||(00) 0 0000-0000">
           <mat-error *ngIf="phoneFormControl.hasError('required')">
@@ -68,7 +68,7 @@
             class="control has-icons-right  input"
             matInput
             [formControl]="messageFormControl"
-            (change)="AtualizarOrcamento()"
+
             [(ngModel)]="Orcamento.Mensagem"
             ></textarea>
           <mat-error *ngIf="messageFormControl.hasError('required')">
@@ -79,16 +79,17 @@
           </span>
         </mat-form-field>
 
+        <div class="notification is-danger" *ngIf="ErroCadastro">
+          <button class="delete" onclick="ErroCadastro = false"></button>
+          Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
+        </div>
+        <p class="has-text-left w-full">*Insira o número completo do seu telefone</p>
+
+        <button
+          class="button is-success w-full">Continuar</button>
       </form>
     </div>
 
-    <p class="has-text-left w-full">*Insira o número completo do seu telefone</p>
-    <a
-      [routerLink]="['/checkout/endereco/']"
-      routerLinkActive="router-link-active"
-      pageScroll
-      href="#TOPO"
-      class="button is-success w-full">Continuar</a>
 
   </div>
 
