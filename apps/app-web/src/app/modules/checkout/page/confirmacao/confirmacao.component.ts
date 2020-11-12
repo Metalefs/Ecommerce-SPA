@@ -36,7 +36,7 @@ export class ConfirmacaoComponent implements OnInit {
         "Subtotal",
       ];
 
-      if(x.Status = StatusOrcamento.enviado){
+      if(x.Status == StatusOrcamento.enviado){
         this.snack.open("Orçamento já foi enviado! Responderemos em até 48 horas.", "Fechar").afterOpened().subscribe(x=>{
           this.store.dispatch(new ResetarOrcamento());
         });
