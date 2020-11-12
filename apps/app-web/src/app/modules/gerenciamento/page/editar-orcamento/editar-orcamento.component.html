@@ -5,7 +5,7 @@
   <mat-accordion class="column" *ngFor="let orcamento of (Orcamentos$|async)">
     <mat-expansion-panel
      [ngClass]="orcamento.Status == 0 ? 'Aberto' : 'Respondido'"
-     [expanded]="false"
+     [expanded]="true"
      >
       <mat-expansion-panel-header>
         <mat-panel-title>

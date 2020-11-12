@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
 import { fade } from 'apps/app-web/src/app/animations';
-import { EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
+import { EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, LerOrcamento, RemoverProdutoOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
+import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
 @Component({
@@ -17,7 +19,8 @@ export class ConfirmacaoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   ProdutoTable:MaterialTable;
   ErroCadastro:boolean = false;
-  constructor(private store:Store) { }
+  Total:number = 0;
+  constructor(private store:Store,private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
@@ -32,6 +35,12 @@ export class ConfirmacaoComponent implements OnInit {
         "Quantidade",
         "Subtotal",
       ];
+
+      if(x.Status = StatusOrcamento.enviado){
+        this.snack.open("Orçamento já foi enviado! Responderemos em até 48 horas.", "Fechar").afterOpened().subscribe(x=>{
+          this.store.dispatch(new ResetarOrcamento());
+        });
+      }
     })
   }
 
@@ -65,8 +74,14 @@ export class ConfirmacaoComponent implements OnInit {
   }
 
   CalcularPreco(produto:Produto){
+    this.Orcamento$.subscribe(x=>{
+      let Produtos =  x.Produto;
+      let DistinctProdutos:Produto[] = removeDuplicates(Produtos,"_id");
+      this.Total = DistinctProdutos.map(x=>x.Preco * x.Quantidade).reduce((total, num)=>{return total + num});
+    })
     if(produto.Preco)
       return parseInt(produto.Preco.toString()) * parseInt(produto.Quantidade.toString());
     return 0;
   }
+
 }

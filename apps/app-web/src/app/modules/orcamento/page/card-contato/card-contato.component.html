@@ -14,7 +14,7 @@
             <p>
               <i>Telefone</i>
               <br>
-              {{(InformacoesContato$ |async)?.Telefone}}
+              <a href="tel:{{(InformacoesContato$ |async)?.Telefone}}">{{(InformacoesContato$ |async)?.Telefone}}</a>
             </p>
           </div>
         </div>
@@ -28,7 +28,7 @@
             <p>
               <i>Email</i>
               <br>
-              {{(InformacoesContato$ |async)?.Email}}
+              <a href="mail:{{(InformacoesContato$ |async)?.Email}}">{{(InformacoesContato$ |async)?.Email}}</a>
             </p>
           </div>
         </div>

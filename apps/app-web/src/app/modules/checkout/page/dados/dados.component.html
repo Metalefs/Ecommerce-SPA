@@ -22,19 +22,19 @@
     <div class="pt-3">
       <form (ngSubmit)="SubmeterDadosPessoais()">
 
-        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+        <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>Nome</mat-label>
           <input matInput  [(ngModel)]="Orcamento.Usuario.Nome"
             [formControl]="nomeFormControl" placeholder="Ex. Fulano de tal">
           <mat-error *ngIf="nomeFormControl.hasError('required')">
             É necessário inserir seu <strong>nome</strong>
           </mat-error>
-          <span class="icon is-right" *ngIf="nomeFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
+          <span class="icon is-right" *ngIf="!nomeFormControl.pristine && nomeFormControl.hasError('required')">
+            <mat-icon class="has-text-warning">warning</mat-icon>
           </span>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+        <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>Email</mat-label>
           <input class="w-full" matInput
             [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl" placeholder="Ex. meu@email.com">
@@ -42,14 +42,14 @@
             Insira um e-mail válido
           </mat-error>
           <span class="icon is-right" *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
+            <mat-icon class="has-text-warning">warning</mat-icon>
           </span>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
+          <mat-error *ngIf="!emailFormControl.pristine && emailFormControl.hasError('required')">
             É necessário inserir seu <strong>e-mail</strong>
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+        <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>Telefone</mat-label>
           <input class="w-full input" matInput
             [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl" placeholder="(00) 0 0000 0000"
@@ -57,12 +57,12 @@
           <mat-error *ngIf="phoneFormControl.hasError('required')">
             É necessário inserir seu <strong>telefone</strong>
           </mat-error>
-          <span class="icon is-right" *ngIf="phoneFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
+          <span class="icon is-right" *ngIf="!phoneFormControl.pristine && phoneFormControl.hasError('required')">
+            <mat-icon class="has-text-warning">warning</mat-icon>
           </span>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="fill">
+        <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>Mensagem</mat-label>
           <textarea
             class="control has-icons-right  input"
@@ -74,8 +74,8 @@
           <mat-error *ngIf="messageFormControl.hasError('required')">
             É necessário inserir sua <strong>Mensagem</strong>
           </mat-error>
-          <span class="icon is-right" *ngIf="messageFormControl.hasError('required')">
-            <mat-icon class="has-text-danger">warning</mat-icon>
+          <span class="icon is-right" *ngIf="!messageFormControl.pristine && messageFormControl.hasError('required')">
+            <mat-icon class="has-text-warning">warning</mat-icon>
           </span>
         </mat-form-field>
 

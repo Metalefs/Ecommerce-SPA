@@ -27,7 +27,9 @@
       </a>
     </div>
   </ng-template>
-
+  <div *ngIf="Loading" class="w-full">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <ng-template #Endereco>
 
     <div class=" has-text-left py-4">
@@ -51,7 +53,7 @@
       <div class="pt-3">
         <form (ngSubmit)="FinalizarOrcamento()">
 
-          <mat-form-field class=" control has-icons-right" appearance="fill">
+          <mat-form-field class=" control has-icons-right" appearance="">
             <mat-label>CEP</mat-label>
             <input matInput
               required (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.CEP"
@@ -61,11 +63,11 @@
               Campo obrigatório
             </mat-error>
             <span class="icon is-right" *ngIf="cepFormControl.hasError('required')">
-              <mat-icon class="has-text-danger">warning</mat-icon>
+              <mat-icon class="has-text-warning">warning</mat-icon>
             </span>
           </mat-form-field>
 
-          <mat-form-field class="w-full control has-icons-right" appearance="fill">
+          <mat-form-field class="w-full control has-icons-right" appearance="">
             <mat-label>Endereço</mat-label>
             <input class="w-full input"
               matInput
@@ -77,13 +79,13 @@
               Campo obrigatório
             </mat-error>
             <span class="icon is-right" *ngIf="enderecoFormControl.hasError('required')">
-              <mat-icon class="has-text-danger">warning</mat-icon>
+              <mat-icon class="has-text-warning">warning</mat-icon>
             </span>
           </mat-form-field>
 
           <div class="columns">
             <div class="column">
-              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+              <mat-form-field class="w-full control has-icons-right" appearance="">
                 <mat-label>Número</mat-label>
                 <textarea
                   class="control has-icons-right  input"
@@ -96,12 +98,12 @@
                   Campo obrigatório
                 </mat-error>
                 <span class="icon is-right" *ngIf="numeroFormControl.hasError('required')">
-                  <mat-icon class="has-text-danger">warning</mat-icon>
+                  <mat-icon class="has-text-warning">warning</mat-icon>
                 </span>
               </mat-form-field>
             </div>
             <div class="column">
-              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+              <mat-form-field class="w-full control has-icons-right" appearance="">
                 <mat-label>Complemento</mat-label>
                 <textarea
                   class="control has-icons-right  input"
@@ -114,7 +116,7 @@
                   Campo obrigatório
                 </mat-error>
                 <span class="icon is-right" *ngIf="complementoFormControl.hasError('required')">
-                  <mat-icon class="has-text-danger">warning</mat-icon>
+                  <mat-icon class="has-text-warning">warning</mat-icon>
                 </span>
               </mat-form-field>
             </div>
@@ -122,7 +124,7 @@
 
           <div class="columns">
             <div class="column">
-              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+              <mat-form-field class="w-full control has-icons-right" appearance="">
                 <mat-label>Bairro</mat-label>
                 <textarea
                   class="control has-icons-right  input"
@@ -135,12 +137,12 @@
                   Campo obrigatório
                 </mat-error>
                 <span class="icon is-right" *ngIf="bairroFormControl.hasError('required')">
-                  <mat-icon class="has-text-danger">warning</mat-icon>
+                  <mat-icon class="has-text-warning">warning</mat-icon>
                 </span>
               </mat-form-field>
             </div>
             <div class="column">
-              <mat-form-field class="w-full control has-icons-right" appearance="fill">
+              <mat-form-field class="w-full control has-icons-right" appearance="">
                 <mat-label>Cidade</mat-label>
                 <textarea
                   class="control has-icons-right  input"
@@ -153,13 +155,13 @@
                   Campo obrigatório
                 </mat-error>
                 <span class="icon is-right" *ngIf="cidadeFormControl.hasError('required')">
-                  <mat-icon class="has-text-danger">warning</mat-icon>
+                  <mat-icon class="has-text-warning">warning</mat-icon>
                 </span>
               </mat-form-field>
             </div>
           </div>
 
-          <mat-form-field appearance="fill" class="w-full">
+          <mat-form-field appearance="" class="w-full">
             <mat-label>Estado</mat-label>
             <mat-select matNativeControl class="w-full"
               [(ngModel)]="Orcamento.Usuario.Estado"
@@ -172,7 +174,7 @@
               Campo obrigatório
             </mat-error>
             <span class="icon is-right" *ngIf="estadoFormControl.hasError('required')">
-              <mat-icon class="has-text-danger">warning</mat-icon>
+              <mat-icon class="has-text-warning">warning</mat-icon>
             </span>
           </mat-form-field>
 

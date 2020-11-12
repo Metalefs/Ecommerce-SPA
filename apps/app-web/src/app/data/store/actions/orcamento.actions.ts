@@ -16,6 +16,13 @@ export class AdicionarOrcamento {
 }
 
 
+export class ResetarOrcamento {
+
+  static readonly type = '[Orcamento] Reset'
+
+  constructor() {}
+}
+
 export class AdicionarProdutoAoOrcamento {
 
   static readonly type = '[Orcamento] Add product'

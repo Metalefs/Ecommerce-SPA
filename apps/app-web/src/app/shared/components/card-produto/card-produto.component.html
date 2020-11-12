@@ -1,6 +1,7 @@
 <ng-container *ngIf="MostarOpcoes then Padrao else Minimalista"></ng-container>
 
 <ng-template #Padrao>
+  <a pageScroll href="#topo" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active">
   <mat-card class="portfolio-item" [style.backgroundColor]="Produto.Categoria.Cor">
     <figure class="image">
         <img mat-card-image src="{{Produto?.Imagem[0]}}"
@@ -15,23 +16,22 @@
         </mat-card-header>
       </mat-card-footer>
       <mat-card-actions class="mat-card-actions flex-w flex-c flex-m w-full mx-3">
-        <a pageScroll href="#topo" [routerLink]="['/produtos/',Produto._id]" routerLinkActive="router-link-active">
             <button mat-stroked-button class="mat-focus-indicator w-full background-dark has-text-white mat-raised-button mat-button-base">Veja mais</button>
-        </a>
-      </mat-card-actions>
-        <div class="">
-          <div class="content">
-            <div class="portfolio-overlay w-full">
-              <div class="overlay-items w-full flex-w flex-c">
-                <p>
-                  {{Produto?.Nome}}
-                </p>
+          </mat-card-actions>
+          <div class="">
+            <div class="content">
+              <div class="portfolio-overlay w-full">
+                <div class="overlay-items w-full flex-w flex-c">
+                  <p>
+                    {{Produto?.Nome}}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    </mat-card>
-</ng-template>
+        </mat-card>
+      </a>
+      </ng-template>
 
 <ng-template #Minimalista>
   <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom">

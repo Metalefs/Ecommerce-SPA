@@ -8,6 +8,7 @@ import { Estado } from 'apps/app-web/src/app/data/models';
 import { AdicionarOrcamento } from 'apps/app-web/src/app/data/store/actions/Orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
+import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
 import {CEPService,EstadoService} from '../../../../data/service';
@@ -52,6 +53,8 @@ export class EnderecoComponent implements OnInit {
     Validators.required
   ]);
   Finalizado:boolean = false;
+  Loading:boolean = false;
+
   ErroCadastro:boolean = false;
   estados: Estado[];
 
@@ -64,6 +67,8 @@ export class EnderecoComponent implements OnInit {
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
+      if(this.Orcamento.Status = StatusOrcamento.enviado)
+        this.Finalizado = true;
     })
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;
@@ -84,9 +89,25 @@ export class EnderecoComponent implements OnInit {
     this.ErroCadastro = true;
     if(this.ValidarDados()){
       this.ErroCadastro = false;
-      this.Finalizado = true;
+      this.Loading = true;
       this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
-        this.snack.open("Orçamento enviado! Responderemos em até 48 horas", "Fechar");
+        setTimeout(()=>{
+          this.Finalizado = true;
+          this.snack.open("Orçamento enviado! Responderemos em até 48 horas", "Fechar");
+
+          (function smoothscroll() {
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(smoothscroll);
+                window.scrollTo(0, currentScroll - (currentScroll / 8));
+            }
+          }
+          )();
+
+          this.Loading = false;
+          this.Orcamento.Status = StatusOrcamento.enviado;
+
+        },3500)
       });
     }
   }

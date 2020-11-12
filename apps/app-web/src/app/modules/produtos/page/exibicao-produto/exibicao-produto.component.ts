@@ -76,9 +76,9 @@ export class ExibicaoProdutoComponent implements OnInit {
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;
-        setTimeout(()=>{
-          this.router.navigateByUrl("/checkout");
-        },1500)
+        // setTimeout(()=>{
+        //   this.router.navigateByUrl("/checkout");
+        // },1500)
 
       }
       else{
@@ -87,9 +87,9 @@ export class ExibicaoProdutoComponent implements OnInit {
 
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
         this.isOrcamento = true;
-        setTimeout(()=>{
-          this.router.navigateByUrl("/checkout");
-        },1500)
+        // setTimeout(()=>{
+        //   this.router.navigateByUrl("/checkout");
+        // },1500)
       }
 
     });

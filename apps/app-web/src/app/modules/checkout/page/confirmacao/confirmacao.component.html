@@ -127,13 +127,22 @@
         <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
       </table>
-
+      <div class="w-full pt-3">
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column"></div>
+          <div class="column has-text-right">
+            <p class="titulo-produto">Total: <span class="preco">R${{Total}}</span></p>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="w-full">
         <button
-        class="py-2  w-full"
+        class="py-3 pb-3  w-full"
         >
         <a href="#topo"
+        class="py-3"
         [routerLink]="['/produtos/']"
         routerLinkActive="router-link-active">Escolher mais produtos</a>
       </button>

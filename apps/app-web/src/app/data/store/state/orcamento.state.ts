@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { OrcamentoService } from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal } from '../actions/Orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento } from '../actions/Orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
@@ -89,6 +89,17 @@ export class OrcamentoState {
   RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id} : RemoverProdutoOrcamento){
     const state = getState();
     state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item._id !== id);
+    patchState({
+        Orcamentos: state.Orcamentos
+    });
+  }
+
+  @Action(ResetarOrcamento)
+  ResetarOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {}: ResetarOrcamento){
+    const state = getState();
+    let usuario = state.Orcamentos.Usuario;
+    state.Orcamentos = DEFAULT;
+    state.Orcamentos.Usuario = usuario;
     patchState({
         Orcamentos: state.Orcamentos
     });
