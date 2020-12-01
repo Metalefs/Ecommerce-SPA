@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { LerProduto } from '../../../data/store/actions/Produto.actions';
+import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { ProdutoState } from '../../../data/store/state';
 
 @Component({

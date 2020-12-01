@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { MensagemService } from '../../service';
 
-import { LerMensagem, EditarMensagem, AdicionarMensagem, RemoverMensagem } from '../actions/Mensagem.actions'
+import { LerMensagem, EditarMensagem, AdicionarMensagem, RemoverMensagem } from '../actions/mensagem.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 

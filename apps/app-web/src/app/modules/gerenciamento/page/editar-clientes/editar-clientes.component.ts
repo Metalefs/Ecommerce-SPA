@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { entities } from '@personalizados-lopes/data';
-import { LerCliente, AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/Cliente.actions';
+import { LerCliente, AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { ClienteState } from 'apps/app-web/src/app/data/store/state';
 import { Cliente } from 'libs/data/src/lib/classes';
 import { CriarClienteDialogComponent } from './DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';

@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ClienteService, ImagemService } from 'apps/app-web/src/app/data/service';
-import { EditarCliente, RemoverCliente } from 'apps/app-web/src/app/data/store/actions/Cliente.actions';
+import { EditarCliente, RemoverCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
 import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/components/dynamic-form/question-base';
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';

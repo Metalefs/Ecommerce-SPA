@@ -14,7 +14,7 @@ import { ServicoState } from 'apps/app-web/src/app/data/store/state';
 import { Select, Store } from '@ngxs/store';
 import { Servico } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
-import { EditarServico, RemoverServico } from 'apps/app-web/src/app/data/store/actions/Servico.actions';
+import { EditarServico, RemoverServico } from 'apps/app-web/src/app/data/store/actions/servico.actions';
 
 @Component({
   selector: 'personalizados-lopes-editar-servico',

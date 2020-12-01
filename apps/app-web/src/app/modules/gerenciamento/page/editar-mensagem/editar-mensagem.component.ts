@@ -14,7 +14,7 @@ import { Mensagem } from 'libs/data/src/lib/classes';
 import { MensagemState } from 'apps/app-web/src/app/data/store/state';
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
-import { AdicionarMensagem, EditarMensagem, RemoverMensagem } from 'apps/app-web/src/app/data/store/actions/Mensagem.actions';
+import { AdicionarMensagem, EditarMensagem, RemoverMensagem } from 'apps/app-web/src/app/data/store/actions/mensagem.actions';
 
 @Component({
   selector: 'personalizados-lopes-editar-mensagem',

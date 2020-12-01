@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto } from '../actions/Produto.actions'
+import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto } from '../actions/produto.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';

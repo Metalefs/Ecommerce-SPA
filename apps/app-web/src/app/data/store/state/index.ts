@@ -1,5 +1,5 @@
 import {ProdutoState} from './produto.state';
-import {SobreState} from './Sobre.state';
+import {SobreState} from './sobre.state';
 import {OrcamentoState} from './orcamento.state';
 import {NavStateState} from './navstate.state';
 import {InformacoesContatoState} from './informacoescontato.state';

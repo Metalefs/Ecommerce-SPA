@@ -5,12 +5,12 @@ import AOS from 'aos'
 import { AppDeploymentState } from './data/enums/AppDeploymentState';
 
 import { LerCategoria } from './data/store/actions/categoria.actions';
-import { LerCliente } from './data/store/actions/Cliente.actions';
+import { LerCliente } from './data/store/actions/cliente.actions';
 import { LerInformacoesContato } from './data/store/actions/informacoescontato.actions';
-import { LerOrcamento } from './data/store/actions/Orcamento.actions';
-import { LerMensagem } from './data/store/actions/Mensagem.actions';
-import { LerProduto } from './data/store/actions/Produto.actions';
-import { LerServico } from './data/store/actions/Servico.actions';
+import { LerOrcamento } from './data/store/actions/orcamento.actions';
+import { LerMensagem } from './data/store/actions/mensagem.actions';
+import { LerProduto } from './data/store/actions/produto.actions';
+import { LerServico } from './data/store/actions/servico.actions';
 import { LerSobre } from './data/store/actions/sobre.actions';
 import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';

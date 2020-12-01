@@ -3,7 +3,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { tap } from 'rxjs/operators';
 import { ServicoService } from '../../service';
-import { LerServico, EditarServico, RemoverServico } from '../actions/Servico.actions'
+import { LerServico, EditarServico, RemoverServico } from '../actions/servico.actions'
 
 export class ServicoStateModel{
   Servico: entities.Servico[];

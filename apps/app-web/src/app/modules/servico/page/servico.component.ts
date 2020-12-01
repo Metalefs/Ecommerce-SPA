@@ -6,7 +6,7 @@ import { Observable, Subscription } from 'rxjs';
 import { async } from 'rxjs/internal/scheduler/async';
 import { tap } from 'rxjs/operators';
 import { SobreCard } from '../../../data/models';
-import { LerServico } from '../../../data/store/actions/Servico.actions';
+import { LerServico } from '../../../data/store/actions/servico.actions';
 import { ServicoState } from '../../../data/store/state';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 

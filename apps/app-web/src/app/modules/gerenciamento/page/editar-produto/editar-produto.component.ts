@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 import { CriarProdutoDialogComponent } from './DialogComponents/criar-dialog/criar-dialog.component';
 import { Imagem, Produto } from 'libs/data/src/lib/classes';
 import { ProdutoState } from 'apps/app-web/src/app/data/store/state/produto.state';
-import { AdicionarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/Produto.actions';
+import { AdicionarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

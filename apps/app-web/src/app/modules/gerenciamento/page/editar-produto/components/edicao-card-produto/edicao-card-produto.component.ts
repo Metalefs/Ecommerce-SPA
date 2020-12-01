@@ -8,7 +8,7 @@ import { entities } from '@personalizados-lopes/data';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 
 import { CategoriaService, ImagemService, ProdutoService } from 'apps/app-web/src/app/data/service';
-import { EditarProduto } from 'apps/app-web/src/app/data/store/actions/Produto.actions';
+import { EditarProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { EditarProdutoDialogComponent } from '../../../editar-produto/DialogComponents/editar-dialog/editar-dialog.component';
 import { isEmpty } from '../../../../../../helper/ObjHelper';
 import { fade } from '../.././../../../../animations';

@@ -10,7 +10,7 @@ import { FiltroProduto } from '../../../data/models/filtroProduto';
 import { OrderType } from '../../../data/models/order-type';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
 import { AdicionarFiltroProduto, EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
-import { LerProduto } from '../../../data/store/actions/Produto.actions';
+import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 
 @Component({
