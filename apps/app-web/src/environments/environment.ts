@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  endpoint: "https://personalizadoslopes-api.herokuapp.com/"
+  endpoint: "https://personalizadoslopes-api.herokuapp.com"
 };
 
 /*

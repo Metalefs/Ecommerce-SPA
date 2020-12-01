@@ -8,7 +8,7 @@ import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 
-
+import { handleError } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
@@ -20,7 +20,7 @@ export class TemaService {
     Ler(): Observable<entities.Tema[]> {
         return this.http.get<entities.Tema[]>(environment.endpoint + RouteDictionary.Tema).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
 
@@ -29,20 +29,20 @@ export class TemaService {
         return this.http.put<entities.Tema>(environment.endpoint + RouteDictionary.Tema,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
     Remover(id: string): Observable<any>{
         return this.http.delete<entities.Tema>(environment.endpoint + RouteDictionary.Tema).pipe(
             retry(3),
-            catchError(this.handleError)
+            catchError(handleError)
         );
     }
     Incluir(item: entities.Tema): Observable<any> {
       let payload = this.AuthenticationService.tokenize({Tema:item});
       return this.http.post<entities.Tema>(environment.endpoint + RouteDictionary.Tema, payload).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
     }
 

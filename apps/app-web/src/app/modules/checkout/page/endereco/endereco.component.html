@@ -47,7 +47,7 @@
     <div class="af cs i2 i3 i4 w-full  w-full">
       <div class="has-text-left  w-full">
         <h2 class="subtitle">Insira seus dados pessoais</h2>
-        <span class="subtitle">Verifique os campos obrigatórios.</span>
+        <span class="subtitle">Iremos preencher o máximo de informações através do CEP.</span>
       </div>
 
       <div class="pt-3">
@@ -57,7 +57,7 @@
             <mat-label>CEP</mat-label>
             <input matInput
               required (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.CEP"
-              [formControl]="cepFormControl" placeholder="busque pelo CEP"
+              [formControl]="cepFormControl" placeholder="000000-000"
               mask="00000-000">
             <mat-error *ngIf="cepFormControl.hasError('required')">
               Campo obrigatório
@@ -108,16 +108,8 @@
                 <textarea
                   class="control has-icons-right  input"
                   matInput
-                    required
-                  [formControl]="complementoFormControl"
                   [(ngModel)]="Orcamento.Usuario.Complemento"
                   ></textarea>
-                <mat-error *ngIf="complementoFormControl.hasError('required')">
-                  Campo obrigatório
-                </mat-error>
-                <span class="icon is-right" *ngIf="complementoFormControl.hasError('required')">
-                  <mat-icon class="has-text-warning">warning</mat-icon>
-                </span>
               </mat-form-field>
             </div>
           </div>

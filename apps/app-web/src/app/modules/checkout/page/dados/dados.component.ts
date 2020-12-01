@@ -32,9 +32,6 @@ export class DadosComponent implements OnInit {
     Validators.required,
   ]);
 
-  messageFormControl = new FormControl('', [
-    Validators.required
-  ]);
   constructor(private router:Router) { }
 
   ngOnInit(): void {
@@ -53,8 +50,7 @@ export class DadosComponent implements OnInit {
   ValidarDados(){
     if(this.emailFormControl.valid
       && this.nomeFormControl.valid
-      && this.phoneFormControl.valid
-      && this.messageFormControl.valid)
+      && this.phoneFormControl.valid)
       return true;
     return false;
   }

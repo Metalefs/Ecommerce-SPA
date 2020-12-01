@@ -12,7 +12,7 @@ import { Cliente } from 'libs/data/src/lib/classes';
 import { isEmpty } from '../../helper/ObjHelper';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 
-
+import { handleError } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
@@ -25,7 +25,7 @@ export class ClienteService {
     Ler(): Observable<entities.Cliente[]> {
         return this.http.get<entities.Cliente[]>(environment.endpoint + RouteDictionary.Cliente).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
 
@@ -37,7 +37,7 @@ export class ClienteService {
           return this.http.put<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente,
               payload).pipe(
               retry(3), // retry a failed request up to 3 times
-              catchError(this.handleError) // then handle the error
+              catchError(handleError) // then handle the error
           );
         })
     }
@@ -46,7 +46,7 @@ export class ClienteService {
       let token = this.AuthenticationService.tokenize({id});
       return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente + `?id=${id}&token=${token.token}`).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
     }
 
@@ -54,7 +54,7 @@ export class ClienteService {
       let payload = this.AuthenticationService.tokenize({Cliente:item});
       return this.http.post<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente, payload).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
     }
 

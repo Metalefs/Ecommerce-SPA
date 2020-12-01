@@ -8,7 +8,7 @@ import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { Imagem } from 'libs/data/src/lib/classes';
-
+import { handleError } from '../../core/error.handler';
 
 @Injectable({
     providedIn: 'root'
@@ -66,14 +66,14 @@ export class ImagemService {
   Ler(): Observable<entities.Imagem[]> {
       return this.http.get<entities.Imagem[]>(environment.endpoint + RouteDictionary.Imagem).pipe(
           retry(3), // retry a failed request up to 3 times
-          catchError(this.handleError) // then handle the error
+          catchError(handleError) // then handle the error
       );
   }
 
   Filtrar(src:string): Observable<entities.Imagem[]> {
     return this.http.get<entities.Imagem[]>(environment.endpoint + RouteDictionary.Imagem+ `?src = ${src}`).pipe(
         retry(3), // retry a failed request up to 3 times
-        catchError(this.handleError) // then handle the error
+        catchError(handleError) // then handle the error
     );
   }
 
@@ -83,7 +83,7 @@ export class ImagemService {
       return this.http.put<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem,
           payload).pipe(
           retry(3), // retry a failed request up to 3 times
-          catchError(this.handleError) // then handle the error
+          catchError(handleError) // then handle the error
       );
   }
 
@@ -93,7 +93,7 @@ export class ImagemService {
       token = this.AuthenticationService.tokenize({id:x[0]._id});
       this.http.delete<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem  + `?id=${token.id}&token=${token.token}`).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       ).subscribe();
     });
   }
@@ -101,7 +101,7 @@ export class ImagemService {
   Incluir(item: entities.Imagem): Observable<any> {
       return this.http.post<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem, {item}).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
   }
 

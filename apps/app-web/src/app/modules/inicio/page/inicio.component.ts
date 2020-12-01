@@ -16,58 +16,18 @@ export class InicioComponent implements OnInit {
   @Select(ClienteState.areClientesLoaded) areClientesLoaded$;
   areClientesLoadedSub: Subscription;
   constructor( private store: Store ) { }
-  CarregarClientes(){
-    this.areClientesLoadedSub = this.areClientesLoaded$.pipe(
-      tap((areClientesLoaded) => {
-          console.log(this.store.dispatch(new LerCliente()));
-          console.log(this.Clientes$)
-      })
-    ).subscribe(value => {
-      console.log(value);
-    });
-  }
+  // CarregarClientes(){
+  //   this.areClientesLoadedSub = this.areClientesLoaded$.pipe(
+  //     tap((areClientesLoaded) => {
+  //         console.log(this.store.dispatch(new LerCliente()));
+  //         console.log(this.Clientes$)
+  //     })
+  //   ).subscribe(value => {
+  //     console.log(value);
+  //   });
+  // }
   ngOnInit(): void {
-    this.CarregarClientes();
+    // this.CarregarClientes();
   }
-  data = [{
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla1111111111111111',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }, {
-    imgUrl: 'assets/images/man.png',
-    userName: 'blabla2222222222222222',
-    text: 'I rely on my monthly rental income to help fund my retirement and this will help protect my nest egg'
-  }];
+
 }

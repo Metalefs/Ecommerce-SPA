@@ -11,7 +11,7 @@ import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
 import { ItemCarousel } from 'libs/data/src/lib/classes';
 import { ImagemService } from './ImagemService';
-
+import { handleError } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
@@ -24,14 +24,14 @@ export class ItemCarouselService {
     Ler(): Observable<entities.ItemCarousel[]> {
         return this.http.get<entities.ItemCarousel[]>(environment.endpoint + RouteDictionary.ItemCarousel).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
 
     Filtrar(id:any): Observable<entities.ItemCarousel[]> {
       return this.http.get<entities.ItemCarousel[]>(environment.endpoint + RouteDictionary.ItemCarousel + `?id = ${id}`).pipe(
           retry(3), // retry a failed request up to 3 times
-          catchError(this.handleError) // then handle the error
+          catchError(handleError) // then handle the error
       );
     }
 
@@ -43,7 +43,7 @@ export class ItemCarouselService {
           return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError)
+            catchError(handleError)
           )
       });
     }
@@ -51,14 +51,14 @@ export class ItemCarouselService {
       let token = this.AuthenticationService.tokenize({id});
       return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente + `?id=${id}&token=${token.token}`).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
     }
     Incluir(item: entities.ItemCarousel):  Observable<ItemCarousel> {
         let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
         return this.http.post<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel, payload).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
         );
     }
     async EditarImagens(item:ItemCarousel) : Promise<ItemCarousel>{

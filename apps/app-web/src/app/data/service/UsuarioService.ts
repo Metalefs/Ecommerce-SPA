@@ -7,7 +7,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-
+import { handleError } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
@@ -18,13 +18,13 @@ export class UsuarioService {
     AtualizarInformacoes(item: entities.Usuario): any {
         return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.AtualizarConta, {}).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
     DeleteAccount(id: string): any {
         return this.http.delete<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.DeletarConta).pipe(
             retry(3),
-            catchError(this.handleError)
+            catchError(handleError)
         );
     }
     handleError(error) {

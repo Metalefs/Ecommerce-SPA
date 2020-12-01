@@ -1,0 +1,11 @@
+.sk-folding-cube{
+  margin: 0 auto;
+  width: 120px;
+  height: 120px;
+  position: fixed;
+  top: 40%;
+  transform: rotate(45deg);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube[_ngcontent-ljj-c240]{float:left;width:50%;height:50%;position:relative;transform:scale(1.1)}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube[_ngcontent-ljj-c240]:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:#f0f0f0;opacity:.8;animation:sk-foldCubeAngle 2.4s linear infinite both;transform-origin:100% 100%}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube2[_ngcontent-ljj-c240]{transform:scale(1.1) rotate(90deg)}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube3[_ngcontent-ljj-c240]{transform:scale(1.1) rotate(180deg)}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube4[_ngcontent-ljj-c240]{transform:scale(1.1) rotate(270deg)}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube2[_ngcontent-ljj-c240]:before{animation-delay:.3s}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube3[_ngcontent-ljj-c240]:before{animation-delay:.6s}.sk-folding-cube[_ngcontent-ljj-c240]   .sk-cube4[_ngcontent-ljj-c240]:before{animation-delay:.9s}@keyframes sk-foldCubeAngle{0%,10%{transform:perspective(140px) rotateX(-180deg);opacity:0}25%,75%{transform:perspective(140px) rotateX(0deg);opacity:1}90%,to{transform:perspective(140px) rotateY(180deg);opacity:0}}

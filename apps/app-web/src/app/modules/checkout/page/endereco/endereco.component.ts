@@ -37,10 +37,6 @@ export class EnderecoComponent implements OnInit {
     Validators.required,
   ]);
 
-  complementoFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
   bairroFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -116,7 +112,6 @@ export class EnderecoComponent implements OnInit {
     if( this.cepFormControl.valid &&
       this.enderecoFormControl.valid &&
       this.numeroFormControl.valid &&
-      this.complementoFormControl.valid &&
       this.bairroFormControl.valid &&
       this.cidadeFormControl.valid &&
       this.estadoFormControl.valid)

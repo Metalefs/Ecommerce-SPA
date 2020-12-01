@@ -27,7 +27,7 @@ export class AppComponent {
   title = 'PersonalizadosLopes';
   AppDeploymentState = AppDeploymentState;
   DeployState: AppDeploymentState = AppDeploymentState.Deployed;
-
+  loading:boolean=false;
   constructor(
     private store: Store,
     private router: Router,
@@ -48,7 +48,11 @@ export class AppComponent {
     this.store.dispatch(new LerOrcamento()         ).subscribe();
     this.store.dispatch(new LerItemCarousel()      ).subscribe();
     this.store.dispatch(new LerInformacoesContato()).subscribe();
-    this.store.dispatch(new LerCliente()           ).subscribe();
+    this.store.dispatch(new LerCliente()           ).subscribe(
+      x=>{
+        this.loading = false
+      }
+    );
     this.store.dispatch(new LerSobre()             ).subscribe();
     this.store.dispatch(new LerServico()           ).subscribe();
     this.store.dispatch(new LerCategoria()         ).subscribe();

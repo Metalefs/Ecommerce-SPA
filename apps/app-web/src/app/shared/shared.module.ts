@@ -21,9 +21,10 @@ import { SocialNetworkLinksComponent } from './components/social-network-links/s
 import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
 
 import { CountUpModule } from 'ngx-countup';
+import { LoadingCubeComponent } from './components/loading-cube/loading-cube.component';
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -59,7 +60,7 @@ import { CountUpModule } from 'ngx-countup';
     CKEditorModule,
     ScrolltopModule,
     CountUpModule,
-
+    LoadingCubeComponent,
     NgxMaskModule,
   ]
 })

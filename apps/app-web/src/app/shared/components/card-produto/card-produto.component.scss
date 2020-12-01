@@ -75,7 +75,9 @@ span{
   .zoom{
     filter: opacity(1);
   }
-
+  .mat-card{
+    background: rgb(255, 255, 255);
+  }
 }
 
 .portfolio-item {
@@ -94,16 +96,16 @@ span{
 .portfolio-overlay {
   background: rgba(255, 255, 255, 0.20);
   pointer-events: none;
- position:absolute;
- top: 0;
- left: 5px;
- height: calc(100% - 10px);
- width: calc(100% - 10px);
- opacity: 0;
- -webkit-transition: 0.5s;
- -moz-transition: 0.5s;
- -o-transition: 0.5s;
-   transition: 0.5s;
+  position:absolute;
+  top: 0;
+  left: 5px;
+  height: calc(100% - 10px);
+  width: calc(100% - 10px);
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+    transition: 0.5s;
 }
 
 .overlay-items {

@@ -1,4 +1,306 @@
+/*Cores base*/
+$neutral-base: #82888A;
+$neutral-lightest: #EEEEEF;
+$neutral-lightest-secondary: #e3e3e3;
+$neutral-light: #B4B8B9;
+$neutral-dark: #484848;
+$neutral-darkest: #222222;
 
+$black2:#171E24;
+$light-white:#FFFFFF;
+$orange: #F2994A;
+$blue1: #2F80ED;
+
+/*Feedback colors*/
+$feedback-base:#55B24C;
+$feedback-darkest:#D0252A;
+
+/*Third party*/
+$color-theme-violet: #8a2be2 ;
+$color-theme-darkviolet: #9400d3;
+$color-white: #fff;
+
+/*Classes*/
+/* TEXTO TEXTO TEXTO TEXTO*/
+/* TEXTO TEXTO TEXTO */
+/*Cores neutras*/
+.has-color-neutral-base {
+    color:$neutral-base;
+    --color:$neutral-base;
+}
+.has-color-neutral-lightest {
+    color:$neutral-lightest;
+    --color:$neutral-lightest;
+}
+.has-color-neutral-light {
+    color:$neutral-light;
+    --color:$neutral-light;
+}
+.has-color-neutral-dark {
+    color:$neutral-dark;
+    --color:$neutral-dark;
+}
+.has-color-neutral-darkest {
+    color:$neutral-darkest;
+    --color:$neutral-darkest;
+}
+/*Cores do tema*/
+.has-color-black2{
+    color:$black2;
+    --color:$black2;
+}
+.has-color-lightwhite{
+    color:$light-white;
+    --color:$light-white;
+}
+.has-color-lightwhite-i{
+    color:$light-white !important;
+    --color:$light-white !important;
+}
+.has-color-orange{
+    color:$orange;
+    --color:$orange;
+}
+.has-color-blue1{
+    color:$blue1;
+    --color:$blue1;
+}
+/*Cores Feedback*/
+.has-color-feedback-base{
+    color:$feedback-base;
+    --color:$feedback-base;
+}
+.has-color-feedback-darkest{
+    color:$feedback-darkest;
+    --color:$feedback-darkest;
+}
+/* BACKGROUND BACKGROUND BACKGROUND*/
+/* BACKGROUND BACKGROUND */
+/*Cores neutras*/
+.has-background-neutral-base {
+    background:$neutral-base;
+    --background:$neutral-base;
+}
+.has-background-neutral-lightest {
+    background:$neutral-lightest;
+    --background:$neutral-lightest;
+}
+.has-background-neutral-light {
+    background:$neutral-light;
+    --background:$neutral-light;
+}
+.has-background-neutral-dark {
+    background:$neutral-dark;
+    --background:$neutral-dark;
+}
+.has-background-neutral-darkest {
+    background:$neutral-darkest;
+    --background:$neutral-darkest;
+}
+/*Cores do tema*/
+.has-background-black2{
+    background:$black2;
+    --background:$black2;
+}
+.has-background-lightwhite{
+    background:$light-white;
+    --background:$light-white;
+}
+.has-background-orange{
+    background:$orange;
+    --background:$orange;
+}
+.has-background-blue1{
+    background:$blue1;
+    --background:$blue1;
+}
+/*Cores Feedback*/
+.has-background-feedback-base{
+    background:$feedback-base;
+    --background:$feedback-base;
+}
+.has-background-feedback-darkest{
+    background:$feedback-darkest;
+    --background:$feedback-darkest;
+}
+
+/*Mixins*/
+@mixin BuenardHeading40(){
+    font-family: Buenard;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 52px;
+}
+@mixin BuenardHeading32($font-size :32px, $weight:400, $color:$neutral-darkest){
+    font-family: Buenard !important;
+    font-style: #{$weight};
+    font-weight: #{$weight};
+    font-size: #{$font-size};
+    color: #{$color};
+
+    @if $font-size == 32{
+        line-height: 42px;
+    }
+    @if $font-size == 24{
+        line-height: 31px;
+    }
+}
+@mixin BuenardHeading24{
+    font-family: Buenard !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 31px;
+    color: $neutral-darkest;
+}
+@mixin NunitoParagraphy24($font-size :24px, $weight:normal, $color:$neutral-darkest, $line-height:0){
+    font-family: Nunito !important;
+    font-style: normal;
+    font-weight: #{$weight};
+    color: #{$color};
+    font-size: #{$font-size};
+    line-height: $line-height;
+
+    @if($font-size == 12px and $line-height == 0){
+        line-height: 16px;
+    }
+    @else if ($font-size == 16px and $line-height == 0){
+        line-height: 22px;
+    }
+    @else if ($font-size == 24px and $line-height == 0){
+        line-height: 33px;
+    }
+
+}
+@mixin NunitoParagraphy16($font-size :16px, $weight:400, $color:$neutral-base){
+    /* Nunito Paragraphy 16px */
+    font-family: Nunito !important;
+    font-style: normal;
+    font-weight: #{$weight};
+    color: #{$color};
+    font-size: #{$font-size};
+    @if($font-size == 12px){
+        line-height: 16px;
+    }
+    @if $font-size == 16px{
+        line-height: 22px;
+    }
+    @if $font-size == 24px{
+        line-height: 33px;
+    }
+}
+@mixin NunitoParagraphy14($font-size :14px, $weight:normal, $color:$black2){
+    /* Nunito Paragraphy 14px */
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: #{$weight};
+    color: #{$color};
+    font-size: #{$font-size};
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+@mixin NunitoParagraphy12($font-size :12px, $weight:normal, $color:$neutral-darkest){
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: #{$weight};
+    font-size: #{$font-size};
+    line-height: 16px;
+    color: #{$color};
+}
+@mixin NunitoLink16($weight:700){
+    /* Nunito Link 16px */
+    font-family: Nunito !important;
+    font-style: normal;
+    font-weight: #{$weight};
+    font-size: 16px;
+    line-height: 22px;
+    color: $light-white;
+}
+@mixin NunitoLink12($weight:bold){
+    /* Nunito Link 12px */
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: #{$weight};
+    font-size: 12px;
+    line-height: 16px;
+    color:$neutral-base;
+    text-align: start;
+}
+@mixin NunitoLabel16($font-size :16px, $weight:600, $color:$neutral-darkest, $line-height:23px){
+    /* Nunito Label 16px */
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: #{$weight};
+    font-size: #{$font-size};
+    line-height: #{$line-height};
+    color:#{$color};
+}
+@mixin NunitoLabel12($text-align, $weight:600){
+    /* Nunito Label 12px */
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color:$neutral-base;
+}
+/*Classes*/
+.buenard40{
+    @include BuenardHeading40
+}
+.buenard32{
+    @include BuenardHeading32
+}
+.buenard24{
+    @include BuenardHeading24
+}
+.nunitoParagraphy24{
+    @include NunitoParagraphy24()
+}
+.nunitoParagraphy24noLineHeight{
+    @include NunitoParagraphy24($line-height:0px)
+}
+.nunitoParagraphy16{
+    @include NunitoParagraphy16
+}
+.nunitoParagraphy14{
+    @include NunitoParagraphy14
+}
+.nunitoParagraphy12{
+    @include NunitoParagraphy12
+}
+.nunitoLink16{
+    @include NunitoLink16
+}
+.nunitoLink12{
+    @include NunitoLink12
+}
+.nunitoLabel16{
+    @include NunitoLabel16
+}
+.nunitoLabel12{
+    @include NunitoLabel12($text-align:left)
+}
+/*setting default caligraphy*/
+h1{
+    @extend .buenard40;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h4{
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+p{
+    @extend .nunitoParagraphy16;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 

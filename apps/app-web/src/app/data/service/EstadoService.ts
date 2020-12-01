@@ -4,7 +4,7 @@ import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { Estado } from '../models/Estado';
-
+import { handleError } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
@@ -18,7 +18,7 @@ export class EstadoService {
 
         return this.http.get<Estado[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/`).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
     handleError(error) {

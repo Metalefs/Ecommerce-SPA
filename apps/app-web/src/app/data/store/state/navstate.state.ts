@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { NavState } from '../../models/navstate';
 
@@ -14,6 +15,7 @@ export class NavStateStateModel{
     NavState: {activeNav:"Home"}
   }
 })
+@Injectable()
 export class NavStateState {
 
   @Selector()

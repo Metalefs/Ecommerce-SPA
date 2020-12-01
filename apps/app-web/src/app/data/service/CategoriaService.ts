@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-
+import { handleError } from '../../core/error.handler';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,7 @@ export class CategoriaService {
     Ler(): Observable<entities.Categoria[]> {
         return this.http.get<entities.Categoria[]>(environment.endpoint + RouteDictionary.Categoria).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
 
@@ -30,21 +30,21 @@ export class CategoriaService {
         return this.http.put<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(this.handleError) // then handle the error
+            catchError(handleError) // then handle the error
         );
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
       return this.http.delete<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria + `?id=${id}&token=${token.token}`).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
     }
     Incluir(item: entities.Categoria): Observable<any> {
       let payload = this.AuthenticationService.tokenize({Categoria:item});
       return this.http.post<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria, payload).pipe(
           retry(3),
-          catchError(this.handleError)
+          catchError(handleError)
       );
     }
 

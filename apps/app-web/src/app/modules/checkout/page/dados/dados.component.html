@@ -67,16 +67,9 @@
           <textarea
             class="control has-icons-right  input"
             matInput
-            [formControl]="messageFormControl"
-
+            placeholder="Insira aqui dados opcionais como quais cores você quer, etc"
             [(ngModel)]="Orcamento.Mensagem"
             ></textarea>
-          <mat-error *ngIf="messageFormControl.hasError('required')">
-            É necessário inserir sua <strong>Mensagem</strong>
-          </mat-error>
-          <span class="icon is-right" *ngIf="!messageFormControl.pristine && messageFormControl.hasError('required')">
-            <mat-icon class="has-text-warning">warning</mat-icon>
-          </span>
         </mat-form-field>
 
         <div class="notification is-danger" *ngIf="ErroCadastro">

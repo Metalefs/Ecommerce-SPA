@@ -22,11 +22,13 @@
     <a data-aos="fade-up" [routerLink]="['checkout']" routerLinkActive="Active" title="Checkout"
     aria-label="Botão abrir Orçamento" class="size4 flex-c-m how-social orcamento trans-04 m-r-5 m-b-3 m-t-3">
     <div class="columns ml-6 line-height-small is-mobile">
-      <div class="column has-text-right">
-        <p class="cart-title">Seu pedido</p>
+      <!-- <div class="column has-text-right">
+        <p class="cart-title">Pedido</p>
         <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
         <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
-      </div>
+      </div> -->
+    </div>
+    <div class="columns">
       <div class="column">
         <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
         <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
