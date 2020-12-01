@@ -20,6 +20,7 @@ export class CheckoutComponent implements OnInit {
           window.scrollTo(0, currentScroll - (currentScroll / 8));
       }
   })();
+
   }
 
   prepareRoute(outlet: RouterOutlet) {

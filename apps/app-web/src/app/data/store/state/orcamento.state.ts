@@ -100,6 +100,7 @@ export class OrcamentoState {
     let usuario = state.Orcamentos.Usuario;
     state.Orcamentos = DEFAULT;
     state.Orcamentos.Usuario = usuario;
+    state.Orcamentos.Status = StatusOrcamento.aberto;
     patchState({
         Orcamentos: state.Orcamentos
     });
