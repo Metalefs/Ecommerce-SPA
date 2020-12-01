@@ -67,7 +67,7 @@ export class EnderecoComponent implements OnInit {
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
-      if(this.Orcamento.Status = StatusOrcamento.enviado)
+      if(this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
     })
     this.EstadoService.Listar().subscribe(x=>{
