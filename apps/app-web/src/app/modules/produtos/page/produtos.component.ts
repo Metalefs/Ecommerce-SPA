@@ -12,6 +12,7 @@ import { LerCategoria } from '../../../data/store/actions/categoria.actions';
 import { AdicionarFiltroProduto, EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
 import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
+import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto.state';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -21,14 +22,14 @@ import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/
 })
 export class ProdutosComponent implements OnInit {
   defaultCategory = "Todos os produtos";
-  CategoriaAtiva:Categoria = new Categoria(this.defaultCategory,this.defaultCategory);
+  CategoriaAtiva:Categoria;
 
   @Select(CategoriaState.ObterListaCategorias) Categorias$: Observable<Categoria[]>;
   @Select(CategoriaState.areCategoriasLoaded) areCategoriasLoaded$;
   areCategoriasLoadedSub: Subscription;
 
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
-  @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<FiltroProduto>;
+  @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<FiltroProdutoStateModel>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   areProdutosLoadedSub: Subscription;
 
@@ -54,7 +55,11 @@ export class ProdutosComponent implements OnInit {
   ngOnInit(): void {
     this.Atualizar();
     this.Filtro$.subscribe(x=>{
+      if(x.Categoria)
       this.CategoriaAtiva = x.Categoria;
+      else{
+        this.CategoriaAtiva = new Categoria(this.defaultCategory,this.defaultCategory)
+      }
       this.activeOrderFilter = x.OrderFilter;
       this.activeSearchFilter = x.SearchFilter;
     })
@@ -99,9 +104,8 @@ export class ProdutosComponent implements OnInit {
         Categoria:this.CategoriaAtiva,
         SearchFilter:this.activeSearchFilter,
         OrderFilter:this.activeOrderFilter,
-        Produtos: x
+        Produtos: x.filter(x=>this.filtroAtivo(x)),
       };
-
       this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe();
       await this.delay(400).then(x=>{this.loading = x;});
 
@@ -205,6 +209,11 @@ export class ProdutosComponent implements OnInit {
       // a must be equal to b
       return 0;
     }
+  }
+  redefinirBusca(){
+    this.SetCategoria(new Categoria(this.defaultCategory,this.defaultCategory));
+    this.activeSearchFilter= '',
+    this.activeOrderFilter=0;
   }
 }
 enum TiposOrdenacao {
