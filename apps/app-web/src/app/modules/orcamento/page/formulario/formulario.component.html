@@ -3,7 +3,7 @@
 <ng-template #Iscompact>
   <form>
 
-    <mat-form-field class="w-full" appearance="fill">
+    <mat-form-field class="w-full" appearance="">
       <mat-label>Nome</mat-label>
       <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
         placeholder="Ex. Fulano de tal">
@@ -14,7 +14,7 @@
 
     <div class="flex-w flex-c columns my-0">
       <div class="column">
-        <mat-form-field class="w-full" appearance="fill">
+        <mat-form-field class="w-full" appearance="">
           <mat-label>Email</mat-label>
           <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
             placeholder="Ex. meu@email.com">
@@ -28,7 +28,7 @@
       </div>
 
       <div class="column">
-        <mat-form-field class="w-full" appearance="fill">
+        <mat-form-field class="w-full" appearance="">
           <mat-label>Telefone</mat-label>
           <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
             placeholder="(00) 0000 0000"  mask="(00) 0000-0000||(00) 0 0000-0000">
@@ -44,7 +44,7 @@
     </div>
 
 
-    <mat-form-field class="w-full" appearance="fill">
+    <mat-form-field class="w-full" appearance="">
       <mat-label>Mensagem</mat-label>
       <textarea matInput [formControl]="messageFormControl"  (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Mensagem"></textarea>
       <mat-error *ngIf="phoneFormControl.hasError('required')">
@@ -58,7 +58,7 @@
 <ng-template #normal>
   <form>
 
-    <mat-form-field class="w-full" appearance="fill">
+    <mat-form-field class="w-full" appearance="">
       <mat-label>Nome</mat-label>
       <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
         placeholder="Ex. Fulano de tal">
@@ -67,7 +67,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="w-full" appearance="fill">
+    <mat-form-field class="w-full" appearance="">
       <mat-label>Email</mat-label>
       <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
         placeholder="Ex. meu@email.com">
@@ -79,7 +79,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="w-full" appearance="fill">
+    <mat-form-field class="w-full" appearance="">
       <mat-label>Telefone</mat-label>
       <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"
         placeholder="(00) 0 0000 0000"   mask="(00) 0000-0000||(00) 0 0000-0000">
@@ -91,7 +91,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="w-full" appearance="fill">
+    <mat-form-field class="w-full" appearance="">
       <mat-label>Mensagem</mat-label>
       <textarea matInput [formControl]="messageFormControl"  (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Mensagem"></textarea>
       <mat-error *ngIf="phoneFormControl.hasError('required')">

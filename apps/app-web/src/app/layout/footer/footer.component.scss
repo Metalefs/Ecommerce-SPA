@@ -41,8 +41,8 @@ a{
   @extend .base;
 }
 .footer-color{
-  // background: $red;
-  background: #f91c1c85;
+  background: #ff4081;
+  // background: rgba(0, 0, 0, 0.52);
 }
 .footer::before{
   content: '';

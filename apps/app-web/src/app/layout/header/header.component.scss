@@ -79,8 +79,7 @@ a{
   }
   border-color: #4d4c4c3d;
   border-left-style: solid;
-  background: white;
-  border-radius: 5px;
+  border-radius: 0px;
   border-left-width: 1px;
   margin-left: -13px;
 }
@@ -88,7 +87,7 @@ a{
   border-left: none;
 }
 .active-nav{
-  color: $capri;
+  color: black;
   font-weight: 500;
   animation: selected 2s ease-out forwards;
 }
@@ -97,7 +96,8 @@ a{
     color: white;
   }
   100%{
-    color: $capri;
+    color: black;
+    text-decoration: underline;
   }
 }
 .container{

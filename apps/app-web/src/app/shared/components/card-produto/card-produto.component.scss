@@ -33,7 +33,7 @@ span{
   justify-content: center;
   align-items: center;
   align-content: center;
-  background: transparent;
+  background: lightgray;
   padding: 0;
 }
 .mat-card-header{
@@ -75,9 +75,9 @@ span{
   .zoom{
     filter: opacity(1);
   }
-  .mat-card{
-    background: rgb(255, 255, 255);
-  }
+  // .mat-card{
+  //   background: rgb(255, 255, 255);
+  // }
 }
 
 .portfolio-item {
