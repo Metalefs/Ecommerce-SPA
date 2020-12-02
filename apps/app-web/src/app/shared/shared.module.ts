@@ -22,9 +22,11 @@ import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
 
 import { CountUpModule } from 'ngx-countup';
 import { LoadingCubeComponent } from './components/loading-cube/loading-cube.component';
+import { CloseBtnComponent } from './components/close-btn/close-btn.component';
+import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/checkout-display.component';
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -62,6 +64,7 @@ import { LoadingCubeComponent } from './components/loading-cube/loading-cube.com
     CountUpModule,
     LoadingCubeComponent,
     NgxMaskModule,
+    CloseBtnComponent
   ]
 })
 export class SharedModule { }

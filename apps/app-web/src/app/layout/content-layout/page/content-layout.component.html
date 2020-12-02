@@ -10,7 +10,9 @@
 <div id="nav-menu" [ngClass]="NavState.open? 'is-active': ''" class="is-hidden-desktop">
   <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
 </div>
+
 <personalizados-lopes-header></personalizados-lopes-header>
+
 <div class="wrapper" id="topo">
   <!-- [@routeAnimations]="prepareRoute(outlet)" -->
   <div [@routeAnimations]="prepareRoute(outlet)" [ngClass]="NavState.open? 'main is-active': ''" (mouseover)="CloseNav()">

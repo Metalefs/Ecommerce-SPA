@@ -11,6 +11,8 @@ import { map, tap } from 'rxjs/operators';
 
 import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
 import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -19,7 +21,8 @@ import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/a
 })
 export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
-
+  textoAdicionar:string = 'Adicionar';
+  textoAtualizar:string = 'Atualizar';
   Url:string;
   Produto:Produto;
   Liked:boolean = false;
@@ -37,7 +40,8 @@ export class ExibicaoProdutoComponent implements OnInit {
     private activeRoute:ActivatedRoute,
     private router: Router,
     private gallery: Gallery,
-    private store: Store) {
+    private store: Store,
+    public dialog: MatDialog) {
 
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
@@ -61,6 +65,7 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.LerProdutosCarregados();
+    this.produtoNoCheckout();
     if(this.Produto.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
     this.Url = `https://${window.location.href}`;
@@ -75,9 +80,7 @@ export class ExibicaoProdutoComponent implements OnInit {
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;
-        // setTimeout(()=>{
-        //   this.router.navigateByUrl("/checkout");
-        // },1500)
+        // this.navegarParaCheckout();
 
       }
       else{
@@ -86,14 +89,48 @@ export class ExibicaoProdutoComponent implements OnInit {
 
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
         this.isOrcamento = true;
-        // setTimeout(()=>{
-        //   this.router.navigateByUrl("/checkout");
-        // },1500)
+        // this.navegarParaCheckout();
+        this.openCheckout();
+        this.textoAdicionar = this.textoAtualizar;
       }
 
     });
   }
 
+  navegarParaCheckout(){
+     setTimeout(()=>{
+      this.router.navigateByUrl("/checkout");
+    },1500)
+  }
+
+  produtoNoCheckout(){
+    return this.Orcamento$.subscribe(x=>{
+
+      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+
+      if(ProdutosOrcamento.length == 0){
+
+
+      }
+      else{
+
+        this.textoAdicionar = this.textoAtualizar;
+
+      }
+
+    });
+  }
+
+  openCheckout(){
+    this.dialog.open(CheckoutDisplayComponent, {
+      restoreFocus: false,
+      width:'30vw',
+      height:'100vh',
+      position:{
+        right:'0'
+      }
+    });
+  }
   Like(){
     if(!localStorage.getItem(`heartproduto${this.Produto._id}`)){
       this.loading = true;

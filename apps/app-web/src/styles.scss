@@ -94,7 +94,14 @@ p{
     color: $red2;
   }
 }
+/**/
+.mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element{
+  caret-color: initial;
+}
+.mat-form-field.mat-form-field-invalid .mat-form-field-label{
 
+  color:$crayola;
+}
 .background-primary-warmer{
   background: $crayola;
 }

@@ -301,6 +301,11 @@ p{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.mat-error{
+  @include NunitoLabel12();
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
