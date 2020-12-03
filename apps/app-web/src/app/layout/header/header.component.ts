@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit {
   openCheckout(){
     this.dialog.open(CheckoutDisplayComponent, {
       restoreFocus: false,
-      width:'30vw',
+      width:'512px',
       height:'100vh',
       position:{
         right:'0'

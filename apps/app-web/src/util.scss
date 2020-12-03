@@ -302,7 +302,7 @@ p{
     -moz-osx-font-smoothing: grayscale;
 }
 .mat-error{
-  @include NunitoLabel12();
+  @include NunitoLabel12($text-align:left);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -427,9 +427,10 @@ input{
   border-radius: 4px;
 }
 .titulo-produto{
-  color: rgb(49, 47, 79);
+  color: rgb(105, 109, 140);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: normal;
+  font-family: nunito;
 }
 
 input{

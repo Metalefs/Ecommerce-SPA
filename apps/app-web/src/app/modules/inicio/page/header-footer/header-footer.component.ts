@@ -9,22 +9,22 @@ export class HeaderFooterComponent implements OnInit {
 
   Cards:SobreCard[] = [
     {
-      title:"Criacao de Arte",
+      title:"Criacao de Arte (Galeria)",
       icon:"group_work",
       color:"#FD6D13",
       class:"red",
       link:"/showcase",
       id:"#SHOWCASE",
-      content:"Recebemos pedidos personalizados para a arte do seu produto. Criação ou aprimoramento."
+      content:"Recebemos pedidos personalizados para a arte do seu produto."
     },
     {
-      title:"Nossa Produção",
+      title:"Nossos Produtos",
       icon:"photo_library",
       color:"#FFB041",
       class:"yellow",
       link:"/produtos",
       id:"#PRODUTO",
-      content:`Confira nossas canecas, camisetas, almofadas e mais !!`
+      content:`Confira nossas canecas, camisetas, almofadas e outros.`
     },
     {
       title:"Orçamento",
@@ -33,7 +33,7 @@ export class HeaderFooterComponent implements OnInit {
       class:"blue",
       link:"/orcamento",
       id:"#ORCAMENTO",
-      content:`Faça seu orçamento e envie o seu pedido direto para a loja. <a href="/orcamento">Clique aqui.</a>`
+      content:`Faça seu orçamento e envie o seu pedido. <a href="/orcamento">Clique aqui.</a>`
     },
   ]
 

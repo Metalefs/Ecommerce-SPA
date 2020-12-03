@@ -3,12 +3,6 @@ a {
   font-weight: bolder;
 
 }
-h3{
-  color: rgb(49, 47, 79);
-  font-weight: normal;
-  overflow-wrap: break-word;
-  font-size: 16px;
-}
 .image{
   -webkit-box-align: center;
     align-items: center;
@@ -23,28 +17,26 @@ img{
   object-fit: cover;
   width: 100%;
 }
-span{
-  font-size: 16px;
-  color: rgb(49, 47, 79);
-}
 .mat-card{
   min-height: 250px;
   display: flex !important;
   justify-content: center;
   align-items: center;
   align-content: center;
-  background: rgba(49, 47, 79,.25);
+  // background: rgba(49, 47, 79,.25);
+  background: rgb(255, 255, 255);
   padding: 0;
+  &:hover{
+     // background: rgb(255, 255, 255);
+     background: rgba(49, 47, 79,.25);
+     // cursor: pointer;
+     // transform: perspective(1px) scale(1.02);
+     transition: all 0.2s ease-in-out 0s;
+     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px;
+  }
 }
 .mat-card-header{
   padding:1rem;
-}
-.mat-card:hover{
-    background: rgb(255, 255, 255);
-    // cursor: pointer;
-    // transform: perspective(1px) scale(1.02);
-    transition: all 0.2s ease-in-out 0s;
-    box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px;
 }
 ::ng-deep .mat-card-header-text{
   width: 100%;
@@ -54,11 +46,6 @@ span{
   margin-bottom: 20px;
   width: 92%;
   margin-top: -35px;
-}
-.mat-card-title{
-  color: rgb(49, 47, 79);
-  font-size: 16px;
-  margin: 0rem 0;
 }
 .zoom{
   filter: opacity(1);
@@ -162,4 +149,34 @@ span{
   -moz-transform: translateY(0);
   transform: translateY(0);
   text-decoration: none;
+}
+
+.img-orcamento{
+  display: none;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.img-orcamento.active{
+  display: block;
+  position: absolute;
+  z-index: 10;
+  animation: flyToCart 1s ease-out forwards;
+}
+
+@keyframes flyToCart{
+  0%{
+    bottom: 0px;
+    right: 35%;
+  }
+  95%{
+    bottom: 100%;
+    right: 5%;
+    opacity: .7;
+  }
+  100%{
+    bottom: 95%;
+    right: 10%;
+    // display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
 }

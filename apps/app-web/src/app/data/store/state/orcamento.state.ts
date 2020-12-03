@@ -80,15 +80,16 @@ export class OrcamentoState {
         .filter(item => item._id == payload._id).forEach(prod=>prod.Quantidade = total);
     }catch(ex){console.error(ex)};
     state.Orcamentos.Produto.push(payload);
+    this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
     });
   }
-
   @Action(RemoverProdutoOrcamento)
   RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id} : RemoverProdutoOrcamento){
     const state = getState();
     state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item._id !== id);
+    this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
     });
@@ -101,6 +102,7 @@ export class OrcamentoState {
     state.Orcamentos = DEFAULT;
     state.Orcamentos.Usuario = usuario;
     state.Orcamentos.Status = StatusOrcamento.aberto;
+    this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
     });
@@ -124,6 +126,7 @@ export class OrcamentoState {
   @Action(EditarOrcamentoLocal)
   EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarOrcamento){
     let state = getState();
+    this.atualizarPreco(state);
     patchState({
       ...state,
       Orcamentos: payload,
@@ -138,6 +141,7 @@ export class OrcamentoState {
     ListaProdutos[index] = payload;
     const orc = state.Orcamentos;
     orc.Produto = ListaProdutos;
+    this.atualizarPreco(state);
     patchState({
       ...state,
       Orcamentos: orc,
@@ -157,4 +161,11 @@ export class OrcamentoState {
     );
   }
 
+  atualizarPreco(state:OrcamentoStateModel){
+    state.Orcamentos.Preco = 0;
+    state.Orcamentos.Produto.forEach(prod=>{
+      if(!isNaN(prod.Preco))
+      state.Orcamentos.Preco += prod.Preco * prod.Quantidade;
+    })
+  }
 }

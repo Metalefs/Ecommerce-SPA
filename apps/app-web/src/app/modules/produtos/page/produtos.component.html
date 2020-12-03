@@ -69,7 +69,7 @@
             <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a busca</button>
           </div>
           <mat-divider class="pb-2"></mat-divider>
-          <ng-container *ngFor="let produto of Produtos$ |async" class="mx-0 px-0">
+          <ng-container *ngFor="let produto of Produtos$ |async" class="mx-0 px-0 ">
             <div @fadeIn
               class="column is-3  is-6-mobile"
               *ngIf="loading"
@@ -78,7 +78,7 @@
 
             </div>
             <div @fadeIn
-              class="column is-3 is-6-mobile"
+              class="column is-3 is-6-mobile  pt-6"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
                 class=" portfolio-items"

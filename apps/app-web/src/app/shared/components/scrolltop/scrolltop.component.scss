@@ -7,7 +7,8 @@
   margin:0 0 5px 0px;
   position: fixed;
   bottom: 100px;
-  font-size: xx-large;
+  font-size: 50px;
+  border: 2px solid;
   right: 15px;
   display: flex;
   justify-content: center;
@@ -16,16 +17,15 @@
   min-height: 20px;
   min-width: 20px;
   opacity: 0;
-  padding: 1rem;
-  color: #000;
+  padding: .51rem;
+  color: white;
   visibility: hidden;
   transition: all .2s ease-in-out;
-  background: rgba(0,0,5,0.8);
 }
 
 .back-to-top.show-scrollTop {
-  opacity: .8;
   visibility: visible;
+  opacity: 1;
 }
 @media (min-width: 320px ) and (max-width: 1023px) {
 

@@ -1,5 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
+import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { Observable } from 'rxjs';
+import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
+import { OrcamentoState } from '../../../data/store/state';
+import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
 
 @Component({
   selector: 'personalizados-lopes-card-produto',
@@ -7,11 +14,45 @@ import { entities } from '@personalizados-lopes/data';
   styleUrls: ['./card-produto.component.scss']
 })
 export class CardProdutoComponent implements OnInit {
-
-  constructor() { }
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
+  isOrcamento:boolean;
+  constructor(private store: Store,private dialog:MatDialog) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
+
   ngOnInit(): void {
   }
 
+  AdicionarAoOrcamento(produto:Produto){
+    this.Orcamento$.subscribe(x=>{
+
+      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+
+      if(ProdutosOrcamento.length == 0){
+
+        this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
+        this.isOrcamento = true;
+      }
+      else{
+        this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
+
+        this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
+        this.isOrcamento = true;
+        this.openCheckout();
+      }
+
+    });
+  }
+
+
+  openCheckout(){
+    this.dialog.open(CheckoutDisplayComponent, {
+      restoreFocus: false,
+      width:'512px',
+      height:'100vh',
+      position:{
+        right:'0'
+      }
+    });
+  }
 }
