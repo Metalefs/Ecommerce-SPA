@@ -3,18 +3,19 @@
 <div class="section mb-0 px-1" id="PRODUTOS">
 
   <div class="columns is-gapless my-3 is-mobile is-hidden-tablet w-full pos-sticky bellow-nav">
-    <div class="column card">
-      <button mat-flat-button class="card py-3 w-full" (click)="AbrirDialogoCategorias()">
+    <div class="column has-background-white bo-0">
+      <div mat-flat-button class="pointer clickable bo-0 w-full flex-sa py-2" (click)="AbrirDialogoCategorias()">
         <p>Categorias</p>
         <mat-icon>category</mat-icon>
-      </button>
+      </div>
     </div>
-    <div class="column card">
-      <button mat-flat-button class="card py-3 w-full" (click)="AbrirDialogoOrdenacao()">
-        <p>Ordenar produtos</p>
-        <mat-icon>toc</mat-icon>
-      </button>
+    <div class="column has-background-white bo-0">
+      <div mat-flat-button class="pointer clickable bo-0 w-full flex-sa py-2" (click)="AbrirDialogoOrdenacao()">
+          <p>Ordenar produtos</p>
+          <mat-icon>toc</mat-icon>
+      </div>
     </div>
+    <mat-divider></mat-divider>
   </div>
 
   <div class="columns px-3 ">

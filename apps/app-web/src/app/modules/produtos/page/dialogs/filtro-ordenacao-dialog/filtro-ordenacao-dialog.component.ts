@@ -9,17 +9,14 @@ import { TiposOrdenacao } from '../../produtos.component';
   styleUrls: ['./filtro-ordenacao-dialog.component.scss']
 })
 export class FiltroOrdenacaoDialogComponent implements OnInit {
-  activeOrderFilter:number = TiposOrdenacao.nome;
   constructor(public dialogRef: MatDialogRef<FiltroOrdenacaoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  FiltroOrdenacao) {
-      alert(data.activeOrderFilter)
     }
 
   ngOnInit(): void {
   }
 
   atualizarFiltroAtivo(order:OrderType){
-    alert(order.id)
     this.dialogRef.close(order)
   }
 }

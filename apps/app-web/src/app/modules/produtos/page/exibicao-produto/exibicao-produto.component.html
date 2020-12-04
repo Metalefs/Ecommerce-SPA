@@ -37,10 +37,23 @@
             </div>
           </div>
         </div>
+        <mat-form-field appearance="">
+          <mat-label>Selecione a cor</mat-label>
+          <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
+            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt">
+              <div
+                class="cor-produto card box"
+                [style.backgroundColor]="opt"
+                (click)="Produto.Cor = opt"
+              ></div>
+              <p>{{opt}}</p>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <div class="py-3">
-          <p>quantidade</p>
-          <div class="columns is-mobile">
-            <div class="column is-3 is-12-mobile">
+          <!-- <p>Quantidade</p> -->
+          <div class="columns">
+            <div class="column is-3">
               <div class="field">
                 <div class="control is-large flex-c flex-m">
                   <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -56,11 +69,11 @@
               </div>
               <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
             </div>
+            <div class="column"></div>
           </div>
-          <div class="column is-12-mobile is-10-desktop">
+          <div class="w-full">
             <div class="preco hoverable pb-4">
-              <span>{{Produto?.Preco == 0 ? '' : 'A partir de '}}</span>
-              <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong>
+              <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span>  a unidade</span>
             </div>
             <button mat-raised-button (click)="AdicionarAoOrcamento()"
               class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
@@ -71,10 +84,14 @@
             </button>
           </div>
         </div>
-        <div class=" w-full">
-          <div class="columns w-full py-2 is-mobile">
-            <div class="column is-6">
-              <button (click)="EntrarEmContato()" class="w-full py-4 px-4" mat-stroked-button>Entrar em contato</button>
+        <div class="">
+          <div class="columns w-full py-2 is-multiline">
+            <div class="column is-6 is-12-mobile">
+              <a (click)="EntrarEmContato()"
+                routerLinkActive="router-link-active"
+                class="button is-success w-full">
+                <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
+              </a>
             </div>
             <div class="column">
               <div class="colums">
@@ -89,20 +106,6 @@
             </div>
           </div>
         </div>
-        <mat-form-field appearance="">
-          <mat-label>Selecione a cor</mat-label>
-          <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
-            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt">
-              <div
-                class="cor-produto card box"
-                [style.backgroundColor]="opt"
-                (click)="Produto.Cor = opt"
-              ></div>
-              <p>{{opt}}</p>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
         <div>
           <p class="descricao-produto">{{Produto?.Descricao || 'Este produto está sem uma descrição'}}</p>
         </div>

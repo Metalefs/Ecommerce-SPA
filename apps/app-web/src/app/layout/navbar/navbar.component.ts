@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   constructor(private AuthenticationService:AuthenticationService,
     private router: Router,
-
     private store: Store) { }
 
   ToggleNav(delay:number){

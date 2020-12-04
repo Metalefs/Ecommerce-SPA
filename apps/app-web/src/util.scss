@@ -2900,7 +2900,9 @@ button{
 /*------------------------------------------------------------------
 [  ]*/
 .bo-cir {border-radius: 50%;}
-
+.bo-0{
+  border-radius:0;
+}
 .of-hidden {overflow: hidden;}
 
 .visible-false {visibility: hidden;}

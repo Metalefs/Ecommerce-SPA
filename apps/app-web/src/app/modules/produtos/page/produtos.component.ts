@@ -115,7 +115,6 @@ export class ProdutosComponent implements OnInit {
       if(result){
         this.activeOrderFilter = result.id;
         this.atualizarFiltroAtivo()
-        alert(this.activeOrderFilter)
       }
     });
   }
