@@ -23,33 +23,46 @@
     <!-- <div class="column is-1 is-hidden-touch"></div> -->
     <div class="column pl-2">
       <div class="mh-70 px-2 pt-6">
-        <div>
-          <p class="titulo-produto">{{Produto?.Nome}}</p>
-          <div *ngIf="Produto?.Tamanhos">
-            <p *ngFor="let tamanho of Produto?.Tamanhos" class="tamanho-produto">tamanho</p>
+        <p class="titulo-produto">{{Produto?.Nome}}</p>
+        <mat-divider></mat-divider>
+        <div class="py-3">
+          <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
+            <p>Selecione a opção de <b>tamanho</b></p>
+            <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
+              <button
+                mat-raised-button
+                class="descricao-produto card"
+                >{{tamanho}}</button>
+            </div>
           </div>
         </div>
-        <mat-label>quantidade</mat-label>
-        <div class="columns  is-mobile">
-          <div class="column is-6-mobile">
-            <div class="field">
-              <div class="control is-large flex-c flex-m">
-                <button mat-icon-button (click)="DecrescerQuantidade()">
-                  <mat-icon class="less">remove</mat-icon>
-                </button>
-                <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
-                  (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
-                  class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
-                <button mat-icon-button (click)="IncrementarQuantidade()">
-                  <mat-icon class="more">add</mat-icon>
-                </button>
+        <div class="py-3">
+          <p>quantidade</p>
+          <div class="columns is-mobile">
+            <div class="column is-3 is-6-mobile">
+              <div class="field">
+                <div class="control is-large flex-c flex-m">
+                  <button mat-icon-button (click)="DecrescerQuantidade()">
+                    <mat-icon class="less">remove</mat-icon>
+                  </button>
+                  <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
+                    (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                    class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
+                  <button mat-icon-button (click)="IncrementarQuantidade()">
+                    <mat-icon class="more">add</mat-icon>
+                  </button>
+                </div>
               </div>
+              <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
             </div>
-            <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
           </div>
-          <div class="column is-6-mobile is-9-desktop">
+          <div class="column is-6-mobile is-10-desktop">
+            <div class="preco hoverable pb-4">
+              <span>{{Produto?.Preco == 0 ? '' : 'A partir de '}}</span>
+              <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong>
+            </div>
             <button mat-raised-button (click)="AdicionarAoOrcamento()"
-              class="share-button w-full background-light-red has-text-white has-text-weight-medium">
+              class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
                 {{textoAdicionar}}
                 <mat-icon>shopping_bag</mat-icon>
@@ -75,17 +88,18 @@
             </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="Produto?.Cores">
-        <div class="cor-produto" *ngFor="let cor of Produto?.Cores" [style.backgroundColor]="cor"></div>
-      </div>
-      <div>
+        <mat-form-field appearance="">
+          <mat-label>Selecione a cor</mat-label>
+          <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
+            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt">
+              <div class="cor-produto card box" [style.backgroundColor]="opt"></div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div>
           <p class="descricao-produto">{{Produto?.Descricao || 'Este produto está sem uma descrição'}}</p>
         </div>
-        <p class="preco hoverable">
-          {{Produto?.Preco == 0 ? '' : 'A partir de R$'+ Produto?.Preco}}
-        </p>
       </div>
       <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
         <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">

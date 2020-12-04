@@ -18,7 +18,7 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="">
-    <input matInput type="text" [(ngModel)]="Produto.Preco"[value]="Produto.Preco" placeholder="Preco">
+    <input matInput type="text" [(ngModel)]="Produto.Preco"[value]="Produto.Preco" placeholder="Preco" mask='00.00'>
   </mat-form-field>
   <mat-form-field class="">
     <mat-label>Quantidade Minima</mat-label>
@@ -72,7 +72,7 @@
   </mat-form-field>
 
   <mat-form-field class="w-full">
-    <mat-chip-list #chipList2 aria-label="Color selection">
+    <mat-chip-list #chipList2 aria-label="Size selection">
       <mat-chip
         *ngFor="let tamanho of Produto.Tamanhos"
          [selectable]="selectable"

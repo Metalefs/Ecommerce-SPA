@@ -26,13 +26,83 @@
     <mat-label>Quantidade Minima</mat-label>
     <input matInput type="number" [(ngModel)]="Produto.QuantidadeMinima"[value]="Produto.QuantidadeMinima">
   </mat-form-field>
-  <mat-form-field class="">
-    <input matInput type="text" [(ngModel)]="Produto.Tamanho" placeholder="Tamanho" value="{{Produto.Tamanho}}">
+
+
+  <div class="file has-name pb-3">
+    <label class="file-label">
+      <input class="file-input" multiple type="file" (change)="upload($event)" [value]="Produto.Imagem">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          Escolha as imagens…
+        </span>
+        <span class="file-name">
+          {{fileNames}}
+        </span>
+      </span>
+    </label>
+  </div>
+
+  <mat-form-field class="w-full">
+    <mat-chip-list #chipList aria-label="Color selection">
+      <mat-chip
+        *ngFor="let cor of Produto.Cores"
+         [selectable]="selectable"
+         [removable]="removable"
+         (removed)="removeCor(cor)">
+        {{cor}}
+        <mat-icon matChipRemove
+         *ngIf="removable">
+         cancelar
+        </mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Nova cor..."
+        #colorInput
+        [formControl]="colorCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addCor($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCor($event)">
+      <mat-option *ngFor="let cor of filteredColors | async" [value]="cor">
+        {{cor}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
-  <mat-form-field class="">
-    <input matInput type="color" [(ngModel)]="Produto.Cor" placeholder="Cor" value="{{Produto.Cor}}">
+
+  <mat-form-field class="w-full">
+    <mat-chip-list #chipList2 aria-label="Size selection">
+      <mat-chip
+        *ngFor="let tamanho of Produto.Tamanhos"
+         [selectable]="selectable"
+         [removable]="removable"
+         (removed)="removeTamanho(tamanho)">
+        {{tamanho}}
+        <mat-icon matChipRemove
+         *ngIf="removable">
+         cancelar
+        </mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Novo tamanho..."
+        #colorInput
+        [formControl]="sizeCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList2"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addTamanho($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedTamanho($event)">
+      <mat-option *ngFor="let size of filteredSizes | async" [value]="size">
+        {{size}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
-  <input class="file" multiple type="file" (change)="upload($event)" [value]="Produto.Imagem" placeholder="Imagem">
+
   <p>Imagens</p>
   <div class="columns is-multiline">
     <div class="column" *ngFor="let img of Produto.Imagem">
