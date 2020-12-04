@@ -5,12 +5,12 @@
     <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
 
     <ng-template #Produtos>
-      <h2 class="titulo is-uppercase my-5">Preencha os dados abaixo para realizar o orçamento.</h2>
+      <h2 class="titulo is-uppercase my-5">Preencha os dados abaixo para entrar em contato conosco.</h2>
       <mat-divider></mat-divider>
       <div class="columns mt-4 px-6 mb-6 reverse-col-mobile " data-aos="flip-left">
         <div class="column bg-contato  has-text-centered">
           <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
-          <button mat-raised-button (click)="EnviarOrcamento()" class="is-pulled-right mx-3 my-3 background-light-red has-text-white submit">Enviar orçamento</button>
+          <button mat-raised-button (click)="EnviarOrcamento()" class="is-pulled-right mx-3 my-3 background-light-red has-text-white submit">Entrar em contato</button>
         </div>
         <div class="column ">
           <personalizados-lopes-formulario [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>

@@ -5,18 +5,19 @@ environment.production ? [
   {name: "INICIO",    href:"inicio"},
   {name: "SOBRE",     href:"empresa"},
   {name: "SERVICOS",  href:"servicos"},
-  {name: "PRODUTOS",  href:"produtos"},
-  {name: "CONTATO", href:"orcamento"},
+  {name: "PRODUTOS",  href:"produtos",icon:'shop'},
+  {name: "CONTATO",   href:"orcamento",icon:'contacts'},
 ] : [
   {name: "INICIO",    href:"inicio"},
   {name: "SOBRE",     href:"empresa"},
   {name: "SERVICOS",  href:"servicos"},
-  {name: "PRODUTOS",  href:"produtos"},
-  {name: "CONTATO", href:"orcamento"},
+  {name: "PRODUTOS",  href:"produtos",icon:'shop'},
+  {name: "CONTATO",   href:"orcamento",icon:'contacts'},
 ];
 
 
 interface Link{
   name:string;
   href:string;
+  icon?:string;
 }

@@ -6,7 +6,7 @@
     <div class="column has-background-white bo-0">
       <div mat-flat-button class="pointer clickable bo-0 w-full flex-sa py-2" (click)="AbrirDialogoCategorias()">
         <p>Categorias</p>
-        <mat-icon>category</mat-icon>
+        <!-- <mat-icon>category</mat-icon> -->
       </div>
     </div>
     <div class="column has-background-white bo-0">
@@ -39,7 +39,7 @@
     </div>
     <div class="column is-9 is-12-mobile produto-column">
       <div class="pb-6">
-        <div class="w-full pt-3 ">
+        <div class="w-full">
           <div class="columns is-mobile is-multiline px-2">
             <div class="column is-12-mobile">
               <div class="control has-icons-right">
@@ -83,7 +83,7 @@
 
             </div>
             <div @fadeIn
-              class="column is-3 is-6-mobile is-4-tablet pt-6"
+              class="column is-3 is-6-mobile is-4-tablet pt-4"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
                 [Produto]="produto"
