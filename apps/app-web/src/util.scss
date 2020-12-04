@@ -3036,7 +3036,10 @@ button{
 .pos-fixed {position: fixed;}
 .pos-sticky {position: sticky;}
 .sticky-nav {position: sticky; top:0; z-index: 10;}
-
+.bellow-nav{
+  top:90px;
+  z-index: 10;
+}
 /*------------------------------------------------------------------
 [ Float ]*/
 .float-l {float: left;}

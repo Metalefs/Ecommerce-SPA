@@ -26,12 +26,13 @@
         <p class="titulo-produto">{{Produto?.Nome}}</p>
         <mat-divider></mat-divider>
         <div class="py-3">
+          <p>Selecione a opção de <b>tamanho</b></p>
           <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
-            <p>Selecione a opção de <b>tamanho</b></p>
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
               <button
                 mat-raised-button
                 class="descricao-produto card"
+                (click)="Produto.Tamanho = tamanho"
                 >{{tamanho}}</button>
             </div>
           </div>
@@ -92,7 +93,12 @@
           <mat-label>Selecione a cor</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
             <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt">
-              <div class="cor-produto card box" [style.backgroundColor]="opt"></div>
+              <div
+                class="cor-produto card box"
+                [style.backgroundColor]="opt"
+                (click)="Produto.Cor = opt"
+              ></div>
+              <p>{{opt}}</p>
             </mat-option>
           </mat-select>
         </mat-form-field>

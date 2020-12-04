@@ -16,9 +16,11 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { ExibicaoProdutoComponent } from './page/exibicao-produto/exibicao-produto.component';
+import { FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
+import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

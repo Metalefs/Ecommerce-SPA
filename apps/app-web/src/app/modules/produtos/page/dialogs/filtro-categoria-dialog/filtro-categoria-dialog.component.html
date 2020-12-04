@@ -1,0 +1,11 @@
+<mat-list>
+  <mat-list-item *ngFor="let categoria of (data.Categorias)"
+    [style.backgroundColor]="categoria?.Cor"
+    class="pointer w-full w-full-m"
+    (click)="SetCategoria(categoria)"
+    [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
+    <button mat-strocked-button>{{categoria.Nome}}</button>
+    <mat-icon>{{data.CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

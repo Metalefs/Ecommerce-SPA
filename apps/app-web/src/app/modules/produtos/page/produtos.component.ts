@@ -13,6 +13,8 @@ import { AdicionarFiltroProduto, EditarFiltroProduto } from '../../../data/store
 import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto.state';
+import { FiltroCategoria, FiltroCategoriaDialogComponent } from './dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
+import { FiltroOrdenacao } from './dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -77,6 +79,41 @@ export class ProdutosComponent implements OnInit {
     this.CategoriaAtiva = categoria;
 
     this.atualizarFiltroAtivo();
+  }
+
+  AbrirDialogoCategorias(){
+    this.Categorias$.subscribe(x=>{
+      const dialogRef = this.dialog.open(FiltroCategoriaDialogComponent, {
+        restoreFocus: false,
+        width:'512px',
+        data:{Categorias:x,CategoriaAtiva:this.CategoriaAtiva} as FiltroCategoria,
+        height:'100vh',
+        position:{
+          left:'0'
+        }
+      });
+      dialogRef.afterClosed().subscribe((result :Categoria) => {
+        this.SetCategoria(result);
+      });
+    })
+  }
+
+  AbrirDialogoOrdenacao(){
+    const dialogRef = this.dialog.open(FiltroCategoriaDialogComponent, {
+      restoreFocus: false,
+      width:'512px',
+      data:{
+        ordertypes:this.ordertypes,
+        activeOrderFilter:this.activeOrderFilter
+      } as FiltroOrdenacao,
+      height:'100vh',
+      position:{
+        right:'0'
+      }
+    });
+    dialogRef.afterClosed().subscribe((result :OrderType) => {
+      this.activeOrderFilter = result.id;
+    });
   }
 
   atualizarFiltroAtivo(){
@@ -216,7 +253,7 @@ export class ProdutosComponent implements OnInit {
     this.activeOrderFilter=0;
   }
 }
-enum TiposOrdenacao {
+export enum TiposOrdenacao {
   nome,
   nomeDesc,
   preco,

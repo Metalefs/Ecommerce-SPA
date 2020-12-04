@@ -1,0 +1,12 @@
+<mat-list>
+  <mat-list-item
+    *ngFor="let order of data.ordertypes; let i = index"
+    class="pointer w-full w-full-m"
+    (click)="atualizarFiltroAtivo(order)"
+    class="py-2  w-full"
+    >
+
+    {{order.name}}
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>

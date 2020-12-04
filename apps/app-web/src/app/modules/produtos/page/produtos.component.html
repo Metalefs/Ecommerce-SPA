@@ -1,13 +1,30 @@
+
+
 <div class="section mb-0 px-1" id="PRODUTOS">
 
-  <div class="columns px-3">
-    <div class="column is-12-mobile">
+  <div class="columns is-gapless my-3 is-mobile is-hidden-tablet w-full pos-sticky bellow-nav">
+    <div class="column card">
+      <button mat-flat-button class="card py-3 w-full" (click)="AbrirDialogoCategorias()">
+        <p>Categorias</p>
+        <mat-icon>category</mat-icon>
+      </button>
+    </div>
+    <div class="column card">
+      <button mat-icon-button class="card py-3 w-full" (click)="AbrirDialogoCategorias()">
+        <p>Ordenar produtos</p>
+        <mat-icon>toc</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="columns px-3 ">
+    <div class="column is-12-mobile is-hidden-mobile">
       <div class="flex-c w-full container portfolio pos-sticky top-0">
-        <div>
+        <div class="is-hidden-mobile">
           <h2 class="title is-5">Categorias</h2>
           <nav class="categories ">
-            <ul class="portfolio-filter flex-w flex-c">
-              <mat-chip-list aria-label="Categoria selection">
+            <ul class="portfolio-filter flex-w flex-c is-hidden-mobile">
+              <mat-chip-list class="" aria-label="Categoria selection">
                 <mat-chip
                  pageScroll
                  href="#PRODUTOS"
@@ -34,10 +51,9 @@
     </div>
     <div class="column is-9 is-12-mobile produto-column">
       <div class="pb-6">
-
         <div class="w-full pt-3 ">
           <div class="columns is-mobile is-multiline px-2">
-            <div class="column is-8">
+            <div class="column is-12-mobile">
               <div class="control has-icons-right">
                 <input
                   [(ngModel)]="activeSearchFilter"
@@ -50,7 +66,7 @@
                   </span>
               </div>
             </div>
-            <div class="column">
+            <div class="column is-hidden-mobile">
               <div class="select w-full">
                 <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()">
                   <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order.id">{{order.name}}</option>
@@ -60,6 +76,7 @@
           </div>
           <h2 class="subtitle is-3 mx-5">{{CategoriaAtiva.Nome}}</h2>
         </div>
+
         <div class="columns is-multiline portfolio-container dis-flex">
           <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]" class="column is-12 a-i-c">
             <figure class="no-match-img">
@@ -78,7 +95,7 @@
 
             </div>
             <div @fadeIn
-              class="column is-3 is-6-mobile pt-6"
+              class="column is-3 is-6-mobile is-4-tablet pt-6"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
                 [Produto]="produto"
