@@ -40,7 +40,7 @@
         <div class="py-3">
           <p>quantidade</p>
           <div class="columns is-mobile">
-            <div class="column is-3 is-6-mobile">
+            <div class="column is-3 is-12-mobile">
               <div class="field">
                 <div class="control is-large flex-c flex-m">
                   <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -57,7 +57,7 @@
               <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
             </div>
           </div>
-          <div class="column is-6-mobile is-10-desktop">
+          <div class="column is-12-mobile is-10-desktop">
             <div class="preco hoverable pb-4">
               <span>{{Produto?.Preco == 0 ? '' : 'A partir de '}}</span>
               <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong>

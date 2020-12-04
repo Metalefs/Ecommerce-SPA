@@ -112,6 +112,7 @@ export class ProdutosComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe((result :OrderType) => {
+      if(result)
       this.activeOrderFilter = result.id;
     });
   }

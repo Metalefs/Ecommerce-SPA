@@ -11,7 +11,9 @@ import { TiposOrdenacao } from '../../produtos.component';
 export class FiltroOrdenacaoDialogComponent implements OnInit {
   activeOrderFilter:number = TiposOrdenacao.nome;
   constructor(public dialogRef: MatDialogRef<FiltroOrdenacaoDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:  FiltroOrdenacao) { }
+    @Inject(MAT_DIALOG_DATA) public data:  FiltroOrdenacao) {
+      console.log(data)
+    }
 
   ngOnInit(): void {
   }
