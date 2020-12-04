@@ -47,6 +47,11 @@ img{
   width: 92%;
   margin-top: -35px;
 }
+.mat-card-image{
+  margin: 0;
+  padding:2px;
+  height: 240px;
+}
 .zoom{
   filter: opacity(1);
   transition: .5s all ease-in-out;
@@ -180,3 +185,4 @@ img{
     pointer-events: none;
   }
 }
+

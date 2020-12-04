@@ -3,9 +3,9 @@
   <mat-form-field class="w-full">
     <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
   </mat-form-field>
-  <mat-form-field class="w-full">
-    <input matInput type="text" [(ngModel)]="Produto.Descricao" placeholder="Descricao">
-  </mat-form-field>
+  <div class="w-full">
+    <ckeditor [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao" ></ckeditor>
+  </div>
   <mat-form-field class="w-full">
     <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
   </mat-form-field>

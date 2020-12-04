@@ -34,6 +34,8 @@ import { CriarItemCarouselDialogComponent } from './page/editar-carousel/dialogC
 import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComponents/editar-carousel-dialog/editar-carousel-dialog.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 
+import { CKEditorModule } from 'ckeditor4-angular';
+
 @NgModule({
   declarations: [
     GerenciamentoComponent,
@@ -69,7 +71,8 @@ import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamen
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    CKEditorModule
   ],
   exports: [
     GerenciamentoComponent,
@@ -84,7 +87,8 @@ import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamen
     CriarCategoriaDialogComponent,
     CriarClienteDialogComponent,
     EditarClientesComponent,
-    EditarMensagemComponent
+    EditarMensagemComponent,
+    CKEditorModule
   ]
 })
 export class GerenciamentoModule { }

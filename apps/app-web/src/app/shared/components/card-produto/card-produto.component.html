@@ -1,15 +1,15 @@
 <ng-container *ngIf="MostarOpcoes then Padrao else Minimalista"></ng-container>
 
 <ng-template #Padrao>
-  <mat-card class="portfolio-item zoom" [style.backgroundColor]="Produto.Categoria.Cor">
-    <a [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
-      <figure class="image">
-        <img mat-card-image src="{{Produto?.Imagem[0]}}"
-        alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-      </figure>
-    </a>
-    <mat-card-footer class="px-2">
-      <mat-card-header class="w-full txt-center">
+  <mat-card
+   class="portfolio-item zoom"
+   [style.backgroundColor]="Produto.Categoria.Cor"
+   >
+  <a [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
+    <img mat-card-image [src]="Produto.Imagem[0]" alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+  </a>
+   <mat-card-footer class="px-2">
+     <mat-card-header class="w-full txt-center">
         {{Produto.Categoria.Cor}}
         <mat-card-title class="w-full txt-center titulo-produto">{{Produto?.Nome}}</mat-card-title>
         <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>

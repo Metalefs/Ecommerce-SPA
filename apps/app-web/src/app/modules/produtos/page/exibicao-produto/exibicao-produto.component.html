@@ -106,9 +106,6 @@
             </div>
           </div>
         </div>
-        <div>
-          <p class="descricao-produto">{{Produto?.Descricao || 'Este produto está sem uma descrição'}}</p>
-        </div>
       </div>
       <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
         <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
@@ -121,6 +118,13 @@
     <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
       <img src="{{Produto?.Imagem[0]}}" alt="">
     </figure>
+  </div>
+
+  <div class="w-full columns">
+    <div
+      class="descricao-produto column is-12 w-full"
+      [innerHTML]="Produto?.Descricao || 'Este produto está sem uma descrição'"
+     ></div>
   </div>
 </div>
 <div class="w-full flex-w flex-sa px-6 background-dark has-text-white">
