@@ -24,6 +24,14 @@
         <div class="is-hidden-mobile">
           <h2 class="title is-5">Categorias</h2>
           <mat-list class="w-full">
+            <mat-list-item
+              class="pointer w-full w-full-m"
+              (click)="SetCategoria(null)"
+              [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
+              <button mat-strocked-button>{{defaultCategory}}</button>
+              <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
+              <mat-divider></mat-divider>
+            </mat-list-item>
             <mat-list-item *ngFor="let categoria of (Categorias$ | async)"
               [style.backgroundColor]="categoria?.Cor"
               class="pointer w-full w-full-m"
@@ -83,7 +91,7 @@
 
             </div>
             <div @fadeIn
-              class="column is-3 is-6-mobile is-4-tablet pt-4"
+              class="column is-3-desktop is-6-mobile is-4-tablet pt-4"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
                 [Produto]="produto"
