@@ -83,12 +83,15 @@ export class EditarServicoComponent implements OnInit {
   }
 
   Remover(Servico:entities.Servico){
-    this.store.dispatch(new RemoverServico(Servico._id)).subscribe(x=>{
-      this.AtualizarTabela();
-      this._snackBar.open("Serviço " +Servico.Nome+ " removido com sucesso", "Fechar", {
+    let confirmation = confirm("Deletar?");
+    if(confirmation){
+      this.store.dispatch(new RemoverServico(Servico._id)).subscribe(x=>{
+        this.AtualizarTabela();
+        this._snackBar.open("Serviço " +Servico.Nome+ " removido com sucesso", "Fechar", {
 
+        });
       });
-    });
+    }
   }
 
   ngOnInit(): void {

@@ -117,12 +117,15 @@ export class EditarCategoriaComponent implements OnInit {
   }
 
   Remover(Categoria:entities.Categoria){
-    this.store.dispatch(new RemoverCategoria(Categoria._id)).subscribe(x=>{
-      this.AtualizarTabela();
-      this._snackBar.open("Categoria "+Categoria.Nome+" removida com sucesso", "Fechar", {
+    let confirmation = confirm("Deletar?");
+    if(confirmation){
+      this.store.dispatch(new RemoverCategoria(Categoria._id)).subscribe(x=>{
+        this.AtualizarTabela();
+        this._snackBar.open("Categoria "+Categoria.Nome+" removida com sucesso", "Fechar", {
 
+        });
       });
-    });
+    }
   }
 
   ngOnInit(): void {

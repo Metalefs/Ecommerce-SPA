@@ -66,11 +66,14 @@ export class EdicaoCardProdutoComponent implements OnInit {
   }
 
   async Remover(){
-    (await this.service.Remover(this.Produto._id)).subscribe(async x=>{
-      this._snackBar.open("Produto "+this.Produto.Nome+" removido com sucesso", "Fechar", {
+    let confirmation = confirm("Deletar?");
+    if(confirmation){
+      (await this.service.Remover(this.Produto._id)).subscribe(async x=>{
+        this._snackBar.open("Produto "+this.Produto.Nome+" removido com sucesso", "Fechar", {
 
+        });
+        delete this.Produto; this.Isdeleted.emit();
       });
-      delete this.Produto; this.Isdeleted.emit();
-    });
+    }
   }
 }

@@ -123,11 +123,14 @@ export class EditarImagemComponent implements OnInit {
   }
 
   async Remover(Imagem:entities.Imagem){
-    await this.service.deleteImage(Imagem.Src).then(x=>{
-      this.AtualizarTabela();
-      this._snackBar.open("Imagem"+ Imagem.Src +" removido com sucesso", "Fechar", {
+    let confirmation = confirm("Deletar?");
+    if(confirmation){
+      await this.service.deleteImage(Imagem.Src).then(x=>{
+        this.AtualizarTabela();
+        this._snackBar.open("Imagem"+ Imagem.Src +" removido com sucesso", "Fechar", {
 
+        });
       });
-    });
+    }
   }
 }

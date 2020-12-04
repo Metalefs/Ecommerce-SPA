@@ -78,10 +78,9 @@
 
             </div>
             <div @fadeIn
-              class="column is-3 is-6-mobile  pt-6"
+              class="column is-3 is-6-mobile pt-6"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
-                class=" portfolio-items"
                 [Produto]="produto"
                 [MostarOpcoes]="true"
               ></personalizados-lopes-card-produto>

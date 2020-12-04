@@ -27,7 +27,7 @@ export class AppComponent {
   title = 'PersonalizadosLopes';
   AppDeploymentState = AppDeploymentState;
   DeployState: AppDeploymentState = AppDeploymentState.Deployed;
-  loading:boolean=false;
+  loading:boolean=true;
   constructor(
     private store: Store,
     private router: Router,

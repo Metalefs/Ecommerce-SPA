@@ -110,11 +110,14 @@ export class EdicaoCardClienteComponent implements OnInit {
   }
 
   Remover(){
-    this.store.dispatch(new RemoverCliente(this.Cliente._id)).subscribe(x=>{
-      this._snackBar.open("Cliente "+this.Cliente.Nome+" removido com sucesso", "Fechar", {
+    let confirmation = confirm("Deletar?");
+    if(confirmation){
+      this.store.dispatch(new RemoverCliente(this.Cliente._id)).subscribe(x=>{
+        this._snackBar.open("Cliente "+this.Cliente.Nome+" removido com sucesso", "Fechar", {
 
+        });
       });
-    });
+    }
   }
 
 }

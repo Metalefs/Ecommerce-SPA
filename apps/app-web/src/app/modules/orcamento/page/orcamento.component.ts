@@ -26,8 +26,14 @@ export class OrcamentoComponent implements OnInit {
   }
 
   EnviarOrcamento(){
-    this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
-      this.snack.open("Orçamento enviado! Responderemos dentro de 24 horas", "Fechar");
-    });
+    this.Orcamento$.subscribe(x=>{
+      if(x.Usuario?.Nome && x.Usuario?.Email && x.Mensagem){
+        this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
+          this.snack.open("Orçamento enviado! Responderemos dentro de 24 horas", "Fechar");
+        });
+      }else{
+        alert("Insira os dados para entrar em contato.")
+      }
+    })
   }
 }

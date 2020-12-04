@@ -16,7 +16,8 @@ export class Produto extends MongoDocument implements entidadeBase{
     Likes?:number = 0;
     Quantidade?:number = 10;
     QuantidadeMinima?:number = 10;
-    Cores?:string;
+    Cores?:string[];
+    Tamanhos?:string[];
     static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,
@@ -30,6 +31,8 @@ export class Produto extends MongoDocument implements entidadeBase{
     Tamanho?:string,
     Cor?:string,
     Likes?:number,
+    Cores?:string[],
+    Tamanhos?:string[]
     ){
         super();
         this.Nome = Nome;
@@ -43,6 +46,8 @@ export class Produto extends MongoDocument implements entidadeBase{
         this.Tamanho = Tamanho;
         this.Cor = Cor;
         this.Likes = Likes;
+        this.Cores = Cores;
+        this.Tamanhos = Tamanhos;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

@@ -25,7 +25,9 @@
       <div class="mh-70 px-2 pt-6">
         <div>
           <p class="titulo-produto">{{Produto?.Nome}}</p>
-          <p class="descricao-produto"> Tamanho {{Produto?.Tamanho}}</p>
+          <div *ngIf="Produto?.Tamanhos">
+            <p *ngFor="let tamanho of Produto?.Tamanhos" class="tamanho-produto">tamanho</p>
+          </div>
         </div>
         <mat-label>quantidade</mat-label>
         <div class="columns  is-mobile">
@@ -74,8 +76,8 @@
           </div>
         </div>
       </div>
-      <div *ngIf="Produto?.Cor">
-        <div class="cor-produto" [style.backgroundColor]="Produto?.Cor"></div>
+      <div *ngIf="Produto?.Cores">
+        <div class="cor-produto" *ngFor="let cor of Produto?.Cores" [style.backgroundColor]="cor"></div>
       </div>
       <div>
         <div>
