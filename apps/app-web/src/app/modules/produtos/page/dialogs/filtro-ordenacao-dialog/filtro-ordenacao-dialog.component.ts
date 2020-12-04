@@ -12,13 +12,14 @@ export class FiltroOrdenacaoDialogComponent implements OnInit {
   activeOrderFilter:number = TiposOrdenacao.nome;
   constructor(public dialogRef: MatDialogRef<FiltroOrdenacaoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  FiltroOrdenacao) {
-      console.log(data)
+      alert(data.activeOrderFilter)
     }
 
   ngOnInit(): void {
   }
 
   atualizarFiltroAtivo(order:OrderType){
+    alert(order.id)
     this.dialogRef.close(order)
   }
 }

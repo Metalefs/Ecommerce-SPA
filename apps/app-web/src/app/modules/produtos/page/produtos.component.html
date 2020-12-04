@@ -22,30 +22,17 @@
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div class="is-hidden-mobile">
           <h2 class="title is-5">Categorias</h2>
-          <nav class="categories ">
-            <ul class="portfolio-filter flex-w flex-c is-hidden-mobile">
-              <mat-chip-list class="" aria-label="Categoria selection">
-                <mat-chip
-                 pageScroll
-                 href="#PRODUTOS"
-                 class="pointer"
-                 (click)="SetCategoria(null)"
-                 [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
-                  Todos
-                  <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}</mat-icon>
-                </mat-chip>
-                <mat-chip
-                    *ngFor="let categoria of Categorias$ | async"
-                    [style.backgroundColor]="categoria?.Cor"
-                    class="pointer w-full w-full-m"
-                    (click)="SetCategoria(categoria)"
-                    [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
-                    {{categoria?.Nome}}
-                    <mat-icon>{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : ''}}</mat-icon>
-                </mat-chip>
-              </mat-chip-list>
-            </ul>
-          </nav>
+          <mat-list class="w-full">
+            <mat-list-item *ngFor="let categoria of (Categorias$ | async)"
+              [style.backgroundColor]="categoria?.Cor"
+              class="pointer w-full w-full-m"
+              (click)="SetCategoria(categoria)"
+              [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
+              <button mat-strocked-button>{{categoria.Nome}}</button>
+              <mat-icon>{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
         </div>
       </div>
     </div>

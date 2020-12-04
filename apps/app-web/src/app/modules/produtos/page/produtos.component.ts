@@ -14,7 +14,7 @@ import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto.state';
 import { FiltroCategoria, FiltroCategoriaDialogComponent } from './dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
-import { FiltroOrdenacao } from './dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
+import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -99,7 +99,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   AbrirDialogoOrdenacao(){
-    const dialogRef = this.dialog.open(FiltroCategoriaDialogComponent, {
+    const dialogRef = this.dialog.open(FiltroOrdenacaoDialogComponent, {
       restoreFocus: false,
       width:'512px',
       data:{
@@ -112,8 +112,11 @@ export class ProdutosComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe((result :OrderType) => {
-      if(result)
-      this.activeOrderFilter = result.id;
+      if(result){
+        this.activeOrderFilter = result.id;
+        this.atualizarFiltroAtivo()
+        alert(this.activeOrderFilter)
+      }
     });
   }
 
