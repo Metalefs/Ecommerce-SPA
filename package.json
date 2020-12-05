@@ -73,6 +73,7 @@
     "ngx-page-scroll": "^7.0.3",
     "ngx-page-scroll-core": "^7.0.3",
     "ngx-sharebuttons": "^8.0.1",
+    "nodemailer": "^6.4.16",
     "rxjs": "~6.5.5",
     "save": "^2.4.0",
     "sendgrid": "^5.2.3",

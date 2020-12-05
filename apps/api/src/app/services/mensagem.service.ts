@@ -42,4 +42,8 @@ export class MensagemService {
       Mensagem = Mensagem.replace("{{PRODUTO}}", produtos);
       return Mensagem;
     }
+    SubstituirChaves(Mensagem:string, Usuario:entities.Usuario){
+      Mensagem = Mensagem.replace("{{USUARIO}}", Usuario.Nome);
+      return Mensagem;
+    }
 }

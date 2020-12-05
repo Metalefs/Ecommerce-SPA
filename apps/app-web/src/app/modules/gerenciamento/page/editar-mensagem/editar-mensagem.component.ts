@@ -42,25 +42,25 @@ export class EditarMensagemComponent implements OnInit {
     let name = "Mensagem";
     let message = new Mensagem("","");
     Object.entries(message).forEach(([key, value]) => {
-      if(key != "_id" && key != "EmailRecebimentoOrcamento")
+      if(key != "_id" && key != "Whatsapp")
       questions.push(
         new TextboxQuestion({
           key: key,
           label: key,
           value: value,
           required: true,
-          type:"textbox",
+          type:"email-messaging",
           order: 1
         })
       )
-      if(key == "EmailRecebimentoOrcamento")
+      if(key == "Whatsapp")
         questions.push(
           new EmailMessageQuestion({
             key: key,
-            label: "Email de Recebimento de Orçamento",
+            label: key,
             value: value,
             required: true,
-            type:"email-messaging",
+            type:"textbox",
             order: 1
           })
         )
