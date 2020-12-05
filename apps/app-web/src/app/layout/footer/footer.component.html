@@ -35,15 +35,15 @@
   <span class="spacer"></span>
   <section class="py-3 my-0 px-6 z-top">
     <div class="flex-sb flex-w spacer">
+      <personalizados-lopes-social-network-links></personalizados-lopes-social-network-links>
       <ul class="px-3 py-2 ">
-       <li class="is-hidden-touch">
-         <a *ngFor="let link of links" class="column"
-         [routerLink]="link.href"
-         pageScroll
-         href="#{{link.name}}"
-         routerLinkActive="true">{{link.name}} |</a>
+        <li class="is-hidden-touch">
+          <a *ngFor="let link of links" class="column"
+          [routerLink]="link.href"
+          pageScroll
+          href="#{{link.name}}"
+          routerLinkActive="true">{{link.name}} |</a>
         </li>
-        <personalizados-lopes-social-network-links></personalizados-lopes-social-network-links>
       </ul>
     </div>
   </section>

@@ -52,14 +52,14 @@
          [selectable]="selectable"
          [removable]="removable"
          (removed)="removeCor(cor)">
-        {{cor}}
+        {{cor.nome}}
         <mat-icon matChipRemove
          *ngIf="removable">
          cancelar
         </mat-icon>
       </mat-chip>
       <input
-        placeholder="Nova cor..."
+        placeholder="Nova cor... Separe o nome do valor com ponto e vírgula = branco;#fffff"
         #colorInput
         [formControl]="colorCtrl"
         [matAutocomplete]="auto"
@@ -68,8 +68,8 @@
         (matChipInputTokenEnd)="addCor($event)">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCor($event)">
-      <mat-option *ngFor="let cor of filteredColors | async" [value]="cor">
-        {{cor}}
+      <mat-option *ngFor="let cor of filteredColors | async" [value]="cor.nome">
+        {{cor.nome}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

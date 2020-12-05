@@ -31,7 +31,8 @@
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
               <button
                 mat-raised-button
-                class="descricao-produto card"
+                class="descricao-produto card tamanho-produto"
+                [ngClass]="Produto.Tamanho == tamanho?'active':''"
                 (click)="Produto.Tamanho = tamanho"
                 >{{tamanho}}</button>
             </div>
@@ -40,13 +41,15 @@
         <mat-form-field appearance="">
           <mat-label>Selecione a cor</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
-            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt">
+            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt.nome"
+            class=" w-full">
               <div
-                class="cor-produto card box"
-                [style.backgroundColor]="opt"
+                class="cor-produto card box w-full"
+                [style.backgroundColor]="opt.cor"
                 (click)="Produto.Cor = opt"
-              ></div>
-              <p>{{opt}}</p>
+                >
+                <p>{{opt.nome}}</p>
+              </div>
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -100,8 +103,6 @@
                   </share-button>
                   <share-button class="" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'"></share-button>
                 </div>
-                <!-- <div class="column">
-                </div> -->
               </div>
             </div>
           </div>

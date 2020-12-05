@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 export class FiltroCategoriaDialogComponent implements OnInit {
 
   defaultCategory = "Todos os produtos";
-  CategoriaAtiva:Categoria;
 
   constructor(public dialogRef: MatDialogRef<FiltroCategoriaDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data:  FiltroCategoria) {

@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
 import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
+import { Cor } from 'libs/data/src/lib/classes/produto';
 
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
@@ -23,8 +24,12 @@ export class EditarProdutoDialogComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   colorCtrl = new FormControl();
-  filteredColors: Observable<string[]>;
-  allColors: string[] = ['white', 'green', 'orange', 'red', 'black', 'blue', 'yellow'];
+  filteredColors: Observable<Cor[]>;
+  allColors: Cor[] = [
+    {nome: 'Branco', cor:'white'},
+    {nome: 'Preto', cor:'black'},
+    {nome: 'Azul Marinho', cor:'tealblue'},
+  ];
 
   sizeCtrl = new FormControl();
   filteredSizes: Observable<string[]>;
@@ -61,7 +66,13 @@ export class EditarProdutoDialogComponent implements OnInit {
     const input = event.input;
     const value = event.value;
     if ((value || '').trim())
-      this.Produto.Cores.push(value.trim());
+      this.Produto.Cores.push(
+        {
+          nome:value.split(';')[0].trim(),
+          cor:value.split(';')[1].trim()
+        }
+      );
+
     if (input)
       input.value = '';
 
@@ -77,7 +88,7 @@ export class EditarProdutoDialogComponent implements OnInit {
 
     this.sizeCtrl.setValue(null);
   }
-  removeCor(color: string): void {
+  removeCor(color: Cor): void {
     const index = this.Produto.Cores.indexOf(color);
     if (index >= 0) {
       this.Produto.Cores.splice(index, 1);
@@ -92,7 +103,8 @@ export class EditarProdutoDialogComponent implements OnInit {
 
 
   selectedCor(event: MatAutocompleteSelectedEvent): void {
-    this.Produto.Cores.push(event.option.viewValue);
+    alert(event.option.viewValue);
+    // this.Produto.Cores.push();
     this.colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
@@ -101,13 +113,6 @@ export class EditarProdutoDialogComponent implements OnInit {
     this.colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.allColors.filter(fruit => fruit.toLowerCase().indexOf(filterValue) === 0);
-  }
-
   SelecionarCategoria($event){
     console.log($event);
     this.Produto.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];

@@ -12,11 +12,11 @@ export class Produto extends MongoDocument implements entidadeBase{
     Imagem:string[];
     FileList:FileList;
     Tamanho?:string;
-    Cor?:string;
+    Cor?:Cor;
     Likes?:number = 0;
     Quantidade?:number = 10;
     QuantidadeMinima?:number = 10;
-    Cores?:string[];
+    Cores?:Cor[];
     Tamanhos?:string[];
     static readonly NomeID:string = "Produto";
     constructor(
@@ -29,9 +29,9 @@ export class Produto extends MongoDocument implements entidadeBase{
     QuantidadeMinima?:number,
     Preco?:number,
     Tamanho?:string,
-    Cor?:string,
+    Cor?:Cor,
     Likes?:number,
-    Cores?:string[],
+    Cores?:Cor[],
     Tamanhos?:string[]
     ){
         super();
@@ -59,3 +59,7 @@ export class Produto extends MongoDocument implements entidadeBase{
       return 0;
     }
 };
+export interface Cor{
+  nome:string;
+  cor:string;
+}

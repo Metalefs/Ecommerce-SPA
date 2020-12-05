@@ -1,0 +1,125 @@
+/*Cores base*/
+$neutral-base: #82888A;
+$neutral-lightest: #EEEEEF;
+$neutral-lightest-secondary: #e3e3e3;
+$neutral-light: #B4B8B9;
+$neutral-dark: #484848;
+$neutral-darkest: #222222;
+
+$black2:#171E24;
+$light-white:#FFFFFF;
+$orange: #F2994A;
+$blue1: #2F80ED;
+
+/*Feedback colors*/
+$feedback-base:#55B24C;
+$feedback-darkest:#D0252A;
+
+/*Third party*/
+$color-theme-violet: #8a2be2 ;
+$color-theme-darkviolet: #9400d3;
+$color-white: #fff;
+
+/*Classes*/
+/* TEXTO TEXTO TEXTO TEXTO*/
+/* TEXTO TEXTO TEXTO */
+/*Cores neutras*/
+.has-color-neutral-base {
+    color:$neutral-base;
+    --color:$neutral-base;
+}
+.has-color-neutral-lightest {
+    color:$neutral-lightest;
+    --color:$neutral-lightest;
+}
+.has-color-neutral-light {
+    color:$neutral-light;
+    --color:$neutral-light;
+}
+.has-color-neutral-dark {
+    color:$neutral-dark;
+    --color:$neutral-dark;
+}
+.has-color-neutral-darkest {
+    color:$neutral-darkest;
+    --color:$neutral-darkest;
+}
+/*Cores do tema*/
+.has-color-black2{
+    color:$black2;
+    --color:$black2;
+}
+.has-color-lightwhite{
+    color:$light-white;
+    --color:$light-white;
+}
+.has-color-lightwhite-i{
+    color:$light-white !important;
+    --color:$light-white !important;
+}
+.has-color-orange{
+    color:$orange;
+    --color:$orange;
+}
+.has-color-blue1{
+    color:$blue1;
+    --color:$blue1;
+}
+/*Cores Feedback*/
+.has-color-feedback-base{
+    color:$feedback-base;
+    --color:$feedback-base;
+}
+.has-color-feedback-darkest{
+    color:$feedback-darkest;
+    --color:$feedback-darkest;
+}
+/* BACKGROUND BACKGROUND BACKGROUND*/
+/* BACKGROUND BACKGROUND */
+/*Cores neutras*/
+.has-background-neutral-base {
+    background:$neutral-base;
+    --background:$neutral-base;
+}
+.has-background-neutral-lightest {
+    background:$neutral-lightest;
+    --background:$neutral-lightest;
+}
+.has-background-neutral-light {
+    background:$neutral-light;
+    --background:$neutral-light;
+}
+.has-background-neutral-dark {
+    background:$neutral-dark;
+    --background:$neutral-dark;
+}
+.has-background-neutral-darkest {
+    background:$neutral-darkest;
+    --background:$neutral-darkest;
+}
+/*Cores do tema*/
+.has-background-black2{
+    background:$black2;
+    --background:$black2;
+}
+.has-background-lightwhite{
+    background:$light-white;
+    --background:$light-white;
+}
+.has-background-orange{
+    background:$orange;
+    --background:$orange;
+}
+.has-background-blue1{
+    background:$blue1;
+    --background:$blue1;
+}
+/*Cores Feedback*/
+.has-background-feedback-base{
+    background:$feedback-base;
+    --background:$feedback-base;
+}
+.has-background-feedback-darkest{
+    background:$feedback-darkest;
+    --background:$feedback-darkest;
+}

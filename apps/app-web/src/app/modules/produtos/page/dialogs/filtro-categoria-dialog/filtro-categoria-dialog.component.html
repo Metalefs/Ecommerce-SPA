@@ -1,6 +1,14 @@
 <div>
   <h2>Exibir por categoria</h2>
   <mat-list>
+    <mat-list-item
+      class="pointer w-full w-full-m"
+      (click)="SetCategoria(null)"
+      [ngClass]="data.CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
+      <button mat-flat-button>{{defaultCategory}}</button>
+      <mat-icon>{{data.CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
+      <mat-divider></mat-divider>
+    </mat-list-item>
     <mat-list-item *ngFor="let categoria of (data.Categorias)"
       [style.backgroundColor]="categoria?.Cor"
       class="pointer w-full w-full-m"

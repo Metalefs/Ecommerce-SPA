@@ -1,3 +1,4 @@
+@import '../../../../../theme/cores.scss';
 gallery{
   background-color:transparent !important;
 }
@@ -10,6 +11,12 @@ gallery{
   transition: 2s all ease-in-out;
   cursor: grab;
   transform:scale(1);
+}
+.tamanho-produto{
+  &.active{
+    border: 1px solid;
+    // background:$orange;
+  }
 }
 .heartbutton {
   font-size: larger;
@@ -108,7 +115,6 @@ input[type=number] {
   font-family: Nunito;
 }
 .cor-produto{
-  width: 20px;
   height: 20px;
 }
 .descricao-produto{
