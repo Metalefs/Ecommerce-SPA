@@ -35,12 +35,16 @@ img{
      box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px;
   }
 }
+.preco-produto{
+  font-weight: bold;
+  color: black;
+  font-size: large;
+}
 .mat-card-header{
   padding:1rem;
 }
 ::ng-deep .mat-card-header-text{
   width: 100%;
-
 }
 .mat-card-actions{
   margin-bottom: 20px;

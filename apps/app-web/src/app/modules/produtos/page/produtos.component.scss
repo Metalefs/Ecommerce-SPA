@@ -64,6 +64,17 @@
   // background:rgb(234, 234, 244);
   z-index: 100;
 }
+.texto-categorias{
+  letter-spacing: 1px;
+}
+.texto-categoria-ativa{
+  letter-spacing: 2px;
+  &::before{
+    width: 50%;
+    height: 100%;
+    background: black;
+  }
+}
 .produto-column{
   border-left: 2px solid rgba(211, 211, 211, 0.342);
 }

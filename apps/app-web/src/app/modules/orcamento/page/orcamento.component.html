@@ -10,10 +10,10 @@
       <div class="columns mt-4 px-6 mb-6 reverse-col-mobile " data-aos="flip-left">
         <div class="column bg-contato  has-text-centered">
           <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
-          <button mat-raised-button (click)="EnviarOrcamento()" class="is-pulled-right mx-3 my-3 background-light-red has-text-white submit">Entrar em contato</button>
         </div>
         <div class="column ">
           <personalizados-lopes-formulario [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
+          <button mat-raised-button (click)="EnviarOrcamento()" class="is-pulled-right mx-3 my-3 background-light-red has-text-white submit">Entrar em contato</button>
         </div>
       </div>
       <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
