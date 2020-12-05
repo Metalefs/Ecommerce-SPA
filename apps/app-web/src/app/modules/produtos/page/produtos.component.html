@@ -46,9 +46,9 @@
       </div>
     </div>
     <div class="column is-9 is-12-mobile produto-column">
-      <div class="pb-0 mb-0">
+      <div class="px-2  pb-0 mb-0">
         <div class="w-full">
-          <div class="columns is-mobile is-multiline px-2 pb-2">
+          <div class="columns is-mobile is-multiline">
             <div class="column is-12-mobile">
               <div class="control has-icons-right">
                 <input
@@ -65,14 +65,14 @@
             <div class="column is-hidden-mobile">
               <div class="w-full">
                 <div class="select w-full">
-                  <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()">
+                  <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()" [value]="activeOrderFilter">
                     <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order.id">{{order.name}}</option>
                   </select>
                 </div>
             </div>
           </div>
-          <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
         </div>
+        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
 
         <div class="columns is-multiline portfolio-container dis-flex">
           <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]" class="column is-12 a-i-c">
