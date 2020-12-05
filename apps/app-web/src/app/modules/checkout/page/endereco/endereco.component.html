@@ -171,7 +171,7 @@
           </mat-form-field>
 
           <div class="notification is-danger" *ngIf="ErroCadastro">
-            <button class="delete" onclick="ErroCadastro = false"></button>
+            <button class="delete" (click)="ErroCadastro = false"></button>
             Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
           </div>
 

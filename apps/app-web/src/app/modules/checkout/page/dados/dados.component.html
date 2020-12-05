@@ -73,8 +73,37 @@
             ></textarea>
         </mat-form-field>
 
+        <section class="example-section">
+          <mat-checkbox
+            [(indeterminate)]="indeterminate"
+            [labelPosition]="labelPosition"
+            [(ngModel)]="registrarse"
+            (change)= "registrar()"
+            class=""
+          >Registrar-se ?
+          </mat-checkbox>
+        </section>
+        <mat-form-field
+          @fadeIn
+          *ngIf="registrarse"
+          class="w-full control has-icons-right" appearance="">
+          <mat-label>Senha</mat-label>
+          <input
+            type='password'
+            #senha
+            class="control has-icons-right input"
+            matInput
+            placeholder="********"
+            (change)="Orcamento.Usuario.Senha = senha.value"
+            >
+            <a
+              (click)="senha.type= senha.type=='text'? 'password':'text'">
+              <mat-icon>{{senha.type=='text'?'visibility_off':'visibility'}}</mat-icon>
+            </a>
+        </mat-form-field>
+
         <div class="notification is-danger" *ngIf="ErroCadastro">
-          <button class="delete" onclick="ErroCadastro = false"></button>
+          <button class="delete" (click)="ErroCadastro = false"></button>
           Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
         </div>
         <p class="has-text-left w-full">*Insira o número completo do seu telefone</p>

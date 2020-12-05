@@ -19,6 +19,11 @@ export class DadosComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Orcamento: Orcamento;
   ErroCadastro:boolean= false;
+
+  registrarse:boolean=false;
+  indeterminate = false;
+  labelPosition: 'before' | 'after' = 'after';
+
   nomeFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -47,7 +52,16 @@ export class DadosComponent implements OnInit {
     }
   }
 
+  registrar(){
+    this.registrarse = !this.registrarse;
+    this.Orcamento.Usuario.Senha = '';
+  }
+
   ValidarDados(){
+    if(this.registrarse
+      && !this.Orcamento.Usuario.Senha)
+      return false;
+    else
     if(this.emailFormControl.valid
       && this.nomeFormControl.valid
       && this.phoneFormControl.valid)

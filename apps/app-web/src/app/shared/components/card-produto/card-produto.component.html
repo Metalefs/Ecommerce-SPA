@@ -5,8 +5,17 @@
    class="portfolio-item zoom"
    [style.backgroundColor]="Produto.Categoria.Cor"
    >
-  <a [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
-    <img mat-card-image [src]="Produto.Imagem[0]" alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+  <a
+    (mouseout)="imgProduto.src = Produto.Imagem[0]"
+    (mouseover)="imgProduto.src = Produto.Imagem[1]"
+    [href]="['/produtos/'+ Produto._id]"
+    routerLinkActive="router-link-active">
+    <img
+      @fadeIn
+      mat-card-image
+      #imgProduto
+      [src]="Produto.Imagem[0]"
+      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
   </a>
    <mat-card-footer class="px-2">
      <mat-card-header class="w-full txt-center">

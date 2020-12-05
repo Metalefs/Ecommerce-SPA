@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -17,13 +16,17 @@ import { EnderecoComponent } from './page/endereco/endereco.component';
 
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [CheckoutComponent,ConfirmacaoComponent,DadosComponent, EnderecoComponent],
   imports: [
     CheckoutPageRoutes,
     CommonModule,
     SharedModule,
-
+    FormsModule,
+    ReactiveFormsModule,
     NgxPageScrollModule,
     NgxPageScrollCoreModule,
     MatCardModule,

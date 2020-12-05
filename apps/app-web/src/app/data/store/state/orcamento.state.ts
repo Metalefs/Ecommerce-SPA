@@ -17,7 +17,7 @@ export class OrcamentoStateModel{
   areOrcamentosLoaded: boolean;
 
 }
-let DEFAULT = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","",""));
+let DEFAULT = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","",""));
 @State<OrcamentoStateModel>({
   name:"Orcamentos",
   defaults: {
