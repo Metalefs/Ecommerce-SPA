@@ -38,7 +38,8 @@ export class MensagemService {
     }
     SubstituirChavesMensagemOrcamento(Mensagem:string, Orcamento:entities.Orcamento){
       let produtos = "";
-      Orcamento.Produto.forEach(x=>produtos += x + " ,");
+      Orcamento.Produto.forEach(x=>produtos += x.Nome + ", ");
+      Mensagem = Mensagem.replace("{{USUARIO}}", Orcamento.Usuario.Nome);
       Mensagem = Mensagem.replace("{{PRODUTO}}", produtos);
       return Mensagem;
     }

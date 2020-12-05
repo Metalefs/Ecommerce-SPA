@@ -1,8 +1,6 @@
 import {crypt_config} from '../../config';
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey("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");
 import { Repository } from '../repositories/repository';
 import { entities } from 'libs/data/src';
 import { EmailService } from './email.service';
@@ -54,6 +52,7 @@ export module UsuarioService {
         }
         console.log("Usuario a ser criado:",NovoUsuario);
         if(NovoUsuario.Email && NovoUsuario.Senha){
+            let emailService = new EmailService();
             // save user
             NovoUsuario.DataCriacao = new Date();
             await Repository.Insert(entities.Usuario.NomeID, NovoUsuario);
@@ -63,8 +62,7 @@ export module UsuarioService {
 
             NovoUsuario.token = token;
             update(NovoUsuario);
-            const msg = EmailService.RegistrationMessage(NovoUsuario);
-            sgMail.send(msg)
+            const msg = emailService.SendRegistrationMessage(NovoUsuario);
             return {
                 ...NovoUsuario,
                 token

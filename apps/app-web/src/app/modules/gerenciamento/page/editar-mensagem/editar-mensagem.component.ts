@@ -40,11 +40,11 @@ export class EditarMensagemComponent implements OnInit {
     let questions: QuestionBase<string>[] = [];
     let method = "Criar";
     let name = "Mensagem";
-    let message = new Mensagem("","");
+    let message = new Mensagem("","","","");
     Object.entries(message).forEach(([key, value]) => {
       if(key != "_id" && key != "Whatsapp")
       questions.push(
-        new TextboxQuestion({
+        new EmailMessageQuestion({
           key: key,
           label: key,
           value: value,
@@ -53,9 +53,10 @@ export class EditarMensagemComponent implements OnInit {
           order: 1
         })
       )
+      else
       if(key == "Whatsapp")
         questions.push(
-          new EmailMessageQuestion({
+          new TextboxQuestion({
             key: key,
             label: key,
             value: value,
@@ -76,6 +77,8 @@ export class EditarMensagemComponent implements OnInit {
         let Mensagem = new entities.Mensagem(
           result[0].value,
           result[1].value,
+          result[2].value,
+          result[3].value,
           )
           this.store.dispatch(new AdicionarMensagem(Mensagem)).subscribe(x=> {
             this.AtualizarTabela();
@@ -93,25 +96,25 @@ export class EditarMensagemComponent implements OnInit {
     let name = "Mensagem";
     let id = Mensagem._id;
     Object.entries(Mensagem).forEach(([key, value]) => {
-      if(key != "_id" && key != "EmailRecebimentoOrcamento")
+      if(key != "_id" && key != "Whatsapp")
       questions.push(
-        new TextboxQuestion({
+        new EmailMessageQuestion({
           key: key,
           label: key,
           value: value,
           required: true,
-          type:"textbox",
+          type:"email-messaging",
           order: 1
         })
       )
-      if(key == "EmailRecebimentoOrcamento")
+      if(key == "Whatsapp")
         questions.push(
-          new EmailMessageQuestion({
+          new TextboxQuestion({
             key: key,
-            label: "Email de Recebimento de Orçamento",
+            label: key,
             value: value,
             required: true,
-            type:"email-messaging",
+            type:"textbox",
             order: 1
           })
         )
@@ -129,6 +132,8 @@ export class EditarMensagemComponent implements OnInit {
       let Mensagem = new entities.Mensagem(
         result[0].value,
         result[1].value,
+        result[2].value,
+        result[3].value,
       )
       Mensagem._id = id;
       this.store.dispatch(new EditarMensagem(Mensagem, Mensagem._id)).subscribe(x=> {
@@ -155,6 +160,8 @@ export class EditarMensagemComponent implements OnInit {
     this.MensagemTable.displayedColumns = [
       "Whatsapp",
       "EmailRecebimentoOrcamento",
+      "EmailRecebimentoContato",
+      "EmailCadadastroUsuario",
       "Acoes",
     ];
   }

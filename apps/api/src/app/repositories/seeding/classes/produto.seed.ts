@@ -11,7 +11,7 @@ export let Produto = [
         0,
         0,
         "",
-        "",
+        {nome:"",cor:""},
         0
     ),
 ]

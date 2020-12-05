@@ -211,6 +211,7 @@ export module Repository {
       try{
 
       delete query._id;
+      delete query.DataHoraCriacao;
       return new Promise ( (resolve, reject) => {
             MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
                 if (err) {

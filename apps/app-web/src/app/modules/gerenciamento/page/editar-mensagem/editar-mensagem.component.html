@@ -16,6 +16,16 @@
       <td mat-cell *matCellDef="let element"> {{element?.EmailRecebimentoOrcamento}} </td>
   </ng-container>
 
+  <ng-container matColumnDef="EmailRecebimentoContato">
+      <th mat-header-cell *matHeaderCellDef> Email Recebimento Contato </th>
+      <td mat-cell *matCellDef="let element"> {{element?.EmailRecebimentoContato}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="EmailCadadastroUsuario">
+      <th mat-header-cell *matHeaderCellDef> Email Registro Usuário </th>
+      <td mat-cell *matCellDef="let element"> {{element?.EmailCadadastroUsuario}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="Acoes">
       <th mat-header-cell *matHeaderCellDef> Ações </th>
       <td mat-cell *matCellDef="let element">
