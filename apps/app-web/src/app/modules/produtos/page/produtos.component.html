@@ -64,18 +64,11 @@
             </div>
             <div class="column is-hidden-mobile">
               <div class="w-full">
-                <div class="control has-icons-right">
-                  <input
-                    [(ngModel)]="activeSearchFilter"
-                    (change)="atualizarFiltroAtivo()"
-                    class="py-2 input"
-                    type="text"
-                    placeholder="filtrar produtos na categoria {{CategoriaAtiva?.Nome}}">
-                    <span class="icon is-small is-right">
-                      <mat-icon>search</mat-icon>
-                    </span>
+                <div class="select w-full">
+                  <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()">
+                    <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order.id">{{order.name}}</option>
+                  </select>
                 </div>
-              </div>
             </div>
           </div>
           <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
