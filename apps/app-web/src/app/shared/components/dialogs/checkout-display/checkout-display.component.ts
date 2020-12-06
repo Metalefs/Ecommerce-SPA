@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
 import { ResetarOrcamento, EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
@@ -20,7 +21,7 @@ export class CheckoutDisplayComponent implements OnInit {
   ProdutoTable:MaterialTable;
   ErroCadastro:boolean = false;
   Total:number = 0;
-  constructor(private store:Store,private snack: MatSnackBar) { }
+  constructor(private store:Store,private snack: MatSnackBar,public dialogRef: MatDialogRef<CheckoutDisplayComponent>) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
@@ -42,6 +43,10 @@ export class CheckoutDisplayComponent implements OnInit {
         });
       }
     })
+  }
+
+  close(){
+    this.dialogRef.close();
   }
 
   IncrementarQuantidade(element){

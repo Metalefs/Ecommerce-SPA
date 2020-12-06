@@ -1,29 +1,48 @@
+<p>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row class="pt-6">
+      <span>Carrinho</span>
+      <span class="spacer"></span>
+
+      <button mat-icon-button
+      aria-label="fechar carrinho"
+      (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</p>
+
 <ng-container *ngIf="(Orcamento$ |async).Produto.length > 0 then pedido else vazio"></ng-container>
+
 <ng-template #vazio>
 
-  <div class=" w-full">
-    <figure class="image is-square">
-      <img src="/assets/images/figures/undraw_empty_cart_co35.svg">
+  <div class="px-3">
+    <div class=" w-full">
+      <figure class="image is-square">
+        <img src="/assets/images/figures/undraw_empty_cart_co35.svg">
 
-    </figure>
-  </div>
-  <div class="has-text-left">
-    <h2 class="subtitle mb-0 pt-0">Seu carrinho está vazio</h2>
-    <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
-  </div>
-  <div class="a-i-c pt-3">
+      </figure>
+    </div>
+    <div class="has-text-left">
+      <h2 class="subtitle mb-0 pt-0">Seu carrinho está vazio</h2>
+      <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
+    </div>
+    <div class="a-i-c pt-3">
 
-    <a pageScroll href="#TOPO" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
-      <button mat-stroked-button mat-stroked-button class="button is-dark">
-        Ver produtos
-        <mat-icon>keyboard_arrow_right</mat-icon>
-      </button>
-    </a>
+      <a pageScroll href="#TOPO" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
+        <button mat-stroked-button mat-stroked-button class="button is-dark">
+          Ver produtos
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </a>
 
+    </div>
   </div>
 
 </ng-template>
 <ng-template #pedido>
+
   <section class="section py-0" data-aos="slide-left">
     <div class="has-text-left">
       <h2 class="subtitle">Confira o seu pedido</h2>
@@ -105,25 +124,30 @@
           <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
         </table>
-        <div class="w-full pt-3">
-          <div class="columns">
-            <div class="column"></div>
-            <div class="column"></div>
-            <div class="column has-text-right">
-              <p class="titulo-produto">Total: <span class="preco">R${{Total}}</span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="w-full">
+ <div class="w-full">
         <a [routerLink]="['/checkout/dados/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
-          class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar orçamento</span></a>
-          <button class="py-3 pb-3  w-full">
-            <a href="#topo" class="py-3" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher mais
-              produtos</a>
-            </button>
+          class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
+            orçamento</span></a>
+        <button class="py-3 pb-3  w-full">
+          <a href="#topo" class="py-3" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher
+            mais
+            produtos</a>
+        </button>
       </div>
+      </div>
+
     </div>
 
   </section>
+  <mat-toolbar class="w-full pt-3 pos-sticky bottom-0">
+      <mat-toolbar-row>
+        <div class="columns">
+          <div class="column"></div>
+          <div class="column"></div>
+          <div class="column has-text-right">
+            <p class="titulo-produto">Total: <span class="preco">R${{Total}}</span></p>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
 </ng-template>

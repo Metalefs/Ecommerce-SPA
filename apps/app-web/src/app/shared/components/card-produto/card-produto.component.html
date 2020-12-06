@@ -2,17 +2,18 @@
 
 <ng-template #Padrao>
   <mat-card
+
+  @fadeIn
    matRipple
    class="portfolio-item zoom"
    [style.backgroundColor]="Produto.Categoria.Cor"
    >
   <a
     (mouseout)="imgProduto.src = Produto.Imagem[0]"
-    (mouseover)="imgProduto.src = Produto.Imagem[1]"
+    (mouseover)="imgProduto.src = Produto.Imagem[1] ? Produto.Imagem[1] : Produto.Imagem[0]"
     [href]="['/produtos/'+ Produto._id]"
     routerLinkActive="router-link-active">
     <img
-      @fadeIn
       mat-card-image
       #imgProduto
       [src]="Produto.Imagem[0]"
@@ -24,7 +25,7 @@
          Disponível em {{Produto.Cores?.length}} cores
        </span>
      </div>
-     <mat-card-header class="w-full txt-center">
+     <mat-card-header class="w-full txt-center pt-1">
         <mat-card-title class="w-full txt-center titulo-produto">{{Produto?.Nome}}</mat-card-title>
         <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
         <mat-card-subtitle class="is-3 preco">
@@ -33,19 +34,19 @@
             mat-stroked-button
            (click)="AdicionarAoOrcamento(Produto)"
            color="primary"
-           class="background-light w-full">
+           class="has-background-light w-full">
             <mat-icon>add_shopping_cart</mat-icon>Adicionar
           </button>
         </mat-card-subtitle>
       </mat-card-header>
     </mat-card-footer>
     <a [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
-      <mat-card-actions class="mat-card-actions flex-w flex-c flex-m w-full mx-3">
+      <!-- <mat-card-actions class="mat-card-actions flex-w flex-c flex-m w-full mx-3">
         <button mat-stroked-button color="accent"
           class="mat-focus-indicator has-text-white w-full mat-raised-button mat-button-base">
           Veja mais
         </button>
-        </mat-card-actions>
+        </mat-card-actions> -->
       <div class="">
         <div class="content">
           <div class="portfolio-overlay w-full">

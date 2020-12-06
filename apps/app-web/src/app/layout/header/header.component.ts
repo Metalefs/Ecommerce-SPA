@@ -73,7 +73,8 @@ export class HeaderComponent implements OnInit {
       height:'100vh',
       position:{
         right:'0'
-      }
+      },
+      panelClass:['no-padding']
     });
   }
 

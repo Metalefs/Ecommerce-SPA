@@ -20,28 +20,40 @@ img{
 .mat-card{
   min-height: 250px;
   display: flex !important;
-  justify-content: center;
   align-items: center;
-  align-content: center;
   // background: rgba(49, 47, 79,.25);
-  background: rgb(255, 255, 255);
-  padding: 0;
+  // background: rgb(255, 255, 255);
+  padding: 0 !important;
+  margin: 0 !important;
   &:hover{
-     // background: rgb(255, 255, 255);
-     background: rgba(49, 47, 79,.25);
-     // cursor: pointer;
-     // transform: perspective(1px) scale(1.02);
-     transition: all 0.2s ease-in-out 0s;
-     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px;
+    box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
+    background:rgb(105, 109, 140) none repeat scroll 0% 0%;
   }
+  &:hover > .mat-card-footer .titulo-produto{
+    color: white ;
+  }
+  &:hover > .mat-card-footer .preco{
+    color: white ;
+  }
+  &:hover > .mat-card-footer .preco-produto{
+    color: white ;
+  }
+}
+.mat-card-image{
+  padding:0 !important;
+  margin:0 !important;
+  background: rgb(255, 255, 255);
+  border-radius: 0;
+  transition: all 1s ease-in;
+}
+.mat-card-footer{
+  padding: 0;
+  margin:0;
 }
 .preco-produto{
   font-weight: bold;
   color: black;
   font-size: large;
-}
-.mat-card-header{
-  padding:1rem;
 }
 ::ng-deep .mat-card-header-text{
   width: 100%;
@@ -58,12 +70,13 @@ img{
 }
 .zoom{
   filter: opacity(1);
-  transition: .5s all ease-in-out;
+  transition: .1s all ease-in-out;
   &:hover{
     opacity: 1;
     filter: opacity(1);
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    z-index: 2;
   }
 }
 @media (min-width: 320px ) and (max-width: 1023px) {
@@ -77,7 +90,8 @@ img{
 }
 
 .portfolio-item {
-  margin-bottom: 10px;
+  margin: 0px;
+  padding: 0px;
   display: block;
   -webkit-box-align: stretch;
   align-items: stretch;

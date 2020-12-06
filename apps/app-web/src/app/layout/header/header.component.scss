@@ -76,6 +76,7 @@ a{
   line-height: 30px;
   transition: 0.25s all ease-in-out;
   color: gray;
+  font-weight: 500;
   &:hover{
     color:black;
 
@@ -109,4 +110,27 @@ a{
 }
 .sticky-nav{
   background: #f9f9f9;
+}
+.produtos-nav{
+  background: linear-gradient(270deg, #f9f9f9, #93b8ff);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 1s ease forwards;
+  -moz-animation: AnimationName 1s ease forwards;
+  animation: AnimationName 1s ease forwards;
+  & a.nav-link{
+    color:white;
+  }
+}
+@-webkit-keyframes AnimationName {
+  0%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }

@@ -1,10 +1,10 @@
-<div class="sticky-nav w-full shadow-light">
+<div class="sticky-nav w-full shadow-light"
+[ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'produtos' ? 'produtos-nav': ''"
+>
   <!-- container -->
-  <mat-toolbar class="pos-sticky flex-m flex-sa  mr-0 container">
-    <!-- <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button> -->
-    <a href="#"><img class="logo" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+  <mat-toolbar
+  class="pos-sticky flex-m flex-sa  mr-0 container">
+    <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">

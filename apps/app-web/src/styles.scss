@@ -102,6 +102,9 @@ p{
 
   color:$crayola;
 }
+.no-padding .mat-dialog-container{
+  padding: 0 !important;
+}
 .background-primary-warmer{
   background: $crayola;
 }
@@ -145,7 +148,8 @@ p{
   font-size: medium
 }
 .mat-card:not([class*="mat-elevation-z"]){
-  box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12)
+  box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: none !important
 }
 .shadow{
   box-shadow: 0 10px 60px #00000057;

@@ -4,7 +4,7 @@ import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
-import { fade } from '../../../animations';
+import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
 import { OrcamentoState } from '../../../data/store/state';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
@@ -13,7 +13,7 @@ import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-d
   selector: 'personalizados-lopes-card-produto',
   templateUrl: './card-produto.component.html',
   styleUrls: ['./card-produto.component.scss'],
-  animations:[fade]
+  animations:[fade, slideInOut]
 })
 export class CardProdutoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
