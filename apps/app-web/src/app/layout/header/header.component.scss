@@ -112,15 +112,22 @@ a{
   background: #f9f9f9;
 }
 .produtos-nav{
-  background: linear-gradient(270deg, #f9f9f9, #93b8ff);
+  // background: linear-gradient(270deg, #f9f9f9, #93b8ff);
   background-size: 400% 400%;
-
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
   animation: AnimationName 1s ease forwards;
   & a.nav-link{
-    color:white;
+    // color:white;
   }
+}
+.produtos-nav-under{
+  background-color: rgba(225, 225, 237,.5);
+  height: 8px;
+  box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
+}
+.is-hidden{
+  display: none;
 }
 @-webkit-keyframes AnimationName {
   0%{background-position:100% 50%}
