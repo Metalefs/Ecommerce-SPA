@@ -6,6 +6,7 @@
       <mat-form-field class="w-full">
         <mat-label>{{question.label}}</mat-label>
         <input matInput type="text" class="input w-full" [id]="question.key"
+          (change)="updateProp(question.value)"
           [type]="question.type" [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
           title={{question.key}} name="{{question.key}}" required />
       </mat-form-field>
@@ -15,17 +16,35 @@
       <mat-form-field class="w-full">
         <mat-label>{{question.label}}</mat-label>
         <textarea matInput class="textarea w-full" [id]="question.key"
-          [type]="question.type" [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
-          title={{question.key}} name="{{question.key}}" required></textarea>
+        [type]="question.type"
+        [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
+        title={{question.key}} name="{{question.key}}" required></textarea>
       </mat-form-field>
     </div>
 
     <div *ngSwitchCase="'file'">
-      <!-- <mat-form-field class="example-full-width"> -->
-      <label>{{question.label}}</label>
-      <input class="file" [id]="question.key" [type]="'file'" style="width: 100%" (change)="fileChangeEvent($event)"
-        placeholder="{{question.key}}" title="{{question.key}}" name="{{question.key}}" required />
-      <!-- </mat-form-field> -->
+
+      <div class="file has-name pb-3">
+        <label class="file-label">
+          <label>{{question.label}}</label>
+          <input  #file class="file w-full" [id]="question.key" [type]="'file'" style="width: 100%" (change)="fileChangeEvent($event)"
+          placeholder="{{question.key}}" title="{{question.key}}" name="{{question.key}}" required
+          >
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              {{file.files[0]?.name||'Escolha as imagens…'}}
+            </span>
+          </span>
+        </label>
+      </div>
+
+
+
+      <input  />
+
     </div>
 
     <div *ngSwitchCase="'color'">

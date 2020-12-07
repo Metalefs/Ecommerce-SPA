@@ -25,7 +25,7 @@
       <div class="mh-70 px-2 pt-6">
         <p class="titulo-produto">{{Produto?.Nome}}</p>
         <mat-divider></mat-divider>
-        <div class="py-3">
+        <div class="py-3 w-full">
           <p>Selecione a opção de <b>tamanho</b></p>
           <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
@@ -38,11 +38,11 @@
             </div>
           </div>
         </div>
-        <mat-form-field appearance="">
+        <mat-form-field class="w-full" appearance="">
           <mat-label>Selecione a cor</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
             <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt.nome"
-            class=" w-full">
+            class="w-full">
               <div
                 class="cor-produto card box w-full"
                 [style.backgroundColor]="opt.cor"
@@ -58,7 +58,7 @@
           <div class="columns">
             <div class="column is-3">
               <div class="field">
-                <div class="control is-large flex-c flex-m">
+                <div class="control border is-large flex-c flex-m">
                   <button mat-icon-button (click)="DecrescerQuantidade()">
                     <mat-icon class="less">remove</mat-icon>
                   </button>
@@ -87,14 +87,16 @@
             </button>
           </div>
         </div>
-        <div class="">
-          <div class="columns w-full py-2 is-multiline">
-            <div class="column is-6 is-12-mobile">
-              <a (click)="EntrarEmContato()"
+        <div class="ml-3 w-full">
+          <div class="columns w-full py-2 px-0 is-multiline">
+            <div class="column w-full is-6 px-0 is-12-mobile">
+                <button mat-raised-button
+                (click)="EntrarEmContato()"
                 routerLinkActive="router-link-active"
-                class="button is-success w-full">
+                class="button is-success w-full has-text-white has-text-weight-medium"
+                >
                 <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
-              </a>
+              </button>
             </div>
             <div class="column">
               <div class="colums">

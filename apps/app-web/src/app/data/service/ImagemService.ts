@@ -9,6 +9,7 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { Imagem } from 'libs/data/src/lib/classes';
 import { handleError } from '../../core/error.handler';
+import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 
 @Injectable({
     providedIn: 'root'
@@ -37,8 +38,9 @@ export class ImagemService {
     console.log(caminho);
     return new Promise((resolve, reject) => {
       try{
+        alert("uploading")
         this.AF.upload(dir+`${Math.random()}${caminho.name}`,caminho).then(x=>{
-          alert("store image " + x.task.snapshot.metadata.fullPath)
+          alert("stored image " + x.task.snapshot.metadata.fullPath)
           resolve(x);
         });
       }
@@ -98,11 +100,23 @@ export class ImagemService {
     });
   }
 
-  Incluir(item: entities.Imagem): Observable<any> {
+  Incluir(item: entities.Imagem, upload?:boolean): Observable<any> {
+    if(upload){
+      if(item.FileList){
+        this.storeImage(PathDictionary.generico,item.FileList).then(async x=>{
+          item.Src = await this.getRef((await x).metadata.fullPath, item.Nome, item.Tipo);
+        })
+      }
+      new Promise((resolve,reject) => {
+        resolve(item);
+      })
+    }
+    else{
       return this.http.post<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem, {item}).pipe(
           retry(3),
           catchError(handleError)
       );
+    }
   }
 
   handleError(error) {

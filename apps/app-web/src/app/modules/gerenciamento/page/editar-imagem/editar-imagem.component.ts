@@ -6,7 +6,9 @@ import { entities } from '@personalizados-lopes/data';
 import { ImagemService } from 'apps/app-web/src/app/data/service';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
 import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/components/dynamic-form/question-base';
+import { FileQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-file';
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
+import { Imagem } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 
 @Component({
@@ -20,14 +22,15 @@ export class EditarImagemComponent implements OnInit {
   Imagems:any;
   Loading:boolean = true;
 
-  constructor(private service:ImagemService,
+  constructor(
+    private service:ImagemService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar) { }
 
   AtualizarTabela(){
     this.service.Ler().subscribe((x : entities.Imagem[])=>{
       this.Imagems = x;
-      this.ImagemTable.dataSource = x;
+      this.ImagemTable.dataSource = new Array(x);
       this.Loading = false;
     })
   }
@@ -47,11 +50,22 @@ export class EditarImagemComponent implements OnInit {
     let questions: QuestionBase<string>[] = [];
     let method = "Criar";
     let name = "Imagem";
-    let imagem = new entities.Imagem("", "", "");
+    let imagem = new entities.Imagem("", "", "", null);
     Object.entries(imagem).forEach(([key, value]) => {
-      if(key != "_id")
+      if(key != "_id" && key != "FileList")
       questions.push(
         new TextboxQuestion({
+          key: key,
+          label: key,
+          value: value,
+          required: true,
+          type:"textbox",
+          order: 1
+        })
+      )
+      if(key == "FileList")
+      questions.push(
+        new FileQuestion({
           key: key,
           label: key,
           value: value,
@@ -67,17 +81,24 @@ export class EditarImagemComponent implements OnInit {
       data: Data
     });
 
-    dialogRef.afterClosed().subscribe((Imagem : entities.Imagem) => {
-      if(Imagem != undefined)
-      this.service.Incluir(Imagem).subscribe(x=> {
-        this.AtualizarTabela();
-        this._snackBar.open("Imagem"+Imagem.Src+" configurado com sucesso", "Fechar", {
+    dialogRef.afterClosed().subscribe((result : TextboxQuestion[]) => {
+      let imagem = new Imagem(
+        result[0].value,
+        result[1].value,
+        result[2].value,
+        result[3].value as unknown as FileList,
+        )
+      if(imagem != undefined){
+        this.service.Incluir(imagem,true).subscribe(x=> {
+          this.AtualizarTabela();
+          this._snackBar.open("Imagem"+imagem.Src+" configurado com sucesso", "Fechar", {
 
+          });
         });
-      });
+      }
     });
-
   }
+
   Editar(Imagem:entities.Imagem){
 
     let questions: QuestionBase<string>[] = [];

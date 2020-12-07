@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import AOS from 'aos'
 
@@ -28,6 +28,11 @@ export class AppComponent {
   AppDeploymentState = AppDeploymentState;
   DeployState: AppDeploymentState = AppDeploymentState.Deployed;
   loading:boolean=true;
+
+  @ViewChild('cookieLaw')
+  private cookieLawEl: any;
+
+
   constructor(
     private store: Store,
     private router: Router,
@@ -65,5 +70,9 @@ export class AppComponent {
   ngOnInit(){
     AOS.init();
     this.LerServicosAPI();
+  }
+
+  dismissCookieLaw(){
+    this.cookieLawEl.dismiss();
   }
 }

@@ -15,10 +15,12 @@ export class DynamicFormQuestionComponent {
   constructor(){
   }
   ngOnInit(){
-    console.log(this.question);
   }
   fileChangeEvent($event: any) {
     this.question.value = $event.target.files[0];
+  }
+  updateProp(){
+    console.log(this.question.value);
   }
 }
 

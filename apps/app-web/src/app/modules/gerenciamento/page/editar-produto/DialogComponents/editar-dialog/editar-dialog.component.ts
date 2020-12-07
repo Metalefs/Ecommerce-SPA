@@ -59,7 +59,12 @@ export class EditarProdutoDialogComponent implements OnInit {
 
   upload($event){
     this.Produto.FileList = $event.target.files;
-    console.log(this.Produto.FileList);
+    this.fileNames = '';
+    for(let i =0; i < this.Produto.FileList.length; i++){
+      this.fileNames+=this.Produto.FileList[i].name+',';
+      console.log(this.Produto.FileList[i].name)
+    }
+    console.log(this.fileNames)
   }
 
   addCor(event: MatChipInputEvent): void {

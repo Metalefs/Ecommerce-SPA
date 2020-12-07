@@ -177,7 +177,7 @@ export module Repository {
         });
       }
       catch(ex){
-        throw ex;
+        return {erro: ex};
       }
     }
 
@@ -226,13 +226,13 @@ export module Repository {
                     }
                     console.log("Editado", result.n)
                     db.close();
-                    resolve(await FindOne(collection, { "_id": new ObjectId(id) }));
+                    resolve(await FindOne(collection, { "_id": new ObjectId(id) }).catch(x=>reject(x)));
                 });
             });
         });
       }
       catch(ex){
-        throw ex;
+        return {erro :ex};
       }
     }
 

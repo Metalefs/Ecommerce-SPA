@@ -10,6 +10,6 @@
 
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button color="basic" class="" [mat-dialog-close]="questions">{{MethodButtonName}}</button>
+  <button mat-raised-button color="basic" class="" (click)="closeReturnQuestions()">{{MethodButtonName}}</button>
   <button mat-raised-button color="basic" class="" (click)="onNoClick()" cdkFocusInitial>Cancelar</button>
 </div>

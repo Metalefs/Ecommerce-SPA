@@ -6,7 +6,7 @@
 
   <div class="flex-w flex-c w-full">
     <button mat-mini-fab (click)="Criar()"><mat-icon>add</mat-icon></button>
-    <table mat-table [dataSource]="ImagemTable.dataSource" class="w-full mat-elevation-z8">
+    <table *ngIf="ImagemTable?.dataSource" mat-table [dataSource]="ImagemTable?.dataSource[0]" class="w-full mat-elevation-z8">
 
       <ng-container matColumnDef="Src">
           <th mat-header-cell *matHeaderCellDef> Src </th>
@@ -35,8 +35,8 @@
           </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="ImagemTable.displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: ImagemTable.displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="ImagemTable?.displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: ImagemTable?.displayedColumns;"></tr>
     </table>
   </div>
 

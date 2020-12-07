@@ -15,7 +15,7 @@ export class ServicoService {
         });
     }
     async Alterar(Usuario:entities.Usuario, Servico:entities.Servico){
-        if (Usuario.Tipo == enums.TipoUsuario.admin) {
+        if (Usuario?.Tipo == enums.TipoUsuario.admin) {
             return  Repository.Edit(entities.Servico.NomeID, Servico._id, Servico).then(x => {
                 return x;
             });

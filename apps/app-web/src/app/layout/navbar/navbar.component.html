@@ -4,7 +4,41 @@
   </div>
 
   <ul class="navigation" >
-    <li *ngFor="let link of links" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''">
+
+    <!-- Inicio -->
+    <mat-list>
+      <div mat-subheader></div>
+      <mat-list-item *ngFor="let link of links">
+
+      </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+    <!-- Institucional -->
+    <mat-list>
+      <mat-list-item *ngFor="let link of links">
+
+      </mat-list-item>
+    </mat-list>
+
+    <mat-divider></mat-divider>
+    <!-- Produtos -->
+    <mat-list>
+      <mat-list-item *ngFor="let link of links">
+
+      </mat-list-item>
+    </mat-list>
+
+
+    <mat-divider></mat-divider>
+    <!-- Duvidas -->
+    <mat-list>
+      <mat-list-item *ngFor="let link of links">
+
+      </mat-list-item>
+    </mat-list>
+
+    <!-- <li  [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''">
       <a  (click)="SetActiveNav(link)"
        (pageScrollFinish)="ToggleNav(0)"
        [routerLink]="link.href"
@@ -16,8 +50,8 @@
 
        <mat-icon>{{link.icon}}</mat-icon>
       </a>
-      <mat-divider></mat-divider>
-    </li>
+
+    </li> -->
     <li *ngIf="user?.Tipo == 1">
       <button mat-icon-button (click)="Logout()" title="logout">
         <mat-icon>login</mat-icon>
