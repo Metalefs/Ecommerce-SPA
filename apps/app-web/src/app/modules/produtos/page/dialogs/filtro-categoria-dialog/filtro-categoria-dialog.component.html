@@ -6,7 +6,7 @@
       (click)="SetCategoria(null)"
       [ngClass]="data.CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
       <button mat-flat-button>{{defaultCategory}}</button>
-      <mat-icon>{{data.CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
+      <mat-icon [ngClass]="data.CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">{{data.CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
       <mat-divider></mat-divider>
     </mat-list-item>
     <mat-list-item *ngFor="let categoria of (data.Categorias)"
@@ -15,7 +15,7 @@
       (click)="SetCategoria(categoria)"
       [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
       <button mat-flat-button [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">{{categoria.Nome}}</button>
-      <mat-icon>{{data.CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
+      <mat-icon [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">{{data.CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
       <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>

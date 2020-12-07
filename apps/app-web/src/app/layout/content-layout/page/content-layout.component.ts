@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { InformacoesContato, Mensagem } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
-import { fade, slider } from '../../../animations';
+import { cardFlip, fade, slider } from '../../../animations';
 import { MensagemService } from '../../../data/service';
 import { LerMensagem } from '../../../data/store/actions/mensagem.actions';
 import { InformacoesContatoState, MensagemState } from '../../../data/store/state';
@@ -13,7 +13,7 @@ import { InformacoesContatoState, MensagemState } from '../../../data/store/stat
   selector: 'personalizados-lopes-content-layout',
   templateUrl: './content-layout.component.html',
   styleUrls: ['./content-layout.component.scss'],
-  animations: [slider]
+  animations: [cardFlip]
 })
 export class ContentLayoutComponent implements OnInit {
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;

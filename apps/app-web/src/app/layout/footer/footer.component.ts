@@ -18,9 +18,10 @@ import { NavLinks } from '../../data/models/navlinks';
 export class FooterComponent implements OnInit {
 
   Links:Link[] = [
-    {name:"QUEM SOMOS", href:"empresa", id:"SOBRE"},
-    {name:"PRODUTOS",   href:"produtos", id:"PRODUTOS"},
+    {name:"QUEM SOMOS", href:"empresa",   id:"SOBRE"},
+    {name:"PRODUTOS",   href:"produtos",  id:"PRODUTOS"},
     {name:"ORÇAMENTO",  href:"orcamento", id:"ORCAMENTO"},
+    {name:"INICIO",     href:"inicio",    id:"INICIO"},
   ];
   links = NavLinks;
   Ano:number = new Date().getFullYear();

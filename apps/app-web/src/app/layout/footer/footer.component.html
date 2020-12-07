@@ -35,7 +35,6 @@
   <span class="spacer"></span>
   <section class="py-3 my-0 px-6 z-top">
     <div class="flex-sb flex-w spacer">
-      <personalizados-lopes-social-network-links></personalizados-lopes-social-network-links>
       <ul class="px-3 py-2 ">
         <li class="is-hidden-touch">
           <a *ngFor="let link of links" class="column"
@@ -45,6 +44,7 @@
           routerLinkActive="true">{{link.name}} |</a>
         </li>
       </ul>
+      <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
     </div>
   </section>
 </footer>

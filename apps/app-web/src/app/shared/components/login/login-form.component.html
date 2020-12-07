@@ -1,7 +1,6 @@
 <div class="login-wrapper has-background-white-t box" *ngIf="!Logado">
-
+  Digite seu e-mail e senha para entrar.
   <form clrForm class="login">
-      <h1>Login </h1>
       <div class="login-group pt-0">
           <mat-form-field class="w-full">
               <mat-label>E-mail</mat-label>
@@ -37,7 +36,28 @@
                <em>Erro: {{error}}</em>
               </p>
             </div>
-            <button mat-flat-button type="submit" class="btn btn-primary" (click)="Login()">Login</button>
+            <button
+            mat-flat-button
+            type="submit"
+            class="btn btn-primary w-full mt-3"
+            (click)="Login()"
+            [disabled]="emailControl.hasError('required') || SenhaControl.hasError('required')"
+            >Login</button>
+
+      </div>
+  </form>
+
+</div>
+<div class="login-wrapper has-background-white-t box" *ngIf="Logado">
+  <h1>Olá {{usuario.Nome}} </h1>
+  Você já está logado. Deseja sair e entrar com outra conta?
+  <form clrForm class="login">
+      <div class="login-group pt-0">
+
+            <button
+              mat-raised-button type="submit"
+
+              (click)="Logout()">Sair</button>
 
       </div>
   </form>

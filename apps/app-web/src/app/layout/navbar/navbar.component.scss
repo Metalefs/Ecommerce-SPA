@@ -74,7 +74,7 @@ a span{
   }
 .mat-subheader{
   font-family: Montserrat;
-  font-weight: lighter;
+  font-weight: 300;
   color:$gray-web;
 }
 .mat-list-text{
@@ -83,7 +83,20 @@ a span{
 .mat-icon{
   width: 50px;
   margin-right: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
 }
 .mat-icon.inst{
   background:$gray-web;
+}
+.mat-list-base .mat-list-item .mat-list-icon, .mat-list-base .mat-list-option .mat-list-icon{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
+}
+.logo{
+  filter:grayscale(1)
 }

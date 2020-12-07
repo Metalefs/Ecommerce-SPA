@@ -8,6 +8,7 @@ import { AuthenticationService } from '../../../core/service/authentication/auth
 import { CadastroService } from '../../../core/service/cadastro.service';
 import { entities } from '@personalizados-lopes/data';
 import { InformacoesContatoService } from '../../../data/service/InformacoesContatoService';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 class Login_Form {
   Email:string;
@@ -36,6 +37,7 @@ export class LoginFormComponent implements OnInit {
   Logado:boolean;
   EmailError:boolean;
   PassError:boolean;
+  usuario:Usuario;
   @Input()
   Cadastrar:Boolean;
   constructor(
@@ -88,7 +90,10 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.LerInformacoesContato();
-
+    this.authenticationService.currentUser.subscribe(x=>{
+      this.usuario = x;
+      this.Logado = x != undefined
+    })
     this.registerForm = this.formBuilder.group({
       Email: ['', [Validators.required, Validators.email]],
       Senha: ['', [Validators.required, Validators.minLength(6)]],
@@ -100,5 +105,8 @@ export class LoginFormComponent implements OnInit {
     this.registerForm.reset();
   }
 
+  Logout(){
+    this.authenticationService.logout();
+  }
 
 }

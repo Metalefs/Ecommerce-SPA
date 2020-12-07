@@ -1,6 +1,6 @@
 
 
-<div class="section mb-0 px-1" id="BASICOS">
+<div class="section mb-0 px-1" id="Básicos">
 
   <div class="columns is-gapless my-3 is-mobile is-hidden-tablet w-full pos-sticky bellow-nav">
     <div class="column has-background-white bo-0">
@@ -29,7 +29,7 @@
               (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
               <button mat-strocked-button>{{defaultCategory}}</button>
-              <mat-icon>{{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
+              <mat-icon [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">{{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
               <mat-divider></mat-divider>
             </mat-list-item>
             <mat-list-item *ngFor="let categoria of (Categorias$ | async)"
@@ -38,7 +38,7 @@
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
               <button mat-strocked-button>{{categoria.Nome}}</button>
-              <mat-icon>{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
+              <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>

@@ -10,7 +10,7 @@
       <div *ngFor="let link of links" class="column">
         <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
           class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" [routerLink]="link.href"
-          routerLinkActive="true">{{link.name}}
+          routerLinkActive="true">{{link.name == "Básicos"? 'Produtos' : link.name}}
           <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
         </a>
 

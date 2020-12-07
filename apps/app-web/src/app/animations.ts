@@ -34,7 +34,8 @@ function slideTo(direction) {
         position: 'absolute',
         // opacity: '.50',
         top: 0,
-        [direction]: 0,
+        // [direction]: 0,
+
         width: '100%'
       })
     ], optional),
@@ -43,10 +44,10 @@ function slideTo(direction) {
     ],optional),
     group([
       query(':leave', [
-        animate('1150ms ease-in-out', style({ [direction]: '100%'}))
+        animate('100ms ease-in', style({ [direction]: '100%'}))
       ], optional),
       query(':enter', [
-        animate('1150ms ease-in-out', style({ [direction]: '0%'}))
+        animate('100ms ease-in', style({ [direction]: '0%'}))
       ],optional)
     ]),
     // Normalize the page style... Might not be necessary
@@ -65,6 +66,22 @@ trigger('slideInOut', [
   ]),
   transition(':leave', [
     animate('200ms ease-in', style({transform: 'translateY(-100%)'}))
+  ])
+])
+
+export const cardFlip =
+trigger('cardFlip', [
+  state('default', style({
+    transform: 'none'
+  })),
+  state('default', style({
+    transform: 'rotateY(180deg)'
+  })),
+  transition('default => flipped', [
+    animate('400ms')
+  ]),
+  transition('flipped => default', [
+    animate('200ms')
   ])
 ])
 

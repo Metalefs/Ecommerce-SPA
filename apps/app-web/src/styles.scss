@@ -252,3 +252,19 @@ p{
 .portfolio_filter {
    padding-left: 0;
 }
+:root {
+  /* Dominio */
+
+  --logo-campanha-size: 30px;
+  --logo-campanha-margin: 10px auto;
+
+  --cor-texto-partido:yellow;
+  --numero-campanha-color: yellow;
+
+  --numero-campanha-size: 30px ;
+  --numero-campanha-margin: 0 0 10px 0;
+
+  --primario-default: #1b79b4;
+  --foreground-default: #08090a;
+  --background-default: #f4faff;
+}

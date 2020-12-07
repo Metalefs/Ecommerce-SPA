@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { NavStateState } from '../../data/store/state';
 import { Link, NavState } from '../../data/models';
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-navbar',
@@ -24,6 +25,8 @@ export class NavbarComponent implements OnInit {
   linksProdutos:NavLink[];
   linksDuvidas:NavLink[];
   linksOutros:NavLink[];
+  usuario:Usuario;
+  Logado:boolean;
   @Input()NavState:SideNavState;
   GrupoNavLink = GrupoNavLink;
   Copyright:string = "Personalizados Lopes"
@@ -53,6 +56,10 @@ export class NavbarComponent implements OnInit {
     this.linksProdutos = this.links.filter(x=>x.group == GrupoNavLink.produtos)
     this.linksDuvidas = this.links.filter(x=>x.group == GrupoNavLink.duvidas)
     this.linksOutros = this.links.filter(x=>x.group == GrupoNavLink.none)
+    this.AuthenticationService.currentUser.subscribe(x=>{
+      this.usuario = x;
+      this.Logado = x != undefined;
+    })
   }
 
 }

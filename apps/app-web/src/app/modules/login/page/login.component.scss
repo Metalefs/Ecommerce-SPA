@@ -1,0 +1,90 @@
+.mat-tab-group {
+  min-height: 40vh;
+  width: 100%;
+  max-height: 86vh;
+  top: 0;
+  padding: 1rem;
+}
+:host ::ng-deep .mat-tab-body-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  margin-top: 0%;
+
+  border-radius: 1rem !important;
+  background: white;
+  transition: height 500ms cubic-bezier(0.35, 0, 0.25, 1);
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  padding-top: 20px;
+}
+
+:host ::ng-deep .mat-tab-body {
+  width: 100%;
+}
+:host ::ng-deep .mat-tab-labels {
+  display: flex;
+  justify-content: center;
+  padding:1rem;
+}
+:host ::ng-deep .mat-tab-label,.mat-ripple .mat-tab-label{
+  min-width: 95px;
+  max-width: 69px;
+  // padding:2rem !important;
+  background: white;
+  font-family: Roboto;
+  line-height: 25px;
+  color:var(--primario-default);
+  text-align: center;
+  transition: .5s all ease-out;
+  opacity: 1;
+}
+:host ::ng-deep .mat-tab-label-active{
+  background: var(--primario-default);
+  box-shadow:  10px 10px 60px #d9d9d9,
+           -10px -10px 60px #ffffff;
+  color:white;
+}
+:host ::ng-deep .mat-tab-label:first-of-type{
+  border-bottom-left-radius:20px;
+  border-top-left-radius:20px;
+}
+:host ::ng-deep .mat-tab-label:last-of-type{
+  border-bottom-right-radius:20px;
+  border-top-right-radius:20px;
+}
+:host ::ng-deep  .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+  visibility: hidden;
+}
+@media only screen and (max-width : 1024px) {
+
+  :host ::ng-deep .mat-tab-label:first-of-type{
+    border-bottom-left-radius:20px;
+    border-top-left-radius:20px;
+  }
+  :host ::ng-deep .mat-tab-label:last-of-type{
+    border-bottom-right-radius:20px;
+    border-top-right-radius:20px;
+  }
+  .mat-tab-group {
+    overflow: visible;
+    max-height: initial;
+    position: relative;
+  }
+  :host ::ng-deep .mat-tab-label-active{
+    box-shadow:  none;
+  }
+  :host ::ng-deep .mat-tab-label:first-of-type{
+    box-shadow: none;
+  }
+  :host ::ng-deep .mat-tab-label:last-of-type{
+    box-shadow: none;
+  }
+}
+
+@media only screen and (min-width : 1024px) {
+:host ::ng-deep .mat-tab-header {
+  margin-top: 0%;
+}
+}
