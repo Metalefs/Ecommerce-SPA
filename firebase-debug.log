@@ -1,0 +1,17 @@
+[debug] [2020-12-07T03:42:32.751Z] ----------------------------------------------------------------------
+[debug] [2020-12-07T03:42:32.752Z] Command:       /usr/bin/node12 /usr/local/bin/firebase deploy
+[debug] [2020-12-07T03:42:32.753Z] CLI Version:   8.16.2
+[debug] [2020-12-07T03:42:32.753Z] Platform:      linux
+[debug] [2020-12-07T03:42:32.753Z] Node Version:  v12.18.4
+[debug] [2020-12-07T03:42:32.765Z] Time:          Mon Dec 07 2020 00:42:32 GMT-0300 (Brasilia Standard Time)
+[debug] [2020-12-07T03:42:32.766Z] ----------------------------------------------------------------------
+[debug] [2020-12-07T03:42:32.766Z] 
+[debug] [2020-12-07T03:42:32.769Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-07T03:42:32.770Z] > authorizing via signed-in user
+[debug] [2020-12-07T03:42:32.770Z] [iam] checking project personalizados-lopes-web-app for permissions ["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-12-07T03:42:32.771Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-12-07T03:42:32.772Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-12-07T03:42:32.958Z] <<< HTTP RESPONSE 200 {"date":"Mon, 07 Dec 2020 03:42:32 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-07T03:42:32.966Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/personalizados-lopes-web-app:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}

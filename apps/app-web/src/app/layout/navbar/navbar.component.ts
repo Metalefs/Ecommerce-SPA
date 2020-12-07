@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { entities } from '@personalizados-lopes/data';
-import { NavLinks } from '../../data/models/navlinks';
+import { GrupoNavLink, NavLink, NavLinks } from '../../data/models/navlinks';
 import { SideNavState } from '../content-layout/page/content-layout.component';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 import { NavStateState } from '../../data/store/state';
 import { Link, NavState } from '../../data/models';
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
-
 
 @Component({
   selector: 'personalizados-lopes-navbar',
@@ -21,8 +20,13 @@ export class NavbarComponent implements OnInit {
   user: entities.Usuario;
   collapsed=true;
   links = NavLinks;
+  linksIntitucional:NavLink[];
+  linksProdutos:NavLink[];
+  linksDuvidas:NavLink[];
+  linksOutros:NavLink[];
   @Input()NavState:SideNavState;
-  Copyright:string = "@ Personalizados Lopes"
+  GrupoNavLink = GrupoNavLink;
+  Copyright:string = "Personalizados Lopes"
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   constructor(private AuthenticationService:AuthenticationService,
     private router: Router,
@@ -45,6 +49,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.linksIntitucional = this.links.filter(x=>x.group == GrupoNavLink.institucional)
+    this.linksProdutos = this.links.filter(x=>x.group == GrupoNavLink.produtos)
+    this.linksDuvidas = this.links.filter(x=>x.group == GrupoNavLink.duvidas)
+    this.linksOutros = this.links.filter(x=>x.group == GrupoNavLink.none)
   }
 
 }

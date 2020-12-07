@@ -1,32 +1,32 @@
 import { environment } from 'apps/app-web/src/environments/environment';
 
+export enum GrupoNavLink{
+  institucional,
+  produtos,
+  duvidas,
+  none
+}
 
-interface Link{
+export interface NavLink{
   name:string;
   href:string;
   icon?:string;
   group?:GrupoNavLink;
 }
 
-enum GrupoNavLink{
-  institucional,
-  produtos,
-  duvidas
-}
-
-export let NavLinks:Link[] =
+export let NavLinks:NavLink[] =
 environment.production ? [
-  {name: "INICIO",    href:"inicio"},
-  {name: "SOBRE",     href:"empresa", group:GrupoNavLink.institucional},
-  {name: "SERVIÇOS",  href:"servicos", group:GrupoNavLink.institucional},
-  {name: "PRODUTOS",  href:"produtos",icon:'shop', group:GrupoNavLink.produtos},
-  {name: "CONTATO",   href:"orcamento",icon:'contacts', group:GrupoNavLink.duvidas},
+  {name: "INICIO",    href:"inicio",    icon:'',group:GrupoNavLink.none},
+  {name: "SOBRE",     href:"empresa",   icon:'',group:GrupoNavLink.institucional},
+  {name: "SERVIÇOS",  href:"servicos",  icon:'',group:GrupoNavLink.institucional},
+  {name: "BASICOS",   href:"produtos",  icon:'store',group:GrupoNavLink.produtos},
+  {name: "CONTATO",   href:"orcamento", icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ] : [
-  {name: "INICIO",    href:"inicio"},
-  {name: "SOBRE",     href:"empresa", group:GrupoNavLink.institucional},
-  {name: "SERVIÇOS",  href:"servicos", group:GrupoNavLink.institucional},
-  {name: "PRODUTOS",  href:"produtos",icon:'shop', group:GrupoNavLink.produtos},
-  {name: "CONTATO",   href:"orcamento",icon:'contacts', group:GrupoNavLink.duvidas},
+  {name: "INICIO",    href:"inicio",   icon:'',group:GrupoNavLink.none},
+  {name: "SOBRE",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
+  {name: "SERVIÇOS",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
+  {name: "BASICOS",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
+  {name: "CONTATO",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ];
 
 

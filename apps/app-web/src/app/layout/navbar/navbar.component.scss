@@ -3,25 +3,25 @@
 // .card {
 //   background-color: #ffffffe8;
 // }
+a span{
+  text-transform: lowercase;
+  font-weight: 100;
+}
 .navigation {
 	margin-top: 100px;
   }
-  li {
-    padding-left: 0em;
-    display: block;
+  .mat-list-text a span {
     line-height: 2em;
     font-family: Roboto;
-    font-size: 21px;
-    // font-weight: 600;
     letter-spacing: 0px;
-    text-transform: uppercase;
+    text-transform: lowercase;
     text-align: center;
     line-height: 2;
     padding-bottom: 1em;
 
-      -webkit-transition: .8s;
-      -moz-transition: .8s;
-      transition: .8s;
+    -webkit-transition: .8s;
+    -moz-transition: .8s;
+    transition: .8s;
   }
   .blue-underline{
     content: "";
@@ -30,21 +30,21 @@
     height: 2px;
     bottom: -3px;
     left: 0;
-    background-color: #072DEF;
+    background-color: $gray-web;
     visibility: hidden;
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
   }
-  li.active-nav a{
+  .mat-list-item a.active-nav{
     -webkit-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
-    color: #072DEF;
+    color: $crayola;
   }
   a {
     position: relative;
-    color: #111;
+    color: $gray-web;
     text-decoration: none;
   }
 
@@ -53,7 +53,7 @@
    @extend .blue-underline
   }
 
-  li:hover a::before {
+  .mat-list-text:hover a::before {
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
@@ -61,7 +61,7 @@
 
 
     a:hover {
-    color: #000;
+      color: #000;
       text-decoration: none;
     }
   @media only screen and (min-width: 768px) {
@@ -72,3 +72,6 @@
 
 
   }
+.mat-subheader{
+  background:#f4f4f4;
+}
