@@ -1,9 +1,9 @@
 <div matRipple (click)="ToggleNav(0)" class="nav-trigger is-hidden-desktop" [ngClass]="NavState.open? 'is-active': ''"
   role="button" title="Menu">
 
-  <mat-icon matRipple>
-    {{NavState.open?'close':"menu_open"}}
-  </mat-icon>
+  <div matRipple class="hamburger">
+    <div class="icon"></div>
+  </div>
 
 </div>
 

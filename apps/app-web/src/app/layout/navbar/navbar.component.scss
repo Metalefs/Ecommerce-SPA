@@ -4,17 +4,17 @@
 //   background-color: #ffffffe8;
 // }
 a span{
-  text-transform: lowercase;
-  font-weight: 100;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: Montserrat;
 }
 .navigation {
-	margin-top: 100px;
+	margin-top: 25px;
   }
   .mat-list-text a span {
     line-height: 2em;
-    font-family: Roboto;
     letter-spacing: 0px;
-    text-transform: lowercase;
+    text-transform: capitalize;
     text-align: center;
     line-height: 2;
     padding-bottom: 1em;
@@ -67,11 +67,23 @@ a span{
   @media only screen and (min-width: 768px) {
 
     #nav-menu .navigation {
-      margin-top: 150px;
+      margin-top: 25px;
     }
 
 
   }
 .mat-subheader{
-  background:#f4f4f4;
+  font-family: Montserrat;
+  font-weight: lighter;
+  color:$gray-web;
+}
+.mat-list-text{
+  padding: 0;
+}
+.mat-icon{
+  width: 50px;
+  margin-right: 20px;
+}
+.mat-icon.inst{
+  background:$gray-web;
 }

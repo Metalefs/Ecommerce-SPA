@@ -19,14 +19,14 @@ environment.production ? [
   {name: "INICIO",    href:"inicio",    icon:'',group:GrupoNavLink.none},
   {name: "SOBRE",     href:"empresa",   icon:'',group:GrupoNavLink.institucional},
   {name: "SERVIÇOS",  href:"servicos",  icon:'',group:GrupoNavLink.institucional},
-  {name: "BASICOS",   href:"produtos",  icon:'store',group:GrupoNavLink.produtos},
+  {name: "BÁSICOS",   href:"produtos",  icon:'store',group:GrupoNavLink.produtos},
   {name: "CONTATO",   href:"orcamento", icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ] : [
   {name: "INICIO",    href:"inicio",   icon:'',group:GrupoNavLink.none},
-  {name: "SOBRE",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
-  {name: "SERVIÇOS",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
-  {name: "BASICOS",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
-  {name: "CONTATO",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
+  {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
+  {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
+  {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ];
 
 

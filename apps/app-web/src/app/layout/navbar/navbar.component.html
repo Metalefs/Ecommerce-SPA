@@ -35,7 +35,7 @@
               [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
               matLine (click)="SetActiveNav(link)" (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href"
               routerLinkActive="Active" pageScroll href="#{{link.name}}">
-              <mat-icon mat-list-icon>{{link.icon || 'check_box_outline_blank'}}</mat-icon>
+              <mat-icon mat-list-icon class="inst">{{link.icon || 'check_box_outline_blank'}}</mat-icon>
               <span>{{link.name}}</span>
             </a>
           </mat-list-item>
