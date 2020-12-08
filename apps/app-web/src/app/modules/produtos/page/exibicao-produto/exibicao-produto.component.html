@@ -85,6 +85,11 @@
                 <mat-icon>shopping_bag</mat-icon>
               </div>
             </button>
+            <div *ngIf="Produto.Status == statusProduto.esgotado" class="box pt-5 w-full">
+              <button mat-raised-button color="accent" class="box">
+                Me avise quando chegar!
+              </button>
+            </div>
           </div>
         </div>
         <div class="ml-3 w-full">
