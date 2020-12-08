@@ -27,6 +27,45 @@
     <input matInput type="number" [(ngModel)]="Produto.QuantidadeMinima"[value]="Produto.QuantidadeMinima">
   </mat-form-field>
 
+  <mat-form-field class="">
+    <mat-label>Preco Promocional</mat-label>
+    <input matInput type="number" [(ngModel)]="Produto.PrecoPromocional"[value]="Produto.PrecoPromocional">
+  </mat-form-field>
+  <mat-checkbox matNativeControl  [(ngModel)]="Produto.Destaque"  [checked]="Produto.Destaque">
+    Destaque
+  </mat-checkbox>
+  <mat-form-field class="w-full">
+    <mat-chip-list #chiptTagList aria-label="Tag selection">
+      <mat-chip
+        *ngFor="let tag of Produto.Tags"
+         [selectable]="selectable"
+         [removable]="removable"
+         (removed)="removeTag(tag)">
+        {{tag}}
+        <mat-icon matChipRemove
+         *ngIf="removable">
+         cancelar
+        </mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Tags"
+        #tagInput
+        [formControl]="tagCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chiptTagList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addTag($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select matNativeControl [(ngModel)]="Produto.Status"  [value]="Produto.Status">
+      <mat-option *ngFor="let opt of statusProduto; let i = index" [value]="i">
+        {{statusProduto}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
   <div class="file has-name pb-3">
     <label class="file-label">

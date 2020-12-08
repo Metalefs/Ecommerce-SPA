@@ -41,10 +41,10 @@
   opacity: 1;
 }
 :host ::ng-deep .mat-tab-label-active{
-  background: var(--primario-default);
+  // background: var(--primario-default);
   box-shadow:  10px 10px 60px #d9d9d9,
            -10px -10px 60px #ffffff;
-  color:white;
+  // color:white;
 }
 :host ::ng-deep .mat-tab-label:first-of-type{
   border-bottom-left-radius:20px;

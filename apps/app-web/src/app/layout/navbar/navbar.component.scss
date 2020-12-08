@@ -40,7 +40,13 @@ a span{
   .mat-list-item a.active-nav{
     -webkit-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
-    color: $crayola;
+    color: $blue1;
+  }
+  .mat-list-item a.active-nav .mat-icon.inst{
+    -webkit-transition: all 0.2s ease-in-out 0s;
+    transition: all 0.2s ease-in-out 0s;
+    color: $blue1;
+    background: $blue1;
   }
   a {
     position: relative;

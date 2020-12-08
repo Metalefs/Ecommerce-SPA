@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
 import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
-import { Cor } from 'libs/data/src/lib/classes/produto';
+import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
@@ -35,13 +35,16 @@ export class EditarProdutoDialogComponent implements OnInit {
   filteredSizes: Observable<string[]>;
   allSizes: string[] = ['P','M','G','GG','XGG'];
 
+  tagCtrl = new FormControl();
   @ViewChild('colorInput') colorInput: ElementRef<HTMLInputElement>;
   @ViewChild('tamanhoInput') tamanhoInput: ElementRef<HTMLInputElement>;
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto1') matAutocompleteCor: MatAutocomplete;
   @ViewChild('auto2') matAutocompleteTamanho: MatAutocomplete;
 
   @Input() Produto:Produto;
   Categorias: entities.Categoria[];
+  statusProduto:string[] = [];
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  entities.Produto,
     private ServicoCategoria: CategoriaService
@@ -92,6 +95,22 @@ export class EditarProdutoDialogComponent implements OnInit {
       input.value = '';
 
     this.sizeCtrl.setValue(null);
+  }
+  addTag(event: MatChipInputEvent): void{
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim())
+      this.Produto.Tags.push(value.trim());
+    if (input)
+      input.value = '';
+
+    this.tagCtrl.setValue(null);
+  }
+  removeTag(tag: string){
+    const index = this.Produto.Tags.indexOf(tag);
+    if (index >= 0) {
+      this.Produto.Tags.splice(index, 1);
+    }
   }
   removeCor(color: Cor): void {
     const index = this.Produto.Cores.indexOf(color);

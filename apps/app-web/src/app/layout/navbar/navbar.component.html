@@ -40,6 +40,7 @@
   <ul class="navigation">
       <!-- Produtos -->
       <mat-list>
+        <mat-divider></mat-divider>
         <div mat-subheader>Produtos</div>
           <mat-list-item
             *ngFor="let link of linksProdutos"
@@ -77,7 +78,6 @@
               <span>{{link.name}}</span>
             </a>
           </mat-list-item>
-          <mat-divider></mat-divider>
       </mat-list>
 
     <li *ngIf="user?.Tipo == 1">
@@ -85,16 +85,16 @@
         <mat-icon>login</mat-icon>
       </button>
     </li>
-    <mat-toolbar class="w-full pt-3 pos-sticky bottom-0">
-      <mat-toolbar-row>
-        <div class="columns">
-          <div class="column"></div>
-          <div class="column"></div>
-          <div class="column has-text-right">
-            <p class="titulo-produto"></p>
-          </div>
-        </div>
-      </mat-toolbar-row>
-    </mat-toolbar>
   </ul>
+  <mat-toolbar class="w-full pt-3 pos-sticky bottom-0">
+    <mat-toolbar-row>
+      <div class="columns">
+        <div class="column"></div>
+        <div class="column"></div>
+        <div class="column has-text-right">
+          <p class="titulo-produto"></p>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>

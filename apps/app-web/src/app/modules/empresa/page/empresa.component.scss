@@ -4,14 +4,13 @@
   padding:2rem;
   min-height: 90vh;
 }
-
 .box {
   border-radius: 0;
   height: 100%;
 }
-  ::ng-deep .mat-card-header-text{
-    margin: 0 !important;
-  }
+::ng-deep .mat-card-header-text{
+  margin: 0 !important;
+}
 section{
   display: block;
   position: relative;

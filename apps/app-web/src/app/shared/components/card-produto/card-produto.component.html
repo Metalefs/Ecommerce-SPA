@@ -9,6 +9,7 @@
    [style.backgroundColor]="Produto.Categoria.Cor"
    >
   <a
+  matRipple
     (mouseout)="imgProduto.src = Produto.Imagem[0]"
     (mouseover)="imgProduto.src = Produto.Imagem[1] ? Produto.Imagem[1] : Produto.Imagem[0]"
     [href]="['/produtos/'+ Produto._id]"
@@ -34,7 +35,7 @@
             mat-stroked-button
            (click)="AdicionarAoOrcamento(Produto)"
            color="primary"
-           class="has-background-light w-full px-2">
+           class="has-background-light w-full px-2 has-text-grey">
             <mat-icon>add_shopping_cart</mat-icon>Adicionar
           </button>
         </mat-card-subtitle>

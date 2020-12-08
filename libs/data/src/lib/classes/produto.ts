@@ -18,6 +18,10 @@ export class Produto extends MongoDocument implements entidadeBase{
     QuantidadeMinima?:number = 10;
     Cores?:Cor[];
     Tamanhos?:string[];
+    Status?:StatusProduto;
+    PrecoPromocional?:number;
+    Destaque?:boolean;
+    Tags?:string[];
     static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,
@@ -32,7 +36,11 @@ export class Produto extends MongoDocument implements entidadeBase{
     Cor?:Cor,
     Likes?:number,
     Cores?:Cor[],
-    Tamanhos?:string[]
+    Tamanhos?:string[],
+    Status?:StatusProduto,
+    PrecoPromocional?:number,
+    Destaque?:boolean,
+    Tags?:string[],
     ){
         super();
         this.Nome = Nome;
@@ -48,6 +56,10 @@ export class Produto extends MongoDocument implements entidadeBase{
         this.Likes = Likes;
         this.Cores = Cores;
         this.Tamanhos = Tamanhos;
+        this.Status = Status;
+        this.PrecoPromocional = PrecoPromocional;
+        this.Destaque = Destaque;
+        this.Tags = Tags;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;
@@ -62,4 +74,9 @@ export class Produto extends MongoDocument implements entidadeBase{
 export interface Cor{
   nome:string;
   cor:string;
+}
+export enum StatusProduto{
+  novo,
+  promocao,
+  esgotado,
 }

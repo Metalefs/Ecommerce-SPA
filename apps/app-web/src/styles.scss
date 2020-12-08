@@ -1,4 +1,5 @@
 @import './_variables.scss';
+@import './theme/cores.scss';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import '~ngx-sharebuttons/themes/default/default-theme';
 @import '~ngx-sharebuttons/themes/modern/modern-light-theme';
@@ -9,6 +10,7 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: soleil, sans-serif;
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 300;
 }
@@ -102,8 +104,10 @@ p{
   caret-color: initial;
 }
 .mat-form-field.mat-form-field-invalid .mat-form-field-label{
-
   color:$crayola;
+}
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
+  font-family: Open Sans;
 }
 .no-padding .mat-dialog-container{
   padding: 0 !important;
@@ -140,7 +144,7 @@ p{
 .card-text{
   font-family: Roboto;
   font-style: normal;
-  font-weight: normal;
+  font-weight: lighter;
   line-height: 122.19%;
   /* or 27px */
 
@@ -168,9 +172,9 @@ p{
   color: rgb(105, 109, 140);
 }
 .titulo{
-  font-family: Roboto;
+  font-family: Open Sans !important;
   font-style: normal;
-  font-weight: bolder;
+  font-weight: bold;
   font-size: large;
   line-height: 47px;
   display: flex;
@@ -180,9 +184,9 @@ p{
 }
 
 .header{
-  font-family: Roboto;
+  // font-family: Open Sans !important;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1em;
   line-height: 47px;
   display: flex;
@@ -192,7 +196,7 @@ p{
   color: $red2;
 }
 .header-card{
-  font-family: Roboto;
+  // font-family: Open Sans;
   font-style: normal;
   font-size: 1em;
   line-height: 27px;
