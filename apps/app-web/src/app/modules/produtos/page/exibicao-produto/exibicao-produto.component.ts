@@ -13,6 +13,7 @@ import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-galle
 import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -23,8 +24,10 @@ export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
   textoAdicionar:string = 'Adicionar';
   textoAtualizar:string = 'Atualizar';
+  textoEsgotado:string = 'Esgotado';
   Url:string;
   Produto:Produto;
+  statusProduto=StatusProduto;
   Liked:boolean = false;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
@@ -69,11 +72,12 @@ export class ExibicaoProdutoComponent implements OnInit {
     if(this.Produto.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
     this.Url = `https://${window.location.href}`;
+    if(this.Produto.Status == StatusProduto.esgotado)
+      this.textoAdicionar = this.textoEsgotado;
   }
 
   AdicionarAoOrcamento(){
     this.Orcamento$.subscribe(x=>{
-
       let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
 
       if(ProdutosOrcamento.length == 0){
@@ -81,10 +85,8 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;
         // this.navegarParaCheckout();
-
       }
       else{
-
         this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
 
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
@@ -105,19 +107,12 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
-
       let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
-
       if(ProdutosOrcamento.length == 0){
-
-
       }
       else{
-
-        this.textoAdicionar = this.textoAtualizar;
-
+      this.textoAdicionar = this.textoAtualizar;
       }
-
     });
   }
 

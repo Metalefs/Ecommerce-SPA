@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'personalizados-lopes-loading-cube',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingCubeComponent implements OnInit {
 
+  @Input() Mensagem;
   constructor() { }
 
   ngOnInit(): void {

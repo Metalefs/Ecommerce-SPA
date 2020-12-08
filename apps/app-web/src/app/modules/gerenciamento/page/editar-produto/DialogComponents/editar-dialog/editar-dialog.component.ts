@@ -58,6 +58,10 @@ export class EditarProdutoDialogComponent implements OnInit {
 
   ngOnInit() {
     this.CarregarCategorias();
+    for (var enumMember in StatusProduto){
+      if(isNaN(parseInt(StatusProduto[enumMember])))
+      this.statusProduto.push(StatusProduto[enumMember])
+    }
   }
 
   upload($event){

@@ -28,7 +28,7 @@ export class AppComponent {
   AppDeploymentState = AppDeploymentState;
   DeployState: AppDeploymentState = AppDeploymentState.Deployed;
   loading:boolean=true;
-
+  carregandoOque:string='';
   @ViewChild('cookieLaw')
   private cookieLawEl: any;
 
@@ -49,20 +49,22 @@ export class AppComponent {
   }
 
   LerServicosAPI(){
-    this.store.dispatch(new LerCarousel()          ).subscribe();
-    this.store.dispatch(new LerOrcamento()         ).subscribe();
-    this.store.dispatch(new LerItemCarousel()      ).subscribe();
-    this.store.dispatch(new LerInformacoesContato()).subscribe();
+    this.store.dispatch(new LerCarousel()          ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
+    this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = 'Orçando');
+    this.store.dispatch(new LerItemCarousel()      ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
+    this.store.dispatch(new LerInformacoesContato()).subscribe(x=>this.carregandoOque = 'Obtendo contato');
     this.store.dispatch(new LerCliente()           ).subscribe(
       x=>{
-        this.loading = false
+        this.loading = false;
+        this.carregandoOque = 'Clientes carregados'
       }
     );
-    this.store.dispatch(new LerSobre()             ).subscribe();
+    this.store.dispatch(new LerSobre()             ).subscribe(x=>this.carregandoOque = 'Lembrando quem somos');
     this.store.dispatch(new LerServico()           ).subscribe();
     this.store.dispatch(new LerCategoria()         ).subscribe();
     this.store.dispatch(new LerProduto()           ).subscribe(x=>{
       this.store.dispatch(new AdicionarListaProdutosFiltroProduto(x.Produtos.Produtos))
+      this.carregandoOque = "Produtos listados"
     });
     this.store.dispatch(new LerMensagem()          ).subscribe();
   }

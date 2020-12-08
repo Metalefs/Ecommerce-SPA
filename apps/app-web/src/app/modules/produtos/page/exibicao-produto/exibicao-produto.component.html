@@ -78,7 +78,7 @@
             <div class="preco hoverable pb-4">
               <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span>  a unidade</span>
             </div>
-            <button mat-raised-button (click)="AdicionarAoOrcamento()"
+            <button mat-raised-button [disabled]="Produto.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
               class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
                 {{textoAdicionar}}

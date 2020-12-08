@@ -2,7 +2,7 @@
   <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
   <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction>
 </ng-container>
-<personalizados-lopes-loading-cube *ngIf="loading"></personalizados-lopes-loading-cube>
+<personalizados-lopes-loading-cube *ngIf="loading" [Mensagem]="carregandoOque"></personalizados-lopes-loading-cube>
 
 <cookie-law #cookieLaw position="bottom" name="ng4topCookieLaw" expiration="1" class="shadow pt-0">
   Para melhorar a sua experiência neste site, analisamos seus hábitos

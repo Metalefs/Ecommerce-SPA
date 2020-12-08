@@ -23,6 +23,7 @@ img{
   align-items: center;
   // background: rgba(49, 47, 79,.25);
   // background: rgb(255, 255, 255);
+  border: 1px solid #e7e7e7;
   padding: 0 !important;
   margin: 0 !important;
   &:hover{
@@ -54,6 +55,13 @@ img{
   font-weight: bold;
   color: black;
   font-size: large;
+  &.linethr{
+    font-size: small;
+    font-weight: 400;
+  }
+  &.promocao{
+    color:red;
+  }
 }
 ::ng-deep .mat-card-header-text{
   width: 100%;

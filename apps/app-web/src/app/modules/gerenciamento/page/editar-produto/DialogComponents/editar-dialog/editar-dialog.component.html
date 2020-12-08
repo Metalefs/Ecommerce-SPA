@@ -62,7 +62,7 @@
     <mat-label>Status</mat-label>
     <mat-select matNativeControl [(ngModel)]="Produto.Status"  [value]="Produto.Status">
       <mat-option *ngFor="let opt of statusProduto; let i = index" [value]="i">
-        {{statusProduto}}
+        {{opt}}
       </mat-option>
     </mat-select>
   </mat-form-field>

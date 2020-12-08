@@ -26,6 +26,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatStepperModule} from '@angular/material/stepper';
+import { MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [],
@@ -55,7 +56,8 @@ import { MatStepperModule} from '@angular/material/stepper';
     MatExpansionModule,
     MatProgressBarModule,
     MatAutocompleteModule,
-    MatStepperModule
+    MatStepperModule,
+    MatBadgeModule
   ]
 })
 export class MaterialModule {}

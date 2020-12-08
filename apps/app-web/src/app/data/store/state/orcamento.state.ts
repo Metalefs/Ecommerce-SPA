@@ -10,6 +10,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { ThrowStmt } from '@angular/compiler';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 
 export class OrcamentoStateModel{
   Orcamentos: entities.Orcamento;
@@ -70,6 +71,8 @@ export class OrcamentoState {
   @Action(AdicionarProdutoAoOrcamento)
   AdicionarProdutoAoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : AdicionarProdutoAoOrcamento){
     const state = getState();
+    if(payload.Status == StatusProduto.esgotado)
+    return;
     try{
       let total = state.Orcamentos.Produto
         .filter(item => item._id == payload._id)

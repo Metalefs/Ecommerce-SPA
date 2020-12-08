@@ -2458,7 +2458,9 @@ button{
 .txt-middle {vertical-align: middle;}
 .txt-indent-20 {text-indent: 20px;}
 
-
+.linethr{
+  text-decoration:line-through ;
+}
 /*//////////////////////////////////////////////////////////////////
 [ SIZE ]*/
 
@@ -2733,6 +2735,9 @@ button{
 .sticky-nav {position: sticky; top:0; z-index: 10;}
 .bellow-nav{
   top:90px;
+  z-index: 10;
+}
+.z-index-top{
   z-index: 10;
 }
 /*------------------------------------------------------------------

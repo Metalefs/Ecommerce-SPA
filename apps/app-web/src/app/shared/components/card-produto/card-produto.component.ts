@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
@@ -21,7 +22,7 @@ export class CardProdutoComponent implements OnInit {
   constructor(private store: Store,private dialog:MatDialog) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
-
+  statusProduto=StatusProduto;
   ngOnInit(): void {
   }
 

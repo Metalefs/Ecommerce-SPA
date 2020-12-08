@@ -4,8 +4,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { fade } from 'apps/app-web/src/app/animations';
+import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
-import { Orcamento } from 'libs/data/src/lib/classes';
+import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -36,12 +37,15 @@ export class DadosComponent implements OnInit {
   phoneFormControl = new FormControl('', [
     Validators.required,
   ]);
-
-  constructor(private router:Router) { }
+  usuario:Usuario;
+  constructor(private router:Router, private authService:AuthenticationService) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
+    })
+    this.authService.currentUser.subscribe(x=>{
+      this.usuario = x;
     })
   }
 
