@@ -50,7 +50,7 @@ export class AppComponent {
 
   LerServicosAPI(){
     this.store.dispatch(new LerCarousel()          ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
-    this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = 'Orçando');
+    this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = 'Obtendo preços baixos');
     this.store.dispatch(new LerItemCarousel()      ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
     this.store.dispatch(new LerInformacoesContato()).subscribe(x=>this.carregandoOque = 'Obtendo contato');
     this.store.dispatch(new LerCliente()           ).subscribe(

@@ -1,0 +1,304 @@
+@import '../../../../../_variables.scss';
+
+  /*//////////////////////////////////////////////////////////////////
+  [ RS PLUGIN ]*/
+  /*---------------------------------------------*/
+  .container {max-width: 1200px;}
+
+  ::ng-deep .mat-card-header-text{
+    margin: 0 !important;
+  }
+  .has-background-xxx{
+    background:rgba(255, 255, 255, 0.514);
+  }
+  .has-background-xx{
+    background:rgba(255, 255, 255, 0.114);
+  }
+  /*//////////////////////////////////////////////////////////////////
+  [ Form ]*/
+
+  /*---------------------------------------------*/
+  .wrap-input100 {
+    position: relative;
+    max-width: 100% !important;
+    width: 490px;
+    z-index: 1;
+  }
+
+  .input100 {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+    background: rgba(255, 255, 255, 0.726);
+    height: 50px;
+    padding: 0 25px;
+  }
+
+  .focus-input100 {
+    content: '';
+    box-shadow:  20px 20px 60px #5047cf,
+             -20px -20px 60px #6c5fff;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 0px 0px 0px;
+    color: rgba(87,184,70, 0.6);
+  }
+
+  .input100:focus + .focus-input100 {
+    -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+    animation: anim-shadow 0.5s ease-in-out forwards;
+  }
+
+  @-webkit-keyframes anim-shadow {
+    to {
+      box-shadow: 0px 0px 80px 30px;
+      opacity: 0;
+    }
+  }
+
+  @keyframes anim-shadow {
+    to {
+      box-shadow: 0px 0px 80px 30px;
+      opacity: 0;
+    }
+  }
+
+  /*==================================================================
+      TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+  ==================================================================*/
+
+  /*==================================================================
+  [ Color ]*/
+
+
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ S-Text 0 - 15 ]*/
+
+  .s1-txt1 {
+    font-family: Poppins-Regular;
+    font-size: 12px;
+    color: #e5e5e5;
+    line-height: 1.333333;
+  }
+
+  .s1-txt2 {
+    font-family: Poppins-Regular;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+  }
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ M-Text 16 - 25 ]*/
+  .m1-txt1 {
+    font-family: Montserrat;
+    font-size: 16px;
+    color: black;
+    line-height: 1.333333;
+  }
+
+  .m1-txt2 {
+    font-family: Montserrat;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.333333;
+  }
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ L-Text >= 26 ]*/
+  .l1-txt1 {
+    font-family: Montserrat;
+    font-size: xx-large;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.932);
+    line-height: 1.333333;
+  }
+
+  .l1-txt2 {
+    font-family: Montserrat;
+    font-size: 26px;
+
+    color: #ffee00;
+    line-height: 1.333333;
+  }
+
+  .l1-txt3 {
+    font-family: Montserrat;
+    font-size: 40px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  /*==================================================================
+     SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
+  ==================================================================*/
+  /*//////////////////////////////////////////////////////////////////
+  [ Size ]*/
+  .size1 {
+    width: 100%;
+    // min-height: 100vh;
+  }
+
+  .size2 {
+    width: 155px;
+    height: 155px;
+  }
+
+  .size3 {
+    min-width: 170px;
+    height: 50px;
+  }
+
+  .size4 {
+    width: 36px;
+    height: 36px;
+  }
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Width ]*/
+  .wsize1 {
+    max-width: 700px;
+  }
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Background ]*/
+  .bg0 {background-color: #fff;}
+
+  .bg-img1 {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Border ]*/
+  .bor1 {
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+  }
+
+
+  /*==================================================================
+     WHERE WHERE WHERE WHERE WHERE WHERE WHERE WHERE WHERE WHERE WHERE
+  ==================================================================*/
+  .where1 {
+    margin: 0 5px 20px 5px;
+  }
+
+
+
+
+  /*---------------------------------------------*/
+  .overlay1 {
+    position: relative;
+    z-index: 1;
+  }
+  .overlay1::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    // background: #7579ff;
+    opacity: .49;
+  }
+
+  /*---------------------------------------------*/
+  .how-btn1 {
+    background-color: $red;
+    padding-right: 20px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .how-btn1::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #7579ff;
+    background: -webkit-linear-gradient(to top, #b224ef, #7579ff);
+    background: -o-linear-gradient(to top, #b224ef, #7579ff);
+    background: -moz-linear-gradient(to top, #b224ef, #7579ff);
+    background: linear-gradient(to top, #b224ef, #7579ff);
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    opacity: 0;
+  }
+
+  .how-btn1:hover {
+    background-color: transparent;
+  }
+
+  .how-btn1:hover:before {
+    opacity: 1;
+  }
+
+  /*---------------------------------------------*/
+  .wrappic1 {
+    display: block;
+    flex-grow: 1;
+  }
+
+  .wrappic1 img {
+    max-width: 100%;
+  }
+
+  /*---------------------------------------------*/
+  .how-social {
+    color: #999999;
+    font-size: 18px;
+
+    background-color: #fff;
+    border-radius: 50%;
+  }
+
+  .how-social:hover {
+    background-color: $crayola;
+    color: #fff;
+  }
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Pseudo ]*/
+
+  /*------------------------------------------------------------------
+  [ Focus ]*/
+  .focus-in0:focus::-webkit-input-placeholder { color:transparent; }
+  .focus-in0:focus:-moz-placeholder { color:transparent; }
+  .focus-in0:focus::-moz-placeholder { color:transparent; }
+  .focus-in0:focus:-ms-input-placeholder { color:transparent; }
+
+
+  /*------------------------------------------------------------------
+  [ Hover ]*/
+  .hov-cl0:hover {color: #fff;}
+  .hov-bg0:hover {background-color: #fff;}
+
+  /*---------------------------------------------*/
+

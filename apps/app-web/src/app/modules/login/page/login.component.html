@@ -6,7 +6,7 @@
       <span>Digite os dados para criar sua conta ou para entrar caso já tenha uma.</span>
       <mat-tab-group animationDuration="0ms" #tabs [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
         <mat-tab label="Cadastre-se">
-          <mat-vertical-stepper [linear]="true" #stepper>
+          <mat-horizontal-stepper [linear]="false" #stepper>
             <mat-step [stepControl]="">
                 <ng-template matStepLabel>Insira o seu nome completo</ng-template>
                 <mat-form-field>
@@ -16,14 +16,15 @@
                     [(ngModel)]="Cadastro_Form.Nome" required>
                 </mat-form-field>
                 <div>
-                  <button mat-raised-button matStepperNext>Próximo</button>
+                  <button mat-raised-button matStepperNext [disabled]="Cadastro_Form.Nome == ''">Próximo</button>
                 </div>
             </mat-step>
             <mat-step [stepControl]="">
-                <ng-template matStepLabel>Insira credenciais</ng-template>
+                <ng-template matStepLabel>Insira credenciais de acesso</ng-template>
                 <mat-form-field>
                   <mat-label>Email</mat-label>
                   <input matInput
+                    #email
                     [(ngModel)]="Cadastro_Form.Email"
                     type="email"
                     placeholder="e-mail@dominio.com"
@@ -35,11 +36,11 @@
                     [(ngModel)]="Cadastro_Form.Senha"
                     type="password"
                     placeholder="********"
-                         required>
+                    required>
                 </mat-form-field>
                 <div>
                   <button mat-raised-button matStepperPrevious>Voltar</button>
-                  <button mat-raised-button matStepperNext>Próximo</button>
+                  <button mat-raised-button matStepperNext [disabled]="!email.isValid && Cadastro_Form.Senha == ''">Próximo</button>
                 </div>
             </mat-step>
             <mat-step>
@@ -50,7 +51,7 @@
                 <button mat-raised-button (click)="Cadastro()">Finalizar</button>
               </div>
             </mat-step>
-          </mat-vertical-stepper>
+          </mat-horizontal-stepper>
         </mat-tab>
         <mat-tab label="Entrar">
           <personalizados-lopes-login-form></personalizados-lopes-login-form>

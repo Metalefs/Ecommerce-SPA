@@ -24,9 +24,11 @@ import { CountUpModule } from 'ngx-countup';
 import { LoadingCubeComponent } from './components/loading-cube/loading-cube.component';
 import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/checkout-display.component';
+import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgotado.component';
+import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -64,7 +66,8 @@ import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/
     CountUpModule,
     LoadingCubeComponent,
     NgxMaskModule,
-    CloseBtnComponent
+    CloseBtnComponent,
+    BotaoEsgotadoComponent
   ]
 })
 export class SharedModule { }

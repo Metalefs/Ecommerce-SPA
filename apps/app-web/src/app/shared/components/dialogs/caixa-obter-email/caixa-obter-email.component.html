@@ -1,0 +1,29 @@
+<div class="bg-img1 size1 overlay1"
+  style="background-image: url('{{data.Imagem[0]}}');">
+  <div class="p-l-15 p-r-15 p-t-50 p-b-50 has-background-xx">
+
+    <div data-aos="zoom-in" class="wsize1 m-lr-auto">
+
+      <p class="txt-center l1-txt1 p-b-20 box has-background-xxx has-text-dark">
+        Insira um email para ser avisado do reestoque de {{data.Nome}}.
+      </p>
+      <mat-divider></mat-divider>
+
+      <div class="w-full flex-w flex-c-m validate-form">
+        <div class="wrap-input100 validate-input m-b-20 w-full" data-validate="Valid email is required: ex@abc.xyz">
+          <input [(ngModel)]="Email" class="input100 placeholder0 m1-txt1 w-full" type="text" name="email"
+            placeholder="Seu e-email">
+          <span class="focus-input100"></span>
+        </div>
+
+        <button (click)="EnviarEmail()" class="flex-c-m size3 m1-txt2 how-btn1 trans-04 m-b-20">
+          Inscrever-se
+        </button>
+      </div>
+
+      <p class="txt-center s1-txt1 p-t-5">
+        Não se preocupe, nós também não gostamos de spam! Você pode cancelar a qualquer momento.
+      </p>
+    </div>
+  </div>
+</div>

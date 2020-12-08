@@ -78,7 +78,7 @@
             <div class="preco hoverable pb-4">
               <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span>  a unidade</span>
             </div>
-            <button mat-raised-button [disabled]="Produto.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+            <button *ngIf="Produto.Status != statusProduto.esgotado" mat-raised-button [disabled]="Produto.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
               class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
                 {{textoAdicionar}}
@@ -86,9 +86,7 @@
               </div>
             </button>
             <div *ngIf="Produto.Status == statusProduto.esgotado" class="box pt-5 w-full">
-              <button mat-raised-button color="accent" class="box">
-                Me avise quando chegar!
-              </button>
+              <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
             </div>
           </div>
         </div>

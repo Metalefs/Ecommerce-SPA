@@ -82,7 +82,7 @@ export class EditarEmailsComponent implements OnInit {
       if(EmailNotificacao != undefined)
       this.service.Incluir(EmailNotificacao).subscribe(x=> {
         this.AtualizarTabela();
-        this._snackBar.open("EmailNotificacao"+EmailNotificacao.Email+" configurado com sucesso", "Fechar", {
+        this._snackBar.open("EmailNotificacao "+EmailNotificacao.Email+" configurado com sucesso", "Fechar", {
 
         });
       });
@@ -125,7 +125,7 @@ export class EditarEmailsComponent implements OnInit {
       EmailNotificacao._id = id;
       this.service.Editar(EmailNotificacao).subscribe(x=> {
         this.AtualizarTabela();
-        this._snackBar.open("EmailNotificacao"+ EmailNotificacao.Email +" alterado com sucesso", "Fechar", {
+        this._snackBar.open("EmailNotificacao "+ EmailNotificacao.Email +" alterado com sucesso", "Fechar", {
 
         });
       });
@@ -135,7 +135,7 @@ export class EditarEmailsComponent implements OnInit {
   Remover(EmailNotificacao:entities.EmailNotificacao){
     this.service.Remover(EmailNotificacao._id).subscribe(x=>{
       this.AtualizarTabela();
-      this._snackBar.open("EmailNotificacao"+ EmailNotificacao.Email +" removido com sucesso", "Fechar", {
+      this._snackBar.open("EmailNotificacao "+ EmailNotificacao.Email +" removido com sucesso", "Fechar", {
 
       });
     });
