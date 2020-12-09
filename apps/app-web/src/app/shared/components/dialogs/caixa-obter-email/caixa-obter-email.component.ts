@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { entities } from '@personalizados-lopes/data';
@@ -11,7 +11,7 @@ import { EmailNotificacao, Produto, Sobre } from 'libs/data/src/lib/classes';
   styleUrls: ['./caixa-obter-email.component.scss']
 })
 export class CaixaObterEmailComponent implements OnInit {
-
+  @ViewChild("EmailC") emailC;
   Email:string = "";
   constructor(
     private EmailNotificacaoService:EmailNotificacaoService,
@@ -23,12 +23,13 @@ export class CaixaObterEmailComponent implements OnInit {
   NomeSite = "Personalizados Lopes";
   Sobre:Sobre;
   EnviarEmail(){
-    if(this.Email != ""){
+    if(this.Email != "" && this.emailC.nativeElement.validity.valid){
       let emailnotificacao = new EmailNotificacao(this.Email, this.data.Nome, this.data);
       this.EmailNotificacaoService.Incluir(emailnotificacao).subscribe(x=> {
-        this._snackBar.open("Você será avisado por e-mail quando o produto voltar ao estoque", "Fechar", {
+        let snack = this._snackBar.open("Você será avisado por e-mail quando o produto voltar ao estoque", "Fechar", {
 
         });
+        snack.afterDismissed().subscribe(()=>this.dialogRef.close())
       });
     }
   }

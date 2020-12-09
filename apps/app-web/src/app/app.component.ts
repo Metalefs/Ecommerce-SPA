@@ -72,6 +72,9 @@ export class AppComponent {
   ngOnInit(){
     AOS.init();
     this.LerServicosAPI();
+    setTimeout(()=>{
+      this.carregandoOque += " ...Está demorando mais do que o esperado";
+    },3000)
   }
 
   dismissCookieLaw(){

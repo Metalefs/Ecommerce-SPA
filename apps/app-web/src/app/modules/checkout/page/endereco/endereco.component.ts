@@ -104,7 +104,10 @@ export class EnderecoComponent implements OnInit {
       this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
         setTimeout(()=>{
           this.Finalizado = true;
-          this.snack.open("Orçamento enviado! Responderemos em até 48 horas", "Fechar");
+          this.snack.open("Orçamento enviado! Responderemos em até 48 horas", "Fechar", {
+            verticalPosition:'top',
+            horizontalPosition:'left'
+          });
 
           (function smoothscroll() {
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;

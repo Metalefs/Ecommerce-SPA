@@ -41,7 +41,7 @@
         <mat-form-field class="w-full" appearance="">
           <mat-label>Selecione a cor</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
-            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt.nome"
+            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt"
             class="w-full">
               <div
                 class="cor-produto card box w-full"

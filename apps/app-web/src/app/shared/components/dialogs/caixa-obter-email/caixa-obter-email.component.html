@@ -11,7 +11,7 @@
 
       <div class="w-full flex-w flex-c-m validate-form">
         <div class="wrap-input100 validate-input m-b-20 w-full" data-validate="Valid email is required: ex@abc.xyz">
-          <input [(ngModel)]="Email" class="input100 placeholder0 m1-txt1 w-full" type="text" name="email"
+          <input #EmailC [(ngModel)]="Email" class="input100 placeholder0 m1-txt1 w-full" type="email" name="email"
             placeholder="Seu e-email">
           <span class="focus-input100"></span>
         </div>
