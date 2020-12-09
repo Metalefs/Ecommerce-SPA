@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
 import { fade } from 'apps/app-web/src/app/animations';
@@ -20,6 +20,7 @@ export class ConfirmacaoComponent implements OnInit {
   ProdutoTable:MaterialTable;
   ErroCadastro:boolean = false;
   Total:number = 0;
+  @Input() edit = true;
   constructor(private store:Store,private snack: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -61,6 +62,7 @@ export class ConfirmacaoComponent implements OnInit {
   VerificarQuantidade($event,element){
     if($event.target.value < element.QuantidadeMinima)
       element.Quantidade = element.QuantidadeMinima;
+    this.EditarOrcamento(element)
   }
 
   removerProduto(Produto:Produto){

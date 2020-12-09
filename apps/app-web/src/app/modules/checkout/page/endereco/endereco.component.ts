@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { fade } from 'apps/app-web/src/app/animations';
+import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { Estado } from 'apps/app-web/src/app/data/models';
 import { AdicionarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
@@ -17,14 +17,14 @@ import {CEPService,EstadoService} from '../../../../data/service';
   selector: 'personalizados-lopes-endereco',
   templateUrl: './endereco.component.html',
   styleUrls: ['./endereco.component.scss'],
-  animations:[fade]
+  animations:[cardFlip]
 })
 export class EnderecoComponent implements OnInit {
 
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Orcamento: Orcamento;
   registerForm: FormGroup;
-
+  state='flipped';
   cepFormControl = new FormControl('', [
     Validators.required
   ]);
@@ -69,6 +69,21 @@ export class EnderecoComponent implements OnInit {
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;
     })
+    setTimeout(()=>{
+      this.flip()
+    },0)
+  }
+
+  ngOnDestroy(){
+    this.flip()
+  }
+
+  flip(){
+    if (this.state === "default") {
+      this.state = "flipped";
+    } else {
+      this.state = "default";
+    }
   }
 
   CarregarDetalhesCEP(){

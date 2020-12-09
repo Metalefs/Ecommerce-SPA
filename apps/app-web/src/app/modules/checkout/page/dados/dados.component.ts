@@ -1,9 +1,9 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { fade } from 'apps/app-web/src/app/animations';
+import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
@@ -13,10 +13,10 @@ import { Observable } from 'rxjs';
   selector: 'personalizados-lopes-dados',
   templateUrl: './dados.component.html',
   styleUrls: ['./dados.component.scss'],
-  animations:[fade]
+  animations:[cardFlip,fade]
 })
-export class DadosComponent implements OnInit {
-
+export class DadosComponent implements OnInit, OnDestroy {
+  state = "flipped"
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Orcamento: Orcamento;
   ErroCadastro:boolean= false;
@@ -47,6 +47,21 @@ export class DadosComponent implements OnInit {
     this.authService.currentUser.subscribe(x=>{
       this.usuario = x;
     })
+    setTimeout(()=>{
+      this.flip()
+    },0)
+  }
+
+  ngOnDestroy(){
+    this.flip()
+  }
+
+  flip(){
+    if (this.state === "default") {
+      this.state = "flipped";
+    } else {
+      this.state = "default";
+    }
   }
 
   SubmeterDadosPessoais(){

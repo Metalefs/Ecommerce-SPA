@@ -1,11 +1,12 @@
-<section @fadeIn class="section py-0">
+<section  [@cardFlip]="state" class="section py-0">
 
+  <personalizados-lopes-confirmacao  [edit]="false"></personalizados-lopes-confirmacao>
 
   <div class="dis-flex flex-m has-text-left py-4">
     <a
       pageScroll
       href="#TOPO"
-      routerLink="/checkout"
+      [routerLink]="['/checkout']"
       class="preco dis-flex flex-m ">
       <mat-icon class="">keyboard_arrow_left</mat-icon>
       voltar
@@ -13,14 +14,14 @@
   </div>
 
 
-  <div class=" w-full">
+  <div class="section w-full">
     <div class="has-text-left  w-full">
       <h2 class="subtitle">Insira seus dados pessoais</h2>
       <p>Comprando {{(Orcamento$|async).Produto?.length}} item(s) no valor de {{(Orcamento$|async).Preco}} reais</p>
-      <span class="subtitle">Verifique os campos obrigatórios.</span>
     </div>
 
     <div class="pt-3">
+      <span class="subtitle">Verifique os campos obrigatórios.</span>
       <form (ngSubmit)="SubmeterDadosPessoais()">
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
@@ -104,7 +105,7 @@
           </mat-form-field>
         </ng-template>
 
-        <div class="notification is-danger" *ngIf="ErroCadastro">
+        <div @fadeIn class="notification is-danger" *ngIf="ErroCadastro">
           <button class="delete" (click)="ErroCadastro = false"></button>
           Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
         </div>

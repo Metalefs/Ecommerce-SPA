@@ -50,6 +50,12 @@ export class EditarProdutoDialogComponent implements OnInit {
     private ServicoCategoria: CategoriaService
   ) {
     this.Produto = data;
+    if(!this.Produto.Cores){
+      this.Produto.Cores = [{cor:'',nome:''}]
+    }
+    if(!this.Produto.Tamanhos){
+      this.Produto.Tamanhos = []
+    }
   }
 
   CarregarCategorias(){

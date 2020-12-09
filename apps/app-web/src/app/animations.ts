@@ -74,7 +74,7 @@ trigger('cardFlip', [
   state('default', style({
     transform: 'none'
   })),
-  state('default', style({
+  state('flipped', style({
     transform: 'rotateY(180deg)'
   })),
   transition('default => flipped', [

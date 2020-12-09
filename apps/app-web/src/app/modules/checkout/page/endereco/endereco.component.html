@@ -1,4 +1,4 @@
-<section @fadeIn class="section py-0">
+<section [@cardFlip]="state" class="section py-0">
 
 
   <ng-container *ngIf="!Finalizado then Endereco else Sucesso"></ng-container>
@@ -27,16 +27,15 @@
       </a>
     </div>
   </ng-template>
-  <div *ngIf="Loading" class="w-full">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
+
   <ng-template #Endereco>
+    <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao>
 
     <div class=" has-text-left py-4">
       <a
         pageScroll
         href="#TOPO"
-        onclick="window.history.back()"
+        [routerLink]="['/checkout/dados']"
         class="preco dis-flex flex-m ">
         <mat-icon class="">keyboard_arrow_left</mat-icon>
         voltar
@@ -44,7 +43,7 @@
     </div>
 
 
-    <div class="af cs i2 i3 i4 w-full  w-full">
+    <div class="af cs i2 i3 i4 w-full  w-full section">
       <div class="has-text-left  w-full">
         <h2 class="subtitle">Insira seus dados pessoais</h2>
         <span class="subtitle">Iremos preencher o máximo de informações através do CEP.</span>
@@ -177,6 +176,9 @@
 
           <button
             class="button is-success w-full">Finalizar</button>
+            <div *ngIf="Loading" class="w-full">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
         </form>
       </div>
     </div>
