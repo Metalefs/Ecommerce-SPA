@@ -41,7 +41,7 @@ p{
 }
 .logo{
   width: 100px;
-  margin-left: 10px;
+  margin-left: 40px;
 }
 .button.is-success{
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
@@ -114,6 +114,10 @@ p{
 }
 .no-padding .mat-dialog-container{
   padding: 0 !important;
+}
+.mat-toolbar.mat-primary {
+  background: $feedback-darkest;
+  color: #fff;
 }
 .background-primary-warmer{
   background: $crayola;

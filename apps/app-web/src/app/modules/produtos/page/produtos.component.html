@@ -11,7 +11,7 @@
     </div>
     <div class="column has-background-white bo-0">
       <div mat-flat-button class="card pointer clickable bo-0 w-full flex-sa py-2" (click)="AbrirDialogoOrdenacao()">
-          <p>Ordenar produtos</p>
+          <p>Ordenar</p>
           <mat-icon>toc</mat-icon>
       </div>
     </div>
@@ -72,9 +72,9 @@
             </div>
           </div>
         </div>
-        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
+        <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2> -->
 
-        <div class="columns is-multiline portfolio-container dis-flex">
+        <div class="columns is-multiline is-1 portfolio-container dis-flex">
           <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]" class="column is-12 a-i-c">
             <figure class="no-match-img">
               <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
