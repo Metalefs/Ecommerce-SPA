@@ -6,7 +6,7 @@
   class="pos-sticky flex-m flex-sa  mr-0 container">
     <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
-    <div class="columns mx-3 is-hidden-mobile link-section">
+    <div class="columns mx-3 is-hidden-mobile link-section pt-3">
       <div *ngFor="let link of links" class="column">
         <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
           class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" [routerLink]="link.href"
@@ -17,14 +17,17 @@
       </div>
 
       <div class="wrap-pic-cir py-4 px-4 border-light">
-        <button class=" w-full "
-          mat-icon-button *ngIf="user"
-          (click)="Logout()" title="logout">
-          <mat-icon>login</mat-icon>
-        </button>
-        <button class=" w-full "
-          [routerLink]="'/login'"
-          mat-icon-button *ngIf="!user"
+        <mat-menu #appMenu="matMenu">
+          <ng-template matMenuContent let-name="name">
+            <button mat-menu-item *ngIf="!user" (click)="openLogin()">Login</button>
+            <button mat-menu-item *ngIf="user" >{{user.Nome}}</button>
+            <button mat-menu-item *ngIf="user.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
+            <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
+          </ng-template>
+        </mat-menu>
+        <button [matMenuTriggerFor]="appMenu"
+          class=" w-full "
+          mat-icon-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>
         </button>

@@ -9,6 +9,8 @@ import { CadastroService } from '../../../core/service/cadastro.service';
 import { entities } from '@personalizados-lopes/data';
 import { InformacoesContatoService } from '../../../data/service/InformacoesContatoService';
 import { Usuario } from 'libs/data/src/lib/classes';
+import { Store } from '@ngxs/store';
+import { EditarOrcamento } from '../../../data/store/actions/orcamento.actions';
 
 class Login_Form {
   Email:string;
@@ -46,7 +48,8 @@ export class LoginFormComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private CadastroService: CadastroService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private store:Store
     )
     {
         this.authenticationService.currentUser.subscribe(x =>console.log(x));

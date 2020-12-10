@@ -19,6 +19,7 @@ import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Link } from '../../data/models';
 import { ConfirmacaoComponent } from '../../modules/checkout/page/confirmacao/confirmacao.component';
 import { CheckoutDisplayComponent } from '../../shared/components/dialogs/checkout-display/checkout-display.component';
+import { LoginComponent } from '../../modules/login/page/login.component';
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
@@ -75,6 +76,13 @@ export class HeaderComponent implements OnInit {
         right:'0'
       },
       panelClass:['no-padding']
+    });
+  }
+
+  openLogin(){
+    this.dialog.open(LoginComponent, {
+      restoreFocus: false,
+      width:'512px',
     });
   }
 

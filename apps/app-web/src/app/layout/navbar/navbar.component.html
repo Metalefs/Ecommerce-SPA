@@ -1,4 +1,5 @@
-<div class="card of-y-scroll">
+<div class="card of-y-scroll vh-full">
+
   <p>
     <mat-toolbar color="">
       <mat-toolbar-row class="py-6">
@@ -9,6 +10,7 @@
           <mat-icon>close</mat-icon>
         </button> -->
       </mat-toolbar-row>
+
     </mat-toolbar>
   </p>
 
@@ -20,15 +22,18 @@
     <h1 *ngIf="Logado">Olá {{usuario.Nome}}</h1>
   </div>
 
-  <div class="of-y-scroll pt-4">
-    <div class="columns py-2 is-mobile is-gapless">
+  <div class="of-y-scroll pt-4 mb-0 pt-0">
+    <div class="columns py-0 is-mobile is-gapless">
       <div class="column">
-        <button class="w-full card box has-text-centered border-light" mat-flat-button>
+        <button
+          [matMenuTriggerFor]="appMenu2"
+          class="w-full card box has-text-centered border-light" mat-flat-button
+          title="Perfil">
           <mat-icon>person_outline</mat-icon>
-          <p>Minha conta
-          </p>
+          <p>Minha conta</p>
         </button>
       </div>
+
       <div class="column">
         <button class="w-full card box has-text-centered border-light" mat-flat-button>
           <mat-icon></mat-icon>
@@ -36,7 +41,16 @@
         </button>
       </div>
     </div>
+
   </div>
+
+  <mat-menu mat-menu #appMenu2="matMenu">
+    <ng-template matMenuContent let-name="name">
+      <button mat-menu-item *ngIf="usuario" >{{usuario.Nome}}</button>
+      <button mat-menu-item *ngIf="usuario.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
+      <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
+    </ng-template>
+  </mat-menu>
 
   <ul class="navigation">
       <!-- Produtos -->

@@ -49,6 +49,12 @@ export class CheckoutDisplayComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  delayClose(){
+    setTimeout(()=>{
+      this.close()
+    },500);
+  }
+
   IncrementarQuantidade(element){
     element.Quantidade++;
     this.EditarOrcamento(element);

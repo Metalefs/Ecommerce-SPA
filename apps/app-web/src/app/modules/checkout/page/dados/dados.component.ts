@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { EditarOrcamento, EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
@@ -38,14 +39,18 @@ export class DadosComponent implements OnInit, OnDestroy {
     Validators.required,
   ]);
   usuario:Usuario;
-  constructor(private router:Router, private authService:AuthenticationService) { }
+  constructor(private router:Router, private store: Store, private authService:AuthenticationService) { }
 
   ngOnInit(): void {
-    this.Orcamento$.subscribe(x=>{
-      this.Orcamento = x;
-    })
     this.authService.currentUser.subscribe(x=>{
       this.usuario = x;
+      this.Orcamento$.subscribe(o=>{
+        this.Orcamento = o;
+        if(this.usuario){
+          this.Orcamento.Usuario = this.usuario;
+          this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
+        }
+      })
     })
     setTimeout(()=>{
       this.flip()

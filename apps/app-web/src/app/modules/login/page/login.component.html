@@ -1,9 +1,8 @@
 
-  <div class="flex-w flex-c pt-6 card">
-    <mat-divider></mat-divider>
+  <div class="flex-w flex-c">
     <mat-card>
       <h1>Não está cadastrado?</h1>
-      <span>Digite os dados para criar sua conta ou para entrar caso já tenha uma.</span>
+      <span>Digite os dados para criar sua conta ou clique em entrar caso já tenha uma.</span>
       <mat-tab-group animationDuration="0ms" #tabs [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
         <mat-tab label="Cadastre-se">
           <mat-vertical-stepper [linear]="true" #stepper>
