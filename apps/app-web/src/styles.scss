@@ -36,6 +36,9 @@ p{
     // box-shadow:1px 1px 30px rgba(0, 05, 0, 0.80)
   }
 }
+.border-light{
+  border:1px solid $neutral-lightest
+}
 .logo{
   width: 100px;
   margin-left: 10px;

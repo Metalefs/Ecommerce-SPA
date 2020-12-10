@@ -30,7 +30,7 @@
           <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
               <button
-                mat-raised-button
+                mat-flat-button
                 class="descricao-produto card tamanho-produto"
                 [ngClass]="Produto.Tamanho == tamanho?'active':''"
                 (click)="Produto.Tamanho = tamanho"

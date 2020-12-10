@@ -13,24 +13,24 @@
   </p>
 
   <div class="card w-full px-6 ">
-    <button *ngIf="!Logado" (click)="ToggleNav(0)" [routerLink]="'/login'" mat-icon-button class="box w-full">
+    <button *ngIf="!Logado" (click)="ToggleNav(0)" [routerLink]="'/login'" mat-flat-button class="box w-full">
       <mat-icon>login</mat-icon>
       <span>Entrar</span>
     </button>
     <h1 *ngIf="Logado">Olá {{usuario.Nome}}</h1>
   </div>
 
-  <div class="of-y-scroll px-4">
+  <div class="of-y-scroll pt-4">
     <div class="columns py-2 is-mobile is-gapless">
       <div class="column">
-        <button class="w-full card box has-text-centered" mat-icon-button>
+        <button class="w-full card box has-text-centered border-light" mat-flat-button>
           <mat-icon>person_outline</mat-icon>
           <p>Minha conta
           </p>
         </button>
       </div>
       <div class="column">
-        <button class="w-full card box has-text-centered" mat-icon-button>
+        <button class="w-full card box has-text-centered border-light" mat-flat-button>
           <mat-icon></mat-icon>
           <p>Meus pedidos</p>
         </button>

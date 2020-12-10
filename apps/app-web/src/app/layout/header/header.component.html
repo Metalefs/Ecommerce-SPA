@@ -1,5 +1,5 @@
 <div class="sticky-nav w-full shadow-light"
-[ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'produtos' ? 'produtos-nav': ''"
+[ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
   <!-- container -->
   <mat-toolbar
@@ -15,9 +15,21 @@
         </a>
 
       </div>
-      <button mat-icon-button *ngIf="user?.Tipo == 1" (click)="Logout()" title="logout">
-        <mat-icon>login</mat-icon>
-      </button>
+
+      <div class="wrap-pic-cir py-4 px-4 border-light">
+        <button class=" w-full "
+          mat-icon-button *ngIf="user"
+          (click)="Logout()" title="logout">
+          <mat-icon>login</mat-icon>
+        </button>
+        <button class=" w-full "
+          [routerLink]="'/login'"
+          mat-icon-button *ngIf="!user"
+          title="Perfil">
+          <mat-icon>person_outline</mat-icon>
+        </button>
+      </div>
+
     </div>
     <!-- [routerLink]="(Orcamento$|async).Produto.length? ['checkout'] : ''"
     routerLinkActive="Active"  -->

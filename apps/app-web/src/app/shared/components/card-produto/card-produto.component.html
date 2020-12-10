@@ -20,7 +20,7 @@
       [src]="Produto.Imagem[0]"
       alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
   </a>
-   <mat-card-footer>
+   <mat-card-footer class="px-1">
      <div class="px-4">
        <span *ngIf="Produto.Cores" class="button is-small is-fullwidth card is-disabled px-4">
          Disponível em {{Produto.Cores?.length}} cores

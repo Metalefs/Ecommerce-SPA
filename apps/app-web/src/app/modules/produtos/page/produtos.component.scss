@@ -65,12 +65,12 @@
   z-index: 100;
 }
 .texto-categorias{
-  letter-spacing: 1px;
+  letter-spacing: .5px;
   font-family: Montserrat;
 }
 .texto-categoria-ativa{
   font-family: Montserrat;
-  font-weight: 500;
+  font-weight: bold;
   &::before{
     width: 300px;
     height: 100%;

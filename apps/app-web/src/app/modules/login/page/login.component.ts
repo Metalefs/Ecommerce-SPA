@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { Usuario } from 'libs/data/src/lib/classes';
@@ -30,7 +30,10 @@ export class LoginComponent implements OnInit {
     ""
     );
     @ViewChild('tabs',{static: false}) tabGroup: MatTabGroup;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
   constructor(private authenticationService: AuthenticationService,
+    private _formBuilder: FormBuilder,
     private router: Router) { }
   Logado:boolean;
   selected = new FormControl(0); // define a FormControl with value 0. Value means index.
@@ -40,6 +43,14 @@ export class LoginComponent implements OnInit {
       this.Logado = x != undefined
       this.changeTab(this.Logado ? 1 : 0);
     })
+    this.firstFormGroup = this._formBuilder.group({
+      nomeCtrl: ['', Validators.required],
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      emailCtrl: ['', Validators.email],
+      senhaCtrl: ['', Validators.required],
+
+    });
   }
   ngAfterContentInit(){
     this.changeTab(this.Logado ? 1 : 0);
@@ -49,31 +60,35 @@ export class LoginComponent implements OnInit {
   }
   Cadastro() {
     this.loading = true;
-    console.log(this.Cadastro_Form);
-    let cliente = new Usuario(
-      this.Cadastro_Form.Nome,
-      this.Cadastro_Form.Email,
-      this.Cadastro_Form.Telefone,
-      this.Cadastro_Form.Senha,
-      this.Cadastro_Form.Rua,
-      this.Cadastro_Form.Bairro,
-      this.Cadastro_Form.Numero,
-      "", //CIDADE
-      "", //COMPLEMENTO
-      "", //CEP
-      "", //ESTADO
-      TipoUsuario.normal
-    );
-    this.authenticationService.signup(cliente)
-        .pipe(first())
-        .subscribe(
-            data => {
-                this.router.navigate([this.returnUrl]);
-            },
-            error => {
-                this.error = error;
-                this.loading = false;
-            });
+    if(this.secondFormGroup.get("emailCtrl").value){
+
+        let cliente = new Usuario(
+          this.firstFormGroup.get("nomeCtrl").value,
+          this.secondFormGroup.get("emailCtrl").value,
+          this.Cadastro_Form.Telefone,
+          this.secondFormGroup.get("senhaCtrl").value,
+          this.Cadastro_Form.Rua,
+          this.Cadastro_Form.Bairro,
+          this.Cadastro_Form.Numero,
+          "", //CIDADE
+          "", //COMPLEMENTO
+          "", //CEP
+          "", //ESTADO
+          TipoUsuario.normal
+        );
+        this.authenticationService.signup(cliente)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                    this.error = error;
+                    this.loading = false;
+                });
+      }else{
+        alert("Dados inválidos para cadastro")
+      }
   }
 }
 class Cadastro_Form {

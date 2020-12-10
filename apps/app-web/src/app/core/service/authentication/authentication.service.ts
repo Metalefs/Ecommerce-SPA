@@ -6,13 +6,14 @@ import { map } from 'rxjs/operators';
 import { environment } from "../../../../environments/environment";
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<entities.Usuario>;
     public currentUser: Observable<entities.Usuario>;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private snack: MatSnackBar) {
         this.currentUserSubject = new BehaviorSubject<entities.Usuario>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -32,9 +33,10 @@ export class AuthenticationService {
                     this.currentUserSubject.next(user);
                     return user;
                 }
-                throw "Nome ou senha inválidos";
+                this.snack.open("Já existe um usuário com este e-mail","Fechar");
             }
             else{
+                this.snack.open(user.error,"Fechar");
                 throw user.error;
             }
         }));
@@ -48,6 +50,7 @@ export class AuthenticationService {
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.currentUserSubject.next(user);
                 }else{
+                  this.snack.open("Nome ou senha inválidos","Fechar");
                     throw "Nome ou senha inválidos";
                 }
             }));
