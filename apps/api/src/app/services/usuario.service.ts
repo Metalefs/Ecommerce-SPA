@@ -80,10 +80,9 @@ export module UsuarioService {
       if(user){
         let emailService = new EmailService();
         let senha = generateSinglePassword();
-        let hashSenha =  bcrypt.hashSync(senha, 10);;
-        console.log(senha);
-        user.Senha = hashSenha;
-        return await Repository.UpdateUserPassword(entities.Usuario.NomeID, user._id, user).then((x:Usuario) => {
+        let hashSenha =  bcrypt.hashSync(senha, 10);
+        console.log(senha,hashSenha);
+        return await Repository.UpdateUserPassword(entities.Usuario.NomeID, user._id, hashSenha).then((x:Usuario) => {
           emailService.SendUpdatePasswordMessage(x, senha);
           if(x)
           return true;

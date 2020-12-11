@@ -1,7 +1,11 @@
 import { entities, enums } from '@personalizados-lopes/data';
-import { Produto, Usuario } from 'libs/data/src/lib/classes';
+import { EmailNotificacao, Produto, Usuario } from 'libs/data/src/lib/classes';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { EmailNotificacaoService } from '.';
+import { email } from '../../config';
 
 import { Repository } from '../repositories/repository';
+import { EmailService } from './email.service';
 var ObjectId = require('mongodb').ObjectID;
 export class ProdutoService {
     async Ler(){
@@ -29,8 +33,17 @@ export class ProdutoService {
     }
     async Alterar(Usuario:entities.Usuario, Produto:entities.Produto){
         if (Usuario.Tipo == enums.TipoUsuario.admin) {
+            let produtoAntigo = await this.FiltrarUm({_id: Produto._id}) as Produto;
+            if(Produto.Status != produtoAntigo.Status){
+
+              if(Produto.Status == StatusProduto.novo){
+                let emailNotificacaoService = new EmailNotificacaoService();
+                await emailNotificacaoService.EnviarEmailNotificacaoReestoqueProduto(Produto);
+              }
+
+            }
             return Repository.Edit(entities.Produto.NomeID, Produto._id, Produto).then(x => {
-                return x;
+              return x;
             });
         }
     }

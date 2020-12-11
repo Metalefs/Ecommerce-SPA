@@ -57,4 +57,9 @@ export class MensagemService {
       Mensagem = Mensagem.replace("{{SENHA}}", Senha);
       return Mensagem;
     }
+    SubstituirChavesReestoqueProduto(Mensagem:string, Produto){
+      Mensagem = Mensagem.replace("{{PRODUTO}}", Produto.Nome);
+      Mensagem = Mensagem.replace("{{LINKPRODUTO}}", `<a href="https://personalizadoslopes.com.br/produtos/${Produto._id}">PÁGINA DO PRODUTO</a>`);
+      return Mensagem;
+    }
 }

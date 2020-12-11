@@ -4,6 +4,7 @@ import { InformacoesContatoService } from './informacoescontato.service';
 import { MensagemService } from './mensagem.service';
 import { info } from 'console';
 import { SobreService } from './sobre.service';
+import { Produto } from 'libs/data/src/lib/classes';
 
 const nodemailer = require("nodemailer");
 
@@ -45,6 +46,27 @@ export class EmailService {
           subject: 'Recuperação de Senha no Personalizados Lopes',
           text: mensagem_troca_senha||'', //DEFAULT : Recebemos um pedido de troca de senha para este e-mail partindo do site personalizadoslopes.com.br, caso não tenha conhecimento disso, ignore este email. Use a nova senha : {{SENHA}} para logar-se e altere-a em seguida.
           html: mensagem_troca_senha,
+      });
+    }
+
+    async SendReestockEmail(email:string, produto:Produto){
+      let ServicoInfoContato = new InformacoesContatoService();
+      let ServicoMensagens = new MensagemService();
+      let ServicoSobre = new SobreService();
+      const InfoContato = await ServicoInfoContato.Ler();
+      const Sobre = await ServicoSobre.Ler();
+      const Mensagens = await ServicoMensagens.Ler();
+
+      let mensagem_reestoque = ServicoMensagens.SubstituirChavesReestoqueProduto(Mensagens[0].EmailProdutoReestocado, produto);
+      console.log(mensagem_reestoque);
+      await this.SendHtmlMessage({
+          to: email,
+          toName:'',
+          from: InfoContato.Email,
+          fromName: Sobre.Nome,
+          subject:` ${produto.Nome} disponível no Personalizados Lopes`,
+          text: mensagem_reestoque||'', //DEFAULT : O Produto no qual você se interessou voltou ao estoque!           {{PRODUTO}}           Acesse a página do produto para conferir: {{LINKPRODUTO}}
+          html: mensagem_reestoque,
       });
     }
 

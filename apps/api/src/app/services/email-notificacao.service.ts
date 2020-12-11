@@ -1,6 +1,8 @@
 import { entities, enums } from '@personalizados-lopes/data';
+import { EmailNotificacao, Produto } from 'libs/data/src/lib/classes';
 
 import { Repository } from '../repositories/repository';
+import { EmailService } from './email.service';
 
 export class EmailNotificacaoService {
 
@@ -33,5 +35,13 @@ export class EmailNotificacaoService {
             return x;
         });
     }
-
+    async EnviarEmailNotificacaoReestoqueProduto(Produto:Produto){
+      let interessados = await this.Ler() as EmailNotificacao[];
+      interessados.forEach((interessado : EmailNotificacao)=>{
+        if(interessado.ProdutoNotificacao._id == Produto._id){
+          let emailService = new EmailService();
+          emailService.SendReestockEmail(interessado.Email,Produto);
+        }
+      })
+    }
 }
