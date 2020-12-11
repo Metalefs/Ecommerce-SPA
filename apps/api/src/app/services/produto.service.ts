@@ -1,7 +1,7 @@
 import { entities, enums } from '@personalizados-lopes/data';
 import { EmailNotificacao, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
-import { EmailNotificacaoService } from '.';
+import { EmailNotificacaoService } from './email-notificacao.service';
 import { email } from '../../config';
 
 import { Repository } from '../repositories/repository';
@@ -33,7 +33,7 @@ export class ProdutoService {
     }
     async Alterar(Usuario:entities.Usuario, Produto:entities.Produto){
         if (Usuario.Tipo == enums.TipoUsuario.admin) {
-            let produtoAntigo = await this.FiltrarUm({_id: Produto._id}) as Produto;
+            let produtoAntigo = await this.FiltrarUm({ "_id": new ObjectId(Produto._id) }) as Produto;
             if(Produto.Status != produtoAntigo.Status){
 
               if(Produto.Status == StatusProduto.novo){

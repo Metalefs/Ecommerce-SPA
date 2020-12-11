@@ -38,9 +38,12 @@ export class EmailNotificacaoService {
     async EnviarEmailNotificacaoReestoqueProduto(Produto:Produto){
       let interessados = await this.Ler() as EmailNotificacao[];
       interessados.forEach((interessado : EmailNotificacao)=>{
-        if(interessado.ProdutoNotificacao._id == Produto._id){
-          let emailService = new EmailService();
-          emailService.SendReestockEmail(interessado.Email,Produto);
+        if(interessado.ProdutoNotificacao){
+          if(interessado.ProdutoNotificacao?._id == Produto._id){
+            let emailService = new EmailService();
+            let link = "https://personalizadoslopes.com.br/produtos/"+interessado.ProdutoNotificacao?._id;
+            emailService.SendReestockEmail(interessado.Email, Produto, link);
+          }
         }
       })
     }

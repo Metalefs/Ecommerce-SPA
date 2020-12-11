@@ -1,5 +1,5 @@
 import { entities, enums } from '@personalizados-lopes/data';
-import { Mensagem } from 'libs/data/src/lib/classes';
+import { Mensagem, Produto } from 'libs/data/src/lib/classes';
 
 import { Repository } from '../repositories/repository';
 
@@ -57,9 +57,10 @@ export class MensagemService {
       Mensagem = Mensagem.replace("{{SENHA}}", Senha);
       return Mensagem;
     }
-    SubstituirChavesReestoqueProduto(Mensagem:string, Produto){
-      Mensagem = Mensagem.replace("{{PRODUTO}}", Produto.Nome);
-      Mensagem = Mensagem.replace("{{LINKPRODUTO}}", `<a href="https://personalizadoslopes.com.br/produtos/${Produto._id}">PÁGINA DO PRODUTO</a>`);
+    SubstituirChavesReestoqueProduto(Mensagem:string, produto:Produto, link:string){
+      let fotoProduto=`<figure><img src="${produto.Imagem[0] || ''} width="100"  height="100"/></figure>`
+      Mensagem = Mensagem.replace("{{PRODUTO}}", fotoProduto+produto.Nome);
+      Mensagem = Mensagem.replace("{{LINKPRODUTO}}", '<a href="'+link+'">Página do produto</a>');
       return Mensagem;
     }
 }

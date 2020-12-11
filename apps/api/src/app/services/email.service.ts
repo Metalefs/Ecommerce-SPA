@@ -49,7 +49,7 @@ export class EmailService {
       });
     }
 
-    async SendReestockEmail(email:string, produto:Produto){
+    async SendReestockEmail(email:string, produto:Produto, link:string){
       let ServicoInfoContato = new InformacoesContatoService();
       let ServicoMensagens = new MensagemService();
       let ServicoSobre = new SobreService();
@@ -57,7 +57,7 @@ export class EmailService {
       const Sobre = await ServicoSobre.Ler();
       const Mensagens = await ServicoMensagens.Ler();
 
-      let mensagem_reestoque = ServicoMensagens.SubstituirChavesReestoqueProduto(Mensagens[0].EmailProdutoReestocado, produto);
+      let mensagem_reestoque = ServicoMensagens.SubstituirChavesReestoqueProduto(Mensagens[0].EmailProdutoReestocado, produto, link);
       console.log(mensagem_reestoque);
       await this.SendHtmlMessage({
           to: email,
