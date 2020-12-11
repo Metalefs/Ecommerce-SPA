@@ -35,16 +35,16 @@ export class EmailService {
       const Sobre = await ServicoSobre.Ler();
       const Mensagens = await ServicoMensagens.Ler();
 
-      let mensagem_registro = ServicoMensagens.SubstituirChavesTrocaSenha(Mensagens[0].EmailRecuperacaoSenha, NovoUsuario, senha);
-
+      let mensagem_troca_senha = ServicoMensagens.SubstituirChavesTrocaSenha(Mensagens[0].EmailRecuperacaoSenha, NovoUsuario, senha);
+      console.log(mensagem_troca_senha);
       await this.SendHtmlMessage({
           to: NovoUsuario.Email,
           toName:NovoUsuario.Nome,
           from: InfoContato.Email,
           fromName:Sobre.Nome,
           subject: 'Recuperação de Senha no Personalizados Lopes',
-          text: mensagem_registro||'', //DEFAULT : Recebemos um pedido de troca de senha para este e-mail partindo do site personalizadoslopes.com.br, caso não tenha conhecimento disso, ignore este email. Use a nova senha : {{SENHA}} para logar-se e altere-a em seguida.
-          html: mensagem_registro,
+          text: mensagem_troca_senha||'', //DEFAULT : Recebemos um pedido de troca de senha para este e-mail partindo do site personalizadoslopes.com.br, caso não tenha conhecimento disso, ignore este email. Use a nova senha : {{SENHA}} para logar-se e altere-a em seguida.
+          html: mensagem_troca_senha,
       });
     }
 

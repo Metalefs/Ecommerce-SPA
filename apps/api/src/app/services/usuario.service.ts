@@ -7,6 +7,7 @@ import { EmailService } from './email.service';
 import { exception } from 'console';
 
 import { generateSinglePassword } from './password.service';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 export module UsuarioService {
 
@@ -76,14 +77,15 @@ export module UsuarioService {
 
     export async function changePassword(email:string){
       const user = await getByEmail(email);
-      if(user[0]){
+      if(user){
         let emailService = new EmailService();
-
         let senha = generateSinglePassword();
-        user[0].Senha = senha;
-        return await Repository.Edit(entities.Usuario.NomeID, user[0]._id, user[0]).then(x => {
-          emailService.SendUpdatePasswordMessage(x[0],senha);
-          if(x[0])
+        let hashSenha =  bcrypt.hashSync(senha, 10);;
+        console.log(senha);
+        user.Senha = hashSenha;
+        return await Repository.UpdateUserPassword(entities.Usuario.NomeID, user._id, user).then((x:Usuario) => {
+          emailService.SendUpdatePasswordMessage(x, senha);
+          if(x)
           return true;
           else
           return false;
@@ -99,7 +101,7 @@ export module UsuarioService {
     }
 
     export async function getByEmail(email:string) {
-      return await Repository.FindOne(entities.Usuario.NomeID, {Email: email}) as entities.Usuario[];
+      return await Repository.FindOne(entities.Usuario.NomeID, {Email: email}) as entities.Usuario;
     }
 
     export async function getByToken(id:string) {

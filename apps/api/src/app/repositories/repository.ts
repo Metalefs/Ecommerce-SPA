@@ -263,26 +263,54 @@ export module Repository {
       }
     }
 
-    export function UpdateUserToken(collection: any, id: string, token: any) { // updates one user token
+    export async function UpdateUserToken(collection: any, id: string, token: any) { // updates one user token
       try{
 
 
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-            if (err) {
-                logger.log(err)
-                throw err;
-            }
-            let dbo = db.db(MongoDBName);
-            dbo.collection(collection).updateOne({ _id: id }, { $set: { token: token, DataHoraAlteracao: new Date() } }, function (err: any, result: any) {
-                if (err) {
-                    logger.log(err)
-                    throw err;
-                }
-                console.log("UpdateUserToken ", result.documents)
-                db.close();
-            });
-        });
+          MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
+              if (err) {
+                  logger.log(err)
+                  throw err;
+              }
+              let dbo = db.db(MongoDBName);
+              dbo.collection(collection).updateOne({ _id: id }, { $set: { token: token, DataHoraAlteracao: new Date() } }, function (err: any, result: any) {
+                  if (err) {
+                      logger.log(err)
+                      throw err;
+                  }
+                  console.log("UpdateUserToken ", result.documents)
+                  db.close();
 
+              });
+          });
+
+      }
+      catch(ex){
+        throw ex;
+      }
+    }
+
+    export function UpdateUserPassword(collection: any, id: string, Senha: any) { // updates one user token
+      try{
+
+        return new Promise ( (resolve, reject) => {
+          MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
+              if (err) {
+                  logger.log(err)
+                  throw err;
+              }
+              let dbo = db.db(MongoDBName);
+              dbo.collection(collection).updateOne({ _id: id }, { $set: { Senha: Senha, DataHoraAlteracao: new Date() } },  async function  (err: any, result: any) {
+                  if (err) {
+                      logger.log(err)
+                      throw err;
+                  }
+                  console.log("UpdateUserPassword ", result.documents)
+                  db.close();
+                  resolve(await FindOne(collection, { "_id": new ObjectId(id) }).catch(x=>reject(x)));
+              });
+          });
+        });
       }
       catch(ex){
         throw ex;
