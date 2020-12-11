@@ -2,12 +2,15 @@
   <h1 class="title is-5 is-uppercase">Orçamentos por usuários.</h1>
 </div>
 <div class="columns is-multiline">
-  <mat-accordion class="column" *ngFor="let orcamento of (Orcamentos$|async)">
+  <mat-accordion class="column is-12" *ngFor="let orcamento of (Orcamentos$|async)">
     <mat-expansion-panel
      [ngClass]="orcamento.Status == 0 ? 'Aberto' : 'Respondido'"
-     [expanded]="true"
+     [expanded]="orcamento.Status == 0 ? true : false"
      >
       <mat-expansion-panel-header>
+        <button mat-icon-button (click)="Remover(orcamento)">
+          <mat-icon>remove</mat-icon>
+        </button>
         <mat-panel-title>
           <p><strong>Pessoa:</strong> {{orcamento.Usuario.Nome}}</p>
           <mat-divider></mat-divider>

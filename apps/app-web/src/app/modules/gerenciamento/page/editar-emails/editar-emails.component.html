@@ -30,6 +30,19 @@
         <td mat-cell *matCellDef="let element"> {{element?.Nome}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="Produto">
+        <th mat-header-cell *matHeaderCellDef> Produto </th>
+        <td mat-cell *matCellDef="let element">
+          <div *ngIf="element?.ProdutoNotificacao">
+            <figure class="image is-64x64">
+              <img src="{{element?.ProdutoNotificacao.Imagem || ''}}">
+            </figure>
+             {{element?.ProdutoNotificacao.Nome || ''}}
+          </div>
+        </td>
+      </ng-container>
+
+
       <ng-container matColumnDef="Acoes">
           <th mat-header-cell *matHeaderCellDef> Ações </th>
           <td mat-cell *matCellDef="let element">

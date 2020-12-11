@@ -50,10 +50,11 @@ export class OrcamentoState {
     this.authenticationService.currentUser.subscribe(usr=>{
       this.OrcamentoService.Ler().subscribe(rslt=>{
         const state = getState();
-          setState({
-            ...state,
-            ListaOrcamentos: rslt
-          });
+        rslt = rslt.sort(x=>x.Status);
+        setState({
+          ...state,
+          ListaOrcamentos: rslt
+        });
       });
     })
   }

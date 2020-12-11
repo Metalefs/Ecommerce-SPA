@@ -43,6 +43,7 @@ export class EditarEmailsComponent implements OnInit {
       "checked",
       "Email",
       "Nome",
+      "Produto",
       "Acoes",
     ];
   }
@@ -132,7 +133,7 @@ export class EditarEmailsComponent implements OnInit {
     });
   }
 
-  Remover(EmailNotificacao:entities.EmailNotificacao){
+  Remover(EmailNotificacao:EmailNotificacao){
     this.service.Remover(EmailNotificacao._id).subscribe(x=>{
       this.AtualizarTabela();
       this._snackBar.open("EmailNotificacao "+ EmailNotificacao.Email +" removido com sucesso", "Fechar", {
@@ -141,9 +142,9 @@ export class EditarEmailsComponent implements OnInit {
     });
   }
 }
-class checkable extends entities.EmailNotificacao {
+class checkable extends EmailNotificacao {
   checked:boolean;
-  constructor(ent: entities.EmailNotificacao){
+  constructor(ent: EmailNotificacao){
     super(ent.Email,ent.Nome);
 
   }
