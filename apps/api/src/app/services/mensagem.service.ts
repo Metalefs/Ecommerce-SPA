@@ -7,7 +7,12 @@ export class MensagemService {
 
     async Ler() : Promise<Mensagem[]>{
         return Repository.List(entities.Mensagem.NomeID).then((x:Mensagem[]) => {
-            return x;
+          if(x){
+            let arr = [];
+            arr.push(x[x.length -1]);
+            return arr;
+          }
+          return x;
         });
     }
     async Filtrar(filter:{}){

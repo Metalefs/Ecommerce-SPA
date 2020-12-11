@@ -30,11 +30,10 @@
                 Senha inválida
               </mat-error>
             </mat-form-field>
-            <button (click)="EsqueceuSenha()"><span>Esqueceu a senha? Preencha o e-mail e clique aqui</span></button>
             <div *ngIf="iserror">
               Nome ou senha inválidos
               <p>
-               <em>Erro: {{error}}</em>
+                <em>Erro: {{error}}</em>
               </p>
             </div>
             <button
@@ -45,8 +44,9 @@
             [disabled]="emailControl.hasError('required') || SenhaControl.hasError('required')"
             >Login</button>
 
-      </div>
-  </form>
+          </div>
+        </form>
+        <button (click)="EsqueceuSenha()"><span>Esqueceu a senha? Preencha o e-mail e clique aqui</span></button>
 
 </div>
 <div class="login-wrapper has-background-white-t box" *ngIf="Logado">
