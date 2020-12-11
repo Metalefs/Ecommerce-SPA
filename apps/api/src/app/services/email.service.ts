@@ -27,7 +27,7 @@ export class EmailService {
       });
     }
 
-    async SendUpdatePasswordMessage(NovoUsuario:entities.Usuario){
+    async SendUpdatePasswordMessage(NovoUsuario:entities.Usuario, senha:string){
       let ServicoInfoContato = new InformacoesContatoService();
       let ServicoMensagens = new MensagemService();
       let ServicoSobre = new SobreService();
@@ -35,9 +35,8 @@ export class EmailService {
       const Sobre = await ServicoSobre.Ler();
       const Mensagens = await ServicoMensagens.Ler();
 
+      let mensagem_registro = ServicoMensagens.SubstituirChavesTrocaSenha(Mensagens[0].EmailRecuperacaoSenha, NovoUsuario, senha);
 
-
-      let mensagem_registro = ServicoMensagens.SubstituirChavesTrocaSenha(Mensagens[0].EmailRecuperacaoSenha, NovoUsuario);
       await this.SendHtmlMessage({
           to: NovoUsuario.Email,
           toName:NovoUsuario.Nome,

@@ -81,10 +81,10 @@ export module UsuarioService {
 
         let senha = generateSinglePassword();
         user[0].Senha = senha;
-
-
-        emailService.SendUpdatePasswordMessage(user[0],senha);
-
+        return await Repository.Edit(entities.Usuario.NomeID, user[0]._id, user[0]).then(x => {
+          emailService.SendUpdatePasswordMessage(x[0],senha);
+          return x;
+        });
       }
       else{
         return {erro: 'E-mail não encontrado'}
