@@ -15,6 +15,7 @@ import { Select, Store } from '@ngxs/store';
 import { Servico } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { EditarServico, RemoverServico } from 'apps/app-web/src/app/data/store/actions/servico.actions';
+import { EmailMessageQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-email-message';
 
 @Component({
   selector: 'personalizados-lopes-editar-servico',
@@ -46,7 +47,7 @@ export class EditarServicoComponent implements OnInit {
     Object.entries(Servico).forEach(([key, value]) => {
       if(key != "_id")
       questions.push(
-        new TextboxQuestion({
+        new EmailMessageQuestion({
           key: key,
           label: key,
           value: value,

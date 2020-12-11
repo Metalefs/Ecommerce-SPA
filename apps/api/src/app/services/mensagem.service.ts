@@ -47,4 +47,9 @@ export class MensagemService {
       Mensagem = Mensagem.replace("{{USUARIO}}", Usuario.Nome);
       return Mensagem;
     }
+    SubstituirChavesTrocaSenha(Mensagem:string, Usuario:entities.Usuario, Senha:string){
+      Mensagem = Mensagem.replace("{{USUARIO}}", Usuario.Nome);
+      Mensagem = Mensagem.replace("{{SENHA}}", Senha);
+      return Mensagem;
+    }
 }

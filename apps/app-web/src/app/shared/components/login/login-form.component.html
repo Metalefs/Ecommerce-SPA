@@ -13,7 +13,7 @@
                [(ngModel)]="form.Email"
                #emailControl="ngModel"
                required />
-              <mat-error *ngIf="emailControl.hasError('required')">O Campo de e-mail é necessário para o login</mat-error>
+              <mat-error *ngIf="emailControl.hasError('required')">O Campo de e-mail é necessário para o login ou troca de senha</mat-error>
             </mat-form-field>
             <mat-form-field class="w-full">
               <mat-label>Senha</mat-label>
@@ -30,6 +30,7 @@
                 Senha inválida
               </mat-error>
             </mat-form-field>
+            <button (click)="EsqueceuSenha()"><span>Esqueceu a senha? Preencha o e-mail e clique aqui</span></button>
             <div *ngIf="iserror">
               Nome ou senha inválidos
               <p>

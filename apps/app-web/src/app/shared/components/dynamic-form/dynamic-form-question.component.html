@@ -66,7 +66,7 @@
 
     <div *ngSwitchCase="'email-messaging'" class="w-full">
       <label>{{question.label}}</label>
-      <ckeditor [(ngModel)]="question.value" [data]="question.value" ></ckeditor>
+      <ckeditor [editor]="Editor" [(ngModel)]="question.value" [data]="question.value" ></ckeditor>
     </div>
 
   </div>

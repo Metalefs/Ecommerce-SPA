@@ -40,7 +40,7 @@ export class EditarMensagemComponent implements OnInit {
     let questions: QuestionBase<string>[] = [];
     let method = "Criar";
     let name = "Mensagem";
-    let message = new Mensagem("","","","","");
+    let message = new Mensagem("","","","","","");
     Object.entries(message).forEach(([key, value]) => {
       if(key != "_id" && key != "Whatsapp")
       questions.push(
@@ -80,6 +80,7 @@ export class EditarMensagemComponent implements OnInit {
           result[2].value,
           result[3].value,
           result[4].value,
+          result[5].value,
           )
           this.store.dispatch(new AdicionarMensagem(Mensagem)).subscribe(x=> {
             this.AtualizarTabela();
@@ -136,6 +137,7 @@ export class EditarMensagemComponent implements OnInit {
         result[2].value,
         result[3].value,
         result[4].value,
+        result[5].value,
       )
       Mensagem._id = id;
       this.store.dispatch(new EditarMensagem(Mensagem, Mensagem._id)).subscribe(x=> {
@@ -165,6 +167,7 @@ export class EditarMensagemComponent implements OnInit {
       "EmailRecebimentoContato",
       "EmailCadadastroUsuario",
       "EmailProdutoReestocado",
+      "EmailRecuperacaoSenha",
       "Acoes",
     ];
   }

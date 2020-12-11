@@ -8,7 +8,10 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 
-import { CKEditorModule } from 'ckeditor4-angular';
+
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
+
 
 import { DynamicFormModule } from './components/dynamic-form/dynamic-form.module';
 import { LoginFormModule } from './components/login/login-form.module';

@@ -25,6 +25,7 @@ export let RouteDictionary = {
         AtualizarConta:"/atualizarConta/",
         Login:"/login/",
         Registro:"/registro/",
+        TrocarSenha:"/trocarsenha/",
 
     Gerenciamento:"/gerenciamento/"
 };

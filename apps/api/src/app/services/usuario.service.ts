@@ -6,6 +6,7 @@ import { entities } from 'libs/data/src';
 import { EmailService } from './email.service';
 import { exception } from 'console';
 
+import { generateSinglePassword } from './password.service';
 
 export module UsuarioService {
 
@@ -23,7 +24,7 @@ export module UsuarioService {
                 console.log("login com sucesso. token gerado", {...user,token});
 
                 Usuario.token = token;
-                update({...user,token});
+                updateUserToken({...user,token});
 
                 return {
                     ...user,
@@ -61,7 +62,7 @@ export module UsuarioService {
             console.log("usuário cadastrado com sucesso. token gerado", {...NovoUsuario,token});
 
             NovoUsuario.token = token;
-            update(NovoUsuario);
+            updateUserToken(NovoUsuario);
             const msg = emailService.SendRegistrationMessage(NovoUsuario);
             return {
                 ...NovoUsuario,
@@ -73,15 +74,36 @@ export module UsuarioService {
         }
     }
 
+    export async function changePassword(email:string){
+      const user = await getByEmail(email);
+      if(user[0]){
+        let emailService = new EmailService();
+
+        let senha = generateSinglePassword();
+        user[0].Senha = senha;
+
+
+        emailService.SendUpdatePasswordMessage(user[0],senha);
+
+      }
+      else{
+        return {erro: 'E-mail não encontrado'}
+      }
+    }
+
     export async function getById(id:string) {
         return await Repository.FindOne(entities.Usuario.NomeID, {_id: id}) as entities.Usuario[];
+    }
+
+    export async function getByEmail(email:string) {
+      return await Repository.FindOne(entities.Usuario.NomeID, {Email: email}) as entities.Usuario[];
     }
 
     export async function getByToken(id:string) {
         return await Repository.FindOne(entities.Usuario.NomeID, {token: id}) as entities.Usuario;
     }
 
-    export async function update(Usuario : entities.Usuario) {
+    export async function updateUserToken(Usuario : entities.Usuario) {
         const user = await getById(Usuario._id);
 
         // validate

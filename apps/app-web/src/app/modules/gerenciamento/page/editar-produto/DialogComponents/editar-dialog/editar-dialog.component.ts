@@ -11,6 +11,8 @@ import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
   templateUrl: './editar-dialog.component.html',
@@ -22,7 +24,7 @@ export class EditarProdutoDialogComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-
+  public Editor = ClassicEditor;
   colorCtrl = new FormControl();
   filteredColors: Observable<Cor[]>;
   allColors: Cor[] = [

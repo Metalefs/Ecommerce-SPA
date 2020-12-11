@@ -1,4 +1,3 @@
-
 <div class="section has-background-white-bis mb-3  pt-4">
   <nav class="breadcrumb is-left pt-0" aria-label="breadcrumbs">
     <ul class="">
@@ -29,25 +28,17 @@
           <p>Selecione a opção de <b>tamanho</b></p>
           <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
-              <button
-                mat-flat-button
-                class="descricao-produto card tamanho-produto"
+              <button mat-flat-button class="descricao-produto card tamanho-produto"
                 [ngClass]="Produto.Tamanho == tamanho?'active':''"
-                (click)="Produto.Tamanho = tamanho"
-                >{{tamanho}}</button>
+                (click)="Produto.Tamanho = tamanho">{{tamanho}}</button>
             </div>
           </div>
         </div>
         <mat-form-field class="w-full" appearance="">
           <mat-label>Selecione a cor</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
-            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt"
-            class="w-full">
-              <div
-                class="cor-produto card box w-full"
-                [style.backgroundColor]="opt.cor"
-                (click)="Produto.Cor = opt"
-                >
+            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
+              <div class="cor-produto card box w-full" [style.backgroundColor]="opt.cor" (click)="Produto.Cor = opt">
                 <p>{{opt.nome}}</p>
               </div>
             </mat-option>
@@ -76,9 +67,10 @@
           </div>
           <div class="w-full">
             <div class="preco hoverable pb-4">
-              <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span>  a unidade</span>
+              <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span> a unidade</span>
             </div>
-            <button *ngIf="Produto.Status != statusProduto.esgotado" mat-raised-button [disabled]="Produto.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+            <button *ngIf="Produto.Status != statusProduto.esgotado" mat-raised-button
+              [disabled]="Produto.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
               class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
                 {{textoAdicionar}}
@@ -93,20 +85,19 @@
         <div class="ml-3 w-full">
           <div class="columns w-full py-2 px-0 is-multiline">
             <div class="column w-full is-6 px-0 is-12-mobile">
-                <button mat-raised-button
-                (click)="EntrarEmContato()"
-                routerLinkActive="router-link-active"
-                class="button is-success w-full has-text-white has-text-weight-medium"
-                >
+              <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                class="button is-success w-full has-text-white has-text-weight-medium">
                 <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
               </button>
             </div>
             <div class="column">
               <div class="colums">
                 <div class="column">
-                  <share-button class="" button="facebook" theme="modern-dark" [showText]="true" [text]="'Compartilhar'">
+                  <share-button class="" button="facebook" theme="modern-dark" [showText]="true"
+                    [text]="'Compartilhar'">
                   </share-button>
-                  <share-button class="" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'"></share-button>
+                  <share-button class="" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'">
+                  </share-button>
                 </div>
               </div>
             </div>
@@ -127,12 +118,11 @@
   </div>
 
   <div class="w-full columns">
-    <div
-      class="descricao-produto column is-12 w-full"
-      [innerHTML]="Produto?.Descricao || 'Este produto está sem uma descrição'"
-     ></div>
+    <div class="descricao-produto column is-12 w-full"
+      [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
   </div>
 </div>
+
 <div class="w-full flex-w flex-sa px-6 background-dark has-text-white">
   <a [routerLink]="'/produtos'" class="has-text-white">
     <button mat-icon-button>

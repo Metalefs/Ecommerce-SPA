@@ -12,6 +12,8 @@ import { Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 @Component({
   selector: 'personalizados-lopes-criar-dialog',
   templateUrl: './criar-dialog.component.html',
@@ -24,7 +26,7 @@ export class CriarProdutoDialogComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-
+  public Editor = ClassicEditor;
   colorCtrl = new FormControl();
   filteredColors: Observable<Cor[]>;
   allColors: Cor[] = [

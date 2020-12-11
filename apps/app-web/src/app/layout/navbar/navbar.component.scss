@@ -8,74 +8,74 @@ a span{
   font-weight: 400;
   font-family: Montserrat;
 }
-  .mat-list-text a span {
-    line-height: 2em;
-    letter-spacing: 0px;
-    text-transform: capitalize;
-    text-align: center;
-    line-height: 2;
-    padding-bottom: 1em;
+.mat-list-text a span {
+  line-height: 2em;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 2;
+  padding-bottom: 1em;
 
-    -webkit-transition: .8s;
-    -moz-transition: .8s;
-    transition: .8s;
+  -webkit-transition: .8s;
+  -moz-transition: .8s;
+  transition: .8s;
+}
+.blue-underline{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: $gray-web;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+.mat-list-item a.active-nav{
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+  color: black;
+  font-weight: bold;
+}
+.mat-list-item a.active-nav .mat-icon.inst{
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+  color: black;
+  background:black;
+}
+a {
+  position: relative;
+  color: $gray-web;
+  text-decoration: none;
+}
+
+
+a:before {
+  @extend .blue-underline
+}
+
+.mat-list-text:hover a::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
   }
-  .blue-underline{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -3px;
-    left: 0;
-    background-color: $gray-web;
-    visibility: hidden;
-    -webkit-transform: scaleX(0);
-    transform: scaleX(0);
-    -webkit-transition: all 0.2s ease-in-out 0s;
-    transition: all 0.2s ease-in-out 0s;
-  }
-  .mat-list-item a.active-nav{
-    -webkit-transition: all 0.2s ease-in-out 0s;
-    transition: all 0.2s ease-in-out 0s;
-    color: black;
-    font-weight: bold;
-  }
-  .mat-list-item a.active-nav .mat-icon.inst{
-    -webkit-transition: all 0.2s ease-in-out 0s;
-    transition: all 0.2s ease-in-out 0s;
-    color: black;
-    background:black;
-  }
-  a {
-    position: relative;
-    color: $gray-web;
+
+
+  a:hover {
+    color: #000;
     text-decoration: none;
   }
+@media only screen and (min-width: 768px) {
 
-
-  a:before {
-   @extend .blue-underline
+  #nav-menu .navigation {
+    margin-top: 25px;
   }
 
-  .mat-list-text:hover a::before {
-    visibility: visible;
-    -webkit-transform: scaleX(1);
-    transform: scaleX(1);
-    }
 
-
-    a:hover {
-      color: #000;
-      text-decoration: none;
-    }
-  @media only screen and (min-width: 768px) {
-
-    #nav-menu .navigation {
-      margin-top: 25px;
-    }
-
-
-  }
+}
 .mat-subheader{
   font-family: Montserrat;
   font-weight: 300;

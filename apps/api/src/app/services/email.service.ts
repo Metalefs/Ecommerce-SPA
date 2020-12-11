@@ -3,6 +3,7 @@ import { entities } from '@personalizados-lopes/data';
 import { InformacoesContatoService } from './informacoescontato.service';
 import { MensagemService } from './mensagem.service';
 import { info } from 'console';
+import { SobreService } from './sobre.service';
 
 const nodemailer = require("nodemailer");
 
@@ -10,16 +11,40 @@ export class EmailService {
     async SendRegistrationMessage(NovoUsuario:entities.Usuario){
       let ServicoInfoContato = new InformacoesContatoService();
       let ServicoMensagens = new MensagemService();
+      let ServicoSobre = new SobreService();
       const InfoContato = await ServicoInfoContato.Ler();
+      const Sobre = await ServicoSobre.Ler();
       const Mensagens = await ServicoMensagens.Ler();
       let mensagem_registro = ServicoMensagens.SubstituirChaves(Mensagens[0].EmailCadadastroUsuario,NovoUsuario);
       await this.SendHtmlMessage({
           to: NovoUsuario.Email,
-          toName:'',
+          toName:NovoUsuario.Nome,
           from: InfoContato.Email,
-          fromName:'',
+          fromName:Sobre.Nome,
           subject: 'Registro no Personalizados Lopes',
           text: mensagem_registro||'', //DEFAULT : Você se cadastrou no nosso serviço de entrega, acesse ao site para conferir as suas opções.
+          html: mensagem_registro,
+      });
+    }
+
+    async SendUpdatePasswordMessage(NovoUsuario:entities.Usuario){
+      let ServicoInfoContato = new InformacoesContatoService();
+      let ServicoMensagens = new MensagemService();
+      let ServicoSobre = new SobreService();
+      const InfoContato = await ServicoInfoContato.Ler();
+      const Sobre = await ServicoSobre.Ler();
+      const Mensagens = await ServicoMensagens.Ler();
+
+
+
+      let mensagem_registro = ServicoMensagens.SubstituirChavesTrocaSenha(Mensagens[0].EmailRecuperacaoSenha, NovoUsuario);
+      await this.SendHtmlMessage({
+          to: NovoUsuario.Email,
+          toName:NovoUsuario.Nome,
+          from: InfoContato.Email,
+          fromName:Sobre.Nome,
+          subject: 'Recuperação de Senha no Personalizados Lopes',
+          text: mensagem_registro||'', //DEFAULT : Recebemos um pedido de troca de senha para este e-mail partindo do site personalizadoslopes.com.br, caso não tenha conhecimento disso, ignore este email. Use a nova senha : {{SENHA}} para logar-se e altere-a em seguida.
           html: mensagem_registro,
       });
     }

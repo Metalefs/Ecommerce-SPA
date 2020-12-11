@@ -21,7 +21,7 @@
           <ng-template matMenuContent let-name="name">
             <button mat-menu-item *ngIf="!user" (click)="openLogin()">Login</button>
             <button mat-menu-item *ngIf="user" >{{user.Nome}}</button>
-            <button mat-menu-item *ngIf="user.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
+            <button mat-menu-item *ngIf="user && user?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
             <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
           </ng-template>
         </mat-menu>

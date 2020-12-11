@@ -14,6 +14,7 @@ import { Sobre } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import { EditarSobre } from 'apps/app-web/src/app/data/store/actions/sobre.actions';
+import { EmailMessageQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-email-message';
 
 @Component({
   selector: 'personalizados-lopes-editar-sobre',
@@ -40,7 +41,7 @@ export class EditarSobreComponent implements OnInit {
       Object.entries(sobre).forEach(([key, value]) => {
         if(key != "_id")
         questions.push(
-          new TextboxQuestion({
+          new EmailMessageQuestion({
             key: key,
             label: key,
             value: value,

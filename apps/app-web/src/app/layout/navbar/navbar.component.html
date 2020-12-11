@@ -47,7 +47,7 @@
   <mat-menu mat-menu #appMenu2="matMenu">
     <ng-template matMenuContent let-name="name">
       <button mat-menu-item *ngIf="usuario" >{{usuario.Nome}}</button>
-      <button mat-menu-item *ngIf="usuario.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
+      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>
   </mat-menu>

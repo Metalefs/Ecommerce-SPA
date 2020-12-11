@@ -38,6 +38,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   images$: Observable<GalleryItem[]>;
   isOrcamento:boolean = false;
   loading:boolean = false;
+  el = document.createElement( 'html' );
   constructor(
     breakpointObserver: BreakpointObserver,
     private activeRoute:ActivatedRoute,
@@ -74,6 +75,19 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Url = `https://${window.location.href}`;
     if(this.Produto.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
+
+
+    this.el.innerHTML = this.Produto?.Descricao;
+    this.el.querySelectorAll( 'oembed[url]' ).forEach( element => {
+      // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+      // to discover the media.
+      const anchor = document.createElement( 'a' );
+
+      anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+      anchor.className = 'embedly-card';
+
+      element.appendChild( anchor );
+    } );
   }
 
   AdicionarAoOrcamento(){

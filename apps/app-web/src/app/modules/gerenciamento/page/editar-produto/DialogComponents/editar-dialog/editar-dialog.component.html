@@ -6,7 +6,7 @@
     <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" value="{{Produto.Nome}}" title="Nome">
   </mat-form-field>
   <div class="w-full">
-    <ckeditor [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao" ></ckeditor>
+    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao" ></ckeditor>
   </div>
   <mat-form-field class="w-full">
     <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo" value="{{Produto.Subtitulo}}">

@@ -34,7 +34,8 @@ import { CriarItemCarouselDialogComponent } from './page/editar-carousel/dialogC
 import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComponents/editar-carousel-dialog/editar-carousel-dialog.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 
-import { CKEditorModule } from 'ckeditor4-angular';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 @NgModule({
   declarations: [

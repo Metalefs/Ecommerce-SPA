@@ -111,5 +111,7 @@ export class LoginFormComponent implements OnInit {
   Logout(){
     this.authenticationService.logout();
   }
+  EsqueceuSenha(){
 
+  }
 }
