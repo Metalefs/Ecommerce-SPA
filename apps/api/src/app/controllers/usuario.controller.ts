@@ -34,9 +34,9 @@ app.post(RouteDictionary.Registro, (req,res, next) =>{
 
 app.post(RouteDictionary.TrocarSenha, (req,res, next) =>{
   try{
-    console.log(req.body.Usuario);
-    UsuarioService.changePassword(req.body.Usuario)
-        .then((user: entities.Usuario | any) => res.json(user))
+    console.log(req.body.email);
+    UsuarioService.changePassword(req.body.email)
+        .then((user: boolean | any) => res.json(user))
         .catch(reason => ErrorHandler.AuthorizationException(reason,res));
   }
   catch(ex){

@@ -56,6 +56,18 @@ export class AuthenticationService {
             }));
     }
 
+    changePassword(email: string) {
+      return this.http.post<any>(`${environment.endpoint}`+ RouteDictionary.Usuario + RouteDictionary.TrocarSenha, { email })
+          .pipe(map(user => {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              if(user){
+                this.snack.open("Instruções para troca de senha enviadas ao e-mail inserido ("+email+")","Fechar");
+              }else{
+                this.snack.open("E-mail não encontrado","Fechar");
+              }
+          }));
+  }
+
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');

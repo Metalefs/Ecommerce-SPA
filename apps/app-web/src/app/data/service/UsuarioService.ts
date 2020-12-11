@@ -21,6 +21,12 @@ export class UsuarioService {
             catchError(handleError) // then handle the error
         );
     }
+    RecoverPassword(email: string): any {
+      return this.http.post<string>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.TrocarSenha, {email:email}).pipe(
+          retry(3),
+          catchError(handleError)
+      );
+  }
     DeleteAccount(id: string): any {
         return this.http.delete<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.DeletarConta).pipe(
             retry(3),

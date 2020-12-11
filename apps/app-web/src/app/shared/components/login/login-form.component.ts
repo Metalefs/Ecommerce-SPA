@@ -112,6 +112,8 @@ export class LoginFormComponent implements OnInit {
     this.authenticationService.logout();
   }
   EsqueceuSenha(){
-
+    this.authenticationService.changePassword(this.form.Email).subscribe(x=>{
+      console.log(x);
+    });
   }
 }

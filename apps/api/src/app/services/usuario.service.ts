@@ -83,7 +83,10 @@ export module UsuarioService {
         user[0].Senha = senha;
         return await Repository.Edit(entities.Usuario.NomeID, user[0]._id, user[0]).then(x => {
           emailService.SendUpdatePasswordMessage(x[0],senha);
-          return x;
+          if(x[0])
+          return true;
+          else
+          return false;
         });
       }
       else{
