@@ -55,7 +55,7 @@
           <mat-form-field class=" control has-icons-right" appearance="">
             <mat-label>CEP</mat-label>
             <input matInput
-              required (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.CEP"
+              required (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.CEP"
               [formControl]="cepFormControl" placeholder="000000-000"
               mask="00000-000">
             <mat-error *ngIf="cepFormControl.hasError('required')">
@@ -71,7 +71,7 @@
             <input class="w-full input"
               matInput
                 required
-              [(ngModel)]="Orcamento.Usuario.Rua"
+              [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Rua"
               [formControl]="enderecoFormControl" placeholder=""
               >
             <mat-error *ngIf="enderecoFormControl.hasError('required')">
@@ -91,7 +91,7 @@
                   matInput
                     required
                   [formControl]="numeroFormControl"
-                  [(ngModel)]="Orcamento.Usuario.Numero"
+                  [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Numero"
                   ></textarea>
                 <mat-error *ngIf="numeroFormControl.hasError('required')">
                   Campo obrigatório
@@ -107,7 +107,7 @@
                 <textarea
                   class="control has-icons-right  input"
                   matInput
-                  [(ngModel)]="Orcamento.Usuario.Complemento"
+                  [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Complemento"
                   ></textarea>
               </mat-form-field>
             </div>
@@ -122,7 +122,7 @@
                   matInput
                     required
                   [formControl]="bairroFormControl"
-                  [(ngModel)]="Orcamento.Usuario.Bairro"
+                  [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Bairro"
                   ></textarea>
                 <mat-error *ngIf="bairroFormControl.hasError('required')">
                   Campo obrigatório
@@ -140,7 +140,7 @@
                   matInput
                     required
                   [formControl]="cidadeFormControl"
-                  [(ngModel)]="Orcamento.Usuario.Cidade"
+                  [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Cidade"
                   ></textarea>
                 <mat-error *ngIf="cidadeFormControl.hasError('required')">
                   Campo obrigatório
@@ -155,7 +155,7 @@
           <mat-form-field appearance="" class="w-full">
             <mat-label>Estado</mat-label>
             <mat-select matNativeControl class="w-full"
-              [(ngModel)]="Orcamento.Usuario.Estado"
+              [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Estado"
               [formControl]="estadoFormControl">
               <mat-option *ngFor="let opt of estados" [value]="opt.sigla">
                 {{opt.nome}}

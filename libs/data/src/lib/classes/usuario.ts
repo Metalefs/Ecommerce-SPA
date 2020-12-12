@@ -1,20 +1,16 @@
 import { TipoUsuario } from '../enums/TipoUsuario';
 import { entidadeBase } from '../interfaces/entity';
 import { MongoDocument } from './abstract/MongoDocument';
+import { EnderecoEntrega } from './enderecoEntrega';
 
 export class Usuario extends MongoDocument implements entidadeBase{
     Nome:string;
     Email:string;
     Telefone:string;
     Senha?:string;
-    Rua?:string;
-    Numero?:string;
-    Bairro?:string;
-    Cidade?:string;
-    Complemento?:string;
-    CEP?:string;
-    Estado?:string;
     Tipo?:TipoUsuario;
+    EnderecoEntrega:EnderecoEntrega;
+    EnderecosEntrega:EnderecoEntrega[];
     DataCriacao?:Date;
     token?: string;
     static readonly NomeID:string = "Usuario";
@@ -23,26 +19,16 @@ export class Usuario extends MongoDocument implements entidadeBase{
     Email:string,
     Telefone:string,
     Senha?:string,
-    Rua?:string,
-    Bairro?:string,
-    Numero?:string,
-    Cidade?:string,
-    Complemento?:string,
-    CEP?:string,
-    Estado?:string,
+    EnderecoEntrega?:EnderecoEntrega,
+    EnderecosEntrega?:EnderecoEntrega[],
     Tipo?:TipoUsuario){
         super();
         this.Nome = Nome;
         this.Email = Email;
         this.Senha = Senha;
         this.Telefone = Telefone;
-        this.Rua = Rua;
-        this.Bairro = Bairro;
-        this.Numero = Numero;
-        this.Cidade = Cidade;
-        this.Complemento = Complemento;
-        this.CEP = CEP;
-        this.Estado = Estado;
+        this.EnderecoEntrega = EnderecoEntrega;
+        this.EnderecosEntrega = EnderecosEntrega;
         this.Tipo = Tipo;
     }
     DataHoraCriacao: Date;

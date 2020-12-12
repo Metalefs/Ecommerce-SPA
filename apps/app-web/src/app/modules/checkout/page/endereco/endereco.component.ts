@@ -87,12 +87,12 @@ export class EnderecoComponent implements OnInit {
   }
 
   CarregarDetalhesCEP(){
-    this.CEPService.ObterDetalhes(this.Orcamento.Usuario.CEP.replace('-','')).subscribe(x=>{
+    this.CEPService.ObterDetalhes(this.Orcamento.Usuario.EnderecoEntrega.CEP.replace('-','')).subscribe(x=>{
       console.log(x);
-      this.Orcamento.Usuario.Rua = x.logradouro;
-      this.Orcamento.Usuario.Bairro = x.bairro;
-      this.Orcamento.Usuario.Cidade = x.localidade;
-      this.Orcamento.Usuario.Estado = x.uf;
+      this.Orcamento.Usuario.EnderecoEntrega.Rua = x.logradouro;
+      this.Orcamento.Usuario.EnderecoEntrega.Bairro = x.bairro;
+      this.Orcamento.Usuario.EnderecoEntrega.Cidade = x.localidade;
+      this.Orcamento.Usuario.EnderecoEntrega.Estado = x.uf;
     });
   }
 

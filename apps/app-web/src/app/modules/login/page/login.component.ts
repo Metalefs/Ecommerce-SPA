@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Router } from '@angular/router';
-import { Usuario } from 'libs/data/src/lib/classes';
+import { EnderecoEntrega, Usuario } from 'libs/data/src/lib/classes';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
@@ -67,13 +67,8 @@ export class LoginComponent implements OnInit {
           this.secondFormGroup.get("emailCtrl").value,
           this.Cadastro_Form.Telefone,
           this.secondFormGroup.get("senhaCtrl").value,
-          this.Cadastro_Form.Rua,
-          this.Cadastro_Form.Bairro,
-          this.Cadastro_Form.Numero,
-          "", //CIDADE
-          "", //COMPLEMENTO
-          "", //CEP
-          "", //ESTADO
+          new EnderecoEntrega("","","","","","",""),
+          [],
           TipoUsuario.normal
         );
         this.authenticationService.signup(cliente)

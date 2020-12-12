@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
-import { OrcamentoService } from '../../service';
+import { OrcamentoService, UsuarioService } from '../../service';
 
 import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento } from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
@@ -30,7 +30,11 @@ let DEFAULT = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","",
 @Injectable()
 export class OrcamentoState {
 
-  constructor(private OrcamentoService:OrcamentoService,private authenticationService:AuthenticationService){
+  constructor(
+    private OrcamentoService:OrcamentoService,
+    private authenticationService:AuthenticationService,
+    private usuarioService:UsuarioService
+    ){
 
   }
 
@@ -47,22 +51,21 @@ export class OrcamentoState {
 
   @Action(LerOrcamento)
   LerOrcamento({getState, setState}: StateContext<OrcamentoStateModel>){
-    this.authenticationService.currentUser.subscribe(usr=>{
-      this.OrcamentoService.Ler().subscribe(rslt=>{
-        const state = getState();
-        rslt = rslt.sort(x=>x.Status);
-        setState({
-          ...state,
-          ListaOrcamentos: rslt
-        });
+    this.OrcamentoService.Ler().subscribe(rslt=>{
+      const state = getState();
+      rslt = rslt.sort(x=>x.Status);
+      setState({
+        ...state,
+        ListaOrcamentos: rslt
       });
-    })
+    });
   }
 
   @Action(AdicionarOrcamento)
   Adicionar({getState,patchState}: StateContext<OrcamentoStateModel>){
     return this.OrcamentoService.Incluir(getState().Orcamentos).subscribe((result) => {
       const state = getState();
+      this.usuarioService.AtualizarInformacoes(state.Orcamentos.Usuario).subscribe();
       patchState({
           Orcamentos: DEFAULT
       });

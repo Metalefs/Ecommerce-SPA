@@ -15,7 +15,7 @@ import { handleError } from '../../core/error.handler';
 export class UsuarioService {
     constructor(private http: HttpClient, private authenticationService:AuthenticationService) { }
 
-    AtualizarInformacoes(item: entities.Usuario): any {
+    AtualizarInformacoes(item: entities.Usuario): Observable<entities.Usuario> {
       let payload = this.authenticationService.tokenize({Usuario:item});
       console.log(payload);
       return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.AtualizarConta,
