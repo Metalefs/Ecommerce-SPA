@@ -78,7 +78,7 @@ export module UsuarioService {
     export async function UpdateInfo(usuarioAntigo:Usuario, usuarioNovo:Usuario){
       let UsuarioAlterado = Object.assign(usuarioAntigo, omitEmailAndPassword(usuarioNovo));
       console.log(UsuarioAlterado);
-      return await Repository.Edit(entities.Produto.NomeID, UsuarioAlterado._id, UsuarioAlterado).then(x => {
+      return await Repository.Edit(entities.Usuario.NomeID, UsuarioAlterado._id, UsuarioAlterado).then(x => {
         return x;
       });
     }
