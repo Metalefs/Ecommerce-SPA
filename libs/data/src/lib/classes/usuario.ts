@@ -8,6 +8,7 @@ export class Usuario extends MongoDocument implements entidadeBase{
     Email:string;
     Telefone:string;
     Senha?:string;
+    CPF?:string;
     Tipo?:TipoUsuario;
     EnderecoEntrega:EnderecoEntrega;
     EnderecosEntrega:EnderecoEntrega[];
@@ -19,6 +20,7 @@ export class Usuario extends MongoDocument implements entidadeBase{
     Email:string,
     Telefone:string,
     Senha?:string,
+    CPF?:string,
     EnderecoEntrega?:EnderecoEntrega,
     EnderecosEntrega?:EnderecoEntrega[],
     Tipo?:TipoUsuario){
@@ -26,6 +28,7 @@ export class Usuario extends MongoDocument implements entidadeBase{
         this.Nome = Nome;
         this.Email = Email;
         this.Senha = Senha;
+        this.CPF = CPF;
         this.Telefone = Telefone;
         this.EnderecoEntrega = EnderecoEntrega;
         this.EnderecosEntrega = EnderecosEntrega;

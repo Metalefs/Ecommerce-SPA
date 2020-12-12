@@ -8,6 +8,7 @@ export let Usuario:entities.Usuario =
         "admin@personalizadoslopes.com.br",
         "",
         "@perlopes1245",
+        "",
         new EnderecoEntrega("","","","","","",""),
         [],
         TipoUsuario.admin

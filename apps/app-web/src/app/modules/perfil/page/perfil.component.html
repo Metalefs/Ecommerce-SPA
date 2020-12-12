@@ -1,0 +1,31 @@
+<section class="section px-6">
+  <div class="columns px-6">
+    <div class="column">
+      <h1>Meu Cadastro</h1>
+      <mat-form-field appearance="fill" class="w-full">
+        <input matInput type="text" [(ngModel)]="user.Nome" placeholder="Nome" title="Nome">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-full">
+        <input matInput type="text" [(ngModel)]="user.Email" placeholder="Email" title="Email">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-full">
+        <input matInput mask="(00) 0000-0000||(00) 0 0000-0000" type="text" [(ngModel)]="user.Telefone" placeholder="Telefone" title="Telefone">
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="w-full">
+        <input matInput mask="000.000.000-00" type="text" [(ngModel)]="user.CPF" placeholder="CPF" title="CPF">
+      </mat-form-field>
+    </div>
+    <div class="column">
+      <h1>Endereço de entrega</h1>
+      <mat-card>
+        <div class="box">
+          <p>{{user.Nome}}</p>
+          <p>CEP: {{user?.EnderecoEntrega?.CEP}}</p>
+          <p>{{user?.EnderecoEntrega?.Rua}}, {{user?.EnderecoEntrega?.Numero}}</p>
+          <p>- {{user.EnderecoEntrega.Bairro}}</p>
+          <p>{{user?.EnderecoEntrega?.Cidade}} - {{user?.EnderecoEntrega?.Estado}}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</section>

@@ -5,6 +5,7 @@ import { entities } from '@personalizados-lopes/data';
 
 import * as express from 'express';
 import { ErrorHandler } from '../_handlers/error-handler';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 const app = express();
 
@@ -33,7 +34,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     UsuarioService.getByToken(req.body.token).then(user => {
 
       UsuarioService.UpdateInfo(user, req.body.item.Usuario)
-          .then((user: boolean | any) => res.json(user))
+          .then((user: Usuario | any) => res.json(user))
           .catch(reason => ErrorHandler.AuthorizationException(reason,res));
     });
   }

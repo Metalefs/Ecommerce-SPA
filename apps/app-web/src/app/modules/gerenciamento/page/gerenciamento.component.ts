@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef,  OnDestroy} from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef,  OnDestroy } from '@angular/core';
 import { entities } from '@personalizados-lopes/data';
 
-import {AuthenticationService} from '../../../core/service/authentication/authentication.service';
+import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { Router } from '@angular/router';
 import { Link } from '../../../data/models';
 
@@ -15,7 +15,7 @@ import { Link } from '../../../data/models';
 export class GerenciamentoComponent implements OnInit {
   mobileQuery: MediaQueryList;
   user: entities.Usuario;
-  activenav:string;
+  activenav:string = "Produtos";
 
   navs:Link[];
 

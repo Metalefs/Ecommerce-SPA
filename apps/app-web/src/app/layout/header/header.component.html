@@ -3,7 +3,9 @@
 >
   <!-- container -->
   <mat-toolbar
-  class="pos-sticky flex-m flex-sa  mr-0 container">
+  class="pos-sticky flex-m flex-sa mr-0 container">
+    <div class="ml-1">
+    </div>
     <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
     <div class="columns mx-3 is-hidden-mobile link-section pt-3">
@@ -16,11 +18,11 @@
 
       </div>
 
-      <div class="wrap-pic-cir py-4 px-4 border-light">
+      <div class="wrap-pic-cir mb-2 py-4 px-4 border-light">
         <mat-menu #appMenu="matMenu">
           <ng-template matMenuContent let-name="name">
             <button mat-menu-item *ngIf="!user" (click)="openLogin()">Login</button>
-            <button mat-menu-item *ngIf="user" >{{user.Nome}}</button>
+            <button mat-menu-item *ngIf="user" [routerLink]="['/perfil']">{{user.Nome}}</button>
             <button mat-menu-item *ngIf="user && user?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
             <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
           </ng-template>

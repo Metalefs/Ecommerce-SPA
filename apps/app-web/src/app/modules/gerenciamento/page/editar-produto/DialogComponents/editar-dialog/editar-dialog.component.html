@@ -59,7 +59,7 @@
   </mat-form-field>
 
   <mat-form-field  class="w-full"  appearance="fill">
-    <mat-label>Status *os clientes interessados serão notificados na passagem do estado 'esgotado' para o estado 'novo'</mat-label>
+    <mat-label>Status *os usuários interessados serão notificados na passagem do estado 'esgotado' para o estado 'novo'</mat-label>
     <mat-select matNativeControl [(ngModel)]="Produto.Status"  [value]="Produto.Status">
       <mat-option *ngFor="let opt of statusProduto; let i = index" [value]="i">
         {{opt}}

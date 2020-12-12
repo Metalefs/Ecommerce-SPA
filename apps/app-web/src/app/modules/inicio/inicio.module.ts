@@ -23,7 +23,8 @@ import { HeaderFooterComponent } from './page/header-footer/header-footer.compon
     NgxPageScrollCoreModule
   ],
   exports:[
-    SlideshowModule
+    SlideshowModule,
+    CarrouselComponent
   ]
 })
 export class InicioModule { }

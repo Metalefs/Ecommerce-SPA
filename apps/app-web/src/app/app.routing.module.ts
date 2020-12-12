@@ -12,6 +12,7 @@ import { ShowcaseModule } from './modules/showcase/showcase.module';
 import { ProdutosModule } from './modules/produtos/produtos.module';
 import { OrcamentoModule } from './modules/orcamento/orcamento.module';
 import { CheckoutModule } from './modules/checkout/checkout.module';
+import { PerfilModule } from './modules/perfil/perfil.module';
 
 import { PagenotfoundModule } from './modules/pagenotfound/pagenotfound.module';
 
@@ -38,6 +39,7 @@ const routes: Routes = [
     ProdutosModule,
     OrcamentoModule,
     CheckoutModule,
+    PerfilModule,
     PagenotfoundModule
   ],
   exports: [
@@ -52,6 +54,7 @@ const routes: Routes = [
     ShowcaseModule,
     ProdutosModule,
     OrcamentoModule,
+    PerfilModule,
     PagenotfoundModule
   ],
 

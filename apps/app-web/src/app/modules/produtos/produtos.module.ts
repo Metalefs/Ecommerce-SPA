@@ -32,14 +32,14 @@ import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-
     ShareModule,
     ShareButtonModule,
     ShareIconsModule,
-    GalleryModule
+    GalleryModule,
   ],
   exports: [
     FontAwesomeModule,
     ShareButtonsModule,
     ShareModule,
     ShareButtonModule,
-    GalleryModule
+    GalleryModule,
   ]
 })
 export class ProdutosModule { }

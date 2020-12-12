@@ -15,11 +15,14 @@
       fixedTopGap="56">
       <mat-nav-list>
         <a *ngFor = "let nav of navs"
-          (click)="activenav = nav.name"
-          [ngClass]="activenav == nav.name ? 'nav active-nav' : 'nav'"
-          mat-list-item
-          [routerLink]="[nav.href]"
-          routerLinkActive="active">
+        (click)="activenav = nav.name"
+        [ngClass]="activenav == nav.name ? 'nav active-nav' : 'nav'"
+        mat-list-item
+        [routerLink]="[nav.href]"
+        routerLinkActive="active">
+          <mat-icon>
+            {{activenav == nav.name ? 'done' : 'arrow_left'}}
+          </mat-icon>
           {{nav.name}}
           <mat-divider></mat-divider>
         </a>

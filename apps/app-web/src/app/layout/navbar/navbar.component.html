@@ -26,6 +26,7 @@
     <div class="columns py-0 is-mobile is-gapless">
       <div class="column">
         <button
+          [routerLink]="['/perfil']"
           [matMenuTriggerFor]="appMenu2"
           class="w-full card box has-text-centered border-light" mat-flat-button
           title="Perfil">
@@ -46,7 +47,7 @@
 
   <mat-menu mat-menu #appMenu2="matMenu">
     <ng-template matMenuContent let-name="name">
-      <button mat-menu-item *ngIf="usuario" >{{usuario.Nome}}</button>
+      <button mat-menu-item *ngIf="usuario" [routerLink]="['/perfil']">{{usuario.Nome}}</button>
       <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>
