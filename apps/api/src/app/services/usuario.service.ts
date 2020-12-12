@@ -75,6 +75,14 @@ export module UsuarioService {
         }
     }
 
+    export async function UpdateInfo(usuarioAntigo:Usuario, usuarioNovo:Usuario){
+      let UsuarioAlterado = Object.assign(usuarioAntigo, omitEmailAndPassword(usuarioNovo));
+      console.log(UsuarioAlterado);
+      return await Repository.Edit(entities.Produto.NomeID, UsuarioAlterado._id, UsuarioAlterado).then(x => {
+        return x;
+      });
+    }
+
     export async function changePassword(email:string){
       const user = await getByEmail(email);
       if(user){
@@ -123,7 +131,13 @@ export module UsuarioService {
         await Repository.Remove(entities.Usuario.NomeID, {_id : id});
     }
 
+
     // helper functions
+
+    export function omitEmailAndPassword(Usuario: entities.Usuario) {
+      const { Senha, Email, ...userWithoutEmailAndPassword } = Usuario;
+      return userWithoutEmailAndPassword;
+    }
 
     export function omitPassword(Usuario: entities.Usuario) {
         const { Senha, ...userWithoutPassword } = Usuario;

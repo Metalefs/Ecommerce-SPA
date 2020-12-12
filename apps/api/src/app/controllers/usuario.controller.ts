@@ -18,9 +18,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     catch(ex){
      ErrorHandler.AuthorizationException(ex,res);
     }
-})
-
-app.post(RouteDictionary.Registro, (req,res, next) =>{
+}).post(RouteDictionary.Registro, (req,res, next) =>{
   try{
     console.log(req.body.Usuario);
     UsuarioService.create(req.body.Usuario)
@@ -30,9 +28,20 @@ app.post(RouteDictionary.Registro, (req,res, next) =>{
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-})
+}).put(RouteDictionary.AtualizarConta, (req,res, next) =>{
+  try{
+    UsuarioService.getByToken(req.body.token).then(user => {
 
-app.post(RouteDictionary.TrocarSenha, (req,res, next) =>{
+      UsuarioService.UpdateInfo(user, req.body.item.Usuario)
+          .then((user: boolean | any) => res.json(user))
+          .catch(reason => ErrorHandler.AuthorizationException(reason,res));
+    });
+  }
+  catch(ex){
+    ErrorHandler.AuthorizationException(ex,res);
+  }
+})
+.post(RouteDictionary.TrocarSenha, (req,res, next) =>{
   try{
     console.log(req.body.email);
     UsuarioService.changePassword(req.body.email)
