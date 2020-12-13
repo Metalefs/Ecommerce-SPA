@@ -1,22 +1,22 @@
+<div class="columns is-gapless my-3 is-mobile is-hidden-tablet w-full pos-sticky bellow-nav">
+  <div class="column has-background-white bo-0">
+    <div mat-flat-button class="card pointer clickable bo-0 w-full a-i-c flex-m flex-sa py-2" (click)="AbrirDialogoCategorias()">
+      <p>Categorias</p>
+      <!-- <mat-icon>category</mat-icon> -->
+    </div>
+  </div>
+  <div class="column has-background-white bo-0">
+    <div mat-flat-button class="card pointer clickable bo-0 w-full a-i-c flex-m flex-sa py-2" (click)="AbrirDialogoOrdenacao()">
+        <p>Ordenar</p>
+        <mat-icon>toc</mat-icon>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+</div>
 <div class="section mb-0 px-1c pb-0" id="Básicos">
 
-  <div class="columns is-gapless my-3 is-mobile is-hidden-tablet w-full pos-sticky bellow-nav">
-    <div class="column has-background-white bo-0">
-      <div mat-flat-button class="card pointer clickable bo-0 w-full flex-sa py-2" (click)="AbrirDialogoCategorias()">
-        <p>Categorias</p>
-        <!-- <mat-icon>category</mat-icon> -->
-      </div>
-    </div>
-    <div class="column has-background-white bo-0">
-      <div mat-flat-button class="card pointer clickable bo-0 w-full flex-sa py-2" (click)="AbrirDialogoOrdenacao()">
-          <p>Ordenar</p>
-          <mat-icon>toc</mat-icon>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-  </div>
 
-  <div class="columns px-3 py-4">
+  <div class="columns px-3 px-1c py-4">
     <div class="column is-12-mobile is-hidden-mobile">
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div class="is-hidden-mobile  w-full">
@@ -83,14 +83,13 @@
           <mat-divider class="pb-2"></mat-divider>
           <ng-container *ngFor="let produto of Produtos$ |async" class="mx-0 px-0 ">
             <div @fadeIn
-              class="column is-3-desktop is-6-mobile is-4-tablet  is-6-mobile"
+              class="column is-3-desktop is-12-mobile is-4-tablet  is-6-mobile"
               *ngIf="loading"
               >
               <mat-spinner></mat-spinner>
-
             </div>
             <div @fadeIn
-              class="column is-3-desktop is-6-mobile is-4-tablet pt-4"
+              class="column is-3-desktop is-12-mobile is-4-tablet pt-4"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @fadeIn
                 [Produto]="produto"

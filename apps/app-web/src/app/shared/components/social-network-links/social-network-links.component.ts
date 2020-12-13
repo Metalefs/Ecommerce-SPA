@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faInbox } from '@fortawesome/free-solid-svg-icons';
 import { Select, Store } from '@ngxs/store';
 import { InformacoesContato } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class SocialNetworkLinksComponent implements OnInit {
   @Select(InformacoesContatoState.IsInformacoesContatoLoaded) IsInformacoesContatoLoaded$;
   FIcon = faFacebook;
   InstaIcon = faInstagram;
-  InboxIcon = faShoppingCart;
+  InboxIcon = faInbox;
 
 
   constructor(private store: Store) { }
