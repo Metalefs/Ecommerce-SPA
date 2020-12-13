@@ -14,7 +14,12 @@ ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
         if(req.query.src){
           ImagemService.Filtrar({Src: req.query.src}).then(x=>{
             res.send(x);
-        });
+          });
+        }
+        if(req.query.nome){
+          ImagemService.Filtrar({Nome: req.query.nome}).then(x=>{
+            res.send(x);
+          });
         }
         else{
           ImagemService.Ler().then(x=>{

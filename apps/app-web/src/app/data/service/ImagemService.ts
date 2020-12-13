@@ -79,6 +79,13 @@ export class ImagemService {
     );
   }
 
+  FiltrarPorNome(nome:string): Observable<entities.Imagem[]> {
+    return this.http.get<entities.Imagem[]>(environment.endpoint + RouteDictionary.Imagem+ `?nome = ${nome}`).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.ErrorHandler.handleError) // then handle the error
+    );
+  }
+
   Editar(item: entities.Imagem): any {
       let payload = this.AuthenticationService.tokenize({Imagem:item});
       console.log(payload);
