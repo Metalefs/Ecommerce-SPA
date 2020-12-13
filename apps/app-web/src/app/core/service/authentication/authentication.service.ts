@@ -7,6 +7,7 @@ import { environment } from "../../../../environments/environment";
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -21,7 +22,10 @@ export class AuthenticationService {
     public get currentUserValue(): entities.Usuario {
         return this.currentUserSubject.value;
     }
-
+    public setUser(user:Usuario){
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      this.currentUserSubject.next(user);
+    }
     signup(Usuario : entities.Usuario){
         return this.http.post<any>(`${environment.endpoint}`+RouteDictionary.Usuario +RouteDictionary.Registro, { Usuario })
         .pipe(map(user => {
