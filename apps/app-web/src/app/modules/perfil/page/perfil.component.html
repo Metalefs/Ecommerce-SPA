@@ -38,9 +38,14 @@
           title="CPF">
       </mat-form-field>
       <button
+      (click)="TrocarSenha()"
+      mat-raised-button
+      class="background-light-blue has-text-light my-3">Trocar senha</button>
+      <button
       (click)="AtualizarInformacoes()"
       mat-raised-button
       class="background-light-blue has-text-light w-full">ATUALIZAR</button>
+
     </div>
     <div class="column">
       <h1>Endereço de entrega</h1>

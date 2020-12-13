@@ -61,7 +61,7 @@ export class AuthenticationService {
     }
 
     changePassword(email: string) {
-      return this.http.post<any>(`${environment.endpoint}`+ RouteDictionary.Usuario + RouteDictionary.TrocarSenha, { email })
+      return this.http.post<any>(`${environment.endpoint}`+ RouteDictionary.Usuario + RouteDictionary.RecuperarSenha, { email })
           .pipe(map(user => {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               if(user){

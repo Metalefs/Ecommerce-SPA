@@ -44,10 +44,26 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.post(RouteDictionary.TrocarSenha, (req,res, next) =>{
+.put(RouteDictionary.TrocarSenha, (req,res, next) =>{
+  try{
+    console.log(req.body);
+    UsuarioService.getByToken(req.body.token).then(user => {
+      if(user)
+        UsuarioService.changePassword(user,req.body.item.TrocaSenha)
+        .then((user: Usuario | any) => res.json(user))
+        .catch(reason => ErrorHandler.AuthorizationException(reason,res));
+      else
+        ErrorHandler.AuthorizationException('autenticação inválida',res);
+    });
+  }
+  catch(ex){
+    ErrorHandler.AuthorizationException(ex,res);
+  }
+})
+.post(RouteDictionary.RecuperarSenha, (req,res, next) =>{
   try{
     console.log(req.body.email);
-    UsuarioService.changePassword(req.body.email)
+    UsuarioService.recoverPassword(req.body.email)
         .then((user: boolean | any) => res.json(user))
         .catch(reason => ErrorHandler.AuthorizationException(reason,res));
   }

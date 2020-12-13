@@ -1,0 +1,45 @@
+<form (ngSubmit)="Finalizar()">
+<h2>Alterar sua senha</h2>
+<mat-divider></mat-divider>
+<mat-form-field class=" control has-icons-right" appearance="fill">
+  <mat-label>Senha atual</mat-label>
+  <input
+    #senhaatual
+    type="password"
+    matInput
+    required
+    [formControl]="senhaAtualFormControl">
+  <mat-error *ngIf="senhaAtualFormControl.hasError('required')">
+    Campo obrigatório
+  </mat-error>
+  <span class="icon is-right" *ngIf="senhaAtualFormControl.hasError('required')">
+    <mat-icon class="has-text-warning">warning</mat-icon>
+  </span>
+  <a mat-icon-button (click)="senhaatual.type = senhaatual.type == 'text' ? 'password': 'text'">
+    <mat-icon>visibility</mat-icon>
+  </a>
+</mat-form-field>
+
+<mat-form-field class="w-full control has-icons-right mb-3" appearance="fill">
+  <mat-label>Nova senha</mat-label>
+  <input
+    #senhanova
+    type="password"
+      class="w-full input"
+      matInput
+      required
+      [formControl]="senhaNovaFormControl" placeholder=""
+    >
+  <mat-error *ngIf="senhaNovaFormControl.hasError('required')">
+    Campo obrigatório
+  </mat-error>
+  <span class="icon is-right" *ngIf="senhaNovaFormControl.hasError('required')">
+    <mat-icon class="has-text-warning">warning</mat-icon>
+  </span>
+  <a mat-icon-button (click)="senhanova.type = senhanova.type == 'text' ? 'password': 'text'">
+    <mat-icon>visibility</mat-icon>
+  </a>
+</mat-form-field>
+<button
+    class="button is-success w-full">Alterar</button>
+</form>

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { EnderecoEntrega, Usuario } from 'libs/data/src/lib/classes';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { UsuarioService } from '../../../data/service';
+import { NovaSenhaComponent } from './dialogs/nova-senha/nova-senha.component';
 import { NovoEnderecoComponent } from './dialogs/novo-endereco/novo-endereco.component';
 
 @Component({
@@ -35,6 +36,16 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.AtualizarInformacoes(this.user).subscribe(x=>{
       this.snack.open('Informações atualizadas','Fechar');
       this.authenticationService.setUser(x);
+    });
+  }
+
+  TrocarSenha(){
+    this.dialog.open(NovaSenhaComponent, {
+      width:"512px",
+      height:"100vh",
+      position:{
+        left:"0"
+      }
     });
   }
 

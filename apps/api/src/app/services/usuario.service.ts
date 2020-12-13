@@ -8,6 +8,7 @@ import { exception } from 'console';
 
 import { generateSinglePassword } from './password.service';
 import { Usuario } from 'libs/data/src/lib/classes';
+import { TrocaSenha } from 'libs/data/src/lib/interfaces';
 
 export module UsuarioService {
 
@@ -83,7 +84,28 @@ export module UsuarioService {
       });
     }
 
-    export async function changePassword(email:string){
+    export async function changePassword(user:Usuario, trocarSenha:TrocaSenha){
+      if(user){
+        let emailService = new EmailService();
+        if(bcrypt.compareSync(trocarSenha.senhaAtual, user.Senha)){
+          let hashSenhaNova =  bcrypt.hashSync(trocarSenha.senhaNova, 10);
+          console.log('senhaNova',hashSenhaNova);
+          return await Repository.UpdateUserPassword(entities.Usuario.NomeID, user._id, hashSenhaNova).then((x:Usuario) => {
+            emailService.SendUpdatePasswordMessage(x, 'senha omitida pelo sistema');
+            if(x)
+            return x
+          });
+        }
+        else{
+          return {erro: 'Senha atual incorreta'}
+        }
+      }
+      else{
+        return {erro: 'E-mail não encontrado'}
+      }
+    }
+
+    export async function recoverPassword(email:string){
       const user = await getByEmail(email);
       if(user){
         let emailService = new EmailService();
