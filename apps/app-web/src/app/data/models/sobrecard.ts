@@ -6,4 +6,5 @@ export interface SobreCard {
   content:any;
   link:string;
   id?:string;
+  img_src?:string;
 }

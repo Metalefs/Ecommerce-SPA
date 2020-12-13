@@ -17,11 +17,11 @@
 
   <div class="section w-full">
     <div class="has-text-left  w-full">
-      <h2 class="subtitle">Insira seus dados pessoais</h2>
+      <h2 class="subtitle">Dados do comprador</h2>
     </div>
 
+    <span class="subtitle" @fadeIn *ngIf="nomeFormControl.hasError('required') || emailFormControl.hasError('required') || phoneFormControl.hasError('required')">Verifique os campos obrigatórios.</span>
     <div class="pt-3">
-      <span class="subtitle">Verifique os campos obrigatórios.</span>
       <form (ngSubmit)="SubmeterDadosPessoais()">
 
         <mat-form-field class="w-full control has-icons-right" appearance="">

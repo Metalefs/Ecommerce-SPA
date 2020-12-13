@@ -3,12 +3,16 @@
     <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
     <div data-aos="zoom-in-up"  class="card-bg" [style.backgroundColor]="card?.color">
       <mat-card [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
-        <article class="media">
+        <article class="media" >
+          <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
+            <img *ngIf="card.img_src" mat-card-image src="{{card.img_src}}" class="min-h-full">
+          </a>
           <mat-card-header>
-            <div mat-card-avatar [style.backgroundColor]="card?.color">
-              <a [routerLink]="card.link" href="{{card.id}}" pageScroll><mat-icon>{{card.icon}}</mat-icon></a>
+            <div *ngIf="!card.img_src" mat-card-avatar [style.backgroundColor]="card?.color">
+              <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
+                <mat-icon>{{card.icon}}</mat-icon>
+              </a>
             </div>
-
           </mat-card-header>
           <div class="media-content">
             <div class="content">

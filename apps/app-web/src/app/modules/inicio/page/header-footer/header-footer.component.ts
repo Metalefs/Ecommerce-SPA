@@ -24,7 +24,8 @@ export class HeaderFooterComponent implements OnInit {
       class:"yellow",
       link:"/produtos",
       id:"#PRODUTO",
-      content:`Confira nossas canecas, camisetas, almofadas e outros.`
+      content:`Confira nossas canecas, camisetas, almofadas e outros.`,
+      img_src:'https://firebasestorage.googleapis.com/v0/b/personalizados-lopes-web-app.appspot.com/o/imagens%2Fgenerico%2F0.10889060436447451ezgif.com-gif-maker.gif?alt=media&token=e6c057de-05c1-4906-9cfe-37f8e508c735'
     },
     {
       title:"Orçamento",
