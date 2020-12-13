@@ -13,27 +13,27 @@ import { ImagemService } from './ImagemService';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
 import { Produto } from 'libs/data/src/lib/classes';
-import { handleError } from '../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
 
 export class ProdutoService {
-    constructor(private http: HttpClient,
+    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
     private AuthenticationService: AuthenticationService,
     private servicoImagem: ImagemService) { }
 
     Ler(): Observable<entities.Produto[]> {
         return this.http.get<entities.Produto[]>(environment.endpoint + RouteDictionary.Produto).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
 
     Filtrar(id:any): Observable<entities.Produto[]> {
       return this.http.get<entities.Produto[]>(environment.endpoint + RouteDictionary.Produto + `?id = ${id}`).pipe(
           retry(3), // retry a failed request up to 3 times
-          catchError(handleError) // then handle the error
+          catchError(this.ErrorHandler.handleError) // then handle the error
       );
     }
 
@@ -46,7 +46,7 @@ export class ProdutoService {
           return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produto,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError)
+            catchError(this.ErrorHandler.handleError)
           )
         });
 
@@ -55,7 +55,7 @@ export class ProdutoService {
     Gostar(id:string) :Observable<entities.Produto> {
       return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.GostarProduto, {id:id}).pipe(
           retry(3),
-          catchError(handleError)
+          catchError(this.ErrorHandler.handleError)
       );
     }
 
@@ -71,7 +71,7 @@ export class ProdutoService {
           let token = this.AuthenticationService.tokenize({id});
           resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produto + `?id=${id}&token=${token.token}`).pipe(
               retry(3),
-              catchError(handleError)
+              catchError(this.ErrorHandler.handleError)
           ));
         })
       })
@@ -82,7 +82,7 @@ export class ProdutoService {
       let payload = this.AuthenticationService.tokenize({Produto:item});
       return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produto, payload).pipe(
         retry(3),
-        catchError(handleError)
+        catchError(this.ErrorHandler.handleError)
       );
 
     }

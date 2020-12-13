@@ -3,22 +3,49 @@
     <div class="column">
       <h1>Meu Cadastro</h1>
       <mat-form-field appearance="fill" class="w-full">
-        <input matInput type="text" [(ngModel)]="user.Nome" placeholder="Nome" title="Nome">
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="user.Nome"
+          placeholder="Nome"
+          title="Nome">
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-full">
-        <input matInput type="text" [(ngModel)]="user.Email" placeholder="Email" title="Email">
+        <input
+          matInput
+          type="text"
+          [value]="user.Email"
+          disabled
+          placeholder="Email"
+          title="Email">
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-full">
-        <input matInput mask="(00) 0000-0000||(00) 0 0000-0000" type="text" [(ngModel)]="user.Telefone" placeholder="Telefone" title="Telefone">
+        <input
+          matInput
+          mask="(00) 0000-0000||(00) 0 0000-0000"
+          type="text"
+          [(ngModel)]="user.Telefone"
+          placeholder="Telefone"
+          title="Telefone">
       </mat-form-field>
       <mat-form-field appearance="fill" class="w-full">
-        <input matInput mask="000.000.000-00" type="text" [(ngModel)]="user.CPF" placeholder="CPF" title="CPF">
+        <input
+          matInput
+          mask="000.000.000-00"
+          type="text"
+          [(ngModel)]="user.CPF"
+          placeholder="CPF"
+          title="CPF">
       </mat-form-field>
+      <button
+      (click)="AtualizarInformacoes()"
+      mat-raised-button
+      class="background-light-blue has-text-light w-full">ATUALIZAR</button>
     </div>
     <div class="column">
       <h1>Endereço de entrega</h1>
       <mat-card>
-        <div class="box">
+        <div class="box border">
           <p>{{user.Nome}}</p>
           <p>CEP: {{user?.EnderecoEntrega?.CEP}}</p>
           <p>{{user?.EnderecoEntrega?.Rua}}, {{user?.EnderecoEntrega?.Numero}}</p>
@@ -26,6 +53,9 @@
           <p>{{user?.EnderecoEntrega?.Cidade}} - {{user?.EnderecoEntrega?.Estado}}</p>
         </div>
       </mat-card>
+      <button
+      mat-raised-button
+      class="background-light-blue has-text-light w-full">NOVO ENDEREÇO</button>
     </div>
   </div>
 </section>

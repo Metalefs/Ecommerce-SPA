@@ -9,20 +9,20 @@ import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { Mensagem } from 'libs/data/src/lib/classes';
-import { handleError } from '../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class MensagemService {
-    constructor(private http: HttpClient,
+    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
         private AuthenticationService: AuthenticationService) { }
 
     Ler(): Observable<entities.Mensagem[]> {
         return this.http.get<entities.Mensagem[]>(environment.endpoint + RouteDictionary.Mensagem).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
 
@@ -32,21 +32,21 @@ export class MensagemService {
         return this.http.put<entities.Mensagem>(environment.endpoint + RouteDictionary.Mensagem,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
       return this.http.delete<entities.Mensagem>(environment.endpoint + RouteDictionary.Mensagem + `?id=${id}&token=${token.token}`).pipe(
           retry(3),
-          catchError(handleError)
+          catchError(this.ErrorHandler.handleError)
       );
     }
     Incluir(item: entities.Mensagem): Observable<any> {
       let payload = this.AuthenticationService.tokenize({Mensagem:item});
       return this.http.post<entities.Mensagem>(environment.endpoint + RouteDictionary.Mensagem, payload).pipe(
           retry(3),
-          catchError(handleError)
+          catchError(this.ErrorHandler.handleError)
       );
     }
 

@@ -119,6 +119,9 @@ p{
   background: $feedback-darkest;
   color: #fff;
 }
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
+  background: $blue1;
+}
 .background-primary-warmer{
   background: $crayola;
 }
@@ -132,9 +135,7 @@ p{
 }
 .card-bg{
   z-index: 0;
-  content: "";
-  width: 102%;
-  height: 107%;
+  content: "";;
   border-radius: 1rem;
   position: relative;
   bottom: -8px;

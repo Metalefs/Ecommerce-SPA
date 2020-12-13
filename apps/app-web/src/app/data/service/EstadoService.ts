@@ -4,13 +4,13 @@ import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { Estado } from '../models/Estado';
-import { handleError } from '../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
 
 export class EstadoService {
-    constructor(private http: HttpClient){}
+    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler){}
 
     Listar(): Observable<Estado[]> {
         // alert(`https://viacep.com.br/${cep}/json`);
@@ -18,7 +18,7 @@ export class EstadoService {
 
         return this.http.get<Estado[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/`).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
     handleError(error) {

@@ -1,9 +1,59 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Criação de produto</h1>
 <div mat-dialog-content>
+  <mat-card class="box">
+    <mat-card-title>Dicas</mat-card-title>
+    <mat-card-subtitle>Cadastro de produto:</mat-card-subtitle>
+    <mat-card-content>
+      <div>
+        <div class="card">
+          <h2>Titulo completo e descritivo</h2>
+          <p> ex: <em>Tinta para parede xyz 3.6 Litros rosa</em></p>
+          <p> ex: <em>(1)Sapatilha (2)Classica (3)Couro (4)Rosa</em></p>
+          <span class="ml-3">
+            (1)Categoria
+            (1)(2)Nome
+            (3)Tipo
+            (3)Material do produto
+            (4)Cor (se houver)
+           </span>
+        </div>
+        <div class="card">
+          <h2>Fotos de qualidade e padronizadas</h2>
+          <ul class="ml-3">
+            <li>Fotos ambientadas, mostrando a utilidade do produto e diferentes formas de aplicação</li>
+            <li>Comparação do tamanho real do produto</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Descrição útil</h2>
+          <ul class="ml-3">
+            <li>Descrições úteis, não apenas a descrição do fabricante.</li>
+            <li>Jamais deixar dúvidas</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>Categorização</h2>
+          <ul class="ml-3">
+            <li>Categorização em desdobramento mercadológico e em subcategorias.</li>
+          </ul>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
   <mat-form-field class="w-full">
     <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
   </mat-form-field>
+
   <div class="w-full">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Descrição</mat-card-title>
+        <mat-card-content>
+          Explore a ferramenta
+          <p>Aqui é possível inserir conteúdos externos como fotos e videos, postagens de redes sociais e criação de tabelas de caracteristicas</p>
+        </mat-card-content>
+      </mat-card-header>
+    </mat-card>
     <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao" ></ckeditor>
   </div>
   <mat-form-field class="w-full">

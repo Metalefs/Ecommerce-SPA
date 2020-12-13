@@ -32,10 +32,12 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
 }).put(RouteDictionary.AtualizarConta, (req,res, next) =>{
   try{
     UsuarioService.getByToken(req.body.token).then(user => {
-
+      if(user)
       UsuarioService.UpdateInfo(user, req.body.item.Usuario)
           .then((user: Usuario | any) => res.json(user))
           .catch(reason => ErrorHandler.AuthorizationException(reason,res));
+      else
+      ErrorHandler.AuthorizationException('autenticação inválida',res);
     });
   }
   catch(ex){

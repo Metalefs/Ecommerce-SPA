@@ -7,13 +7,16 @@ import { retry, catchError } from 'rxjs/operators';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-import { handleError } from '../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
 
 export class UsuarioService {
-    constructor(private http: HttpClient, private authenticationService:AuthenticationService) { }
+    constructor(private http: HttpClient,
+       private authenticationService:AuthenticationService,
+       private ErrorHandler:ErrorHandler
+       ) { }
 
     AtualizarInformacoes(item: entities.Usuario): Observable<entities.Usuario> {
       let payload = this.authenticationService.tokenize({Usuario:item});
@@ -21,19 +24,19 @@ export class UsuarioService {
       return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.AtualizarConta,
       payload).pipe(
         retry(3), // retry a failed request up to 3 times
-        catchError(handleError) // then handle the error
+        catchError(this.ErrorHandler.handleError) // then handle the error
       );
     }
     RecoverPassword(email: string): any {
       return this.http.post<string>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.TrocarSenha, {email:email}).pipe(
           retry(3),
-          catchError(handleError)
+          catchError(this.ErrorHandler.handleError)
       );
     }
     DeleteAccount(id: string): any {
         return this.http.delete<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.DeletarConta).pipe(
             retry(3),
-            catchError(handleError)
+            catchError(this.ErrorHandler.handleError)
         );
     }
     handleError(error) {

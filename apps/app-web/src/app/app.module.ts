@@ -1,5 +1,5 @@
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
@@ -76,6 +76,7 @@ import { environment } from '../environments/environment';
     { provide: ImagemService },
     { provide: CEPService },
     { provide: EstadoService },
+    { provide: ErrorHandler },
     { provide: MediaMatcher },
     {
       provide: RouteReuseStrategy,

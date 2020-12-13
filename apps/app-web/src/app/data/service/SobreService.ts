@@ -7,19 +7,19 @@ import { environment } from '../../../environments/environment';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-import { handleError } from '../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })
 
 export class SobreService {
-    constructor(private http: HttpClient,
+    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
         private AuthenticationService: AuthenticationService){}
 
     Ler(): Observable<entities.Sobre> {
         return this.http.get<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
     Editar(item: entities.Sobre): Observable<entities.Sobre> {
@@ -28,20 +28,20 @@ export class SobreService {
         return this.http.put<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
     Remover(id: string): Observable<any>{
         return this.http.delete<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre).pipe(
             retry(3),
-            catchError(handleError)
+            catchError(this.ErrorHandler.handleError)
         );
     }
     Incluir(item: entities.Sobre): Observable<any> {
       let payload = this.AuthenticationService.tokenize({Sobre:item});
       return this.http.post<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre, payload).pipe(
           retry(3),
-          catchError(handleError)
+          catchError(this.ErrorHandler.handleError)
       );
     }
 

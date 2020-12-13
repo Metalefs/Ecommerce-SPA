@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
+import { fade } from 'apps/app-web/src/app/animations';
 import { ResetarOrcamento, EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
@@ -13,7 +14,8 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'personalizados-lopes-checkout-display',
   templateUrl: './checkout-display.component.html',
-  styleUrls: ['./checkout-display.component.scss']
+  styleUrls: ['./checkout-display.component.scss'],
+  animations:[fade]
 })
 export class CheckoutDisplayComponent implements OnInit {
 

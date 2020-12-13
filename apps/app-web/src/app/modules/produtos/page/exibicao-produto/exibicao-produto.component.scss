@@ -12,6 +12,11 @@ gallery{
   cursor: grab;
   transform:scale(1);
 }
+.section{
+
+  max-width: 1250px;
+  margin: 0px auto;
+}
 .tamanho-produto{
   &.active{
     border: 1px solid;

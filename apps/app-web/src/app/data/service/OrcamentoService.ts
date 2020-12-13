@@ -7,20 +7,20 @@ import { environment } from '../../../environments/environment';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-import { handleError } from '../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class OrcamentoService {
-    constructor(private http: HttpClient,
+    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
         private AuthenticationService: AuthenticationService) { }
 
     Ler(): Observable<entities.Orcamento[]> {
         return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Orcamento).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
 
@@ -30,7 +30,7 @@ export class OrcamentoService {
         return this.http.put<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
-            catchError(handleError) // then handle the error
+            catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
 
@@ -38,7 +38,7 @@ export class OrcamentoService {
       let token = this.AuthenticationService.tokenize({id});
       return this.http.delete<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento + `?id=${id}&token=${token.token}`).pipe(
           retry(3),
-          catchError(handleError)
+          catchError(this.ErrorHandler.handleError)
       );
     }
 
@@ -46,7 +46,7 @@ export class OrcamentoService {
         let payload = this.AuthenticationService.tokenize({Orcamento:item});
         return this.http.post<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento, {payload}).pipe(
             retry(3),
-            catchError(handleError)
+            catchError(this.ErrorHandler.handleError)
         );
     }
 
