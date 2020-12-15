@@ -22,8 +22,8 @@ import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 })
 export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
-  textoAdicionar:string = 'Adicionar';
-  textoAtualizar:string = 'Atualizar';
+  textoAdicionar:string = 'Adicionar ao carrinho';
+  textoAtualizar:string = 'Atualizar carrinho';
   textoEsgotado:string = 'Esgotado';
   Url:string;
   Produto:Produto;

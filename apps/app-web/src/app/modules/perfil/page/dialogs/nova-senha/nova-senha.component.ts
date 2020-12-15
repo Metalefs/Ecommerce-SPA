@@ -31,13 +31,20 @@ export class NovaSenhaComponent implements OnInit {
     if(this.ValidarDados()){
       this.Loading = true;
       let trocarSenha:TrocaSenha = {senhaAtual: this.senhaAtualFormControl.value, senhaNova: this.senhaNovaFormControl.value};
-      this.usuarioService.TrocarSenha(trocarSenha).subscribe((x:Usuario)=>{
+      this.usuarioService.TrocarSenha(trocarSenha).subscribe((x:any) =>{
         this.Finalizado = true;
         this.snack.open("Senha alterada", "Fechar", {
           verticalPosition:'top',
           horizontalPosition:'left'
         });
-        this.authService.setUser(x);
+        console.log(x)
+        if(x.Nome)
+          this.authService.setUser(x);
+        else
+          this.snack.open(x.erro,"Fechar", {
+            verticalPosition:'top',
+            horizontalPosition:'left'
+          });
         this.Loading = false;
       });
     }

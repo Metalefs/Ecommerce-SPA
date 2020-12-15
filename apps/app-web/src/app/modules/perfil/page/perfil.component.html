@@ -49,24 +49,24 @@
     </div>
     <div class="column">
       <h1>Endereço de entrega</h1>
-      <mat-card *ngIf="user.EnderecoEntrega" class="has-background-light">
+      <mat-card *ngIf="user?.EnderecoEntrega" class="has-background-light">
         <div class="box border">
-          <p>{{user.Nome}}</p>
-          <p>CEP: {{user.EnderecoEntrega.CEP}}</p>
-          <p>{{user.EnderecoEntrega.Rua}}, {{user.EnderecoEntrega.Numero}}</p>
-          <p>- {{user.EnderecoEntrega.Bairro}}</p>
-          <p>{{user.EnderecoEntrega.Cidade}} - {{user.EnderecoEntrega.Estado}}</p>
+          <p>{{user?.Nome}}</p>
+          <p>CEP: {{user?.EnderecoEntrega?.CEP}}</p>
+          <p>{{user?.EnderecoEntrega?.Rua}}, {{user?.EnderecoEntrega?.Numero}}</p>
+          <p>- {{user?.EnderecoEntrega?.Bairro}}</p>
+          <p>{{user?.EnderecoEntrega?.Cidade}} - {{user?.EnderecoEntrega?.Estado}}</p>
         </div>
         <mat-card-actions></mat-card-actions>
       </mat-card>
-      <div *ngIf="user.EnderecosEntrega?.length > 0">
-        <mat-card *ngFor="let endereco of user.EnderecosEntrega; let idx = index">
-          <div class="box border">
-            <p>{{user.Nome}}</p>
-            <p>CEP: {{endereco.CEP}}</p>
-            <p>{{endereco.Rua}}, {{endereco.Numero}}</p>
+      <div *ngIf="user.EnderecosEntrega">
+        <mat-card *ngFor="let endereco of user?.EnderecosEntrega; let idx = index">
+          <div class="box border" *ngIf="endereco">
+            <p>{{user?.Nome}}</p>
+            <p>CEP: {{endereco?.CEP}}</p>
+            <p>{{endereco?.Rua}}, {{endereco?.Numero}}</p>
             <p>- {{endereco.Bairro}}</p>
-            <p>{{endereco.Cidade}} - {{endereco.Estado}}</p>
+            <p>{{endereco?.Cidade}} - {{endereco?.Estado}}</p>
             <mat-card-actions>
               <div class="dis-flex flex-w flex-sb w-full">
                 <button class="mx-0 my-3" (click)="SetarEndereco(idx)" mat-raised-button>

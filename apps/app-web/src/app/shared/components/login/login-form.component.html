@@ -26,10 +26,11 @@
                 [(ngModel)]="form.Senha"
                 #SenhaControl="ngModel"
                 required />
-              <mat-error *ngIf="SenhaControl.hasError('required')">
-                Senha inválida
-              </mat-error>
-            </mat-form-field>
+                <mat-error *ngIf="SenhaControl.hasError('required')">
+                  Senha inválida
+                </mat-error>
+              </mat-form-field>
+              <a (click)="EsqueceuSenha()" class="has-text-grey-light"><span>Esqueceu a senha? Preencha o e-mail e clique aqui</span></a>
             <div *ngIf="iserror">
               Nome ou senha inválidos
               <p>
@@ -46,7 +47,6 @@
 
           </div>
         </form>
-        <button (click)="EsqueceuSenha()"><span>Esqueceu a senha? Preencha o e-mail e clique aqui</span></button>
 
 </div>
 <div class="login-wrapper has-background-white-t box" *ngIf="Logado">
