@@ -21,8 +21,17 @@
     padding-top:0;
     margin-top: -12px;
   }
+  .px-1c{
+    padding-left:0;
+    padding-right: 0;
+  }
+  .produto-column{
+    border-left: none;
+  }
 }
-
+.card{
+  box-shadow: none;
+}
 .section{
   max-width: 1250px;
   margin: 0px auto;

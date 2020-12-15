@@ -1,7 +1,8 @@
-<div class="card of-y-scroll vh-full">
+<div class="card of-y-scroll vh-full has-background-dark">
 
+  <div class="ml-3"></div>
   <p>
-    <mat-toolbar color="">
+    <mat-toolbar color="" class="has-background-dark">
       <mat-toolbar-row class="py-6">
         <a href="#"><img class="logo" src="assets/images/icons/Logo.png" alt="LOGO"></a>
         <span class="spacer"></span>
@@ -14,7 +15,7 @@
     </mat-toolbar>
   </p>
 
-  <div class="card w-full px-6 ">
+  <div class="card  has-background-dark w-full px-6 ">
     <button *ngIf="!Logado" (click)="ToggleNav(0)" [routerLink]="'/login'" mat-flat-button class="box w-full">
       <mat-icon>login</mat-icon>
       <span>Entrar</span>
@@ -28,7 +29,7 @@
         <button
           [routerLink]="['/perfil']"
           [matMenuTriggerFor]="appMenu2"
-          class="w-full card box has-text-centered border-light" mat-flat-button
+          class="w-full  has-background-dark card box has-text-centered border-light" mat-flat-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>
           <p>Minha conta</p>
@@ -36,7 +37,7 @@
       </div>
 
       <div class="column">
-        <button class="w-full card box has-text-centered border-light" mat-flat-button>
+        <button class="w-full  has-background-dark card box has-text-centered border-light" mat-flat-button>
           <mat-icon></mat-icon>
           <p>Meus pedidos</p>
         </button>
@@ -102,13 +103,12 @@
       </button>
     </li>
   </ul>
-  <mat-toolbar class="w-full pt-3 pos-sticky bottom-0">
-    <mat-toolbar-row>
+  <mat-toolbar class="w-full pt-3 pos-sticky bottom-0 has-background-dark">
+    <mat-toolbar-row class=" has-background-dark">
       <div class="columns">
         <div class="column"></div>
         <div class="column"><personalizados-lopes-social-network-links></personalizados-lopes-social-network-links></div>
         <div class="column has-text-right">
-          <p class="titulo-produto"></p>
         </div>
       </div>
     </mat-toolbar-row>

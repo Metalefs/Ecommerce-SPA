@@ -2,9 +2,6 @@
 @import '../../../variables';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.orcamento{
-  margin-top: -18px;
-}
 a{
   color:initial;
 }
@@ -59,14 +56,27 @@ a{
   width: 20px;
   font-weight: 600;
 }
+.how-social{
+  box-shadow: none;
+}
 @media (min-width: 320px ) and (max-width: 1023px) {
 
   .mat-toolbar {
-    height: 90px;
+    height: 65px;
   }
-  .orcamento{
-    margin-right: 2rem;
+  .logo{
+
   }
+
+}
+@media (min-width:1023px){
+  .flex-sb-c{
+    display: block;
+    justify-content:initial;
+  }
+}
+.mat-mini-fab .mat-button-wrapper{
+  padding: 0;
 }
 .nav-link{
   font-weight: 400;

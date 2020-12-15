@@ -50,16 +50,16 @@ export class AppComponent {
 
   LerServicosAPI(){
     this.store.dispatch(new LerCarousel()          ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
-    this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = 'Obtendo preços baixos');
+    this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerItemCarousel()      ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
-    this.store.dispatch(new LerInformacoesContato()).subscribe(x=>this.carregandoOque = 'Obtendo contato');
+    this.store.dispatch(new LerInformacoesContato()).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerCliente()           ).subscribe(
       x=>{
         this.loading = false;
         this.carregandoOque = 'Clientes carregados'
       }
     );
-    this.store.dispatch(new LerSobre()             ).subscribe(x=>this.carregandoOque = 'Lembrando quem somos');
+    this.store.dispatch(new LerSobre()             ).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerServico()           ).subscribe();
     this.store.dispatch(new LerCategoria()         ).subscribe();
     this.store.dispatch(new LerProduto()           ).subscribe(x=>{
@@ -73,7 +73,7 @@ export class AppComponent {
     AOS.init();
     this.LerServicosAPI();
     setTimeout(()=>{
-      this.carregandoOque += " ...Está demorando mais do que o esperado";
+      this.carregandoOque = " ...carregando";
     },3000)
   }
 

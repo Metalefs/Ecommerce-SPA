@@ -1,8 +1,9 @@
 
 @import '../../../variables';
-// .card {
-//   background-color: #ffffffe8;
-// }
+.card {
+  // background-color: #ffffffe8;
+  color:white;
+}
 a span{
   text-transform: capitalize;
   font-weight: 400;
@@ -37,14 +38,14 @@ a span{
 .mat-list-item a.active-nav{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color: black;
+  color: white;
   font-weight: bold;
 }
 .mat-list-item a.active-nav .mat-icon.inst{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color: black;
-  background:black;
+  color:white;
+  background:white;
 }
 a {
   position: relative;
@@ -65,7 +66,7 @@ a:before {
 
 
   a:hover {
-    color: #000;
+    color: white;
     text-decoration: none;
   }
 @media only screen and (min-width: 768px) {
@@ -79,7 +80,7 @@ a:before {
 .mat-subheader{
   font-family: Montserrat;
   font-weight: 300;
-  color:$gray-web;
+  color:white;
 }
 .mat-list-text{
   padding: 0;
@@ -100,7 +101,4 @@ a:before {
   border-top-right-radius: 0;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 0;
-}
-.logo{
-  filter:grayscale(1)
 }
