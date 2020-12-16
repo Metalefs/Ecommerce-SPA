@@ -16,7 +16,7 @@ export class HeaderFooterComponent implements OnInit {
       console.log(x);
       this.Cards = [
         {
-          title:"Criacao de Arte (Galeria)",
+          title:"Galeria",
           icon:"group_work",
           color:"#FD6D13",
           class:"red",
@@ -25,7 +25,7 @@ export class HeaderFooterComponent implements OnInit {
           content:"Recebemos pedidos personalizados para a arte do seu produto."
         },
         {
-          title:"Nossos Produtos",
+          title:"Produtos",
           icon:"photo_library",
           color:"#FFB041",
           class:"yellow",
@@ -35,7 +35,7 @@ export class HeaderFooterComponent implements OnInit {
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         {
-          title:"Orçamento",
+          title:"Contato",
           icon:"email",
           color:"#3AB8FF",
           class:"blue",

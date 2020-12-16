@@ -3,11 +3,11 @@
     <div class="column is-12 p-0 allContent">
       <!-- testimonial content -->
       <div class="titleContent py-3">
-        <p class = 'testimonial-title title is-4 has-text-weight-bold'>
-          Casos de sucesso
-        </p>
+        <h1 class = 'testimonial-title has-text-weight-bold'>
+          DEPOIMENTOS
+        </h1>
       </div>
-      <div class="testimonialContent noselect" #sliderContent (mousemove) = 'sliderMuve($event)'
+      <div class="testimonialContent noselect box" #sliderContent (mousemove) = 'sliderMuve($event)'
       (mousedown) = 'mousedownInSlider($event)' (mouseup) = 'leftSlider()' (mouseleave) = 'leftSlider()'>
         <div class="card-bg-rot" *ngFor = 'let item of sliderData; let i = index;' >
 

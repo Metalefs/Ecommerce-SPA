@@ -45,9 +45,20 @@ export class EditarServicoComponent implements OnInit {
     let name = "Serviço";
     let id = Servico._id;
     Object.entries(Servico).forEach(([key, value]) => {
-      if(key != "_id")
+      if(key != "_id" && key !="Imagem")
       questions.push(
         new EmailMessageQuestion({
+          key: key,
+          label: key,
+          value: value,
+          required: true,
+          type:"textarea",
+          order: 1
+        })
+      )
+      else if(key== "Imagem")
+      questions.push(
+        new TextboxQuestion({
           key: key,
           label: key,
           value: value,

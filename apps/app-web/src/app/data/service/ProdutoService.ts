@@ -64,8 +64,8 @@ export class ProdutoService {
         this.Filtrar(id).subscribe(async Produto =>{
           for(let i =0; i<= Produto[0].Imagem.length ; i++){
             try{
-              if(Produto[0].Imagem[i])
-              await this.servicoImagem.deleteImage(Produto[0].Imagem[i]);
+              //if(Produto[0].Imagem[i])
+              //await this.servicoImagem.deleteImage(Produto[0].Imagem[i]);
             }catch(EX){ console.log(EX); continue;}
           }
           let token = this.AuthenticationService.tokenize({id});
