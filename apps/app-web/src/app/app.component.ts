@@ -73,7 +73,7 @@ export class AppComponent {
     AOS.init();
     this.LerServicosAPI();
     setTimeout(()=>{
-      this.carregandoOque = " ...carregando";
+      this.carregandoOque += " ...carregando";
     },3000)
   }
 

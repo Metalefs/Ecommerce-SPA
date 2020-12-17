@@ -116,8 +116,8 @@ p{
   padding: 0 !important;
 }
 .mat-toolbar.mat-primary {
-  background: $feedback-darkest;
-  color: #fff;
+  background: #f9f9f9;
+  color: #000000;
 }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
   background: $blue1;
@@ -197,7 +197,7 @@ p{
 .header{
   // font-family: Open Sans !important;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1em;
   line-height: 47px;
   display: flex;

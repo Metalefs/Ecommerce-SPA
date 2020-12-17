@@ -5,7 +5,7 @@
     <ng-container  *ngIf="i%2 == 0 then left else right"></ng-container>
 
     <ng-template #right>
-      <div class="column is-6 section" [style.background] = "'url('+card.content.Imagem+')'" data-aos="slide-right">
+      <div class="column is-6 section" [style.background] = "'url('+card.content.Imagem+')'" style="background-size: contain !important;" data-aos="slide-right">
 
       </div>
 

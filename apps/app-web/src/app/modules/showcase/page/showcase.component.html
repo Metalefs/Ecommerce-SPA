@@ -5,7 +5,7 @@
     <p class="">Galeria com os nossos últimos Produtos</p>
   </div>
 
-  <div class="px-6 pt-4">
+  <div class="px-6 pt-4 box">
     <div class="columns is-multiline portfolio-container">
       <div class="column is-4" *ngFor="let produto of Produtos$ | async">
         <personalizados-lopes-card-produto class="portfolio-item" [Produto]="produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>

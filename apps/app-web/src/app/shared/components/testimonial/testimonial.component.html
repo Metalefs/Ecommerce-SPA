@@ -7,21 +7,23 @@
           DEPOIMENTOS
         </h1>
       </div>
-      <div class="testimonialContent noselect box" #sliderContent (mousemove) = 'sliderMuve($event)'
+      <div class="testimonialContent noselect card box" #sliderContent (mousemove) = 'sliderMuve($event)'
       (mousedown) = 'mousedownInSlider($event)' (mouseup) = 'leftSlider()' (mouseleave) = 'leftSlider()'>
         <div class="card-bg-rot" *ngFor = 'let item of sliderData; let i = index;' >
 
           <mat-card class = 'commentContent ' [@sliderAnimations] = 'animationsStates[i]'>
+            <mat-card-header>
+              <!-- <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon> -->
+              <p class="title text-content">
+                "{{item?.Comentario}}"
+              </p>
+              <!-- <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon> -->
+            </mat-card-header>
             <mat-card-content>
               <div class="flex-w flex-sb w-full">
-                <!-- <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon> -->
-                <p class="title text-content">
-                  <img class = 'userLogo' [src] = 'item?.Foto'>
-                  "{{item?.Comentario}}"
-                </p>
-                <!-- <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon> -->
               </div>
               <div class="userInfo">
+                <img class = 'userLogo' mat-card-avatar [src] = 'item?.Foto'>
                 <div class = 'userName has-text-weight-medium'>{{item?.Nome}}</div>
                 <div class = 'userName'>{{item?.Tipo}} {{item?.Origem}}</div>
               </div>

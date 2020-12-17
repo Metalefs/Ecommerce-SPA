@@ -16,6 +16,7 @@ import { Servico } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { EditarServico, RemoverServico } from 'apps/app-web/src/app/data/store/actions/servico.actions';
 import { EmailMessageQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-email-message';
+import { FileQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-file';
 
 @Component({
   selector: 'personalizados-lopes-editar-servico',
@@ -58,7 +59,7 @@ export class EditarServicoComponent implements OnInit {
       )
       else if(key== "Imagem")
       questions.push(
-        new TextboxQuestion({
+        new FileQuestion({
           key: key,
           label: key,
           value: value,
