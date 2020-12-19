@@ -23,11 +23,10 @@
     <h1 *ngIf="Logado">Olá {{usuario.Nome}}</h1>
   </div>
 
-  <div class="of-y-scroll pt-4 mb-0 pt-0">
+  <div class="of-y-scroll pt-4 px-4 mb-0 pt-0">
     <div class="columns py-0 is-mobile is-gapless">
       <div class="column">
         <button
-          [routerLink]="['/perfil']"
           [matMenuTriggerFor]="appMenu2"
           class="w-full  has-background-dark card box has-text-centered border-light" mat-flat-button
           title="Perfil">
@@ -60,9 +59,11 @@
         <mat-divider></mat-divider>
         <div mat-subheader>Produtos</div>
           <mat-list-item
+          matRipple
             *ngFor="let link of linksProdutos"
             >
             <a
+
               [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
               matLine (click)="SetActiveNav(link)" (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href"
               routerLinkActive="Active" pageScroll href="#{{link.name}}">
@@ -106,10 +107,7 @@
   <mat-toolbar class="w-full pt-3 pos-sticky bottom-0 has-background-dark">
     <mat-toolbar-row class=" has-background-dark">
       <div class="columns">
-        <div class="column"></div>
-        <div class="column"><personalizados-lopes-social-network-links></personalizados-lopes-social-network-links></div>
-        <div class="column has-text-right">
-        </div>
+        <div class="column"><personalizados-lopes-social-network-links class="flex-w"></personalizados-lopes-social-network-links></div>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

@@ -1,3 +1,12 @@
+@mixin hover{
+  filter:drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    transform: rotate(2deg);
+    box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+}
+@mixin unhover{
+  box-shadow: none;
+  transform: rotate(0deg);
+}
 .mat-card{
   transition: all .25s ease-out;
   max-width: 400px;
@@ -5,9 +14,7 @@
   box-shadow: none;
   transform: rotate(0deg);
   &:hover{
-    filter:drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    transform: rotate(2deg);
-    box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+    @include hover;
   }
 }
 
@@ -45,12 +52,22 @@ p{
   width: initial;
 }
 
-.red{
-
+.red .card-bg .mat-card{
+  transition: .5s hoverAnim ease forwards;
 }
-.yellow .mat-card{
+.yellow .card-bg .mat-card{
+  transition: .5s hoverAnim ease forwards;
   filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));
 }
-.blue{
+.blue .card-bg .mat-card{
+  transition: .5s hoverAnim ease forwards;
+}
 
+@keyframes hoverAnim {
+  0%{
+    background-color: black;
+  }
+  100%{
+    @include unhover;
+  }
 }
