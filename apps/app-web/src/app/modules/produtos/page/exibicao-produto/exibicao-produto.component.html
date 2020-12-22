@@ -29,12 +29,12 @@
           <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
               <button mat-flat-button class="descricao-produto card tamanho-produto"
-                [ngClass]="Produto.Tamanho == tamanho?'active':''"
+                [ngClass]="Produto?.Tamanho == tamanho?'active':''"
                 (click)="Produto.Tamanho = tamanho">{{tamanho}}</button>
             </div>
           </div>
         </div>
-        <mat-form-field class="w-full" appearance="">
+        <mat-form-field *ngIf="Produto?.Cor" class="w-full" appearance="">
           <mat-label>Selecione a cor</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
             <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
@@ -69,15 +69,15 @@
             <div class="preco hoverable pb-4">
               <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span> a unidade</span>
             </div>
-            <button *ngIf="Produto.Status != statusProduto.esgotado" mat-raised-button
-              [disabled]="Produto.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+            <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
+              [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
               class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
                 {{textoAdicionar}}
                 <mat-icon>shopping_bag</mat-icon>
               </div>
             </button>
-            <div *ngIf="Produto.Status == statusProduto.esgotado" class="box pt-5 w-full">
+            <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
               <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
             </div>
           </div>

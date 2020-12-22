@@ -85,11 +85,10 @@ a{
   padding: .5em;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  color: #4496ff;
+  color: #afafaf;
   font-weight: 600;
   &:hover{
-    color:black;
-
+    filter: brightness(.7) contrast(2.5);
   };
   border-radius: 0px;
   border-left:1px solid #f0f0f0;
@@ -118,7 +117,7 @@ a{
   background: transparent;
 }
 .sticky-nav{
-  background: #f9f9f9;
+  background: #fff;
 }
 .produtos-nav{
   background: #ffffff;

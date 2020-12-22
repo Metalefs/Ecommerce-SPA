@@ -182,6 +182,8 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Produtos$.subscribe( res => {
       const index = res.findIndex(item => item._id === id);
       this.Produto = res[index];
+      if(!this.Produto)
+      this.router.navigateByUrl('/produtos');
       this.Produto?.Imagem.forEach(img =>{
         console.log(img);
         galleryRef.addImage({ src:img, thumb: img });
