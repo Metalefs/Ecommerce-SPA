@@ -5,6 +5,9 @@
   padding-bottom:0;
   box-shadow:rgba(172, 171, 171, 0.3) 0px -1px 10px 0px;
   background:white;
+  border-radius: 90px;
+  width: 100%;
+  margin: 20px 0;
 }
 
 :host ::ng-deep .cookie-law-wrapper .copy span:nth-child(1){
@@ -14,5 +17,5 @@
 
 :host ::ng-deep .cookie-law-wrapper .copy span button span{
   font-size: 14px;
-  color:white;
+  color:white !important;
 }
