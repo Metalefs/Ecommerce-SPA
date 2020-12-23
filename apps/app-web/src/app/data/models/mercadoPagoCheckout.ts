@@ -19,8 +19,7 @@ export interface mp_checkout_items{
   currency_id:string,
   unit_price: number,
 }
-
-interface mp_checkout_payer{
+export interface mp_checkout_payer{
   name: string,
   surname: string,
   email: string,
