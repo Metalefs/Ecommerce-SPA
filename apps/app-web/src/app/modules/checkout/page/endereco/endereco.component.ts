@@ -11,7 +11,7 @@ import { Orcamento } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
-import {CEPService,EstadoService} from '../../../../data/service';
+import {CEPService,EstadoService, MercadoPagoCheckoutService} from '../../../../data/service';
 
 @Component({
   selector: 'personalizados-lopes-endereco',
@@ -53,11 +53,54 @@ export class EnderecoComponent implements OnInit {
 
   ErroCadastro:boolean = false;
   estados: Estado[];
+  preference = {
+    back_urls: {
+        success: "https://www.personalizadoslopes.com.br/success",
+        failure: "http://www.personalizadoslopes.com.br/failure",
+        pending: "http://www.personalizadoslopes.com.br/pending"
+    },
+    auto_return: "approved",
+    items: [
+      {
+        id: '1234',
+        title: 'Lightweight Paper Table',
+        description: 'Inspired by the classic foldable art of origami',
+        category_id: 'home',
+        quantity: 3,
+        currency_id: 'BRL',
+        unit_price: 55.41
+      }
+    ],
+    payer: {
+      name: "Joao",
+      surname: "Silva",
+      email: "user@email.com",
+      date_created: "2015-06-02T12:58:41.425-04:00",
+      phone: {
+        area_code: "11",
+        number: 44444444
+      },
+
+      identification: {
+        type: "CPF",
+        number: "19119119100"
+      },
+
+      address: {
+        street_name: "Street",
+        street_number: 123,
+        zip_code: "06233200"
+      }
+    }
+  };
+
+  _init_point:{};
 
   constructor(private store:Store,
     private CEPService:CEPService,
     private EstadoService:EstadoService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private checkoutService: MercadoPagoCheckoutService
     ) { }
 
   ngOnInit(): void {
@@ -72,6 +115,11 @@ export class EnderecoComponent implements OnInit {
     setTimeout(()=>{
       this.flip()
     },0)
+
+    this.checkoutService.goCheckout(this.preference).subscribe(result => {
+      this._init_point = result;
+      console.log(this._init_point);
+    })
   }
 
   ngOnDestroy(){
@@ -136,6 +184,7 @@ export class EnderecoComponent implements OnInit {
       return true;
     return false;
   }
+
 
 }
 

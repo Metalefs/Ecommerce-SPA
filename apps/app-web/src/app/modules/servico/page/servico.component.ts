@@ -5,6 +5,7 @@ import { Servico } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { async } from 'rxjs/internal/scheduler/async';
 import { tap } from 'rxjs/operators';
+import { cardFlip, fade } from '../../../animations';
 import { SobreCard } from '../../../data/models';
 import { LerServico } from '../../../data/store/actions/servico.actions';
 import { ServicoState } from '../../../data/store/state';
@@ -13,10 +14,11 @@ import { removeDuplicates } from '../../../helper/ObjHelper';
 @Component({
   selector: 'personalizados-lopes-servico',
   templateUrl: './servico.component.html',
-  styleUrls: ['./servico.component.scss']
+  styleUrls: ['./servico.component.scss'],
+  animations:[cardFlip,fade]
 })
 export class ServicoComponent implements OnInit {
-
+  state = "flipped"
   Cards : SobreCard[] = [
 
   ];
@@ -53,6 +55,21 @@ export class ServicoComponent implements OnInit {
 
   ngOnInit(): void {
     this.LerServicosCarregados();
+    setTimeout(()=>{
+      this.flip()
+    },0)
+  }
+
+  ngOnDestroy(){
+    this.flip()
+  }
+
+  flip(){
+    if (this.state === "default") {
+      this.state = "flipped";
+    } else {
+      this.state = "default";
+    }
   }
 
 }

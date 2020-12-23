@@ -13,7 +13,7 @@ import { InformacoesContatoState, MensagemState } from '../../../data/store/stat
   selector: 'personalizados-lopes-content-layout',
   templateUrl: './content-layout.component.html',
   styleUrls: ['./content-layout.component.scss'],
-  animations: [cardFlip]
+  animations: [cardFlip, slider]
 })
 export class ContentLayoutComponent implements OnInit {
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;

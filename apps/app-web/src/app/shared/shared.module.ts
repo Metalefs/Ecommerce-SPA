@@ -29,9 +29,10 @@ import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/checkout-display.component';
 import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgotado.component';
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
+import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -70,7 +71,8 @@ import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email
     LoadingCubeComponent,
     NgxMaskModule,
     CloseBtnComponent,
-    BotaoEsgotadoComponent
+    BotaoEsgotadoComponent,
+    MercadopagoButtonComponent
   ]
 })
 export class SharedModule { }

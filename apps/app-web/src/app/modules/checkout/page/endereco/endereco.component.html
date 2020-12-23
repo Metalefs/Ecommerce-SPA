@@ -174,12 +174,11 @@
             Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
           </div>
 
-          <button
-            class="button is-success w-full">Finalizar</button>
-            <div *ngIf="Loading" class="w-full">
-              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-            </div>
         </form>
+        <personalizados-lopes-mercadopago-button *ngIf="_init_point" [init_point]="_init_point"></personalizados-lopes-mercadopago-button>
+        <div *ngIf="Loading" class="w-full">
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </div>
       </div>
     </div>
   </ng-template>

@@ -22,13 +22,12 @@
 .nav-trigger {
   padding: 8px;
   position: fixed;
-  top: 25px;
+  top: 55px;
   left: 20px;
   border-radius: 25px;
   cursor: pointer;
   color: black;
-  /* border:1px dotted; */
-	/* border-color: var(--primario-default); */
+  background-color: rgba(255,255,255,.5);
 	z-index: 111;
   transition: all 400ms ease-in;
 }

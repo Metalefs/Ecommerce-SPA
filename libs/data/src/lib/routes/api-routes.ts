@@ -28,5 +28,8 @@ export let RouteDictionary = {
         RecuperarSenha:"/recuperarSenha/",
         TrocarSenha:"/trocarSenha/",
 
-    Gerenciamento:"/gerenciamento/"
+    Gerenciamento:"/gerenciamento/",
+
+
+    Checkout: '/checkout/'
 };
