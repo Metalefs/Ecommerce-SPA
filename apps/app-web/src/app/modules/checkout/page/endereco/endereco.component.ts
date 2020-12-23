@@ -4,10 +4,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
-import { Estado } from 'apps/app-web/src/app/data/models';
+import { Estado, MercadoPagoCheckout } from 'apps/app-web/src/app/data/models';
+import { mp_checkout_items } from 'apps/app-web/src/app/data/models/mercadoPagoCheckout';
 import { AdicionarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
-import { Orcamento } from 'libs/data/src/lib/classes';
+import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
@@ -53,46 +54,6 @@ export class EnderecoComponent implements OnInit {
 
   ErroCadastro:boolean = false;
   estados: Estado[];
-  preference = {
-    back_urls: {
-        success: "https://www.personalizadoslopes.com.br/success",
-        failure: "http://www.personalizadoslopes.com.br/failure",
-        pending: "http://www.personalizadoslopes.com.br/pending"
-    },
-    auto_return: "approved",
-    items: [
-      {
-        id: '1234',
-        title: 'Lightweight Paper Table',
-        description: 'Inspired by the classic foldable art of origami',
-        category_id: 'home',
-        quantity: 3,
-        currency_id: 'BRL',
-        unit_price: 55.41
-      }
-    ],
-    payer: {
-      name: "Joao",
-      surname: "Silva",
-      email: "user@email.com",
-      date_created: "2015-06-02T12:58:41.425-04:00",
-      phone: {
-        area_code: "11",
-        number: 44444444
-      },
-
-      identification: {
-        type: "CPF",
-        number: "19119119100"
-      },
-
-      address: {
-        street_name: "Street",
-        street_number: 123,
-        zip_code: "06233200"
-      }
-    }
-  };
 
   _init_point:{};
 
@@ -114,11 +75,13 @@ export class EnderecoComponent implements OnInit {
     })
     setTimeout(()=>{
       this.flip()
-    },0)
+    },0);
 
-    this.checkoutService.goCheckout(this.preference).subscribe(result => {
-      this._init_point = result;
-      console.log(this._init_point);
+    this.Orcamento$.subscribe(orcamento => {
+      this.checkoutService.goCheckout(orcamento).subscribe(result => {
+        this._init_point = result;
+        console.log(this._init_point);
+      })
     })
   }
 

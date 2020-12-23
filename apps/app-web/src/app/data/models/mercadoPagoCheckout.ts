@@ -1,16 +1,16 @@
 export interface MercadoPagoCheckout {
-  back_urls:back_urls,
+  back_urls:mp_checkout_back_urls,
   auto_return:string,
-  items:items[]
-  payer:payer;
-
+  items:mp_checkout_items[]
+  payer:mp_checkout_payer;
+  binary_mode:boolean
 }
-interface back_urls{
+export interface mp_checkout_back_urls{
   success:string,
   failure:string,
   pending:string
 }
-interface items{
+export interface mp_checkout_items{
   id:string,
   title:string,
   description:string,
@@ -20,24 +20,24 @@ interface items{
   unit_price: number,
 }
 
-interface payer{
+interface mp_checkout_payer{
   name: string,
   surname: string,
   email: string,
   date_created: string,
-  phone:phone;
-  identification:identification;
-  address:address;
+  phone:mp_checkout_payer_phone;
+  identification:mp_checkout_payer_identification;
+  address:mp_checkout_payer_address;
 }
-interface phone {
+export interface mp_checkout_payer_phone {
   area_code:string,
   number:number,
 }
-interface identification {
+export interface mp_checkout_payer_identification {
   type:string,
   number:string,
 }
-interface address {
+export interface mp_checkout_payer_address {
   street_name:string,
   street_number:number,
   zip_code:string,
