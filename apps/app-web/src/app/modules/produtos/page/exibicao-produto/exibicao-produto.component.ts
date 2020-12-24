@@ -24,7 +24,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
   textoAdicionar:string = 'Adicionar ao carrinho';
   textoAtualizar:string = 'Atualizar carrinho';
-  textoEsgotado:string = 'Esgotado';
+  textoEsgotado:string  = 'Esgotado';
   Url:string;
   Produto:Produto;
   statusProduto=StatusProduto;
@@ -59,7 +59,7 @@ export class ExibicaoProdutoComponent implements OnInit {
             };
           }
           return {
-            thumbPosition: ThumbnailsPosition.Left,
+            thumbPosition: ThumbnailsPosition.Bottom,
             thumbWidth: 120,
             thumbHeight: 90
           };
@@ -88,6 +88,10 @@ export class ExibicaoProdutoComponent implements OnInit {
 
       element.appendChild( anchor );
     } );
+  }
+
+  SelecionarTamanho(tamanho:string){
+    this.Produto.Tamanho = this.Produto.Tamanho == tamanho ? null: tamanho
   }
 
   AdicionarAoOrcamento(){

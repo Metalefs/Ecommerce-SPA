@@ -88,7 +88,7 @@ export class ProdutoState {
         const state = getState();
         const ListaProdutos = [...state.Produtos];
         const index = ListaProdutos.findIndex(item => item._id === id);
-        ListaProdutos[index] = result;
+        ListaProdutos[index].Likes = result.Likes;
 
         setState({
           ...state,

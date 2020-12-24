@@ -19,100 +19,115 @@
         [thumbWidth]="config.thumbWidth" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
       </gallery>
     </div>
-    <!-- <div class="column is-1 is-hidden-touch"></div> -->
-    <div class="column pl-2">
+
+    <div class="column px-3">
       <div class="mh-70 px-2 pt-6">
-        <p class="titulo-produto">{{Produto?.Nome}}</p>
-        <div class="w-full">
-          <div class="preco hoverable pb-4">
-            <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span> a unidade</span>
-          </div>
-          <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
-            [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-            (click)="AdicionarAoOrcamento()"
-            class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
-            <div class="level py-2">
-              {{textoAdicionar}}
-              <mat-icon>shopping_bag</mat-icon>
-            </div>
-          </button>
-          <p *ngIf="! Produto?.Tamanho" class="has-text-danger">Selecione o tamanho*</p>
-          <p *ngIf="! Produto?.Cor" class="has-text-danger">Selecione a cor*</p>
-          <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
-            <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
-          </div>
-        </div>
-      </div>
-      <div class="ml-3 w-full">
-        <div class="columns w-full py-2 px-0 is-multiline">
-          <div class="column w-full is-6 px-0 is-12-mobile">
-            <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-              class="button is-success w-full has-text-white has-text-weight-medium desb">
-              <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
-            </button>
-          </div>
-          <div class="column">
-            <div class="colums">
-              <div class="column">
-                <share-button class="" button="facebook" theme="modern-dark" [showText]="true"
-                  [text]="'Compartilhar'">
-                </share-button>
-                <share-button class="" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'">
-                </share-button>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
         <mat-divider></mat-divider>
-        <div class="py-3 w-full">
-          <p>Selecione uma opção de <b>tamanho</b></p>
-          <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
-            <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
-              <button mat-icon-button class="descricao-produto card tamanho-produto"
-                [ngClass]="Produto?.Tamanho == tamanho?'active':''"
-                (click)="Produto.Tamanho = tamanho">{{tamanho}}</button>
-            </div>
-          </div>
-        </div>
-        <mat-form-field *ngIf="Produto?.Cores" class="w-full" appearance="fill">
-          <mat-label>Selecione uma cor para o produto</mat-label>
-          <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
-            <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
-              <div class="cor-produto card box w-full" [style.backgroundColor]="opt.cor" (click)="Produto.Cor = opt">
-                <p>{{opt.nome}}</p>
-              </div>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div class="py-3">
-          <!-- <p>Quantidade</p> -->
-          <div class="columns">
-            <div class="column is-3">
-              <div class="field">
-                <div class="control border is-large flex-c flex-m">
-                  <button mat-icon-button (click)="DecrescerQuantidade()">
-                    <mat-icon class="less">remove</mat-icon>
-                  </button>
-                  <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
-                    (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
-                    class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
-                  <button mat-icon-button (click)="IncrementarQuantidade()">
-                    <mat-icon class="more">add</mat-icon>
-                  </button>
+        <div class="w-full">
+
+          <div class="w-full">
+
+            <div class="py-3 w-full">
+              <p><b>Tamanho</b></p>
+              <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
+                <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
+                  <button mat-icon-button class="descricao-produto card tamanho-produto"
+                    [ngClass]="Produto?.Tamanho == tamanho?'active':''"
+                    (click)="SelecionarTamanho(tamanho)">{{tamanho}}</button>
                 </div>
               </div>
-              <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
             </div>
-            <div class="column"></div>
+
+            <div class="py-3">
+              <div class="columns is-mobile">
+                <div class="column is-6-mobile">
+                  <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                    <mat-label>Selecione uma cor</mat-label>
+                    <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
+                      <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
+                        <div class="cor-produto card box w-full" [style.backgroundColor]="opt.cor"
+                          (click)="Produto.Cor = opt">
+                          <p>{{opt.nome}}</p>
+                        </div>
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="column is-3-desktop is-6-mobile">
+                  <div class="field  w-full">
+                    <div class="control border is-large flex-c flex-m w-full">
+                      <button mat-icon-button (click)="DecrescerQuantidade()">
+                        <mat-icon class="less">remove</mat-icon>
+                      </button>
+                      <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}"
+                        type="number" (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                        class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
+                      <button mat-icon-button (click)="IncrementarQuantidade()">
+                        <mat-icon class="more">add</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <span class="has-text-grey-light">*Minimo {{Produto?.QuantidadeMinima}} unidades</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="preco hoverable pb-4">
+              <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span> a unidade</span>
+            </div>
+
           </div>
+
+          <div class="">
+            <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
+              [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+              (click)="AdicionarAoOrcamento()"
+              class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
+              <div class="level py-2">
+                {{textoAdicionar}}
+                <mat-icon>shopping_bag</mat-icon>
+              </div>
+            </button>
+
+            <p *ngIf="! Produto?.Tamanho" class="has-text-danger">Selecione o tamanho*</p>
+            <p *ngIf="! Produto?.Cor" class="has-text-danger">Selecione a cor*</p>
+            <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
+              <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+            </div>
+
+            <div class="columns w-full py-2 is-gapless is-multiline">
+              <div class="column w-full is-6 is-12-mobile">
+                <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                  class="button is-success w-full has-text-white has-text-weight-medium desb">
+                  <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
+                </button>
+              </div>
+
+              <div class="column">
+                <div class="colums">
+                  <div class="column pt-0 mt-0">
+                    <share-button class="" button="facebook" theme="modern-dark" [showText]="true"
+                      [text]="'Compartilhar'">
+                    </share-button>
+                    <share-button class="" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'">
+                    </share-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
+            <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
+              {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+            {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
+            {{Liked? '- Obrigado por nos apoiar ' : ''}}
+          </button>
+
         </div>
       </div>
-      <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
-        <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
-          {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
-        {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
-        {{Liked? '- Obrigado por nos apoiar ' : ''}}
-      </button>
     </div>
 
     <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
