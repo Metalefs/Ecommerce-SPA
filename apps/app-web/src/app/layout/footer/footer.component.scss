@@ -18,8 +18,8 @@
 .base{
   /* identical to box height */
   color:white;
-  // color:#3a3a3a;
-  // opacity: .8;
+  color:#3a3a3a;
+  opacity: .8;
 }
 a{
   @extend .base;
@@ -35,9 +35,9 @@ a{
   align-items: center;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
-  // border-style: solid;
-  // border-color: white;
-  // border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
   padding: 10px 0;
   border-left: none;
   border-right: none;
@@ -46,7 +46,7 @@ a{
 .footer-text{
   @extend .base;
   font-size: 14px;
-  color:#999;
+  // color:#999;
 }
 .footer-color{
   // background: #ff4081;
