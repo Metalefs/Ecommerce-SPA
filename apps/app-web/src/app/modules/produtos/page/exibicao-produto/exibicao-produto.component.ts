@@ -53,7 +53,7 @@ export class ExibicaoProdutoComponent implements OnInit {
         map(res => {
           if (res.matches) {
             return {
-              thumbPosition: ThumbnailsPosition.Left,
+              thumbPosition: ThumbnailsPosition.Bottom,
               thumbWidth: 80,
               thumbHeight: 80,
             };

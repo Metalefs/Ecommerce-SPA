@@ -11,11 +11,15 @@
   @extend .z-top;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+.margin{
+  max-width: 1250px;
+  margin: 0px auto;
+}
 .base{
   /* identical to box height */
   color:white;
-  color:#3a3a3a;
-  opacity: .8;
+  // color:#3a3a3a;
+  // opacity: .8;
 }
 a{
   @extend .base;
@@ -26,14 +30,14 @@ a{
   @extend .base;
   line-height: 33px;
   display: flex;
-  font-size: small;
+  font-size: 15px;
   font-weight: 500;
   align-items: center;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
+  // border-style: solid;
+  // border-color: white;
+  // border-width: 1px;
   padding: 10px 0;
   border-left: none;
   border-right: none;
@@ -41,7 +45,8 @@ a{
 }
 .footer-text{
   @extend .base;
-  font-size: small;
+  font-size: 14px;
+  color:#999;
 }
 .footer-color{
   // background: #ff4081;
@@ -69,4 +74,7 @@ span{
   font-family: Open Sans;
   color: white;
   text-transform: lowercase;
+}
+.bg-azul{
+  background:#4d69b1
 }

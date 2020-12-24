@@ -74,7 +74,7 @@
         <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2> -->
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
-          <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]" class="column is-12 a-i-c">
+          <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]" class="m-lr-auto">
             <figure class="no-match-img">
               <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
             </figure>
