@@ -78,6 +78,16 @@ export class EnderecoComponent implements OnInit {
     },0);
 
     this.Orcamento$.subscribe(orcamento => {
+      if(orcamento.Usuario.DataHoraAlteracao != undefined)
+      this.checkoutService.goCheckout(orcamento).subscribe(result => {
+        this._init_point = result;
+        console.log(this._init_point);
+      })
+    })
+  }
+
+  goCheckout(){
+    this.Orcamento$.subscribe(orcamento => {
       this.checkoutService.goCheckout(orcamento).subscribe(result => {
         this._init_point = result;
         console.log(this._init_point);

@@ -6,6 +6,7 @@ import { IntegracoesService } from 'apps/app-web/src/app/data/service';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
 import { DynFormQuestions, QuestionBase } from 'apps/app-web/src/app/shared/components/dynamic-form/question-base';
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
+import { Integracoes } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 
 @Component({
@@ -21,11 +22,14 @@ export class EditarIntegracoesComponent implements OnInit {
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private servicoIntegracoes: IntegracoesService) {
-
+      this.IntegracoesTable = new MaterialTable();
 
   }
   AtualizarTabela(){
-    this.servicoIntegracoes.Ler().subscribe(x=>this.IntegracoesTable.dataSource = x)
+    this.servicoIntegracoes.Ler().subscribe(x=>{
+      console.log(x);
+      this.IntegracoesTable.dataSource = [x];
+    });
   }
 
   Editar(Integracoes:entities.Integracoes){
@@ -75,11 +79,12 @@ export class EditarIntegracoesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.IntegracoesTable = new MaterialTable();
     this.AtualizarTabela();
     this.IntegracoesTable.displayedColumns = [
       "MP_access_token",
-
+      "Acoes"
     ];
   }
 

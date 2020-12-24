@@ -175,7 +175,13 @@
           </div>
 
         </form>
-        <personalizados-lopes-mercadopago-button *ngIf="_init_point" [init_point]="_init_point"></personalizados-lopes-mercadopago-button>
+        <div *ngIf="_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
+          <personalizados-lopes-mercadopago-button [init_point]="_init_point"></personalizados-lopes-mercadopago-button>
+        </div>
+        <button
+          *ngIf="!_init_point"
+          class="button is-success w-full"
+          (click)="goCheckout()">Finalizar</button>
         <div *ngIf="Loading" class="w-full">
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </div>

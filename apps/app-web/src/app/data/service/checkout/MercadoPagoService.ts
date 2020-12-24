@@ -47,7 +47,7 @@ export class MercadoPagoCheckoutService {
           name: orcamento.Usuario.Nome,
           surname: "",
           email: orcamento.Usuario.Email,
-          date_created: orcamento.Usuario.DataCriacao.toString(),
+          date_created: orcamento.Usuario.DataCriacao?.toString() ?? new Date().toString(),
           phone: {
             area_code: orcamento.Usuario.Telefone.substr(0,4),
             number: parseInt(orcamento.Usuario.Telefone.replace("(",'').replace(")",''))

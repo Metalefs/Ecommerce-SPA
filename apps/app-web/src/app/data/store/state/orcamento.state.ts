@@ -5,7 +5,7 @@ import { OrcamentoService, UsuarioService } from '../../service';
 import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento } from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
+import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
@@ -18,7 +18,8 @@ export class OrcamentoStateModel{
   areOrcamentosLoaded: boolean;
 
 }
-let DEFAULT = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","",""));
+let enderecoEntrega = new EnderecoEntrega("","","","","","","");
+let DEFAULT = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","","","",enderecoEntrega));
 @State<OrcamentoStateModel>({
   name:"Orcamentos",
   defaults: {
