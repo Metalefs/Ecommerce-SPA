@@ -1,0 +1,10 @@
+<table mat-table [dataSource]="IntegracoesTable.dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="MP_access_token">
+      <th mat-header-cell *matHeaderCellDef> Access Token MercadoPago </th>
+      <td mat-cell *matCellDef="let element"> {{element?.MP_access_token}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="IntegracoesTable.displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: IntegracoesTable.displayedColumns;"></tr>
+</table>

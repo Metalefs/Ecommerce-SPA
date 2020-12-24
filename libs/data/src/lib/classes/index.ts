@@ -14,6 +14,7 @@ import { Imagem } from './imagem';
 import { Carousel } from './carousel';
 import { ItemCarousel } from './item-carousel';
 import { EnderecoEntrega } from './enderecoEntrega';
+import { Integracoes } from './integracoes';
 
 export {
     Categoria,
@@ -31,5 +32,6 @@ export {
     Imagem,
     Carousel,
     ItemCarousel,
-    EnderecoEntrega
+    EnderecoEntrega,
+    Integracoes
 }

@@ -134,6 +134,8 @@ export class EditarEmailsComponent implements OnInit {
   }
 
   Remover(EmailNotificacao:EmailNotificacao){
+    let confirmacao = confirm("Deletar ?");
+    if(confirmacao)
     this.service.Remover(EmailNotificacao._id).subscribe(x=>{
       this.AtualizarTabela();
       this._snackBar.open("EmailNotificacao "+ EmailNotificacao.Email +" removido com sucesso", "Fechar", {

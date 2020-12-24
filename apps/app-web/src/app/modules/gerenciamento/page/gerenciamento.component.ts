@@ -58,6 +58,7 @@ export class GerenciamentoComponent implements OnInit {
       {name: "Carrosel de imagens", href: "carrosel"},
       {name: "Mensagens Automaticas", href: "mensagem"},
       {name: "Imagens do site", href: "imagens"},
+      {name: "Integrações", href: "integracoes"},
     ]
   }
 

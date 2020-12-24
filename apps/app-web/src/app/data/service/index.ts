@@ -17,6 +17,7 @@ import { CarouselService } from './CarouselService';
 import { CEPService } from './CEPService';
 import { EstadoService } from './EstadoService';
 import { MercadoPagoCheckoutService } from './checkout/MercadoPagoService';
+import { IntegracoesService } from './IntegracoesService';
 
 export {
   SobreService,
@@ -35,7 +36,8 @@ export {
   CarouselService,
   CEPService,
   EstadoService,
-  MercadoPagoCheckoutService
+  MercadoPagoCheckoutService,
+  IntegracoesService
 }
 
 export let Services = [
@@ -52,5 +54,6 @@ export let Services = [
   ImagemService,
   ItemCarouselService,
   CarouselService,
-  MercadoPagoCheckoutService
+  MercadoPagoCheckoutService,
+  IntegracoesService
 ]

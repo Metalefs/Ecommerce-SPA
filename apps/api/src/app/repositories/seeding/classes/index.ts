@@ -9,6 +9,7 @@ import { Sobre } from './sobre.seed';
 import { Cliente } from './cliente.seed';
 import { Mensagem } from './mensagem.seed';
 import { carousel } from './carousel.seed';
+import { integracoes } from './integracoes.seed';
 
 export {
     Categoria,
@@ -21,5 +22,6 @@ export {
     Servico,
     Sobre,
     Mensagem,
-    carousel
+    carousel,
+    integracoes
 }

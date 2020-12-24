@@ -29,7 +29,7 @@ export let RouteDictionary = {
         TrocarSenha:"/trocarSenha/",
 
     Gerenciamento:"/gerenciamento/",
-
+    Integracoes: "/integracoes/",
 
     Checkout: '/checkout/'
 };

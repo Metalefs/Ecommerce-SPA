@@ -14,6 +14,7 @@ import { EditarTemaComponent } from './page/editar-tema/editar-tema.component';
 import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.component';
 import { GerenciamentoComponent } from './page/gerenciamento.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
+import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 
 
 export const routes: Routes = [
@@ -84,6 +85,12 @@ export const routes: Routes = [
         path: 'imagens',
         // canActivate: [AuthGuard],
         component: EditarImagemComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'integracoes',
+        // canActivate: [AuthGuard],
+        component: EditarIntegracoesComponent,
         pathMatch: 'full',
       },
       {

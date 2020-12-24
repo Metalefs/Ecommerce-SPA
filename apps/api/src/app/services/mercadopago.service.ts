@@ -1,9 +1,14 @@
+import { IntegracoesService } from './integracoes.service';
+
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
-
-mercadopago.configure({
-  access_token: 'TEST-5732271634363324-122306-e9306eacc9d93c2e45217186f54ee17a-28731454'
-});
+(async function configure(){
+  let integracoesService = new IntegracoesService();
+  let MP_AT = await integracoesService.Ler();
+  mercadopago.configure({
+    access_token: MP_AT.MP_access_token
+  });
+})();
 
 export class MercadoPagoService{
   // Agrega credenciales

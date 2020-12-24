@@ -114,7 +114,7 @@ export class EditarServicoComponent implements OnInit {
     this.ServicoTable.displayedColumns = [
         "Nome",
         "Descricao",
-        "Categoria",
+        // "Categoria",
         "Imagem",
         "Acoes",
     ];

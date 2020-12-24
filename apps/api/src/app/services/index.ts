@@ -13,6 +13,7 @@ import {ImagemService} from './imagem.service';
 import {ItemCarouselService} from './item-carousel.service';
 import {CarouselService} from './carousel.service';
 import {MercadoPagoService} from './mercadopago.service';
+import {IntegracoesService} from './integracoes.service';
 
 export {
     UsuarioService,
@@ -30,4 +31,5 @@ export {
     ItemCarouselService,
     CarouselService,
     MercadoPagoService,
+    IntegracoesService
 }

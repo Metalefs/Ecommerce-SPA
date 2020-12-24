@@ -47,6 +47,15 @@ export module Repository {
             console.log(err);
         }
     }
+    export async function SeedIntegracoes() {
+        let collectionsToSeed = Seeder.SeedIntegracoes();
+        try {
+            Insert(collectionsToSeed.name, collectionsToSeed.value)
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
 
     /*----------------------------*/
 

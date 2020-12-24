@@ -9,6 +9,13 @@ export module Seeder {
             array:false
           }
       }
+      export function SeedIntegracoes(){
+        return {
+           name:entities.Integracoes.NomeID,
+           value:seed.integracoes,
+           array:false
+         }
+     }
       export function SeedCollections (){ // data for seeding the active repository
 
             return [

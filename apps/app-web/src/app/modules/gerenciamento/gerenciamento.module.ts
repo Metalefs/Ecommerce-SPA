@@ -35,6 +35,7 @@ import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComp
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     CriarItemCarouselDialogComponent,
     EditarCarouselDialogComponent,
     EditarOrcamentoComponent,
+    EditarIntegracoesComponent,
   ],
   imports: [
     CommonModule,

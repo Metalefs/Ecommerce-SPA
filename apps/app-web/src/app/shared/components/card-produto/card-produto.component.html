@@ -22,7 +22,7 @@
   </a>
    <mat-card-footer class="px-1">
      <div class="px-4">
-       <span *ngIf="Produto.Cores" class="button is-small is-fullwidth card is-disabled px-4">
+       <span *ngIf="Produto.Cores?.length > 1" class="button is-small is-fullwidth card is-disabled px-4">
          Disponível em {{Produto.Cores?.length}} cores
        </span>
      </div>
