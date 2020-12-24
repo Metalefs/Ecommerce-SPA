@@ -3169,8 +3169,16 @@ button{
 .of-x-scroll{
   overflow-x: scroll;
 }
+.of-x-hidden{
+  overflow-x: hidden;
+}
 .of-y-scroll{
   overflow-y: scroll;
+}
+
+.margin{
+  max-width: 1250px;
+  margin: 0px auto;
 }
 /**/
 

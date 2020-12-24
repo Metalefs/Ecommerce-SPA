@@ -1,4 +1,4 @@
-<div class=" w-full shadow-light"
+<div class="shadow-light"
 [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
   <!-- container -->
@@ -62,33 +62,30 @@
     </div>
   </div>
   <div class="w-full dis-flex flex-sb flex-sb-c is-hidden-desktop">
-      <div class="">
-      </div>
-      <div class="">
-        <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
-      </div>
-      <div>
-        <!-- [routerLink]="(Orcamento$|async).Produto.length? ['checkout'] : ''"
-        routerLinkActive="Active"  -->
-        <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
-        title="Checkout"
-        aria-label="Botão abrir Orçamento"
-        color="none"
-        class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
-        <div class="columns line-height-small is-mobile">
-          <!-- <div class="column has-text-right">
-            <p class="cart-title">Pedido</p>
-            <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
-            <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
-          </div> -->
-        </div>
-        <div class="columns">
-          <div class="column">
-            <mat-icon class="material-icons-outlined" fontSet="material-icons-outlined">shopping_bag_outline</mat-icon>
-            <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+    <div class="ml-1">
+    </div>
+    <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+    <span class="spacer"></span>
+    <div class="pb-4">
+      <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
+          title="Checkout"
+          aria-label="Botão abrir Orçamento"
+          color="none"
+          class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
+          <div class="columns line-height-small is-mobile">
+            <!-- <div class="column has-text-right">
+              <p class="cart-title">Pedido</p>
+              <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
+              <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
+            </div> -->
           </div>
-        </div>
-      </button>
+          <div class="columns">
+            <div class="column">
+              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+              <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+            </div>
+          </div>
+        </button>
     </div>
   </div>
 </mat-toolbar>

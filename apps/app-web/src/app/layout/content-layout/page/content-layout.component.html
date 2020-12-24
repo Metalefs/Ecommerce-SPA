@@ -7,13 +7,17 @@
 
 </div>
 
-<div id="nav-menu" [ngClass]="NavState.open? 'is-active': ''" class="">
-  <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
-</div>
-
 <div class="wrapper" id="topo">
+
+  <div id="nav-menu" [ngClass]="NavState.open? 'is-active': ''" class="">
+    <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
+  </div>
+
   <!-- [@routeAnimations]="prepareRoute(outlet)" -->
-  <div [@cardFlip]="prepareRoute(outlet)" [ngClass]="NavState.open? 'main is-active': ''" (mouseover)="CloseNav()">
+  <div
+  [@cardFlip]="prepareRoute(outlet)"
+  [ngClass]="NavState.open? 'main is-active': ''"
+  (mouseover)="CloseNav()">
     <section class="split-home">
       <personalizados-lopes-header></personalizados-lopes-header>
 

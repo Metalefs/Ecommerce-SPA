@@ -17,9 +17,9 @@
 }
 .base{
   /* identical to box height */
-  color:white;
   color:#3a3a3a;
-  opacity: .8;
+  color:white;
+  // opacity: .8;
 }
 a{
   @extend .base;
@@ -49,9 +49,11 @@ a{
   // color:#999;
 }
 .footer-color{
-  // background: #ff4081;
-  background: #f1f1f1 !important;
+  background: #f1f1f1;
   // background: rgba(0, 0, 0, 0.52);
+}
+.pink{
+  background: #ff4081;
 }
 .footer::before{
   content: '';

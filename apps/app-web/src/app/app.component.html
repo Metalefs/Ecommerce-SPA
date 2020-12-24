@@ -1,5 +1,7 @@
 <ng-container [ngSwitch]="DeployState">
-  <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
+  <div >
+    <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
+  </div>
   <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction>
 </ng-container>
 <personalizados-lopes-loading-cube *ngIf="loading" [Mensagem]="carregandoOque"></personalizados-lopes-loading-cube>
