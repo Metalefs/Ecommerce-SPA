@@ -1,15 +1,15 @@
-<div class="columns is-gapless my-3 shadow-light is-mobile is-hidden-tablet w-full pos-sticky bellow-nav">
+<div class="columns is-gapless my-3 shadow-light is-mobile is-hidden-tablet w-full pos-sticky top-0 z-index-top">
   <div class="column has-background-white bo-0">
     <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
       <p>Categorias</p>
-      <span class="subtitle is-6"><em>({{CategoriaAtiva.Nome}})</em></span>
+      <span class="is-size-7"><em>({{CategoriaAtiva.Nome}})</em></span>
       <!-- <mat-icon>category</mat-icon> -->
     </div>
   </div>
   <div class="column has-background-white bo-0">
-    <div mat-flat-button class="card pointer clickable txt-center bo-0 w-full a-i-c flex-m flex-sa py-2" (click)="AbrirDialogoOrdenacao()">
+    <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoOrdenacao()">
         <p>Ordenar</p>
-        <mat-icon>toc</mat-icon>
+        <span class="is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
     </div>
   </div>
   <mat-divider></mat-divider>
@@ -92,7 +92,7 @@
             <div @fadeIn
               class="column is-3-desktop is-12-mobile is-4-tablet pt-4"
               *ngIf = "filtroAtivo(produto) && !loading">
-              <personalizados-lopes-card-produto @fadeIn
+              <personalizados-lopes-card-produto @slideInOut
                 [Produto]="produto"
                 [MostarOpcoes]="true"
               ></personalizados-lopes-card-produto>

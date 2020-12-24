@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { fade } from '../../../animations';
+import { fade, slideInOut } from '../../../animations';
 import { FiltroProduto } from '../../../data/models/filtroProduto';
 import { OrderType } from '../../../data/models/order-type';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
@@ -20,7 +20,7 @@ import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './dialogs/filtr
   selector: 'personalizados-lopes-produtos',
   templateUrl: './produtos.component.html',
   styleUrls: ['./produtos.component.scss'],
-  animations: [fade]
+  animations: [fade,slideInOut]
 })
 export class ProdutosComponent implements OnInit {
   defaultCategory = "Todos os produtos";
@@ -254,6 +254,9 @@ export class ProdutosComponent implements OnInit {
     this.SetCategoria(new Categoria(this.defaultCategory,this.defaultCategory));
     this.activeSearchFilter= '',
     this.activeOrderFilter=0;
+  }
+  translate(orderId:number){
+    return this.ordertypes.filter(x=>x.id == orderId)[0].name;
   }
 }
 export enum TiposOrdenacao {

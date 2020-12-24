@@ -2,4 +2,14 @@
   display: block;
   width: 100%;
 }
+@media (max-width:768px){
 
+  :host :ng-deep .slideshow-container{
+    max-height: 21vh;
+    height: 21vh !important;
+  }
+  .slideshow-container{
+    max-height: 21vh;
+    height: 21vh !important;
+  }
+}

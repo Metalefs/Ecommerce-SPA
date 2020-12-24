@@ -79,14 +79,13 @@ a{
   padding: 0;
 }
 .nav-link{
-  font-weight: 600;
   font-size: 13px;
   text-transform: uppercase;
   padding: .5em;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  color: #afafaf;
-  font-weight: 600;
+  // color: #afafaf;
+  font-weight: 400;
   &:hover{
     filter: brightness(.7) contrast(2.5);
   };
@@ -131,7 +130,7 @@ a{
   animation: AnimationName 1s ease forwards;
   & a.nav-link{
     // color:white;
-    font-weight: 700;
+    font-weight: 500;
   }
   & .active-nav{
     color:$crayola !important;

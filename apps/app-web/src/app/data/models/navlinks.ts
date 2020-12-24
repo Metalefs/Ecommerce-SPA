@@ -30,3 +30,11 @@ environment.production ? [
 ];
 
 
+export let NavLinksRes:NavLink[] =
+environment.production ? [
+  {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
+] : [
+  {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
+];

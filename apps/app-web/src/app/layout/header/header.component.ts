@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
 import { NavStateState, OrcamentoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
-import { NavLinks } from '../../data/models/navlinks';
+import { NavLinksRes } from '../../data/models/navlinks';
 
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Link } from '../../data/models';
@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
   @Select(SobreState.IsSobreLoaded) IsSobreLoaded$;
   IsSobreLoadedSub: Subscription;
-  links = NavLinks;
+  links = NavLinksRes;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   route: string;
 

@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <mat-form-field *ngIf="Produto?.Cor" class="w-full" appearance="">
+        <mat-form-field *ngIf="Produto?.Cores" class="w-full" appearance="fill">
           <mat-label>Selecione uma cor para o produto</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
             <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
@@ -78,8 +78,8 @@
                 <mat-icon>shopping_bag</mat-icon>
               </div>
             </button>
-            <p *ngIf="! Produto?.Cor" class="has-text-danger">Selecione a cor*</p>
             <p *ngIf="! Produto?.Tamanho" class="has-text-danger">Selecione o tamanho*</p>
+            <p *ngIf="! Produto?.Cor" class="has-text-danger">Selecione a cor*</p>
             <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
               <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
             </div>

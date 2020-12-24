@@ -62,7 +62,7 @@ export class CriarProdutoDialogComponent implements OnInit {
         0,
         0,
         "",
-        {nome:'branco',cor:'white'},
+        null,
         0,
         [{nome:'branco',cor:'white'}],
         ["M"],

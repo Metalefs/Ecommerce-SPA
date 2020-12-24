@@ -10,7 +10,7 @@
 .mat-card{
   transition: all .25s ease-out;
   max-width: 400px;
-  min-height: 210px;
+  // min-height: 210px;
   box-shadow: none;
   transform: rotate(0deg);
   &:hover{
@@ -57,7 +57,10 @@ p{
 }
 .yellow .card-bg .mat-card{
   transition: .5s hoverAnim ease forwards;
-  filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));
+  // filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));
+  & :hover{
+    filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));
+  }
 }
 .blue .card-bg .mat-card{
   transition: .5s hoverAnim ease forwards;

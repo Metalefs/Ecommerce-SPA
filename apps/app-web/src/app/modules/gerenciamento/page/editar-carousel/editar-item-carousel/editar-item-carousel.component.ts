@@ -126,6 +126,8 @@ export class EditarItemCarouselComponent implements OnInit {
   }
 
   Remover(ItemCarousel:entities.ItemCarousel){
+    let confirmation = confirm("Deletar?");
+    if(confirmation)
     this.store.dispatch(new RemoverItemCarousel(ItemCarousel._id)).subscribe(x=>{
       this._snackBar.open("ItemCarousel "+ ItemCarousel.nome +" removido com sucesso", "Fechar", {
 

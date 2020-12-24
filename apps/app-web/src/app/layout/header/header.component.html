@@ -1,4 +1,4 @@
-<div class="sticky-nav w-full shadow-light"
+<div class=" w-full shadow-light"
 [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
   <!-- container -->
@@ -11,8 +11,10 @@
     <span class="spacer"></span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
-        <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-          class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" [routerLink]="link.href"
+        <a (click)="SetActiveNav(link)"
+          [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+          class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
+          [routerLink]="link.href"
           routerLinkActive="true">
           <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
           {{link.name == "Básicos"? 'Produtos' : link.name}}
@@ -82,7 +84,7 @@
         </div>
         <div class="columns">
           <div class="column">
-            <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+            <mat-icon class="material-icons-outlined" fontSet="material-icons-outlined">shopping_bag_outline</mat-icon>
             <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
           </div>
         </div>

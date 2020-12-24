@@ -38,7 +38,7 @@
     height: 90px;
   }
   .nav-trigger{
-    top: 10px;
+    top: 43px;
   }
 }
 .is-active.nav-trigger {
@@ -218,11 +218,12 @@
 	left: 0;
 	top: 0;
 	z-index: 110;
-	width: 90%;
+	// width: 90%;
 	/* background-color: #e6ecef; */
 	  background-size: cover;
 	  overflow-y: auto;
 	-webkit-transform: translateZ(0);
+	backface-visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	  -webkit-transform: translateX(110vw);
 	  -moz-transform: translateX(110vw);
@@ -302,7 +303,7 @@
   @media only screen and (min-width: 768px) {
 
     #nav-menu {
-      width: 100%;
+      width: 50%;
     }
 
     .nav-social ul {

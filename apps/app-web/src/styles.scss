@@ -110,7 +110,7 @@ p{
   color:$crayola;
 }
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
-  font-family: Open Sans;
+  font-family: inherit;
 }
 .no-padding .mat-dialog-container{
   padding: 0 !important;
@@ -164,6 +164,17 @@ p{
   text-align: justify;
   letter-spacing: 0.04em;
   font-size: medium
+}
+@media (max-width:768px){
+
+  :host :ng-deep .slideshow-container{
+    max-height: 21vh;
+    height: 21vh !important;
+  }
+  .slideshow-container{
+    max-height: 21vh;
+    height: 21vh !important;
+  }
 }
 .mat-card:not([class*="mat-elevation-z"]){
   box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12);
