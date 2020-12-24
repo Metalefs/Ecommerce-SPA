@@ -14,7 +14,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     Tamanho?:string;
     Cor?:Cor;
     Likes?:number = 0;
-    Quantidade?:number = 10;
+    Quantidade?:number = 1;
     QuantidadeMinima?:number = 10;
     Cores?:Cor[];
     Tamanhos?:string[];

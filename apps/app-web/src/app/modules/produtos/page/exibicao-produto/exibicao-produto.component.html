@@ -25,17 +25,17 @@
         <p class="titulo-produto">{{Produto?.Nome}}</p>
         <mat-divider></mat-divider>
         <div class="py-3 w-full">
-          <p>Selecione a opção de <b>tamanho</b></p>
+          <p>Selecione uma opção de <b>tamanho</b></p>
           <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
             <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
-              <button mat-flat-button class="descricao-produto card tamanho-produto"
+              <button mat-icon-button class="descricao-produto card tamanho-produto"
                 [ngClass]="Produto?.Tamanho == tamanho?'active':''"
                 (click)="Produto.Tamanho = tamanho">{{tamanho}}</button>
             </div>
           </div>
         </div>
         <mat-form-field *ngIf="Produto?.Cor" class="w-full" appearance="">
-          <mat-label>Selecione a cor</mat-label>
+          <mat-label>Selecione uma cor para o produto</mat-label>
           <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
             <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
               <div class="cor-produto card box w-full" [style.backgroundColor]="opt.cor" (click)="Produto.Cor = opt">
@@ -89,7 +89,7 @@
           <div class="columns w-full py-2 px-0 is-multiline">
             <div class="column w-full is-6 px-0 is-12-mobile">
               <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                class="button is-success w-full has-text-white has-text-weight-medium">
+                class="button is-success w-full has-text-white has-text-weight-medium desb">
                 <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
               </button>
             </div>
@@ -126,17 +126,17 @@
   </div>
 </div>
 
-<div class="w-full flex-w flex-sa px-6 background-dark has-text-white">
-  <a [routerLink]="'/produtos'" class="has-text-white">
+<div class="w-full flex-w flex-sa px-6 shadow-light ">
+  <a [routerLink]="'/produtos'" class="has-text-grey-light">
     <button mat-icon-button>
-      <mat-icon>arrow_back_ios</mat-icon>
+      <mat-icon>chevron_left</mat-icon>
       <span>Produtos</span>
     </button>
   </a>
-  <a [routerLink]="'/showcase'" class="has-text-white">
+  <a [routerLink]="'/showcase'" class="has-text-grey-light">
     <button mat-icon-button>
       <mat-icon>collections</mat-icon>
-      <span>Galeria</span>
+      <!-- <span>Galeria</span> -->
     </button>
   </a>
 </div>

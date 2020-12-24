@@ -19,9 +19,13 @@ gallery{
 }
 .tamanho-produto{
   &.active{
-    border: 1px solid;
-    // background:$orange;
+    // border: 1px solid ;
+    background:$feedback-base;
+    color: white !important;
   }
+}
+.desb{
+  opacity: .5;
 }
 .heartbutton {
   font-size: larger;
