@@ -45,7 +45,7 @@ export class EdicaoCardClienteComponent implements OnInit {
 
     let questions: QuestionBase<string>[] = [];
     let method = "Editar";
-    let name = "Cliente";
+    let name = "Depoimento";
     let id = this.Cliente._id;
     Object.entries(this.Cliente).forEach(([key, value]) => {
       if(key != "_id" && key != "Foto")
@@ -102,7 +102,7 @@ export class EdicaoCardClienteComponent implements OnInit {
       cliente.Foto = await this.servicoImagens.getRef((await x).metadata.fullPath,cliente.Nome,"Cliente");
       console.log(cliente.Foto);
       this.store.dispatch(new EditarCliente(cliente,cliente._id)).subscribe(x=>{
-        this._snackBar.open("Cliente alterado com sucesso", "Fechar", {
+        this._snackBar.open("Depoimento alterado com sucesso", "Fechar", {
 
         });
       });
@@ -113,7 +113,7 @@ export class EdicaoCardClienteComponent implements OnInit {
     let confirmation = confirm("Deletar?");
     if(confirmation){
       this.store.dispatch(new RemoverCliente(this.Cliente._id)).subscribe(x=>{
-        this._snackBar.open("Cliente "+this.Cliente.Nome+" removido com sucesso", "Fechar", {
+        this._snackBar.open("Depoimento "+this.Cliente.Nome+" removido com sucesso", "Fechar", {
 
         });
       });

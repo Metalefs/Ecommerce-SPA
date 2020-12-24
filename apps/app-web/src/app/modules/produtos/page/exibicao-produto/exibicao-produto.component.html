@@ -70,13 +70,16 @@
               <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span> a unidade</span>
             </div>
             <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
-              [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+              [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+              (click)="AdicionarAoOrcamento()"
               class="share-button pt-4 w-full background-light-red has-text-white has-text-weight-medium">
               <div class="level py-2">
                 {{textoAdicionar}}
                 <mat-icon>shopping_bag</mat-icon>
               </div>
             </button>
+            <p *ngIf="! Produto?.Cor" class="has-text-danger">Selecione a cor*</p>
+            <p *ngIf="! Produto?.Tamanho" class="has-text-danger">Selecione o tamanho*</p>
             <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
               <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
             </div>

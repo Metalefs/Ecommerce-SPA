@@ -63,10 +63,14 @@
             *ngFor="let link of linksProdutos"
             >
             <a
-
               [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-              matLine (click)="SetActiveNav(link)" (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href"
-              routerLinkActive="Active" pageScroll href="#{{link.name}}">
+              matLine
+              (click)="SetActiveNav(link)"
+              (pageScrollFinish)="ToggleNav(0)"
+              [routerLink]="link.href"
+              routerLinkActive="Active"
+              pageScroll
+              href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
               <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
               <span>{{link.name}}</span>
             </a>
@@ -106,8 +110,8 @@
   </ul>
   <mat-toolbar class="w-full pt-3 pos-sticky bottom-0 has-background-dark">
     <mat-toolbar-row class=" has-background-dark">
-      <div class="columns">
-        <div class="column"><personalizados-lopes-social-network-links class="flex-w"></personalizados-lopes-social-network-links></div>
+      <div class="dis-flex flex-c w-full a-i-c">
+        <personalizados-lopes-social-network-links class="flex-w"></personalizados-lopes-social-network-links>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

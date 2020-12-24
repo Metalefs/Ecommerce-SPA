@@ -68,16 +68,16 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="">
-    <input matInput type="text" [(ngModel)]="Produto.Preco"[value]="Produto.Preco" placeholder="Preco" mask='00.00'>
+    <input matInput type="text" min="1" [(ngModel)]="Produto.Preco"[value]="Produto.Preco" placeholder="Preco" mask='00.00'>
   </mat-form-field>
   <mat-form-field class="">
     <mat-label>Quantidade Minima</mat-label>
-    <input matInput type="number" [(ngModel)]="Produto.QuantidadeMinima"[value]="Produto.QuantidadeMinima">
+    <input matInput type="number" min="1" [(ngModel)]="Produto.QuantidadeMinima"[value]="Produto.QuantidadeMinima">
   </mat-form-field>
 
   <mat-form-field class="">
     <mat-label>Preco Promocional</mat-label>
-    <input matInput type="number" [(ngModel)]="Produto.PrecoPromocional"[value]="Produto.PrecoPromocional">
+    <input matInput type="number" min="1" [(ngModel)]="Produto.PrecoPromocional"[value]="Produto.PrecoPromocional">
   </mat-form-field>
   <mat-checkbox matNativeControl  [(ngModel)]="Produto.Destaque"  [checked]="Produto.Destaque">
     Destaque

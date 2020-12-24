@@ -15,21 +15,29 @@
     </div>
     <div class="column">
       <h3 class="pl-4 mb-2 footer-title">Contate-nos</h3>
-      <mat-list>
+      <p class="footer-text">Telefone: <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
+      <p class="footer-text">Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
+      <p class="footer-text">{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
+      <p class="footer-text">{{(InformacoesContato$ | async)?.Endereco}}</p>
+      <!-- <mat-list>
         <mat-list-item class="mb-0 pb-0">
-          <p class="footer-text">Telefone: <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
         </mat-list-item>
         <mat-list-item class="mb-0 pb-0">
-          <p class="footer-text">Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
         </mat-list-item>
         <mat-list-item>
-          <p class="footer-text">{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
         </mat-list-item>
         <mat-list-item>
-          <p class="footer-text">{{(InformacoesContato$ | async)?.Endereco}}</p>
         </mat-list-item>
-       </mat-list>
+       </mat-list> -->
     </div>
+  </div>
+  <div class="column dis-flex flex-sb">
+    <figure class="image is-64x64">
+      <img src="assets/images/icons/mercado-pago-logo-6.png">
+    </figure>
+    <figure class="image is-64x64">
+      <img src="assets/images/icons/bandeira-dos-cartoes-de-credito.png">
+    </figure>
   </div>
   <span><mat-icon>alternate_email</mat-icon> {{(Sobre$ | async)?.Nome}}</span>
   <span class="spacer"></span>
