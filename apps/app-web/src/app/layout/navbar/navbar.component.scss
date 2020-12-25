@@ -2,7 +2,7 @@
 @import '../../../variables';
 .card {
   // background-color: #ffffffe8;
-  color:white;
+  color:black;
 }
 a span{
   text-transform: capitalize;
@@ -38,18 +38,18 @@ a span{
 .mat-list-item a.active-nav{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color: white;
+  color: $gray-web;
   font-weight: bold;
 }
 .mat-list-item a.active-nav .mat-icon.inst{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color:white;
-  background:white;
+  color:$gray-web;
+  background:$gray-web;
 }
 a {
   position: relative;
-  color: $gray-web;
+  color: black;
   text-decoration: none;
 }
 
@@ -66,7 +66,7 @@ a:before {
 
 
   a:hover {
-    color: white;
+    color: #999;
     text-decoration: none;
   }
 @media only screen and (min-width: 768px) {
@@ -80,7 +80,7 @@ a:before {
 .mat-subheader{
   font-family: Montserrat;
   font-weight: 300;
-  color:white;
+  color:$gray-web;
 }
 .mat-list-text{
   padding: 0;
