@@ -14,8 +14,8 @@
 .base{
   /* identical to box height */
   color:#3a3a3a;
-  color:white;
-  // opacity: .8;
+  // color:white;
+  font-family: system-ui;
 }
 a{
   @extend .base;
@@ -42,14 +42,14 @@ a{
 .footer-text{
   @extend .base;
   font-size: 14px;
-  // color:#999;
+  color:#999;
 }
 .footer-color{
   background: #f1f1f1;
   // background: rgba(0, 0, 0, 0.52);
 }
 .pink{
-  background: #ff4081;
+  // background: #ff4081;
 }
 .footer::before{
   content: '';

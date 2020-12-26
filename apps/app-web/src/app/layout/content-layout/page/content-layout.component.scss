@@ -22,7 +22,7 @@
 .nav-trigger {
   padding: 8px;
   position: fixed;
-  top: 55px;
+  top: 25px;
   left: 20px;
   border-radius: 25px;
   cursor: pointer;
@@ -38,7 +38,7 @@
     height: 90px;
   }
   .nav-trigger{
-    top: 43px;
+    top: 13px;
   }
 }
 .is-active.nav-trigger {
@@ -267,10 +267,10 @@
   }
 
   .main.is-active.main::before{
-	  -webkit-transition: opacity 0.5s ease;
-	  -moz-transition: opacity 0.5s ease;
-	  -o-transition: opacity 0.5s ease;
-	  transition: opacity 0.5s ease;
+	  -webkit-transition: opacity 0.1s ease;
+	  -moz-transition: opacity 0.1s ease;
+	  -o-transition: opacity 0.1s ease;
+	  transition: opacity 0.1s ease;
 	  height: 100%;
 	  opacity: 1
   }

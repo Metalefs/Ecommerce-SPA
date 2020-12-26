@@ -16,13 +16,14 @@
           </mat-card-header>
           <div class="media-content">
             <div class="content">
-              <!-- <mat-card-title>
+              <mat-card-title>
                 <a [routerLink]="card.link" href="{{card.id}}" pageScroll><p class="title header-card header">{{card.title}}</p></a>
-              </mat-card-title> -->
+              </mat-card-title>
 
               <mat-card-content>
                 <p [innerHtml]="card.content" class="has-text-justified mt-3">
                 </p>
+                <button [routerLink]="card.link" mat-raised-button>Acessar</button>
               </mat-card-content>
             </div>
             <nav class="level is-mobile">

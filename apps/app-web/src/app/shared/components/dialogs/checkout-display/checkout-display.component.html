@@ -30,7 +30,12 @@
     </div>
     <div class="a-i-c pt-3">
 
-      <a pageScroll href="#TOPO" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
+      <a
+      pageScroll
+      href="#topo"
+      (pageScrollFinish)="close()"
+      [routerLink]="['/produtos/']"
+      routerLinkActive="router-link-active">
         <button mat-stroked-button mat-stroked-button class="button is-dark">
           Ver produtos
           <mat-icon>keyboard_arrow_right</mat-icon>
@@ -62,7 +67,10 @@
                   <figure class="image is-64x64">
                     <img src="{{element.Imagem[0]}}">
                   </figure>
-                  <a href="#topo" [routerLink]="['/produtos/',element._id]" routerLinkActive="router-link-active"
+                  <a href="#topo"
+                  (click)="close()"
+                   [routerLink]="['/produtos/',element._id]"
+                   routerLinkActive="router-link-active"
                     class="px-3 titulo-produto is-hidden-desktop">{{element.Nome}}
                     <p class="subtitle">{{element.Cor.nome}}</p>
                     <p class="subtitle">{{element.Tamanho}}</p>

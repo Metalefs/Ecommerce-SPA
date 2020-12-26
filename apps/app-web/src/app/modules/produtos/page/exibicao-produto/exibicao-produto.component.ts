@@ -102,14 +102,14 @@ export class ExibicaoProdutoComponent implements OnInit {
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;
-        // this.navegarParaCheckout();
+        this.navegarParaCheckout();
       }
       else{
         this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
 
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
         this.isOrcamento = true;
-        // this.navegarParaCheckout();
+        this.navegarParaCheckout();
         this.openCheckout();
         this.textoAdicionar = this.textoAtualizar;
       }
