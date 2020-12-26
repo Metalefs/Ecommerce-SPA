@@ -131,7 +131,14 @@
       </span>
     </label>
   </div>
-
+  <div class="w-full">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Especificações</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes" ></ckeditor>
+  </div>
   <mat-form-field class="w-full">
     <mat-chip-list #chipList aria-label="Color selection">
       <mat-chip

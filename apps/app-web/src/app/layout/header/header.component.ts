@@ -20,10 +20,14 @@ import { Link } from '../../data/models';
 import { ConfirmacaoComponent } from '../../modules/checkout/page/confirmacao/confirmacao.component';
 import { CheckoutDisplayComponent } from '../../shared/components/dialogs/checkout-display/checkout-display.component';
 import { LoginComponent } from '../../modules/login/page/login.component';
+import { fade } from '../../animations';
+import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
+import { EditarCategoria } from '../../data/store/actions/categoria.actions';
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  animations: [fade]
 })
 export class HeaderComponent implements OnInit {
   user: entities.Usuario;
@@ -33,9 +37,10 @@ export class HeaderComponent implements OnInit {
   links = NavLinksRes;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   route: string;
-
+  search:boolean=false;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   carrinhoVazio:boolean = true;
+  search_filter:string="";
   constructor(
     private AuthenticationService:AuthenticationService,
     private location: Location, private router: Router,
@@ -66,6 +71,15 @@ export class HeaderComponent implements OnInit {
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
   }
 
+  procurar(){
+    if(this.search)
+    this.store.dispatch(new EditarCategoriaFiltroProduto(null)).subscribe(x=>{
+      this.store.dispatch(new EditarSearchFiltroProduto(this.search_filter)).subscribe(x=>{
+        this.router.navigateByUrl("/produtos")
+      })
+    })
+    this.search = !this.search;
+  }
 
   openCheckout(){
     this.dialog.open(CheckoutDisplayComponent, {

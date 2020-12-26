@@ -42,12 +42,45 @@ img{
   //   color: white ;
   // }
 }
-.mat-card-image{
+.mat-card-image,img{
   padding:0 !important;
   margin:0 !important;
   background: rgb(255, 255, 255);
   border-radius: 0;
-  transition: all 1s ease-in;
+  transition: .5s all;
+  display: flex;
+  &.show{
+    animation: show .5s ease forwards !important;
+  }
+  &.hide{
+    animation: hide .5s ease forwards !important;
+  }
+}
+@keyframes show{
+  0%{
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    position: absolute;
+  }
+  100%{
+    visibility: show;
+    opacity: 1;
+    display: flex;
+  }
+}
+@keyframes hide{
+  0%{
+    visibility: show;
+    opacity: 1;
+    display: flex;
+  }
+  100%{
+    display: none !important;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+  }
 }
 .mat-card-footer{
   padding: 0;

@@ -42,6 +42,9 @@ p{
     // box-shadow:1px 1px 30px rgba(0, 05, 0, 0.80)
   }
 }
+.clickable{
+  cursor: pointer;
+}
 .border-light{
   border:1px solid $neutral-lightest
 }

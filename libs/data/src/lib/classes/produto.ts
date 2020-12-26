@@ -22,7 +22,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     PrecoPromocional?:number;
     Destaque?:boolean;
     Tags?:string[];
-    Especificacoes?:string[];
+    Especificacoes?:string;
     static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,
@@ -42,7 +42,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     PrecoPromocional?:number,
     Destaque?:boolean,
     Tags?:string[],
-    Especificacoes?:string[]
+    Especificacoes?:string
     ){
         super();
         this.Nome = Nome;

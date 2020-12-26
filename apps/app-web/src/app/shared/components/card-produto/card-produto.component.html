@@ -2,22 +2,41 @@
 
 <ng-template #Padrao>
   <mat-card
-
-  @fadeIn
-   matRipple
-   class="portfolio-item zoom"
-   [style.backgroundColor]="Produto.Categoria.Cor"
+    @fadeIn
+    matRipple
+    class="portfolio-item zoom"
+    [style.backgroundColor]="Produto.Categoria.Cor"
    >
   <a
-  matRipple
-    (mouseout)="imgProduto.src = Produto.Imagem[0]"
-    (mouseover)="imgProduto.src = Produto.Imagem[1] ? Produto.Imagem[1] : Produto.Imagem[0]"
+    matRipple
     [href]="['/produtos/'+ Produto._id]"
-    routerLinkActive="router-link-active">
+    routerLinkActive="router-link-active"
+    class="dis-flex flex-w"
+    >
     <img
       mat-card-image
       #imgProduto
+      (mouseenter)="
+      this.imgProduto.classList.add('hide');
+      this.imgProduto.classList.remove('show');
+      this.imgProduto2.classList.remove('hide');
+      this.imgProduto2.classList.add('show');
+      "
       [src]="Produto.Imagem[0]"
+      [style.opacity]="'1'"
+      [style.display]="'block'"
+      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+    <img
+      mat-card-image
+      #imgProduto2
+      (mouseout)="
+      this.imgProduto2.classList.remove('show');
+      this.imgProduto2.classList.add('hide');
+      this.imgProduto.classList.remove('hide');
+      this.imgProduto.classList.add('show');
+      "
+      class="hide"
+      [src]="Produto.Imagem[1]"
       alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
   </a>
    <mat-card-footer class="px-1">

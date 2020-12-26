@@ -7,8 +7,21 @@
   <div class="w-full dis-flex flex-m flex-sb is-hidden-touch py-4">
     <div class="ml-1">
     </div>
-    <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+    <a @fadeIn href="#" *ngIf='!search'><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
+    <mat-form-field @fadeIn *ngIf='search' class="w-full pb-3">
+      <div class="has-icons-right busca">
+        <input
+          [(ngModel)]="search_filter"
+          matInput
+          class="py-2 input"
+          type="text"
+          placeholder="O QUE VOCÊ PROCURA?">
+        </div>
+    </mat-form-field>
+    <span class="mb-4 icon is-small is-right hoverable clickable" (click)="procurar()">
+      <mat-icon matSuffix>search</mat-icon>
+    </span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
         <a (click)="SetActiveNav(link)"
@@ -61,10 +74,23 @@
         </button>
     </div>
   </div>
-  <div class="w-full dis-flex flex-sb flex-sb-c is-hidden-desktop">
+  <div class="w-full dis-flex flex-sb flex-sb-c flec-m columns is-vcentered is-hidden-desktop">
     <div class="ml-1">
     </div>
-    <a href="#"><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+    <a href="#" *ngIf='!search'><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+    <mat-form-field @fadeIn *ngIf='search' class="field w-full my-0 py-0" appearance="fill">
+      <div class="busca">
+        <input
+          [(ngModel)]="search_filter"
+          matInput
+          class="input"
+          type="text"
+          placeholder="O QUE VOCÊ PROCURA?">
+        </div>
+    </mat-form-field>
+    <span class="icon is-small is-right hoverable clickable mx-6" (click)="procurar()">
+      <mat-icon matSuffix>search</mat-icon>
+    </span>
     <span class="spacer"></span>
     <div class="pb-4">
       <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
@@ -90,7 +116,7 @@
   </div>
 </mat-toolbar>
 <mat-toolbar-row
-  [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'produtos' ? 'produtos-nav-under': 'is-hidden'">
+  [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'is-hidden'">
 </mat-toolbar-row>
 
 </div>

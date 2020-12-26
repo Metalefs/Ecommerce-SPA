@@ -38,6 +38,12 @@ export class EditarCategoriaFiltroProduto {
 
   constructor(public payload: Categoria) {}
 }
+export class EditarSearchFiltroProduto {
+
+  static readonly type = '[FiltroProduto] Edit Search'
+
+  constructor(public payload: string) {}
+}
 
 
 export class RemoverFiltroProduto {

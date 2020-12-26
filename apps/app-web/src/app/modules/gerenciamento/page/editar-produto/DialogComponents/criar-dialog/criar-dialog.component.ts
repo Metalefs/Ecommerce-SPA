@@ -69,7 +69,8 @@ export class CriarProdutoDialogComponent implements OnInit {
         StatusProduto.novo,
         0,
         false,
-        ['']
+        [''],
+        ""
         );
     }
 
