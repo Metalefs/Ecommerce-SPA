@@ -43,6 +43,9 @@ a{
   @extend .base;
   font-size: 14px;
   color:#999;
+  & :hover{
+    color: #3a3a3a;
+  }
 }
 .footer-color{
   background: #f1f1f1;

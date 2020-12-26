@@ -77,20 +77,23 @@ export class EnderecoComponent implements OnInit {
       this.flip()
     },0);
 
-    this.Orcamento$.subscribe(orcamento => {
-      if(orcamento.Usuario.DataHoraAlteracao != undefined)
-      this.checkoutService.goCheckout(orcamento).subscribe(result => {
-        this._init_point = result;
-        console.log(this._init_point);
-      })
-    })
   }
-
+  Pagar:boolean = false;
   goCheckout(){
     this.Orcamento$.subscribe(orcamento => {
+      this.Loading = true;
       this.checkoutService.goCheckout(orcamento).subscribe(result => {
         this._init_point = result;
         console.log(this._init_point);
+        this.Loading = false;
+        this.Pagar = true;
+        (function smoothscroll() {
+          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+          if (currentScroll > 0) {
+              window.requestAnimationFrame(smoothscroll);
+              window.scrollTo(0, currentScroll - (currentScroll / 8));
+          }
+        })();
       })
     })
   }

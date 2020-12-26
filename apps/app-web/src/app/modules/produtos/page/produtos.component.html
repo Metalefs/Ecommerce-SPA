@@ -1,4 +1,4 @@
-<div class="columns is-gapless my-3 shadow-light is-mobile is-hidden-tablet w-full pos-sticky top-0 z-index-top">
+<div class="columns is-gapless my-3 shadow-light is-mobile is-hidden-tablet w-full pos-sticky bellow-nav top-0 z-index-top">
   <div class="column has-background-white bo-0">
     <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
       <p>Categorias</p>
@@ -14,7 +14,7 @@
   </div>
   <mat-divider></mat-divider>
 </div>
-<div class="section mb-0 px-1c pb-0" id="Básicos">
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0" id="Básicos">
 
 
   <div class="columns px-3 px-1c py-4">

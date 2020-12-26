@@ -1,15 +1,15 @@
 <div class="bg">
-  <div class="section has-background-white-bis mb-3  pt-4">
+  <div class="section has-background-white-bis mb-3 pt-4">
     <nav class="breadcrumb is-left pt-0" aria-label="breadcrumbs">
       <ul class="">
         <li class="">
-          <a [routerLink]="'/produtos'" class="">Todos os produtos</a>
-          <div class="">
-            <mat-icon>keyboard_arrow_right</mat-icon>
-          </div>
+          <a [routerLink]="'/produtos'" href="#" class="">Todos os produtos</a>
         </li>
-        <li class="is-active">
-          <a [routerLink]="'/produtos'" class="">{{Produto?.Categoria.Nome}}</a>
+        <li >
+          <a [routerLink]="'/produtos'" href="#" class="" (click)="editarCategoriaFiltroProduto()">{{Produto?.Categoria.Nome}}</a>
+        </li>
+        <li class="is-active desb">
+          <a href="#" class="">{{Produto?.Nome}}</a>
         </li>
       </ul>
     </nav>
@@ -31,7 +31,7 @@
             <div class="w-full">
 
               <p><em>Tamanhos</em></p>
-              <div class="py-3 w-full flex-c">
+              <div class="py-3 w-full flex-l">
                 <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
                   <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
                     <button mat-stroked-button class="descricao-produto card tamanho-produto"
@@ -40,10 +40,11 @@
                   </div>
                 </div>
               </div>
-
+              <mat-divider></mat-divider>
               <div class="py-3">
                 <div class="columns is-mobile">
                   <div class="column is-6-mobile">
+                    <p><em>Cores</em></p>
                     <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
                       <mat-label>Selecione uma cor</mat-label>
                       <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
@@ -56,7 +57,9 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
+
                   <div class="column is-3-desktop is-6-mobile">
+                    <p><em>Quantidade</em></p>
                     <div class="field  w-full">
                       <div class="control border is-large flex-c flex-m w-full">
                         <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -72,15 +75,15 @@
                     </div>
                     <span class="has-text-grey-light">
                       <em>
-                      *Minimo {{Produto?.QuantidadeMinima}} unidades
+                      *Minimo {{Produto?.QuantidadeMinima}} unidade
                       </em>
                     </span>
                   </div>
                 </div>
               </div>
-
-              <div class="preco hoverable pb-4">
-                <strong>{{Produto?.Preco == 0 ? '' : 'R$'+ Produto?.Preco}}</strong><span></span>
+              <mat-divider></mat-divider>
+              <div class="preco hoverable my-4">
+                <strong>{{Produto?.Preco == 0 ? '' : 'R$ '+ Produto?.Preco.toFixed(2)}}</strong><span></span>
               </div>
 
             </div>
@@ -89,7 +92,7 @@
               <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
                 [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                 (click)="AdicionarAoOrcamento()"
-                class="share-button py-2 w-full background-light-red has-text-white has-text-weight-medium">
+                class="share-button pb-2 background-light-red has-text-white has-text-weight-medium">
                 <div class="level py-2">
                   {{textoAdicionar}}
                   <mat-icon>shopping_bag</mat-icon>
@@ -106,11 +109,11 @@
               <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
                 <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
               </div>
-
+              <mat-divider></mat-divider>
               <div class="columns w-full py-2 is-gapless is-multiline">
                 <div class="column w-full is-6 is-12-mobile">
                   <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                    class="button is-success w-full has-text-white has-text-weight-medium desb">
+                    class="button is-success w-full has-text-white has-text-weight-medium">
                     <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
                   </button>
                 </div>
@@ -118,10 +121,10 @@
                 <div class="column">
                   <div class="colums">
                     <div class="column pt-0 mt-0">
-                      <share-button class="" button="facebook" theme="modern-dark" [showText]="true"
+                      <share-button class="mt-0" button="facebook" theme="modern-dark" [showText]="true"
                         [text]="'Compartilhar'">
                       </share-button>
-                      <share-button class="" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'">
+                      <share-button class="mt-0" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar'">
                       </share-button>
                     </div>
                   </div>

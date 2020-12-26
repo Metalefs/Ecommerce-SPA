@@ -21,7 +21,7 @@ gallery{
 }
 .tamanho-produto{
   &.active{
-    // border: 1px solid ;
+    border: 1px solid ;
     background:$feedback-base;
     color: white !important;
   }
@@ -103,6 +103,11 @@ input[type=number] {
   align-items: center;
   letter-spacing: 0.04em;
   height: 56px;
+  background: #4d69b1;
+  transition: all .2s ease;
+  &:hover{
+    opacity: .5;
+  }
 }
 .share-button-text{
   max-width: 188px;

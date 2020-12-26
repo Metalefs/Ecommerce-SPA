@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerFiltroProduto, EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto, AdicionarListaProdutosFiltroProduto } from '../actions/filtroproduto.actions';
+import { LerFiltroProduto, EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto, AdicionarListaProdutosFiltroProduto, EditarCategoriaFiltroProduto } from '../actions/filtroproduto.actions';
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Categoria } from 'libs/data/src/lib/classes';
@@ -68,6 +68,17 @@ export class FiltroProdutoState {
     });
   }
 
+  @Action(EditarCategoriaFiltroProduto)
+  EditarCategoriaFiltroProduto(context: StateContext<FiltroProdutoStateModel>, action: EditarCategoriaFiltroProduto) {
+    const current = context.getState();
+
+    context.patchState({
+        Categoria : action.payload,
+        SearchFilter : current.SearchFilter,
+        OrderFilter : current.OrderFilter,
+        FiltroProdutos : current.FiltroProdutos
+    });
+  }
 
   @Action(AdicionarListaProdutosFiltroProduto)
   AdicionarListaProdutosFiltroProduto(context: StateContext<FiltroProdutoStateModel>, action: AdicionarListaProdutosFiltroProduto) {

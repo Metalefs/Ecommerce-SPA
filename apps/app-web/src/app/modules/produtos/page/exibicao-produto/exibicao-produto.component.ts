@@ -14,6 +14,7 @@ import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/a
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -115,6 +116,10 @@ export class ExibicaoProdutoComponent implements OnInit {
       }
 
     });
+  }
+
+  editarCategoriaFiltroProduto(){
+    this.store.dispatch(new EditarCategoriaFiltroProduto(this.Produto.Categoria)).subscribe();
   }
 
   navegarParaCheckout(){

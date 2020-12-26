@@ -80,4 +80,5 @@ export class AppComponent {
   dismissCookieLaw(){
     this.cookieLawEl.dismiss();
   }
+
 }

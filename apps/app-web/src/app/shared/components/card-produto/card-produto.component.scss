@@ -28,17 +28,19 @@ img{
   margin: 0 !important;
   &:hover{
     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
-    background:rgb(105, 109, 140) none repeat scroll 0% 0%;
+    background:rgb(229, 229, 229) none repeat scroll 0% 0%;
+    border: 1px solid rgb(215, 215, 215);
+
   }
-  &:hover > .mat-card-footer .titulo-produto{
-    color: white ;
-  }
-  &:hover > .mat-card-footer .preco{
-    color: white ;
-  }
-  &:hover > .mat-card-footer .preco-produto{
-    color: white ;
-  }
+  // &:hover > .mat-card-footer .titulo-produto{
+  //   color: white ;
+  // }
+  // &:hover > .mat-card-footer .preco{
+  //   background-color: white ;
+  // }
+  // &:hover > .mat-card-footer .preco-produto{
+  //   color: white ;
+  // }
 }
 .mat-card-image{
   padding:0 !important;
