@@ -6,23 +6,26 @@ import { ErrorHandler } from '../../../core/error.handler';
 import { MercadoPagoCheckout, mp_checkout_items } from '../../models/mercadoPagoCheckout';
 import { environment } from '../../../../environments/environment';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { Orcamento } from 'libs/data/src/lib/classes';
+import { Integracoes, Orcamento, Produto } from 'libs/data/src/lib/classes';
 @Injectable({
     providedIn: 'root'
 })
 export class MercadoPagoCheckoutService {
-    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler){}
+    constructor(private http: HttpClient,
+      private ErrorHandler:ErrorHandler){}
 
-    goCheckout(Orcamento:Orcamento): Observable<any> {
-      let MercadoPagoCheckout = this.obterPreferencia(Orcamento);
+    goCheckout(Orcamento:Orcamento,integracoes:Integracoes): Observable<any> {
+      let MercadoPagoCheckout = this.obterPreferencia(Orcamento,integracoes);
       return this.http.post<any>(environment.endpoint + RouteDictionary.Checkout, {preference:MercadoPagoCheckout}).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError) // then handle the error
       );
     }
 
-    obterPreferencia(orcamento:Orcamento) : MercadoPagoCheckout{
+    obterPreferencia(orcamento:Orcamento,integracoes:Integracoes) : MercadoPagoCheckout{
       let items:mp_checkout_items[] = [];
+      let installments = integracoes.ParcelasPadrao;
+
       orcamento.Produto.forEach(produto => items.push(
         {
           id: produto.Produto._id,
@@ -37,10 +40,24 @@ export class MercadoPagoCheckoutService {
       return {
         back_urls: {
             success: "https://www.personalizadoslopes.com.br/success",
-            failure: "http://www.personalizadoslopes.com.br/failure",
-            pending: "http://www.personalizadoslopes.com.br/pending"
+            failure: "https://www.personalizadoslopes.com.br/failure",
+            pending: "https://www.personalizadoslopes.com.br/pending"
         },
         auto_return: "approved",
+        payment_methods: {
+          excluded_payment_methods: [
+              {
+                  id: "bolbradesco"
+              }
+          ],
+          excluded_payment_types: [
+              {
+                  id: "ticket"
+              }
+          ],
+          installments
+        },
+        statement_descriptor: integracoes.ResumoCartao,
         binary_mode: true,
         items: items,
         payer: {

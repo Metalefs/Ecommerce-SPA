@@ -4,10 +4,10 @@
   <p>
     <mat-toolbar color="" class="">
       <mat-toolbar-row class="py-6">
-        <a href="#"><img class="logo" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+        <a href="#" class="logo"><img  src="assets/images/icons/Logo.png" alt="LOGO" height="90"></a>
         <span class="spacer"></span>
 
-        <!-- <button mat-icon-button aria-label="fechar carrinho" (click)="close()">
+  <!-- <button mat-icon-button aria-label="fechar carrinho" (click)="close()">
           <mat-icon>close</mat-icon>
         </button> -->
       </mat-toolbar-row>
@@ -48,6 +48,7 @@
   <mat-menu mat-menu #appMenu2="matMenu">
     <ng-template matMenuContent let-name="name">
       <button mat-menu-item *ngIf="usuario" [routerLink]="['/perfil']">{{usuario.Nome}}</button>
+      <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
       <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>

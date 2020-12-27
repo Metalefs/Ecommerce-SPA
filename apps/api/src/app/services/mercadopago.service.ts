@@ -1,3 +1,6 @@
+import { entities } from '@personalizados-lopes/data';
+import { Integracoes } from 'libs/data/src/lib/classes';
+import { Repository } from '../repositories/repository';
 import { IntegracoesService } from './integracoes.service';
 
 // SDK de Mercado Pago
@@ -11,6 +14,17 @@ const mercadopago = require("mercadopago");
 })();
 
 export class MercadoPagoService{
+  async Ler() : Promise<Integracoes>{
+    return Repository.List(entities.Integracoes.NomeID).then((x:Integracoes[]) => {
+      if(x){
+        let arr = [];
+        arr.push(x[x.length -1]);
+        return arr[0];
+      }
+      return x;
+    });
+  }
+
   // Agrega credenciales
   makecheckout = (preference) => {
     console.log(preference);

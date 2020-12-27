@@ -71,7 +71,8 @@ export class CriarProdutoDialogComponent implements OnInit {
         false,
         [''],
         "",
-        ""
+        "",
+        0
         );
     }
 

@@ -90,8 +90,8 @@
                   routerLinkActive="router-link-active"
                   class="px-3 titulo-produto is-hidden-desktop"
                   >{{element.Produto.Nome}}
-                  <p class="subtitle">{{element.Produto.Cor.nome}}</p>
-                  <p class="subtitle">{{element.Produto.Tamanho}}</p>
+                  <p class="subtitle">{{element.Produto.Cor?.nome || 'adicionar cor'}}</p>
+                  <p class="subtitle">{{element.Produto.Tamanho || 'adicionar tamanho'}}</p>
                 </a>
                 </div>
                 <div class="column ">
@@ -102,8 +102,8 @@
                   routerLinkActive="router-link-active"
                   class="titulo-produto is-hidden-touch"
                   >{{element.Produto.Nome}}
-                  <p class="subtitle">{{element.Produto.Cor.nome}}</p>
-                  <p class="subtitle">{{element.Produto.Tamanho}}</p>
+                  <p class="subtitle">{{element.Produto.Cor?.nome || 'adicionar cor'}}</p>
+                  <p class="subtitle">{{element.Produto.Tamanho || 'adicionar tamanho'}}</p>
                 </a>
                 <button (click)="removerProduto(element)">
                   remover

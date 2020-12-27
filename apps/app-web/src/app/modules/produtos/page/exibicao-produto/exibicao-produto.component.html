@@ -13,40 +13,64 @@
         </li>
       </ul>
     </nav>
-
     <div class="columns has-background-white" id="PRODUTO">
       <div class="column box mb-0">
         <gallery id="myGallery" *ngIf="galleryConfig$ | async; let config" [counter]="false"
-          [thumbWidth]="config.thumbWidth" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
-        </gallery>
-      </div>
+        [thumbWidth]="config.thumbWidth" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
+      </gallery>
+    </div>
 
-      <div class="column px-3">
+    <div class="column px-3">
+      <!-- <div [ngClass]="Produto.Status != statusProduto.esgotado ? 'has-background-success':'has-background-danger'">
+        <p class="mx-1 py-1 box px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</p>
+      </div> -->
         <div class="mh-70 px-2 pt-6">
 
           <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
-          <mat-divider></mat-divider>
-          <mat-chip-list class="mx-1 py-1">
-            <mat-chip class="has-text-capitalized">
-              {{translateStatusProduto(Produto.Status)}}
-            </mat-chip>
-          </mat-chip-list>
-          <mat-divider></mat-divider>
-          <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
-          <ng-template #preco_promo>
-            <div class="txt-left">
-              <p class="preco linethr desb">DE R$ {{Produto?.Preco || '0.00'}}</p>
-              <p class="preco promocao">POR R$ {{Produto?.PrecoPromocional || '0.00'}}</p>
+
+          <div class="my-3">
+            <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
+            <ng-template #preco_promo>
+              <div class="txt-left">
+                <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                <p class="preco promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+              </div>
+            </ng-template>
+            <ng-template #preco_normal>
+              <div class="txt-left">
+                <p class="preco">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+              </div>
+            </ng-template>
+            <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+              <p class="preto6">
+                Em até {{Produto.Parcelas}}x <span class="preco-produto"><b>R${{(Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span> sem juros
+              </p>
             </div>
-          </ng-template>
-          <ng-template #preco_normal>
-            <div class="preco hoverable my-4 pt-3">
-              <strong>{{Produto?.Preco == 0 ? '' : 'R$ '+ Produto?.Preco.toFixed(2)}}</strong><span></span>
+          </div>
+          <div class="columns is-multiline is-vcentered">
+            <div class="column is-4">
+              <p><em>Quantidade</em></p>
+              <div class="field w-full">
+                <div class="control border is-large flex-c flex-m w-full">
+                  <button mat-icon-button (click)="DecrescerQuantidade()">
+                    <mat-icon class="less">remove</mat-icon>
+                  </button>
+                  <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}"
+                    type="number" (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                    class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
+                  <button mat-icon-button (click)="IncrementarQuantidade()">
+                    <mat-icon class="more">add</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <span class="has-text-grey-light">
+                <em>
+                *Minimo {{Produto?.QuantidadeMinima}} unidade
+                </em>
+              </span>
             </div>
-          </ng-template>
-          <div class="columns is-multiline of-x-scroll">
             <div class="column is-12-mobile is-8-desktop">
-              <div *ngIf="Produto?.Status != statusProduto.esgotado" class="dis-flex">
+              <div *ngIf="Produto?.Status != statusProduto.esgotado" class="dis-flex flex-m">
                 <button mat-raised-button
                 [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                 (click)="AdicionarAoOrcamento()"
@@ -56,7 +80,21 @@
                   <mat-icon>shopping_bag</mat-icon>
                 </div>
                 </button>
-                <button
+                <mat-list>
+                  <mat-list-item *ngIf="! Produto?.Tamanho">
+                    <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
+                  </mat-list-item>
+                  <mat-list-item *ngIf="! Produto?.Cor">
+                    <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
+                <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+              </div>
+            </div>
+            <div class="column">
+              <button
                  *ngIf="this.isOrcamento"
                   mat-flat-button
                   title="Criar novo pedido"
@@ -67,20 +105,10 @@
                   Novo
                   <mat-icon>add</mat-icon>
                 </button>
-              </div>
-              <mat-list>
-                <mat-list-item *ngIf="! Produto?.Tamanho">
-                  <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
-                </mat-list-item>
-                <mat-list-item *ngIf="! Produto?.Cor">
-                  <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
-                </mat-list-item>
-              </mat-list>
-              <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
-                <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
-              </div>
             </div>
-            <div class="column">
+          </div>
+          <div class="columns of-x-scroll">
+            <div class="column is-12">
               <button mat-flat-button class="button file is-info has-name pb-3">
                 <label class="file-label">
                   <input class="file-input" multiple type="file" (change)="upload($event)">
@@ -100,6 +128,7 @@
             </div>
           </div>
           <div class="box"  *ngIf="this.Produto.Arte">
+            <a>Como essa arte será usada no produto?</a>
             <mat-card>
               <figure class="image is-128x128">
                 <img mat-mat-card-image [src]="this.Produto.Arte" height="200">
@@ -149,27 +178,6 @@
                     </mat-form-field>
                   </div>
 
-                  <div class="column is-3-desktop is-6-mobile">
-                    <p><em>Quantidade</em></p>
-                    <div class="field  w-full">
-                      <div class="control border is-large flex-c flex-m w-full">
-                        <button mat-icon-button (click)="DecrescerQuantidade()">
-                          <mat-icon class="less">remove</mat-icon>
-                        </button>
-                        <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}"
-                          type="number" (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
-                          class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
-                        <button mat-icon-button (click)="IncrementarQuantidade()">
-                          <mat-icon class="more">add</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-                    <span class="has-text-grey-light">
-                      <em>
-                      *Minimo {{Produto?.QuantidadeMinima}} unidade
-                      </em>
-                    </span>
-                  </div>
                 </div>
               </div>
               <mat-divider></mat-divider>

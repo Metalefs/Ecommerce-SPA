@@ -24,6 +24,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     Tags?:string[];
     Especificacoes?:string;
     DescricaoRapida?:string;
+    Parcelas?:number;
     Arte?:string | ArrayBuffer;
     static readonly NomeID:string = "Produto";
     constructor(
@@ -46,29 +47,31 @@ export class Produto extends MongoDocument implements entidadeBase{
     Tags?:string[],
     Especificacoes?:string,
     DescricaoRapida?:string,
+    Parcelas?:number,
     Arte?:string | ArrayBuffer
     ){
-        super();
-        this.Nome = Nome;
-        this.Descricao = Descricao;
-        this.Subtitulo = Subtitulo;
-        this.Categoria = Categoria;
-        this.NomeCategoria = NomeCategoria;
-        this.Imagem = Imagem;
-        this.QuantidadeMinima = QuantidadeMinima;
-        this.Preco = Preco;
-        this.Tamanho = Tamanho;
-        this.Cor = Cor;
-        this.Likes = Likes;
-        this.Cores = Cores;
-        this.Tamanhos = Tamanhos;
-        this.Status = Status;
-        this.PrecoPromocional = PrecoPromocional;
-        this.Destaque = Destaque;
-        this.Tags = Tags;
-        this.Especificacoes = Especificacoes;
-        this.DescricaoRapida = DescricaoRapida;
-        this.Arte = Arte;
+      super();
+      this.Nome = Nome;
+      this.Descricao = Descricao;
+      this.Subtitulo = Subtitulo;
+      this.Categoria = Categoria;
+      this.NomeCategoria = NomeCategoria;
+      this.Imagem = Imagem;
+      this.QuantidadeMinima = QuantidadeMinima;
+      this.Preco = Preco;
+      this.Tamanho = Tamanho;
+      this.Cor = Cor;
+      this.Likes = Likes;
+      this.Cores = Cores;
+      this.Tamanhos = Tamanhos;
+      this.Status = Status;
+      this.PrecoPromocional = PrecoPromocional;
+      this.Destaque = Destaque;
+      this.Tags = Tags;
+      this.Especificacoes = Especificacoes;
+      this.DescricaoRapida = DescricaoRapida;
+      this.Parcelas = Parcelas;
+      this.Arte = Arte;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

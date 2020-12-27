@@ -49,7 +49,11 @@
 
       <div class="column text-center">
         <h3 class="mb-2 footer-title">Acesso Rápido</h3>
-        <a *ngFor="let link of Links" class="footer-text" pageScroll href="#{{link.id}}" [routerLink]="[link.href]"
+        <a *ngFor="let link of Links"
+          class="footer-text"
+          pageScroll
+          href="#{{link.id}}"
+          [routerLink]="[link.href]"
           routerLinkActive="active">
           <p>
             {{link.name}}
@@ -69,7 +73,7 @@
     </div>
   </div>
 
-  <div class="w-full  has-background-white">
+  <div class="w-full has-background-white">
     <div class="w-full margin py-4 px-6">
       <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
       <div class="w-full flex-sb">

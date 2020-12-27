@@ -4,6 +4,8 @@ export interface MercadoPagoCheckout {
   items:mp_checkout_items[]
   payer:mp_checkout_payer;
   binary_mode:boolean
+  payment_methods:mp_payment_methods;
+  statement_descriptor:string;
 }
 export interface mp_checkout_back_urls{
   success:string,
@@ -40,4 +42,12 @@ export interface mp_checkout_payer_address {
   street_name:string,
   street_number:number,
   zip_code:string,
+}
+export interface mp_payment_methods{
+  excluded_payment_methods: mp_paymentID[];
+  excluded_payment_types: mp_paymentID[];
+  installments: number;
+}
+export interface mp_paymentID{
+  id:string;
 }

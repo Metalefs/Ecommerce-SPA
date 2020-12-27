@@ -19,11 +19,13 @@ import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-d
 export class CardProdutoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   isOrcamento:boolean;
+  Liked:boolean = false;
   constructor(private store: Store,private dialog:MatDialog) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
   statusProduto=StatusProduto;
   ngOnInit(): void {
+    this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
   }
 
   AdicionarAoOrcamento(produto:Produto){

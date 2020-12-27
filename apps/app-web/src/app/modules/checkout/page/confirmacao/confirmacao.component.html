@@ -69,8 +69,8 @@
                 routerLinkActive="router-link-active"
                 class="px-3 titulo-produto is-hidden-desktop"
                 >{{element.Produto.Nome}}
-                <p class="subtitle">{{element.Produto.Cor.nome}}</p>
-                <p class="subtitle">{{element.Produto.Tamanho}}</p>
+                <p class="subtitle">{{element.Produto.Cor?.nome}}</p>
+                <p class="subtitle">{{element.Produto?.Tamanho}}</p>
               </a>
               </div>
               <div class="column ">
@@ -80,8 +80,8 @@
                 routerLinkActive="router-link-active"
                 class="titulo-produto is-hidden-touch"
                 >{{element.Produto.Nome}}
-                <p class="subtitle">{{element.Produto.Cor.nome}}</p>
-                <p class="subtitle">{{element.Produto.Tamanho}}</p>
+                <p class="subtitle">{{element.Produto.Cor?.nome}}</p>
+                <p class="subtitle">{{element.Produto?.Tamanho}}</p>
               </a>
 
                 <button *ngIf="edit" (click)="removerProduto(element)">
@@ -167,11 +167,11 @@
         [routerLink]="['/produtos/']"
         routerLinkActive="router-link-active">Escolher mais produtos</a>
       </button>
-      <a  [routerLink]="['/checkout/dados/']"
+      <button  [routerLink]="['/checkout/dados/']"
         pageScroll
         href="#TOPO"
         routerLinkActive="router-link-active"
-        class="button is-success w-full">Finalizar orçamento</a>
+        class="button is-success w-full">Finalizar orçamento</button>
     </div>
   </div>
 

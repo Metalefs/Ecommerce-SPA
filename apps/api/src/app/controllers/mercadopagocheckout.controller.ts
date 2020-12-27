@@ -7,8 +7,17 @@ import { MercadoPagoService } from '../services';
 
 const MercadoPagoController = express();
 
-
-MercadoPagoController.post(RouteDictionary.Checkout, (req: any, res) => {
+MercadoPagoController.get(RouteDictionary.Checkout, (req: any, res) => {
+  try {
+    let mercadoPagoService = new MercadoPagoService();
+    mercadoPagoService.Ler().then(x=>{
+      res.send(x);
+    });
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).post(RouteDictionary.Checkout, (req: any, res) => {
     try {
       let mercadoPagoService = new MercadoPagoService();
       mercadoPagoService.checkout(req.body.preference).then(x=>{

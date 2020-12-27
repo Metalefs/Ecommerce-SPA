@@ -63,6 +63,8 @@ export class EditarIntegracoesComponent implements OnInit {
       return;
       let Integracoes = new entities.Integracoes(
         result[0].value,
+        parseInt(result[1].value),
+        result[2].value,
       )
       Integracoes._id = id;
       this.servicoIntegracoes.Editar(Integracoes).subscribe(x=> {
@@ -84,6 +86,8 @@ export class EditarIntegracoesComponent implements OnInit {
     this.AtualizarTabela();
     this.IntegracoesTable.displayedColumns = [
       "MP_access_token",
+      "ParcelasPadrao",
+      "ResumoCartao",
       "Acoes"
     ];
   }

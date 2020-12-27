@@ -45,30 +45,43 @@
          Disponível em {{Produto.Cores?.length}} cores
        </span>
      </div>
-     <mat-card-header class="w-full txt-center pt-1">
+     <mat-card-header class="w-full txt-left pt-1">
         <mat-card-title class="w-full txt-left titulo-produto">{{Produto?.Nome}}</mat-card-title>
         <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
         <mat-card-subtitle class="is-3 preco">
 
+          <div class="my-3">
+            <span>
+              <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
+                {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+              {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
+              {{Liked? '- Obrigado por nos apoiar ' : ''}}
+            </span>
+          </div>
           <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
           <ng-template #preco_promo>
             <div class="txt-left">
-              <p class="preco-produto linethr">DE R$ {{Produto?.Preco || '0.00'}}</p>
-              <p class="preco-produto promocao">POR R$ {{Produto?.PrecoPromocional || '0.00'}}</p>
+              <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+              <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
             </div>
           </ng-template>
           <ng-template #preco_normal>
             <div class="txt-left">
-              <p class="preco-produto">R$ {{Produto?.Preco || '0.00'}}</p>
+              <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
             </div>
           </ng-template>
+          <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+            <p class="preto6">
+              Em até {{Produto.Parcelas}}x <span class="preco-produto"><b>R${{(Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span> sem juros
+            </p>
+          </div>
 
           <button
             [disabled]="Produto.Status == statusProduto.esgotado"
             mat-stroked-button
             (click)="AdicionarAoOrcamento(Produto)"
             color="primary"
-            class="has-background-light w-full px-2 has-text-grey">
+            class="has-background-light w-full px-2 has-text-grey btn-cart">
             <ng-container *ngIf="Produto.Status != statusProduto.esgotado
             then adicionar else esgotado"></ng-container>
             <ng-template #adicionar>
@@ -95,7 +108,10 @@
               <p>
                 {{Produto?.Nome}}
               </p>
-              <button mat-flat-button class="button">Comprar Agora</button>
+              <a matRipple
+              class="reset-a"
+              [href]="['/produtos/'+ Produto._id]"
+              routerLinkActive="router-link-active" mat-flat-button class="button">Comprar Agora</a>
             </div>
           </div>
         </div>

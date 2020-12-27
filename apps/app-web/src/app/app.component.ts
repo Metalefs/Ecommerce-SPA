@@ -74,6 +74,9 @@ export class AppComponent {
     this.LerServicosAPI();
     setTimeout(()=>{
       this.carregandoOque += " ...carregando";
+      setTimeout(()=>{
+        this.carregandoOque += " ...Nosso banco de dados está em fase de testes";
+      },2000)
     },6000)
   }
 

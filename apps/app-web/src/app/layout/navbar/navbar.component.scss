@@ -2,7 +2,12 @@
 @import '../../../variables';
 .card {
   // background-color: #ffffffe8;
-  color:black;
+  &:hover{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: all .3s ease;
+    color:black;
+  }
 }
 a span{
   text-transform: capitalize;
@@ -38,21 +43,28 @@ a span{
 .mat-list-item a.active-nav{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color: $gray-web;
+  color: black;
   font-weight: bold;
 }
 .mat-list-item a.active-nav .mat-icon.inst{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color:$gray-web;
-  background:$gray-web;
+  color:black;
+  background:black;
 }
 a {
   position: relative;
-  color: black;
+  color: $gray-web;
   text-decoration: none;
+  transition: all .3s ease;
 }
 
+a:hover {
+  color: #999;
+  text-decoration: none;
+  -webkit-transform: scaleX(1.1);
+  transform: scaleX(1.1);
+}
 
 a:before {
   @extend .blue-underline
@@ -62,13 +74,8 @@ a:before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
-  }
+}
 
-
-  a:hover {
-    color: #999;
-    text-decoration: none;
-  }
 @media only screen and (min-width: 768px) {
 
   #nav-menu .navigation {

@@ -38,7 +38,7 @@ export class CheckoutDisplayComponent implements OnInit {
       // let DistinctProdutos = removeDuplicates(Produtos,"_id");
       // this.ProdutoTable.dataSource = DistinctProdutos;
       this.ProdutoTable.dataSource = Produtos;
-
+      console.log(Produtos);
       this.ProdutoTable.displayedColumns = [
         "Produtos",
         "Quantidade",
@@ -58,11 +58,14 @@ export class CheckoutDisplayComponent implements OnInit {
   }
 
   delayClose(){
-    document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInRight")
-    document.getElementsByClassName("animate__animated")[0].classList.add("animate__slideOutRight");
-    setTimeout(()=>{
-      this.close()
-    },500);
+    try{
+      document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInRight")
+      document.getElementsByClassName("animate__animated")[0].classList.add("animate__slideOutRight");
+      setTimeout(()=>{
+        this.close()
+      },0);
+    }
+    catch(ex){this.close()}
   }
 
   IncrementarQuantidade(element){

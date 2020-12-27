@@ -11,6 +11,8 @@ import { NavStateState } from '../../data/store/state';
 import { Link, NavState } from '../../data/models';
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Usuario } from 'libs/data/src/lib/classes';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../../modules/login/page/login.component';
 
 @Component({
   selector: 'personalizados-lopes-navbar',
@@ -33,7 +35,8 @@ export class NavbarComponent implements OnInit {
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   constructor(private AuthenticationService:AuthenticationService,
     private router: Router,
-    private store: Store) { }
+    private store: Store,
+    public dialog: MatDialog) { }
 
   ToggleNav(delay:number){
     setTimeout(()=>{
@@ -44,6 +47,13 @@ export class NavbarComponent implements OnInit {
   SetActiveNav(link:Link){
     this.store.dispatch(new EditarNavState({activeNav:link.name}));
     this.NavState$.subscribe()
+  }
+
+  Login(){
+    this.dialog.open(LoginComponent, {
+      restoreFocus: false,
+      width:'512px',
+    });
   }
 
   Logout(){

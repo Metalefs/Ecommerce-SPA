@@ -12,7 +12,7 @@ import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
-import {CEPService,EstadoService, MercadoPagoCheckoutService} from '../../../../data/service';
+import {CEPService,EstadoService, IntegracoesService, MercadoPagoCheckoutService} from '../../../../data/service';
 
 @Component({
   selector: 'personalizados-lopes-endereco',
@@ -61,7 +61,8 @@ export class EnderecoComponent implements OnInit {
     private CEPService:CEPService,
     private EstadoService:EstadoService,
     private snack: MatSnackBar,
-    private checkoutService: MercadoPagoCheckoutService
+    private checkoutService: MercadoPagoCheckoutService,
+    private integracoesService: IntegracoesService
     ) { }
 
   ngOnInit(): void {
@@ -82,18 +83,20 @@ export class EnderecoComponent implements OnInit {
   goCheckout(){
     this.Orcamento$.subscribe(orcamento => {
       this.Loading = true;
-      this.checkoutService.goCheckout(orcamento).subscribe(result => {
-        this._init_point = result;
-        console.log(this._init_point);
-        this.Loading = false;
-        this.Pagar = true;
-        (function smoothscroll() {
-          var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-          if (currentScroll > 0) {
-              window.requestAnimationFrame(smoothscroll);
-              window.scrollTo(0, currentScroll - (currentScroll / 8));
-          }
-        })();
+      this.integracoesService.Ler().subscribe(x=>{
+        this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
+          this._init_point = result;
+          console.log(this._init_point);
+          this.Loading = false;
+          this.Pagar = true;
+          (function smoothscroll() {
+            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            if (currentScroll > 0) {
+                window.requestAnimationFrame(smoothscroll);
+                window.scrollTo(0, currentScroll - (currentScroll / 8));
+            }
+          })();
+        })
       })
     })
   }

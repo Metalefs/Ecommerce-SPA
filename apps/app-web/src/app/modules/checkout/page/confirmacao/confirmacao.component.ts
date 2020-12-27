@@ -52,12 +52,12 @@ export class ConfirmacaoComponent implements OnInit {
     produto = getPreviewURL($event,produto.Produto,fileNames)
   }
   IncrementarQuantidade(element){
-    element.Quantidade++;
+    element.Produto.Quantidade++;
     this.EditarOrcamento(element);
   }
   DecrescerQuantidade(element){
-    if(element.Quantidade > element.QuantidadeMinima)
-    element.Quantidade--;
+    if(element.Produto.Quantidade > element.Produto.QuantidadeMinima)
+    element.Produto.Quantidade--;
     this.EditarOrcamento(element);
   }
 
