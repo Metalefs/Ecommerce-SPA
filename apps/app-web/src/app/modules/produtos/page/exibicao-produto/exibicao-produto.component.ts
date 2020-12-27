@@ -76,7 +76,6 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.activeRoute.params.subscribe(routeParams => {
       this.LerProdutosCarregados();
     });
-    this.produtoNoCheckout();
     if(this.Produto.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
     this.Url = `https://${window.location.href}`;
@@ -105,12 +104,10 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
-      if(ProdutosOrcamento.length == 0){
-
+      if(!this.orcamentoId){
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
           this.orcamentoId = x.codOrcamento;
         });
-        this.isOrcamento = false;
         this.navegarParaCheckout();
       }
       else{
@@ -118,8 +115,8 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
         this.navegarParaCheckout();
         this.openCheckout();
-        this.textoAdicionar = this.textoAtualizar;
       }
+      this.textoAdicionar = this.textoAtualizar;
       this.isOrcamento = true;
 
     });
@@ -132,8 +129,11 @@ export class ExibicaoProdutoComponent implements OnInit {
         return
       }
       else{
-        this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
-        // this.navegarParaCheckout();
+        this.isOrcamento = false;
+        this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto)).subscribe(x=>{
+          this.isOrcamento = true;
+          this.navegarParaCheckout();
+        });
       }
 
     });
@@ -217,29 +217,28 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
 
     const galleryRef = this.gallery.ref('myGallery');
-    if(!this.orcamentoId)
+    if(!this.orcamentoId){
+      this.isOrcamento = false;
       this.Produtos$.subscribe( res => {
-          const index = res.findIndex(item => item._id === id);
-          this.Produto = res[index];
-          if(!this.Produto)
+        const index = res.findIndex(item => item._id === id);
+        this.Produto = res[index];
+        if(!this.Produto)
           this.router.navigateByUrl('/produtos');
-          this.Produto?.Imagem.forEach(img =>{
-            console.log(img);
-            galleryRef.addImage({ src:img, thumb: img });
-        });
       });
+    }
     else{
+      this.isOrcamento = true;
       this.Orcamento$.subscribe( res => {
         const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
         if(index<0)
-        this.router.navigateByUrl('/produtos');
+          this.router.navigateByUrl('/produtos');
         this.Produto = res.Produto[index].Produto;
-        this.Produto?.Imagem.forEach(img =>{
-          console.log(img);
-          galleryRef.addImage({ src:img, thumb: img });
       });
-    });
     }
+    this.Produto?.Imagem.forEach(img =>{
+      console.log(img);
+      galleryRef.addImage({ src:img, thumb: img });
+    });
   }
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);

@@ -93,12 +93,12 @@
     <div class="ml-1">
     </div>
     <a href="#" *ngIf='!search'><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
-    <div *ngIf="search" class="columns is-mobile is-multiline is-vcentered mx-3">
+    <div *ngIf="search" class="columns is-mobile is-multiline is-vcentered mx-3 animate__animated animate__slideInRight">
       <div class="column is-12-mobile">
         <div class="control has-icons-right">
           <input
             [(ngModel)]="search_filter"
-            class="py-2 input"
+            class="py-2 input "
             type="text"
             placeholder="buscar produtos">
             <button class="s-button z-top" (click)="procurar()">

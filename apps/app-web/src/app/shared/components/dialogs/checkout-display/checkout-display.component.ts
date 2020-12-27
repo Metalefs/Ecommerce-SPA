@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { fade } from 'apps/app-web/src/app/animations';
+import { fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { ResetarOrcamento, EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
@@ -16,7 +17,7 @@ import { Observable } from 'rxjs';
   selector: 'personalizados-lopes-checkout-display',
   templateUrl: './checkout-display.component.html',
   styleUrls: ['./checkout-display.component.scss'],
-  animations:[fade]
+  animations:[fade,slideInOut]
 })
 export class CheckoutDisplayComponent implements OnInit {
 
@@ -24,7 +25,10 @@ export class CheckoutDisplayComponent implements OnInit {
   ProdutoTable:MaterialTable;
   ErroCadastro:boolean = false;
   Total:number = 0;
-  constructor(private store:Store,private snack: MatSnackBar,public dialogRef: MatDialogRef<CheckoutDisplayComponent>) { }
+  constructor(private store:Store,
+    private snack: MatSnackBar,
+    public dialogRef: MatDialogRef<CheckoutDisplayComponent>,
+    ) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
@@ -54,6 +58,8 @@ export class CheckoutDisplayComponent implements OnInit {
   }
 
   delayClose(){
+    document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInRight")
+    document.getElementsByClassName("animate__animated")[0].classList.add("animate__slideOutRight");
     setTimeout(()=>{
       this.close()
     },500);

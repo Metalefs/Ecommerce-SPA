@@ -6,7 +6,7 @@
 
       <button mat-icon-button
       aria-label="fechar carrinho"
-      (click)="close()">
+      (click)="delayClose()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar-row>
@@ -61,8 +61,8 @@
 
           <ng-container matColumnDef="Produtos">
             <th mat-header-cell *matHeaderCellDef> Produtos </th>
-            <td @fadeIn mat-cell *matCellDef="let element">
-              <div @fadeIn class="columns a-i-c mt-3">
+            <td @slideInOut mat-cell *matCellDef="let element">
+              <div @slideInOut class="columns a-i-c mt-3">
                 <div class="column flex-m" >
                   <figure class="image is-64x64">
                     <img src="{{element.Produto.Imagem[0]}}">
@@ -85,6 +85,7 @@
                   </figure>
                   <a
                   href="#topo"
+                  (click)="delayClose()"
                   [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
                   routerLinkActive="router-link-active"
                   class="px-3 titulo-produto is-hidden-desktop"
@@ -95,6 +96,7 @@
                 </div>
                 <div class="column ">
                   <a
+                  (click)="delayClose()"
                   href="#topo"
                   [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
                   routerLinkActive="router-link-active"
@@ -130,7 +132,7 @@
 
           <ng-container matColumnDef="Quantidade" class="is-hidden-touch">
             <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> qtd </th>
-            <td @fadeIn mat-cell *matCellDef="let element"  class="is-hidden-touch">
+            <td @slideInOut mat-cell *matCellDef="let element"  class="is-hidden-touch">
               <div class="control is-small ">
                 <input
                   placeholder="{{element?.Produto.QuantidadeMinima}}"

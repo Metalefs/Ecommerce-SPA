@@ -109,7 +109,7 @@ export class HeaderComponent implements OnInit {
       position:{
         right:'0'
       },
-      panelClass:['no-padding']
+      panelClass:['no-padding','animate__animated','animate__slideInRight']
     });
   }
 

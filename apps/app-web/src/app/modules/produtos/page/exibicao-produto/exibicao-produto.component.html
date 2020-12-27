@@ -45,21 +45,26 @@
             </div>
           </ng-template>
           <div class="columns is-multiline of-x-scroll">
-            <div class="column is-4-mobile is-6-desktop">
-              <div *ngIf="Produto?.Status != statusProduto.esgotado" class="flex-sb dis-flex">
+            <div class="column is-12-mobile is-8-desktop">
+              <div *ngIf="Produto?.Status != statusProduto.esgotado" class="dis-flex">
                 <button mat-raised-button
                 [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                 (click)="AdicionarAoOrcamento()"
-                class="share-button pb-2 background-light-red has-text-white has-text-weight-medium">
+                class="share-button pb-2 mx-2 background-light-red has-text-white has-text-weight-medium">
                 <div class="level py-2">
                   {{textoAdicionar}}
                   <mat-icon>shopping_bag</mat-icon>
                 </div>
                 </button>
-                <button *ngIf="this.isOrcamento" mat-mini-fab
+                <button
+                 *ngIf="this.isOrcamento"
+                  mat-flat-button
+                  title="Criar novo pedido"
                   [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                   (click)="DuplicarOrcamento()"
-                  class="has-text-white has-text-weight-medium">
+                  color="accent"
+                  class="background-light-red  mx-2 has-text-white has-text-weight-medium bo-cir">
+                  Novo
                   <mat-icon>add</mat-icon>
                 </button>
               </div>
@@ -177,7 +182,7 @@
               <div class="columns w-full py-2 is-gapless is-multiline">
                 <div class="column w-full is-6 is-12-mobile">
                   <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                    class="button is-success w-full has-text-white has-text-weight-medium">
+                    class="button mb-2 is-success w-full has-text-white has-text-weight-medium">
                     <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
                   </button>
                 </div>
