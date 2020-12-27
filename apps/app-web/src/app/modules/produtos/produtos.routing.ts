@@ -15,6 +15,12 @@ export const routes: Routes = [
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
     // data: { animation:'isRight' }
+  },
+  {
+    path: 'produtos/:id/:orcamentoId',
+    component: ExibicaoProdutoComponent,
+    pathMatch: 'full',
+    // data: { animation:'isRight' }
   }
 ];
 @NgModule({

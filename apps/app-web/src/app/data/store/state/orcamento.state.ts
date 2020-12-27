@@ -10,7 +10,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { ThrowStmt } from '@angular/compiler';
-import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 
 export class OrcamentoStateModel{
@@ -50,7 +50,6 @@ export class OrcamentoState {
     return state.ListaOrcamentos;
   }
 
-
   @Action(LerOrcamento)
   LerOrcamento({getState, setState}: StateContext<OrcamentoStateModel>){
     this.OrcamentoService.Ler().subscribe(rslt=>{
@@ -79,19 +78,43 @@ export class OrcamentoState {
     const state = getState();
     if(payload.Status == StatusProduto.esgotado)
     return;
-
-    state.Orcamentos.Produto.push(new CodProduto(payload,new Date().toISOString()+new Date().toString()));
+    let cod = new CodProduto(payload,new Date().toISOString());
+    state.Orcamentos.Produto.push(cod);
     this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
     });
+    return cod;
   }
   @Action(DuplicarProdutoOrcamento)
   DuplicarProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : DuplicarProdutoOrcamento){
     const state = getState();
     if(payload.Status == StatusProduto.esgotado)
     return;
-    state.Orcamentos.Produto.push(new CodProduto(payload,new Date().toISOString()+new Date().toString()));
+    let prod:Produto = new Produto (
+      "",
+      "",
+      "",
+      null,
+      "",
+      [""],
+      0,
+      0,
+      "",
+      null,
+      0,
+      [{nome:'branco',cor:'white'}],
+      ["M"],
+      StatusProduto.novo,
+      0,
+      false,
+      [''],
+      "",
+      ""
+      );
+    let newprod = Object.assign(prod, payload);
+    let cod = new CodProduto(newprod,new Date().toISOString());
+    state.Orcamentos.Produto.push(cod);
     this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
@@ -99,9 +122,9 @@ export class OrcamentoState {
   }
 
   @Action(RemoverProdutoOrcamento)
-  RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id} : RemoverProdutoOrcamento){
+  RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id,codOrcamento} : RemoverProdutoOrcamento){
     const state = getState();
-    state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item.codOrcamento !== id);
+    state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item.codOrcamento !== codOrcamento);
     this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
@@ -137,7 +160,7 @@ export class OrcamentoState {
   }
 
   @Action(EditarOrcamentoLocal)
-  EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarOrcamento){
+  EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarOrcamentoLocal){
     let state = getState();
     this.atualizarPreco(state);
     patchState({
@@ -147,10 +170,10 @@ export class OrcamentoState {
   }
 
   @Action(EditarProdutoOrcamentoLocal)
-  EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id} : EditarProdutoOrcamentoLocal){
+  EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id, codOrcamento} : EditarProdutoOrcamentoLocal){
     let state = getState();
     const ListaCodProdutos = [...state.Orcamentos.Produto];
-    const index = ListaCodProdutos.findIndex(item => item.codOrcamento === id);
+    const index = ListaCodProdutos.findIndex(item => item.codOrcamento === codOrcamento);
     ListaCodProdutos[index].Produto = payload;
     const orc = state.Orcamentos;
     orc.Produto = ListaCodProdutos;

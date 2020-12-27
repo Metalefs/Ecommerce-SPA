@@ -6,7 +6,7 @@ import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
-import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
+import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
 import { OrcamentoState } from '../../../data/store/state';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
 
@@ -29,7 +29,7 @@ export class CardProdutoComponent implements OnInit {
   AdicionarAoOrcamento(produto:Produto){
     this.Orcamento$.subscribe(x=>{
 
-      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
       if(ProdutosOrcamento.length == 0){
 
@@ -37,9 +37,9 @@ export class CardProdutoComponent implements OnInit {
         this.isOrcamento = true;
       }
       else{
-        this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
+        this.Produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
 
-        this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
+        this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
         this.isOrcamento = true;
         this.openCheckout();
       }

@@ -49,7 +49,7 @@ export class ConfirmacaoComponent implements OnInit {
   }
   upload($event,produto){
     let fileNames='';
-    produto = getPreviewURL($event,produto,fileNames)
+    produto = getPreviewURL($event,produto.Produto,fileNames)
   }
   IncrementarQuantidade(element){
     element.Quantidade++;
@@ -81,14 +81,15 @@ export class ConfirmacaoComponent implements OnInit {
     });
   }
 
-  CalcularPreco(produto:Produto){
+  CalcularPreco(produto:CodProduto){
     this.Orcamento$.subscribe(x=>{
       let Produtos =  x.Produto;
-      let DistinctProdutos:Produto[] = removeDuplicates(Produtos,"_id");
-      this.Total = DistinctProdutos.map(x=>x.Preco * x.Quantidade).reduce((total, num)=>{return total + num});
+      let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
+      let Produto = Produtos[index].Produto;
+      this.Total = Produto.Preco * Produto.Quantidade;
     })
-    if(produto.Preco)
-      return parseInt(produto.Preco.toString()) * parseInt(produto.Quantidade.toString());
+    if(produto.Produto.Preco)
+      return parseInt(produto.Produto.Preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
     return 0;
   }
 

@@ -63,6 +63,17 @@
                   <mat-icon>add</mat-icon>
                 </button>
               </div>
+              <mat-list>
+                <mat-list-item *ngIf="! Produto?.Tamanho">
+                  <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
+                </mat-list-item>
+                <mat-list-item *ngIf="! Produto?.Cor">
+                  <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
+                </mat-list-item>
+              </mat-list>
+              <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
+                <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+              </div>
             </div>
             <div class="column">
               <button mat-flat-button class="button file is-info has-name pb-3">
@@ -95,17 +106,7 @@
               </mat-card-actions>
             </mat-card>
           </div>
-          <mat-list>
-            <mat-list-item *ngIf="! Produto?.Tamanho">
-              <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
-            </mat-list-item>
-            <mat-list-item *ngIf="! Produto?.Cor">
-              <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
-            </mat-list-item>
-          </mat-list>
-          <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
-            <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
-          </div>
+
           <mat-divider></mat-divider>
           <div class="descricao-produto w-full py-4">
             <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>

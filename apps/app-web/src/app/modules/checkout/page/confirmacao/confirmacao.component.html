@@ -45,11 +45,11 @@
             <div @fadeIn class="columns a-i-c mt-3">
               <div class="column flex-m" >
                 <figure class="image is-64x64">
-                  <img src="{{element.Imagem[0]}}">
+                  <img src="{{element.Produto.Imagem[0]}}">
                 </figure>
                 <figure class="image is-64x64 d-block ">
-                  <img *ngIf="element.Arte" src="{{element.Arte || ''}}">
-                  <div *ngIf="!element.Arte" class="px-2 txt-center ">
+                  <img *ngIf="element.Produto.Arte" src="{{element.Produto.Arte || ''}}">
+                  <div *ngIf="!element.Produto.Arte" class="px-2 txt-center ">
                     <em>Sem Arte</em>
                     <button mat-flat-button class="button file is-info has-name pb-3 px-0">
                       <label class="file-label">
@@ -65,23 +65,23 @@
                 </figure>
                 <a
                 href="#topo"
-                [routerLink]="['/produtos/',element._id]"
+                [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
                 routerLinkActive="router-link-active"
                 class="px-3 titulo-produto is-hidden-desktop"
-                >{{element.Nome}}
-                <p class="subtitle">{{element.Cor.nome}}</p>
-                <p class="subtitle">{{element.Tamanho}}</p>
+                >{{element.Produto.Nome}}
+                <p class="subtitle">{{element.Produto.Cor.nome}}</p>
+                <p class="subtitle">{{element.Produto.Tamanho}}</p>
               </a>
               </div>
               <div class="column ">
                 <a
                 href="#topo"
-                [routerLink]="['/produtos/',element._id]"
+                [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
                 routerLinkActive="router-link-active"
                 class="titulo-produto is-hidden-touch"
-                >{{element.Nome}}
-                <p class="subtitle">{{element.Cor.nome}}</p>
-                <p class="subtitle">{{element.Tamanho}}</p>
+                >{{element.Produto.Nome}}
+                <p class="subtitle">{{element.Produto.Cor.nome}}</p>
+                <p class="subtitle">{{element.Produto.Tamanho}}</p>
               </a>
 
                 <button *ngIf="edit" (click)="removerProduto(element)">
@@ -96,13 +96,13 @@
                     <mat-icon class="less" >remove</mat-icon>
                   </button>
                   <input
-                    placeholder="{{element?.QuantidadeMinima}}"
-                    value="{{element?.QuantidadeMinima}}"
+                    placeholder="{{element?.Produto.QuantidadeMinima}}"
+                    value="{{element?.Produto.QuantidadeMinima}}"
                     type="number"
                     (change)="VerificarQuantidade($event,element)"
-                    min="{{element?.QuantidadeMinima}}"
+                    min="{{element?.Produto.QuantidadeMinima}}"
                     class="quantidade-produto is-rounded"
-                    [(ngModel)]="(element).Quantidade">
+                    [(ngModel)]="(element).Produto.Quantidade">
                   <button *ngIf="edit" mat-icon-button (click)="IncrementarQuantidade(element)">
                     <mat-icon class="more" >add</mat-icon>
                   </button>
@@ -123,13 +123,13 @@
                 <mat-icon class="less" >remove</mat-icon>
               </button>
               <input
-                placeholder="{{element?.QuantidadeMinima}}"
-                value="{{element?.QuantidadeMinima}}"
+                placeholder="{{element?.Produto.QuantidadeMinima}}"
+                value="{{element?.Produto.QuantidadeMinima}}"
                 type="number"
                 (change)="VerificarQuantidade($event,element)"
-                min="{{element?.QuantidadeMinima}}"
+                min="{{element?.Produto.QuantidadeMinima}}"
                 class="quantidade-produto is-rounded"
-                [(ngModel)]="(element).Quantidade">
+                [(ngModel)]="(element).Produto.Quantidade">
               <button *ngIf="edit" mat-icon-button (click)="IncrementarQuantidade(element)">
                 <mat-icon class="more" >add</mat-icon>
               </button>
@@ -152,7 +152,7 @@
           <div class="column"></div>
           <div class="column"></div>
           <div class="column has-text-right">
-            <p class="titulo-produto">Total: <span class="preco">R${{Total}}</span></p>
+            <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async).Preco}}</span></p>
           </div>
         </div>
       </div>

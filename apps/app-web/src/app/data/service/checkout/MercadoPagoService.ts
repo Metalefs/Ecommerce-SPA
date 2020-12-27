@@ -25,13 +25,13 @@ export class MercadoPagoCheckoutService {
       let items:mp_checkout_items[] = [];
       orcamento.Produto.forEach(produto => items.push(
         {
-          id: produto._id,
-          title: produto.Nome,
-          description: produto.Subtitulo,
-          category_id: produto.Categoria.Nome,
-          quantity: produto.Quantidade,
+          id: produto.Produto._id,
+          title: produto.Produto.Nome,
+          description: produto.Produto.Subtitulo,
+          category_id: produto.Produto.Categoria.Nome,
+          quantity: produto.Produto.Quantidade,
           currency_id: 'BRL',
-          unit_price: parseInt(produto.Preco.toString())
+          unit_price: parseInt(produto.Produto.Preco.toString())
         }
       ))
       return {

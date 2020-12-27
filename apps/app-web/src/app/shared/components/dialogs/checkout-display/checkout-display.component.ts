@@ -7,6 +7,7 @@ import { ResetarOrcamento, EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento 
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable } from 'rxjs';
@@ -30,8 +31,9 @@ export class CheckoutDisplayComponent implements OnInit {
 
       this.ProdutoTable = new MaterialTable();
       let Produtos =  x.Produto;
-      let DistinctProdutos = removeDuplicates(Produtos,"_id");
-      this.ProdutoTable.dataSource = DistinctProdutos;
+      // let DistinctProdutos = removeDuplicates(Produtos,"_id");
+      // this.ProdutoTable.dataSource = DistinctProdutos;
+      this.ProdutoTable.dataSource = Produtos;
 
       this.ProdutoTable.displayedColumns = [
         "Produtos",
@@ -67,8 +69,8 @@ export class CheckoutDisplayComponent implements OnInit {
     this.EditarOrcamento(element);
   }
 
-  EditarOrcamento(element:Produto){
-    this.store.dispatch(new EditarProdutoOrcamentoLocal(element,element._id));
+  EditarOrcamento(element:CodProduto){
+    this.store.dispatch(new EditarProdutoOrcamentoLocal(element.Produto,element.Produto._id,element.codOrcamento));
   }
 
   VerificarQuantidade($event,element){
@@ -76,24 +78,25 @@ export class CheckoutDisplayComponent implements OnInit {
       element.Quantidade = element.QuantidadeMinima;
   }
 
-  removerProduto(Produto:Produto){
-    this.store.dispatch(new RemoverProdutoOrcamento(Produto._id)).subscribe(x=>{
+  removerProduto(Produto:CodProduto){
+    this.store.dispatch(new RemoverProdutoOrcamento(Produto.Produto._id,Produto.codOrcamento)).subscribe(x=>{
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
-        let DistinctProdutos = removeDuplicates(Produtos,"_id");
-        this.ProdutoTable.dataSource = DistinctProdutos;
+        // let DistinctProdutos = removeDuplicates(Produtos,"_id");
+        this.ProdutoTable.dataSource = Produtos;
       })
     });
   }
 
-  CalcularPreco(produto:Produto){
+  CalcularPreco(produto:CodProduto){
     this.Orcamento$.subscribe(x=>{
       let Produtos =  x.Produto;
-      let DistinctProdutos:Produto[] = removeDuplicates(Produtos,"_id");
-      this.Total = DistinctProdutos.map(x=>x.Preco * x.Quantidade).reduce((total, num)=>{return total + num});
+      let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
+      let Produto = Produtos[index].Produto;
+      this.Total = Produto.Preco * Produto.Quantidade;
     })
-    if(produto.Preco)
-      return parseInt(produto.Preco.toString()) * parseInt(produto.Quantidade.toString());
+    if(produto.Produto.Preco)
+      return parseInt(produto.Produto.Preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
     return 0;
   }
 

@@ -17,6 +17,7 @@ import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
+import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -48,7 +49,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     private router: Router,
     private gallery: Gallery,
     private store: Store,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,) {
 
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
@@ -72,6 +73,9 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.LerProdutosCarregados();
+    this.activeRoute.params.subscribe(routeParams => {
+      this.LerProdutosCarregados();
+    });
     this.produtoNoCheckout();
     if(this.Produto.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
@@ -99,18 +103,19 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   AdicionarAoOrcamento(){
     this.Orcamento$.subscribe(x=>{
-      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
       if(ProdutosOrcamento.length == 0){
 
-        this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
+        this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
+          this.orcamentoId = x.codOrcamento;
+        });
         this.isOrcamento = false;
         this.navegarParaCheckout();
       }
       else{
-        this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
-
-        this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
+        this.Produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
+        this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
         this.navegarParaCheckout();
         this.openCheckout();
         this.textoAdicionar = this.textoAtualizar;
@@ -121,15 +126,14 @@ export class ExibicaoProdutoComponent implements OnInit {
   }
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{
-      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
       if(ProdutosOrcamento.length == 0){
         return
       }
       else{
         this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
-        this.isOrcamento = false;
-        this.navegarParaCheckout();
+        // this.navegarParaCheckout();
       }
 
     });
@@ -151,7 +155,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   }
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
-      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
       if(ProdutosOrcamento.length == 0){
         this.isOrcamento = false;
       }
@@ -205,22 +209,37 @@ export class ExibicaoProdutoComponent implements OnInit {
       window.open( `https://wa.me/${Whatsapp}?text=${Mensagem}`, "_blank");
     })
   }
+  orcamentoId:string;
   LerProdutosCarregados(){
     let id = this.activeRoute.snapshot.params['id'];
+    this.orcamentoId = this.activeRoute.snapshot.params['orcamentoId'];
+
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
 
     const galleryRef = this.gallery.ref('myGallery');
-
-    this.Produtos$.subscribe( res => {
-      const index = res.findIndex(item => item._id === id);
-      this.Produto = res[index];
-      if(!this.Produto)
-      this.router.navigateByUrl('/produtos');
-      this.Produto?.Imagem.forEach(img =>{
-        console.log(img);
-        galleryRef.addImage({ src:img, thumb: img });
+    if(!this.orcamentoId)
+      this.Produtos$.subscribe( res => {
+          const index = res.findIndex(item => item._id === id);
+          this.Produto = res[index];
+          if(!this.Produto)
+          this.router.navigateByUrl('/produtos');
+          this.Produto?.Imagem.forEach(img =>{
+            console.log(img);
+            galleryRef.addImage({ src:img, thumb: img });
+        });
+      });
+    else{
+      this.Orcamento$.subscribe( res => {
+        const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
+        if(index<0)
+        this.router.navigateByUrl('/produtos');
+        this.Produto = res.Produto[index].Produto;
+        this.Produto?.Imagem.forEach(img =>{
+          console.log(img);
+          galleryRef.addImage({ src:img, thumb: img });
       });
     });
+    }
   }
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);
