@@ -6,6 +6,7 @@ import { LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
+import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -26,9 +27,9 @@ export class TabelaProdutosComponent implements OnInit {
 
       this.ProdutoTable = new MaterialTable();
       let Produtos =  x.Produto;
-      let DistinctProdutos = removeDuplicates(Produtos,"_id");
-      console.log(DistinctProdutos);
-      this.ProdutoTable.dataSource = DistinctProdutos;
+      // let DistinctProdutos = removeDuplicates(Produtos,"_id");
+      // console.log(DistinctProdutos);
+      this.ProdutoTable.dataSource = Produtos;
 
       this.ProdutoTable.displayedColumns = [
         "Produtos",
@@ -38,8 +39,8 @@ export class TabelaProdutosComponent implements OnInit {
     })
   }
 
-  removerProduto(Produto:Produto){
-    this.store.dispatch(new RemoverProdutoOrcamento(Produto._id)).subscribe(x=>{
+  removerProduto(Produto:CodProduto){
+    this.store.dispatch(new RemoverProdutoOrcamento(Produto.Produto._id,Produto.codOrcamento)).subscribe(x=>{
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
         let DistinctProdutos = removeDuplicates(Produtos,"_id");

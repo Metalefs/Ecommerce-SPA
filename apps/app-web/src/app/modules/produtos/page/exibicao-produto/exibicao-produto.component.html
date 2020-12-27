@@ -45,16 +45,24 @@
             </div>
           </ng-template>
           <div class="columns is-multiline of-x-scroll">
-            <div class="column is-4">
-              <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
-              [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-              (click)="AdicionarAoOrcamento()"
-              class="share-button pb-2 background-light-red has-text-white has-text-weight-medium">
-              <div class="level py-2">
-                {{textoAdicionar}}
-                <mat-icon>shopping_bag</mat-icon>
+            <div class="column is-4-mobile is-6-desktop">
+              <div *ngIf="Produto?.Status != statusProduto.esgotado" class="flex-sb dis-flex">
+                <button mat-raised-button
+                [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                (click)="AdicionarAoOrcamento()"
+                class="share-button pb-2 background-light-red has-text-white has-text-weight-medium">
+                <div class="level py-2">
+                  {{textoAdicionar}}
+                  <mat-icon>shopping_bag</mat-icon>
+                </div>
+                </button>
+                <button *ngIf="this.isOrcamento" mat-mini-fab
+                  [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                  (click)="DuplicarOrcamento()"
+                  class="has-text-white has-text-weight-medium">
+                  <mat-icon>add</mat-icon>
+                </button>
               </div>
-              </button>
             </div>
             <div class="column">
               <button mat-flat-button class="button file is-info has-name pb-3">
@@ -62,7 +70,7 @@
                   <input class="file-input" multiple type="file" (change)="upload($event)">
                   <span class="file-cta">
                     <span class="file-icon">
-                      <i class="fas fa-upload"></i>
+
                     </span>
                     <span class="file-label">
                       Enviar arte

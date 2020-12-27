@@ -43,14 +43,24 @@
           <th mat-header-cell *matHeaderCellDef> Produtos </th>
           <td @fadeIn mat-cell *matCellDef="let element">
             <div @fadeIn class="columns a-i-c mt-3">
-              <div class="column flex-m">
+              <div class="column flex-m" >
                 <figure class="image is-64x64">
                   <img src="{{element.Imagem[0]}}">
                 </figure>
-                <figure class="image is-64x64 d-block">
-                  <img  *ngIf="element.Arte" src="{{element.Arte || ''}}">
-                  <div *ngIf="!element.Arte" class="px-2 flex-m txt-center flex-c">
+                <figure class="image is-64x64 d-block ">
+                  <img *ngIf="element.Arte" src="{{element.Arte || ''}}">
+                  <div *ngIf="!element.Arte" class="px-2 txt-center ">
                     <em>Sem Arte</em>
+                    <button mat-flat-button class="button file is-info has-name pb-3 px-0">
+                      <label class="file-label">
+                        <input class="file-input" multiple type="file" (change)="upload($event,element)">
+                        <span class="file-cta">
+                          <span class="file-icon">
+                           <mat-icon>file_upload</mat-icon>
+                          </span>
+                        </span>
+                      </label>
+                    </button>
                   </div>
                 </figure>
                 <a

@@ -30,11 +30,18 @@ export class AdicionarProdutoAoOrcamento {
   constructor(public payload: entities.Produto) {}
 }
 
+export class DuplicarProdutoOrcamento {
+
+  static readonly type = '[Orcamento] Duplicate product'
+
+  constructor(public payload: entities.Produto) {}
+}
+
 export class RemoverProdutoOrcamento {
 
   static readonly type = '[Orcamento] Remove product'
 
-  constructor(public id: string) {}
+  constructor(public id: string, codOrcamento:string) {}
 }
 
 export class EditarOrcamento {
@@ -48,14 +55,14 @@ export class EditarOrcamentoLocal {
 
   static readonly type = '[Orcamento] Edit Local'
 
-  constructor(public payload: entities.Orcamento) {}
+  constructor(public payload: entities.Orcamento, codOrcamento:string) {}
 }
 
 export class EditarProdutoOrcamentoLocal {
 
   static readonly type = '[Orcamento] Edit Product Local'
 
-  constructor(public payload: entities.Produto, public id:string) {}
+  constructor(public payload: entities.Produto, public id:string, codOrcamento:string) {}
 }
 
 export class RemoverOrcamento {

@@ -4,8 +4,10 @@ import { Select, Store } from '@ngxs/store';
 import { fade } from 'apps/app-web/src/app/animations';
 import { EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, LerOrcamento, RemoverProdutoOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
+import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
+import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
@@ -28,8 +30,9 @@ export class ConfirmacaoComponent implements OnInit {
 
       this.ProdutoTable = new MaterialTable();
       let Produtos =  x.Produto;
-      let DistinctProdutos = removeDuplicates(Produtos,"_id");
-      this.ProdutoTable.dataSource = DistinctProdutos;
+      // let DistinctProdutos = removeDuplicates(Produtos,"_id");
+      // this.ProdutoTable.dataSource = DistinctProdutos;
+      this.ProdutoTable.dataSource = Produtos;
 
       this.ProdutoTable.displayedColumns = [
         "Produtos",
@@ -44,7 +47,10 @@ export class ConfirmacaoComponent implements OnInit {
       }
     })
   }
-
+  upload($event,produto){
+    let fileNames='';
+    produto = getPreviewURL($event,produto,fileNames)
+  }
   IncrementarQuantidade(element){
     element.Quantidade++;
     this.EditarOrcamento(element);
@@ -55,8 +61,8 @@ export class ConfirmacaoComponent implements OnInit {
     this.EditarOrcamento(element);
   }
 
-  EditarOrcamento(element:Produto){
-    this.store.dispatch(new EditarProdutoOrcamentoLocal(element,element._id));
+  EditarOrcamento(element:CodProduto){
+    this.store.dispatch(new EditarProdutoOrcamentoLocal(element.Produto,element.Produto._id,element.codOrcamento));
   }
 
   VerificarQuantidade($event,element){
@@ -65,8 +71,8 @@ export class ConfirmacaoComponent implements OnInit {
     this.EditarOrcamento(element)
   }
 
-  removerProduto(Produto:Produto){
-    this.store.dispatch(new RemoverProdutoOrcamento(Produto._id)).subscribe(x=>{
+  removerProduto(Produto:CodProduto){
+    this.store.dispatch(new RemoverProdutoOrcamento(Produto.Produto._id,Produto.codOrcamento)).subscribe(x=>{
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
         let DistinctProdutos = removeDuplicates(Produtos,"_id");

@@ -10,12 +10,13 @@ import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
-import { AdicionarProdutoAoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
+import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
+import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -103,17 +104,32 @@ export class ExibicaoProdutoComponent implements OnInit {
       if(ProdutosOrcamento.length == 0){
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
-        this.isOrcamento = true;
+        this.isOrcamento = false;
         this.navegarParaCheckout();
       }
       else{
         this.Produto.Quantidade += ProdutosOrcamento[0].Quantidade;
 
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id));
-        this.isOrcamento = true;
         this.navegarParaCheckout();
         this.openCheckout();
         this.textoAdicionar = this.textoAtualizar;
+      }
+      this.isOrcamento = true;
+
+    });
+  }
+  DuplicarOrcamento(){
+    this.Orcamento$.subscribe(x=>{
+      let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
+
+      if(ProdutosOrcamento.length == 0){
+        return
+      }
+      else{
+        this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
+        this.isOrcamento = false;
+        this.navegarParaCheckout();
       }
 
     });
@@ -129,41 +145,19 @@ export class ExibicaoProdutoComponent implements OnInit {
     },1500)
   }
   fileNames:string="nenhum arquivo selecionado.";
-  public imagePath;
-  public message: string;
+
   upload($event){
-    this.Produto.FileList = $event.target.files;
-    this.fileNames = '';
-
-    this.preview(this.Produto.FileList);
-  }
-  preview(files) {
-    if (files.length === 0)
-      return;
-
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.fileNames = "Só imagens são suportadas.";
-      return;
-    }
-    for(let i =0; i < this.Produto.FileList.length; i++){
-      this.fileNames+=this.Produto.FileList[i].name+',';
-      console.log(this.Produto.FileList[i].name)
-    }
-    var reader = new FileReader();
-    this.imagePath = files;
-    reader.readAsDataURL(files[0]);
-    reader.onload = (_event) => {
-      this.Produto.Arte = reader.result;
-    }
+    getPreviewURL($event,this.Produto,this.fileNames)
   }
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
       if(ProdutosOrcamento.length == 0){
+        this.isOrcamento = false;
       }
       else{
-      this.textoAdicionar = this.textoAtualizar;
+        this.textoAdicionar = this.textoAtualizar;
+        this.isOrcamento = true;
       }
     });
   }

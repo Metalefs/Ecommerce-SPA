@@ -8,14 +8,14 @@ import { Produto } from './produto';
 export class Orcamento extends MongoDocument implements entidadeBase{
 
     Usuario?:Usuario;
-    Produto:Produto[];
+    Produto:CodProduto[];
     Empresa:string;
     Status:StatusOrcamento;
     Preco:number;
     Mensagem:string;
     static readonly NomeID:string = "Orcamento";
     constructor(
-      Produto:Produto[],
+      Produto:CodProduto[],
       Empresa:string,
       Status:StatusOrcamento,
       Preco:number,
@@ -34,4 +34,13 @@ export class Orcamento extends MongoDocument implements entidadeBase{
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;
     DataHoraExclusao: Date;
+}
+
+export class CodProduto {
+  Produto:Produto;
+  codOrcamento:string;
+  constructor(Produto:Produto, codOrcamento:string){
+    this.Produto  =  Produto;
+    this.codOrcamento =  codOrcamento;
+  }
 }

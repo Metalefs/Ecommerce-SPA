@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { OrcamentoService, UsuarioService } from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento } from '../actions/orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento } from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
@@ -11,6 +11,7 @@ import { removeDuplicates } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { ThrowStmt } from '@angular/compiler';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 
 export class OrcamentoStateModel{
   Orcamentos: entities.Orcamento;
@@ -78,25 +79,29 @@ export class OrcamentoState {
     const state = getState();
     if(payload.Status == StatusProduto.esgotado)
     return;
-    try{
-      let total = state.Orcamentos.Produto
-        .filter(item => item._id == payload._id)
-        .map(x=>x.Quantidade)
-        .reduce((total, num)=>{return total + Math.round(num)})
 
-        state.Orcamentos.Produto
-        .filter(item => item._id == payload._id).forEach(prod=>prod.Quantidade = total);
-    }catch(ex){console.error(ex)};
-    state.Orcamentos.Produto.push(payload);
+    state.Orcamentos.Produto.push(new CodProduto(payload,new Date().toISOString()+new Date().toString()));
     this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
     });
   }
+  @Action(DuplicarProdutoOrcamento)
+  DuplicarProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : DuplicarProdutoOrcamento){
+    const state = getState();
+    if(payload.Status == StatusProduto.esgotado)
+    return;
+    state.Orcamentos.Produto.push(new CodProduto(payload,new Date().toISOString()+new Date().toString()));
+    this.atualizarPreco(state);
+    patchState({
+        Orcamentos: state.Orcamentos
+    });
+  }
+
   @Action(RemoverProdutoOrcamento)
   RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id} : RemoverProdutoOrcamento){
     const state = getState();
-    state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item._id !== id);
+    state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item.codOrcamento !== id);
     this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
@@ -144,11 +149,11 @@ export class OrcamentoState {
   @Action(EditarProdutoOrcamentoLocal)
   EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id} : EditarProdutoOrcamentoLocal){
     let state = getState();
-    const ListaProdutos = [...state.Orcamentos.Produto];
-    const index = ListaProdutos.findIndex(item => item._id === id);
-    ListaProdutos[index] = payload;
+    const ListaCodProdutos = [...state.Orcamentos.Produto];
+    const index = ListaCodProdutos.findIndex(item => item.codOrcamento === id);
+    ListaCodProdutos[index].Produto = payload;
     const orc = state.Orcamentos;
-    orc.Produto = ListaProdutos;
+    orc.Produto = ListaCodProdutos;
     this.atualizarPreco(state);
     patchState({
       ...state,
@@ -172,8 +177,8 @@ export class OrcamentoState {
   atualizarPreco(state:OrcamentoStateModel){
     state.Orcamentos.Preco = 0;
     state.Orcamentos.Produto.forEach(prod=>{
-      if(!isNaN(prod.Preco))
-      state.Orcamentos.Preco += prod.Preco * prod.Quantidade;
+      if(!isNaN(prod.Produto.Preco))
+      state.Orcamentos.Preco += prod.Produto.Preco * prod.Produto.Quantidade;
     })
   }
 }
