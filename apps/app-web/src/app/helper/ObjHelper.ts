@@ -10,3 +10,7 @@ export function removeDuplicates(myArr, prop) {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
   });
 }
+export function translateEnum(myEnumType,myEnum){
+ let values = Object.keys(myEnumType).map(key => myEnumType[myEnum]).filter(value => typeof value === 'string') as string[];
+ return values[myEnum];
+}

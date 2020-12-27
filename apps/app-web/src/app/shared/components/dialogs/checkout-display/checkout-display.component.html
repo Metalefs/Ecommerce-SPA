@@ -67,6 +67,9 @@
                   <figure class="image is-64x64">
                     <img src="{{element?.Imagem[0]}}">
                   </figure>
+                  <figure class="image is-64x64" *ngIf="element.Arte">
+                    <img src="{{element.Arte || ''}}">
+                  </figure>
                   <a href="#topo"
                   (click)="close()"
                    [routerLink]="['/produtos/',element?._id]"

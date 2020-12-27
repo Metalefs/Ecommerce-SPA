@@ -26,9 +26,9 @@
 
           <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
           <mat-divider></mat-divider>
-          <mat-chip-list class="py-2">
-            <mat-chip>
-              {{Produto.Status == 0?'Disponível':Produto.Status}}
+          <mat-chip-list class="mx-1 py-1">
+            <mat-chip class="has-text-capitalized">
+              {{translateStatusProduto(Produto.Status)}}
             </mat-chip>
           </mat-chip-list>
           <mat-divider></mat-divider>
@@ -44,33 +44,71 @@
               <strong>{{Produto?.Preco == 0 ? '' : 'R$ '+ Produto?.Preco.toFixed(2)}}</strong><span></span>
             </div>
           </ng-template>
-          <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
-                [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                (click)="AdicionarAoOrcamento()"
-                class="share-button pb-2 background-light-red has-text-white has-text-weight-medium">
-                <div class="level py-2">
-                  {{textoAdicionar}}
-                  <mat-icon>shopping_bag</mat-icon>
-                </div>
-              </button>
-              <mat-list>
-                <mat-list-item *ngIf="! Produto?.Tamanho">
-                  <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
-                </mat-list-item>
-                <mat-list-item *ngIf="! Produto?.Cor">
-                  <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
-                </mat-list-item>
-              </mat-list>
-              <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
-                <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+          <div class="columns is-multiline of-x-scroll">
+            <div class="column is-4">
+              <button *ngIf="Produto?.Status != statusProduto.esgotado" mat-raised-button
+              [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+              (click)="AdicionarAoOrcamento()"
+              class="share-button pb-2 background-light-red has-text-white has-text-weight-medium">
+              <div class="level py-2">
+                {{textoAdicionar}}
+                <mat-icon>shopping_bag</mat-icon>
               </div>
+              </button>
+            </div>
+            <div class="column">
+              <button mat-flat-button class="button file is-info has-name pb-3">
+                <label class="file-label">
+                  <input class="file-input" multiple type="file" (change)="upload($event)">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="fas fa-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Enviar arte
+                    </span>
+                    <span class="file-name">
+                      {{fileNames}}
+                    </span>
+                  </span>
+                </label>
+              </button>
+            </div>
+          </div>
+          <div class="box"  *ngIf="this.Produto.Arte">
+            <mat-card>
+              <figure class="image is-128x128">
+                <img mat-mat-card-image [src]="this.Produto.Arte" height="200">
+              </figure>
+              <mat-card-actions>
+                <button mat-icon-button (click)="Produto.Arte = null">
+                  <mat-icon>clear</mat-icon>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <mat-list>
+            <mat-list-item *ngIf="! Produto?.Tamanho">
+              <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
+            </mat-list-item>
+            <mat-list-item *ngIf="! Produto?.Cor">
+              <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
+            </mat-list-item>
+          </mat-list>
+          <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
+            <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="descricao-produto w-full py-4">
+            <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
+          </div>
           <mat-divider></mat-divider>
           <div class="w-full">
 
-            <div class="w-full">
+            <div class="w-full pt-3">
 
               <p><em>Tamanhos</em></p>
-              <div class="py-3 w-full flex-l">
+              <div class="pb-3 w-full flex-l">
                 <div *ngIf="Produto?.Tamanhos" class="columns is-mobile">
                   <div *ngFor="let tamanho of Produto?.Tamanhos" class="column is-2">
                     <button mat-stroked-button class="descricao-produto card tamanho-produto"

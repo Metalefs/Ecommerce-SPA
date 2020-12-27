@@ -74,7 +74,7 @@ export class AppComponent {
     this.LerServicosAPI();
     setTimeout(()=>{
       this.carregandoOque += " ...carregando";
-    },3000)
+    },6000)
   }
 
   dismissCookieLaw(){

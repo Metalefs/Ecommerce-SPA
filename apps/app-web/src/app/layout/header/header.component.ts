@@ -7,7 +7,7 @@ import { Select, Store } from '@ngxs/store';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CheckoutComponent } from '../../modules/checkout/page/checkout/checkout.component';
 
-import { Orcamento, Sobre } from 'libs/data/src/lib/classes';
+import { Categoria, Orcamento, Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
@@ -23,6 +23,7 @@ import { LoginComponent } from '../../modules/login/page/login.component';
 import { fade } from '../../animations';
 import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
 import { EditarCategoria } from '../../data/store/actions/categoria.actions';
+import { CategoriaService } from '../../data/service';
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
@@ -41,12 +42,16 @@ export class HeaderComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   carrinhoVazio:boolean = true;
   search_filter:string="";
+  Categoria: entities.Categoria;
+  Categorias: entities.Categoria[];
+  defaultCategory = "Todos os produtos";
   constructor(
     private AuthenticationService:AuthenticationService,
     private location: Location, private router: Router,
     private ativatedRoute: ActivatedRoute,
     private store: Store,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private ServicoCategoria: CategoriaService
     ) {
 
   }
@@ -69,16 +74,31 @@ export class HeaderComponent implements OnInit {
         this.carrinhoVazio = false;
     });
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
+    this.CarregarCategorias();
   }
 
+  CarregarCategorias(){
+    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x; console.log(x)});
+  }
+
+  SelecionarCategoria($event){
+    console.log($event);
+    this.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
+    this.store.dispatch(new EditarCategoriaFiltroProduto(this.Categoria)).subscribe();
+  }
+  abrir_procurar(){
+    this.search = !this.search;
+  }
   procurar(){
     if(this.search)
     this.store.dispatch(new EditarCategoriaFiltroProduto(null)).subscribe(x=>{
+      this.store.dispatch(new EditarCategoriaFiltroProduto(this.Categoria)).subscribe(x=>{
+
+      })
       this.store.dispatch(new EditarSearchFiltroProduto(this.search_filter)).subscribe(x=>{
         this.router.navigateByUrl("/produtos")
       })
     })
-    this.search = !this.search;
   }
 
   openCheckout(){

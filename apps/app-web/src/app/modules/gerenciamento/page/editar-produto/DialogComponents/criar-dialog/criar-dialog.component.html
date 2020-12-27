@@ -56,6 +56,10 @@
     </mat-card>
     <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao" ></ckeditor>
   </div>
+
+  <mat-form-field class="w-full">
+    <textarea matInput type="text" [(ngModel)]="Produto.DescricaoRapida" placeholder="Descricao Rapida"></textarea>
+  </mat-form-field>
   <mat-form-field class="w-full">
     <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
   </mat-form-field>

@@ -9,18 +9,33 @@
     </div>
     <a @fadeIn href="#" *ngIf='!search'><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
     <span class="spacer"></span>
-    <mat-form-field @fadeIn *ngIf='search' class="w-full pb-3">
-      <div class="has-icons-right busca">
-        <input
-          [(ngModel)]="search_filter"
-          matInput
-          class="py-2 input"
-          type="text"
-          placeholder="O QUE VOCÊ PROCURA?">
+    <div *ngIf="search" class="columns is-mobile is-multiline is-vcentered mx-3 w-full">
+      <div class="column is-12-mobile">
+        <div class="control has-icons-right">
+          <input
+            [(ngModel)]="search_filter"
+            class="py-2 input"
+            type="text"
+            placeholder="buscar produtos">
+            <button class="s-button z-top" (click)="procurar()">
+              <mat-icon>search</mat-icon>
+            </button>
         </div>
-    </mat-form-field>
-    <span class="mb-4 icon is-small is-right hoverable clickable" (click)="procurar()">
-      <mat-icon matSuffix>search</mat-icon>
+      </div>
+      <!-- <div class="column is-hidden-mobile">
+        <div class="w-full">
+          <div class="select w-full">
+            <select class="py-2  w-full" (selectionChange)="SelecionarCategoria($event)"
+            [(ngModel)]="Categoria"
+            [value]="Categoria">
+              <option *ngFor="let cat of Categorias;" [value]="cat.Nome">{{cat.Nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <span class="mb-4 icon is-small is-right hoverable clickable" (click)="abrir_procurar()">
+      <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
     </span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
@@ -78,19 +93,38 @@
     <div class="ml-1">
     </div>
     <a href="#" *ngIf='!search'><img class="logo pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
-    <mat-form-field @fadeIn *ngIf='search' class="field w-full my-0 py-0" appearance="fill">
-      <div class="busca">
-        <input
-          [(ngModel)]="search_filter"
-          matInput
-          class="input"
-          type="text"
-          placeholder="O QUE VOCÊ PROCURA?">
+    <div *ngIf="search" class="columns is-mobile is-multiline is-vcentered mx-3">
+      <div class="column is-12-mobile">
+        <div class="control has-icons-right">
+          <input
+            [(ngModel)]="search_filter"
+            class="py-2 input"
+            type="text"
+            placeholder="buscar produtos">
+            <button class="s-button z-top" (click)="procurar()">
+              <mat-icon>search</mat-icon>
+            </button>
         </div>
-    </mat-form-field>
-    <span class="icon is-small is-right hoverable clickable mx-6" (click)="procurar()">
-      <mat-icon matSuffix>search</mat-icon>
-    </span>
+      </div>
+      <!-- <div class="column is-hidden-mobile">
+        <div class="w-full">
+          <div class="select w-full">
+            <select class="py-2  w-full" (selectionChange)="SelecionarCategoria($event)"
+            [(ngModel)]="Categoria"
+            [value]="Categoria">
+              <option *ngFor="let cat of Categorias;" [value]="cat.Nome">{{cat.Nome}}</option>
+            </select>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="box hoverable clickable float-r">
+      <span class="icon is-small is-right hoverable clickable float-r" (click)="abrir_procurar()">
+        <div class="ml-1">
+        </div>
+        <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
+      </span>
+    </div>
     <span class="spacer"></span>
     <div class="pb-4">
       <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"

@@ -56,7 +56,6 @@ export class ProdutosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.Atualizar();
     this.Filtro$.subscribe(x=>{
       if(x.Categoria)
       this.CategoriaAtiva = x.Categoria;
@@ -66,6 +65,7 @@ export class ProdutosComponent implements OnInit {
       this.activeOrderFilter = x.OrderFilter;
       this.activeSearchFilter = x.SearchFilter;
     })
+    this.Atualizar();
     setTimeout(()=>{
       this.flip()
     },0)
@@ -84,6 +84,7 @@ export class ProdutosComponent implements OnInit {
   }
 
   Atualizar(){
+    this.atualizarFiltroAtivo();
     this.RecarregarProdutos();
     this.RecarregarCategorias();
   }

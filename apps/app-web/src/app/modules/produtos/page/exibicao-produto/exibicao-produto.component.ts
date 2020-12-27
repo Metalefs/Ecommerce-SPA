@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';
+import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -127,7 +128,35 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.router.navigateByUrl("/checkout");
     },1500)
   }
+  fileNames:string="nenhum arquivo selecionado.";
+  public imagePath;
+  public message: string;
+  upload($event){
+    this.Produto.FileList = $event.target.files;
+    this.fileNames = '';
 
+    this.preview(this.Produto.FileList);
+  }
+  preview(files) {
+    if (files.length === 0)
+      return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.fileNames = "Só imagens são suportadas.";
+      return;
+    }
+    for(let i =0; i < this.Produto.FileList.length; i++){
+      this.fileNames+=this.Produto.FileList[i].name+',';
+      console.log(this.Produto.FileList[i].name)
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.Produto.Arte = reader.result;
+    }
+  }
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x._id == this.Produto._id);
@@ -199,7 +228,9 @@ export class ExibicaoProdutoComponent implements OnInit {
       });
     });
   }
-
+  translateStatusProduto(status){
+    return translateEnum(StatusProduto,status);
+  }
   RecarregarProdutos(){
     this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
       tap((areProdutosLoaded) => {
