@@ -15,6 +15,7 @@ import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.
 import { GerenciamentoComponent } from './page/gerenciamento.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
+import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
 
 
 export const routes: Routes = [
@@ -43,6 +44,12 @@ export const routes: Routes = [
         path: 'cliente',
         // canActivate: [AuthGuard],
         component: EditarClientesComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: 'blog',
+        // canActivate: [AuthGuard],
+        component: EditarBlogComponent,
         pathMatch: 'full',
       },
       {

@@ -1,0 +1,105 @@
+<h1 mat-dialog-title class="tem-cor-primaria">Criação de postagem</h1>
+<div mat-dialog-content>
+
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="BlogPost.Titulo" placeholder="Titulo" title="Titulo">
+  </mat-form-field>
+
+  <div class="file has-name pb-3">
+    <label class="file-label">
+      <input class="file-input" multiple type="file" (change)="upload($event)">
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          Escolha as imagens…
+        </span>
+        <span class="file-name">
+          {{fileNames}}
+        </span>
+      </span>
+    </label>
+  </div>
+
+  <div class="w-full">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Conteúdo</mat-card-title>
+        <mat-card-content>
+          Explore a ferramenta
+          <p>Aqui é possível inserir conteúdos externos como fotos e videos, postagens de redes sociais e criação de tabelas de caracteristicas</p>
+        </mat-card-content>
+      </mat-card-header>
+    </mat-card>
+    <ckeditor [editor]="Editor" [(ngModel)]="BlogPost.Conteudo" [data]="BlogPost.Conteudo" ></ckeditor>
+  </div>
+
+  <mat-form-field appearance="">
+    <mat-label>Categoria</mat-label>
+    <mat-select matNativeControl (selectionChange)="SelecionarCategoria($event)" [(ngModel)]="BlogPost.Categoria" [value]="BlogPost.Categoria">
+      <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">
+        {{opt.Nome}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="w-full">
+    <mat-chip-list #chipTagList aria-label="Tag selection">
+      <mat-chip
+        *ngFor="let tag of BlogPost.Tags"
+         [selectable]="selectable"
+         [removable]="removable"
+         (removed)="removeTag(tag)">
+        {{tag}}
+        <mat-icon matChipRemove
+         *ngIf="removable">
+         cancelar
+        </mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Tags"
+        #tagInput
+        [formControl]="tagCtrl"
+        [matChipInputFor]="chipTagList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addTag($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <textarea matInput type="text" [(ngModel)]="Produto.DescricaoRapida" placeholder="Descricao Rapida"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
+  </mat-form-field>
+
+  <mat-form-field  class="w-full"  appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select matNativeControl [(ngModel)]="BlogPost.Status"  [value]="BlogPost.Status">
+      <mat-option *ngFor="let opt of status; let i = index" [value]="i">
+        {{opt}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="w-full">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Especificações</mat-card-title>
+      </mat-card-header>
+    </mat-card>
+    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes" ></ckeditor>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="basic" [mat-dialog-close]="Produto">
+      Enviar
+  </button>
+  <button mat-raised-button color="basic" (click)="onNoClick()" cdkFocusInitial>
+      Cancelar
+  </button>
+</div>

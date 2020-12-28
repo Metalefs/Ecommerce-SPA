@@ -52,6 +52,7 @@ export class GerenciamentoComponent implements OnInit {
       {name: "Usuarios Interessados", href: "emails"},
       {name: "Categorias de produtos", href: "categoria"},
       {name: "Depoimentos", href: "cliente"},
+      {name: "Blog", href: "blog"},
       {name: "Sobre a empresa", href: "sobre"},
       {name: "Informações de contato", href: "informacaocontato"},
       {name: "Serviços da empresa", href: "servico"},

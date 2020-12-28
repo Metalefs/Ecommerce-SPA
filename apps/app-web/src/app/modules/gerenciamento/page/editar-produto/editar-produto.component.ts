@@ -31,8 +31,8 @@ export class EditarProdutoComponent implements OnInit {
   areProdutosLoadedSub: Subscription;
 
   constructor(
-    private dialog: MatDialog,
     private store: Store,
+    private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     ) {
 
