@@ -26,7 +26,7 @@
     <input matInput type="text" min="1" [(ngModel)]="Produto.Preco" placeholder="Preco" value="{{Produto.Preco}}">
   </mat-form-field>
   <mat-form-field class="">
-    <input matInput type="text" min="1" [(ngModel)]="Produto.Parcelas"[value]="Produto.Parcelas" placeholder="Parcelas" mask='1'>
+    <input matInput type="number" min="1" [(ngModel)]="Produto.Parcelas"[value]="Produto.Parcelas" placeholder="Parcelas">
   </mat-form-field>
   <mat-form-field class="">
     <mat-label>Quantidade Minima</mat-label>

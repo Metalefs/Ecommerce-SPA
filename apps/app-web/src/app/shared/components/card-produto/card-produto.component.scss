@@ -47,13 +47,14 @@ img{
   margin:0 !important;
   background: rgb(255, 255, 255);
   border-radius: 0;
-  transition: .5s all;
+  transition: 2s all;
   display: flex;
+  filter: grayscale(0) !important;
   &.show{
-    animation: show .5s ease forwards !important;
+    animation: show 2s ease forwards !important;
   }
   &.hide{
-    animation: hide .5s ease forwards !important;
+    animation: hide 2s ease forwards !important;
   }
 }
 @keyframes show{

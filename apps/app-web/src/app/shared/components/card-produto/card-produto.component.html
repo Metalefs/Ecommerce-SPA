@@ -52,14 +52,14 @@
 
           <div class="my-3">
             <star-rating
-            labelText="{{Produto?.Rating}}"
+            labelText="{{meanRating()}}"
             [rating]="meanRating()"
             [hoverEnabled]="true"
             [readOnly]="true"
             [showHalfStars]="true"
             [step]="0.5"
             staticColor="ok"
-            [starType]="'svg'" [rating]="Produto.Rating"></star-rating>
+            [starType]="'svg'"></star-rating>
           </div>
           <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
           <ng-template #preco_promo>

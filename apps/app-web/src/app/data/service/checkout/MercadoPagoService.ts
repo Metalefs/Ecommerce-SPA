@@ -26,6 +26,9 @@ export class MercadoPagoCheckoutService {
       let items:mp_checkout_items[] = [];
       let installments = integracoes.ParcelasPadrao;
 
+      if(this.unicoProduto(orcamento))
+        installments = orcamento.Produto[0].Produto.Parcelas
+
       orcamento.Produto.forEach(produto => items.push(
         {
           id: produto.Produto._id,
@@ -39,9 +42,9 @@ export class MercadoPagoCheckoutService {
       ))
       return {
         back_urls: {
-            success: "https://www.personalizadoslopes.com.br/success",
-            failure: "https://www.personalizadoslopes.com.br/failure",
-            pending: "https://www.personalizadoslopes.com.br/pending"
+            success: "https://www.personalizadoslopes.com.br/checkout/success",
+            failure: "https://www.personalizadoslopes.com.br/checkout/failure",
+            pending: "https://www.personalizadoslopes.com.br/checkout/pending"
         },
         auto_return: "approved",
         payment_methods: {
@@ -82,5 +85,9 @@ export class MercadoPagoCheckoutService {
           }
         }
       };
+    }
+
+    unicoProduto(orcamento:Orcamento):boolean{
+      return orcamento.Produto.length == 1 && (orcamento.Produto[0].Produto?.Parcelas || 0) > 0
     }
 }

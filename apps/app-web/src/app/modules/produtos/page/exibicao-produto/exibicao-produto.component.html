@@ -37,8 +37,9 @@
             (starClickChange)="onClick($event)"
             (ratingChange)="onRatingChange($event)"
             [hoverEnabled]="true"
+            [starType]="'svg'"
             (hoverRatingChange)="onHoverRatingChange($event)">
-            [starType]="'svg'" [rating]="Produto.Rating"></star-rating>
+            </star-rating>
 
           <div class="my-3">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>

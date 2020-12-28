@@ -15,6 +15,7 @@ import { Carousel } from './carousel';
 import { ItemCarousel } from './item-carousel';
 import { EnderecoEntrega } from './enderecoEntrega';
 import { Integracoes } from './integracoes';
+import { BlogPost } from './blogPost';
 
 export {
     Categoria,
@@ -33,5 +34,6 @@ export {
     Carousel,
     ItemCarousel,
     EnderecoEntrega,
-    Integracoes
+    Integracoes,
+    BlogPost
 }

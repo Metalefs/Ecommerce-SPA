@@ -1,0 +1,33 @@
+<mat-card class="blog_item">
+  <div class="blog_item_img">
+    <img mat-card-image class="card-img rounded-0" src="$data.cover_image">
+    <a href="#" class="blog_item_date">
+      <h3>$data.date[0]</h3>
+      <p>$data.date[1]</p>
+    </a>
+  </div>
+  <mat-card-title>
+    <a class="d-inline-block" href="#">
+      <h2>$data.title</h2>
+    </a>
+  </mat-card-title>
+  <mat-card-subtitle>
+    <p>$data.sub_title</p>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div class="blog_details">
+      <ul class="blog-info-link">
+        <li>
+          <a href="" class="">
+            <mat-icon>person_outline</mat-icon>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <mat-icon>hashtag</mat-icon>
+          </a>
+      </li>
+      </ul>
+    </div>
+  </mat-card-content>
+</mat-card>
