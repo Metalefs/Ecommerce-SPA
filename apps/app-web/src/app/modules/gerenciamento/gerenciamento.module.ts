@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 import { EdicaoCardProdutoComponent } from './page/editar-produto/components/edicao-card-produto/edicao-card-produto.component';
+import { EdicaoCardBlogComponent } from './page/editar-blog/edicao-card-blog/edicao-card-blog.component';
 import { EdicaoCardClienteComponent } from './page/editar-clientes/components/edicao-card-cliente/edicao-card-cliente.component';
 import { EditarMensagemComponent } from './page/editar-mensagem/editar-mensagem.component';
 import { EditarEmailsComponent } from './page/editar-emails/editar-emails.component';
@@ -33,6 +34,9 @@ import { EditarItemCarouselComponent } from './page/editar-carousel/editar-item-
 import { CriarItemCarouselDialogComponent } from './page/editar-carousel/dialogComponents/criar-item-carousel-dialog/criar-item-carousel-dialog.component';
 import { EditarCarouselDialogComponent } from './page/editar-carousel/dialogComponents/editar-carousel-dialog/editar-carousel-dialog.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
+import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
+import { CriarPostComponent } from './page/editar-blog/dialogs/criar-post/criar-post.component';
+import { EditarPostComponent } from './page/editar-blog/dialogs/editar-post/editar-post.component';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
@@ -52,6 +56,7 @@ import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-int
     CriarCategoriaDialogComponent,
     DashboardComponent,
     EdicaoCardProdutoComponent,
+    EdicaoCardBlogComponent,
     EditarClientesComponent,
     EdicaoCardClienteComponent,
     CriarClienteDialogComponent,
@@ -64,6 +69,9 @@ import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-int
     EditarCarouselDialogComponent,
     EditarOrcamentoComponent,
     EditarIntegracoesComponent,
+    EditarBlogComponent,
+    EditarPostComponent,
+    CriarPostComponent,
   ],
   imports: [
     CommonModule,
@@ -87,10 +95,13 @@ import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-int
     EditarCategoriaComponent,
     CriarProdutoDialogComponent,
     EditarProdutoDialogComponent,
+    CriarPostComponent,
+    EditarPostComponent,
     CriarCategoriaDialogComponent,
     CriarClienteDialogComponent,
     EditarClientesComponent,
     EditarMensagemComponent,
+    EditarBlogComponent,
     CKEditorModule
   ]
 })

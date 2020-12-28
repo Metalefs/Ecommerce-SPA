@@ -5,6 +5,7 @@ import { BlogPostService } from 'apps/app-web/src/app/data/service';
 import { BlogPost } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/internal/operators/map';
 import { CriarProdutoDialogComponent } from '../editar-produto/DialogComponents/criar-dialog/criar-dialog.component';
+import { CriarPostComponent } from './dialogs/criar-post/criar-post.component';
 
 @Component({
   selector: 'personalizados-lopes-editar-blog',
@@ -22,8 +23,8 @@ export class EditarBlogComponent implements OnInit {
     this.retrieveblogs();
   }
 
-  saveblog(): void {
-    const dialogRef = this.dialog.open(CriarProdutoDialogComponent, {
+  Criar(): void {
+    const dialogRef = this.dialog.open(CriarPostComponent, {
       width: '90%',
       data: ""
     });

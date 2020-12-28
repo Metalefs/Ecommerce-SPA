@@ -56,8 +56,8 @@ export class CriarPostComponent implements OnInit {
   upload($event){
     this.fileNames = '';
     for(let i =0; i < $event.target.files.length; i++){
-      this.fileNames+=$event.target.files.FileList[i].name+',';
-      console.log($event.target.files.FileList[i].name)
+      this.fileNames+=$event.target.files[i].name+',';
+      console.log($event.target.files[i].name)
     }
     getPreviewURL($event,this.fileNames,(res)=>{this.BlogPost.FotoCapa = res});
   }

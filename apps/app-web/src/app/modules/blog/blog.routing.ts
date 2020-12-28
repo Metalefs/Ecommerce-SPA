@@ -15,11 +15,21 @@ export const routes: Routes = [
         component: ListagemPostsComponent,
         data: { animation:'isLeft' },
       },
+    ]
+  },
+  {
+
+    path: 'blog/:id',
+    component: BlogComponent,
+    pathMatch: 'full',
+    // data: { animation:'isRight' }
+
+    children: [
       {
-        path: 'blog/:id',
+        path: "",
+        // canActivate: [AuthGuard],
         component: ExibicaoBlogComponent,
-        pathMatch: 'full',
-        // data: { animation:'isRight' }
+        data: { animation:'isLeft' },
       },
     ]
   }

@@ -31,9 +31,10 @@ import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/
 import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgotado.component';
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
+import { CardBlogComponent } from './components/card-blog/card-blog.component';
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -75,6 +76,7 @@ import { MercadopagoButtonComponent } from './components/mercadopago-button/merc
     CloseBtnComponent,
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
+    CardBlogComponent,
     StarRatingModule
   ]
 })
