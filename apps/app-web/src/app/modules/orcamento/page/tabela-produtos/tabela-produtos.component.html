@@ -1,18 +1,24 @@
-<table mat-table [dataSource]="ProdutoTable.dataSource" class="w-full">
+<table @fadeIn mat-table [dataSource]="ProdutoTable.dataSource" class="w-full">
 
   <ng-container matColumnDef="Produtos">
-    <th mat-header-cell *matHeaderCellDef> Produtos </th>
-    <td @fadeIn mat-cell *matCellDef="let element"><a  href="#topo" [routerLink]="['/produtos/',element._id]" routerLinkActive="router-link-active">{{element.Nome}} </a></td>
+    <th @fadeIn mat-header-cell *matHeaderCellDef> Produtos </th>
+    <td @fadeIn mat-cell *matCellDef="let element">
+      <a  href="#topo"
+        [routerLink]="['/produtos/',element._id]"
+        routerLinkActive="router-link-active">
+        {{element.Produto.Nome}}
+      </a>
+  </td>
   </ng-container>
 
   <ng-container matColumnDef="Total">
-    <th mat-header-cell *matHeaderCellDef> Total </th>
-    <td @fadeIn mat-cell *matCellDef="let element"> {{element.Quantidade}}</td>
+    <th @fadeIn mat-header-cell *matHeaderCellDef> Total </th>
+    <td @fadeIn mat-cell *matCellDef="let element"> {{element.Produto.Quantidade}}</td>
   </ng-container>
 
   <ng-container matColumnDef="Acoes">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element">
+    <th @fadeIn mat-header-cell *matHeaderCellDef> </th>
+    <td @fadeIn mat-cell *matCellDef="let element">
       <button mat-icon-button title="Remover do orçamento" (click)="removerProduto(element)">
         <mat-icon>remove_circle</mat-icon>
       </button>

@@ -7,7 +7,8 @@
   box-shadow: none;
 }
 .section{
-  max-width: 1250px;
+  animation: shrink 1s ease forwards;
+  animation-delay: 1s;
   margin: 0px auto;
 }
 .scroll-y{
@@ -52,6 +53,7 @@
   // background:rgb(234, 234, 244);
   z-index: 100;
 }
+
 .texto-categorias{
   letter-spacing: .5px;
   font-family: Montserrat;

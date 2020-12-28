@@ -12,6 +12,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
+import { StarRatingModule } from 'angular-star-rating';
 
 import { DynamicFormModule } from './components/dynamic-form/dynamic-form.module';
 import { LoginFormModule } from './components/login/login-form.module';
@@ -48,6 +49,7 @@ import { MercadopagoButtonComponent } from './components/mercadopago-button/merc
     ScrolltopModule,
     CountUpModule,
 
+    StarRatingModule.forRoot(),
     NgxMaskModule.forRoot(),
   ],
   exports: [
@@ -72,7 +74,8 @@ import { MercadopagoButtonComponent } from './components/mercadopago-button/merc
     NgxMaskModule,
     CloseBtnComponent,
     BotaoEsgotadoComponent,
-    MercadopagoButtonComponent
+    MercadopagoButtonComponent,
+    StarRatingModule
   ]
 })
 export class SharedModule { }

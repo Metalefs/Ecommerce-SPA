@@ -25,7 +25,7 @@
       <form (ngSubmit)="SubmeterDadosPessoais()">
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
-          <mat-label>Nome</mat-label>
+          <mat-label>Insira seu nome</mat-label>
           <input matInput  [(ngModel)]="Orcamento.Usuario.Nome"
             [formControl]="nomeFormControl" placeholder="Ex. Fulano de tal">
           <mat-error *ngIf="nomeFormControl.hasError('required')">
@@ -37,7 +37,7 @@
         </mat-form-field>
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
-          <mat-label>Email</mat-label>
+          <mat-label>seu e-mail</mat-label>
           <input class="w-full" matInput
             [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl" placeholder="Ex. meu@email.com">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -52,7 +52,7 @@
         </mat-form-field>
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
-          <mat-label>Telefone</mat-label>
+          <mat-label>insira um telefone para contato</mat-label>
           <input class="w-full input" matInput
             [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl" placeholder="(00) 0 0000 0000"
             mask="(00) 0000-0000||(00) 0 0000-0000">
@@ -65,11 +65,11 @@
         </mat-form-field>
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
-          <mat-label>Mensagem</mat-label>
+          <mat-label>Como devemos usar a arte para os produtos, etc..</mat-label>
           <textarea
             class="control has-icons-right  input"
             matInput
-            placeholder="Insira aqui dados opcionais como quais cores você quer, etc"
+            placeholder="Insira aqui dados opcionais como transparencia do fundo, etc"
             [(ngModel)]="Orcamento.Mensagem"
             ></textarea>
         </mat-form-field>

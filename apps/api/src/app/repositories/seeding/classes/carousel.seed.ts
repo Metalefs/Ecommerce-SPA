@@ -2,6 +2,7 @@ import { Carousel } from 'libs/data/src/lib/classes';
 
 export let carousel = new Carousel(
   '52vh',
+  '21vh',
   '',
   '30px',
   true,

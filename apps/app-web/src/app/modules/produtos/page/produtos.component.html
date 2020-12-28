@@ -23,21 +23,34 @@
         <div class="is-hidden-mobile  w-full">
           <mat-list class="w-full">
             <h2 class="title is-5 texto-categorias">Categorias</h2>
-            <mat-list-item
-              class="pointer w-full w-full-m"
+            <mat-list-item @fadeIn
+              data-aos="fade-down"
+              class="pointer w-full w-full-m cat-item"
               (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
-              <button mat-strocked-button>{{defaultCategory}}</button>
-              <mat-icon [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">{{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
+              <a mat-strocked-button>
+                <mat-icon
+                  [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
+                  {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
+                </mat-icon>
+                {{defaultCategory}}
+              </a>
               <mat-divider></mat-divider>
             </mat-list-item>
-            <mat-list-item *ngFor="let categoria of (Categorias$ | async)"
+            <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
               [style.backgroundColor]="categoria?.Cor"
+
+              data-aos-delay="50"
               class="pointer w-full w-full-m"
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
-              <button mat-strocked-button>{{categoria.Nome}}</button>
-              <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">{{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
+              <a mat-strocked-button>
+                <mat-icon
+                  [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">
+                  {{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'arrow_left'}}
+                </mat-icon>
+                {{categoria.Nome}}
+              </a>
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>

@@ -24,9 +24,21 @@
       <!-- <div [ngClass]="Produto.Status != statusProduto.esgotado ? 'has-background-success':'has-background-danger'">
         <p class="mx-1 py-1 box px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</p>
       </div> -->
-        <div class="mh-70 px-2 pt-6">
+        <div class="mh-70 px-2 pt-6 txt-left">
 
           <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+          <star-rating
+            [ngClass]="loading ? 'button is-loading':''"
+            labelText="{{meanRating()}}"
+            [showHalfStars]="true"
+            [step]="0.5"
+            [rating]="meanRating()"
+            staticColor="ok"
+            (starClickChange)="onClick($event)"
+            (ratingChange)="onRatingChange($event)"
+            [hoverEnabled]="true"
+            (hoverRatingChange)="onHoverRatingChange($event)">
+            [starType]="'svg'" [rating]="Produto.Rating"></star-rating>
 
           <div class="my-3">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
@@ -47,7 +59,7 @@
               </p>
             </div>
           </div>
-          <div class="columns is-multiline is-vcentered">
+          <div class="columns is-multiline is-vcentered pb-0">
             <div class="column is-4">
               <p><em>Quantidade</em></p>
               <div class="field w-full">
@@ -82,10 +94,10 @@
                 </button>
                 <mat-list>
                   <mat-list-item *ngIf="! Produto?.Tamanho">
-                    <p class="subtitle is-size-6 has-text-danger">Selecione o tamanho*</p>
+                    <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
                   </mat-list-item>
                   <mat-list-item *ngIf="! Produto?.Cor">
-                    <p class="subtitle is-size-6 has-text-danger">Selecione a cor*</p>
+                    <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
                   </mat-list-item>
                 </mat-list>
               </div>
@@ -108,37 +120,87 @@
             </div>
           </div>
           <div class="columns of-x-scroll">
-            <div class="column is-12">
+            <div class="column">
               <button mat-flat-button class="button file is-info has-name pb-3">
                 <label class="file-label">
                   <input class="file-input" multiple type="file" (change)="upload($event)">
                   <span class="file-cta">
                     <span class="file-icon">
-
+                      <mat-icon>image</mat-icon>
                     </span>
                     <span class="file-label">
-                      Enviar arte
+                      Enviar arte <span class="mr-1">  </span>
+                    </span>
+                    <span class="">
+                      {{' '+ fileNames}}
+                    </span>
+                  </span>
+                </label>
+              </button>
+            </div>
+            <div class="column">
+              <mat-checkbox
+                class="mr-3"
+                matNativeControl
+                [(ngModel)]="arte_traseira"
+                [checked]= "arte_traseira">
+                Tem arte traseira
+              </mat-checkbox>
+            </div>
+            <div class="column">
+              <button
+              *ngIf="arte_traseira"
+               mat-flat-button
+               class="button file is-info has-name pb-3">
+                <label class="file-label">
+                  <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <mat-icon>image</mat-icon>
+                    </span>
+                    <span class="file-label">
+                      Enviar arte secundaria <span class="mr-1">  </span>
                     </span>
                     <span class="file-name">
-                      {{fileNames}}
+                      {{' '+ secondaryfileNames}}
                     </span>
                   </span>
                 </label>
               </button>
             </div>
           </div>
-          <div class="box"  *ngIf="this.Produto.Arte">
+          <div class="box columns"  *ngIf="this.Produto.Arte">
             <a>Como essa arte será usada no produto?</a>
-            <mat-card>
-              <figure class="image is-128x128">
-                <img mat-mat-card-image [src]="this.Produto.Arte" height="200">
-              </figure>
-              <mat-card-actions>
-                <button mat-icon-button (click)="Produto.Arte = null">
-                  <mat-icon>clear</mat-icon>
-                </button>
-              </mat-card-actions>
-            </mat-card>
+            <div class="column">
+              <mat-card>
+                <mat-card-header>
+                  <mat-card-subtitle>Arte</mat-card-subtitle>
+                </mat-card-header>
+                <figure class="image is-128x128">
+                  <img mat-mat-card-image [src]="this.Produto.Arte" height="200">
+                </figure>
+                <mat-card-actions>
+                  <a mat-icon-button (click)="Produto.Arte = null">
+                    <mat-icon>clear</mat-icon>
+                  </a>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+            <div class="column">
+              <mat-card *ngIf="Produto.ArteSecundaria">
+                <mat-card-header>
+                  <mat-card-subtitle>Secundaria</mat-card-subtitle>
+                </mat-card-header>
+                <figure class="image is-128x128">
+                  <img mat-mat-card-image [src]="this.Produto.ArteSecundaria" height="200">
+                </figure>
+                <mat-card-actions>
+                  <a mat-icon-button (click)="Produto.ArteSecundaria = null">
+                    <mat-icon>clear</mat-icon>
+                  </a>
+                </mat-card-actions>
+              </mat-card>
+            </div>
           </div>
 
           <mat-divider></mat-divider>

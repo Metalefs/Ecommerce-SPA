@@ -30,6 +30,13 @@ export class GostarProduto {
   constructor(public id: string){}
 }
 
+export class RateProduto {
+
+  static readonly type = '[Produto] Rate'
+
+  constructor(public id: string, public rating:number){}
+}
+
 export class RemoverProduto {
 
   static readonly type = '[Produto] Remove'

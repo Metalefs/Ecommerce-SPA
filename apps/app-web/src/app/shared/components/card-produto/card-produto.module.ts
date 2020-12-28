@@ -7,6 +7,7 @@ import { CardProdutoComponent } from './card-produto.component';
 
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { StarRatingModule } from 'angular-star-rating';
 @NgModule({
   declarations: [CardProdutoComponent],
   imports: [
@@ -15,7 +16,8 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
     RouterModule,
     FormsModule,
     NgxPageScrollModule,
-    NgxPageScrollCoreModule
+    NgxPageScrollCoreModule,
+    StarRatingModule.forRoot()
   ],
   exports: [
     CardProdutoComponent

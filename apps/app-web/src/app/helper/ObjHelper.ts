@@ -14,3 +14,10 @@ export function translateEnum(myEnumType,myEnum){
  let values = Object.keys(myEnumType).map(key => myEnumType[myEnum]).filter(value => typeof value === 'string') as string[];
  return values[myEnum];
 }
+export function sum(arr) {
+  var sum = 0;
+  for (var index = 0; index < arr.length; index++) {
+    sum += arr[index];
+  }
+  return sum;
+}

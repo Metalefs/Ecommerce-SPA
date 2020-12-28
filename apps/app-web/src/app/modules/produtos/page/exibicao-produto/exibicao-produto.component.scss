@@ -16,7 +16,8 @@ gallery{
   background:url(/assets/images/empresa/double-bubble-outline.png);
 }
 .section{
-  max-width: 1250px;
+  animation: shrink 1s ease forwards;
+  animation-delay: 1s;
   margin: 0px auto;
 }
 .tamanho-produto{

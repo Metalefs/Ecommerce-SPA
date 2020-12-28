@@ -59,6 +59,13 @@ export class ProdutoService {
       );
     }
 
+    Rate(id:string,rating:number) :Observable<entities.Produto> {
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.RateProduto, {id:id, rating:rating}).pipe(
+          retry(3),
+          catchError(this.ErrorHandler.handleError)
+      );
+    }
+
     async Remover(id: string): Promise<Observable<any>>{
       return new Promise((resolve, reject) =>{
         this.Filtrar(id).subscribe(async Produto =>{

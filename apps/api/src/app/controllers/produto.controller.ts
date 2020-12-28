@@ -50,6 +50,17 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
       ErrorHandler.DefaultException(err, res)
   }
 })
+.post(RouteDictionary.RateProduto, (req: any, res) => {
+  try {
+    let ProdutoService:Services.ProdutoService = new Services.ProdutoService();
+    ProdutoService.Rate(req.body.id,req.body.rating).then(x=>{
+        res.send(x);
+    });
+  }
+  catch (err) {
+      ErrorHandler.DefaultException(err, res)
+  }
+})
 .put(RouteDictionary.Produto, (req: any, res) => {
     try {
         Services.UsuarioService.getByToken(req.body.token).then(user => {

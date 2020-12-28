@@ -155,6 +155,23 @@ a{
     background:whitesmoke;
   }
 }
+.orcamento-nav{
+  background: #ffffff;
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 1s ease forwards;
+  -moz-animation: AnimationName 1s ease forwards;
+  animation: AnimationName 1s ease forwards;
+  & a.nav-link{
+    // color:white;
+    font-weight: 500;
+  }
+  & .active-nav{
+    color:$capri !important;
+  }
+  & .border-light{
+    background:whitesmoke;
+  }
+}
 .produtos-nav-under{
   background-color: rgba(225, 225, 237,.5);
   height: 8px;

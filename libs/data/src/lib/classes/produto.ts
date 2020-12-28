@@ -26,6 +26,8 @@ export class Produto extends MongoDocument implements entidadeBase{
     DescricaoRapida?:string;
     Parcelas?:number;
     Arte?:string | ArrayBuffer;
+    ArteSecundaria?:string | ArrayBuffer;
+    Rating?:number[] = [0];
     static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,
@@ -48,7 +50,9 @@ export class Produto extends MongoDocument implements entidadeBase{
     Especificacoes?:string,
     DescricaoRapida?:string,
     Parcelas?:number,
-    Arte?:string | ArrayBuffer
+    Arte?:string | ArrayBuffer,
+    ArteSecundaria?:string | ArrayBuffer,
+    Rating?:number[]
     ){
       super();
       this.Nome = Nome;
@@ -72,6 +76,8 @@ export class Produto extends MongoDocument implements entidadeBase{
       this.DescricaoRapida = DescricaoRapida;
       this.Parcelas = Parcelas;
       this.Arte = Arte;
+      this.ArteSecundaria = ArteSecundaria;
+      this.Rating = Rating;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto } from '../actions/produto.actions'
+import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto } from '../actions/produto.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -89,6 +89,23 @@ export class ProdutoState {
         const ListaProdutos = [...state.Produtos];
         const index = ListaProdutos.findIndex(item => item._id === id);
         ListaProdutos[index].Likes = result.Likes;
+
+        setState({
+          ...state,
+          Produtos: ListaProdutos,
+        });
+      })
+    );
+  }
+
+  @Action(RateProduto)
+  Rate({getState,setState}: StateContext<ProdutoStateModel>, {id,rating} : RateProduto){
+    return this.ProdutoService.Rate(id,rating).pipe(
+      tap(result => {
+        const state = getState();
+        const ListaProdutos = [...state.Produtos];
+        const index = ListaProdutos.findIndex(item => item._id === id);
+        ListaProdutos[index].Rating = result.Rating;
 
         setState({
           ...state,

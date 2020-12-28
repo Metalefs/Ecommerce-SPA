@@ -3,6 +3,7 @@ import { MongoDocument } from './abstract/MongoDocument';
 
 export class Carousel extends MongoDocument implements entidadeBase {
   height: string = '52vh';
+  height_mobile: string = '21vh';
   minHeight: string;
   arrowSize: string = '30px';
   showArrows: boolean = true;
@@ -29,6 +30,7 @@ export class Carousel extends MongoDocument implements entidadeBase {
   static readonly NomeID:string = "Carousel";
     constructor(
       height: string,
+      height_mobile: string,
       minHeight: string,
       arrowSize: string,
       showArrows: boolean,
@@ -55,6 +57,7 @@ export class Carousel extends MongoDocument implements entidadeBase {
     ){
         super();
         this.height =height;
+        this.height_mobile =height_mobile;
         this.minHeight =minHeight;
         this.arrowSize =arrowSize;
         this.showArrows =showArrows;

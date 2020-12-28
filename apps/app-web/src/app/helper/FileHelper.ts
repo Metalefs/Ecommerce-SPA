@@ -6,14 +6,14 @@ export function ObterImagensCarousel(){
     'assets/images/inicio/carousel/FAIXA10.jpg',
   ]
 }
-export function getPreviewURL($event,Produto:Produto,fileNames){
+export function getPreviewURL($event,fileNames,callback){
 
-  Produto.FileList = $event.target.files;
+  let filelist = $event.target.files;
 
-  return preview(Produto.FileList,Produto,fileNames);
+  return preview(filelist,fileNames,callback);
 }
 
-function preview(files,produto,fileNames) {
+function preview(files,fileNames,callback) {
   if (files.length === 0)
     return;
 
@@ -22,13 +22,13 @@ function preview(files,produto,fileNames) {
     fileNames = "Só imagens são suportadas.";
     return;
   }
-  for(let i =0; i < produto.FileList.length; i++){
-    fileNames+= produto.FileList[i].name+',';
+  for(let i =0; i < files.length; i++){
+    fileNames+= files[i].name+',';
   }
   var reader = new FileReader();
   reader.readAsDataURL(files[0]);
+  let res : string | ArrayBuffer;
   reader.onload = (_event) => {
-    produto.Arte = reader.result;
+    callback(reader.result,fileNames);
   }
-  return produto;
 }

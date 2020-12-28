@@ -51,12 +51,15 @@
         <mat-card-subtitle class="is-3 preco">
 
           <div class="my-3">
-            <span>
-              <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
-                {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
-              {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
-              {{Liked? '- Obrigado por nos apoiar ' : ''}}
-            </span>
+            <star-rating
+            labelText="{{Produto?.Rating}}"
+            [rating]="meanRating()"
+            [hoverEnabled]="true"
+            [readOnly]="true"
+            [showHalfStars]="true"
+            [step]="0.5"
+            staticColor="ok"
+            [starType]="'svg'" [rating]="Produto.Rating"></star-rating>
           </div>
           <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
           <ng-template #preco_promo>

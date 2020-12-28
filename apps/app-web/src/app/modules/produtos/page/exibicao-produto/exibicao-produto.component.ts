@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { GostarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { GostarProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -15,9 +15,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';
-import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
+import { sum, translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
+import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -43,6 +44,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   isOrcamento:boolean = false;
   loading:boolean = false;
   el = document.createElement( 'html' );
+  arte_traseira:boolean=false;
   constructor(
     breakpointObserver: BreakpointObserver,
     private activeRoute:ActivatedRoute,
@@ -148,10 +150,14 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.router.navigateByUrl("/checkout");
     },1500)
   }
-  fileNames:string="nenhum arquivo selecionado.";
+  fileNames:string="";
+  secondaryfileNames:string="";
 
   upload($event){
-    getPreviewURL($event,this.Produto,this.fileNames)
+    getPreviewURL($event,this.fileNames,(res,name)=>{this.Produto.Arte = res;this.fileNames = name})
+  }
+  uploadSecundario($event){
+    getPreviewURL($event,this.secondaryfileNames,(res,name)=>{this.Produto.ArteSecundaria = res;this.secondaryfileNames = name})
   }
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
@@ -215,6 +221,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.orcamentoId = this.activeRoute.snapshot.params['orcamentoId'];
 
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
+    this.readonlyRating = localStorage.getItem(`rateproduto${id}`) == 'true' ? true: false;
 
     const galleryRef = this.gallery.ref('myGallery');
     if(!this.orcamentoId){
@@ -253,4 +260,40 @@ export class ExibicaoProdutoComponent implements OnInit {
       console.log(value);
     });
   }
+  onClickResult: ClickEvent;
+  onHoverRatingChangeResult: HoverRatingChangeEvent;
+  onRatingChangeResult: RatingChangeEvent;
+  readonlyRating:boolean = false;
+  onClick = ($event: ClickEvent) => {
+    console.log('onClick $event: ', $event);
+
+    if(!localStorage.getItem(`rateproduto${this.Produto._id}`)){
+      this.loading = true;
+      this.store.dispatch(new RateProduto(this.Produto._id, $event.rating)).subscribe(x=>{
+        this.readonlyRating = true;
+        localStorage.setItem(`rateproduto${this.Produto._id}`,'true');
+        this.loading = false;
+      });
+    }
+    else
+      return
+
+  };
+
+  meanRating(){
+    if (!this.Produto.Rating)
+    return 0;
+    return sum(this.Produto.Rating) / this.Produto.Rating.length
+  }
+
+  onRatingChange = ($event: RatingChangeEvent) => {
+    console.log('onRatingUpdated $event: ', $event);
+    this.onRatingChangeResult = $event;
+  };
+
+  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
+    console.log('onHoverRatingChange $event: ', $event);
+    this.onHoverRatingChangeResult = $event;
+  };
+
 }
