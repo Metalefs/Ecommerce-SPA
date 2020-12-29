@@ -237,7 +237,7 @@ img{
   box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
 }
 .border{
-  border: 1px solid #9bb6d23b;
+  border: 1px solid #9bb6d23b !important;
 }
 .subtitle{
   font-size:14px;
@@ -373,7 +373,7 @@ a {
 	margin-bottom:30px;
 }
 .section-block.summary {
-    background-color: #99DEAB;
+    background-color: #2F80ED;
 }
 .section-block.summary h1 {
     color: #fff;
@@ -384,13 +384,13 @@ a {
 	background-color:transparent
 }
 .section-block.signup {
-	background-color: #99DEAB;
+	background-color: #2F80ED;
 }
 .section-block h1 {
 	margin-top:0;
 }
 .section-title {
-	color: #99DEAB;
+	color: #2F80ED;
 	border-radius: 4px;
 	display: table;
 	padding: 10px 0px;
@@ -450,7 +450,7 @@ a {
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
 	color: #FFF;
-	background-color: #99DEAB;
+	background-color: #2F80ED;
 	border: 0;
 	border-radius: 4px;
 	font-weight:700;
@@ -491,7 +491,7 @@ a {
 	border:0;
 }
 .btn.btn-launch {
-	background-color: #99DEAB;
+	background-color: #2F80ED;
 	color: #FFF;
 	font-size: 17px;
 	font-weight: 600;
@@ -502,14 +502,14 @@ a {
 	box-shadow:none;
 }
 .btn.btn-reward {
-	background-color: #99DEAB;
+	background-color: #2F80ED;
     color: #FFF;
     font-size: 14px;
     font-weight: 600;
     padding: 5px 15px;
 }
 .btn.btn-signup {
-	background-color: #99DEAB;
+	background-color: #2F80ED;
 	color: #fff;
 	height: 40px;
 	width: 43px;

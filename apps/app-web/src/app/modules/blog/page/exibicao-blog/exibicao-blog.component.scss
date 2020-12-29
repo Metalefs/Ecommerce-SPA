@@ -1,0 +1,71 @@
+.funding-meta {}
+.funding-meta h1 {
+	background: #2F80ED;
+	color: #fff;
+	border-radius: 4px;
+	display: table;
+	padding: 10px;
+	font-size: 25px;
+	font-weight:700;
+}
+.type-meta {
+	color:#A7A7A7;
+	font-size: 12px;
+	display: inline-block;
+	margin: 0px 10px 10px 0px;
+}
+.type-meta i.fa {
+	color:#2F80ED;
+	margin-right:5px;
+}
+.funding-meta h2{
+	font-weight:700;
+}
+.funding-meta p {
+	color: #A7A7A7;
+	margin: 30px 0px 10px 0px;
+}
+.video-frame {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+	display:block;
+}
+.video-frame iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.funding-meta h2, .funding-meta span.contribution {
+	display:inline-block;
+	color: #2F80ED;
+}
+.funding-meta span.contribution, .funding-meta span.goal-progress {
+	color: #A7A7A7;
+}
+.funding-meta span.goal-progress {
+	text-align:right;
+	display: block;
+}
+.count-down {
+	display: block;
+	color: #A7A7A7;
+	text-align: right;
+	text-transform: uppercase;
+}
+.count-down strong {
+	padding-right:5px;
+}
+.progress-bar {
+	background-color: #2F80ED;
+	box-shadow:none;
+}
+.progress {
+	height: 30px;
+	background-color: #ECEBEB;
+	box-shadow:none;
+	margin: 10px 0px 10px 0px;
+}

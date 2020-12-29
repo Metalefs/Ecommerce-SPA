@@ -3,7 +3,7 @@
     <mat-spinner *ngIf="loading"></mat-spinner>
     <div class="columns is-multiline">
       <div class="column is-4" *ngFor="let post of Blog">
-        <personalizados-lopes-card-blog [Post]="post"></personalizados-lopes-card-blog>
+        <personalizados-lopes-card-blog [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
       </div>
     </div>
   </div>
