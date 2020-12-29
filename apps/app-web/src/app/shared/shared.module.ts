@@ -7,11 +7,10 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
-
 import { StarRatingModule } from 'angular-star-rating';
 
 import { DynamicFormModule } from './components/dynamic-form/dynamic-form.module';
@@ -49,7 +48,7 @@ import { CardBlogComponent } from './components/card-blog/card-blog.component';
     CKEditorModule,
     ScrolltopModule,
     CountUpModule,
-
+    IvyCarouselModule,
     StarRatingModule.forRoot(),
     NgxMaskModule.forRoot(),
   ],
@@ -77,6 +76,7 @@ import { CardBlogComponent } from './components/card-blog/card-blog.component';
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
     CardBlogComponent,
+    IvyCarouselModule,
     StarRatingModule
   ]
 })

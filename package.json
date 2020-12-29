@@ -30,6 +30,7 @@
   "private": true,
   "dependencies": {
     "-": "0.0.1",
+    "@angular-slider/ngx-slider": "^2.0.3",
     "@angular/animations": "^10.0.0",
     "@angular/cdk": "^10.2.5",
     "@angular/common": "^10.0.0",
@@ -57,6 +58,7 @@
     "@sendgrid/mail": "^7.2.6",
     "@types/scriptjs": "0.0.2",
     "add": "^2.0.6",
+    "angular-responsive-carousel": "^2.0.2",
     "angular-star-rating": "^4.0.0-beta.3",
     "angular2-cookie-law": "^7.0.1",
     "aos": "^2.3.4",
@@ -83,6 +85,7 @@
     "ngx-page-scroll": "^7.0.3",
     "ngx-page-scroll-core": "^7.0.3",
     "ngx-sharebuttons": "^8.0.1",
+    "ngx-slider": "0.0.5",
     "nodemailer": "^6.4.16",
     "npm": "^6.14.10",
     "rxjs": "~6.5.5",

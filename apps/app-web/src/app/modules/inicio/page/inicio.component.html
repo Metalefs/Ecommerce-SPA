@@ -1,14 +1,58 @@
 <div id="INICIO" class="has-background-white">
+
   <div class="bg">
     <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
+    <div class="margin py-4">
+      <carousel
+        [height]="400"
+        [freeScroll]="true"
+        [loop]="true"
+        class="z-index-1 px-2"
+        >
+        <div class="carousel-cell z-index-1"  *ngFor="let produto of Produtos$|async" >
+          <personalizados-lopes-card-produto [Produto]="produto" [TrocaImagem]="false"></personalizados-lopes-card-produto>
+        </div>
+      </carousel>
+    </div>
+    <mat-divider></mat-divider>
     <section class="section w-full pt-6 px-3" id="headerGfooter">
       <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
     </section>
   </div>
+
   <mat-divider></mat-divider>
+
   <section class="py-3">
     <div data-aos="zoom-down" class="testimonial">
       <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
     </div>
   </section>
+
+  <mat-divider></mat-divider>
+
+  <div class="margin py-4 px-2">
+    <div style=" margin-top:70px; margin-bottom:70px;"
+        class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
+      <span
+        class="hr-inner   inner-border-av-border-fat"
+        style=" width:100px; border-color:#762625;">
+        <span class="hr-inner-style"></span>
+      </span>
+    </div>
+    <div class="titleContent py-3 txt-center">
+        <h1 class = 'title has-text-weight-bold'>
+          BLOG
+        </h1>
+    </div>
+    <carousel
+        [height]="500"
+        [freeScroll]="true"
+        [loop]="true"
+        class="z-index-1 of-y-scroll"
+        >
+      <div class="carousel-cell z-index-1" *ngFor="let post of Blog">
+        <personalizados-lopes-card-blog [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
+      </div>
+    </carousel>
+  </div>
 </div>

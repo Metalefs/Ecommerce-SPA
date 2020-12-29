@@ -13,7 +13,9 @@
     routerLinkActive="router-link-active"
     class="dis-flex flex-w"
     >
-    <img
+    <ng-container *ngIf="TrocaImagem then troca else naotroca"> </ng-container>
+    <ng-template #troca>
+      <img
       mat-card-image
       #imgProduto
       (mouseenter)="
@@ -38,6 +40,19 @@
       class="hide"
       [src]="Produto.Imagem[1]"
       alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+    </ng-template>
+    <ng-template #naotroca>
+      <img
+      mat-card-image
+      #imgProduto
+      (mouseenter)="imgProduto.src= Produto.Imagem[1]||''"
+      (mouseleave)="imgProduto.src= Produto.Imagem[0]||''"
+      [src]="Produto.Imagem[0]"
+      [style.opacity]="'1'"
+      [style.display]="'block'"
+      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+
+    </ng-template>
   </a>
    <mat-card-footer class="px-1">
      <div class="px-4">

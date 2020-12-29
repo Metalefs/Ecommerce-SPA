@@ -24,6 +24,7 @@ export class CardProdutoComponent implements OnInit {
   constructor(private store: Store,private dialog:MatDialog) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
+  @Input() TrocaImagem: boolean = true;
   statusProduto=StatusProduto;
   ngOnInit(): void {
     this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;

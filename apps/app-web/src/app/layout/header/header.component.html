@@ -52,7 +52,12 @@
     </div>
     <div class="mb-4 mx-4">
       <div class="wrap-pic-cir mb-4 py-1 px-1 border-light">
-        <mat-menu #appMenu="matMenu">
+        <div
+        (mouseleave)="person._elementRef.nativeElement.click()">
+        <mat-menu
+        #appMenu="matMenu"
+        (mouseleave)="person._elementRef.nativeElement.click()"
+        >
           <ng-template matMenuContent let-name="name">
             <button mat-menu-item *ngIf="!user" (click)="openLogin()">Login</button>
             <button mat-menu-item *ngIf="user" [routerLink]="['/perfil']">{{user.Nome}}</button>
@@ -60,8 +65,12 @@
             <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
           </ng-template>
         </mat-menu>
-        <button [matMenuTriggerFor]="appMenu"
+        </div>
+        <button
+          [matMenuTriggerFor]="appMenu"
+          (mouseenter)="person._elementRef.nativeElement.click()"
           class=" w-full "
+          #person
           mat-icon-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>

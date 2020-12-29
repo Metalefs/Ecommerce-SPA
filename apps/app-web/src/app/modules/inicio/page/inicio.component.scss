@@ -15,3 +15,6 @@
 .shadow{
   box-shadow: 0 10px 60px #00000057;
 }
+:host ::ng-deep .carousel-cells{
+  // will-change: auto !important;
+}

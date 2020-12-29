@@ -1,3 +1,7 @@
+import { BlogPost, Usuario } from 'libs/data/src/lib/classes';
+import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
+import { TipoUsuario } from 'libs/data/src/lib/enums';
+
 export function isEmpty(obj) {
   for(var key in obj) {
       if(obj.hasOwnProperty(key))
@@ -20,4 +24,12 @@ export function sum(arr) {
     sum += arr[index];
   }
   return sum;
+}
+
+export function CanViewPost(post:BlogPost,user:Usuario){
+  if(post.StatusPostagem == StatusPostagem.aberto)
+      return true;
+    else if((user?.Tipo ?? TipoUsuario.normal) == TipoUsuario.admin)
+      return true;
+    return false;
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { BlogPostService } from 'apps/app-web/src/app/data/service';
+import { CanViewPost } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BlogPost, Usuario } from 'libs/data/src/lib/classes';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
@@ -35,10 +36,6 @@ export class ListagemPostsComponent implements OnInit {
     })
   }
   CanView(post:BlogPost){
-    if(post.StatusPostagem == this.statusPostagem.aberto)
-      return true;
-    else if((this.user?.Tipo || TipoUsuario.normal) == TipoUsuario.admin)
-      return true;
-    return false;
+    return CanViewPost(post,this.user);
   }
 }
