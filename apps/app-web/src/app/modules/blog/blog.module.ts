@@ -16,13 +16,15 @@ import { BlogComponent } from './page/blog/blog.component';
 import { ExibicaoBlogComponent } from './page/exibicao-blog/exibicao-blog.component';
 import { BlogPageRoutes } from './blog.routing';
 import { ListagemPostsComponent } from './page/listagem-posts/listagem-posts.component';
+import { SidebarComponent } from './page/sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
     BlogComponent,
     ExibicaoBlogComponent,
-    ListagemPostsComponent
+    ListagemPostsComponent,
+    SidebarComponent
   ],
   imports: [
     BlogPageRoutes,

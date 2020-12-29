@@ -27,6 +27,7 @@ environment.production ? [
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
+  {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
 ];
 
 
@@ -36,6 +37,6 @@ environment.production ? [
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ] : [
   {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
-  {name: "Blog",      href:"blog",     icon:'', group:GrupoNavLink.duvidas},
+  {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ];

@@ -14,8 +14,8 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content class="dashboard-card-content columns is-multiline">
-    <!-- <div *ngFor="let produto of Produtos$ | async" class="produto-card column is-3">
-      <personalizados-lopes-edicao-card-blog (Isdeleted)="Refresh()" [BlogPost]=""></personalizados-lopes-edicao-card-blog>
-    </div> -->
+    <div *ngFor="let post of blogs" class="produto-card column is-4">
+      <personalizados-lopes-edicao-card-blog (Isdeleted)="retrieveblogs()" [BlogPost]="post"></personalizados-lopes-edicao-card-blog>
+    </div>
   </mat-card-content>
 </mat-card>

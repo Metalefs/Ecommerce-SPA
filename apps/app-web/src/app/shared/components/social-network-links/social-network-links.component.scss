@@ -1,25 +1,5 @@
 @import '../../../../variables';
-.how-social {
-  color: #999999;
-  font-size: 15px;
-  transition:all .5s ease-in;
-  // box-shadow: 2px 0px 0px #3636360a, 1px 0px 1px #4a4a4a63;
-  background-color: #fff;
-  border-radius: 5%;
-}
 
-.how-social.facebook:hover {
-  background-color: #4267B2;
-  color: #fff;
-}
-.how-social.instagram:hover {
-  background: linear-gradient(to top, #b224ef, #7579ff);;
-  color: #fff;
-}
-.how-social.orcamento:hover {
-  background-color: $capri;
-  color: #fff;
-}
 .size4 {
   width: 36px;
   height: 36px;
@@ -29,4 +9,54 @@
     width: auto;
     height: auto;
   }
+}
+
+ .social {
+  position: relative;
+  width: 100%;
+}
+
+ .social a {
+  display: inline-block;
+  margin: 10px 5px 0 0;
+  width: 35px;
+  height: 35px;
+  padding: 5px 0;
+  text-align: center;
+  font-size: 18px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+ .social a i {
+  color: #111111;
+}
+
+ .social a:hover {
+  background: #FF6F61;
+}
+
+ .social a:hover i {
+  color: #ffffff;
+}
+.how-social {
+  color: #999999;
+  font-size: 15px;
+  transition:all .5s ease-in;
+  // box-shadow: 2px 0px 0px #3636360a, 1px 0px 1px #4a4a4a63;
+  background-color: #fff;
+  border-radius: 5%;
+}
+
+.how-social.facebook a:hover {
+  background-color: #4267B2;
+  color: #fff;
+}
+.how-social.instagram a:hover {
+  background: linear-gradient(to top, #b224ef, #7579ff);;
+  color: #fff;
+}
+.how-social.orcamento a:hover {
+  background-color: $capri;
+  color: #fff;
 }

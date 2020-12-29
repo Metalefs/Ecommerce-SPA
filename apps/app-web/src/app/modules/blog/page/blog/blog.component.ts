@@ -1,17 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { fade } from 'apps/app-web/src/app/animations';
+import { RouterOutlet } from '@angular/router';
+import { fade, slider } from 'apps/app-web/src/app/animations';
+import { BlogPostService } from 'apps/app-web/src/app/data/service';
+import { BlogPost } from 'libs/data/src/lib/classes';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'personalizados-lopes-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
-  animations:[fade]
+  animations:[fade,slider]
 })
 export class BlogComponent implements OnInit {
 
-  constructor() { }
+  Blog:BlogPost[];
+  constructor(private BlogService:BlogPostService) { }
 
   ngOnInit(): void {
+    this.BlogService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.Blog = data;
+    });
   }
+  prepareRoute(outlet: RouterOutlet) {
+    try{
+      return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
+    catch(ex){
 
+    }
+  }
 }

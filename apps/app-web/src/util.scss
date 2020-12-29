@@ -29,7 +29,6 @@
 }
 
 body, html {
-	font-family: Arial, sans-serif;
 	font-size: 15px;
 	color: #666666;
   // scroll-behavior: smooth;
@@ -41,7 +40,10 @@ body, html {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
+.mat-body, .mat-body-1, .mat-typography{
+  font: initial;
+  font-family: "PT Sans", system-ui, "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif, sans-serif;
+}
 ::-moz-selection {
     color: #1106CC;
     background: #FFFF99;

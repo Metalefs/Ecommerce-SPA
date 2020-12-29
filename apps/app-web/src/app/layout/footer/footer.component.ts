@@ -19,10 +19,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FooterComponent implements OnInit {
 
   Links:Link[] = [
-    {name:"QUEM SOMOS", href:"empresa", id:"Sobre"},
-    {name:"PRODUTOS",   href:"produtos", id:"Básicos"},
-    {name:"ORÇAMENTO",  href:"orcamento", id:"Contato"},
-    {name:"INICIO",     href:"inicio",  id:"INICIO"},
+    {name:"Quem Somos", href:"empresa", id:"Sobre"},
+    {name:"Produtos",   href:"produtos", id:"Básicos"},
+    {name:"Orçamento",  href:"orcamento", id:"Contato"},
+    {name:"Inicio",     href:"inicio",  id:"INICIO"},
   ];
   links = NavLinks;
   Ano:number = new Date().getFullYear();

@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { categoriasBlogPost } from 'apps/app-web/src/app/data/models/categoriasBlogPost';
 @Component({
   selector: 'personalizados-lopes-editar-post',
   templateUrl: './editar-post.component.html',
@@ -21,12 +22,10 @@ export class EditarPostComponent implements OnInit {
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   public Editor = ClassicEditor;
-  colorCtrl = new FormControl();
-
-
   tagCtrl = new FormControl();
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 
+  categorias = categoriasBlogPost;
   status:string[] = [];
   constructor(public dialogRef: MatDialogRef<EditarPostComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  BlogPost,
@@ -40,7 +39,6 @@ export class EditarPostComponent implements OnInit {
       this.status.push(StatusPostagem[enumMember])
     }
   }
-
 
   upload($event){
     this.fileNames = '';

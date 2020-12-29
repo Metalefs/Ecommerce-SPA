@@ -1,8 +1,8 @@
 <section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column is-4">
-        <personalizados-lopes-card-blog></personalizados-lopes-card-blog>
+      <div class="column is-4" *ngFor="let post of Blog">
+        <personalizados-lopes-card-blog [Post]="post"></personalizados-lopes-card-blog>
       </div>
     </div>
   </div>

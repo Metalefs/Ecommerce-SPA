@@ -7,6 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { categoriasBlogPost } from'../../../../../../data/models/categoriasBlogPost';
 @Component({
   selector: 'personalizados-lopes-criar-post',
   templateUrl: './criar-post.component.html',
@@ -21,9 +22,7 @@ export class CriarPostComponent implements OnInit {
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   public Editor = ClassicEditor;
-  colorCtrl = new FormControl();
-
-
+  categorias = categoriasBlogPost;
   tagCtrl = new FormControl();
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 
@@ -34,9 +33,17 @@ export class CriarPostComponent implements OnInit {
       this.BlogPost = new BlogPost (
         "",
         null,
-        {Nome:'',Email:'', RedeSocial: [{Nome:'',Link:''}]},
+        {
+          Nome:'',
+          Email:'',
+          RedeSocial: [
+            {Nome:'Facebook',Link:''},
+            {Nome:'Instagram',Link:''},
+            {Nome:'Twitter',Link:''}
+          ]
+        },
         "",
-        null,
+        [""],
         "",
         [{Nome:'',Email:'',Texto:'',Respostas:[]}],
         [0],
@@ -51,7 +58,6 @@ export class CriarPostComponent implements OnInit {
       this.status.push(StatusPostagem[enumMember])
     }
   }
-
 
   upload($event){
     this.fileNames = '';

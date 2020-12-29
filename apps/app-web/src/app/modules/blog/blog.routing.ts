@@ -22,7 +22,7 @@ export const routes: Routes = [
     path: 'blog/:id',
     component: BlogComponent,
     pathMatch: 'full',
-    // data: { animation:'isRight' }
+    data: { animation:'isRight' },
 
     children: [
       {

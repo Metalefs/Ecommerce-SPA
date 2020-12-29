@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BlogPostService } from 'apps/app-web/src/app/data/service';
+import { EditarPostComponent } from '../dialogs/editar-post/editar-post.component';
 @Component({
   selector: 'personalizados-lopes-edicao-card-blog',
   templateUrl: './edicao-card-blog.component.html',
@@ -23,7 +24,7 @@ export class EdicaoCardBlogComponent implements OnInit {
 
   Editar(){
 
-    const dialogRef = this.dialog.open(EdicaoCardBlogComponent, {
+    const dialogRef = this.dialog.open(EditarPostComponent, {
       width: '90%',
       data: this.BlogPost
     });
@@ -32,7 +33,11 @@ export class EdicaoCardBlogComponent implements OnInit {
       if(post != undefined){
         const data = {
           Titulo: this.BlogPost.Titulo,
-          Conteudo: this.BlogPost.Conteudo
+          Conteudo: this.BlogPost.Conteudo,
+          Categoria: this.BlogPost.Categoria,
+          FotoCapa: this.BlogPost.FotoCapa,
+          StatusPostagem: this.BlogPost.StatusPostagem,
+          DataHoraAlteracao: post.DataHoraAlteracao = new Date(),
         };
 
         this.BlogService.update(this.BlogPost.key, data)

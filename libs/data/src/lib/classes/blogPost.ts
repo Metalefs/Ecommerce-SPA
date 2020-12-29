@@ -11,7 +11,8 @@ export class BlogPost extends MongoDocument implements entidadeBase {
     Comentarios:Comentario[];
     Avaliacao:number[];
     Visualizacoes:number;
-    StatusPostagem:StatusPostagem
+    StatusPostagem:StatusPostagem;
+    AutorUltimaModificacao:Autor;
     static readonly NomeID:string = "BlogPost";
     public key:string;
     constructor(

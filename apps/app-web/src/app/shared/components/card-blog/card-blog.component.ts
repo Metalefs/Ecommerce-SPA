@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BlogPost } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-card-blog',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-blog.component.scss']
 })
 export class CardBlogComponent implements OnInit {
-
+  @Input() Post:BlogPost;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 <footer data-aos="fade-up"  data-aos-offset="-100" class="footer footer-color flex-w flex-sb py-0 px-0 ">
-  <div class="dis-flex flex-sa flex-m margin px-6 py-3 is-vcentered">
+  <div class="dis-flex flex-sa flex-m w-full has-background-white px-6 py-3 is-vcentered">
     <div class="column txt-center">
       <h4>Formas de pagamento</h4>
       <img
@@ -19,20 +19,20 @@
   </div>
 
   <div class="w-full bg-azul py-3 px-6 shadow-light">
-    <div class="margin w-full dis-flex flex-sa">
-      <div class="columns">
+    <div class="margin w-full dis-flex flex-sa flex-m">
+      <div class="columns is-vcentered">
         <div class="column">
           <h2 class="has-text-white">ASSINE NOSSA NEWSLETTER</h2>
         </div>
         <div class="column">
-          <div class="dis-flex">
+          <div class="dis-flex flex-m">
             <div class="control">
               <input #nome  [(ngModel)]="Nome"   class="input" placeholder="digite seu nome">
             </div>
             <div class="control">
               <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="digite seu email">
             </div>
-            <button mat-flat-button (click)="AssinarNewsLetter()">OK</button>
+            <a mat-stroked-button class="has-background-light" (click)="AssinarNewsLetter()">OK</a>
           </div>
         </div>
       </div>
@@ -42,42 +42,46 @@
   <div class="w-full pink shadow-light">
     <div class="columns px-6 py-2 mb-0 pb-0 margin">
 
-      <div class="column">
-        <h3 class="footer-title">Sobre</h3>
-        <p class="txt-justify footer-text">{{(Sobre$ | async)?.Historia}}</p>
+      <div class="column social">
+        <div class="footer-widget">
+          <h3 class="mb-2 footer-title">Contate-nos</h3>
+          <div class="contact-info">
+            <p class="footer-text">{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
+            <p class="footer-text"><i class="fa fa-map-marker"></i>{{(InformacoesContato$ | async)?.Endereco}}</p>
+            <br>
+            <p class="footer-text"><i class="fa fa-phone"></i> <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
+            <p class="footer-text has-text-bold"><i class="fa fa-phone"></i> Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
+            <p class="footer-text"><i class="fa fa-envelope"></i><a class="footer-text reset-a" href="mailto:{{(InformacoesContato$ | async)?.Email}}">{{(InformacoesContato$ | async)?.Email}}</a></p>
+            <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
+
+          </div>
+        </div>
       </div>
 
       <div class="column text-center">
         <h3 class="mb-2 footer-title">Acesso Rápido</h3>
         <a *ngFor="let link of Links"
-          class="footer-text"
+          class="footer-text links"
           pageScroll
           href="#{{link.id}}"
           [routerLink]="[link.href]"
           routerLinkActive="active">
-          <p>
-            {{link.name}}
-          </p>
+          <p>{{link.name}}</p>
         </a>
       </div>
 
-      <div class="column of-x-scroll">
-        <h3 class="mb-2 footer-title">Contate-nos</h3>
-        <p class="footer-text">{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
-        <p class="footer-text">{{(InformacoesContato$ | async)?.Endereco}}</p>
-        <br>
-        <p class="footer-text">Telefone: <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
-        <p class="footer-text has-text-bold">Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
-        <p class="footer-text"><a class="footer-text reset-a" href="mailto:{{(InformacoesContato$ | async)?.Email}}">{{(InformacoesContato$ | async)?.Email}}</a></p>
+      <div class="column">
+        <h3 class="footer-title">Sobre</h3>
+        <p class="txt-justify footer-text">{{(Sobre$ | async)?.Historia}}</p>
       </div>
+
     </div>
   </div>
 
-  <div class="w-full has-background-white">
+  <div class="w-full has-background-black">
     <div class="w-full margin py-4 px-6">
-      <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
       <div class="w-full flex-sb">
-        <span class="has-text-dark"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</span>
+        <span class="has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</span>
       </div>
     </div>
     <div class="w-full py-1 px-3 flex-r">

@@ -35,14 +35,14 @@
     <ckeditor [editor]="Editor" [(ngModel)]="BlogPost.Conteudo" [data]="BlogPost.Conteudo" ></ckeditor>
   </div>
 
-  <!-- <mat-form-field appearance="">
+  <mat-form-field appearance="">
     <mat-label>Categoria</mat-label>
-    <mat-select matNativeControl (selectionChange)="SelecionarCategoria($event)" [(ngModel)]="BlogPost.Categoria" [value]="BlogPost.Categoria">
-      <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">
-        {{opt.Nome}}
+    <mat-select matNativeControl [(ngModel)]="BlogPost.Categoria" [value]="BlogPost.Categoria">
+      <mat-option *ngFor="let opt of categorias" [value]="opt">
+        {{opt}}
       </mat-option>
     </mat-select>
-  </mat-form-field> -->
+  </mat-form-field>
 
 
   <mat-form-field class="w-full">
@@ -75,6 +75,16 @@
         {{opt}}
       </mat-option>
     </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="BlogPost.Autor.RedeSocial[0].Link" placeholder="Instagram" title="Instagram">
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="BlogPost.Autor.RedeSocial[1].Link" placeholder="Facebook" title="Facebook">
+  </mat-form-field>
+  <mat-form-field class="w-full">
+    <input matInput type="text" [(ngModel)]="BlogPost.Autor.RedeSocial[2].Link" placeholder="Twitter" title="Twitter">
   </mat-form-field>
 
 </div>

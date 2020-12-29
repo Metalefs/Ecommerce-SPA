@@ -78,7 +78,7 @@
               </div>
               <span class="has-text-grey-light">
                 <em>
-                *Minimo {{Produto?.QuantidadeMinima}} unidade
+                *Minimo {{Produto?.QuantidadeMinima}} unidades
                 </em>
               </span>
             </div>
@@ -175,7 +175,7 @@
             <div class="column">
               <mat-card>
                 <mat-card-header>
-                  <mat-card-subtitle>Arte</mat-card-subtitle>
+                  <mat-card-subtitle>Frente</mat-card-subtitle>
                 </mat-card-header>
                 <figure class="image is-128x128">
                   <img mat-mat-card-image [src]="this.Produto.Arte" height="200">
@@ -226,7 +226,7 @@
               <mat-divider></mat-divider>
               <div class="py-3">
                 <div class="columns is-mobile">
-                  <div class="column is-6-mobile">
+                  <div class="column ">
                     <p><em>Cores</em></p>
                     <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
                       <mat-label>Selecione uma cor</mat-label>

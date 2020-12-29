@@ -1,17 +1,26 @@
-<section class="section ">
+<section class="section " id="Blog">
+  <div class="hero is-medium">
+    <div class="hero-title">
+      <h1>Blog</h1>
+    </div>
+  </div>
   <div class="has-background-white columns">
     <div class="column is-12-mobile">
-      <router-outlet @fadeIn #outlet3></router-outlet>
+      <router-outlet [@routeAnimations]="prepareRoute(outlet3)" @fadeIn #outlet3></router-outlet>
     </div>
     <div class="column is-2-desktop is-12-mobile">
       <!--================Blog Area =================-->
-      <section id="blog-section" class="blog_area section-paddingr">
+      <section id="blog-section" class="blog_area section-paddingr card">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 mb-5 mb-lg-0">
+            <div class="columns">
+                <div class="column is-8-desktop mb-5 mb-lg-0">
                     <div id="blogs-list" class="blog_left_sidebar">
 
-                       teste
+                       <mat-list>
+                         <mat-list-item *ngFor="let title of Blog">
+                            {{title.Titulo}}
+                         </mat-list-item>
+                       </mat-list>
 
                     </div>
                 </div>

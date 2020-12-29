@@ -1,8 +1,6 @@
 
 @import '../../../variables';
-::ng-deep p{
-  font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
-}
+
 .z-top{
   z-index: 1;
   position: relative;
@@ -13,14 +11,25 @@
 }
 .base{
   /* identical to box height */
-  color:#3a3a3a;
-  // color:white;
-  font-family: system-ui;
+  // color:#3a3a3a;
+  color:white;
 }
 a{
   @extend .base;
   text-decoration: none;
   display: inline;
+  &.footer-text.links p:hover{
+    color: #FF6F61;
+    padding-left: 10px;
+    transition: 1s all;
+  }
+  &.footer-text.links p::before {
+    content: '\f061';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    padding-right: 5px;
+  }
+
 }
 .footer-title{
   @extend .base;
@@ -31,18 +40,19 @@ a{
   align-items: center;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
-  padding: 10px 0;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  border-bottom: 3px double #ffffff;
   border-left: none;
   border-right: none;
   margin-bottom: 15px;
+  color: #fff;
 }
 .footer-text{
   @extend .base;
   font-size: 14px;
-  color:#999;
+  color:#fff;
   & :hover{
     color: #3a3a3a;
   }
@@ -75,4 +85,124 @@ span{
   font-family: Open Sans;
   color: white;
   text-transform: lowercase;
+}
+.control{
+  & .input{
+
+    border-radius: 1rem;
+  }
+  margin: 10px;
+}
+
+/**********************************/
+/********** Footer CSS ************/
+/**********************************/
+.footer {
+  position: relative;
+  padding: 60px 0 0 0;
+  background: #111111;
+}
+
+.footer .footer-widget {
+  position: relative;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.footer .footer-widget .title {
+  color: #ffffff;
+  letter-spacing: 1px;
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  border-bottom: 3px double #ffffff;
+}
+
+.footer .footer-widget p {
+  color: #ffffff;
+}
+
+.footer .footer-widget ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer .footer-widget ul li {
+  margin-bottom: 12px;
+}
+
+.footer .footer-widget ul li:last-child {
+  margin-bottom: 0;
+}
+
+.footer .footer-widget ul li a {
+  color: #ffffff;
+  white-space: nowrap;
+  display: block;
+  line-height: 23px;
+}
+
+.footer .footer-widget ul li a::before {
+  content: '\f061';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  padding-right: 5px;
+}
+
+.footer .footer-widget ul li a:hover {
+  padding-left: 10px;
+  color: #FF6F61;
+}
+
+.footer .contact-info p {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer .contact-info p i {
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+
+.footer .newsletter {
+  position: relative;
+  width: 100%;
+}
+
+.footer .newsletter form {
+  position: relative;
+  width: 100%;
+}
+
+.footer .newsletter input {
+  width: 100%;
+  height: 35px;
+  padding: 0 15px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+
+.footer .newsletter .btn {
+  position: absolute;
+  width: 80px;
+  height: 35px;
+  top: 0;
+  right: 0;
+  padding: 0 15px;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  font-size: 14px;
+  border: 1px solid #ffffff;
+  border-radius: 0 4px 4px 0;
+}
+
+.footer .newsletter .btn:hover {
+  background: #FF6F61;
+}
+
+.footer .newsletter input:focus,
+.footer .newsletter .btn:focus {
+  box-shadow: none;
 }
