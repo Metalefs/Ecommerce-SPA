@@ -30,13 +30,16 @@
         </div>
         <div class="column">
           <div class="dis-flex flex-m">
+            <mat-icon class="has-text-light">mail</mat-icon>
+            <!-- <div class="control">
+              <input #nome  [(ngModel)]="Nome"   class="input" placeholder="nome">
+            </div> -->
             <div class="control">
-              <input #nome  [(ngModel)]="Nome"   class="input" placeholder="digite seu nome">
+              <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="email">
             </div>
-            <div class="control">
-              <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="digite seu email">
-            </div>
-            <a mat-stroked-button class="has-background-light has-text-black" (click)="AssinarNewsLetter()">OK</a>
+            <a mat-icon-button class="has-background-light has-text-black" (click)="AssinarNewsLetter()">
+              <mat-icon>chevron_right</mat-icon>
+            </a>
           </div>
         </div>
       </div>

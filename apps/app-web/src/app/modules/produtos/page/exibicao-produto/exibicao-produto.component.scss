@@ -2,24 +2,48 @@
 gallery{
   background-color:transparent !important;
 }
+
+.bg{
+  background:url(/assets/images/empresa/double-bubble-outline.png);
+  padding-bottom: 1rem;
+}
 @media only screen and (max-width: 823px){
   gallery{
     height:40vh;
   }
+
+}
+@media only screen and (max-width: 1023px){
+
+  .bg{
+    padding-top: 0;
+  }
+
 }
 :host ::ng-deep gallery-slider:hover{
   transition: 2s all ease-in-out;
   cursor: grab;
   transform:scale(1);
 }
-.bg{
-  background:url(/assets/images/empresa/double-bubble-outline.png);
-}
 .section{
-  animation: shrink 1s ease forwards;
-  animation-delay: 1s;
+  animation: shrink 1s ease reverse;
+  // animation-delay: 1s;
   margin: 0px auto;
 }
+.star-width{
+  max-width: max-content;
+  height: 35px;
+}
+:host ::ng-deep .rating.small{
+font-size: 15px !important;
+}
+.rating.small{
+  font-size: 15px !important;
+}
+:host ::ng-deep .label-value.small, .rating.small .label-value{
+  font-size: 15px !important;
+
+  }
 .tamanho-produto{
   &.active{
     border: 1px solid ;

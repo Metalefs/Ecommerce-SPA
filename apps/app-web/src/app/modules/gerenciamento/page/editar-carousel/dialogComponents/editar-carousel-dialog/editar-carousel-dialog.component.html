@@ -97,7 +97,6 @@
     <input type="color" matInput [(ngModel)]="Carousel.captionBackground"  placeholder= 'rgba(0, 0, 0, .35)' title="Cor de Fundo da legenda">
   </mat-form-field>
 
-  <mat-label>Lazy loading</mat-label>
   <mat-checkbox matNativeControl [(ngModel)]="Carousel.lazyLoad"  [checked]= "false">
     Lazyloading
   </mat-checkbox>
@@ -112,22 +111,18 @@
     <input matInput [(ngModel)]="Carousel.width"  placeholder= '100%' title="Largura">
   </mat-form-field>
 
-  <mat-label>Tela cheia</mat-label>
   <mat-checkbox matNativeControl [(ngModel)]="Carousel.fullscreen"  [checked]= "false">
     Tela cheia
   </mat-checkbox>
 
-  <mat-label>Zoom</mat-label>
   <mat-checkbox matNativeControl [(ngModel)]="Carousel.enableZoom"  [checked]= "false">
     Habilitar Zoom
   </mat-checkbox>
 
-  <mat-label>Panning</mat-label>
   <mat-checkbox matNativeControl [(ngModel)]="Carousel.enablePan"  [checked]= "false">
     Habilitar panning
   </mat-checkbox>
 
-  <mat-label>Loop</mat-label>
   <mat-checkbox matNativeControl [(ngModel)]="Carousel.noLoop"  [checked]= "false">
     Sem loop
   </mat-checkbox>

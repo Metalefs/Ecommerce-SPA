@@ -14,6 +14,11 @@
   // color:#3a3a3a;
   color:white;
 }
+span{
+  font-family: Open Sans;
+  color: white;
+  text-transform: lowercase;
+}
 a{
   @extend .base;
   text-decoration: none;
@@ -52,7 +57,6 @@ a{
 .footer-text{
   @extend .base;
   font-size: 14px;
-  color:#fff;
   & :hover{
     color: #3a3a3a;
   }
@@ -75,13 +79,7 @@ a{
   background-repeat: no-repeat;
   background: url(/assets/images/footer_curve.svg);
 }
-@media only screen and  (min-width: 320px ) and (max-width: 1023px) {
 
-  .footer::before{
-    left: 0;
-  }
-
-}
 @media only screen and  (min-width: 1023px) {
 
   .img-badge{
@@ -89,11 +87,7 @@ a{
     width: 300px !important;
   }
 }
-span{
-  font-family: Open Sans;
-  color: white;
-  text-transform: lowercase;
-}
+
 .control{
   & .input{
 
@@ -213,4 +207,37 @@ span{
 .footer .newsletter input:focus,
 .footer .newsletter .btn:focus {
   box-shadow: none;
+}
+@media only screen and  (min-width: 320px ) and (max-width: 1023px) {
+  .base{
+    /* identical to box height */
+    // color:#3a3a3a;
+    color: #666;
+  }
+  span{
+    font-family: Open Sans;
+    color: #666;
+    text-transform: lowercase;
+  }
+  .footer::before{
+    left: 0;
+  }
+  .footer{
+    background: #f1f1f1;
+  }
+  .footer .contact-info p {
+    color: #999;
+  }
+  .footer .contact-info p i {
+    color: #999;
+  }
+  .footer .footer-widget .title {
+    color: #999;
+  }
+  .footer .footer-widget p {
+    color: #999;
+  }
+  .footer .footer-widget ul li a {
+    color: #999;
+  }
 }

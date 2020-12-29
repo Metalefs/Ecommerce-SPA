@@ -27,7 +27,7 @@ import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-s
 })
 export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
-  textoAdicionar:string = 'Adicionar ao carrinho';
+  textoAdicionar:string = 'Comprar';
   textoAtualizar:string = 'Atualizar carrinho';
   textoEsgotado:string  = 'Esgotado';
   Url:string;
@@ -65,7 +65,7 @@ export class ExibicaoProdutoComponent implements OnInit {
             };
           }
           return {
-            thumbPosition: ThumbnailsPosition.Bottom,
+            thumbPosition: ThumbnailsPosition.Left,
             thumbWidth: 120,
             thumbHeight: 90
           };

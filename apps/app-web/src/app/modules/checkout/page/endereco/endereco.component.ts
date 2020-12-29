@@ -81,24 +81,28 @@ export class EnderecoComponent implements OnInit {
   }
   Pagar:boolean = false;
   goCheckout(){
-    this.Orcamento$.subscribe(orcamento => {
-      this.Loading = true;
-      this.integracoesService.Ler().subscribe(x=>{
-        this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
-          this._init_point = result;
-          console.log(this._init_point);
-          this.Loading = false;
-          this.Pagar = true;
-          (function smoothscroll() {
-            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            if (currentScroll > 0) {
-                window.requestAnimationFrame(smoothscroll);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
-            }
-          })();
+    this.ErroCadastro = true;
+    if(this.ValidarDados()){
+      this.ErroCadastro = false;
+      this.Orcamento$.subscribe(orcamento => {
+        this.Loading = true;
+        this.integracoesService.Ler().subscribe(x=>{
+          this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
+            this._init_point = result;
+            console.log(this._init_point);
+            this.Loading = false;
+            this.Pagar = true;
+            (function smoothscroll() {
+              var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+              if (currentScroll > 0) {
+                  window.requestAnimationFrame(smoothscroll);
+                  window.scrollTo(0, currentScroll - (currentScroll / 8));
+              }
+            })();
+          })
         })
       })
-    })
+    }
   }
 
   ngOnDestroy(){

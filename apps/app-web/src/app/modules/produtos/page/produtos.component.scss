@@ -7,8 +7,8 @@
   box-shadow: none;
 }
 .section{
-  animation: shrink 1s ease forwards;
-  animation-delay: 1s;
+  animation: shrink 1s ease reverse;
+  // animation-delay: 1s;
   margin: 0px auto;
 }
 .scroll-y{
