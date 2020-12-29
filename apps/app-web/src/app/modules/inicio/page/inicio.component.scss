@@ -16,5 +16,21 @@
   box-shadow: 0 10px 60px #00000057;
 }
 :host ::ng-deep .carousel-cells{
-  // will-change: auto !important;
+  min-width:100% ;
+  width:100% ;
+}
+@keyframes show{
+  0%{
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    position: absolute;
+    display: block;
+  }
+  100%{
+    visibility: show;
+    opacity: 1;
+    position: relative;
+    display: block !important;
+  }
 }

@@ -1,7 +1,7 @@
-<section class="section">
+<section class="section pt-1">
   <div class="container">
     <mat-spinner *ngIf="loading"></mat-spinner>
-    <div class="columns is-multiline">
+    <div class="columns is-multiline ">
       <div class="column is-4" *ngFor="let post of Blog">
         <personalizados-lopes-card-blog [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
       </div>

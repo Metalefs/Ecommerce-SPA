@@ -45,14 +45,14 @@
         </h1>
     </div>
     <carousel
-        [height]="500"
+        [height]="400"
         [freeScroll]="true"
         [loop]="true"
-        class="z-index-1 of-y-scroll"
+        class="z-index-1 columns is-multiline"
         >
-      <div class="carousel-cell z-index-1" *ngFor="let post of Blog">
-        <personalizados-lopes-card-blog [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
-      </div>
+          <div class=" carousel-cell column is-4 z-index-1" *ngFor="let post of Blog">
+            <personalizados-lopes-card-blog [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
+          </div>
     </carousel>
   </div>
 </div>
