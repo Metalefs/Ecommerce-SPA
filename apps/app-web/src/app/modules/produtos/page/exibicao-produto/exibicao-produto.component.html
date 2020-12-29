@@ -62,7 +62,7 @@
           </div>
           <div class="columns is-multiline is-vcentered pb-0">
             <div class="column is-4">
-              <p><em>Quantidade</em></p>
+              <p *ngIf="Produto?.QuantidadeMinima > 1"><em>Quantidade</em></p>
               <div class="field w-full">
                 <div class="control border is-large flex-c flex-m w-full">
                   <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -76,7 +76,7 @@
                   </button>
                 </div>
               </div>
-              <span class="has-text-grey-light">
+              <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
                 <em>
                 *Minimo {{Produto?.QuantidadeMinima}} unidades
                 </em>
@@ -120,7 +120,7 @@
                 </button>
             </div>
           </div>
-          <div class="columns of-x-scroll">
+          <div class="columns">
             <div class="column">
               <button mat-flat-button class="button file is-info has-name pb-3">
                 <label class="file-label">

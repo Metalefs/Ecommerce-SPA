@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 export class ListagemPostsComponent implements OnInit {
 
   Blog:BlogPost[];
+  loading:boolean = true;
   constructor(private BlogService:BlogPostService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,7 @@ export class ListagemPostsComponent implements OnInit {
       )
     ).subscribe(data => {
       this.Blog = data;
+      this.loading = false;
     });
   }
 

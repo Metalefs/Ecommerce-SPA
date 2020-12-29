@@ -17,7 +17,6 @@ export class ExibicaoBlogComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.activeRoute.snapshot.params['id'];
-    alert(id);
     this.BlogService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>

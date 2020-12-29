@@ -283,7 +283,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   meanRating(){
     if (!this.Produto.Rating)
     return 0;
-    return sum(this.Produto.Rating) / this.Produto.Rating.length
+    return (sum(this.Produto.Rating) / this.Produto.Rating.length).toFixed(1)
   }
 
   onRatingChange = ($event: RatingChangeEvent) => {

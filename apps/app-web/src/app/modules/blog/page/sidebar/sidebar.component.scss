@@ -1,0 +1,18 @@
+
+/*-Credits-*/
+.credit-block {
+	padding: 20px;
+	background-color: #FFF;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+.credit-block.sources a{
+	margin: 10px 0px;
+	display: block;
+}
+.credit-block.license a.lined{
+	text-decoration:underline;
+}
+.credit-block i.fa {
+	padding-right:10px;
+}

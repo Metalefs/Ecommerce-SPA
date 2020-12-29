@@ -345,6 +345,26 @@ img{
   --background-default: #f4faff;
 }
 
+
+/***/
+
+/*!
+ * Temlate Name: Launch
+ * Version: 1.0
+ * Author: Justin Audain
+ * License: Creative Commons Attribution 3.0 License
+ * Website: http://themes.audaindesigns.com
+ */
+
+/*-Base-*/
+
+p {
+	color:#A7A7A7;
+}
+a {
+	color:#85AD90;
+}
+
 /*-Section Blocks-*/
 .section-block {
 	background-color: #F7F7F7;
@@ -376,6 +396,11 @@ img{
 	padding: 10px 0px;
 	font-size: 25px;
 	font-weight:700;
+}
+
+/*-Main Content-*/
+.main-content {
+	padding:40px 0px;
 }
 
 /*-Profile Summary-*/
@@ -419,3 +444,126 @@ img{
 .profile-contents ul li a:hover {
 	background-color:#779A81;
 }
+
+
+/*-Tabs-*/
+.nav-tabs {
+	border:0;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	color: #FFF;
+	background-color: #99DEAB;
+	border: 0;
+	border-radius: 4px;
+	font-weight:700;
+}
+.nav-tabs>li>a, .nav-tabs>li>a:hover {
+	border:0;
+	margin-right: 10px;
+	color:#A7A7A7;
+}
+.tab-content .section-title {
+	margin-bottom: 20px;
+	border-bottom: 1px solid #E2E2E2;
+	display: block;
+}
+
+/*-Updates-*/
+.update-post {
+	margin-bottom: 30px;
+	padding: 10px;
+	background-color: #FDFDFD;
+	border-radius: 4px;
+}
+.update-post .update-title {
+	margin: 10px 0px;
+	font-weight: 700;
+}
+.update-post .update-date {
+	margin: 0px 0px 15px 0px;
+	display: block;
+	color: #A7A7A7;
+	font-size: 12px;
+}
+
+
+
+/*-Buttons-*/
+.btn {
+	border:0;
+}
+.btn.btn-launch {
+	background-color: #99DEAB;
+	color: #FFF;
+	font-size: 17px;
+	font-weight: 600;
+	padding: 10px 25px;
+}
+.btn.btn-launch:hover, .btn.btn-launch:focus,.btn.btn-reward, .btn.btn-reward:hover, .btn.btn-reward :focus {
+	background-color:#85AD90;
+	box-shadow:none;
+}
+.btn.btn-reward {
+	background-color: #99DEAB;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+.btn.btn-signup {
+	background-color: #99DEAB;
+	color: #fff;
+	height: 40px;
+	width: 43px;
+	margin-left: 10px;
+	border: 2px solid #fff;
+	text-align: center;
+}
+.btn.btn-contact {
+	background-color: #85AD90;
+	color: #fff;
+	font-weight:700;
+}
+.btn.btn-contact:hover, .btn.btn-contact:focus {
+	background-color: #779A81;
+}
+.btn.btn-contact i.fa {
+	margin-right:10px;
+}
+.btn.btn-follow {
+	background-color: #81A8F1;
+	color: #fff;
+	margin-bottom:10px;
+}
+.btn.btn-download {
+	background-color: #85AD90;
+	color: #fff;
+}
+
+
+/*-Footer-*/
+.footer {
+	background-color: #85AD90;
+	padding: 10px;
+	text-align:center;
+}
+.copyright {
+	color:#F7F7F7;
+}
+.copyright a {
+	background: #fff;
+	color: #85AD90;
+	padding: 0px 5px;
+	margin-left: 4px;
+	border-radius: 4px;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 2px;
+}
+
+/*-Overrides-*/
+.btn, input{
+	outline:none;
+}
+
