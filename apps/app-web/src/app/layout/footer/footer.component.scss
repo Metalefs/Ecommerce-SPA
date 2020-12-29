@@ -64,10 +64,7 @@ a{
 .pink{
   // background: #ff4081;
 }
-.img-badge{
-  height: 110px !important;
-  width: 300px !important;
-}
+
 .footer::before{
   content: '';
   position: absolute;
@@ -84,6 +81,13 @@ a{
     left: 0;
   }
 
+}
+@media only screen and  (min-width: 1023px) {
+
+  .img-badge{
+    height: 110px !important;
+    width: 300px !important;
+  }
 }
 span{
   font-family: Open Sans;
