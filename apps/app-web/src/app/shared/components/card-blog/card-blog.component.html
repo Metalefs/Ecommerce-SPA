@@ -1,20 +1,18 @@
-<a [href]="['/blog/'+ Post.Titulo]">
-<div class="card latest-blog">
-  <div class="blog-post-box card-body">
-    <figure class="image has-ratio"> <img id="logo-blog"
-        [src]="Post?.FotoCapa"
-        alt="blogpostimage"> </figure>
-    <div>
-      <ul>
-        <li> <p class="titulo-produto">Por: {{Post?.Autor?.Nome}} &nbsp; &nbsp;|</p></li>
-      </ul>
-        <h5 style="color:black;text-align:left;" class="card-title">
-          {{Post.Titulo}}
-        </h5>
-      <span> 06/05/2020 14:56:00</span>
-      <p style="color:black;text-align:left;"></p>
-      <p class="section" [innerHTML]="Post?.Conteudo?.substr(0,140)"> </p><span>...</span>
-    </div>
-  </div>
-</div>
-</a>
+<mat-card [routerLink]="['/blog/'+ Post.Titulo]"  class="card latest-blog clickable hoverable">
+  <figure class="image is-square">
+    <img mat-card-image id="logo-blog"
+      [src]="Post?.FotoCapa"
+      alt="blogpostimage">
+  </figure>
+
+  <mat-card-footer class="blog-post-box card-body">
+    <ul>
+      <li> <p class="titulo-produto">Por: {{Post?.Autor?.Nome}} &nbsp; &nbsp;|</p></li>
+    </ul>
+    <h3>
+      {{Post.Titulo}}
+    </h3>
+    <span> 06/05/2020 14:56:00</span>
+    <p class="is-size-6	" [innerHTML]="Post?.Conteudo?.substr(0,140)+'<span>...</span>'"> </p>
+  </mat-card-footer>
+</mat-card>

@@ -40,10 +40,14 @@
     </span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
-        <a (click)="SetActiveNav(link)"
+        <a
+          pageScroll
+          (click)="SetActiveNav(link)"
           [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
           class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
           [routerLink]="link.href"
+          routerLinkActive="Active"
+          href="#{{link.name == 'Básicos' ? 'topo' : link.name}}"
           routerLinkActive="true">
           <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
           {{link.name == "Básicos"? 'Produtos' : link.name}}

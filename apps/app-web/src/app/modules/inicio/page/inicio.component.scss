@@ -15,9 +15,13 @@
 .shadow{
   box-shadow: 0 10px 60px #00000057;
 }
-:host ::ng-deep .carousel-cells{
+:host ::ng-deep .carousel-cells:nth-child(1){
   min-width:100% ;
   width:100% ;
+}
+.blog-post{
+  max-width: 200px;
+  max-height: 400px;
 }
 @keyframes show{
   0%{

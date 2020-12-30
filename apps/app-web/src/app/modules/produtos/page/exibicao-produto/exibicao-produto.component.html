@@ -15,7 +15,7 @@
     </nav>
     <div class="columns has-background-white" id="PRODUTO">
       <div class="column box mb-0 pos-sticky top-0 pt-3">
-        <gallery id="myGallery" class="pos-sticky bellow-nav" *ngIf="galleryConfig$ | async; let config" [counter]="false"
+        <gallery gallerize id="myGallery" class="pos-sticky bellow-nav" *ngIf="galleryConfig$ | async; let config" [counter]="false"
         [thumbWidth]="config.thumbWidth" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
       </gallery>
       </div>
@@ -174,7 +174,7 @@
                 </button>
               </div>
             </div>
-            <div class="box columns"  *ngIf="this.Produto.Arte">
+            <div  class="box columns"  *ngIf="this.Produto.Arte">
               <a>Como essa arte será usada no produto?</a>
               <div class="column">
                 <mat-card>

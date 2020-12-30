@@ -1,14 +1,43 @@
 .card{
   max-height: 500px;
 }
+.card.latest-blog {
+	-webkit-transform: translateY(-20px);
+				transform: translateY(-20px);
+}
+.mat-card{
+  padding: 0;
+  animation: bounce 1s ease forwards;
+
+}
+.image.is-square, .image.is-1by1 {
+  padding-top: 73%;
+
+}
+.mat-card-image,img{
+  padding:0 !important;
+  margin:0 !important;
+  background: rgb(255, 255, 255);
+  position: relative;
+  border-radius: 0;
+  transition: 1s all;
+  display: flex;
+  filter: grayscale(0) !important;
+  &.show{
+    animation: show 1s ease forwards !important;
+  }
+  &.hide{
+    animation: hide 1s ease forwards !important;
+  }
+}
 		.latest-blog .blog-post-box {
 			float:left;
 			width:100%;
 			border-radius:4px;
 			background:#FFFFFF;
 			position:relative;
-            padding: 6px 6px 0px 6px;
-    		margin: 2px 2px 0px 2px;
+      padding: 6px 6px 0px 6px;
+      margin: 2px 2px 0px 2px;
 
 			-webkit-box-shadow: 0px 0px 22px -7px rgba(24,30,110,0.26);
 			-moz-box-shadow: 0px 0px 22px -7px rgba(24,30,110,0.26);
@@ -16,43 +45,26 @@
 		}
 
 		.blog-post-content {
-			float:left;
 			width:100%;
-			padding:25px;
 		}
 
 
 		.latest-blog figure {
-			float:left;
 			width:100%;
 		}
 
 		.latest-blog figure img {
-			float: left;
 			text-align: center;
 			width: 100%;
 			border-radius:10px 10px 0 0;
 		}
 
 		@media screen and (min-width:992px) and (max-width: 1022px) {
-			.latest-blog figure img {
-				height: 120px !important;
-			}
+
 			.blog-post-content {
 				float: left !important;
 				width: 100% !important;
 				padding: 20px !important;
-			}
-		}
-
-		@media screen and (min-width:1023px) and (max-width: 1200px) {
-			.latest-blog figure img {
-				height: 180px !important;
-			}
-		}
-		@media screen and (min-width:1201px) {
-			.latest-blog figure img {
-				height: 205px !important;
 			}
 		}
 
@@ -101,13 +113,13 @@
 		}
 
 		.blog-post-box p {
-            float: left;
-            font-size: 15px;
-            font-weight: normal;
-            color: #708198;
-            text-align: left;
-            margin: 0;
-            line-height: 1.8;
+      float: left;
+      font-size: 15px;
+      font-weight: normal;
+      color: #708198;
+      text-align: left;
+      margin: 0;
+      line-height: 1.8;
 		}
 
 		@keyframes bounce {

@@ -44,15 +44,14 @@
           BLOG
         </h1>
     </div>
-    <carousel
-        [height]="400"
-        [freeScroll]="true"
-        [loop]="true"
-        class="z-index-1 columns is-multiline"
-        >
-          <div class=" carousel-cell column is-4 z-index-1" *ngFor="let post of Blog">
-            <personalizados-lopes-card-blog [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
+    <div>
+      <swiper #swiper>
+        <div class="columns ">
+          <div class="column is-4" *ngFor="let post of Blog">
+            <personalizados-lopes-card-blog class="blog-post" [Post]="post" *ngIf="CanView(post)"></personalizados-lopes-card-blog>
           </div>
-    </carousel>
+        </div>
+      </swiper>
+    </div>
   </div>
 </div>

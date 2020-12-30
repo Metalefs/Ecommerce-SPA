@@ -8,7 +8,12 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from  'ng-gallery/lightbox';
 
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { StarRatingModule } from 'angular-star-rating';
@@ -32,6 +37,11 @@ import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 import { CardBlogComponent } from './components/card-blog/card-blog.component';
 
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
+
 @NgModule({
   declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent],
   imports: [
@@ -49,6 +59,11 @@ import { CardBlogComponent } from './components/card-blog/card-blog.component';
     ScrolltopModule,
     CountUpModule,
     IvyCarouselModule,
+    GalleryModule,
+    LightboxModule.withConfig({
+      panelClass: 'fullscreen'
+    }),
+    SwiperModule,
     StarRatingModule.forRoot(),
     NgxMaskModule.forRoot(),
   ],
@@ -77,7 +92,16 @@ import { CardBlogComponent } from './components/card-blog/card-blog.component';
     MercadopagoButtonComponent,
     CardBlogComponent,
     IvyCarouselModule,
+    GalleryModule,
+    LightboxModule,
+    SwiperModule,
     StarRatingModule
+  ],
+  providers:[
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ]
 })
 export class SharedModule { }

@@ -2,7 +2,12 @@
 gallery{
   background-color:transparent !important;
 }
-
+:host ::ng-deep #lightbox-lightbox > gallery{
+  background-color:#000000bf !important;
+}
+#lightbox-lightbox > gallery{
+  background-color:#000000bf !important;
+}
 .bg{
   background:url(/assets/images/empresa/double-bubble-outline.png);
   padding-bottom: 1rem;

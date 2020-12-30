@@ -5,7 +5,6 @@ import { ProdutosComponent } from './page/produtos.component';
 import { ProdutosPageRoutes } from './produtos.routing';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareButtonModule } from 'ngx-sharebuttons/button';
-import { GalleryModule } from 'ng-gallery';
 
 import { SharedModule } from '../../shared/shared.module';
 
@@ -32,14 +31,12 @@ import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-
     ShareModule,
     ShareButtonModule,
     ShareIconsModule,
-    GalleryModule,
   ],
   exports: [
     FontAwesomeModule,
     ShareButtonsModule,
     ShareModule,
     ShareButtonModule,
-    GalleryModule,
   ]
 })
 export class ProdutosModule { }
