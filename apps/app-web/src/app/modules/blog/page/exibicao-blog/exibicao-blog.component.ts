@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { cardFlip, fade } from 'apps/app-web/src/app/animations';
 import { BlogPostService } from 'apps/app-web/src/app/data/service';
 import { BlogPost } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/operators';
@@ -7,10 +8,12 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'personalizados-lopes-exibicao-blog',
   templateUrl: './exibicao-blog.component.html',
-  styleUrls: ['./exibicao-blog.component.scss']
+  styleUrls: ['./exibicao-blog.component.scss'],
+  animations:[cardFlip,fade]
 })
 export class ExibicaoBlogComponent implements OnInit {
   Post:BlogPost;
+  state = "flipped"
   constructor(private activeRoute:ActivatedRoute,
     private router: Router,
     private BlogService:BlogPostService) { }
@@ -25,7 +28,20 @@ export class ExibicaoBlogComponent implements OnInit {
       )
     ).subscribe(data => {
       this.Post = data.filter(x=>x.Titulo == id)[0]
-    });
+    });setTimeout(()=>{
+      this.flip()
+    },0)
   }
 
+  ngOnDestroy(){
+    this.flip()
+  }
+
+  flip(){
+    if (this.state === "default") {
+      this.state = "flipped";
+    } else {
+      this.state = "default";
+    }
+  }
 }

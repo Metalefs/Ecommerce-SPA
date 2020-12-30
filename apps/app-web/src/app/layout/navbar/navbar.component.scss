@@ -43,18 +43,18 @@ a span{
 .mat-list-item a.active-nav{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color: black;
-  font-weight: bold;
+  color: $red2;
+
 }
 .mat-list-item a.active-nav .mat-icon.inst{
   -webkit-transition: all 0.2s ease-in-out 0s;
   transition: all 0.2s ease-in-out 0s;
-  color:black;
-  background:black;
+  color:$red2;
+  background:$red2;
 }
 a {
   position: relative;
-  color: $gray-web;
+  color: 353232;
   text-decoration: none;
   transition: all .3s ease;
 }
@@ -87,7 +87,7 @@ a:before {
 .mat-subheader{
   font-family: Montserrat;
   font-weight: 300;
-  color:$gray-web;
+  color:#353232;
 }
 .mat-list-text{
   padding: 0;

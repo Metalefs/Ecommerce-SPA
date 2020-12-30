@@ -7,11 +7,11 @@ import { Select, Store } from '@ngxs/store';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CheckoutComponent } from '../../modules/checkout/page/checkout/checkout.component';
 
-import { Categoria, Orcamento, Sobre } from 'libs/data/src/lib/classes';
+import { Categoria, Orcamento, Produto, Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
-import { NavStateState, OrcamentoState, SobreState } from '../../data/store/state';
+import { NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
 import { NavLinksRes } from '../../data/models/navlinks';
 
@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
   IsSobreLoadedSub: Subscription;
   links = NavLinksRes;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
+  @Select(ProdutoState.ObterListaProdutos) Produto$: Observable<Produto[]>;
   route: string;
   search:boolean=false;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;

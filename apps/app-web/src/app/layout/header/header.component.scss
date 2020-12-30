@@ -114,6 +114,10 @@ a{
   border-left-width: 1px;
   margin-left: -13px;
 }
+a.nav-link:hover{
+
+  color: red !important;
+}
 .inicio{
   border-left: none;
 }
