@@ -31,7 +31,7 @@ gallery{
   transform:scale(1);
 }
 .section{
-  animation: shrink 1s ease reverse;
+  animation: shrink 1s ease forwards;
   // animation-delay: 1s;
   margin: 0px auto;
 }

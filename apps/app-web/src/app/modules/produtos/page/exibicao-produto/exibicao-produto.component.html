@@ -31,12 +31,13 @@
           Mais informações
           <mat-icon>keyboard_arrow_down</mat-icon>
         </a>
+        <mat-chip-list class="is-left">
+          <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</mat-chip>
+        </mat-chip-list>
       </div>
 
       <div class="column px-3 has-background-white z-index-2 pos-sticky">
-        <!-- <div [ngClass]="Produto.Status != statusProduto.esgotado ? 'has-background-success':'has-background-danger'">
-          <p class="mx-1 py-1 box px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</p>
-        </div> -->
+
         <div class="columns is-multiline mb-0 pb-0">
           <div class="column is-6">
             <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
@@ -141,7 +142,7 @@
                     (click)="AdicionarAoOrcamento()"
                     class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium">
                     {{textoAdicionar}}
-                    <mat-icon>shopping_bag</mat-icon>
+                    <!-- <mat-icon>shopping_bag</mat-icon> -->
                   </button>
                   <mat-list>
                     <mat-list-item *ngIf="! Produto?.Tamanho">

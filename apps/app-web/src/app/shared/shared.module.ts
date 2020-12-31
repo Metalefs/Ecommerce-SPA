@@ -39,7 +39,19 @@ import { CardBlogComponent } from './components/card-blog/card-blog.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
-  slidesPerView: 'auto'
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  observer:true,
+  coverflowEffect: {
+    rotate: 30,
+    slideShadows: false,
+  },
+  scrollbar: {
+    el: '.swiper-scrollbar',
+    draggable: true,
+  },
 };
 
 @NgModule({

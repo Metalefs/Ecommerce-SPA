@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { entities } from '@personalizados-lopes/data';
@@ -8,6 +8,9 @@ import { map } from 'rxjs/operators';
 import { BlogPostService } from '../../../data/service';
 import { CanViewPost } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { trigger } from '@angular/animations';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'personalizados-lopes-inicio',
@@ -21,7 +24,54 @@ export class InicioComponent implements OnInit {
   user:Usuario;
   @Select(ClienteState.areClientesLoaded) areClientesLoaded$;
   areClientesLoadedSub: Subscription;
-  constructor(private BlogService:BlogPostService, private authService: AuthenticationService ) { }
+  slidesPerView:number=5;
+  constructor(
+    breakpointObserver: BreakpointObserver,
+    private BlogService:BlogPostService,
+    private authService: AuthenticationService ) {
+      this.swiperConfig$ = breakpointObserver.observe([
+        Breakpoints.HandsetPortrait
+      ]).pipe(
+        map(res => {
+          if (res.matches) {
+              return {
+                direction              : 'horizontal',
+                keyboard               : true,
+                // loop                   : true,
+                loopFillGroupWithBlank : false,
+                preloadImages          : true,
+                lazy                   : false,
+                observer               : true,
+                navigation             : true,
+                slidesPerView:1,
+                autoplay: {
+                  delay               : 4000,
+                  disableOnInteraction: false,
+                },
+              }
+          }
+          else{
+            return {
+              direction              : 'horizontal',
+              keyboard               : true,
+              // loop                   : true,
+              loopFillGroupWithBlank : false,
+              preloadImages          : true,
+              lazy                   : false,
+              observer               : true,
+              navigation             : true,
+              slidesPerView:5,
+              autoplay: {
+                delay               : 4000,
+                disableOnInteraction: false,
+              },
+            }
+          }
+        })
+      );
+    }
+
+    swiperConfig$: Observable<SwiperConfigInterface>;
 
   ngOnInit(): void {
     this.BlogService.getAll().snapshotChanges().pipe(
