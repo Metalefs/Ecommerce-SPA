@@ -49,6 +49,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   arte_traseira:boolean=false;
 
   ComentariosProduto:ComentarioProduto[];
+  Comentarios:Comentario[] = [];
 
   constructor(
     breakpointObserver: BreakpointObserver,
@@ -264,8 +265,13 @@ export class ExibicaoProdutoComponent implements OnInit {
         )
       )
     ).subscribe(data => {
+      this.Comentarios = [];
       this.ComentariosProduto = data.filter(x=>x.IdProduto == this.Produto._id);
-      console.log(data);
+      this.ComentariosProduto.forEach(x=>{
+        x.Comentario.key = x.key;
+        this.Comentarios.push(x.Comentario)
+      })
+      console.log(this.ComentariosProduto)
       this.loading = false;
     });
 

@@ -6,6 +6,8 @@ export class ComentarioProduto extends MongoDocument implements entidadeBase{
   IdProduto:string;
   Autor:Autor;
   Comentario:Comentario;
+  key?:string;
+  idUsuario?:string;
   constructor(IdProduto:string,
     Autor:Autor,
     Comentario:Comentario){

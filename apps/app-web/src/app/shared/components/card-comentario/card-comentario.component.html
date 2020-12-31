@@ -1,0 +1,67 @@
+<div @fadeIn class="box">
+  <article class="media">
+    <div class="media-left">
+      <mat-icon>person</mat-icon>
+    </div>
+
+
+
+
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{Comentario.Nome}}</strong> {{Comentario.idUsuario?'':' sem perfil'}} <small>{{Comentario.DataHoraCriacao}}</small> <span>
+            <star-rating *ngIf="Comentario.Avaliacao"
+             class="subtitle is-size-7"
+            [showHalfStars]="true"
+            [step]="0.5" size="medium"
+            [rating]="Comentario.Avaliacao"
+            staticColor="ok"
+             [readOnly]="true">
+          </star-rating></span>
+        </p>
+
+        <ng-container *ngIf="this.usr._id == Comentario.idUsuario || '' then editar else normal"></ng-container>
+          <div *ngIf="!querEditar">
+            <div [innerHTML]="Comentario.Texto"></div>
+          </div>
+          <div *ngIf="querEditar">
+            <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Texto" [data]="Comentario.Texto"></ckeditor>
+            <button mat-flat-button (click)="Editar()">Editar</button>
+          </div>
+        <ng-template #editar>
+
+        </ng-template>
+        <ng-template #normal>
+          <div [innerHTML]="Comentario.Texto"></div>
+        </ng-template>
+      </div>
+
+
+
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <a class="level-item" aria-label="reply" (click)="querResponder = !querResponder">
+            <span class="icon is-small">
+              <i class="fas fa-reply" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="reply" (click)="querEditar = !querEditar"
+          *ngIf="this.usr._id == Comentario.idUsuario || ''">
+            <span class="icon is-small">
+              <i class="fas fa-edit" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a *ngIf="this.usr?.Tipo == tipoUsuario.admin" class="level-item" aria-label="reply" (click)="deletar()">
+            <span class="icon is-small">
+              <mat-icon>close</mat-icon>
+            </span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </article>
+  <div *ngIf="querResponder">
+    <personalizados-lopes-escrever-comentario (EnviarComentario)="responder($event)"></personalizados-lopes-escrever-comentario>
+  </div>
+</div>

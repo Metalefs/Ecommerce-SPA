@@ -38,6 +38,10 @@ import { MercadopagoButtonComponent } from './components/mercadopago-button/merc
 import { CardBlogComponent } from './components/card-blog/card-blog.component';
 import { EscreverComentarioComponent } from './components/escrever-comentario/escrever-comentario.component';
 import { ExibirComentarioComponent } from './components/exibir-comentario/exibir-comentario.component';
+import { ExibirListaComentarioComponent } from './components/exibir-lista-comentario/exibir-lista-comentario.component';
+import { ExibirComentarioModule } from './components/exibir-comentario/exibir-comentario.module';
+import { CardComentarioComponent } from './components/card-comentario/card-comentario.component';
+import { CardComentarioModule } from './components/card-comentario/card-comentario.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -57,7 +61,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent, EscreverComentarioComponent, ExibirComentarioComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent, EscreverComentarioComponent, ExibirListaComentarioComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -80,6 +84,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SwiperModule,
     StarRatingModule.forRoot(),
     NgxMaskModule.forRoot(),
+    ExibirComentarioModule,
+    CardComentarioModule,
   ],
   exports: [
     CommonModule,
@@ -106,7 +112,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MercadopagoButtonComponent,
     CardBlogComponent,
     EscreverComentarioComponent,
-    ExibirComentarioComponent,
+    ExibirComentarioModule,
+    ExibirListaComentarioComponent,
+    CardComentarioModule,
     IvyCarouselModule,
     GalleryModule,
     LightboxModule,

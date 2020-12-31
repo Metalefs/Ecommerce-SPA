@@ -57,9 +57,12 @@ export interface RedeSocial{
   Link:string;
   Icone?:string;
 }
-export interface Comentario{
+export interface Comentario extends entidadeBase{
   Nome:string;
   Email:string;
   Texto:string;
   Respostas:Comentario[];
+  Avaliacao?:number;
+  key?:string;
+  idUsuario?:string;
 }

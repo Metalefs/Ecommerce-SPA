@@ -12,13 +12,19 @@ export class EscreverComentarioComponent implements OnInit {
 
   @Output()
   EnviarComentario = new EventEmitter();;
-  Comentario:Comentario = {Nome:'',Email:'',Texto:'',Respostas:[]};
+  Comentario:Comentario = {
+    Nome:'',Email:'',Texto:'',Respostas:[],
+    DataHoraAlteracao: new Date(),
+    DataHoraCriacao:new Date(),
+    DataHoraExclusao: null
+  };
   Editor = ClassicEditor;
   constructor(auth:AuthenticationService) {
     auth.currentUser.subscribe(x=>{
       if(x){
         this.Comentario.Email = x.Email;
         this.Comentario.Nome = x.Nome;
+        this.Comentario.idUsuario = x._id;
       }
     });
   }

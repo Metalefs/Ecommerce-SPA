@@ -45,7 +45,7 @@ export class CriarPostComponent implements OnInit {
         "",
         [""],
         "",
-        [{Nome:'',Email:'',Texto:'',Respostas:[]}],
+        [{Nome:'',Email:'',Texto:'',Respostas:[],DataHoraAlteracao:new Date(),DataHoraExclusao:new Date(),DataHoraCriacao:null}],
         [0],
         0,
         StatusPostagem.privado,
