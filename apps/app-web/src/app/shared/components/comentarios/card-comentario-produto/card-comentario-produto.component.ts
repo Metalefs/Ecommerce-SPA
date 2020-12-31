@@ -31,7 +31,7 @@ export class CardComentarioProdutoComponent implements OnInit {
   responder(Comentario:Comentario){
     if(!this.Comentario.Respostas){
       this.Comentario.Respostas = []
-      Object.assign(this.Comentario.Respostas, {Respostas: [Comentario]});
+      Object.assign(this.Comentario.Respostas, [].constructor(Comentario));
     }
     else
       this.Comentario.Respostas.push(Comentario);

@@ -314,11 +314,11 @@
   </a>
 </div>
 
-<div class="card margin">
+<div class="card margin px-2">
   <personalizados-lopes-exibir-lista-comentario-produto [ComentariosProduto]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 </div>
 
-<div class="card pos-fixed bottom-50 right-0 bg-azul z-index-2">
+<div class="card pos-fixed right-0 bottom-0 bg-azul z-index-2">
 
   <mat-accordion>
     <mat-expansion-panel>
@@ -330,8 +330,9 @@
           Escrever comentário
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-
+      <div class="mx-2">
+        <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 

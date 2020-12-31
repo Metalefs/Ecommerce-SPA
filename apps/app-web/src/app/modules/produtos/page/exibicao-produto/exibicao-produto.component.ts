@@ -327,6 +327,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   };
 
   Comentar(Comentario:Comentario){
+    console.log(Comentario)
     let comentarioProduto:ComentarioProduto = new ComentarioProduto(this.Produto._id,Comentario,[])
     comentarioProduto.Respostas = [];
     comentarioProduto.DataHoraAlteracao = new Date();

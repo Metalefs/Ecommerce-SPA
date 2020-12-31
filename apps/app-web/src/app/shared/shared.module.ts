@@ -42,11 +42,9 @@ import { EscreverComentarioModule } from './components/comentarios/escrever-come
 import { CardComentarioModule } from './components/comentarios/card-comentario/card-comentario.module';
 import { CardComentarioProdutoModule } from './components/comentarios/card-comentario-produto/card-comentario-produto.module';
 
-import { ExibirComentarioModule } from './components/comentarios/exibir-comentario/exibir-comentario.module';
-import { ExibirComentarioProdutoModule } from './components/comentarios/exibir-comentario-produto/exibir-comentario-produto.module';
-
 import { ExibirListaComentarioComponent } from './components/comentarios/exibir-lista-comentario/exibir-lista-comentario.component';
 import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';
+import { ProdutoSwiperComponent } from './components/produto-swiper/produto-swiper.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -79,7 +77,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      MercadopagoButtonComponent,
      CardBlogComponent,
      ExibirListaComentarioComponent,
-     ExibirListaComentarioProdutoComponent
+     ExibirListaComentarioProdutoComponent,
+     ProdutoSwiperComponent
     ],
   imports: [
     CommonModule,
@@ -103,7 +102,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SwiperModule,
     StarRatingModule.forRoot(),
     NgxMaskModule.forRoot(),
-    ExibirComentarioModule,
     EscreverComentarioModule,
     CardComentarioModule,
     CardComentarioProdutoModule,
@@ -140,10 +138,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EscreverComentarioModule,
     CardComentarioModule,
     CardComentarioProdutoModule,
-    ExibirComentarioModule,
-    ExibirComentarioProdutoModule,
     ExibirListaComentarioComponent,
-    ExibirListaComentarioProdutoComponent
+    ExibirListaComentarioProdutoComponent,
+    ProdutoSwiperComponent
   ],
   providers:[
     {

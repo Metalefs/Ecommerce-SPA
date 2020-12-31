@@ -1,6 +1,13 @@
 <div>
   <h2>Comentários</h2>
   <div *ngFor="let comentario of ComentariosProduto">
-    <personalizados-lopes-exibir-comentario [ComentarioProduto]="comentario"></personalizados-lopes-exibir-comentario>
+    <div>
+      <personalizados-lopes-card-comentario-produto [Comentario]="comentario"></personalizados-lopes-card-comentario-produto>
+    </div>
+    <div class="container">
+      <div class="ml-6" *ngFor="let reposta of comentario.Respostas">
+        <personalizados-lopes-exibir-lista-comentario [Comentarios]="reposta"></personalizados-lopes-exibir-lista-comentario>
+      </div>
+    </div>
   </div>
 </div>

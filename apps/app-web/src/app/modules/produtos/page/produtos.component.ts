@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
@@ -13,6 +13,7 @@ import { AdicionarFiltroProduto, EditarFiltroProduto } from '../../../data/store
 import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto.state';
+import { ObterImagensCarousel } from '../../../helper/FileHelper';
 import { FiltroCategoria, FiltroCategoriaDialogComponent } from './dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
 import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 
@@ -38,9 +39,10 @@ export class ProdutosComponent implements OnInit {
 
   activeSearchFilter = "";
   activeOrderFilter:number = TiposOrdenacao.nome;
+  @ViewChild('carousel', { static: true }) carousel
 
   loading:boolean = false;
-
+  imagens:[{path:string}] = [{path:ObterImagensCarousel()[0]}];
   ordertypes:OrderType[]= [
     {name:'nome (a-z)', id: TiposOrdenacao.nome},
     {name:'nome (z-a)', id: TiposOrdenacao.nomeDesc},
@@ -69,6 +71,9 @@ export class ProdutosComponent implements OnInit {
     setTimeout(()=>{
       this.flip()
     },0)
+    this.carousel.handleHorizontalSwipe = null;
+    this.carousel.handleTouchstart = null;
+    this.carousel.handleTouchend = null;
   }
 
   ngOnDestroy(){
