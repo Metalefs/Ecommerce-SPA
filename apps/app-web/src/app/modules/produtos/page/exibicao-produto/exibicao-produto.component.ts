@@ -65,7 +65,7 @@ export class ExibicaoProdutoComponent implements OnInit {
             };
           }
           return {
-            thumbPosition: ThumbnailsPosition.Left,
+            thumbPosition: ThumbnailsPosition.Bottom,
             thumbWidth: 120,
             thumbHeight: 90
           };

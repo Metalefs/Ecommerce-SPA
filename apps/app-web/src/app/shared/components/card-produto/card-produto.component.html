@@ -65,17 +65,7 @@
         <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
         <mat-card-subtitle class="is-3 preco">
 
-          <div class="my-3">
-            <star-rating
-            labelText="{{meanRating()}}"
-            [rating]="meanRating()"
-            [hoverEnabled]="true"
-            [readOnly]="true"
-            [showHalfStars]="true"
-            [step]="0.5"
-            staticColor="ok"
-            [starType]="'svg'"></star-rating>
-          </div>
+
           <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
           <ng-template #preco_promo>
             <div class="txt-left">
@@ -111,6 +101,17 @@
           </button>
         </mat-card-subtitle>
       </mat-card-header>
+      <div class="my-3">
+        <star-rating
+        labelText="{{meanRating()}}"
+        [rating]="meanRating()"
+        [hoverEnabled]="true"
+        [readOnly]="true"
+        [showHalfStars]="true"
+        [step]="0.5"
+        staticColor="ok"
+        [starType]="'svg'"></star-rating>
+      </div>
     </mat-card-footer>
     <a [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
       <!-- <mat-card-actions class="mat-card-actions flex-w flex-c flex-m w-full mx-3">

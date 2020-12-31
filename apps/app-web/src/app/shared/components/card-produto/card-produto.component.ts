@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { Gallery, GalleryComponent, GalleryItem } from 'ng-gallery';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
@@ -21,13 +22,20 @@ export class CardProdutoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   isOrcamento:boolean;
   Liked:boolean = false;
-  constructor(private store: Store,private dialog:MatDialog) { }
+  constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery,) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
   statusProduto=StatusProduto;
+  images: GalleryItem[];
+  images$: Observable<GalleryItem[]>;
   ngOnInit(): void {
+    const galleryRef = this.gallery.ref('myGallery');
     this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
+    this.Produto?.Imagem.forEach(img =>{
+      console.log(img);
+      galleryRef.addImage({ src:img, thumb: img });
+    });
   }
 
   AdicionarAoOrcamento(produto:Produto){

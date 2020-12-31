@@ -33,6 +33,16 @@ body {
 #lightbox-lightbox > gallery{
   background-color:#000000bf !important;
 }
+.file.is-info .file-cta {
+  background-color: #4d69b1;
+  border-color: transparent;
+  color: #fff;
+}
+.button.is-info {
+  background-color: #4d69b1;
+  border-color: transparent;
+  color: #fff;
+}
 @keyframes shrink{
   from{
     max-width: 100%
