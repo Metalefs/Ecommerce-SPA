@@ -37,11 +37,11 @@ import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 import { CardBlogComponent } from './components/card-blog/card-blog.component';
 import { EscreverComentarioModule } from './components/escrever-comentario/escrever-comentario.module';
-import { ExibirComentarioComponent } from './components/exibir-comentario/exibir-comentario.component';
 import { ExibirListaComentarioComponent } from './components/exibir-lista-comentario/exibir-lista-comentario.component';
 import { ExibirComentarioModule } from './components/exibir-comentario/exibir-comentario.module';
-import { CardComentarioComponent } from './components/card-comentario/card-comentario.component';
 import { CardComentarioModule } from './components/card-comentario/card-comentario.module';
+import { CardComentarioProdutoComponent } from './components/card-comentario-produto/card-comentario-produto.component';
+import { CardComentarioProdutoModule } from './components/card-comentario-produto/card-comentario-produto.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -61,7 +61,18 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent, ExibirListaComentarioComponent],
+  declarations: [IconeWhatsappComponent,
+     SocialNetworkLinksComponent,
+     TestimonialComponent,
+     LoadingCubeComponent,
+     CloseBtnComponent,
+     CheckoutDisplayComponent,
+     BotaoEsgotadoComponent,
+     CaixaObterEmailComponent,
+     MercadopagoButtonComponent,
+     CardBlogComponent,
+     ExibirListaComentarioComponent,
+    ],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -87,6 +98,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibirComentarioModule,
     EscreverComentarioModule,
     CardComentarioModule,
+    CardComentarioProdutoModule,
   ],
   exports: [
     CommonModule,
@@ -115,12 +127,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EscreverComentarioModule,
     ExibirComentarioModule,
     ExibirListaComentarioComponent,
+    CardComentarioProdutoModule,
     CardComentarioModule,
     IvyCarouselModule,
     GalleryModule,
     LightboxModule,
     SwiperModule,
-    StarRatingModule
+    StarRatingModule,
+    ExibirComentarioModule,
   ],
   providers:[
     {

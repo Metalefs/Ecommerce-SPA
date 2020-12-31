@@ -30,22 +30,23 @@ export class CriarPostComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CriarPostComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  BlogPost,
     ) {
+      let autor = {
+        Nome:'',
+        Email:'',
+        RedeSocial: [
+          {Nome:'Facebook',Link:''},
+          {Nome:'Instagram',Link:''},
+          {Nome:'Twitter',Link:''}
+        ]
+      };
       this.BlogPost = new BlogPost (
         "",
         null,
-        {
-          Nome:'',
-          Email:'',
-          RedeSocial: [
-            {Nome:'Facebook',Link:''},
-            {Nome:'Instagram',Link:''},
-            {Nome:'Twitter',Link:''}
-          ]
-        },
+        autor,
         "",
         [""],
         "",
-        [{Nome:'',Email:'',Texto:'',Respostas:[],DataHoraAlteracao:new Date(),DataHoraExclusao:new Date(),DataHoraCriacao:null}],
+        [{Autor:autor,Texto:'',Respostas:[],DataHoraAlteracao:new Date(),DataHoraExclusao:new Date(),DataHoraCriacao:null}],
         [0],
         0,
         StatusPostagem.privado,

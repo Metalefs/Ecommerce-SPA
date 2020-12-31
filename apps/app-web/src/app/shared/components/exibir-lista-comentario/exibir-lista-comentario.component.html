@@ -1,7 +1,14 @@
 <div>
   <h2>Comentários</h2>
-  <div *ngFor="let comentario of Comentarios">
-    <personalizados-lopes-exibir-comentario [Comentario]="comentario"></personalizados-lopes-exibir-comentario>
-
-  </div>
+  <ng-container *ngIf="ComentariosProduto then produto else outro"></ng-container>
+  <ng-template #produto>
+    <div *ngFor="let comentario of ComentariosProduto">
+      <personalizados-lopes-exibir-comentario [ComentarioProduto]="comentario"></personalizados-lopes-exibir-comentario>
+    </div>
+  </ng-template>
+  <ng-template #outro>
+    <div *ngFor="let comentario of Comentarios">
+      <personalizados-lopes-exibir-comentario [Comentario]="comentario"></personalizados-lopes-exibir-comentario>
+    </div>
+  </ng-template>
 </div>

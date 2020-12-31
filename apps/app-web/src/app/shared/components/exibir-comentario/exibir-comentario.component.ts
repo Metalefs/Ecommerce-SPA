@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
+import { ComentarioProduto } from 'libs/data/src/lib/classes';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 
 @Component({
@@ -10,6 +11,8 @@ import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 export class ExibirComentarioComponent implements OnInit {
   @Input()
   Comentario:Comentario;
+  @Input()
+  ComentarioProduto:ComentarioProduto;
   constructor() { }
 
   ngOnInit(): void {

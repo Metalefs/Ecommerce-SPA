@@ -8,16 +8,14 @@ import { ComentarioProdutoService } from '../../../data/service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { coerceArray } from '@angular/cdk/coercion';
 @Component({
-  selector: 'personalizados-lopes-card-comentario',
-  templateUrl: './card-comentario.component.html',
-  styleUrls: ['./card-comentario.component.scss'],
+  selector: 'personalizados-lopes-card-comentario-produto',
+  templateUrl: './card-comentario-produto.component.html',
+  styleUrls: ['./card-comentario-produto.component.scss'],
   animations:[fade]
 })
-export class CardComentarioComponent implements OnInit {
+export class CardComentarioProdutoComponent implements OnInit {
   @Input()
-  Comentario:Comentario;
-  @Input()
-  ComentarioProduto:ComentarioProduto;
+  Comentario:ComentarioProduto;
   usr:Usuario;
   tipoUsuario = TipoUsuario;
   Editor = ClassicEditor;

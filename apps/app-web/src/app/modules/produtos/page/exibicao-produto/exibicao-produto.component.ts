@@ -327,16 +327,8 @@ export class ExibicaoProdutoComponent implements OnInit {
   };
 
   Comentar(Comentario:Comentario){
-    let autor = {
-      Nome:Comentario.Nome,
-      Email:Comentario.Email,
-      RedeSocial: [
-        {Nome:'Facebook',Link:''},
-        {Nome:'Instagram',Link:''},
-        {Nome:'Twitter',Link:''}
-      ]
-    };
-    let comentarioProduto:ComentarioProduto = new ComentarioProduto(this.Produto._id,autor,Comentario)
+    let comentarioProduto:ComentarioProduto = new ComentarioProduto(this.Produto._id,Comentario,[])
+    comentarioProduto.Respostas = [];
     comentarioProduto.DataHoraAlteracao = new Date();
     comentarioProduto.DataHoraCriacao = new Date();
     this.ComentarioProdutoService.create(comentarioProduto);

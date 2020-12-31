@@ -4,17 +4,17 @@ import { Autor, Comentario } from './blogPost';
 
 export class ComentarioProduto extends MongoDocument implements entidadeBase{
   IdProduto:string;
-  Autor:Autor;
   Comentario:Comentario;
+  Respostas:Comentario[];
   key?:string;
   idUsuario?:string;
   constructor(IdProduto:string,
-    Autor:Autor,
-    Comentario:Comentario){
+    Comentario:Comentario,
+    Respostas:Comentario[]){
       super();
       this.IdProduto = IdProduto;
-      this.Autor = Autor;
       this.Comentario = Comentario;
+      this.Respostas = Respostas;
     }
   DataHoraCriacao: Date;
   DataHoraAlteracao: Date;

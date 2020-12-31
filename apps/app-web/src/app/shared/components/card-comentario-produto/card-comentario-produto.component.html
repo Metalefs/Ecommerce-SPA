@@ -4,18 +4,15 @@
       <mat-icon>person</mat-icon>
     </div>
 
-
-
-
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{Comentario.Autor.Nome}}</strong> {{Comentario.idUsuario?'':' sem perfil'}} <small>{{Comentario.DataHoraCriacao}}</small> <span>
-            <star-rating *ngIf="Comentario.Avaliacao"
+          <strong>{{Comentario.Comentario.Autor.Nome}}</strong> {{Comentario.idUsuario?'':' sem perfil'}} <small>{{Comentario.DataHoraCriacao}}</small> <span>
+            <star-rating *ngIf="Comentario.Comentario.Avaliacao"
              class="subtitle is-size-7"
             [showHalfStars]="true"
             [step]="0.5" size="medium"
-            [rating]="Comentario.Avaliacao"
+            [rating]="Comentario.Comentario.Avaliacao"
             staticColor="ok"
              [readOnly]="true">
           </star-rating></span>
@@ -23,21 +20,19 @@
 
         <ng-container *ngIf="this.usr._id == Comentario.idUsuario || '' then editar else normal"></ng-container>
           <div *ngIf="!querEditar">
-            <div [innerHTML]="Comentario.Texto"></div>
+            <div [innerHTML]="Comentario.Comentario.Texto"></div>
           </div>
           <div *ngIf="querEditar">
-            <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Texto" [data]="Comentario.Texto"></ckeditor>
+            <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Comentario.Texto" [data]="Comentario.Comentario.Texto"></ckeditor>
             <button mat-flat-button (click)="Editar()">Editar</button>
           </div>
         <ng-template #editar>
 
         </ng-template>
         <ng-template #normal>
-          <div [innerHTML]="Comentario.Texto"></div>
+          <div [innerHTML]="Comentario.Comentario.Texto"></div>
         </ng-template>
       </div>
-
-
 
       <nav class="level is-mobile">
         <div class="level-left">
