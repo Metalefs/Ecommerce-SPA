@@ -7,7 +7,7 @@ import { MaterialModule } from '../../material.module';
 
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { EscreverComentarioComponent } from '../escrever-comentario/escrever-comentario.component';
+import { EscreverComentarioModule } from '../escrever-comentario/escrever-comentario.module';
 @NgModule({
   declarations: [CardComentarioComponent],
   imports: [
@@ -16,12 +16,12 @@ import { EscreverComentarioComponent } from '../escrever-comentario/escrever-com
     StarRatingModule.forRoot(),
     CKEditorModule,
     FormsModule,
-    EscreverComentarioComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    EscreverComentarioModule
   ],
   exports: [
     CardComentarioComponent,
-    EscreverComentarioComponent,
+    EscreverComentarioModule,
     StarRatingModule,
     CKEditorModule,
     FormsModule,

@@ -36,7 +36,7 @@ import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgota
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 import { CardBlogComponent } from './components/card-blog/card-blog.component';
-import { EscreverComentarioComponent } from './components/escrever-comentario/escrever-comentario.component';
+import { EscreverComentarioModule } from './components/escrever-comentario/escrever-comentario.module';
 import { ExibirComentarioComponent } from './components/exibir-comentario/exibir-comentario.component';
 import { ExibirListaComentarioComponent } from './components/exibir-lista-comentario/exibir-lista-comentario.component';
 import { ExibirComentarioModule } from './components/exibir-comentario/exibir-comentario.module';
@@ -61,7 +61,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent, EscreverComentarioComponent, ExibirListaComentarioComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent, ExibirListaComentarioComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -85,6 +85,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     StarRatingModule.forRoot(),
     NgxMaskModule.forRoot(),
     ExibirComentarioModule,
+    EscreverComentarioModule,
     CardComentarioModule,
   ],
   exports: [
@@ -111,7 +112,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
     CardBlogComponent,
-    EscreverComentarioComponent,
+    EscreverComentarioModule,
     ExibirComentarioModule,
     ExibirListaComentarioComponent,
     CardComentarioModule,
