@@ -18,6 +18,7 @@ import { CEPService } from './CEPService';
 import { EstadoService } from './EstadoService';
 import { MercadoPagoCheckoutService } from './checkout/MercadoPagoService';
 import { BlogPostService } from './blog/blog.service';
+import { ComentarioProdutoService } from './comentarios/comentarioProdutoService';
 import { IntegracoesService } from './IntegracoesService';
 
 export {
@@ -39,7 +40,8 @@ export {
   EstadoService,
   MercadoPagoCheckoutService,
   IntegracoesService,
-  BlogPostService
+  BlogPostService,
+  ComentarioProdutoService
 }
 
 export let Services = [
@@ -58,5 +60,6 @@ export let Services = [
   CarouselService,
   MercadoPagoCheckoutService,
   IntegracoesService,
-  BlogPostService
+  BlogPostService,
+  ComentarioProdutoService
 ]

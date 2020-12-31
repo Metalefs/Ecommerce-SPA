@@ -36,6 +36,8 @@ import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgota
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 import { CardBlogComponent } from './components/card-blog/card-blog.component';
+import { EscreverComentarioComponent } from './components/escrever-comentario/escrever-comentario.component';
+import { ExibirComentarioComponent } from './components/exibir-comentario/exibir-comentario.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -55,7 +57,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent],
+  declarations: [IconeWhatsappComponent, SocialNetworkLinksComponent,TestimonialComponent, LoadingCubeComponent, CloseBtnComponent, CheckoutDisplayComponent, BotaoEsgotadoComponent, CaixaObterEmailComponent, MercadopagoButtonComponent, CardBlogComponent, EscreverComentarioComponent, ExibirComentarioComponent],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -103,6 +105,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
     CardBlogComponent,
+    EscreverComentarioComponent,
+    ExibirComentarioComponent,
     IvyCarouselModule,
     GalleryModule,
     LightboxModule,

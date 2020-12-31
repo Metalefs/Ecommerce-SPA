@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { ComentarioProduto, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GostarProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
@@ -17,8 +17,10 @@ import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';
 import { sum, translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
-import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
+
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
+import { Comentario } from 'libs/data/src/lib/classes/blogPost';
+import { ComentarioProdutoService } from 'apps/app-web/src/app/data/service';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -45,13 +47,18 @@ export class ExibicaoProdutoComponent implements OnInit {
   loading:boolean = false;
   el = document.createElement( 'html' );
   arte_traseira:boolean=false;
+
+  ComentariosProduto:ComentarioProduto[];
+
   constructor(
     breakpointObserver: BreakpointObserver,
     private activeRoute:ActivatedRoute,
     private router: Router,
     private gallery: Gallery,
     private store: Store,
-    public dialog: MatDialog,) {
+    public dialog: MatDialog,
+    private ComentarioProdutoService: ComentarioProdutoService
+    ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
@@ -246,7 +253,24 @@ export class ExibicaoProdutoComponent implements OnInit {
       console.log(img);
       galleryRef.addImage({ src:img, thumb: img });
     });
+    this.LerComentariosProduto(id);
   }
+
+  LerComentariosProduto(idProduto:string){
+    this.ComentarioProdutoService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.ComentariosProduto = data.filter(x=>x.IdProduto == this.Produto._id);
+      console.log(data);
+      this.loading = false;
+    });
+
+  }
+
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);
   }
@@ -295,5 +319,21 @@ export class ExibicaoProdutoComponent implements OnInit {
     console.log('onHoverRatingChange $event: ', $event);
     this.onHoverRatingChangeResult = $event;
   };
+
+  Comentar(Comentario:Comentario){
+    let autor = {
+      Nome:Comentario.Nome,
+      Email:Comentario.Email,
+      RedeSocial: [
+        {Nome:'Facebook',Link:''},
+        {Nome:'Instagram',Link:''},
+        {Nome:'Twitter',Link:''}
+      ]
+    };
+    let comentarioProduto:ComentarioProduto = new ComentarioProduto(this.Produto._id,autor,Comentario)
+    comentarioProduto.DataHoraAlteracao = new Date();
+    comentarioProduto.DataHoraCriacao = new Date();
+    this.ComentarioProdutoService.create(comentarioProduto);
+  }
 
 }

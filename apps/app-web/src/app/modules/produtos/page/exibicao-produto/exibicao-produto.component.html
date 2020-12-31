@@ -313,3 +313,22 @@
     </button>
   </a>
 </div>
+<div class="card pos-fixed bottom-0 right-0  z-index-2">
+
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon mat-card-avatar>comment</mat-icon>
+        </mat-panel-title>
+        <mat-panel-description>
+          Escrever comentário
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+</div>

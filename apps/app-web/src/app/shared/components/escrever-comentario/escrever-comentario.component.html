@@ -1,0 +1,26 @@
+<mat-card class="card">
+  <mat-card-title>
+    <div class="columns">
+      <div class="column">
+        <div class="control">
+          <label for="Nome">Nome</label>
+          <input id="Nome" class="input border" matInput type="text" [(ngModel)]="Comentario.Nome">
+        </div>
+      </div>
+      <div class="column">
+        <div class="control">
+          <label for="Email">Email</label>
+          <input id="Email" class="input border" matInput type="email" [(ngModel)]="Comentario.Email">
+        </div>
+      </div>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Texto" [data]="Comentario.Texto"></ckeditor>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button (click)="Enviar()" class="button is-success is-right">
+      Enviar
+    </button>
+  </mat-card-actions>
+</mat-card>
