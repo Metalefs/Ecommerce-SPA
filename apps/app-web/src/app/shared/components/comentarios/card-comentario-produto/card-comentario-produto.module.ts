@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { StarRatingModule } from 'angular-star-rating';
 import { CardComentarioProdutoComponent } from './card-comentario-produto.component';
-import { MaterialModule } from '../../material.module';
+import { MaterialModule } from '../../../material.module';
 
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';

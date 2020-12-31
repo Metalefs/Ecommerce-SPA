@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
+import { AuthenticationService } from '../../../../core/service/authentication/authentication.service';
 import { Usuario } from 'libs/data/src/lib/classes';
 @Component({
   selector: 'personalizados-lopes-escrever-comentario',

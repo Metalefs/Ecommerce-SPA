@@ -3,13 +3,12 @@ import { ComentarioProduto } from 'libs/data/src/lib/classes';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 
 @Component({
-  selector: 'personalizados-lopes-exibir-lista-comentario',
-  templateUrl: './exibir-lista-comentario.component.html',
-  styleUrls: ['./exibir-lista-comentario.component.scss']
+  selector: 'personalizados-lopes-exibir-lista-comentario-produto',
+  templateUrl: './exibir-lista-comentario-produto.component.html',
+  styleUrls: ['./exibir-lista-comentario-produto.component.scss']
 })
-export class ExibirListaComentarioComponent implements OnInit {
+export class ExibirListaComentarioProdutoComponent implements OnInit {
   @Input()
-  Comentarios:Comentario[];
   ComentariosProduto:ComentarioProduto[];
   constructor() { }
 

@@ -36,12 +36,18 @@ import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgota
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 import { CardBlogComponent } from './components/card-blog/card-blog.component';
-import { EscreverComentarioModule } from './components/escrever-comentario/escrever-comentario.module';
-import { ExibirListaComentarioComponent } from './components/exibir-lista-comentario/exibir-lista-comentario.component';
-import { ExibirComentarioModule } from './components/exibir-comentario/exibir-comentario.module';
-import { CardComentarioModule } from './components/card-comentario/card-comentario.module';
-import { CardComentarioProdutoComponent } from './components/card-comentario-produto/card-comentario-produto.component';
-import { CardComentarioProdutoModule } from './components/card-comentario-produto/card-comentario-produto.module';
+
+import { EscreverComentarioModule } from './components/comentarios/escrever-comentario/escrever-comentario.module';
+
+import { CardComentarioModule } from './components/comentarios/card-comentario/card-comentario.module';
+import { CardComentarioProdutoModule } from './components/comentarios/card-comentario-produto/card-comentario-produto.module';
+
+import { ExibirComentarioModule } from './components/comentarios/exibir-comentario/exibir-comentario.module';
+import { ExibirComentarioProdutoModule } from './components/comentarios/exibir-comentario-produto/exibir-comentario-produto.module';
+
+import { ExibirListaComentarioComponent } from './components/comentarios/exibir-lista-comentario/exibir-lista-comentario.component';
+import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -61,7 +67,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-  declarations: [IconeWhatsappComponent,
+  declarations: [
+     IconeWhatsappComponent,
      SocialNetworkLinksComponent,
      TestimonialComponent,
      LoadingCubeComponent,
@@ -72,6 +79,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      MercadopagoButtonComponent,
      CardBlogComponent,
      ExibirListaComentarioComponent,
+     ExibirListaComentarioProdutoComponent
     ],
   imports: [
     CommonModule,
@@ -124,17 +132,18 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
     CardBlogComponent,
-    EscreverComentarioModule,
-    ExibirComentarioModule,
-    ExibirListaComentarioComponent,
-    CardComentarioProdutoModule,
-    CardComentarioModule,
     IvyCarouselModule,
     GalleryModule,
     LightboxModule,
     SwiperModule,
     StarRatingModule,
+    EscreverComentarioModule,
+    CardComentarioModule,
+    CardComentarioProdutoModule,
     ExibirComentarioModule,
+    ExibirComentarioProdutoModule,
+    ExibirListaComentarioComponent,
+    ExibirListaComentarioProdutoComponent
   ],
   providers:[
     {
