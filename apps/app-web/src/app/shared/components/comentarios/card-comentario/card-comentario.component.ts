@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ComentarioProduto, Usuario } from 'libs/data/src/lib/classes';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
@@ -14,15 +14,24 @@ import { coerceArray } from '@angular/cdk/coercion';
   animations:[fade]
 })
 export class CardComentarioComponent implements OnInit {
+  tipoUsuario = TipoUsuario;
+  Editor = ClassicEditor;
+
   @Input()
   Comentario:Comentario;
   @Input()
-  ComentarioProduto:ComentarioProduto;
+  ComentarioPai:ComentarioProduto;
+  @Input()
+  EhResposta:boolean
+  @Input()
+  IndiceResposta:number
+
   usr:Usuario;
-  tipoUsuario = TipoUsuario;
-  Editor = ClassicEditor;
   querEditar:boolean =false;
   querResponder:boolean =false;
+
+
+
   constructor(private service:ComentarioProdutoService, private auth:AuthenticationService) { }
 
   ngOnInit(): void {
@@ -30,24 +39,67 @@ export class CardComentarioComponent implements OnInit {
     this.usr = x
     })
   }
+
   responder(Comentario:Comentario){
+    if(this.EhResposta){
+      this.responderPai(Comentario);
+      return;
+    }
+    else {
+      this.responderPadrao(Comentario)
+    }
+    this.querResponder = !this.querResponder;
+  }
+
+  responderPai(Comentario:Comentario){
+    if(!this.ComentarioPai.Respostas){
+      this.ComentarioPai.Respostas = []
+      Object.assign(this.ComentarioPai.Respostas, {Respostas: [Comentario]});
+    }
+    else
+      this.ComentarioPai.Respostas.push(Comentario);
+      this.service.update(this.ComentarioPai.key,this.ComentarioPai);
+  }
+
+  responderPadrao(Comentario:Comentario){
     if(!this.Comentario.Respostas){
       this.Comentario.Respostas = []
       Object.assign(this.Comentario.Respostas, {Respostas: [Comentario]});
     }
     else
       this.Comentario.Respostas.push(Comentario);
-    this.service.update(this.Comentario.key,this.Comentario);
-    this.querResponder = !this.querResponder;
+      this.service.update(this.Comentario.key,this.Comentario);
   }
+
+  Editar(){
+    if(this.EhResposta){
+      this.editarPai();
+      return;
+    }
+    if(this.usr._id == this.Comentario.idUsuario || ''){
+      this.service.update(this.Comentario.key,this.Comentario)
+    }
+  }
+
+  editarPai(){
+    this.ComentarioPai.Respostas[this.IndiceResposta] = this.Comentario;
+    if(this.usr._id == this.Comentario.idUsuario || ''){
+      this.service.update(this.ComentarioPai.key,this.ComentarioPai)
+    }
+  }
+
   deletar(){
+    if(this.EhResposta){
+      this.removerRespostaPai()
+      return;
+    }
     if(this.usr.Tipo == TipoUsuario.admin){
       this.service.delete(this.Comentario.key)
     }
   }
-  Editar(){
-    if(this.usr._id == this.Comentario.idUsuario || ''){
-      this.service.update(this.Comentario.key,this.Comentario)
-    }
+
+  removerRespostaPai(){
+    delete this.ComentarioPai.Respostas[this.IndiceResposta];
+    this.service.update(this.ComentarioPai.key,this.ComentarioPai);
   }
 }

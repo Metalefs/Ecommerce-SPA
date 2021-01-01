@@ -1,4 +1,4 @@
-<div @fadeIn class="box">
+<div @fadeIn class="box hoverable">
   <article class="media">
     <div class="media-left">
       <mat-icon>person</mat-icon>
@@ -18,7 +18,7 @@
           </star-rating></span>
         </p>
 
-        <ng-container *ngIf="this.usr._id == Comentario.Comentario.idUsuario || '' then editar else normal"></ng-container>
+        <ng-container *ngIf="this.usr?._id || 'not' == Comentario.Comentario.idUsuario || '' then editar else normal"></ng-container>
           <div *ngIf="!querEditar">
             <div [innerHTML]="Comentario.Comentario.Texto"></div>
           </div>

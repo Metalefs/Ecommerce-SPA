@@ -1,0 +1,45 @@
+[debug] [2020-12-31T23:44:57.698Z] ----------------------------------------------------------------------
+[debug] [2020-12-31T23:44:57.699Z] Command:       /usr/bin/node12 /usr/local/bin/firebase deploy
+[debug] [2020-12-31T23:44:57.699Z] CLI Version:   8.16.2
+[debug] [2020-12-31T23:44:57.700Z] Platform:      linux
+[debug] [2020-12-31T23:44:57.700Z] Node Version:  v12.18.4
+[debug] [2020-12-31T23:44:57.700Z] Time:          Thu Dec 31 2020 20:44:57 GMT-0300 (Brasilia Standard Time)
+[debug] [2020-12-31T23:44:57.700Z] ----------------------------------------------------------------------
+[debug] [2020-12-31T23:44:57.700Z] 
+[debug] [2020-12-31T23:44:57.704Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-12-31T23:44:57.705Z] > authorizing via signed-in user
+[debug] [2020-12-31T23:44:57.705Z] [iam] checking project personalizados-lopes-web-app for permissions ["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2020-12-31T23:44:57.707Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/personalizados-lopes-web-app:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2020-12-31T23:44:58.580Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:44:58 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=764","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-31T23:44:58.582Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/personalizados-lopes-web-app  
+ 
+[debug] [2020-12-31T23:44:59.578Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:44:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'personalizados-lopes-web-app'...
+[info] 
+[info] i  deploying storage, hosting 
+[debug] [2020-12-31T23:44:59.581Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/personalizados-lopes-web-app  
+ 
+[debug] [2020-12-31T23:44:59.967Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:44:59 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2020-12-31T23:44:59.969Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/personalizados-lopes-web-app:test  
+ {"source":{"files":[{"name":"storage.rules","content":"rules_version = '2';\nservice firebase.storage {\n  match /b/{bucket}/o {\n    match /{allPaths=**} {\n      allow read, write: if true;\n    }\n  }\n}\n"}]}}
+[debug] [2020-12-31T23:45:00.955Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:45:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[debug] [2020-12-31T23:45:00.957Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/personalizados-lopes-web-app/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-12-31T23:45:02.289Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:45:02 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-31T23:45:02.291Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/personalizados-lopes-web-app/releases?pageSize=10&pageToken=  
+ 
+[debug] [2020-12-31T23:45:03.288Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:45:03 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-12-31T23:45:03.290Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/personalizados-lopes-web-app/rulesets/37ec0282-2f29-46d0-9214-41c272237982  
+ 
+[debug] [2020-12-31T23:45:04.270Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 31 Dec 2020 23:45:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[info] i  hosting[personalizados-lopes-web-app]: beginning deploy... 
+[info] i  hosting[personalizados-lopes-web-app]: found 215 files in ./dist/apps/app-web 
+[debug] [2020-12-31T23:45:04.309Z] [hosting] hash cache [ZGlzdC9hcHBzL2FwcC13ZWI] stored for 215 files
+[debug] [2020-12-31T23:45:04.309Z] [hosting][hash queue][FINAL] {"max":2,"min":0,"avg":0.39030155497373364,"active":0,"complete":215,"success":215,"errored":0,"retried":0,"total":215,"elapsed":7}
+[debug] [2020-12-31T23:45:04.309Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/personalizados-lopes-web-app/versions/5aa0b7eddf60c90f:populateFiles  
+ <request body omitted>

@@ -15,7 +15,11 @@
       </ul>
     </nav>
     <div class="columns box has-background-white" id="PRODUTO">
-      <div class="column  mb-0 pos-sticky top-0 pt-3">
+      <div class="column is-4 mb-0 pos-sticky top-0 pt-3">
+        <mat-chip-list class="is-left">
+          <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</mat-chip>
+        </mat-chip-list>
+
         <gallery gallerize
          id="myGallery"
          class="pos-sticky bellow-nav"
@@ -31,12 +35,18 @@
           Mais informações
           <mat-icon>keyboard_arrow_down</mat-icon>
         </a>
-        <mat-chip-list class="is-left">
-          <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</mat-chip>
-        </mat-chip-list>
+        <div class="column pt-0 mt-0">
+          <share-button class="mt-0" button="facebook" theme="modern-dark" [showText]="false"
+            >
+          </share-button>
+          <share-button class="mt-0" button="twitter" theme="modern-dark" [showText]="false"
+            >
+          </share-button>
+        </div>
+
       </div>
 
-      <div class="column px-3 has-background-white z-index-2 pos-sticky">
+      <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky">
 
         <div class="columns is-multiline mb-0 pb-0">
           <div class="column is-6">
@@ -258,20 +268,6 @@
                         <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
                       </button>
                     </div>
-
-                    <div class="column">
-                      <div class="colums">
-                        <div class="column pt-0 mt-0">
-                          <share-button class="mt-0" button="facebook" theme="modern-dark" [showText]="true"
-                            [text]="'Compartilhar'">
-                          </share-button>
-                          <share-button class="mt-0" button="twitter" theme="modern-dark" [showText]="true"
-                            [text]="'Twittar'">
-                          </share-button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
                 <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
@@ -292,6 +288,10 @@
         <img src="{{Produto?.Imagem[0]}}" alt="">
       </figure>
     </div>
+
+    </div>
+
+
     <div class="w-full columns">
       <div id="desc" class="descricao-produto column is-12 w-full"
         [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
@@ -315,7 +315,7 @@
 </div>
 
 <div class="card margin px-2">
-  <personalizados-lopes-exibir-lista-comentario-produto [ComentariosProduto]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+  <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 </div>
 
 <div class="card pos-fixed right-0 bottom-0 bg-azul z-index-2">

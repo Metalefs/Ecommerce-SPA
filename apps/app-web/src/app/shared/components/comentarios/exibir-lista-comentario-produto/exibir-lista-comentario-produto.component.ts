@@ -9,10 +9,24 @@ import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 })
 export class ExibirListaComentarioProdutoComponent implements OnInit {
   @Input()
-  ComentariosProduto:ComentarioProduto[];
+  Comentarios:ComentarioProduto[] | Comentario[];
+  @Input()
+  EhResposta:boolean;
+  @Input()
+  IndiceResposta:number;
+  @Input()
+  ComentarioPai:ComentarioProduto;
   constructor() { }
 
   ngOnInit(): void {
   }
+  responderResposta(){
 
+  }
+  editarResposta(){
+
+  }
+  deletarResposta(){
+
+  }
 }
