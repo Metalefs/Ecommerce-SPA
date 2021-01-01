@@ -13,6 +13,7 @@ export class FireBaseService{
   }
 
   update(key: string, value: any): Promise<void> {
+    value.DataHoraAlteracao = new Date();
     return this.list.update(key, value);
   }
 

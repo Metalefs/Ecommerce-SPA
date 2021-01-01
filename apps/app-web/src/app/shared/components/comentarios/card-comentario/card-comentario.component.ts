@@ -99,7 +99,7 @@ export class CardComentarioComponent implements OnInit {
   }
 
   removerRespostaPai(){
-    delete this.ComentarioPai.Respostas[this.IndiceResposta];
+    this.ComentarioPai.Respostas[this.IndiceResposta].Texto = "<p>comentário removido pelo autor</p>";
     this.service.update(this.ComentarioPai.key,this.ComentarioPai);
   }
 }

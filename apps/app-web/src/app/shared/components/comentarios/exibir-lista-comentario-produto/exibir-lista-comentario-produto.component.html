@@ -1,26 +1,29 @@
-<div>
+<div *ngIf="!EhResposta">
   <h2>Comentários</h2>
   <div *ngFor="let comentario of Comentarios">
     <div *ngIf="comentario.IdProduto">
       <personalizados-lopes-card-comentario-produto [Comentario]="comentario"></personalizados-lopes-card-comentario-produto>
     </div>
-    <div *ngIf="!comentario.IdProduto">
-      <personalizados-lopes-card-comentario
-      [EhResposta]="true"
-      [IndiceResposta]="IndiceResposta"
-      [Comentario]="comentario"
-      [ComentarioPai]="comentario">
-      </personalizados-lopes-card-comentario>
-    </div>
+
     <div class="container">
-      <div class="ml-6" *ngFor="let reposta of comentario.Respostas; let idx = index">
+      <div class="ml-6" *ngFor="let resposta of comentario.Respostas; let idx = index">
         <personalizados-lopes-exibir-lista-comentario-produto
           [EhResposta]="true"
           [IndiceResposta]="idx"
-          [Comentarios]="reposta"
+          [Comentarios]="[resposta]"
           [ComentarioPai]="comentario">
         </personalizados-lopes-exibir-lista-comentario-produto>
       </div>
     </div>
+  </div>
+</div>
+<div *ngFor="let comentario of Comentarios">
+  <div *ngIf="EhResposta">
+    <personalizados-lopes-card-comentario
+    [EhResposta]="EhResposta"
+    [IndiceResposta]="IndiceResposta"
+    [Comentario]="comentario"
+    [ComentarioPai]="ComentarioPai">
+    </personalizados-lopes-card-comentario>
   </div>
 </div>

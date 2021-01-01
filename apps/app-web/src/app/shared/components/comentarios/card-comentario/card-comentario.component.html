@@ -7,7 +7,7 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{Comentario.Autor.Nome}}</strong> {{Comentario.idUsuario?'':' sem perfil'}} <small>{{Comentario.DataHoraCriacao}}</small> <span>
+          <strong>{{Comentario.Autor.Nome}}</strong> {{Comentario.idUsuario?'':' sem perfil'}} <small>{{Comentario.DataHoraAlteracao}}</small> <span>
             <star-rating *ngIf="Comentario.Avaliacao"
              class="subtitle is-size-7"
             [showHalfStars]="true"
