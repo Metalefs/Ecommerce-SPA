@@ -91,17 +91,6 @@ export class HeaderComponent implements OnInit {
   abrir_procurar(){
     this.search = !this.search;
   }
-  procurar(){
-    if(this.search)
-    this.store.dispatch(new EditarCategoriaFiltroProduto(null)).subscribe(x=>{
-      this.store.dispatch(new EditarCategoriaFiltroProduto(this.Categoria)).subscribe(x=>{
-
-      })
-      this.store.dispatch(new EditarSearchFiltroProduto(this.search_filter)).subscribe(x=>{
-        this.router.navigateByUrl("/produtos")
-      })
-    })
-  }
 
   openCheckout(){
     this.dialog.open(CheckoutDisplayComponent, {

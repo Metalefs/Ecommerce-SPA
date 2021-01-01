@@ -81,9 +81,12 @@ export class ProdutosComponent implements OnInit {
   LerParametros(){
     this.activeRoute.queryParams.filter(params => params.categoria)
     .subscribe(params => {
-      console.log(params);
-      alert(params.categoria)
       this.SetCategoria(new Categoria(params.categoria, ""));
+    })
+    this.activeRoute.queryParams.filter(params => params.nome)
+    .subscribe(params => {
+      this.activeSearchFilter = params.nome;
+      this.atualizarFiltroAtivo();
     })
   }
 

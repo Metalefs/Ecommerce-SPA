@@ -19,7 +19,7 @@
             type="text"
             list="lista"
             placeholder="buscar produtos">
-            <button class="s-button z-top" (click)="procurar()">
+            <button [routerLink]="['/produtos']" [queryParams]="{nome:search_filter}" class="s-button z-top">
               <mat-icon>search</mat-icon>
             </button>
         </div>
@@ -39,7 +39,7 @@
         </div>
       </div> -->
     </div>
-    <span class="mb-4 icon is-small is-right hoverable clickable" (click)="abrir_procurar()">
+    <span class="mb-4 icon is-small is-right hoverable clickable" (click)="search = !search">
       <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
     </span>
     <div class="columns mx-3 is-hidden-mobile link-section">
@@ -85,32 +85,22 @@
       </div>
     </div>
 
-    <div class="mb-4 mx-4">
+    <div class="">
 
-      <div class="wrap-pic-cir mb-4 py-1 px-1 border-light">
-        <div
-        (mouseleave)="person._elementRef.nativeElement.click()">
-        <mat-menu
-        #appMenu="matMenu"
-        (mouseleave)="person._elementRef.nativeElement.click()"
-        >
-          <ng-template matMenuContent let-name="name">
-            <button mat-menu-item *ngIf="!user" (click)="openLogin()">Login</button>
-            <button mat-menu-item *ngIf="user" [routerLink]="['/perfil']">{{user.Nome}}</button>
-            <button mat-menu-item *ngIf="user && user?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
-            <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
-          </ng-template>
-        </mat-menu>
-        </div>
-        <button
-          [matMenuTriggerFor]="appMenu"
-          class=" w-full "
-          #person
+      <div class="dropdown">
+        <a class="wrap-pic-cir border-light w-full mb-4"
           mat-icon-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>
-        </button>
+        </a>
+        <div class="dropdown-content right-0">
+          <a mat-menu-item *ngIf="!user" (click)="openLogin()">Login</a>
+          <a mat-menu-item *ngIf="user" [routerLink]="['/perfil']">Meu Perfil</a>
+          <a mat-menu-item *ngIf="user && user?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</a>
+          <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
+        </div>
       </div>
+
     </div>
     <div class="pb-4">
       <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
@@ -148,7 +138,7 @@
               type="text"
               list="lista"
               placeholder="buscar produtos">
-              <button class="s-button z-top" (click)="procurar()">
+              <button class="s-button z-top" [routerLink]="['/produtos']" [queryParams]="[{nome:search_filter}]" >
                 <mat-icon>search</mat-icon>
               </button>
           </div>
@@ -166,7 +156,7 @@
         </div> -->
       </div>
       <div class="box hoverable clickable float-r">
-        <span class="icon is-small is-right hoverable clickable float-r" (click)="abrir_procurar()">
+        <span class="icon is-small is-right hoverable clickable float-r" (click)="search = !search">
           <div class="ml-1">
           </div>
           <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
