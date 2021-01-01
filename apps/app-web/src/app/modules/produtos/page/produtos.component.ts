@@ -1,6 +1,7 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import 'rxjs/add/operator/filter';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
@@ -9,7 +10,7 @@ import { cardFlip, fade, slideInOut } from '../../../animations';
 import { FiltroProduto } from '../../../data/models/filtroProduto';
 import { OrderType } from '../../../data/models/order-type';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
-import { AdicionarFiltroProduto, EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
+import { EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
 import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto.state';
@@ -53,6 +54,7 @@ export class ProdutosComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private store: Store,
+    private activeRoute: ActivatedRoute
     ) {
 
   }
@@ -76,6 +78,15 @@ export class ProdutosComponent implements OnInit {
     this.carousel.handleTouchend = null;
   }
 
+  LerParametros(){
+    this.activeRoute.queryParams.filter(params => params.categoria)
+    .subscribe(params => {
+      console.log(params);
+      alert(params.categoria)
+      this.SetCategoria(new Categoria(params.categoria, ""));
+    })
+  }
+
   ngOnDestroy(){
     this.flip()
   }
@@ -92,6 +103,7 @@ export class ProdutosComponent implements OnInit {
     this.atualizarFiltroAtivo();
     this.RecarregarProdutos();
     this.RecarregarCategorias();
+    this.LerParametros();
   }
 
   SetCategoria(categoria:Categoria){

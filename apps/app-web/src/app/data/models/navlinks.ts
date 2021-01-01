@@ -12,6 +12,13 @@ export interface NavLink{
   href:string;
   icon?:string;
   group?:GrupoNavLink;
+  options?:NavLinkOptions[];
+}
+
+export interface NavLinkOptions{
+  nome:string;
+  link:string;
+  queryParams:object;
 }
 
 export let NavLinks:NavLink[] =
@@ -38,7 +45,7 @@ environment.production ? [
   {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ] : [
-  {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
+  {name: "Básicos",   href:"produtos", icon:'store', group:GrupoNavLink.produtos},
   {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
 ];

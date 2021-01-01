@@ -44,18 +44,44 @@
     </span>
     <div class="columns mx-3 is-hidden-mobile link-section">
       <div *ngFor="let link of links" class="column">
-        <a
-          pageScroll
-          (click)="SetActiveNav(link)"
-          [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-          class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
-          [routerLink]="link.href"
-          routerLinkActive="Active"
-          href="#{{link.name == 'Básicos' ? 'topo' : link.name}}"
-          routerLinkActive="true">
-          <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
-          {{link.name == "Básicos"? 'Produtos' : link.name}}
-        </a>
+
+        <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
+
+        <ng-template #normal>
+          <a
+            (click)="SetActiveNav(link)"
+            [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+            class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
+            pageScroll
+            [routerLink]="link.href"
+            routerLinkActive="Active"
+            href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
+            <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
+            {{link.name == "Básicos"? 'Produtos' : link.name}}
+          </a>
+        </ng-template>
+
+        <ng-template #dropdown>
+          <div class="dropdown">
+            <a (click)="SetActiveNav(link)"
+              [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+              class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
+              <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
+              {{link.name}}
+            </a>
+            <div class="dropdown-content">
+              <a
+              class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
+              pageScroll
+              routerLinkActive="Active"
+              href="#{{link.name == 'Básicos' ? 'topo' : link.name}}"
+              [routerLink]="opt.link"
+              [queryParams]="opt.queryParams"
+              *ngFor="let opt of link.options">{{opt.nome}}</a>
+            </div>
+          </div>
+        </ng-template>
+
       </div>
     </div>
 

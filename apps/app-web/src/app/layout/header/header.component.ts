@@ -11,7 +11,7 @@ import { Categoria, Orcamento, Produto, Sobre } from 'libs/data/src/lib/classes'
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
-import { NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
+import { CategoriaState, NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
 import { NavLinksRes } from '../../data/models/navlinks';
 
@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
   links = NavLinksRes;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   @Select(ProdutoState.ObterListaProdutos) Produto$: Observable<Produto[]>;
+  @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
   route: string;
   search:boolean=false;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
@@ -122,6 +123,13 @@ export class HeaderComponent implements OnInit {
   }
 
   Carregar(){
+    this.Categoria$.subscribe(cats=>{
+      this.links[0].options = [];
+      cats.forEach(cat=>{
+        this.links[0].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
+      })
+    })
+
     this.IsSobreLoadedSub = this.IsSobreLoaded$.pipe(
       tap((IsSobreLoaded) => {
         if (!IsSobreLoaded) {
