@@ -9,6 +9,7 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { StarRatingModule } from 'angular-star-rating';
 import { GalleryModule } from 'ng-gallery';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 @NgModule({
   declarations: [CardProdutoComponent],
   imports: [
@@ -18,6 +19,7 @@ import { GalleryModule } from 'ng-gallery';
     FormsModule,
     NgxPageScrollModule,
     NgxPageScrollCoreModule,
+    SwiperModule,
     StarRatingModule.forRoot(),
     GalleryModule
   ],

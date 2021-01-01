@@ -23,10 +23,11 @@ export class CriarItemCarouselDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  filename:string;
   upload($event){
     this.ItemCarousel.url = $event.target.files[0];
     console.log(this.ItemCarousel.url);
+    this.filename = $event.target.files[0].name;
   }
   onNoClick(): void {
     this.dialogRef.close();

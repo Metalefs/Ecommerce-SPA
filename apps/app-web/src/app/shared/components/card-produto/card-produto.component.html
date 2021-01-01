@@ -7,14 +7,15 @@
     class="portfolio-item zoom"
     [style.backgroundColor]="Produto.Categoria.Cor"
    >
-  <a
-    matRipple
-    [href]="['/produtos/'+ Produto._id]"
-    routerLinkActive="router-link-active"
-    class="dis-flex flex-w"
-    >
+
     <ng-container *ngIf="TrocaImagem then troca else naotroca"> </ng-container>
     <ng-template #troca>
+      <a
+      matRipple
+      [href]="['/produtos/'+ Produto._id]"
+      routerLinkActive="router-link-active"
+      class="dis-flex flex-w"
+      >
       <img
       mat-card-image
       #imgProduto
@@ -40,20 +41,29 @@
       class="hide"
       [src]="Produto.Imagem[1]"
       alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+    </a>
     </ng-template>
     <ng-template #naotroca>
-      <img
-      mat-card-image
-      #imgProduto
-      (mouseenter)="imgProduto.src= Produto.Imagem[1]||''"
-      (mouseleave)="imgProduto.src= Produto.Imagem[0]||''"
-      [src]="Produto.Imagem[0]"
-      [style.opacity]="'1'"
-      [style.display]="'block'"
-      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+
+      <div class="swiper-container z-index-1" [swiper]="swiperConfig">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let image of Produto.Imagem" >
+            <img
+              mat-card-image
+              #imgProduto
+              [src]="image"
+              [style.opacity]="'1'"
+              [style.display]="'block'"
+              alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
 
     </ng-template>
-  </a>
+
    <mat-card-footer class="px-1">
      <div class="px-4">
        <span *ngIf="Produto.Cores?.length > 1" class="button is-small is-fullwidth card is-disabled px-4">

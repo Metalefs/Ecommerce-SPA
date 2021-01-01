@@ -25,6 +25,7 @@ export class CardComentarioProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe(x=>{
+      if(x)
     this.usr = x
     })
   }
@@ -39,12 +40,12 @@ export class CardComentarioProdutoComponent implements OnInit {
     this.querResponder = !this.querResponder;
   }
   deletar(){
-    if(this.usr.Tipo == TipoUsuario.admin){
+    if(this.usr?.Tipo == TipoUsuario.admin){
       this.service.delete(this.Comentario.key)
     }
   }
   Editar(){
-    if(this.usr._id == this.Comentario.idUsuario || ''){
+    if(this.usr?._id == this.Comentario.idUsuario || ''){
       this.service.update(this.Comentario.key,this.Comentario)
     }
   }

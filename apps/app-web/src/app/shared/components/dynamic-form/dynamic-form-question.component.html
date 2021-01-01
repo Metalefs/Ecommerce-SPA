@@ -22,9 +22,9 @@
       </mat-form-field>
     </div>
 
-    <div *ngSwitchCase="'file'">
+    <div *ngSwitchCase="'file'" class="w-full">
 
-      <div class="file has-name pb-3">
+      <div class="file has-name pb-3 w-full">
         <label class="file-label">
           <label>{{question.label}}</label>
           <input  #file class="file w-full" [id]="question.key" [type]="'file'" style="width: 100%" (change)="fileChangeEvent($event)"
@@ -40,8 +40,6 @@
           </span>
         </label>
       </div>
-
-
 
       <input  />
 

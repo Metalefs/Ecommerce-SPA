@@ -1,11 +1,13 @@
-<div class="swiper-container px-2" [swiper]="swiperConfig$ |async">
-  <div class="w-full hoverable">
-    <h2>Explore os produtos</h2>
-  </div>
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let produto of Produtos$|async" >
-      <personalizados-lopes-card-produto [Produto]="produto"
-        [TrocaImagem]="false"></personalizados-lopes-card-produto>
+<div class="w-full">
+  <div class="swiper-container w-full z-index-1" [swiper]="swiperConfig$ |async">
+    <div class="w-full hoverable">
+      <h2>Explore os produtos</h2>
+    </div>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let produto of Produtos$|async" >
+        <personalizados-lopes-card-produto [Produto]="produto"
+          [TrocaImagem]="false"></personalizados-lopes-card-produto>
+      </div>
     </div>
   </div>
 </div>

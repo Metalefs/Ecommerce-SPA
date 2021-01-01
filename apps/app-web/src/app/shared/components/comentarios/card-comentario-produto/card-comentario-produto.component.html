@@ -18,20 +18,14 @@
           </star-rating></span>
         </p>
 
-        <ng-container *ngIf="this.usr?._id || 'not' == Comentario.Comentario.idUsuario || '' then editar else normal"></ng-container>
-          <div *ngIf="!querEditar">
-            <div [innerHTML]="Comentario.Comentario.Texto"></div>
-          </div>
-          <div *ngIf="querEditar">
-            <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Comentario.Texto" [data]="Comentario.Comentario.Texto"></ckeditor>
-            <button mat-flat-button class="border" (click)="Editar()">Editar</button>
-          </div>
-        <ng-template #editar>
 
-        </ng-template>
-        <ng-template #normal>
-          <div [innerHTML]="Comentario.Comentario.Texto"></div>
-        </ng-template>
+        <div *ngIf="querEditar">
+          <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Comentario.Texto" [data]="Comentario.Comentario.Texto"></ckeditor>
+          <button mat-flat-button class="border" (click)="Editar()">Editar</button>
+        </div>
+
+        <div [innerHTML]="Comentario.Comentario.Texto"></div>
+
       </div>
 
       <nav class="level is-mobile">
@@ -42,7 +36,7 @@
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="querEditar = !querEditar"
-          *ngIf="this.usr._id == Comentario.Comentario.idUsuario || ''">
+          *ngIf="this.usr?._id == Comentario.Comentario.idUsuario || ''">
             <span class="icon is-small">
               <i class="fas fa-edit" aria-hidden="true"></i>
             </span>

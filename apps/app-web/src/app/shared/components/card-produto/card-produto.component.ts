@@ -5,6 +5,7 @@ import { entities } from '@personalizados-lopes/data';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Gallery, GalleryComponent, GalleryItem } from 'ng-gallery';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
@@ -38,6 +39,26 @@ export class CardProdutoComponent implements OnInit {
     });
   }
 
+  swiperConfig: SwiperConfigInterface = {
+    direction              : 'horizontal',
+    keyboard               : true,
+    loop                   : true,
+    loopFillGroupWithBlank : false,
+    preloadImages          : true,
+    lazy                   : false,
+    observer               : true,
+    navigation             : true,
+    allowSlidePrev:true,
+    allowSlideNext:true,
+    zoom: true,
+    centeredSlides:true,
+    updateOnImagesReady: true,
+    slidesPerView          : 1,
+    autoplay: {
+      delay                : 4000,
+      disableOnInteraction : false,
+    },
+  };
   AdicionarAoOrcamento(produto:Produto){
     this.Orcamento$.subscribe(x=>{
 

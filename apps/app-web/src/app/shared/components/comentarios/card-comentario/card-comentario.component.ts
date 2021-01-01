@@ -36,6 +36,7 @@ export class CardComentarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe(x=>{
+      if(x)
     this.usr = x
     })
   }
@@ -76,14 +77,14 @@ export class CardComentarioComponent implements OnInit {
       this.editarPai();
       return;
     }
-    if(this.usr._id == this.Comentario.idUsuario || ''){
+    if(this.usr?._id == this.Comentario.idUsuario || ''){
       this.service.update(this.Comentario.key,this.Comentario)
     }
   }
 
   editarPai(){
     this.ComentarioPai.Respostas[this.IndiceResposta] = this.Comentario;
-    if(this.usr._id == this.Comentario.idUsuario || ''){
+    if(this.usr?._id == this.Comentario.idUsuario || ''){
       this.service.update(this.ComentarioPai.key,this.ComentarioPai)
     }
   }

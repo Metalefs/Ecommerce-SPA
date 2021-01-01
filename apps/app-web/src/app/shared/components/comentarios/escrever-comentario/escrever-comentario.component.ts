@@ -30,7 +30,7 @@ export class EscreverComentarioComponent implements OnInit {
   Editor = ClassicEditor;
   constructor(auth:AuthenticationService) {
     auth.currentUser.subscribe(x=>{
-      if(x){
+      if(x && x._id){
         this.Comentario.Autor.Email = x.Email;
         this.Comentario.Autor.Nome = x.Nome;
         this.Comentario.idUsuario = x._id;
