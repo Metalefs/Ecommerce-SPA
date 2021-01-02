@@ -45,6 +45,7 @@ import { CardComentarioProdutoModule } from './components/comentarios/card-comen
 import { ExibirListaComentarioComponent } from './components/comentarios/exibir-lista-comentario/exibir-lista-comentario.component';
 import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';
 import { ProdutoSwiperComponent } from './components/produto-swiper/produto-swiper.component';
+import { ExibicaoPerfilComponent } from './components/exibicao-perfil/exibicao-perfil.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -78,7 +79,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      CardBlogComponent,
      ExibirListaComentarioComponent,
      ExibirListaComentarioProdutoComponent,
-     ProdutoSwiperComponent
+     ProdutoSwiperComponent,
+     ExibicaoPerfilComponent
     ],
   imports: [
     CommonModule,
@@ -140,7 +142,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardComentarioProdutoModule,
     ExibirListaComentarioComponent,
     ExibirListaComentarioProdutoComponent,
-    ProdutoSwiperComponent
+    ProdutoSwiperComponent,
+    ExibicaoPerfilComponent
   ],
   providers:[
     {

@@ -101,6 +101,10 @@ export class EnderecoComponent implements OnInit {
           })
         })
       })
+    }else{
+      this.ErroCadastro = true;
+      if(!this.Orcamento.Usuario.CPF)
+        this.router.navigateByUrl('/checkout/dados');
     }
   }
 
@@ -132,7 +136,8 @@ export class EnderecoComponent implements OnInit {
       this.numeroFormControl.valid &&
       this.bairroFormControl.valid &&
       this.cidadeFormControl.valid &&
-      this.estadoFormControl.valid)
+      this.estadoFormControl.valid &&
+      this.Orcamento.Usuario.CPF)
       return true;
     return false;
   }

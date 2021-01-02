@@ -1,4 +1,15 @@
-<div class="selection">
+<div class="a-i-c pt-3">
+
+  <a pageScroll
+  href="#TOPO"
+  [routerLink]="['/gerenciamento/pedidos//']"
+  routerLinkActive="router-link-active">
+  <button mat-stroked-button mat-stroked-button class="button is-dark">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+    Voltar
+  </button>
+</a>
+<div class="section">
   <mat-chip-list
    [ngClass]="Orcamento.Status == 0 ? 'Aberto' : 'Respondido'"
    >
@@ -6,22 +17,11 @@
     {{Orcamento.Status == 0 ? 'Aberto' : 'Respondido'}}
    </mat-chip>
   </mat-chip-list>
-  <div class="columns">
-    <div class="column">
-      <p><strong>Preço do pedido:</strong> {{Orcamento.Preco}}</p>
-    </div>
-    <div class="column">  <p><strong>Mensagem do pedido: </strong> {{Orcamento.Mensagem}}</p></div>
-  </div>
 
-  <mat-divider></mat-divider>
   <!-- <button mat-icon-button (click)="Remover(Orcamento)">
     <mat-icon>remove</mat-icon>
   </button> -->
-  <h2 class="title">
-    <p><strong>Pessoa:</strong> {{Orcamento.Usuario.Nome}}</p>
-    <mat-divider></mat-divider>
-    <p><strong>Email: </strong> {{Orcamento.Usuario.Email}}</p>
-  </h2>
+
   <h4 class="subtitle flex-m">
     <i>Status do pagamento:  </i>
     <mat-chip-list>
@@ -30,6 +30,7 @@
       </mat-chip>
     </mat-chip-list>
   </h4>
+  <h1>Itens do pedido:</h1>
   <table class="table w-full border">
     <thead>
       <tr>
@@ -61,6 +62,8 @@
     </tbody>
   </table>
 
+  <personalizados-lopes-exibicao-perfil [user]="Orcamento.Usuario"></personalizados-lopes-exibicao-perfil>
+  <p><strong>Mensagem do pedido: </strong> {{Orcamento.Mensagem}}</p>
   <mat-card>
     <mat-card-actions>
       <div class="box">

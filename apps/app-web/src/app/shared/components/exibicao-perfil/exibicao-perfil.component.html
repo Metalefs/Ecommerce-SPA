@@ -1,0 +1,67 @@
+<div class="columns px-6">
+  <div class="column">
+    <h1>Dados do comprador</h1>
+    <mat-form-field appearance="fill" class="w-full">
+      <input
+        matInput
+        readonly
+        type="text"
+        [value]="user.Nome"
+        placeholder="Nome"
+        title="Nome">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <input
+        matInput
+        readonly
+        type="text"
+        [value]="user.Email"
+        placeholder="Email"
+        title="Email">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <input
+        matInput
+        mask="(00) 0000-0000||(00) 0 0000-0000"
+        type="text"
+        readonly
+        [value]="user.Telefone"
+        placeholder="Telefone"
+        title="Telefone">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="w-full">
+      <input
+        matInput
+        mask="000.000.000-00"
+        type="text"
+        readonly
+        [value]="user.CPF"
+        placeholder="CPF"
+        title="CPF">
+    </mat-form-field>
+  </div>
+  <div class="column">
+    <h1>Endereço de entrega</h1>
+    <mat-card *ngIf="user?.EnderecoEntrega" class="has-background-light">
+      <div class="box border">
+        <p>{{user?.Nome}}</p>
+        <p>CEP: {{user?.EnderecoEntrega?.CEP}}</p>
+        <p>{{user?.EnderecoEntrega?.Rua}}, {{user?.EnderecoEntrega?.Numero}}</p>
+        <p>- {{user?.EnderecoEntrega?.Bairro}}</p>
+        <p>{{user?.EnderecoEntrega?.Cidade}} - {{user?.EnderecoEntrega?.Estado}}</p>
+      </div>
+      <mat-card-actions></mat-card-actions>
+    </mat-card>
+    <div *ngIf="user.EnderecosEntrega">
+      <mat-card *ngFor="let endereco of user?.EnderecosEntrega; let idx = index">
+        <div class="box border" *ngIf="endereco">
+          <p>{{user?.Nome}}</p>
+          <p>CEP: {{endereco?.CEP}}</p>
+          <p>{{endereco?.Rua}}, {{endereco?.Numero}}</p>
+          <p>- {{endereco.Bairro}}</p>
+          <p>{{endereco?.Cidade}} - {{endereco?.Estado}}</p>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

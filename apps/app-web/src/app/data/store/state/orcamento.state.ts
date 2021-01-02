@@ -7,9 +7,9 @@ import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
-import { removeDuplicates } from '../../../helper/ObjHelper';
+
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
-import { ThrowStmt } from '@angular/compiler';
+
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 

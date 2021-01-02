@@ -27,6 +27,8 @@ export class EditarOrcamentoComponent implements OnInit {
       "Nome",
       "Email",
       "CPF",
+      "IDPagamento",
+      "Data",
       "Preco",
       "Status",
       "StatusMP",

@@ -33,6 +33,7 @@ export class OrcamentoService {
         }
     }
     async Inserir(Usuario:entities.Usuario, Orcamento:entities.Orcamento){
+      if(await this.Filtrar({IDPagamento:Orcamento.ResultadoPagamentoMP.payment_id}) == 0)
       return Repository.Insert(entities.Orcamento.NomeID, Orcamento).then(async x => {
         let ServicoMensagens = new MensagemService();
         let ServicoInfoContato = new InformacoesContatoService();
@@ -48,8 +49,8 @@ export class OrcamentoService {
             toName:Orcamento.Usuario.Nome,
             from:InfoContato.Email,
             fromName:Sobre.Nome,
-            subject:`Orçamento no ${Sobre.Nome}`,
-            text:"Recebemos seu orçamento, e retornaremos dentro de 24 horas.",
+            subject:`Pedido no ${Sobre.Nome}`,
+            text:"Recebemos seu pedido, e retornaremos dentro de 24 horas.",
             html:mensagem_orcamento
           }
         );

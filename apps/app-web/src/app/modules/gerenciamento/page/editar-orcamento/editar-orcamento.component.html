@@ -20,6 +20,11 @@
         <td mat-cell *matCellDef="let element"> {{element.Usuario.CPF}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="IDPagamento">
+        <th mat-header-cell *matHeaderCellDef > IDPagamento </th>
+        <td mat-cell *matCellDef="let element"> {{element.ResultadoPagamentoMP?.payment_id}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="Preco">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Preco do pedido </th>
         <td mat-cell *matCellDef="let element"> {{element.Preco}} </td>
@@ -35,10 +40,21 @@
         <td mat-cell *matCellDef="let element"> {{element.ResultadoPagamentoMP?.status}} </td>
       </ng-container>
 
+      <ng-container matColumnDef="Data" mat-sort-header>
+        <th mat-header-cell *matHeaderCellDef> Data Hora Criacao</th>
+        <td mat-cell *matCellDef="let element"> {{element.DataHoraCriacao}} </td>
+      </ng-container>
+
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
         <td mat-cell *matCellDef="let element">
-          <a mat-flat-button [routerLink]="['/gerenciamento/pedidos/'+element._id]">Abrir</a>
+          <a pageScroll
+            href="#TOPO"
+            class="button is-dark"
+            [routerLink]="['/gerenciamento/pedidos/'+element._id]"
+            routerLinkActive="router-link-active">
+            Abrir
+          </a>
         </td>
       </ng-container>
 
