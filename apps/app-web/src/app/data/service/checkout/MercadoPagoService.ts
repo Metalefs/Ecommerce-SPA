@@ -27,21 +27,17 @@ export class MercadoPagoCheckoutService {
         items: this.getItems(orcamento),
         payer:this.getPayer(orcamento),
         payment_methods:this.getPaymentMethod(orcamento,integracoes),
-        shipments:this.getShipments(orcamento),
+        // shipments:this.getShipments(orcamento),
         back_urls: {
           success: "https://www.personalizadoslopes.com.br/checkout/success",
           failure: "https://www.personalizadoslopes.com.br/checkout/failure",
           pending: "https://www.personalizadoslopes.com.br/checkout/pending"
         },
         statement_descriptor: integracoes.ResumoCartao,
-        init_point:integracoes.init_point,
-        sandbox_init_point:integracoes.sandbox_init_point,
-        date_created: new Date(),
-        operation_type:'regular_payment',
         additional_info:'',
         auto_return: integracoes.auto_return,
         binary_mode: integracoes.binary_mode,
-        client_id: integracoes.client_id
+        // client_id: integracoes.client_id
       };
     }
     getItems(orcamento:Orcamento):mp_checkout_items[]{
@@ -100,7 +96,7 @@ export class MercadoPagoCheckoutService {
         },
 
         address: {
-          street_name: "Street",
+          street_name: orcamento.Usuario.EnderecoEntrega.Rua,
           street_number: parseInt(orcamento.Usuario.EnderecoEntrega.Numero),
           zip_code: orcamento.Usuario.EnderecoEntrega.CEP
         }
@@ -122,6 +118,7 @@ export class MercadoPagoCheckoutService {
           street_number: parseInt(orcamento.Usuario.EnderecoEntrega.Numero),
           floor: orcamento.Usuario.EnderecoEntrega.Complemento,
           apartment: orcamento.Usuario.EnderecoEntrega.Complemento,
+          country_name: 'Brasil',
         }
       }
     }

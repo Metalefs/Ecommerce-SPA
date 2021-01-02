@@ -12,18 +12,23 @@ export class ResultadoPagamentoComponent implements OnInit {
   Loading:boolean = false;
   state='flipped';
   payment:MercadoPagoPayment;
+  status:StatusPagamento;
   constructor(private activeRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     setTimeout(()=>{
       this.flip()
+      this.LerParametros();
     },0);
   }
 
   LerParametros(){
-    this.activeRoute.queryParams.filter(params => params.categoria)
+    this.activeRoute.queryParams.filter(params => params.status)
     .subscribe(params => {
-
+      if(params.status == "approved")
+        this.status = StatusPagamento.aprovado;
+      else
+        this.status = StatusPagamento.rejeitado
     })
   }
 
@@ -38,4 +43,9 @@ export class ResultadoPagamentoComponent implements OnInit {
       this.state = "default";
     }
   }
+}
+export enum StatusPagamento{
+  aprovado,
+  pendente,
+  rejeitado
 }

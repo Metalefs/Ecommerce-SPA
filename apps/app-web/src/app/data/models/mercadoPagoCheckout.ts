@@ -2,16 +2,12 @@ export interface MercadoPagoCheckout {
   items:mp_checkout_items[]
   payer:mp_checkout_payer;
   payment_methods:mp_payment_methods;
-  shipments:mp_shipments;
+  shipments?:mp_shipments;
   back_urls:mp_checkout_back_urls;
   notification_url?:string;
   statement_descriptor:string;
   id?:string;
 
-  init_point:string; //URL de acesso ao checkout
-  sandbox_init_point:string; //URL de acesso ao sandbox checkout.
-  date_created:Date; //Data de criação de sua preferência.
-  operation_type:string; //   data_type da operação.
   // regular_payment // Normal payment.
   // money_transfer  // Money request.
   additional_info:string; //String(600)   Informações adicionais.
@@ -25,7 +21,7 @@ export interface MercadoPagoCheckout {
   expiration_date_from?: Date; // Data a partir da qual a preferência estará ativa.
   expiration_date_to?: Date; //Data em que a preferência expira.
   collector_id?:number;//Sua identificação como um vendedor no Mercado Pago.
-  client_id?:string;//Id do dono do aplicativo que usa a API do Mercado Livre.
+  client_id?:number;//Id do dono do aplicativo que usa a API do Mercado Livre.
   marketplace?:string;//Origem do pagamento. Valor por defeito: NENHUM
   marketplace_fee?:number;//Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local
   differential_pricing?:mp_paymentID; //Configuração de preço diferencial para esta preferência.
@@ -116,4 +112,5 @@ export interface mp_reciever_address{
   street_number:number;// O Número.
   floor:string //  Andar.
   apartment:string; //  Apartamento.
+  country_name:string; //  País.
 }

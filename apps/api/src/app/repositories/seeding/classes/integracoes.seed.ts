@@ -6,11 +6,9 @@ new Integracoes(
   12,
   "PERLOPES",
   "all",
-  "https://personalizadoslopes.com.br/checkout",
-  "https://personalizadoslopes.com.br/checkout",
   0,
+  5732271634363324,
   "",
-  "5732271634363324",
   0,
   true,
 );

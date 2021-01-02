@@ -62,7 +62,8 @@ export class EnderecoComponent implements OnInit {
     private EstadoService:EstadoService,
     private snack: MatSnackBar,
     private checkoutService: MercadoPagoCheckoutService,
-    private integracoesService: IntegracoesService
+    private integracoesService: IntegracoesService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -70,6 +71,8 @@ export class EnderecoComponent implements OnInit {
       this.Orcamento = x;
       if(this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
+      // if(!this.Orcamento.Usuario.Email || this.Orcamento.Usuario.Telefone)
+      //   this.router.navigateByUrl("checkout/dados");
     })
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;

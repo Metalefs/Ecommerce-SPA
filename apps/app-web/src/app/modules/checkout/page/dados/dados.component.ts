@@ -9,6 +9,7 @@ import { EditarOrcamento, EditarOrcamentoLocal } from 'apps/app-web/src/app/data
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
+import { cpf } from 'cpf-cnpj-validator';
 
 @Component({
   selector: 'personalizados-lopes-dados',
@@ -36,6 +37,10 @@ export class DadosComponent implements OnInit, OnDestroy {
   ]);
 
   phoneFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  cpfFormControl = new FormControl('', [
     Validators.required,
   ]);
   usuario:Usuario;
@@ -88,7 +93,8 @@ export class DadosComponent implements OnInit, OnDestroy {
     else
     if(this.emailFormControl.valid
       && this.nomeFormControl.valid
-      && this.phoneFormControl.valid)
+      && this.phoneFormControl.valid
+      && cpf.isValid(this.Orcamento.Usuario.CPF))
       return true;
     return false;
   }

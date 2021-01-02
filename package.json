@@ -67,6 +67,7 @@
     "bulma": "^0.9.1",
     "ckeditor4-angular": "^2.0.0",
     "cors": "^2.8.5",
+    "cpf-cnpj-validator": "^1.0.3",
     "css-star-rating": "^1.2.4",
     "express": "^4.17.1",
     "firebase": "^7.23.0",

@@ -1,7 +1,7 @@
 <section [@cardFlip]="state" class="section py-0">
 
 
-  <ng-container *ngIf="Finalizado then Sucesso else Erro"></ng-container>
+  <ng-container *ngIf="status == StatusPagamento.aprovado then Sucesso else Erro"></ng-container>
 
   <ng-template #Sucesso>
     <div class=" w-full">

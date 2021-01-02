@@ -22,11 +22,11 @@
 
     <span class="subtitle" @fadeIn *ngIf="nomeFormControl.hasError('required') || emailFormControl.hasError('required') || phoneFormControl.hasError('required')">Verifique os campos obrigatórios.</span>
     <div class="pt-3">
-      <form (ngSubmit)="SubmeterDadosPessoais()">
+      <div>
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>Insira seu nome</mat-label>
-          <input matInput  [(ngModel)]="Orcamento.Usuario.Nome"
+          <input matInput name="nome" [(ngModel)]="Orcamento.Usuario.Nome"
             [formControl]="nomeFormControl" placeholder="Ex. Fulano de tal">
           <mat-error *ngIf="nomeFormControl.hasError('required')">
             É necessário inserir seu <strong>nome</strong>
@@ -38,7 +38,7 @@
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>seu e-mail</mat-label>
-          <input class="w-full" matInput
+          <input class="w-full" matInput name="email"
             [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl" placeholder="Ex. meu@email.com">
           <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
             Insira um e-mail válido
@@ -52,8 +52,23 @@
         </mat-form-field>
 
         <mat-form-field class="w-full control has-icons-right" appearance="">
+          <mat-label>seu CPF</mat-label>
+          <input class="w-full" matInput name="CPF" mask="000.000.000-00"
+            [(ngModel)]="Orcamento.Usuario.CPF" [formControl]="cpfFormControl" placeholder="000.000.000-00">
+          <mat-error *ngIf="cpfFormControl.hasError('required')">
+            Insira um CPF válido
+          </mat-error>
+          <span class="icon is-right" *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            <mat-icon class="has-text-warning">warning</mat-icon>
+          </span>
+          <mat-error *ngIf="!cpfFormControl.pristine && cpfFormControl.hasError('required')">
+            É necessário inserir seu <strong>CPF</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full control has-icons-right" appearance="">
           <mat-label>insira um telefone para contato</mat-label>
-          <input class="w-full input" matInput
+          <input class="w-full input" matInput name="telefone"
             [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl" placeholder="(00) 0 0000 0000"
             mask="(00) 0000-0000||(00) 0 0000-0000">
           <mat-error *ngIf="phoneFormControl.hasError('required')">
@@ -112,8 +127,8 @@
         <p class="has-text-left w-full">*Por favor, Insira o número completo do seu telefone</p>
 
         <button
-          class="button is-success w-full">Continuar</button>
-      </form>
+          class="button is-success w-full" (click)="SubmeterDadosPessoais()">Continuar</button>
+      </div>
     </div>
 
 
