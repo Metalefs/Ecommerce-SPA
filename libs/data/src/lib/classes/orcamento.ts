@@ -13,6 +13,7 @@ export class Orcamento extends MongoDocument implements entidadeBase{
     Status:StatusOrcamento;
     Preco:number;
     Mensagem:string;
+    Dimensoes?:string;
     static readonly NomeID:string = "Orcamento";
     constructor(
       Produto:CodProduto[],
