@@ -1,11 +1,36 @@
 export interface MercadoPagoCheckout {
-  back_urls:mp_checkout_back_urls,
-  auto_return:string,
   items:mp_checkout_items[]
   payer:mp_checkout_payer;
-  binary_mode:boolean
   payment_methods:mp_payment_methods;
+  shipments:mp_shipments;
+  back_urls:mp_checkout_back_urls;
+  notification_url?:string;
   statement_descriptor:string;
+  id?:string;
+  init_point:string;
+  sandbox_init_point:string;
+  date_created:string;
+  operation_type:string; //   data_type da operação.
+  // regular_payment // Normal payment.
+  // money_transfer  // Money request.
+  additional_info:string; //String(600)   Informações adicionais.
+  auto_return:string;
+  //   No caso de estar especificado o comprador será redirecionado para o seu site imediatamente após a compra.
+  // approved   // The redirection takes place only for approved payments.
+  // all        // The redirection takes place only for approved payments, forward compatibility only if we change the default behavior
+  external_reference?:string //Referência que pode sincronizar com seu sistema de pagamentos.
+  expires?:boolean; //Preferência que determina se uma preferência expira.
+  date_of_expiration?: Date; //Data de expiração de meios de pagamento em dinheiro.
+  expiration_date_from?: Date; // Data a partir da qual a preferência estará ativa.
+  expiration_date_to?: Date; //Data em que a preferência expira.
+  collector_id?:number;//Sua identificação como um vendedor no Mercado Pago.
+  client_id?:string;//Id do dono do aplicativo que usa a API do Mercado Livre.
+  marketplace?:string;//Origem do pagamento. Valor por defeito: NENHUM
+  marketplace_fee?:number;//Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local
+  differential_pricing?:mp_paymentID; //Configuração de preço diferencial para esta preferência.
+  binary_mode:boolean;//Quando definido como true, o pagamento só pode ter os status approved ou rejected. Caso contrário, o status in_process é adicionado.
+  taxes?:object[];//Definição de impostos diferenciados. Disponível apenas para o Mercado Livre Colombia.
+  tracks?:object[];//Tracks que serão executados durante a interação do usuário no fluxo de Pagamento.
 }
 export interface mp_checkout_back_urls{
   success:string,
@@ -18,8 +43,9 @@ export interface mp_checkout_items{
   description:string,
   category_id:string,
   quantity: number,
-  currency_id:string,
+  currency_id?:string,
   unit_price: number,
+  picture_url?:string;
 }
 export interface mp_checkout_payer{
   // Tipo de entidade do pagador (apenas para transferências bancárias).
@@ -44,6 +70,8 @@ export interface mp_checkout_payer{
   phone:mp_checkout_payer_phone;
   identification:mp_checkout_payer_identification;
   address:mp_checkout_payer_address;
+  registration_date?:Date; //Data de cadastro do comprador em seu site.
+
 }
 export interface mp_checkout_payer_phone {
   area_code:string,
@@ -65,4 +93,26 @@ export interface mp_payment_methods{
 }
 export interface mp_paymentID{
   id:string;
+}
+export interface mp_shipments{
+  mode:string;//  Modo de envio.
+  // custom   // Custom shipping.
+  // me2   // Mercado Envíos.
+  // not_specified   // Shipping mode not specified.
+  local_pickup:boolean;//  Preferência de remoção de pacotes em agência(mode:me2 somente).
+  dimensions:string; //  Tamanho do pacote em cm x cm x cm, gr (mode:me2 somente)
+  default_shipping_method:number; //  Escolha um método de envio padrão no _checkout_(mode:me2 somente).
+  free_methods: mp_paymentID //Oferecer um método de frete grátis (mode:me2 somente).
+  cost:number; //  Custo do transporte (mode:custom somente).
+  free_shipping:boolean;//  Preferência de frete grátis para mode:custom.
+  receiver_address:mp_reciever_address;
+}
+export interface mp_reciever_address{
+  zip_code:string; //  Código postal.
+  street_name:string;//  Rua.
+  city_name:string; //  Cidade.
+  state_name:string; //  Estado.
+  street_number:number;// O Número.
+  floor:string //  Andar.
+  apartment:string; //  Apartamento.
 }
