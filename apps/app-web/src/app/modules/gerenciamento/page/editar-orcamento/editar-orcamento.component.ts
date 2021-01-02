@@ -5,6 +5,7 @@ import { EditarOrcamento, RemoverOrcamento } from 'apps/app-web/src/app/data/sto
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
+import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,28 +15,22 @@ import { Observable } from 'rxjs';
 })
 export class EditarOrcamentoComponent implements OnInit {
   @Select(OrcamentoState.ObterListaOrcamentos) Orcamentos$: Observable<Orcamento[]>;
+  PedidoTable:MaterialTable;
   constructor(private store:Store, private snack:MatSnackBar) { }
 
   ngOnInit(): void {
-  }
-
-  Responder(orcamento:Orcamento){
-    if(orcamento.Status ==  StatusOrcamento.respondido)
-      orcamento.Status = StatusOrcamento.aberto;
-    else
-      orcamento.Status =  StatusOrcamento.respondido;
-
-    this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
-      this.snack.open("Orçamento alterado","Fechar");
-    });
-  }
-
-  Remover(orcamento:Orcamento){
-    let confirmation = confirm("Deletar?");
-    if(confirmation){
-      this.store.dispatch(new RemoverOrcamento(orcamento._id)).subscribe(x=>{
-        this.snack.open("Orçamento removido","Fechar");
-      });
-    }
+    this.PedidoTable = new MaterialTable();
+    this.Orcamentos$.subscribe(x=>{
+      this.PedidoTable.dataSource = x;
+    })
+    this.PedidoTable.displayedColumns = [
+      "Nome",
+      "Email",
+      "CPF",
+      "Preco",
+      "Status",
+      "StatusMP",
+      "Actions",
+    ];
   }
 }

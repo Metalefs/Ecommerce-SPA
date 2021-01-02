@@ -8,6 +8,7 @@ import { DynFormQuestions, QuestionBase } from 'apps/app-web/src/app/shared/comp
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
 import { Integracoes } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
+import { EditarIntegracaoDialogComponent } from './dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
 
 @Component({
   selector: 'personalizados-lopes-editar-integracoes',
@@ -34,46 +35,19 @@ export class EditarIntegracoesComponent implements OnInit {
 
   Editar(Integracoes:entities.Integracoes){
 
-    let questions: QuestionBase<string>[] = [];
-    let method = "Editar";
-    let name = "Informações Integrações";
     let id = Integracoes._id;
-    Object.entries(Integracoes).forEach(([key, value]) => {
-      if(key != "_id")
-      questions.push(
-        new TextboxQuestion({
-          key: key,
-          label: key,
-          value: value,
-          required: true,
-          type:"textbox",
-          order: 1
-        })
-      )
-    })
-    console.log(questions)
-    let Data = new DynFormQuestions(questions,method,name);
-    const dialogRef = this.dialog.open(DynamicFormComponent, {
+
+    const dialogRef = this.dialog.open(EditarIntegracaoDialogComponent, {
       width: '90%',
-      data: Data
+      data: Integracoes
     });
 
-    dialogRef.afterClosed().subscribe((result :TextboxQuestion[]) => {
+    dialogRef.afterClosed().subscribe((result :Integracoes) => {
       if(result == undefined)
       return;
-      let Integracoes = new entities.Integracoes(
-        result[0].value,
-        parseInt(result[1].value),
-        result[2].value,
-        result[3].value,
-        parseInt(result[6].value),
-        parseInt(result[7].value),
-        result[8].value,
-        parseInt(result[9].value),
-        result[10].value == "true",
-      )
+
       Integracoes._id = id;
-      this.servicoIntegracoes.Editar(Integracoes).subscribe(x=> {
+      this.servicoIntegracoes.Editar(result).subscribe(x=> {
         this.AtualizarTabela();
         this._snackBar.open("Informação alterada com sucesso", "Fechar", {
 

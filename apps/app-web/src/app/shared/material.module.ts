@@ -28,6 +28,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatStepperModule} from '@angular/material/stepper';
 import { MatBadgeModule} from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -59,7 +60,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatAutocompleteModule,
     MatStepperModule,
     MatBadgeModule,
-    MatGridListModule
+    MatGridListModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule {}

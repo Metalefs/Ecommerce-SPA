@@ -17,7 +17,6 @@ import { EnderecoComponent } from './page/endereco/endereco.component';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultadoPagamentoComponent } from './page/resultado-pagamento/resultado-pagamento.component';
 @NgModule({

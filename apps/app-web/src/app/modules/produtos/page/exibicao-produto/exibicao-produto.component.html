@@ -327,10 +327,19 @@
           <mat-icon mat-card-avatar class="has-text-dark">comment</mat-icon>
         </mat-panel-title>
         <mat-panel-description class="has-text-dark">
-          Escrever comentário
+          Escrever comentário/Avaliar
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="mx-2">
+        <div class="w-full flex-w">
+          <p>Avalie o produto</p>
+          <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+                  labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium"
+                  staticColor="ok" (starClickChange)="onClick($event)"
+                  (ratingChange)="onRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'"
+                  (hoverRatingChange)="onHoverRatingChange($event)">
+                </star-rating>
+        </div>
         <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
       </div>
     </mat-expansion-panel>

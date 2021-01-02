@@ -1,66 +1,52 @@
 <div class="flex-w flex-c">
-  <h1 class="title is-5 is-uppercase">Orçamentos por usuários.</h1>
+  <h1 class="title is-5 is-uppercase">Pedidos por usuários.</h1>
 </div>
-<div class="columns is-multiline">
-  <mat-accordion class="column is-12" *ngFor="let orcamento of (Orcamentos$|async)">
-    <mat-expansion-panel
-     [ngClass]="orcamento.Status == 0 ? 'Aberto' : 'Respondido'"
-     [expanded]="orcamento.Status == 0 ? true : false"
-     >
-      <mat-expansion-panel-header>
-        <button mat-icon-button (click)="Remover(orcamento)">
-          <mat-icon>remove</mat-icon>
-        </button>
-        <mat-panel-title>
-          <p><strong>Pessoa:</strong> {{orcamento.Usuario.Nome}}</p>
-          <mat-divider></mat-divider>
-          <p><strong>Email: </strong> {{orcamento.Usuario.Email}}</p>
-        </mat-panel-title>
-        <mat-panel-description>
-          <i>Status:  </i> {{orcamento.Status == 0 ? 'Aberto' : 'Respondido'}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-subtitle>
-            <mat-form-field>
-              <mat-label>Mensagem orçamento</mat-label>
-              <textarea matInput value="{{orcamento.Mensagem}}" title="Mensagem"></textarea>
-            </mat-form-field>
-            <mat-divider></mat-divider>
-            <h2>Preço: {{orcamento.Preco}}</h2>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Produto</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let produto of orcamento.Produto">
-                <td>
-                  <figure class="image is-64x64">
-                    <img src="{{produto.Imagem}}">
-                  </figure>
-                </td>
-                <td>{{produto.Nome}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button (click)="Responder(orcamento)" color="primary">
-            {{orcamento.Status == 1 ? 'Marcar como Aberto' : 'Marcar como Respondido'}}
-          </button>
-          <div class="box">
-            <p>Criado em:{{orcamento.DataHoraCriacao}} </p>
-            <p>Alterado em: {{orcamento.DataHoraAlteracao}}</p>
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </mat-expansion-panel>
-  </mat-accordion>
+<div class=" w-full">
+  <div class="mat-elevation-z8 w-full">
+    <table mat-table [dataSource]="PedidoTable.dataSource" class="w-full">
+
+      <ng-container matColumnDef="Nome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.Usuario.Nome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef > Email Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.Usuario.Email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="CPF">
+        <th mat-header-cell *matHeaderCellDef > CPF Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.Usuario.CPF}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Preco">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Preco do pedido </th>
+        <td mat-cell *matCellDef="let element"> {{element.Preco}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status" mat-sort-header>
+        <th mat-header-cell *matHeaderCellDef> Status da sua resposta </th>
+        <td mat-cell *matCellDef="let element"> {{element.Status == 0 ? 'Aberto' : 'Respondido'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="StatusMP" mat-sort-header>
+        <th mat-header-cell *matHeaderCellDef> Status do pagamento </th>
+        <td mat-cell *matCellDef="let element"> {{element.ResultadoPagamentoMP?.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-flat-button [routerLink]="['/gerenciamento/pedidos/'+element._id]">Abrir</a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="PedidoTable.displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: PedidoTable.displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+
 </div>

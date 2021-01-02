@@ -22,6 +22,7 @@ export interface MercadoPagoCheckout {
   expiration_date_to?: Date; //Data em que a preferência expira.
   collector_id?:number;//Sua identificação como um vendedor no Mercado Pago.
   client_id?:number;//Id do dono do aplicativo que usa a API do Mercado Livre.
+  client_secret?:string;//Id do dono do aplicativo que usa a API do Mercado Livre.
   marketplace?:string;//Origem do pagamento. Valor por defeito: NENHUM
   marketplace_fee?:number;//Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local
   differential_pricing?:mp_paymentID; //Configuração de preço diferencial para esta preferência.

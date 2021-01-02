@@ -37,7 +37,8 @@ export class MercadoPagoCheckoutService {
         additional_info:'',
         auto_return: integracoes.auto_return,
         binary_mode: integracoes.binary_mode,
-        // client_id: integracoes.client_id
+        client_id: parseInt(integracoes.client_id.toString()),
+        // client_secret: "W7iVrtOZjXhy4NdHQo7kWEay30mH7TYg"
       };
     }
     getItems(orcamento:Orcamento):mp_checkout_items[]{

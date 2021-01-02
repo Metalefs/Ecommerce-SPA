@@ -1,13 +1,10 @@
 <section [@cardFlip]="state" class="section py-0">
 
-
-  <ng-container *ngIf="status == StatusPagamento.aprovado then Sucesso else Erro"></ng-container>
-
-  <ng-template #Sucesso>
+  <div #Sucesso *ngIf="status == StatusPagamento.aprovado">
+    <!-- <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao> -->
     <div class=" w-full">
       <figure class="image is-square">
         <img src="/assets/images/figures/undraw_successful_purchase_uyin.svg">
-
       </figure>
     </div>
     <div class="has-text-left">
@@ -26,10 +23,10 @@
         </button>
       </a>
     </div>
-  </ng-template>
+  </div>
 
-  <ng-template #Erro>
-    <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao>
+  <div #Pendente  #Sucesso *ngIf="status == StatusPagamento.pendente">
+    <!-- <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao> -->
     <div class=" has-text-left py-4">
       <a
         pageScroll
@@ -40,8 +37,57 @@
         voltar
       </a>
     </div>
+    <div class=" w-full">
+      <figure class="image is-square">
+        <img src="/assets/images/figures/undraw_loading_frh4.svg">
+      </figure>
+    </div>
+    <div class="has-text-left">
+      <h2 class="subtitle mb-0 pt-0">Seu pagamento está sendo processado, avisaremos assim que for aprovado.</h2>
+      <span class="subtitle">Agradeçemos pela sua paciẽncia.</span>
+    </div>
+    <div class="a-i-c pt-3">
 
+      <div *ngIf="_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
+        <personalizados-lopes-mercadopago-button [init_point]="_init_point"></personalizados-lopes-mercadopago-button>
+      </div>
 
-  </ng-template>
+    </div>
+
+  </div>
+
+  <div #Erro  #Sucesso *ngIf="status == StatusPagamento.rejeitado">
+    <!-- <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao> -->
+    <div class=" has-text-left py-4">
+      <a
+        pageScroll
+        href="#TOPO"
+        [routerLink]="['/checkout/dados']"
+        class="preco dis-flex flex-m ">
+        <mat-icon class="">keyboard_arrow_left</mat-icon>
+        voltar
+      </a>
+    </div>
+    <div class=" w-full">
+      <figure class="image is-square">
+        <img src="/assets/images/figures/undraw_cancel_u1it.svg">
+      </figure>
+    </div>
+    <div class="has-text-left">
+      <h2 class="subtitle mb-0 pt-0">Desculpe. Ocorreu um erro ao processar o seu pagamento.</h2>
+      <span class="subtitle">Fique tranquilo, pode tentar novamente..</span>
+    </div>
+    <div class="a-i-c pt-3">
+
+      <div *ngIf="_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
+        <personalizados-lopes-mercadopago-button [init_point]="_init_point"></personalizados-lopes-mercadopago-button>
+      </div>
+      <div *ngIf="!_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
+        <button mat-flat-button (click)="goCheckout()">Tentar novamente</button>
+      </div>
+
+    </div>
+
+  </div>
 
 </section>

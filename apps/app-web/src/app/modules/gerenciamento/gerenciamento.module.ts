@@ -40,6 +40,8 @@ import { EditarPostComponent } from './page/editar-blog/dialogs/editar-post/edit
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
+import { EditarIntegracaoDialogComponent } from './page/editar-integracoes/dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
+import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 
 
 @NgModule({
@@ -72,6 +74,8 @@ import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-int
     EditarBlogComponent,
     EditarPostComponent,
     CriarPostComponent,
+    EditarIntegracaoDialogComponent,
+    OrcamentoDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -102,6 +106,7 @@ import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-int
     EditarClientesComponent,
     EditarMensagemComponent,
     EditarBlogComponent,
+    OrcamentoDetailComponent,
     CKEditorModule
   ]
 })

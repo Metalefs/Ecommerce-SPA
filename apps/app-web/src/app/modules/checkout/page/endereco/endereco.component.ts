@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { Estado, MercadoPagoCheckout } from 'apps/app-web/src/app/data/models';
-import { mp_checkout_items } from 'apps/app-web/src/app/data/models/mercadoPagoCheckout';
-import { AdicionarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
@@ -71,8 +69,6 @@ export class EnderecoComponent implements OnInit {
       this.Orcamento = x;
       if(this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
-      // if(!this.Orcamento.Usuario.Email || this.Orcamento.Usuario.Telefone)
-      //   this.router.navigateByUrl("checkout/dados");
     })
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;
@@ -128,36 +124,6 @@ export class EnderecoComponent implements OnInit {
       this.Orcamento.Usuario.EnderecoEntrega.Cidade = x.localidade;
       this.Orcamento.Usuario.EnderecoEntrega.Estado = x.uf;
     });
-  }
-
-  FinalizarOrcamento(){
-    this.ErroCadastro = true;
-    if(this.ValidarDados()){
-      this.ErroCadastro = false;
-      this.Loading = true;
-      this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
-        setTimeout(()=>{
-          this.Finalizado = true;
-          this.snack.open("Orçamento enviado! Responderemos em até 48 horas", "Fechar", {
-            verticalPosition:'top',
-            horizontalPosition:'left'
-          });
-
-          (function smoothscroll() {
-            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            if (currentScroll > 0) {
-                window.requestAnimationFrame(smoothscroll);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
-            }
-          }
-          )();
-
-          this.Loading = false;
-          this.Orcamento.Status = StatusOrcamento.enviado;
-
-        },3500)
-      });
-    }
   }
 
   ValidarDados(){

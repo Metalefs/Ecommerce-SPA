@@ -32,7 +32,7 @@ app.post("/seedCar", function (req,res) {
   seedingService.SeedCarousel(null);
   res.send("Seeding...")
 });
-app.post("/seedMP", function (req,res) {
+app.get("/seedMP", function (req,res) {
   let seedingService:SeedingService = new SeedingService();
   seedingService.SeedIntegracoes(null);
   res.send("Seeding...")

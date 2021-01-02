@@ -16,6 +16,7 @@ import { GerenciamentoComponent } from './page/gerenciamento.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
+import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 
 
 export const routes: Routes = [
@@ -30,9 +31,14 @@ export const routes: Routes = [
         component: EditarProdutoComponent,
       },
       {
-        path: "orcamento",
+        path: "pedidos",
         // canActivate: [AuthGuard],
         component: EditarOrcamentoComponent,
+      },
+      {
+        path: "pedidos/:id",
+        // canActivate: [AuthGuard],
+        component: OrcamentoDetailComponent,
       },
       {
         path: 'categoria',
