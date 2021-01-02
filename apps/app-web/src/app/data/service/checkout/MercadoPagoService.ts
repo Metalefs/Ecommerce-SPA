@@ -25,8 +25,8 @@ export class MercadoPagoCheckoutService {
     obterPreferencia(orcamento:Orcamento,integracoes:Integracoes) : MercadoPagoCheckout{
       return {
         items: this.getItems(orcamento),
-        payer:this.getPayer(orcamento),
-        payment_methods:this.getPaymentMethod(orcamento,integracoes),
+        payer: this.getPayer(orcamento),
+        payment_methods: this.getPaymentMethod(orcamento,integracoes),
         // shipments:this.getShipments(orcamento),
         back_urls: {
           success: "https://www.personalizadoslopes.com.br/checkout/success",
@@ -34,10 +34,11 @@ export class MercadoPagoCheckoutService {
           pending: "https://www.personalizadoslopes.com.br/checkout/pending"
         },
         statement_descriptor: integracoes.ResumoCartao,
-        additional_info:'',
+        additional_info: '',
         auto_return: integracoes.auto_return,
         binary_mode: integracoes.binary_mode,
         client_id: parseInt(integracoes.client_id.toString()),
+        collector_id: parseInt(integracoes.collector_id.toString()),
         // client_secret: "W7iVrtOZjXhy4NdHQo7kWEay30mH7TYg"
       };
     }

@@ -127,7 +127,8 @@ export class ProdutosComponent implements OnInit {
         height:'100vh',
         position:{
           left:'0'
-        }
+        },
+        panelClass:['','animate__animated','animate__slideInLeft']
       });
       dialogRef.afterClosed().subscribe((result :Categoria) => {
         this.SetCategoria(result);
@@ -146,7 +147,8 @@ export class ProdutosComponent implements OnInit {
       height:'100vh',
       position:{
         right:'0'
-      }
+      },
+      panelClass:['','animate__animated','animate__slideInRight']
     });
     dialogRef.afterClosed().subscribe((result :OrderType) => {
       if(result){

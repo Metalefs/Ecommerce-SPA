@@ -26,6 +26,15 @@ export class OrcamentoDetailComponent implements OnInit {
       this.Orcamento = x.find(x=>x._id == id);
     })
   }
+
+  Devolver(orcamento:Orcamento){
+    if(orcamento.ResultadoPagamentoMP.status == "approved")
+
+    this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
+      this.snack.open("Pedido alterado","Fechar");
+    });
+  }
+
   Responder(orcamento:Orcamento){
     if(orcamento.Status ==  StatusOrcamento.respondido)
       orcamento.Status = StatusOrcamento.aberto;
