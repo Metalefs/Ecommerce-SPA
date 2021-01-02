@@ -13,6 +13,7 @@ import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Usuario } from 'libs/data/src/lib/classes';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../modules/login/page/login.component';
+import { TipoUsuario } from 'libs/data/src/lib/enums';
 
 @Component({
   selector: 'personalizados-lopes-navbar',
@@ -28,6 +29,7 @@ export class NavbarComponent implements OnInit {
   linksDuvidas:NavLink[];
   linksOutros:NavLink[];
   usuario:Usuario;
+  TipoUsuario = TipoUsuario;
   Logado:boolean;
   @Input()NavState:SideNavState;
   GrupoNavLink = GrupoNavLink;

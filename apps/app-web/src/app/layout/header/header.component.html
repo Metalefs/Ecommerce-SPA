@@ -64,6 +64,9 @@
         <ng-template #dropdown>
           <div class="dropdown">
             <a (click)="SetActiveNav(link)"
+              [routerLink]="link.href"
+              pageScroll
+              routerLinkActive="Active"
               [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
               class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
               <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
@@ -96,7 +99,7 @@
         <div class="dropdown-content right-0">
           <a mat-menu-item *ngIf="!user" (click)="openLogin()">Login</a>
           <a mat-menu-item *ngIf="user" [routerLink]="['/perfil']">Meu Perfil</a>
-          <a mat-menu-item *ngIf="user && user?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</a>
+          <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento']">Gerenciamento</a>
           <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
         </div>
       </div>

@@ -1,4 +1,4 @@
 export enum TipoUsuario {
     normal,
-    admin
+    admin = 1335527389
 }

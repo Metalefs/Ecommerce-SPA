@@ -49,7 +49,7 @@
     <ng-template matMenuContent let-name="name">
       <button mat-menu-item *ngIf="usuario" [routerLink]="['/perfil']">{{usuario.Nome}}</button>
       <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
-      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == 1" [routerLink]="['/gerenciamento']">Gerenciamento</button>
+      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>
   </mat-menu>
@@ -103,7 +103,7 @@
           </mat-list-item>
       </mat-list>
 
-    <li *ngIf="user?.Tipo == 1">
+    <li *ngIf="user?.Tipo == TipoUsuario.admin">
       <button mat-icon-button (click)="Logout()" title="logout">
         <mat-icon>login</mat-icon>
       </button>

@@ -49,7 +49,11 @@ export class ConfirmacaoComponent implements OnInit {
   }
   upload($event,produto){
     let fileNames='';
-    getPreviewURL($event,fileNames,(res)=>{produto.Arte = res;fileNames = name})
+    getPreviewURL($event,fileNames,(res,name)=>{
+      produto.Arte = res;
+      fileNames = name;
+    })
+
   }
   IncrementarQuantidade(element){
     element.Produto.Quantidade++;

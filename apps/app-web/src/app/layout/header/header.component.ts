@@ -24,6 +24,7 @@ import { fade } from '../../animations';
 import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
 import { EditarCategoria } from '../../data/store/actions/categoria.actions';
 import { CategoriaService } from '../../data/service';
+import { TipoUsuario } from 'libs/data/src/lib/enums';
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit {
   Categoria: entities.Categoria;
   Categorias: entities.Categoria[];
   defaultCategory = "Todos os produtos";
+  TipoUsuario = TipoUsuario;
   constructor(
     private AuthenticationService:AuthenticationService,
     private location: Location, private router: Router,
