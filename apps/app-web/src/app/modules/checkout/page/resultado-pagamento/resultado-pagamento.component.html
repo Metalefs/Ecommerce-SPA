@@ -1,0 +1,47 @@
+<section [@cardFlip]="state" class="section py-0">
+
+
+  <ng-container *ngIf="Finalizado then Sucesso else Erro"></ng-container>
+
+  <ng-template #Sucesso>
+    <div class=" w-full">
+      <figure class="image is-square">
+        <img src="/assets/images/figures/undraw_successful_purchase_uyin.svg">
+
+      </figure>
+    </div>
+    <div class="has-text-left">
+      <h2 class="subtitle mb-0 pt-0">Sucesso, pedido recebido!</h2>
+      <span class="subtitle">Entraremos em contato para combinar a entrega e o pagamento da sua compra.</span>
+    </div>
+    <div class="a-i-c pt-3">
+
+        <a pageScroll
+        href="#TOPO"
+        [routerLink]="['/produtos/']"
+        routerLinkActive="router-link-active">
+        <button mat-stroked-button mat-stroked-button class="button is-success">
+          Confirmar via Whatsapp
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </a>
+    </div>
+  </ng-template>
+
+  <ng-template #Erro>
+    <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao>
+    <div class=" has-text-left py-4">
+      <a
+        pageScroll
+        href="#TOPO"
+        [routerLink]="['/checkout/dados']"
+        class="preco dis-flex flex-m ">
+        <mat-icon class="">keyboard_arrow_left</mat-icon>
+        voltar
+      </a>
+    </div>
+
+
+  </ng-template>
+
+</section>

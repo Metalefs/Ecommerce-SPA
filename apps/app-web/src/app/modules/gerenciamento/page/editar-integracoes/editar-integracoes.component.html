@@ -14,6 +14,48 @@
   </ng-container>
 
 
+  <ng-container matColumnDef="auto_return">
+    <th mat-header-cell *matHeaderCellDef>  No caso de estar especificado o comprador será redirecionado para o seu site imediatamente após a compra.
+      // approved   // The redirection takes place only for approved payments.
+      // all        // The redirection takes place only for approved payments, forward compatibility only if we change the default behavior</th>
+    <td mat-cell *matCellDef="let element"> {{element?.auto_return}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="init_point">
+    <th mat-header-cell *matHeaderCellDef> URL de acesso ao checkout </th>
+    <td mat-cell *matCellDef="let element"> {{element?.init_point}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="sandbox_init_point">
+    <th mat-header-cell *matHeaderCellDef> URL de acesso ao sandbox checkout. </th>
+    <td mat-cell *matCellDef="let element"> {{element?.sandbox_init_point}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="collector_id">
+    <th mat-header-cell *matHeaderCellDef> Sua identificação como um vendedor no Mercado Pago. </th>
+    <td mat-cell *matCellDef="let element"> {{element?.collector_id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="client_id">
+    <th mat-header-cell *matHeaderCellDef> Id do dono do aplicativo que usa a API do Mercado Livre. </th>
+    <td mat-cell *matCellDef="let element"> {{element?.client_id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="marketplace">
+    <th mat-header-cell *matHeaderCellDef> Origem do pagamento. Valor por defeito: NENHUM </th>
+    <td mat-cell *matCellDef="let element"> {{element?.marketplace}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="marketplace_fee">
+    <th mat-header-cell *matHeaderCellDef> Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local </th>
+    <td mat-cell *matCellDef="let element"> {{element?.marketplace_fee}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="binary_mode">
+    <th mat-header-cell *matHeaderCellDef> Quando definido como true, o pagamento só pode ter os status approved ou rejected. Caso contrário, o status in_process é adicionado. </th>
+    <td mat-cell *matCellDef="let element"> {{element?.binary_mode}} </td>
+  </ng-container>
+
   <ng-container matColumnDef="Acoes">
     <th mat-header-cell *matHeaderCellDef> Ações </th>
     <td mat-cell *matCellDef="let element">

@@ -34,13 +34,14 @@ export class MercadoPagoCheckoutService {
           pending: "https://www.personalizadoslopes.com.br/checkout/pending"
         },
         statement_descriptor: integracoes.ResumoCartao,
-        init_point:'https://www.personalizadoslopes.com.br/checkout/',
-        sandbox_init_point:'https://www.personalizadoslopes.com.br/checkout/',
+        init_point:integracoes.init_point,
+        sandbox_init_point:integracoes.sandbox_init_point,
         date_created: new Date(),
         operation_type:'regular_payment',
         additional_info:'',
-        auto_return: "approved",
-        binary_mode: true,
+        auto_return: integracoes.auto_return,
+        binary_mode: integracoes.binary_mode,
+        client_id: integracoes.client_id
       };
     }
     getItems(orcamento:Orcamento):mp_checkout_items[]{

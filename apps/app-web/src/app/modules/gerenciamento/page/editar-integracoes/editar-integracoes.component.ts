@@ -65,6 +65,14 @@ export class EditarIntegracoesComponent implements OnInit {
         result[0].value,
         parseInt(result[1].value),
         result[2].value,
+        result[3].value,
+        result[4].value,
+        result[5].value,
+        parseInt(result[6].value),
+        result[7].value,
+        result[8].value,
+        parseInt(result[9].value),
+        result[10].value == "true",
       )
       Integracoes._id = id;
       this.servicoIntegracoes.Editar(Integracoes).subscribe(x=> {
@@ -88,6 +96,14 @@ export class EditarIntegracoesComponent implements OnInit {
       "MP_access_token",
       "ParcelasPadrao",
       "ResumoCartao",
+      "auto_return",
+      "init_point",
+      "sandbox_init_point",
+      "collector_id",
+      "client_id",
+      "marketplace",
+      "marketplace_fee",
+      "binary_mode",
       "Acoes"
     ];
   }
