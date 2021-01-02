@@ -22,6 +22,21 @@ export interface mp_checkout_items{
   unit_price: number,
 }
 export interface mp_checkout_payer{
+  // Tipo de entidade do pagador (apenas para transferências bancárias).
+  // individual
+  // Payer is individual.
+  // association
+  // Payer is an association.
+  entity_type?:string;
+  // Tipo de identificação do pagador associado (se necessário o pagador é um cliente).
+  // customer
+  // Payer is a Customer and belongs to the collector.
+  // registered
+  // The account corresponds to a Mercado Pago registered user.
+  // guest
+  // The payer doesn't have an account.
+  type?:string;
+  id?:string;
   name: string,
   surname: string,
   email: string,
@@ -35,8 +50,8 @@ export interface mp_checkout_payer_phone {
   number:number,
 }
 export interface mp_checkout_payer_identification {
-  type:string,
-  number:string,
+  type:string, //Tipo de documento.
+  number:string, //Número do documento.
 }
 export interface mp_checkout_payer_address {
   street_name:string,
