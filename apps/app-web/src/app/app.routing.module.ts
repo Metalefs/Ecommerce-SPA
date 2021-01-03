@@ -14,6 +14,7 @@ import { OrcamentoModule } from './modules/orcamento/orcamento.module';
 import { CheckoutModule } from './modules/checkout/checkout.module';
 import { PerfilModule } from './modules/perfil/perfil.module';
 import { BlogModule } from './modules/blog/blog.module';
+import { PedidosModule } from './modules/pedidos/pedidos.module';
 
 import { PagenotfoundModule } from './modules/pagenotfound/pagenotfound.module';
 
@@ -42,6 +43,7 @@ const routes: Routes = [
     CheckoutModule,
     PerfilModule,
     BlogModule,
+    PedidosModule,
     PagenotfoundModule
   ],
   exports: [
@@ -58,6 +60,7 @@ const routes: Routes = [
     OrcamentoModule,
     PerfilModule,
     BlogModule,
+    PedidosModule,
     PagenotfoundModule
   ],
 

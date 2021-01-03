@@ -1,0 +1,9 @@
+<section class="section">
+  <mat-list>
+    <mat-list-item *ngFor="let pedido of Pedidos">
+      <mat-card *ngFor="let prod of pedido.Produto">
+        <personalizados-lopes-card-produto [Produto]="prod"></personalizados-lopes-card-produto>
+      </mat-card>
+    </mat-list-item>
+  </mat-list>
+</section>
