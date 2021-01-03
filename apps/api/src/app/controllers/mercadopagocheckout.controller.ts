@@ -10,11 +10,13 @@ const MercadoPagoController = express();
 MercadoPagoController
 .get(RouteDictionary.ListPayments, (req: any, res) => {
   try {
-    Services.UsuarioService.getByToken(req.body.token).then(user => {
+    Services.UsuarioService.getByToken(req.query.token).then(user => {
       let mercadoPagoService = new MercadoPagoService();
       mercadoPagoService.getAllPayments(user).then(x=>{
         res.send(x);
       });
+    }).catch(ex=>{
+      ErrorHandler.DefaultException(ex, res);
     });
   }
   catch (err) {
@@ -36,7 +38,7 @@ MercadoPagoController
     let mercadoPagoService = new MercadoPagoService();
     mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
       console.log(payment);
-      switch(payment.status){
+      switch(payment.response.results[0].status){
         case('approved'):{
           mercadoPagoService.refund(req.body.idPagamento).then(x=>{
             res.send(x);

@@ -29,6 +29,19 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
+}).post(RouteDictionary.RegistroTemporario, (req,res, next) =>{
+  try{
+    console.log(req.body.Usuario);
+    let user:Usuario = req.body.Usuario;
+    let senha = UsuarioService.generateRandomPassword();
+    user.Senha = senha;
+    UsuarioService.create(req.body.Usuario)
+        .then((user: entities.Usuario | any) => res.json(user))
+        .catch(reason => ErrorHandler.AuthorizationException(reason,res));
+  }
+  catch(ex){
+    ErrorHandler.AuthorizationException(ex,res);
+  }
 }).put(RouteDictionary.AtualizarConta, (req,res, next) =>{
   try{
     UsuarioService.getByToken(req.body.token).then(user => {

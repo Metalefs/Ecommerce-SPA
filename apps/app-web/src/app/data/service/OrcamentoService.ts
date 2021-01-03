@@ -24,6 +24,14 @@ export class OrcamentoService {
         );
     }
 
+    FiltrarOrcamentosPorUsuario(): Observable<entities.Orcamento[]> {
+      let payload = this.AuthenticationService.tokenize({});
+      return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Pedidos + `?token=${payload.token}`).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
+    }
+
     Editar(item: entities.Orcamento): Observable<entities.Orcamento> {
         let payload = this.AuthenticationService.tokenize({Orcamento:item});
         console.log(payload);

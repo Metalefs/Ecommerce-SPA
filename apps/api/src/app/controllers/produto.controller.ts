@@ -34,6 +34,8 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
                 res.send(x);
             });
 
+        }).catch(ex=>{
+          ErrorHandler.DefaultException(ex, res);
         });
     }
     catch (err) {
@@ -71,6 +73,8 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
                 res.send(x);
             });
 
+        }).catch(ex=>{
+          ErrorHandler.DefaultException(ex, res);
         });
     }
     catch (err) {
@@ -87,6 +91,8 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
               res.send(x);
           });
 
+      }).catch(ex=>{
+        ErrorHandler.DefaultException(ex, res);
       });
     }
     catch (err) {

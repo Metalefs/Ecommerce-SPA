@@ -45,6 +45,25 @@ export class AuthenticationService {
             }
         }));
     }
+    tempSignup(Usuario : entities.Usuario){
+      return this.http.post<any>(`${environment.endpoint}`+RouteDictionary.Usuario +RouteDictionary.RegistroTemporario, { Usuario })
+      .pipe(map(user => {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          if(user.error == undefined){
+              console.log(user);
+              if(user.token){
+                  localStorage.setItem('currentUser', JSON.stringify(user));
+                  this.currentUserSubject.next(user);
+                  return user;
+              }
+              this.snack.open("Já existe um usuário com este e-mail","Fechar");
+          }
+          else{
+              this.snack.open(user.error,"Fechar");
+              throw user.error;
+          }
+      }));
+  }
 
     login(Email: string, Senha: string) {
         return this.http.post<any>(`${environment.endpoint}`+ RouteDictionary.Usuario + RouteDictionary.Login, { Email, Senha })

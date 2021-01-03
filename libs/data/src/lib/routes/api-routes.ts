@@ -8,6 +8,7 @@ export let RouteDictionary = {
     Sobre:"/sobre/",
     Servico:"/servico/",
     Orcamento:"/orcamento/",
+      Pedidos:"/pedido/",
     Categoria:"/categoria/",
     Feedback:"/feedback/",
     Tema:"/tema/",
@@ -26,6 +27,7 @@ export let RouteDictionary = {
         AtualizarConta:"/atualizarConta/",
         Login:"/login/",
         Registro:"/registro/",
+        RegistroTemporario:"/registroTemporario/",
         RecuperarSenha:"/recuperarSenha/",
         TrocarSenha:"/trocarSenha/",
 

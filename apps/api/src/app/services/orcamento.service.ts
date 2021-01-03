@@ -5,6 +5,8 @@ import { InformacoesContatoService } from './informacoescontato.service';
 
 import { Repository } from '../repositories/repository';
 import { EmailService } from './email.service';
+import { Usuario } from 'libs/data/src/lib/classes';
+import { ErrorHandler } from '../_handlers/error-handler';
 
 export class OrcamentoService {
 
@@ -16,6 +18,13 @@ export class OrcamentoService {
     async Filtrar(filter:{}){
         return Repository.Filter(entities.Orcamento.NomeID, filter).then(x => {
             return x;
+        });
+    }
+    async FiltrarOrcamentosPorUsuario(user:Usuario){
+        return Repository.Filter(entities.Orcamento.NomeID, {'Usuario._id':user?._id}).then(x => {
+            return x;
+        }).catch(ex=>{
+          throw ex;
         });
     }
     async Alterar(Usuario:entities.Usuario, Orcamento:entities.Orcamento){

@@ -99,18 +99,10 @@
     </mat-card-actions>
   </mat-card>
 
-  <button mat-flat-button class="border" (click)="Responder(Orcamento)" color="primary">
+  <a mat-flat-button class="border my-4" (click)="Responder(Orcamento)" color="primary">
     {{Orcamento.Status == 1 ? 'Marcar como Aberto' : 'Marcar como Respondido'}}
-  </button>
-  <button mat-flat-button class="border" *ngIf="Orcamento.ResultadoPagamentoMP.status == 'cancelled'" color="warn">
-    O Pedido foi cancelado
-  </button>
-  <button *ngIf="Orcamento.ResultadoPagamentoMP.status == 'approved'" mat-flat-button class="border" (click)="Devolver(Orcamento)" color="warn">
-    Devolver dinheiro ao comprador
-  </button>
-  <button *ngIf="Orcamento.ResultadoPagamentoMP.status == 'pending' || Orcamento.ResultadoPagamentoMP.status == 'in_process'  " mat-flat-button class="border" (click)="Devolver(Orcamento)" color="warn">
-    Cancelar compra
-  </button>
+  </a>
+
 
   <div class="content">
     <h1>
@@ -139,4 +131,15 @@
 
     Para pagamentos realizados a partir de outros meios, o valor a ser devolvido será depositado na conta Mercado Pago do comprador. Caso não possua uma conta, criaremos uma utilizando o e-mail que foi utilizado para realizar o pagamento.
   </div>
+
+  <a mat-flat-button class="border" *ngIf="Orcamento.ResultadoPagamentoMP.status == 'cancelled'" color="warn">
+    O Pedido foi cancelado
+  </a>
+  <a *ngIf="Orcamento.ResultadoPagamentoMP.status == 'approved'" mat-flat-button class="border" (click)="Devolver(Orcamento)" color="warn">
+    Devolver dinheiro ao comprador
+  </a>
+  <a *ngIf="Orcamento.ResultadoPagamentoMP.status == 'pending' || Orcamento.ResultadoPagamentoMP.status == 'in_process'  " mat-flat-button class="border" (click)="Devolver(Orcamento)" color="warn">
+    Cancelar compra
+  </a>
 </div>
+

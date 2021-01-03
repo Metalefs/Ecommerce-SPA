@@ -1,7 +1,7 @@
 import { entities } from '@personalizados-lopes/data';
 import { Integracoes, Usuario } from 'libs/data/src/lib/classes';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
-import { MercadoPagoPayment, MercadoPagoRefund } from 'libs/data/src/lib/interfaces';
+import { MercadoPagoPayment, MercadoPagoRefund, MercadoPagoSearchPaymentResult } from 'libs/data/src/lib/interfaces';
 import { Repository } from '../repositories/repository';
 import { IntegracoesService } from './integracoes.service';
 
@@ -35,7 +35,7 @@ export class MercadoPagoService{
     });
   }
 
-  async searchPayment(payment_id):Promise<MercadoPagoPayment>{
+  async searchPayment(payment_id):Promise<MercadoPagoSearchPaymentResult>{
     var filters = {
       site_id: 'MLB',
       id:payment_id
@@ -44,7 +44,7 @@ export class MercadoPagoService{
     return mercadopago.payment.search({
       qs: filters
     }).then(function (data) {
-      return data;
+      return data.response.results[0];
     }).catch(function (error) {
       console.log(error);
       return error

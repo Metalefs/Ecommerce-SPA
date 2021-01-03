@@ -6,13 +6,25 @@ import { ErrorHandler } from '../../../core/error.handler';
 import { environment } from '../../../../environments/environment';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { Integracoes, Orcamento, Produto } from 'libs/data/src/lib/classes';
-import { MercadoPagoCheckout, mp_checkout_items, mp_checkout_payer, mp_payment_methods, mp_shipments } from 'libs/data/src/lib/interfaces';
+import { MercadoPagoCheckout, MercadoPagoSearchPaymentResult, mp_checkout_items, mp_checkout_payer, mp_payment_methods, mp_shipments } from 'libs/data/src/lib/interfaces';
+
+
+import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 @Injectable({
     providedIn: 'root'
 })
 export class MercadoPagoCheckoutService {
     constructor(private http: HttpClient,
-      private ErrorHandler:ErrorHandler){}
+      private ErrorHandler:ErrorHandler,
+      private AuthenticationService:AuthenticationService){}
+
+    listPayments(){
+      let payload = this.AuthenticationService.tokenize({});
+      return this.http.get<MercadoPagoSearchPaymentResult>(environment.endpoint + RouteDictionary.ListPayments + `?token=${payload.token}`).pipe(
+        retry(3),
+        catchError(this.ErrorHandler.handleError)
+      );
+    }
 
     goCheckout(Orcamento:Orcamento,integracoes:Integracoes): Observable<any> {
       let MercadoPagoCheckout = this.obterPreferencia(Orcamento,integracoes);

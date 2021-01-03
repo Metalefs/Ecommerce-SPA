@@ -18,6 +18,27 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
     catch (err) {
         ErrorHandler.DefaultException(err, res)
     }
+}).get(RouteDictionary.Pedidos, (req: any, res) => {
+  try {
+
+    Services.UsuarioService.getByToken(req.query.token).then(user => {
+
+        let OrcamentoService:Services.OrcamentoService = new Services.OrcamentoService();
+
+        OrcamentoService.FiltrarOrcamentosPorUsuario(user).then(x=>{
+            res.send(x);
+        }).catch(ex=>{
+          throw ex;
+        });
+
+    }).catch(ex=>{
+      ErrorHandler.DefaultException(ex, res);
+    })
+
+  }
+  catch (err) {
+      ErrorHandler.DefaultException(err, res)
+  }
 }).post(RouteDictionary.Orcamento, (req: any, res) => {
     try {
         let OrcamentoService:Services.OrcamentoService = new Services.OrcamentoService();
@@ -40,6 +61,8 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
                 res.send(x);
             });
 
+        }).catch(ex=>{
+          ErrorHandler.DefaultException(ex, res);
         });
     }
     catch (err) {
@@ -56,6 +79,8 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
                 res.send(x);
             });
 
+        }).catch(ex=>{
+          ErrorHandler.DefaultException(ex, res);
         });
     }
     catch (err) {

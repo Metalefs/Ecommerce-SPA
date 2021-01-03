@@ -45,10 +45,6 @@ export module UsuarioService {
         if (find != 0 && find != undefined) {
             return {erro:'E-mail "' + NovoUsuario.Email + '" já está sendo usado!'};
         }
-        else{
-
-        }
-
         // hash password
         if (NovoUsuario.Senha) {
             NovoUsuario.Senha = bcrypt.hashSync(NovoUsuario.Senha, 10);
@@ -65,14 +61,14 @@ export module UsuarioService {
 
             NovoUsuario.token = token;
             updateUserToken(NovoUsuario);
-            const msg = emailService.SendRegistrationMessage(NovoUsuario);
+            emailService.SendRegistrationMessage(NovoUsuario);
             return {
                 ...NovoUsuario,
                 token
             };
         }else{
-            console.log("usuário não cadastrado");
-            return {erro:'usuário não cadastrado'};
+          console.log("usuário não cadastrado");
+          return {erro:'usuário não cadastrado'};
         }
     }
 
@@ -125,6 +121,46 @@ export module UsuarioService {
       }
     }
 
+    export async function createTempAccount(NovoUsuario : entities.Usuario) {
+      // validate
+      let find = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email});
+      if (find != 0 && find != undefined) {
+          return {erro:'E-mail "' + NovoUsuario.Email + '" já está sendo usado!'};
+      }
+      // hash password
+      if (NovoUsuario.Senha) {
+          NovoUsuario.Senha = bcrypt.hashSync(NovoUsuario.Senha, 10);
+      }else{
+        NovoUsuario.Senha = generateRandomPassword();
+      }
+      console.log("Usuario c/senha temporaria a ser criado:",NovoUsuario);
+      if(NovoUsuario.Email && NovoUsuario.Senha){
+          let emailService = new EmailService();
+          // save user
+          NovoUsuario.DataCriacao = new Date();
+          await Repository.Insert(entities.Usuario.NomeID, NovoUsuario);
+
+          const token = jwt.sign({ sub: NovoUsuario._id }, crypt_config.secret, { expiresIn: '7d' });
+          console.log("usuário cadastrado com sucesso. token gerado", {...NovoUsuario,token});
+
+          NovoUsuario.token = token;
+          updateUserToken(NovoUsuario);
+          emailService.SendRegistrationMessage(NovoUsuario);
+          emailService.SendUpdatePasswordMessage(NovoUsuario, NovoUsuario.Senha)
+          return {
+              ...NovoUsuario,
+              token
+          };
+      }else{
+        console.log("usuário não cadastrado");
+        return {erro:'usuário não cadastrado'};
+      }
+  }
+
+    export function generateRandomPassword(){
+      return generateSinglePassword();
+    }
+
     export async function getById(id:string) {
         return await Repository.FindOne(entities.Usuario.NomeID, {_id: id}) as entities.Usuario[];
     }
@@ -134,7 +170,10 @@ export module UsuarioService {
     }
 
     export async function getByToken(id:string) {
-        return await Repository.FindOne(entities.Usuario.NomeID, {token: id}) as entities.Usuario;
+      let user = await Repository.FindOne(entities.Usuario.NomeID, {token: id});
+      if(user)
+        return user as entities.Usuario;
+      else throw 'Usuário não encontrado'
     }
 
     export async function updateUserToken(Usuario : entities.Usuario) {

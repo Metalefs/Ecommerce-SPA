@@ -18,20 +18,20 @@ export class CategoriaService {
         private AuthenticationService: AuthenticationService) { }
 
     Ler(): Observable<entities.Categoria[]> {
-        return this.http.get<entities.Categoria[]>(environment.endpoint + RouteDictionary.Categoria).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
+      return this.http.get<entities.Categoria[]>(environment.endpoint + RouteDictionary.Categoria).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
     }
 
     Editar(item: entities.Categoria): Observable<entities.Categoria> {
-        let payload = this.AuthenticationService.tokenize({Categoria:item});
-        console.log(payload);
-        return this.http.put<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria,
-            payload).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
+      let payload = this.AuthenticationService.tokenize({Categoria:item});
+      console.log(payload);
+      return this.http.put<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria,
+          payload).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});

@@ -1,14 +1,17 @@
+import { IfStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
+import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { Estado } from 'apps/app-web/src/app/data/models';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 import {CEPService,EstadoService, IntegracoesService, MercadoPagoCheckoutService} from '../../../../data/service';
 
@@ -61,6 +64,7 @@ export class EnderecoComponent implements OnInit {
     private snack: MatSnackBar,
     private checkoutService: MercadoPagoCheckoutService,
     private integracoesService: IntegracoesService,
+    private auth:AuthenticationService,
     private router: Router
     ) { }
 
@@ -106,6 +110,22 @@ export class EnderecoComponent implements OnInit {
       if(!this.Orcamento.Usuario.CPF)
         this.router.navigateByUrl('/checkout/dados');
     }
+  }
+
+  cadastroTemporario(){
+    this.auth.currentUser.subscribe(usr=>{
+      if(!usr){
+        this.auth.signup(this.Orcamento.Usuario)
+        .pipe(first())
+        .subscribe(
+            data => {
+                console.log(data);
+            },
+            error => {
+                this.snack.open('Erro ao cadastrar com senha temporária: '+error,'fechar')
+            });
+      }
+    })
   }
 
   ngOnDestroy(){

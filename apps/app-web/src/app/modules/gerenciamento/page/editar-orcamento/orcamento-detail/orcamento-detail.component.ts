@@ -30,16 +30,18 @@ export class OrcamentoDetailComponent implements OnInit {
   }
 
   Devolver(orcamento:Orcamento){
-    if(orcamento.ResultadoPagamentoMP.status == "approved")
+    if(orcamento.ResultadoPagamentoMP.status == "approved"){
+      let confirmation = confirm("Deletar?");
+      if(confirmation)
+      this.ServicoMercadoPago.refund(orcamento.ResultadoPagamentoMP.payment_id).subscribe(x=>{
+        orcamento.Status = StatusOrcamento.devolvido;
+        orcamento.ResultadoPagamentoMP.status = "cancelled";
 
-    this.ServicoMercadoPago.refund(orcamento.ResultadoPagamentoMP.payment_id).subscribe(x=>{
-      orcamento.Status = StatusOrcamento.devolvido;
-      orcamento.ResultadoPagamentoMP.status = "cancelled";
-
-      this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
-        this.snack.open("Pedido alterado","Fechar");
-      });
-    })
+        this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
+          this.snack.open("Pedido alterado","Fechar");
+        });
+      })
+    }
   }
 
   Responder(orcamento:Orcamento){

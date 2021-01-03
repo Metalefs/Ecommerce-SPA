@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { get } from 'scriptjs';
-import { MercadoPagoCheckout } from '../../../data/models';
-import { MercadoPagoCheckoutService } from '../../../data/service';
 @Component({
   selector: 'personalizados-lopes-mercadopago-button',
   templateUrl: './mercadopago-button.component.html',
