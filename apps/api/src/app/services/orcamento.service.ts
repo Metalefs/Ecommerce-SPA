@@ -6,7 +6,8 @@ import { InformacoesContatoService } from './informacoescontato.service';
 import { Repository } from '../repositories/repository';
 import { EmailService } from './email.service';
 import { Usuario } from 'libs/data/src/lib/classes';
-import { ErrorHandler } from '../_handlers/error-handler';
+
+var ObjectId = require('mongodb').ObjectID;
 
 export class OrcamentoService {
 
@@ -21,11 +22,11 @@ export class OrcamentoService {
         });
     }
     async FiltrarOrcamentosPorUsuario(user:Usuario){
-        return Repository.Filter(entities.Orcamento.NomeID, {'Usuario._id':user?._id}).then(x => {
-            return x;
-        }).catch(ex=>{
-          throw ex;
-        });
+      return Repository.Filter(entities.Orcamento.NomeID, {"Usuario.CPF" : user.CPF}).then(x => {
+          return x;
+      }).catch(ex=>{
+        throw ex;
+      });
     }
     async Alterar(Usuario:entities.Usuario, Orcamento:entities.Orcamento){
         if (Usuario.Tipo == enums.TipoUsuario.admin) {

@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 import { Repository } from '../repositories/repository';
 import { entities } from 'libs/data/src';
 import { EmailService } from './email.service';
-import { exception } from 'console';
 
 import { generateSinglePassword } from './password.service';
 import { Usuario } from 'libs/data/src/lib/classes';

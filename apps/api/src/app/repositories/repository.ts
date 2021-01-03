@@ -215,6 +215,32 @@ export module Repository {
       }
     }
 
+    export async function Aggregate(collection: string, query: any, search:any) { // filters by query
+      try{
+
+        return new Promise((resolve, reject) => {
+            MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
+                if (err) {
+                    logger.log(err)
+                    reject(err);
+                }
+                var dbo = db.db(MongoDBName);
+                return dbo.collection(collection).find(query,search).toArray(function (err: any, result: any) {
+                    if (err) {
+                        logger.log(err)
+                        reject(err);
+                    }
+                    db.close();
+                    resolve(result)
+                });
+            });
+        });
+      }
+      catch(ex){
+        throw ex;
+      }
+    }
+
     export async function Edit(collection: any, id: string, query: any) { // edits one document by id
       try{
 
