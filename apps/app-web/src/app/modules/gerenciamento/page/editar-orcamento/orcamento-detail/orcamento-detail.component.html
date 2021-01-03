@@ -102,5 +102,41 @@
   <button mat-flat-button class="border" (click)="Responder(Orcamento)" color="primary">
     {{Orcamento.Status == 1 ? 'Marcar como Aberto' : 'Marcar como Respondido'}}
   </button>
+  <button mat-flat-button class="border" *ngIf="Orcamento.ResultadoPagamentoMP.status == 'cancelled'" color="warn">
+    O Pedido foi cancelado
+  </button>
+  <button *ngIf="Orcamento.ResultadoPagamentoMP.status == 'approved'" mat-flat-button class="border" (click)="Devolver(Orcamento)" color="warn">
+    Devolver dinheiro ao comprador
+  </button>
+  <button *ngIf="Orcamento.ResultadoPagamentoMP.status == 'pending' || Orcamento.ResultadoPagamentoMP.status == 'in_process'  " mat-flat-button class="border" (click)="Devolver(Orcamento)" color="warn">
+    Cancelar compra
+  </button>
 
+  <div class="content">
+    <h1>
+      Cancelamentos
+    </h1>
+    <p>
+      Os cancelamentos podem ser realizados somente com status pending e in process
+    </p>
+    <p>
+      É importante para meios de pagamento offline
+    </p>
+    <p>
+      A expiração de um pagamento ocorre após 30 dias e o cancelamento é automático, o status final deles será cancelled/expired.
+    </p>
+  </div>
+
+  <div class="content">
+    <h1>
+      Devoluções
+    </h1>
+    É possível devolver um pagamento dentro de 180 dias a partir de sua data de aprovação.
+
+    Deve haver saldo suficiente disponível em sua conta para efetuar a devolução do valor do pagamento com sucesso. Caso contrário, obterá um erro 400 Bad Request.
+
+    Caso o comprador tenha efetuado o pagamento com cartão, o valor será devolvido no próprio cartão.
+
+    Para pagamentos realizados a partir de outros meios, o valor a ser devolvido será depositado na conta Mercado Pago do comprador. Caso não possua uma conta, criaremos uma utilizando o e-mail que foi utilizado para realizar o pagamento.
+  </div>
 </div>

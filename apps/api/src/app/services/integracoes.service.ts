@@ -5,10 +5,15 @@ import { Repository } from '../repositories/repository';
 
 export class IntegracoesService {
 
-    async Ler(): Promise<Integracoes>{
-        return Repository.List(entities.Integracoes.NomeID).then((x :Integracoes)=> {
-            return x[0];
-        });
+    async Ler() : Promise<Integracoes>{
+      return Repository.List(entities.Integracoes.NomeID).then((x:Integracoes[]) => {
+        if(x){
+          let arr = [];
+          arr.push(x[x.length -1]);
+          return arr[0];
+        }
+        return x;
+      });
     }
     async Filtrar(filter:{}){
         return Repository.Filter(entities.Integracoes.NomeID, filter).then(x => {

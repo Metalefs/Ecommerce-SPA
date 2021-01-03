@@ -55,6 +55,11 @@ export class ResultadoPagamentoComponent implements OnInit {
           this.status = StatusPagamento.aprovado;
           break;
         }
+        case("rejected"):{
+          this.status = StatusPagamento.rejeitado;
+          this.goCheckout();
+          break;
+        }
         case("failure"):{
           this.status = StatusPagamento.rejeitado;
           this.goCheckout();
@@ -86,6 +91,7 @@ export class ResultadoPagamentoComponent implements OnInit {
 
   SalvarOrcamento(){
     if(this.Orcamento.Usuario.Email&&!this.Finalizado ){
+      if(this.Orcamento.Preco >0)
       this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
         setTimeout(()=>{
           this.Finalizado = true;

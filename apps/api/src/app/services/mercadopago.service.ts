@@ -1,5 +1,6 @@
 import { entities } from '@personalizados-lopes/data';
 import { Integracoes } from 'libs/data/src/lib/classes';
+import { MercadoPagoPayment, MercadoPagoRefund } from 'libs/data/src/lib/interfaces';
 import { Repository } from '../repositories/repository';
 import { IntegracoesService } from './integracoes.service';
 
@@ -24,16 +25,59 @@ export class MercadoPagoService{
       return x;
     });
   }
-  devolver(){
 
+  async getAllPayments():Promise<MercadoPagoPayment[]>{
+    var filters = {
+      site_id: 'MLB',
+    };
+
+    return mercadopago.payment.search({
+      qs: filters
+    }).then(function (data) {
+      return data;
+    }).catch(function (error) {
+      console.log(error);
+      return error
+    });
   }
-  // Agrega credenciales
-  makecheckout = (preference) => {
-    console.log(preference);
-    return mercadopago.preferences.create(preference);
+
+  async searchPayment(payment_id):Promise<MercadoPagoPayment>{
+    var filters = {
+      site_id: 'MLB',
+      id:payment_id
+    };
+
+    return mercadopago.payment.search({
+      qs: filters
+    }).then(function (data) {
+      return data;
+    }).catch(function (error) {
+      console.log(error);
+      return error
+    });
   }
+
+  async cancel(payment_id:number){
+    return mercadopago.payment.update({
+        id: payment_id,
+        status: "cancelled"
+    }).then(x=>{return x}).catch();
+  }
+
+  async refund(payment_id:number):Promise<MercadoPagoRefund>{
+    return mercadopago.payment.refund(payment_id)
+    .then(function (response) {
+      return response;
+    })
+    .catch(function (error) {
+      // manipular o erro ...
+      console.log(error);
+      return error
+    });
+  }
+
   async checkout(preference) {
-    return this.makecheckout(preference).then(response => {
+    return mercadopago.preferences.create(preference).then(response => {
       // Este es el checkout generado o link al que nos vamos a posicionar para pagar
       console.log(response.body);
       let init_point = response.body.init_point

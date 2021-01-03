@@ -3,10 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { ErrorHandler } from '../../../core/error.handler';
-import { MercadoPagoCheckout, mp_checkout_items, mp_checkout_payer, mp_payment_methods, mp_shipments } from '../../models/mercadoPagoCheckout';
 import { environment } from '../../../../environments/environment';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { Integracoes, Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { MercadoPagoCheckout, mp_checkout_items, mp_checkout_payer, mp_payment_methods, mp_shipments } from 'libs/data/src/lib/interfaces';
 @Injectable({
     providedIn: 'root'
 })
@@ -17,6 +17,13 @@ export class MercadoPagoCheckoutService {
     goCheckout(Orcamento:Orcamento,integracoes:Integracoes): Observable<any> {
       let MercadoPagoCheckout = this.obterPreferencia(Orcamento,integracoes);
       return this.http.post<any>(environment.endpoint + RouteDictionary.Checkout, {preference:MercadoPagoCheckout}).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
+    }
+
+    refund(idPagamento:number): Observable<any> {
+      return this.http.post<any>(environment.endpoint + RouteDictionary.Refund, {idPagamento}).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError) // then handle the error
       );

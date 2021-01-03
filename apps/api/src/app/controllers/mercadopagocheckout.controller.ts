@@ -27,7 +27,33 @@ MercadoPagoController.get(RouteDictionary.Checkout, (req: any, res) => {
     catch (err) {
       ErrorHandler.DefaultException(err, res)
     }
+}).post(RouteDictionary.Refund, (req: any, res) => {
+  try {
+    let mercadoPagoService = new MercadoPagoService();
+    mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
+
+      switch(payment.status){
+        case('approved'):{
+          mercadoPagoService.refund(req.body.idPagamento).then(x=>{
+            res.send(x);
+          });
+          break;
+        }
+        case('pending'):{
+          mercadoPagoService.cancel(req.body.idPagamento).then(x=>{
+            res.send(x);
+          });
+          break;
+        }
+      }
+
+    });
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
 })
+
 export {
   MercadoPagoController
 }

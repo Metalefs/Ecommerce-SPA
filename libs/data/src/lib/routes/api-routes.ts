@@ -32,5 +32,7 @@ export let RouteDictionary = {
     Gerenciamento:"/gerenciamento/",
     Integracoes: "/integracoes/",
 
-    Checkout: '/checkout/'
+    Checkout: '/checkout/',
+    Refund: '/refund/',
+    ListPayments: '/listPayments/'
 };

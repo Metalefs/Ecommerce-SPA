@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
+import { MercadoPagoCheckoutService } from 'apps/app-web/src/app/data/service';
 import { EditarOrcamento, RemoverOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
@@ -16,7 +17,8 @@ import { Observable } from 'rxjs';
 export class OrcamentoDetailComponent implements OnInit {
   @Select(OrcamentoState.ObterListaOrcamentos) Orcamentos$: Observable<Orcamento[]>;
   constructor(private store:Store, private snack:MatSnackBar,
-    private activeRoute: ActivatedRoute) { }
+    private activeRoute: ActivatedRoute,
+    private ServicoMercadoPago: MercadoPagoCheckoutService) { }
 
   Orcamento:Orcamento;
 
@@ -30,9 +32,14 @@ export class OrcamentoDetailComponent implements OnInit {
   Devolver(orcamento:Orcamento){
     if(orcamento.ResultadoPagamentoMP.status == "approved")
 
-    this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
-      this.snack.open("Pedido alterado","Fechar");
-    });
+    this.ServicoMercadoPago.refund(orcamento.ResultadoPagamentoMP.payment_id).subscribe(x=>{
+      orcamento.Status = StatusOrcamento.devolvido;
+      orcamento.ResultadoPagamentoMP.status = "cancelled";
+
+      this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
+        this.snack.open("Pedido alterado","Fechar");
+      });
+    })
   }
 
   Responder(orcamento:Orcamento){

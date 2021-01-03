@@ -1,5 +1,6 @@
 export enum StatusOrcamento{
     aberto,
     respondido,
-    enviado
+    enviado,
+    devolvido
 }

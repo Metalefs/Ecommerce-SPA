@@ -17,7 +17,9 @@ import { LerCarousel } from './data/store/actions/carousel.actions';
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { AdicionarListaProdutosFiltroProduto } from './data/store/actions/filtroproduto.actions';
+import { IntegracoesService } from './data/service';
 declare let gtag: Function;
+declare let Mercadopago: any;
 @Component({
   selector: 'personalizados-lopes-root',
   templateUrl: './app.component.html',
@@ -36,14 +38,15 @@ export class AppComponent {
   constructor(
     private store: Store,
     private router: Router,
+    private integracoesService: IntegracoesService,
   ) {
       this.router.events.subscribe(event => {
          if(event instanceof NavigationEnd){
              gtag('config', 'UA-175817845-1',
-                   {
-                     'page_path': event.urlAfterRedirects
-                   }
-                  );
+                {
+                  'page_path': event.urlAfterRedirects
+                }
+              );
           }
        });
   }
@@ -78,6 +81,9 @@ export class AppComponent {
         this.carregandoOque += " ...Nosso banco de dados está em fase de testes";
       },2000)
     },6000)
+    this.integracoesService.Ler().subscribe(x=>{
+      Mercadopago.setPublishableKey(x.public_key);
+    })
   }
 
   dismissCookieLaw(){
