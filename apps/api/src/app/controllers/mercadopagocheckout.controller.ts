@@ -7,17 +7,21 @@ import { MercadoPagoService } from '../services';
 
 const MercadoPagoController = express();
 
-MercadoPagoController.get(RouteDictionary.Checkout, (req: any, res) => {
+MercadoPagoController
+.get(RouteDictionary.ListPayments, (req: any, res) => {
   try {
-    let mercadoPagoService = new MercadoPagoService();
-    mercadoPagoService.Ler().then(x=>{
-      res.send(x);
+    Services.UsuarioService.getByToken(req.body.token).then(user => {
+      let mercadoPagoService = new MercadoPagoService();
+      mercadoPagoService.getAllPayments(user).then(x=>{
+        res.send(x);
+      });
     });
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Checkout, (req: any, res) => {
+})
+.post(RouteDictionary.Checkout, (req: any, res) => {
     try {
       let mercadoPagoService = new MercadoPagoService();
       mercadoPagoService.checkout(req.body.preference).then(x=>{
@@ -31,7 +35,7 @@ MercadoPagoController.get(RouteDictionary.Checkout, (req: any, res) => {
   try {
     let mercadoPagoService = new MercadoPagoService();
     mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
-
+      console.log(payment);
       switch(payment.status){
         case('approved'):{
           mercadoPagoService.refund(req.body.idPagamento).then(x=>{

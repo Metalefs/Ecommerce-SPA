@@ -1,5 +1,6 @@
 import { entities } from '@personalizados-lopes/data';
-import { Integracoes } from 'libs/data/src/lib/classes';
+import { Integracoes, Usuario } from 'libs/data/src/lib/classes';
+import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { MercadoPagoPayment, MercadoPagoRefund } from 'libs/data/src/lib/interfaces';
 import { Repository } from '../repositories/repository';
 import { IntegracoesService } from './integracoes.service';
@@ -15,18 +16,11 @@ const mercadopago = require("mercadopago");
 })();
 
 export class MercadoPagoService{
-  async Ler() : Promise<Integracoes>{
-    return Repository.List(entities.Integracoes.NomeID).then((x:Integracoes[]) => {
-      if(x){
-        let arr = [];
-        arr.push(x[x.length -1]);
-        return arr[0];
-      }
-      return x;
-    });
-  }
 
-  async getAllPayments():Promise<MercadoPagoPayment[]>{
+  async getAllPayments(user:Usuario):Promise<MercadoPagoPayment[]>{
+    if(user.Tipo != TipoUsuario.admin)
+      return;
+
     var filters = {
       site_id: 'MLB',
     };

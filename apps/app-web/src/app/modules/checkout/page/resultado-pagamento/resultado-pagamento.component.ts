@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { MercadoPagoPayment } from 'apps/app-web/src/app/data/models';
-import { MercadoPagoCheckoutService, IntegracoesService } from 'apps/app-web/src/app/data/service';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
 import { AdicionarOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
+import { MercadoPagoCheckoutService, IntegracoesService } from 'apps/app-web/src/app/data/service';
+import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
+
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
   templateUrl: './resultado-pagamento.component.html',

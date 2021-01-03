@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
-import { Estado, MercadoPagoCheckout } from 'apps/app-web/src/app/data/models';
+import { Estado } from 'apps/app-web/src/app/data/models';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
