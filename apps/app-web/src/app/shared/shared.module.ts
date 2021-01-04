@@ -82,7 +82,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      ExibirListaComentarioProdutoComponent,
      ProdutoSwiperComponent,
      ExibicaoPerfilComponent,
-     CardPedidoComponent
     ],
   imports: [
     CommonModule,

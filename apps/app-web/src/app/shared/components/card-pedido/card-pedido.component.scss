@@ -1,0 +1,61 @@
+
+.zoom{
+  filter: opacity(1);
+  transition: .1s all ease-in-out;
+  &:hover{
+    opacity: 1;
+    filter: opacity(1);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    z-index: 2;
+  }
+}
+@media (min-width: 320px ) and (max-width: 1023px) {
+
+  .zoom{
+    filter: opacity(1);
+  }
+  // .mat-card{
+  //   background: rgb(255, 255, 255);
+  // }
+}
+
+.portfolio-item {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ----- Portfolio Filter Styling Ends ----- */
+
+.portfolio-item:focus, .portfolio-item:hover {
+    text-decoration: none;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+ transform: scale(1);
+ opacity: 1;
+}
+
+.portfolio-item:hover .overlay-items {
+ visibility: visible;
+}
+
+.portfolio-item:hover h5, .portfolio-item:hover p {
+ opacity: 1
+}
+
+.portfolio-item:hover p {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  transform: translateY(0);
+  text-decoration: none;
+}

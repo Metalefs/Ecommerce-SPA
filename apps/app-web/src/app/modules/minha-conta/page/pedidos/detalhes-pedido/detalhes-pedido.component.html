@@ -1,3 +1,8 @@
-<mat-card *ngFor="let prod of Pedido.Produto">
-  <personalizados-lopes-card-produto [Produto]="prod.Produto" ></personalizados-lopes-card-produto>
-</mat-card>
+<div>
+  <div class="w-full contents">
+    <h2>Produtos: </h2>
+    <mat-card class="w-full box" *ngFor="let prod of Pedido.Produto">
+      <personalizados-lopes-card-pedido [CodProduto]="prod" ></personalizados-lopes-card-pedido>
+    </mat-card>
+  </div>
+</div>

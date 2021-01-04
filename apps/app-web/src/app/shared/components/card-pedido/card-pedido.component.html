@@ -1,75 +1,46 @@
-<mat-card
-    @fadeIn
-    matRipple
-    class="portfolio-item zoom"
-   >
-      <a
-      matRipple
-      [href]="['/produtos/'+ CodProduto.Produto._id]"
-      routerLinkActive="router-link-active"
-      class="dis-flex flex-w"
-      >
-      <img
-      mat-card-image
-      #imgProduto
-      (mouseenter)="
-      this.imgProduto.Produto.classList.add('hide');
-      this.imgProduto.Produto.classList.remove('show');
-      this.imgProduto2.classList.remove('hide');
-      this.imgProduto2.classList.add('show');
-      "
-      [src]="CodProduto.Produto.Imagem[0]"
-      [style.opacity]="'1'"
-      [style.display]="'block'"
-      alt="Foto de {{CodProduto.Produto.NomeCategoria}} {{CodProduto.Produto.Cor}} - {{CodProduto.Produto.Nome}}">
-    <img
-      mat-card-image
-      #imgProduto2
-      (mouseout)="
-      this.imgProduto2.classList.remove('show');
-      this.imgProduto2.classList.add('hide');
-      this.imgProduto.Produto.classList.remove('hide');
-      this.imgProduto.Produto.classList.add('show');
-      "
-      class="hide"
-      [src]="CodProduto.Produto.Imagem[1]"
-      alt="Foto de {{CodProduto.Produto.NomeCategoria}} {{CodProduto.Produto.Cor}} - {{CodProduto.Produto.Nome}}">
-    </a>
+<div class="columns is-vcentered is-mobile">
+  <div class="column is-10">
+    <table @fadeIn matRipple class="portfolio-item zoom table w-full is-narrow is-hoverable is-fullwidth">
+      <tbody>
+        <tr>
+          <td>
+            <a [routerLink]="['/produtos/'+CodProduto.Produto._id]">
+              <figure class="image is-128x128">
+                <img src="{{CodProduto.Produto.Imagem}}">
+              </figure>
+            </a>
+          </td>
+          <td>
+            <a [routerLink]="['/produtos/'+CodProduto.Produto._id]">
+              <p class="titulo-produto preto6">{{CodProduto.Produto.Nome}}</p>
+              Quantidade: {{CodProduto.Produto.Quantidade}}
+            </a>
+          </td>
+          <td>
+            <figure class="image is-64x64" *ngIf="CodProduto.Produto.ArteSecundaria">
+              <img src="{{CodProduto.Produto.Arte}}">
+            </figure>
+          </td>
+          <td>
+            <figure class="image is-64x64" *ngIf="CodProduto.Produto.ArteSecundaria">
+              <img src="{{CodProduto.Produto.ArteSecundaria}}">
+            </figure>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-   <mat-card-footer class="px-1">
-     <div class="px-4">
-       <span *ngIf="CodProduto.Produto.Cores?.length > 1" class="button is-small is-fullwidth card is-disabled px-4">
-         Disponível em {{CodProduto.Produto.Cores?.length}} cores
-       </span>
-     </div>
-     <mat-card-header class="w-full txt-left pt-1">
-        <mat-card-title class="w-full txt-left titulo-produto">{{CodProduto.Produto.Nome}}</mat-card-title>
-        <mat-card-subtitle class="mat-card-subtitle preco is-6">{{CodProduto.Produto.Subtitulo}}</mat-card-subtitle>
-        <mat-card-subtitle class="is-3 preco">
-
-
-          <ng-container *ngIf="CodProduto.Produto.Status == statusProduto.promocao then preco_promo else preco_normal"></ng-container>
-          <ng-template #preco_promo>
-            <div class="txt-left">
-              <p class="preco-produto linethr">R$ {{CodProduto.Produto.Preco.toFixed(2) || '0.00'}}</p>
-              <p class="preco-produto promocao">R$ {{CodProduto.Produto.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-            </div>
-          </ng-template>
-          <ng-template #preco_normal>
-            <div class="txt-left">
-              <p class="preco-produto">R$ {{CodProduto.Produto.Preco.toFixed(2) || '0.00'}}</p>
-            </div>
-          </ng-template>
-          <div class="my-3" *ngIf="CodProduto.Produto.Parcelas && CodProduto.Produto.Parcelas > 0">
-            <p class="preto6">
-              Em até {{CodProduto.Produto.Parcelas}}x <span class="preco-produto"><b>R${{(CodProduto.Produto.Preco / CodProduto.Produto.Parcelas).toFixed(2)}}</b></span> sem juros
-            </p>
-          </div>
-
-
-        </mat-card-subtitle>
-      </mat-card-header>
-
-    </mat-card-footer>
-
-    </mat-card>
+  </div>
+  <div class="column">
+    <nav class="panel">
+      <p class="panel-heading">
+        Total
+      </p>
+      <div class="panel-block">
+        <p class="control title is-6">
+          R${{CodProduto.Produto.Preco.toFixed(2)}}
+        </p>
+      </div>
+      </nav>
+  </div>
+</div>
