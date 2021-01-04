@@ -7,19 +7,13 @@
         <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       </section>
     </div>
-    <div class="margin py-4 px-2 has-background-light-custom">
-      <mat-divider></mat-divider>
+    <div class="margin py-4 px-2 ">
       <personalizados-lopes-produto-swiper class="z-index-1"></personalizados-lopes-produto-swiper>
-      <mat-divider></mat-divider>
-
       <section class="py-3" *ngIf="(Clientes$|async).length>0">
         <div data-aos="zoom-down" class="testimonial">
           <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
         </div>
       </section>
-
-      <mat-divider></mat-divider>
-
       <div>
         <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
           <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">

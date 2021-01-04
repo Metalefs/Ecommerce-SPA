@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
 import { CategoriaState, NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
-import { NavLinksRes } from '../../data/models/navlinks';
+import { NavLinks, NavLinksRes } from '../../data/models/navlinks';
 
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Link } from '../../data/models';
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
   @Select(SobreState.IsSobreLoaded) IsSobreLoaded$;
   IsSobreLoadedSub: Subscription;
-  links = NavLinksRes;
+  links = NavLinks;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   @Select(ProdutoState.ObterListaProdutos) Produto$: Observable<Produto[]>;
   @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
@@ -116,9 +116,9 @@ export class HeaderComponent implements OnInit {
 
   Carregar(){
     this.Categoria$.subscribe(cats=>{
-      this.links[0].options = [];
+      this.links[3].options = [];
       cats.forEach(cat=>{
-        this.links[0].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
+        this.links[3].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
       })
     })
 

@@ -1,16 +1,15 @@
-<div class="sticky-nav"
+<div class="sticky-nav shadow-light"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
   <!-- container -->
   <mat-toolbar
   class="pos-sticky mr-0 container">
-  <div class="w-full dis-flex flex-m flex-sb is-hidden-touch py-4">
-    <div class="ml-1">
-    </div>
-    <a @fadeIn href="#" class="logo"><img class=" pb-3" src="assets/images/icons/Logo.png" alt="LOGO"></a>
+  <div class="w-full dis-flex flex-m flex-ba is-hidden-touch py-4 mx-3">
+
+    <a @fadeIn href="#" class="logo"><img class=" pb-3" src="assets/images/icons/Logo.jpg" alt="LOGO"></a>
     <span class="spacer"></span>
-    <div *ngIf="search_desk" class="columns is-mobile is-multiline is-vcentered mx-3 w-full animate__animated animate__slideInLeft">
+    <div *ngIf="search" class="w-full columns is-mobile is-multiline is-vcentered mx-3 w-full animate__animated animate__slideInLeft">
       <div class="column is-12-mobile animate__animated animate__slideInLeft">
         <div class="control has-icons-right animate__animated animate__slideInLeft">
           <input
@@ -27,22 +26,14 @@
           <option *ngFor="let produto of Produto$|async" [value]="produto.Nome">
         </datalist>
       </div>
-      <!-- <div class="column is-hidden-mobile">
-        <div class="w-full">
-          <div class="select w-full">
-            <select class="py-2  w-full" (selectionChange)="SelecionarCategoria($event)"
-            [(ngModel)]="Categoria"
-            [value]="Categoria">
-              <option *ngFor="let cat of Categorias;" [value]="cat.Nome">{{cat.Nome}}</option>
-            </select>
-          </div>
-        </div>
-      </div> -->
     </div>
-    <span class="mb-4 icon is-small is-right hoverable clickable" (click)="search_desk = !search_desk">
-      <mat-icon matSuffix>{{search_desk ? 'close' : 'search'}}</mat-icon>
-    </span>
-    <div class="columns mx-3 is-hidden-mobile link-section">
+    <div class="columns mx-3  is-hidden-mobile link-section">
+
+      <div class="column is-2">
+        <span class="icon is-small is-right hoverable clickable" (click)="search = !search">
+          <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
+        </span>
+      </div>
       <div *ngFor="let link of links" class="column">
 
         <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
@@ -88,9 +79,9 @@
       </div>
     </div>
 
-    <div class="">
+    <div class="pb-4 dis-flex flex-m mx-6">
 
-      <div class="dropdown">
+      <div class="dropdown mr-4">
         <a class="wrap-pic-cir border-light w-full mb-4"
           mat-icon-button
           title="Perfil">
@@ -104,27 +95,27 @@
         </div>
       </div>
 
-    </div>
-    <div class="pb-4">
-      <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
-          title="Checkout"
-          aria-label="Botão abrir Orçamento"
-          color="none"
-          class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
-          <div class="columns line-height-small is-mobile">
-            <!-- <div class="column has-text-right">
-              <p class="cart-title">Pedido</p>
-              <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
-              <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
-            </div> -->
-          </div>
-          <div class="columns">
-            <div class="column">
-              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-              <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+      <div >
+        <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
+            title="Checkout"
+            aria-label="Botão abrir Orçamento"
+            color="none"
+            class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
+            <div class="columns line-height-small is-mobile">
+              <!-- <div class="column has-text-right">
+                <p class="cart-title">Pedido</p>
+              </div> -->
             </div>
-          </div>
-        </button>
+            <div class="columns">
+              <div class="column">
+                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+                <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
+                <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
+                <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+              </div>
+            </div>
+          </button>
+      </div>
     </div>
   </div>
   <div class="w-full dis-flex flex-sb flex-sb-c flec-m columns is-vcentered is-hidden-desktop">

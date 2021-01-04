@@ -1,5 +1,5 @@
-<div class="a-i-c columns is-multiline bg flex-m dis-flex m flex-c-lr-auto">
-  <div  class="column is-4 {{card.class}} my-1" *ngFor="let card of Cards;let i = index;">
+<div class="a-i-c columns is-multiline bg flex-sa mlr-auto">
+  <div class="column is-4 {{card.class}} my-1" *ngFor="let card of Cards;let i = index;">
     <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
     <div data-aos="zoom-in-up"  class="card-bg" [style.backgroundColor]="card?.color">
       <mat-card [id]="card.class" [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
