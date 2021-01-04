@@ -8,9 +8,7 @@
   </div>
   <div class="columns">
     <div class="column" *ngFor="let pedido of Pedidos">
-      <mat-card *ngFor="let prod of pedido.Produto">
-        <personalizados-lopes-card-produto [Produto]="prod.Produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>
-      </mat-card>
+
     </div>
   </div>
 </section>

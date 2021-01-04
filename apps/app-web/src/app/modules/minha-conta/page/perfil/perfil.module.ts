@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfilComponent } from './page/perfil.component';
-import { PerfilPageRoutes } from './perfil.routing';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../../shared/shared.module';
 import { NovoEnderecoComponent } from './page/dialogs/novo-endereco/novo-endereco.component';
 import { NovaSenhaComponent } from './page/dialogs/nova-senha/nova-senha.component';
-
-
 
 @NgModule({
   declarations: [PerfilComponent, NovoEnderecoComponent, NovaSenhaComponent],
   imports: [
     CommonModule,
-    PerfilPageRoutes,
     SharedModule
   ]
 })

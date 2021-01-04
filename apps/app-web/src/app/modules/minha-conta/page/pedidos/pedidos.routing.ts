@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../../core/interceptor';
+import { AuthGuard } from '../../../../core/interceptor';
 import { PedidosComponent } from './page/pedidos.component';
 export const routes: Routes = [
   {

@@ -1,0 +1,39 @@
+<div class="card ">
+
+  <div class="ml-3"></div>
+
+  <div class="card w-full px-6 pt-0 mt-0">
+    <h1 *ngIf="Logado">{{usuario.Nome}}</h1>
+  </div>
+
+  <div class="pt-4 px-4 mb-0 pt-0">
+    <div class="columns py-0 is-mobile is-gapless">
+      <div class="column">
+        <button
+          [routerLink]="['/minha-conta/perfil']"
+          class="w-full  card box has-text-centered border-light" mat-flat-button
+          title="Perfil">
+          <mat-icon>person_outline</mat-icon>
+          <p>Minha conta</p>
+        </button>
+      </div>
+
+      <div class="column">
+        <button [routerLink]="['/minha-conta/pedidos']" class="w-full card box has-text-centered border-light" mat-flat-button>
+          <mat-icon>receipt_long</mat-icon>
+          <p>Meus pedidos</p>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+
+  <mat-toolbar class="w-full pt-3 pos-sticky bottom-0">
+    <mat-toolbar-row class="">
+      <div class="dis-flex flex-c w-full a-i-c">
+        <personalizados-lopes-social-network-links class="flex-w"></personalizados-lopes-social-network-links>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

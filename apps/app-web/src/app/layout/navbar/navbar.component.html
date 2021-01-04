@@ -36,7 +36,12 @@
       </div>
 
       <div class="column">
-        <button [routerLink]="['/pedidos']" class="w-full card box has-text-centered border-light" mat-flat-button>
+        <button [routerLink]="['/minha-conta/pedidos']"
+        href="#topo"
+        (pageScrollFinish)="ToggleNav(0)"
+        routerLinkActive="Active"
+        pageScroll
+        class="w-full card box has-text-centered border-light" mat-flat-button>
           <mat-icon>receipt_long</mat-icon>
           <p>Meus pedidos</p>
         </button>
@@ -47,9 +52,19 @@
 
   <mat-menu mat-menu #appMenu2="matMenu">
     <ng-template matMenuContent let-name="name">
-      <button mat-menu-item *ngIf="usuario" [routerLink]="['/perfil']">{{usuario.Nome}}</button>
+      <button mat-menu-item *ngIf="usuario"
+      href="#topo"
+      (pageScrollFinish)="ToggleNav(0)"
+      routerLinkActive="Active"
+      pageScroll
+      [routerLink]="['/minha-conta/perfil']">{{usuario.Nome}}</button>
       <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
-      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento']">Gerenciamento</button>
+      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin"
+      href="#topo"
+      (pageScrollFinish)="ToggleNav(0)"
+      routerLinkActive="Active"
+      pageScroll
+       [routerLink]="['/gerenciamento']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>
   </mat-menu>

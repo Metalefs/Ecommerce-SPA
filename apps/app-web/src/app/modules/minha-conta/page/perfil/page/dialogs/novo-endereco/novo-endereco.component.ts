@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { Estado } from 'apps/app-web/src/app/data/models';
 import { CEPService, EstadoService, UsuarioService } from 'apps/app-web/src/app/data/service';
-import { AdicionarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
-import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
-import { StatusOrcamento } from 'libs/data/src/lib/enums';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'personalizados-lopes-novo-endereco',

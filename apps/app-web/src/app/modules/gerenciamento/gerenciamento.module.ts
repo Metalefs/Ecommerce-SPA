@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+
+import { SharedModule } from '../../shared/shared.module';
+
 import { GerenciamentoComponent } from './page/gerenciamento.component';
 import { EditarSobreComponent } from './page/editar-sobre/editar-sobre.component';
 import { EditarInformacoesContatoComponent } from './page/editar-infocontato/editar-informacoescontato.component';
 
-import { SharedModule } from '../../shared/shared.module';
 import { GerenciamentoPageRoutes } from './gerenciamento.routing';
 import { EditarProdutoComponent } from './page/editar-produto/editar-produto.component';
 import { EditarTemaComponent } from './page/editar-tema/editar-tema.component';
@@ -17,12 +27,7 @@ import { CriarCategoriaDialogComponent } from './page/editar-categoria/DialogCom
 import { CriarClienteDialogComponent } from './page/editar-clientes/DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
 
 import { DashboardComponent } from './page/dashboard/dashboard.component';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { LayoutModule } from '@angular/cdk/layout';
+
 import { EdicaoCardProdutoComponent } from './page/editar-produto/components/edicao-card-produto/edicao-card-produto.component';
 import { EdicaoCardBlogComponent } from './page/editar-blog/edicao-card-blog/edicao-card-blog.component';
 import { EdicaoCardClienteComponent } from './page/editar-clientes/components/edicao-card-cliente/edicao-card-cliente.component';
@@ -38,7 +43,6 @@ import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
 import { CriarPostComponent } from './page/editar-blog/dialogs/criar-post/criar-post.component';
 import { EditarPostComponent } from './page/editar-blog/dialogs/editar-post/editar-post.component';
 
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarIntegracaoDialogComponent } from './page/editar-integracoes/dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';

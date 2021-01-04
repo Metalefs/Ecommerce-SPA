@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Orcamento } from 'libs/data/src/lib/classes';
-import { fade } from '../../../animations';
-import { OrcamentoService } from '../../../data/service';
+import { fade } from '../../../../../animations';
+import { OrcamentoService } from '../../../../../data/service';
 
 @Component({
   selector: 'personalizados-lopes-pedidos',

@@ -35,7 +35,6 @@ import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/
 import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgotado.component';
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
-import { CardBlogComponent } from './components/card-blog/card-blog.component';
 
 import { EscreverComentarioModule } from './components/comentarios/escrever-comentario/escrever-comentario.module';
 
@@ -46,6 +45,9 @@ import { ExibirListaComentarioComponent } from './components/comentarios/exibir-
 import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';
 import { ProdutoSwiperComponent } from './components/produto-swiper/produto-swiper.component';
 import { ExibicaoPerfilComponent } from './components/exibicao-perfil/exibicao-perfil.component';
+import { CardPedidoComponent } from './components/card-pedido/card-pedido.component';
+import { CardBlogModule } from './components/card-blog/card-blog.module';
+import { CardPedidoModule } from './components/card-pedido/card-pedido/card-pedido.module';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -76,11 +78,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      BotaoEsgotadoComponent,
      CaixaObterEmailComponent,
      MercadopagoButtonComponent,
-     CardBlogComponent,
      ExibirListaComentarioComponent,
      ExibirListaComentarioProdutoComponent,
      ProdutoSwiperComponent,
-     ExibicaoPerfilComponent
+     ExibicaoPerfilComponent,
+     CardPedidoComponent
     ],
   imports: [
     CommonModule,
@@ -107,6 +109,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EscreverComentarioModule,
     CardComentarioModule,
     CardComentarioProdutoModule,
+    CardBlogModule,
+    CardPedidoModule
   ],
   exports: [
     CommonModule,
@@ -131,7 +135,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CloseBtnComponent,
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
-    CardBlogComponent,
+    CardBlogModule,
     IvyCarouselModule,
     GalleryModule,
     LightboxModule,

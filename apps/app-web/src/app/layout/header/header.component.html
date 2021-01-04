@@ -98,7 +98,7 @@
         </a>
         <div class="dropdown-content right-0">
           <a mat-menu-item *ngIf="!user" (click)="openLogin()">Login</a>
-          <a mat-menu-item *ngIf="user" [routerLink]="['/perfil']">Meu Perfil</a>
+          <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/perfil']">Meu Perfil</a>
           <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento']">Gerenciamento</a>
           <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
         </div>

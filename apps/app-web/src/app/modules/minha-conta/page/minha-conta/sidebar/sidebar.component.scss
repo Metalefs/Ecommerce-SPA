@@ -1,0 +1,111 @@
+
+@import '../../../../../../variables';
+.card {
+  // background-color: #ffffffe8;
+  &:hover{
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    transition: all .3s ease;
+    color:black;
+  }
+}
+a span{
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: Montserrat;
+}
+.mat-list-text a span {
+  line-height: 2em;
+  letter-spacing: 0px;
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 2;
+  padding-bottom: 1em;
+
+  -webkit-transition: .8s;
+  -moz-transition: .8s;
+  transition: .8s;
+}
+.blue-underline{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: $gray-web;
+  visibility: hidden;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+}
+.mat-list-item a.active-nav{
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+  color: $red2;
+
+}
+.mat-list-item a.active-nav .mat-icon.inst{
+  -webkit-transition: all 0.2s ease-in-out 0s;
+  transition: all 0.2s ease-in-out 0s;
+  color:$red2;
+  background:$red2;
+}
+a {
+  position: relative;
+  color: 353232;
+  text-decoration: none;
+  transition: all .3s ease;
+}
+
+a:hover {
+  color: #999;
+  text-decoration: none;
+  -webkit-transform: scaleX(1.1);
+  transform: scaleX(1.1);
+}
+
+a:before {
+  @extend .blue-underline
+}
+
+.mat-list-text:hover a::before {
+  visibility: visible;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+@media only screen and (min-width: 768px) {
+
+  #nav-menu .navigation {
+    margin-top: 25px;
+  }
+
+
+}
+.mat-subheader{
+  font-family: Montserrat;
+  font-weight: 300;
+  color:#353232;
+}
+.mat-list-text{
+  padding: 0;
+}
+.mat-icon{
+  width: 50px;
+  margin-right: 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
+}
+.mat-icon.inst{
+  background:$gray-web;
+}
+.mat-list-base .mat-list-item .mat-list-icon, .mat-list-base .mat-list-option .mat-list-icon{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 0;
+}
