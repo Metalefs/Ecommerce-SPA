@@ -3,63 +3,70 @@
 </div>
 <div class=" w-full">
   <div class="mat-elevation-z8 w-full  of-x-scroll">
-    <table mat-table [dataSource]="PedidoTable.dataSource" class="table w-full is-hoverable is-striped">
+    <mat-form-field class="px-4">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="table w-full is-hoverable is-striped" matSort>
 
       <ng-container matColumnDef="Nome">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome Cliente </th>
-        <td mat-cell *matCellDef="let element"> {{element.Usuario.Nome}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Nome Cliente </th>
+        <td mat-cell *matCellDef="let row"> {{row.Usuario.Nome}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Email">
         <th mat-header-cell *matHeaderCellDef > Email Cliente </th>
-        <td mat-cell *matCellDef="let element"> {{element.Usuario.Email}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.Usuario.Email}} </td>
       </ng-container>
 
       <ng-container matColumnDef="CPF">
         <th mat-header-cell *matHeaderCellDef > CPF Cliente </th>
-        <td mat-cell *matCellDef="let element"> {{element.Usuario.CPF}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.Usuario.CPF}} </td>
       </ng-container>
 
       <ng-container matColumnDef="IDPagamento">
         <th mat-header-cell *matHeaderCellDef > IDPagamento </th>
-        <td mat-cell *matCellDef="let element"> {{element.ResultadoPagamentoMP?.payment_id}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.ResultadoPagamentoMP?.payment_id}} </td>
       </ng-container>
 
       <ng-container matColumnDef="Preco">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Preco do pedido </th>
-        <td mat-cell *matCellDef="let element"> {{element.Preco}} </td>
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Preco do pedido </th>
+        <td mat-cell *matCellDef="let row"> R${{row.Preco.toFixed(2)}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Status" mat-sort-header>
-        <th mat-header-cell *matHeaderCellDef> Status da sua resposta </th>
-        <td mat-cell *matCellDef="let element"> {{element.Status == 0 ? 'Aberto' : 'Respondido'}} </td>
+      <ng-container matColumnDef="Status" >
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Status da sua resposta </th>
+        <td mat-cell *matCellDef="let row"> {{row.Status == 0 ? 'Aberto' : 'Respondido'}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="StatusMP" mat-sort-header>
-        <th mat-header-cell *matHeaderCellDef> Status do pagamento </th>
-        <td mat-cell *matCellDef="let element"> {{element.ResultadoPagamentoMP?.status}} </td>
+      <ng-container matColumnDef="StatusMP" >
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Status do pagamento </th>
+        <td mat-cell *matCellDef="let row"> {{row.ResultadoPagamentoMP?.status}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="Data" mat-sort-header>
-        <th mat-header-cell *matHeaderCellDef> Data Hora Criacao</th>
-        <td mat-cell *matCellDef="let element"> {{element.DataHoraCriacao}} </td>
+      <ng-container matColumnDef="Data" >
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Data Hora Criacao</th>
+        <td mat-cell *matCellDef="let row"> <div [innerHTML]="toLocaleDateString(row.DataHoraCriacao)"></div> </td>
       </ng-container>
 
       <ng-container matColumnDef="Actions">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
-        <td mat-cell *matCellDef="let element">
+        <td mat-cell *matCellDef="let row">
           <a pageScroll
             href="#TOPO"
             class="button is-dark"
-            [routerLink]="['/gerenciamento/pedidos/'+element._id]"
+            [routerLink]="['/gerenciamento/pedidos/'+row._id]"
             routerLinkActive="router-link-active">
             Abrir
           </a>
         </td>
       </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="PedidoTable.displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: PedidoTable.displayedColumns;"></tr>
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">Sem dados para o filtro "{{input.value}}"</td>
+      </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

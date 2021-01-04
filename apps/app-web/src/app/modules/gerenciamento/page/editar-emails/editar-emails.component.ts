@@ -31,7 +31,7 @@ export class EditarEmailsComponent implements OnInit {
         y = new checkable(y);
       })
       this.emails = x;
-      this.emailTable.dataSource = x;
+      this.emailTable.dataSource = [x];
       this.Loading = false;
     })
   }

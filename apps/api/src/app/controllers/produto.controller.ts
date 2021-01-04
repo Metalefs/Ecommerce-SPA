@@ -35,7 +35,7 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
             });
 
         }).catch(ex=>{
-          ErrorHandler.DefaultException(ex, res);
+          ErrorHandler.AuthorizationException(ex, res);
         });
     }
     catch (err) {
@@ -74,7 +74,7 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
             });
 
         }).catch(ex=>{
-          ErrorHandler.DefaultException(ex, res);
+          ErrorHandler.AuthorizationException(ex, res);
         });
     }
     catch (err) {
@@ -92,7 +92,7 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
           });
 
       }).catch(ex=>{
-        ErrorHandler.DefaultException(ex, res);
+        ErrorHandler.AuthorizationException(ex, res);
       });
     }
     catch (err) {

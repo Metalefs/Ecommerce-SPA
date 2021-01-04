@@ -32,7 +32,7 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
         });
 
     }).catch(ex=>{
-      ErrorHandler.DefaultException(ex, res);
+      ErrorHandler.AuthorizationException(ex, res);
     })
 
   }
@@ -62,7 +62,7 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
             });
 
         }).catch(ex=>{
-          ErrorHandler.DefaultException(ex, res);
+          ErrorHandler.AuthorizationException(ex, res);
         });
     }
     catch (err) {
@@ -80,7 +80,7 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
             });
 
         }).catch(ex=>{
-          ErrorHandler.DefaultException(ex, res);
+          ErrorHandler.AuthorizationException(ex, res);
         });
     }
     catch (err) {

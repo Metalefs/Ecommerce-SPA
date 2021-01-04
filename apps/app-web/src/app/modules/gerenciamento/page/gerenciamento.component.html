@@ -1,15 +1,5 @@
 <div class="bg-white min-h-50" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar >
-    <button mat-icon-button (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <!-- <a href="#" class="px-5 mt-2"><img class="" src="assets/images/icons/Logo.png" width="50" alt="LOGO"></a>
-    <span>Dashboard </span>
-    <span class="spacer"></span>
-    <button mat-icon-button (click)="Logout()" title="logout">
-      <mat-icon>login</mat-icon>
-    </button> -->
-  </mat-toolbar>
+
   <mat-sidenav-container class="has-background-white-bis vh-full" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
     <mat-sidenav #snav [opened]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
       fixedTopGap="56">
@@ -17,6 +7,7 @@
         <a *ngFor = "let nav of navs"
         (click)="activenav = nav.name"
         [ngClass]="activenav == nav.name ? 'nav active-nav' : 'nav'"
+        [ngClass]="nav.name == 'Pedidos' ? 'has-background-warning' : ''"
         mat-list-item
         [routerLink]="[nav.href]"
         routerLinkActive="active">
@@ -30,7 +21,11 @@
     </mat-sidenav>
 
     <mat-sidenav-content class="has-background-white-bis pos-relative min-h-50">
-
+      <mat-toolbar class="">
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar>
       <div class="px-3 py-3">
         <router-outlet></router-outlet>
         <footer class="card-footer py-4">

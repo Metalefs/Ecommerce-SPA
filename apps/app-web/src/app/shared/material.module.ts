@@ -29,6 +29,7 @@ import { MatStepperModule} from '@angular/material/stepper';
 import { MatBadgeModule} from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -61,7 +62,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatStepperModule,
     MatBadgeModule,
     MatGridListModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSortModule
   ]
 })
 export class MaterialModule {}

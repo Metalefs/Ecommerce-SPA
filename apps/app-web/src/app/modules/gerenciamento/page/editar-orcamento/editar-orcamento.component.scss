@@ -5,3 +5,24 @@
 .Respondido{
   // border: 2px solid black;
 }
+.table th:not([align]) {
+  text-align: center;
+}
+table td:not([align]), table th:not([align]) {
+  text-align: center;
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  padding: 5px;
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}

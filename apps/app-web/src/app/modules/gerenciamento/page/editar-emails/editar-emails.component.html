@@ -11,7 +11,7 @@
   <div class="column">
     <button mat-raised-button (click)="CheckAll()">Todos</button>
     <button mat-mini-fab (click)="Criar()"><mat-icon>add</mat-icon></button>
-    <table mat-table [dataSource]="emailTable.dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="emailTable?.dataSource" class="mat-elevation-z8">
 
       <ng-container matColumnDef="checked">
         <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
