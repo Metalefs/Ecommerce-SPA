@@ -13,6 +13,7 @@ import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 
 @Component({
   selector: 'personalizados-lopes-criar-dialog',
@@ -20,6 +21,7 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./criar-dialog.component.scss']
 })
 export class CriarProdutoDialogComponent implements OnInit {
+  enumStatusProduto = StatusProduto;
   fileNames:string="nenhum arquivo selecionado.";
   Produto:Produto;
   visible = true;
@@ -173,5 +175,18 @@ export class CriarProdutoDialogComponent implements OnInit {
     this.colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
-
+  IncrementarQuantidade(){
+    this.Produto.Quantidade++;
+  }
+  DecrescerQuantidade(){
+    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
+    this.Produto.Quantidade--;
+  }
+  VerificarQuantidade($event){
+    if($event.target.value < this.Produto.QuantidadeMinima)
+      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+  }
+  translateStatusProduto(status){
+    return translateEnum(StatusProduto,status);
+  }
 }

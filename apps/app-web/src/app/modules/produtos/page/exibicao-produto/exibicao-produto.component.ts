@@ -53,9 +53,9 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   constructor(
     breakpointObserver: BreakpointObserver,
+    private gallery: Gallery,
     private activeRoute:ActivatedRoute,
     private router: Router,
-    private gallery: Gallery,
     private store: Store,
     public dialog: MatDialog,
     private ComentarioProdutoService: ComentarioProdutoService
@@ -231,14 +231,13 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
     this.readonlyRating = localStorage.getItem(`rateproduto${id}`) == 'true' ? true: false;
 
-    const galleryRef = this.gallery.ref('myGallery');
     if(!this.orcamentoId){
       this.isOrcamento = false;
       this.Produtos$.subscribe( res => {
         const index = res.findIndex(item => item._id === id);
         this.Produto = res[index];
         if(!this.Produto)
-          this.router.navigateByUrl('/produtos');
+        this.router.navigateByUrl('/produtos');
       });
     }
     else{
@@ -246,10 +245,11 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.Orcamento$.subscribe( res => {
         const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
         if(index<0)
-          this.router.navigateByUrl('/produtos');
+        this.router.navigateByUrl('/produtos');
         this.Produto = res.Produto[index].Produto;
       });
     }
+    const galleryRef = this.gallery.ref('myGallery');
     this.Produto?.Imagem.forEach(img =>{
       console.log(img);
       galleryRef.addImage({ src:img, thumb: img });

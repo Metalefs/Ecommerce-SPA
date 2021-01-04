@@ -54,7 +54,8 @@ export class EditarProdutoComponent implements OnInit {
   }
   Criar(): void {
     const dialogRef = this.dialog.open(CriarProdutoDialogComponent, {
-      width: '90%',
+      width: "100%",
+      height: "100%",
       data: ""
     });
 

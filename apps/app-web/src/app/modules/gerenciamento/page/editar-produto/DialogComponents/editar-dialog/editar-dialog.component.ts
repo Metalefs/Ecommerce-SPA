@@ -12,6 +12,10 @@ import { Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { GalleryConfig, GalleryItem, Gallery, ThumbnailsPosition } from 'ng-gallery';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
@@ -19,6 +23,10 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./editar-dialog.component.scss']
 })
 export class EditarProdutoDialogComponent implements OnInit {
+  galleryConfig$: Observable<GalleryConfig>;
+  images: GalleryItem[];
+  images$: Observable<GalleryItem[]>;
+  enumStatusProduto = StatusProduto;
   fileNames:string="nenhum arquivo selecionado.";
   visible = true;
   selectable = true;
@@ -48,6 +56,8 @@ export class EditarProdutoDialogComponent implements OnInit {
   Categorias: entities.Categoria[];
   statusProduto:string[] = [];
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
+    breakpointObserver: BreakpointObserver,
+    private gallery: Gallery,
     @Inject(MAT_DIALOG_DATA) public data:  entities.Produto,
     private ServicoCategoria: CategoriaService
   ) {
@@ -58,6 +68,24 @@ export class EditarProdutoDialogComponent implements OnInit {
     if(!this.Produto.Tamanhos){
       this.Produto.Tamanhos = []
     }
+    this.galleryConfig$ = breakpointObserver.observe([
+      Breakpoints.HandsetPortrait
+    ]).pipe(
+      map(res => {
+        if (res.matches) {
+          return {
+            thumbPosition: ThumbnailsPosition.Bottom,
+            thumbWidth: 80,
+            thumbHeight: 80,
+          };
+        }
+        return {
+          thumbPosition: ThumbnailsPosition.Bottom,
+          thumbWidth: 120,
+          thumbHeight: 90
+        };
+      })
+    );
   }
 
   CarregarCategorias(){
@@ -70,6 +98,11 @@ export class EditarProdutoDialogComponent implements OnInit {
       if(isNaN(parseInt(StatusProduto[enumMember])))
       this.statusProduto.push(StatusProduto[enumMember])
     }
+    const galleryRef = this.gallery.ref('myGallery');
+    this.Produto?.Imagem.forEach(img =>{
+      console.log(img);
+      galleryRef.addImage({ src:img, thumb: img });
+    });
   }
 
   upload($event){
@@ -157,5 +190,19 @@ export class EditarProdutoDialogComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+  IncrementarQuantidade(){
+    this.Produto.Quantidade++;
+  }
+  DecrescerQuantidade(){
+    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
+    this.Produto.Quantidade--;
+  }
+  VerificarQuantidade($event){
+    if($event.target.value < this.Produto.QuantidadeMinima)
+      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+  }
+  translateStatusProduto(status){
+    return translateEnum(StatusProduto,status);
   }
 }

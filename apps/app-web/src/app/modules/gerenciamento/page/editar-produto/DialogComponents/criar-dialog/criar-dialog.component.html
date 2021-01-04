@@ -1,5 +1,298 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Criação de produto</h1>
 <div mat-dialog-content>
+
+  <nav class="breadcrumb is-left pt-0" aria-label="breadcrumbs">
+    <ul class="">
+      <li class="">
+        <a [routerLink]="'/produtos'" href="#" class="">Todos os produtos</a>
+      </li>
+      <li>
+        <mat-form-field appearance="">
+          <mat-label>Categoria</mat-label>
+          <mat-select matNativeControl (selectionChange)="SelecionarCategoria($event)"
+            [(ngModel)]="Produto.NomeCategoria" [value]="Produto.NomeCategoria">
+            <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">
+              {{opt.Nome}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </li>
+      <li class="is-active desb">
+        <a href="#" class="">{{Produto?.Nome}}</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="columns box has-background-white" id="PRODUTO">
+    <div class="column is-4 mb-0 pos-sticky top-0 pt-3">
+      <mat-chip-list class="is-left">
+        <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</mat-chip>
+      </mat-chip-list>
+
+      <mat-form-field class="w-full" appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select matNativeControl [(ngModel)]="Produto.Status" [value]="Produto.Status">
+          <mat-option *ngFor="let opt of statusProduto; let i = index" [value]="i">
+            {{opt}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="file has-name pb-3">
+        <label class="file-label">
+          <input class="file-input" multiple type="file" (change)="upload($event)">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Escolha as imagens…
+            </span>
+            <span class="file-name">
+              {{fileNames}}
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <a href="#desc" pageScroll pageScrollDuration="5000" class="pos-sticky bellow-nav border my-3" mat-flat-button
+        *ngIf="Produto.Descricao?.length > 0">
+        Mais informações
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </a>
+
+    </div>
+
+    <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky">
+
+      <div class="columns is-multiline mb-0 pb-0">
+        <div class="column is-6">
+          <mat-form-field class="w-full">
+            <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
+          </mat-form-field>
+
+          <mat-form-field class="w-full">
+            <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
+          </mat-form-field>
+
+          <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+          <div class="descricao-produto w-full py-4">
+            <mat-form-field class="w-full">
+              <textarea matInput type="text" [(ngModel)]="Produto.DescricaoRapida"
+                placeholder="Descricao Rapida"></textarea>
+            </mat-form-field>
+            <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
+          </div>
+          <!-- <div class="my-1 star-width dis-flex flex-w">
+            <span class="subtitle is-size-7">({{Produto.Rating.length}} avaliações)</span>
+          </div> -->
+          <div class="my-1">
+            <mat-form-field class="">
+              <input matInput type="text" min="1" [(ngModel)]="Produto.Preco" [value]="Produto.Preco"
+                placeholder="Preco" mask='00.00'>
+            </mat-form-field>
+            <mat-form-field class="">
+              <input matInput type="number" min="1" [(ngModel)]="Produto.Parcelas" [value]="Produto.Parcelas"
+                placeholder="Parcelas">
+            </mat-form-field>
+            <mat-form-field class="">
+              <mat-label>Preco Promocional</mat-label>
+              <input matInput type="number" min="1" [(ngModel)]="Produto.PrecoPromocional"
+                [value]="Produto.PrecoPromocional">
+            </mat-form-field>
+            <ng-container *ngIf="Produto.Status == enumStatusProduto.promocao then preco_promo else preco_normal">
+            </ng-container>
+            <ng-template #preco_promo>
+              <div class="txt-left">
+                <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                <p class="preco promocao preto6">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+              </div>
+            </ng-template>
+            <ng-template #preco_normal>
+              <div class="txt-left">
+                <p class="preco preto6">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+              </div>
+            </ng-template>
+            <div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+              <p class="preto6">
+                Em até {{Produto.Parcelas}}x
+                <span class="preco-produto"><b>R${{(Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span> sem juros
+              </p>
+            </div>
+          </div>
+          <p *ngIf="Produto?.QuantidadeMinima > 1"><em>Quantidade</em></p>
+          <div class="field w-full">
+            <div class="control border is-large flex-c flex-m w-full">
+              <button mat-icon-button (click)="DecrescerQuantidade()">
+                <mat-icon class="less">remove</mat-icon>
+              </button>
+              <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
+                (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
+              <button mat-icon-button (click)="IncrementarQuantidade()">
+                <mat-icon class="more">add</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-form-field class="">
+            <mat-label>Quantidade Minima</mat-label>
+            <input matInput type="number" min="1" [(ngModel)]="Produto.QuantidadeMinima"
+              [value]="Produto.QuantidadeMinima">
+          </mat-form-field>
+          <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
+            <em>
+              *Minimo {{Produto?.QuantidadeMinima}} unidades
+            </em>
+          </span>
+          <div class="w-full py-3 mb-0">
+
+            <div class="columns is-mobile mb-0">
+              <div class="column is-6 pb-0">
+                <mat-form-field class="w-full">
+                  <mat-chip-list #chipList aria-label="Color selection">
+                    <mat-chip *ngFor="let cor of Produto.Cores" [selectable]="selectable" [removable]="removable"
+                      (removed)="removeCor(cor)">
+                      {{cor.nome}}
+                      <mat-icon matChipRemove *ngIf="removable">
+                        cancelar
+                      </mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Nova cor... Separe o nome do valor com ponto e vírgula = branco;#fffff insira com ENTER ou TAB"
+                      #colorInput [formControl]="colorCtrl" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addCor($event)">
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCor($event)">
+                    <mat-option *ngFor="let cor of filteredColors | async" [value]="cor.nome">
+                      {{cor.nome}}
+                      <div [style.backgroundColor]="cor.cor" style="width: 20px;height: 20px;"></div>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <p><em>Cores</em></p>
+                <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                  <mat-label>Selecione uma cor</mat-label>
+                  <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
+                    <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
+                      <div class="cor-produto card box w-full" [style.backgroundColor]="opt.cor"
+                        (click)="Produto.Cor = opt">
+                        <p>{{opt.nome}}</p>
+                      </div>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="column is-6 pb-0" *ngIf="Produto?.Tamanhos">
+                <mat-form-field class="w-full">
+                  <mat-chip-list #chipList2 aria-label="Size selection">
+                    <mat-chip *ngFor="let tamanho of Produto.Tamanhos" [selectable]="selectable" [removable]="removable"
+                      (removed)="removeTamanho(tamanho)">
+                      {{tamanho}}
+                      <mat-icon matChipRemove *ngIf="removable">
+                        cancelar
+                      </mat-icon>
+                    </mat-chip>
+                    <input placeholder="Novo tamanho..." #colorInput [formControl]="sizeCtrl" [matAutocomplete]="auto"
+                      [matChipInputFor]="chipList2" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="addTamanho($event)">
+                  </mat-chip-list>
+                  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedTamanho($event)">
+                    <mat-option *ngFor="let size of filteredSizes | async" [value]="size">
+                      {{size}}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <p><em>Tamanhos</em></p>
+                <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                  <mat-label>Selecione um tamanho</mat-label>
+                  <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
+                    <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
+                      <div class="cor-produto card box w-full" (click)="Produto.Tamanho = opt">
+                        <p>{{opt}}</p>
+                      </div>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+          <mat-divider></mat-divider>
+          <div class="descricao-produto w-full py-4">
+            <h2 class="preto6"><b>Especificações</b></h2>
+            <div class="w-full">
+              <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes">
+              </ckeditor>
+            </div>
+            <div [innerHTML]="Produto?.Especificacoes || 'Sem especificações'"></div>
+          </div>
+        </div>
+        <div class="column is-6">
+          <div class="columns is-multiline">
+            <div class="column is-12-mobile">
+              <div *ngIf="Produto?.Status != enumStatusProduto.esgotado" class="txt-center ">
+                <button mat-raised-button
+                  [disabled]="Produto?.Status == enumStatusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+
+                  class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium">
+                  Comprar
+                  <!-- <mat-icon>shopping_bag</mat-icon> -->
+                </button>
+                <mat-list>
+                  <mat-list-item *ngIf="! Produto?.Tamanho">
+                    <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
+                  </mat-list-item>
+                  <mat-list-item *ngIf="! Produto?.Cor">
+                    <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div *ngIf="Produto?.Status == enumStatusProduto.esgotado" class="box pt-5 w-full">
+                <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="image is-64x64 img-orcamento">
+        <img src="{{Produto?.Imagem[0]}}" alt="">
+      </figure>
+
+    </div>
+  </div>
+  <mat-form-field class="w-full">
+    <mat-chip-list #chipTagList aria-label="Tag selection">
+      <mat-chip *ngFor="let tag of Produto.Tags" [selectable]="selectable" [removable]="removable"
+        (removed)="removeTag(tag)">
+        {{tag}}
+        <mat-icon matChipRemove *ngIf="removable">
+          cancelar
+        </mat-icon>
+      </mat-chip>
+      <input placeholder="Tags" #tagInput [formControl]="tagCtrl" [matChipInputFor]="chipTagList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addTag($event)">
+    </mat-chip-list>
+  </mat-form-field>
+
+  <div class="w-full">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Descrição</mat-card-title>
+        <mat-card-content>
+          Explore a ferramenta
+          <p>Aqui é possível inserir conteúdos externos como fotos e videos, postagens de redes sociais e criação de
+            tabelas de caracteristicas</p>
+        </mat-card-content>
+      </mat-card-header>
+    </mat-card>
+    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao"></ckeditor>
+  </div>
+
+  <div class="w-full columns">
+    <div id="desc" class="descricao-produto column is-12 w-full"
+      [innerHTML]="this.Produto.Descricao || 'Este produto está sem uma descrição'"></div>
+  </div>
+
   <mat-card class="box">
     <mat-card-title>Dicas</mat-card-title>
     <mat-card-subtitle>Cadastro de produto:</mat-card-subtitle>
@@ -15,7 +308,7 @@
             (3)Tipo
             (3)Material do produto
             (4)Cor (se houver)
-           </span>
+          </span>
         </div>
         <div class="card">
           <h2>Fotos de qualidade e padronizadas</h2>
@@ -40,177 +333,20 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-form-field class="w-full">
-    <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
-  </mat-form-field>
 
-  <div class="w-full">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Descrição</mat-card-title>
-        <mat-card-content>
-          Explore a ferramenta
-          <p>Aqui é possível inserir conteúdos externos como fotos e videos, postagens de redes sociais e criação de tabelas de caracteristicas</p>
-        </mat-card-content>
-      </mat-card-header>
-    </mat-card>
-    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao" ></ckeditor>
-  </div>
 
-  <mat-form-field class="w-full">
-    <textarea matInput type="text" [(ngModel)]="Produto.DescricaoRapida" placeholder="Descricao Rapida"></textarea>
-  </mat-form-field>
-  <mat-form-field class="w-full">
-    <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
-  </mat-form-field>
-  <mat-form-field appearance="">
-    <mat-label>Categoria</mat-label>
-    <mat-select matNativeControl (selectionChange)="SelecionarCategoria($event)" [(ngModel)]="Produto.NomeCategoria" [value]="Produto.NomeCategoria">
-      <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">
-        {{opt.Nome}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field class="">
-    <input matInput type="text" min="1" [(ngModel)]="Produto.Preco"[value]="Produto.Preco" placeholder="Preco" mask='00.00'>
-  </mat-form-field>
-  <mat-form-field class="">
-    <input matInput type="number" min="1" [(ngModel)]="Produto.Parcelas"[value]="Produto.Parcelas" placeholder="Parcelas">
-  </mat-form-field>
-  <mat-form-field class="">
-    <mat-label>Quantidade Minima</mat-label>
-    <input matInput type="number" min="1" [(ngModel)]="Produto.QuantidadeMinima"[value]="Produto.QuantidadeMinima">
-  </mat-form-field>
-
-  <mat-form-field class="">
-    <mat-label>Preco Promocional</mat-label>
-    <input matInput type="number" min="1" [(ngModel)]="Produto.PrecoPromocional"[value]="Produto.PrecoPromocional">
-  </mat-form-field>
-  <mat-checkbox matNativeControl  [(ngModel)]="Produto.Destaque"  [checked]="Produto.Destaque">
+  <mat-checkbox matNativeControl [(ngModel)]="Produto.Destaque" [checked]="Produto.Destaque">
     Destaque
   </mat-checkbox>
 
-  <mat-form-field class="w-full">
-    <mat-chip-list #chipTagList aria-label="Tag selection">
-      <mat-chip
-        *ngFor="let tag of Produto.Tags"
-         [selectable]="selectable"
-         [removable]="removable"
-         (removed)="removeTag(tag)">
-        {{tag}}
-        <mat-icon matChipRemove
-         *ngIf="removable">
-         cancelar
-        </mat-icon>
-      </mat-chip>
-      <input
-        placeholder="Tags"
-        #tagInput
-        [formControl]="tagCtrl"
-        [matChipInputFor]="chipTagList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addTag($event)">
-    </mat-chip-list>
-  </mat-form-field>
-
-  <mat-form-field  class="w-full"  appearance="fill">
-    <mat-label>Status</mat-label>
-    <mat-select matNativeControl [(ngModel)]="Produto.Status"  [value]="Produto.Status">
-      <mat-option *ngFor="let opt of statusProduto; let i = index" [value]="i">
-        {{opt}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <div class="file has-name pb-3">
-    <label class="file-label">
-      <input class="file-input" multiple type="file" (change)="upload($event)">
-      <span class="file-cta">
-        <span class="file-icon">
-          <i class="fas fa-upload"></i>
-        </span>
-        <span class="file-label">
-          Escolha as imagens…
-        </span>
-        <span class="file-name">
-          {{fileNames}}
-        </span>
-      </span>
-    </label>
-  </div>
-  <div class="w-full">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Especificações</mat-card-title>
-      </mat-card-header>
-    </mat-card>
-    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes" ></ckeditor>
-  </div>
-  <mat-form-field class="w-full">
-    <mat-chip-list #chipList aria-label="Color selection">
-      <mat-chip
-        *ngFor="let cor of Produto.Cores"
-         [selectable]="selectable"
-         [removable]="removable"
-         (removed)="removeCor(cor)">
-        {{cor.nome}}
-        <mat-icon matChipRemove
-         *ngIf="removable">
-         cancelar
-        </mat-icon>
-      </mat-chip>
-      <input
-        placeholder="Nova cor... Separe o nome do valor com ponto e vírgula = branco;#fffff insira com ENTER ou TAB"
-        #colorInput
-        [formControl]="colorCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addCor($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedCor($event)">
-      <mat-option *ngFor="let cor of filteredColors | async" [value]="cor.nome">
-        {{cor.nome}}
-        <div [style.backgroundColor]="cor.cor" style="width: 20px;height: 20px;"></div>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-  <mat-form-field class="w-full">
-    <mat-chip-list #chipList2 aria-label="Size selection">
-      <mat-chip
-        *ngFor="let tamanho of Produto.Tamanhos"
-         [selectable]="selectable"
-         [removable]="removable"
-         (removed)="removeTamanho(tamanho)">
-        {{tamanho}}
-        <mat-icon matChipRemove
-         *ngIf="removable">
-         cancelar
-        </mat-icon>
-      </mat-chip>
-      <input
-        placeholder="Novo tamanho..."
-        #colorInput
-        [formControl]="sizeCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList2"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="addTamanho($event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectedTamanho($event)">
-      <mat-option *ngFor="let size of filteredSizes | async" [value]="size">
-        {{size}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
 
 </div>
 <div mat-dialog-actions>
   <button mat-raised-button color="basic" [mat-dialog-close]="Produto">
-      Enviar
+    Enviar
   </button>
   <button mat-raised-button color="basic" (click)="onNoClick()" cdkFocusInitial>
-      Cancelar
+    Cancelar
   </button>
 </div>
+
