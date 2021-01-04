@@ -2,44 +2,44 @@
 
   <div class="bg">
     <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
-    <div class="margin has-background-white py-4">
+    <div class=" has-background-white py-4">
       <section class="section w-full pt-6 px-3" id="headerGfooter">
         <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       </section>
+    </div>
+    <div class="margin py-4 px-2 has-background-light-custom">
       <mat-divider></mat-divider>
       <personalizados-lopes-produto-swiper class="z-index-1"></personalizados-lopes-produto-swiper>
-    </div>
+      <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
+      <section class="py-3" *ngIf="(Clientes$|async).length>0">
+        <div data-aos="zoom-down" class="testimonial">
+          <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+        </div>
+      </section>
 
-    <section class="py-3" *ngIf="(Clientes$|async).length>0">
-      <div data-aos="zoom-down" class="testimonial">
-        <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-      </div>
-    </section>
+      <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
-
-    <div class="margin py-4 px-2">
-      <div
-        class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
-        <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
-          <span class="hr-inner-style"></span>
-        </span>
-      </div>
-      <div class="titleContent py-3 txt-center">
-        <h1 class='title has-text-weight-bold'>
-          BLOG
-        </h1>
-      </div>
       <div>
-        <div class="swiper-container" [swiper]="swiperConfig$ |async">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <!--  -->
-              <div  *ngFor="let post of Blog">
-                <personalizados-lopes-card-blog *ngIf="CanView(post)" class="blog-post" [Post]="post">
-                </personalizados-lopes-card-blog>
+        <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
+          <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
+            <span class="hr-inner-style"></span>
+          </span>
+        </div>
+        <div class="titleContent py-3 txt-center">
+          <h1 class='title has-text-weight-bold'>
+            BLOG
+          </h1>
+        </div>
+        <div>
+          <div class="swiper-container" [swiper]="swiperConfig$ |async">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <!--  -->
+                <div *ngFor="let post of Blog">
+                  <personalizados-lopes-card-blog *ngIf="CanView(post)" class="blog-post" [Post]="post">
+                  </personalizados-lopes-card-blog>
+                </div>
               </div>
             </div>
           </div>

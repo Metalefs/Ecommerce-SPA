@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit {
   @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
   route: string;
   search:boolean=false;
+  search_desk:boolean=true;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   carrinhoVazio:boolean = true;
   search_filter:string="";
