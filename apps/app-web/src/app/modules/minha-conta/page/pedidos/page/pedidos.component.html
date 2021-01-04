@@ -7,9 +7,9 @@
     <mat-spinner></mat-spinner>
   </div>
   <div class="w-full of-x-scroll">
-    <table class="table is-striped is-hoverable">
+    <table class="w-full card table is-striped is-hoverable">
       <thead>
-        <tr class="box">
+        <tr >
           <th>ID</th>
           <th>Status</th>
           <th>Data</th>
@@ -18,13 +18,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="box" *ngFor="let pedido of Pedidos">
+        <tr class="card" *ngFor="let pedido of Pedidos">
           <td>{{pedido.ResultadoPagamentoMP.payment_id}}</td>
-          <td>{{pedido.ResultadoPagamentoMP.status}}</td>
-          <td>{{pedido.DataHoraAlteracao || pedido.DataHoraCriacao}}</td>
-          <td>{{pedido.ResultadoPagamentoMP.payment_type}}</td>
           <td>
-            <a mat-stroked-button (click)="abrirDetalhesPedido(pedido)">
+            <p>
+              {{pedido.ResultadoPagamentoMP.status}}
+            </p>
+          </td>
+          <td>
+            <p>{{pedido.DataHoraAlteracao || pedido.DataHoraCriacao}}</p>
+          </td>
+          <td>
+            <p>{{pedido.ResultadoPagamentoMP.payment_type}}</p>
+          </td>
+          <td>
+            <a mat-stroked-button class="has-color-feedback-darkest flex-m" (click)="abrirDetalhesPedido(pedido)">
+              <mat-icon>add</mat-icon>
               Detalhes
             </a>
           </td>

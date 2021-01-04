@@ -44,7 +44,33 @@ export class HeaderFooterComponent implements OnInit {
           content:`Faça seu orçamento e envie o seu pedido. <a href="/orcamento">Clique aqui.</a>`
         },
       ]
+      let elements = [];
+      setTimeout(()=>{
+          elements.push(window.document.getElementById("yellow"));
+          elements.push(window.document.getElementById("red"));
+          elements.push(window.document.getElementById("blue"));
+
+          elements.forEach(el=>{
+
+              toggleActive(el);
+              toggleActive(el);
+
+          })
+        },2000);
+        let timer=1000;
+        function toggleActive(el){
+          setTimeout(()=>{
+            if(el.classList.contains("active"))
+            el.classList.remove("active");
+            else
+            el.classList.add("active");
+          },timer)
+          timer+=1000;
+        }
     })
+
+
   }
+
 
 }
