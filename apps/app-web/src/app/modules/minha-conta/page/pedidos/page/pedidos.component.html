@@ -7,8 +7,31 @@
     <mat-spinner></mat-spinner>
   </div>
   <div class="columns">
-    <div class="column" *ngFor="let pedido of Pedidos">
-
+    <div class="column is-12">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Pagamento</th>
+            <th>Detalhes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pedido of Pedidos">
+            <td>{{pedido.ResultadoPagamentoMP.payment_id}}</td>
+            <td>{{pedido.ResultadoPagamentoMP.status}}</td>
+            <td>{{pedido.DataHoraAlteracao || pedido.DataHoraCriacao}}</td>
+            <td>{{pedido.ResultadoPagamentoMP.payment_type}}</td>
+            <td>
+              <a mat-stroked-button>
+                Detalhes
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
