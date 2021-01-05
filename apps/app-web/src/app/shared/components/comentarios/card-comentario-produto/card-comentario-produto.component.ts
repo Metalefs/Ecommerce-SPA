@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../../../core/service/authentication/a
 import { ComentarioProdutoService } from '../../../../data/service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { coerceArray } from '@angular/cdk/coercion';
+import { storage } from 'firebase';
 @Component({
   selector: 'personalizados-lopes-card-comentario-produto',
   templateUrl: './card-comentario-produto.component.html',
@@ -39,7 +40,40 @@ export class CardComentarioProdutoComponent implements OnInit {
     this.service.update(this.Comentario.key,this.Comentario);
     this.querResponder = !this.querResponder;
   }
+  like(){
+    if(!localStorage.getItem(`like${this.Comentario.key}`)){
+      if(!this.Comentario.Comentario.Likes){
+        Object.assign(this.Comentario.Comentario, [].constructor(1));
+      }
+      else
+        this.Comentario.Comentario.Likes += 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.setItem(`like${this.Comentario.key}`,"true")
+    }
+    else {
+      this.Comentario.Comentario.Likes += 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.removeItem(`like${this.Comentario.key}`)
+    }
+  }
+  dislike(){
+    if(!localStorage.getItem(`dislike${this.Comentario.key}`)){
+      if(!this.Comentario.Comentario.Dislikes){
+        Object.assign(this.Comentario.Comentario, [].constructor(1));
+      }
+      else
+        this.Comentario.Comentario.Dislikes += 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.setItem(`dislike${this.Comentario.key}`,"true")
+    }
+    else {
+      this.Comentario.Comentario.Dislikes += 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.removeItem(`dislike${this.Comentario.key}`)
+    }
+  }
   deletar(){
+
     if(this.usr?.Tipo == TipoUsuario.admin){
       this.service.delete(this.Comentario.key)
     }

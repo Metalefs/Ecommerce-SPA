@@ -23,6 +23,8 @@ export class EscreverComentarioComponent implements OnInit {
         {Nome:'Twitter',Link:''}
       ]
     },Texto:'',Respostas:[],
+    Likes:0,
+    Dislikes:0,
     DataHoraAlteracao: new Date(),
     DataHoraCriacao:new Date(),
     DataHoraExclusao: null

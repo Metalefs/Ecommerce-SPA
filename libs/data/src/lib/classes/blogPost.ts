@@ -61,6 +61,8 @@ export interface Comentario extends entidadeBase{
   Autor:Autor;
   Texto:string;
   Respostas:Comentario[];
+  Likes:number;
+  Dislikes:number;
   Avaliacao?:number;
   key?:string;
   idUsuario?:string;

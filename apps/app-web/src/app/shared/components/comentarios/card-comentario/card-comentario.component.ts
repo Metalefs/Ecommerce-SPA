@@ -88,7 +88,38 @@ export class CardComentarioComponent implements OnInit {
       this.service.update(this.ComentarioPai.key,this.ComentarioPai)
     }
   }
-
+  like(){
+    if(!localStorage.getItem(`like${this.Comentario.key}`)){
+      if(!this.Comentario.Likes){
+        Object.assign(this.Comentario, 1);
+      }
+      else
+        this.Comentario.Likes += 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.setItem(`like${this.Comentario.key}`,"true")
+    }
+    else {
+      this.Comentario.Likes -= 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.removeItem(`like${this.Comentario.key}`)
+    }
+  }
+  dislike(){
+    if(!localStorage.getItem(`dislike${this.Comentario.key}`)){
+      if(!this.Comentario.Dislikes){
+        Object.assign(this.Comentario, 1);
+      }
+      else
+        this.Comentario.Dislikes += 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.setItem(`dislike${this.Comentario.key}`,"true")
+    }
+    else {
+      this.Comentario.Dislikes -= 1
+      this.service.update(this.Comentario.key,this.Comentario);
+      localStorage.removeItem(`dislike${this.Comentario.key}`)
+    }
+  }
   deletar(){
     if(this.EhResposta){
       this.removerRespostaPai()

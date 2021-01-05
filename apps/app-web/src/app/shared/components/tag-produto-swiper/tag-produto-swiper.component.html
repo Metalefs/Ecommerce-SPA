@@ -1,0 +1,13 @@
+<div class="w-full" *ngIf="(Produtos$|async).length >0">
+  <div class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+    <div class="w-full hoverable">
+      <h2>Produtos Relacionados</h2>
+    </div>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let produto of ProdutosTag" >
+        <personalizados-lopes-card-produto [Produto]="produto"
+          [TrocaImagem]="false"></personalizados-lopes-card-produto>
+      </div>
+    </div>
+  </div>
+</div>

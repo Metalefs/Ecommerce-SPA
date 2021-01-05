@@ -8,11 +8,11 @@
       <div class="content">
         <p>
           <strong>{{Comentario.Comentario.Autor.Nome}}</strong> {{Comentario.idUsuario?'':' sem perfil'}} <small>{{Comentario.DataHoraCriacao}}</small> <span>
-            <star-rating *ngIf="Comentario.Comentario.Avaliacao"
+            <star-rating *ngIf="Comentario.Avaliacao"
              class="subtitle is-size-7"
             [showHalfStars]="true"
             [step]="0.5" size="medium"
-            [rating]="Comentario.Comentario.Avaliacao"
+            [rating]="Comentario.Avaliacao"
             staticColor="ok"
              [readOnly]="true">
           </star-rating></span>
@@ -39,6 +39,18 @@
           *ngIf="this.usr?._id == Comentario.Comentario.idUsuario || ''">
             <span class="icon is-small">
               <i class="fas fa-edit" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="reply" (click)="like()">
+            {{Comentario.Comentario.Likes}}
+            <span class="icon is-small">
+              <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="reply" (click)="dislike()">
+            {{Comentario.Comentario.Dislikes}}
+            <span class="icon is-small">
+              <i class="fas  fa-thumbs-down" aria-hidden="true"></i>
             </span>
           </a>
           <a *ngIf="this.usr?.Tipo == tipoUsuario.admin" class="level-item" aria-label="reply" (click)="deletar()">

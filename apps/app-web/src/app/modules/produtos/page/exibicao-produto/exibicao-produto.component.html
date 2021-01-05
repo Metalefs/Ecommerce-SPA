@@ -315,6 +315,9 @@
 </div>
 
 <div class="margin px-6 py-6 mb-6">
+  <personalizados-lopes-tag-produto-swiper [TAGS]="Produto.Tags"></personalizados-lopes-tag-produto-swiper>
+</div>
+<div class="margin px-6 py-6 mb-6">
   <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 </div>
 
@@ -334,11 +337,11 @@
         <div class="w-full flex-w">
           <p>Avalie o produto</p>
           <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
-                  labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium"
-                  staticColor="ok" (starClickChange)="onClick($event)"
-                  (ratingChange)="onRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'"
-                  (hoverRatingChange)="onHoverRatingChange($event)">
-                </star-rating>
+              labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium"
+              staticColor="ok" (starClickChange)="onClick($event)"
+              (ratingChange)="onRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'"
+              (hoverRatingChange)="onHoverRatingChange($event)">
+          </star-rating>
         </div>
         <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
       </div>

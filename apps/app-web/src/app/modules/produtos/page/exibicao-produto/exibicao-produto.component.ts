@@ -21,6 +21,7 @@ import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { ComentarioProdutoService } from 'apps/app-web/src/app/data/service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -58,7 +59,8 @@ export class ExibicaoProdutoComponent implements OnInit {
     private router: Router,
     private store: Store,
     public dialog: MatDialog,
-    private ComentarioProdutoService: ComentarioProdutoService
+    private ComentarioProdutoService: ComentarioProdutoService,
+    private snack: MatSnackBar
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -301,7 +303,7 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.loading = true;
       this.store.dispatch(new RateProduto(this.Produto._id, $event.rating)).subscribe(x=>{
         this.readonlyRating = true;
-        localStorage.setItem(`rateproduto${this.Produto._id}`,'true');
+        localStorage.setItem(`rateproduto${this.Produto._id}`, $event.rating.toString());
         this.loading = false;
       });
     }
@@ -328,11 +330,18 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   Comentar(Comentario:Comentario){
     console.log(Comentario)
-    let comentarioProduto:ComentarioProduto = new ComentarioProduto(this.Produto._id,Comentario,[])
-    comentarioProduto.Respostas = [];
-    comentarioProduto.DataHoraAlteracao = new Date();
-    comentarioProduto.DataHoraCriacao = new Date();
-    this.ComentarioProdutoService.create(comentarioProduto);
+    if(localStorage.getItem(`rateproduto${this.Produto._id}`)){
+      let avaliacao = localStorage.getItem(`rateproduto${this.Produto._id}`);
+      let comentarioProduto:ComentarioProduto = new ComentarioProduto(this.Produto._id,Comentario,[],parseInt(avaliacao))
+      comentarioProduto.Respostas = [];
+      comentarioProduto.DataHoraAlteracao = new Date();
+      comentarioProduto.DataHoraCriacao = new Date();
+
+      comentarioProduto.Avaliacao = parseInt(avaliacao);
+      this.ComentarioProdutoService.create(comentarioProduto);
+    }else{
+      this.snack.open('Por favor, avalie o produto primeiro',"fechar");
+    }
   }
 
 }

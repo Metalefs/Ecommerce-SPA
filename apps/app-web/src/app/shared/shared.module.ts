@@ -48,6 +48,7 @@ import { ExibicaoPerfilComponent } from './components/exibicao-perfil/exibicao-p
 import { CardPedidoComponent } from './components/card-pedido/card-pedido.component';
 import { CardBlogModule } from './components/card-blog/card-blog.module';
 import { CardPedidoModule } from './components/card-pedido/card-pedido.module';
+import { TagProdutoSwiperComponent } from './components/tag-produto-swiper/tag-produto-swiper.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -82,6 +83,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      ExibirListaComentarioProdutoComponent,
      ProdutoSwiperComponent,
      ExibicaoPerfilComponent,
+     TagProdutoSwiperComponent
     ],
   imports: [
     CommonModule,
@@ -109,7 +111,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardComentarioModule,
     CardComentarioProdutoModule,
     CardBlogModule,
-    CardPedidoModule
+    CardPedidoModule,
   ],
   exports: [
     CommonModule,
@@ -147,7 +149,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibirListaComentarioProdutoComponent,
     ProdutoSwiperComponent,
     ExibicaoPerfilComponent,
-    CardPedidoModule
+    CardPedidoModule,
+    TagProdutoSwiperComponent
   ],
   providers:[
     {
