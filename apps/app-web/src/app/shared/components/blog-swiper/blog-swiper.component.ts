@@ -48,6 +48,7 @@ export class BlogSwiperComponent implements OnInit {
             preloadImages          : true,
             lazy                   : false,
             observer               : true,
+            centeredSlides         : true,
             navigation             : true,
             slidesPerView:5,
             autoplay: {
@@ -78,6 +79,9 @@ export class BlogSwiperComponent implements OnInit {
             this.Blog = removeDuplicates(this.Blog,"Titulo")
           })
         });
+        else{
+          this.Blog = data;
+        }
     });
   }
 

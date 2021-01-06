@@ -34,7 +34,6 @@ export class OrcamentoState {
 
   constructor(
     private OrcamentoService:OrcamentoService,
-    private authenticationService:AuthenticationService,
     private usuarioService:UsuarioService
     ){
 
@@ -201,7 +200,7 @@ export class OrcamentoState {
     state.Orcamentos.Preco = 0;
     state.Orcamentos.Produto.forEach(prod=>{
       if(!isNaN(prod.Produto.Preco))
-      state.Orcamentos.Preco += prod.Produto.Preco * prod.Produto.Quantidade;
+      state.Orcamentos.Preco += prod.Produto.PrecoPromocional??prod.Produto.Preco * prod.Produto.Quantidade;
     })
   }
 }

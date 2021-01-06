@@ -102,10 +102,10 @@ export class CheckoutDisplayComponent implements OnInit {
       let Produtos =  x.Produto;
       let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
       let Produto = Produtos[index].Produto;
-      this.Total = Produto.Preco * Produto.Quantidade;
+      this.Total = produto.Produto.PrecoPromocional??produto.Produto.Preco * Produto.Quantidade;
     })
     if(produto.Produto.Preco){
-      let preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+      let preco = produto.Produto.PrecoPromocional??produto.Produto.Preco
       return parseInt(preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
     }
     return 0;

@@ -1,5 +1,7 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Criação de produto</h1>
+
 <div mat-dialog-content>
+
 
   <nav class="breadcrumb is-left pt-0" aria-label="breadcrumbs">
     <ul class="">
@@ -355,11 +357,14 @@
     </mat-card-content>
   </mat-card>
 
+  <div class="py-3">
+    <a mat-stroked-button (click)="CriarPostagem()">Criar postagem para o produto</a>
+    <a mat-stroked-button (click)="CriarDepoimento()">Adicionar Depoimento</a>
+  </div>
 
   <mat-checkbox matNativeControl [(ngModel)]="Produto.Destaque" [checked]="Produto.Destaque">
     Destaque
   </mat-checkbox>
-
 
 </div>
 <div mat-dialog-actions>

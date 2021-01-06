@@ -87,10 +87,14 @@ export class ConfirmacaoComponent implements OnInit {
 
   CalcularPreco(produto:CodProduto){
     this.Orcamento$.subscribe(x=>{
+      let preco;
+      if(produto.Produto.PrecoPromocional){
+        preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+      }
       let Produtos =  x.Produto;
       let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
       let Produto = Produtos[index].Produto;
-      this.Total = Produto.Preco * Produto.Quantidade;
+      this.Total = preco * Produto.Quantidade;
     })
     if(produto.Produto.Preco){
       let preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco

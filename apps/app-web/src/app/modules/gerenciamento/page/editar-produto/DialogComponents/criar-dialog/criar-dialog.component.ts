@@ -7,8 +7,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
-import { CategoriaService } from 'apps/app-web/src/app/data/service';
-import { Produto } from 'libs/data/src/lib/classes';
+import { BlogPostService, CategoriaService, ImagemService } from 'apps/app-web/src/app/data/service';
+import { BlogPost, Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
@@ -18,6 +18,11 @@ import { CriarCategoriaDialogComponent } from '../../../editar-categoria/DialogC
 import { Store } from '@ngxs/store';
 import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { CriarClienteDialogComponent } from '../../../editar-clientes/DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
+import { AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
+import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
+import { CriarPostComponent } from '../../../editar-blog/dialogs/criar-post/criar-post.component';
 
 @Component({
   selector: 'personalizados-lopes-criar-dialog',
@@ -59,7 +64,11 @@ export class CriarProdutoDialogComponent implements OnInit {
     private ServicoCategoria: CategoriaService,
     private dialog:MatDialog,
     private store:Store,
-    private snack:MatSnackBar
+    private snack:MatSnackBar,
+    private servicoImagens:ImagemService,
+    private authService:AuthenticationService,
+    private BlogService:BlogPostService
+
     ) {
       this.Produto = new Produto (
         "",
@@ -110,6 +119,48 @@ export class CriarProdutoDialogComponent implements OnInit {
         });
         this.CarregarCategorias();
       });
+    });
+
+  }
+  CriarPostagem(): void {
+
+    const dialogRef = this.dialog.open(CriarPostComponent, {
+      width: '90%',
+      data: ""
+    });
+
+    dialogRef.afterClosed().subscribe((post : BlogPost) => {
+      if(post != undefined){
+        this.authService.currentUser.subscribe(usr=>{
+          post.Autor.Nome = usr.Nome;
+          post.Autor.Email = usr.Email;
+          post.DataHoraAlteracao = new Date();
+          post.DataHoraCriacao = new Date();
+          this.BlogService.create(post).then(() => {
+            this.snack.open("Adicionando postagem", "Fechar", {
+
+            });
+          });
+        })
+      }
+    });
+
+  }
+  CriarDepoimento(): void {
+
+    const dialogRef = this.dialog.open(CriarClienteDialogComponent, {
+      width: '90%',
+      data: ""
+    });
+
+    dialogRef.afterClosed().subscribe((Cliente : entities.Cliente) => {
+      if(Cliente != undefined){
+        this.servicoImagens.storeImage(PathDictionary.clientes,Cliente.Foto).then(async x=>{
+          Cliente.Foto = await this.servicoImagens.getRef((await x).metadata.fullPath,Cliente.Nome,"Cliente");
+          console.log(Cliente.Foto);
+          this.store.dispatch(new AdicionarCliente(Cliente)).subscribe();
+        })
+      }
     });
 
   }
