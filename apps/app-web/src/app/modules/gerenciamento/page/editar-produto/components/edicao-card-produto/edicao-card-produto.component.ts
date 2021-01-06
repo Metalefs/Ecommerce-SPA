@@ -40,7 +40,8 @@ export class EdicaoCardProdutoComponent implements OnInit {
     let id = this.Produto._id;
 
     const dialogRef = this.dialog.open(EditarProdutoDialogComponent, {
-      width: '90%',
+      width: "100%",
+      height: "100%",
       data: this.Produto
     });
 
