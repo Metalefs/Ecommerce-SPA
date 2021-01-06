@@ -104,8 +104,10 @@ export class CheckoutDisplayComponent implements OnInit {
       let Produto = Produtos[index].Produto;
       this.Total = Produto.Preco * Produto.Quantidade;
     })
-    if(produto.Produto.Preco)
-      return parseInt(produto.Produto.Preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
+    if(produto.Produto.Preco){
+      let preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+      return parseInt(preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
+    }
     return 0;
   }
 

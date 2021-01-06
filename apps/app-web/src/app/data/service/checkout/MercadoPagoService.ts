@@ -72,7 +72,9 @@ export class MercadoPagoCheckoutService {
           category_id: produto.Produto.Categoria.Nome,
           quantity: produto.Produto.Quantidade,
           currency_id: 'BRL',
-          unit_price: parseInt(produto.Produto.Preco.toString())
+          unit_price: produto.Produto.PrecoPromocional ?
+          parseInt(produto.Produto.PrecoPromocional.toString()) :
+          parseInt(produto.Produto.Preco.toString())
         }
       ))
       return items;
