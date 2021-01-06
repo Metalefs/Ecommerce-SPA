@@ -26,17 +26,7 @@
           </h1>
         </div>
         <div>
-          <div class="swiper-container" [swiper]="swiperConfig$ |async">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <!--  -->
-                <div *ngFor="let post of Blog">
-                  <personalizados-lopes-card-blog *ngIf="CanView(post)" class="blog-post" [Post]="post">
-                  </personalizados-lopes-card-blog>
-                </div>
-              </div>
-            </div>
-          </div>
+         <personalizados-lopes-blog-swiper></personalizados-lopes-blog-swiper>
         </div>
       </div>
     </div>

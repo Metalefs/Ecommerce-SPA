@@ -1,0 +1,12 @@
+<div class="w-full" *ngIf="Blog.length >0">
+  <div class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+    <div class="w-full hoverable">
+      <h2>Histórias relacionadas</h2>
+    </div>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let post of Blog" >
+        <personalizados-lopes-card-blog [Post]="post"></personalizados-lopes-card-blog>
+      </div>
+    </div>
+  </div>
+</div>

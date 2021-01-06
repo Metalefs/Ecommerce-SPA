@@ -20,69 +20,16 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 export class InicioComponent implements OnInit {
   @Select(ClienteState.ObterListaClientes) Clientes$: Observable<entities.Cliente[]>;
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<entities.Produto[]>;
-  Blog:BlogPost[];
+
   user:Usuario;
   @Select(ClienteState.areClientesLoaded) areClientesLoaded$;
   areClientesLoadedSub: Subscription;
   slidesPerView:number=5;
   constructor(
-    breakpointObserver: BreakpointObserver,
-    private BlogService:BlogPostService,
     private authService: AuthenticationService ) {
-      this.swiperConfig$ = breakpointObserver.observe([
-        Breakpoints.HandsetPortrait
-      ]).pipe(
-        map(res => {
-          if (res.matches) {
-              return {
-                direction              : 'horizontal',
-                keyboard               : true,
-                // loop                   : true,
-                loopFillGroupWithBlank : false,
-                preloadImages          : true,
-                lazy                   : false,
-                observer               : true,
-                navigation             : true,
-                slidesPerView:1,
-                autoplay: {
-                  delay               : 4000,
-                  disableOnInteraction: false,
-                },
-              }
-          }
-          else{
-            return {
-              direction              : 'horizontal',
-              keyboard               : true,
-              // loop                   : true,
-              loopFillGroupWithBlank : false,
-              preloadImages          : true,
-              lazy                   : false,
-              observer               : true,
-              navigation             : true,
-              slidesPerView:5,
-              autoplay: {
-                delay               : 4000,
-                disableOnInteraction: false,
-              },
-            }
-          }
-        })
-      );
     }
 
-    swiperConfig$: Observable<SwiperConfigInterface>;
-
   ngOnInit(): void {
-    this.BlogService.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe(data => {
-      this.Blog = data;
-    });
     this.authService.currentUser.subscribe(x=>{
       this.user = x;
     })
