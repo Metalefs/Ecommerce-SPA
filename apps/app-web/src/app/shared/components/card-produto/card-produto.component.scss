@@ -180,12 +180,14 @@ img{
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
     transition: 0.5s;
+    z-index: 2;
 }
 
 .overlay-items {
  height: 100px;
  position: absolute;
- top: 40%;
+ top: 10%;
+ z-index: 5;
  left: 0;
  right: 0;
  visibility: hidden;
@@ -200,6 +202,7 @@ img{
  color: #FFF;
  padding: 5px 5px;
  height: min-content;
+ top: -100px;
  background: #111111;
  display: inline-block;
  -webkit-transform: translateY(20px);

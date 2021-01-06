@@ -4,6 +4,10 @@
       <th mat-header-cell *matHeaderCellDef> Access Token MercadoPago </th>
       <td mat-cell *matCellDef="let element"> {{element?.MP_access_token}} </td>
   </ng-container>
+  <ng-container matColumnDef="MP_public_key">
+      <th mat-header-cell *matHeaderCellDef> Public Key MercadoPago </th>
+      <td mat-cell *matCellDef="let element"> {{element?.public_key}} </td>
+  </ng-container>
   <ng-container matColumnDef="ParcelasPadrao">
       <th mat-header-cell *matHeaderCellDef> Quantidade de Parcelas Padrão </th>
       <td mat-cell *matCellDef="let element"> {{element?.ParcelasPadrao}} </td>

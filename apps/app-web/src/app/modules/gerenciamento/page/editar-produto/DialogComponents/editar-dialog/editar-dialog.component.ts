@@ -5,7 +5,7 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 
 import { Observable } from 'rxjs';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
 import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -16,6 +16,10 @@ import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { GalleryConfig, GalleryItem, Gallery, ThumbnailsPosition } from 'ng-gallery';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Store } from '@ngxs/store';
+import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
+import { CriarCategoriaDialogComponent } from '../../../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
@@ -59,7 +63,10 @@ export class EditarProdutoDialogComponent implements OnInit {
     breakpointObserver: BreakpointObserver,
     private gallery: Gallery,
     @Inject(MAT_DIALOG_DATA) public data:  entities.Produto,
-    private ServicoCategoria: CategoriaService
+    private ServicoCategoria: CategoriaService,
+    private dialog:MatDialog,
+    private store:Store,
+    private snack:MatSnackBar
   ) {
     this.Produto = data;
     if(!this.Produto.Cores){
@@ -87,7 +94,24 @@ export class EditarProdutoDialogComponent implements OnInit {
       })
     );
   }
+  CriarCategoria(): void {
 
+    const dialogRef = this.dialog.open(CriarCategoriaDialogComponent, {
+      width: '90%',
+      data: ""
+    });
+
+    dialogRef.afterClosed().subscribe((Categoria : entities.Categoria) => {
+      if(Categoria != undefined)
+      this.store.dispatch(new AdicionarCategoria(Categoria)).subscribe(x=> {
+        this.snack.open("Categoria "+Categoria.Nome+" criada com sucesso", "Fechar", {
+
+        });
+        this.CarregarCategorias();
+      });
+    });
+
+  }
   CarregarCategorias(){
     this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x;console.log(x)});
   }

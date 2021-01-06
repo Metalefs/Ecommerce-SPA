@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
 import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -14,6 +14,10 @@ import { Observable } from 'rxjs';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
+import { CriarCategoriaDialogComponent } from '../../../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
+import { Store } from '@ngxs/store';
+import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'personalizados-lopes-criar-dialog',
@@ -52,7 +56,10 @@ export class CriarProdutoDialogComponent implements OnInit {
   statusProduto:string[] = [];
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  entities.Produto,
-    private ServicoCategoria: CategoriaService
+    private ServicoCategoria: CategoriaService,
+    private dialog:MatDialog,
+    private store:Store,
+    private snack:MatSnackBar
     ) {
       this.Produto = new Produto (
         "",
@@ -74,7 +81,11 @@ export class CriarProdutoDialogComponent implements OnInit {
         [''],
         "",
         "",
-        0
+        0,
+        {Altura:0,Largura:0, Comprimento:0},
+        "",
+        "",
+        [0],
         );
     }
 
@@ -85,7 +96,23 @@ export class CriarProdutoDialogComponent implements OnInit {
       this.statusProduto.push(StatusProduto[enumMember])
     }
   }
+  CriarCategoria(): void {
 
+    const dialogRef = this.dialog.open(CriarCategoriaDialogComponent, {
+      width: '90%',
+      data: ""
+    });
+
+    dialogRef.afterClosed().subscribe((Categoria : entities.Categoria) => {
+      if(Categoria != undefined)
+      this.store.dispatch(new AdicionarCategoria(Categoria)).subscribe(x=> {
+        this.snack.open("Categoria "+Categoria.Nome+" criada com sucesso", "Fechar", {
+        });
+        this.CarregarCategorias();
+      });
+    });
+
+  }
   CarregarCategorias(){
     this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x; console.log(x)});
   }

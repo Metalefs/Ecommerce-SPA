@@ -66,6 +66,7 @@ export class EditarIntegracoesComponent implements OnInit {
     this.AtualizarTabela();
     this.IntegracoesTable.displayedColumns = [
       "MP_access_token",
+      "MP_public_key",
       "ParcelasPadrao",
       "ResumoCartao",
       "auto_return",

@@ -1,5 +1,6 @@
 <div *ngIf="!EhResposta">
   <h2>Comentários</h2>
+  <p *ngIf="Comentarios?.length == 0">Não existem comentários ainda, seja o primeiro!</p>
   <div *ngFor="let comentario of Comentarios">
     <div *ngIf="comentario.IdProduto">
       <personalizados-lopes-card-comentario-produto [Comentario]="comentario"></personalizados-lopes-card-comentario-produto>

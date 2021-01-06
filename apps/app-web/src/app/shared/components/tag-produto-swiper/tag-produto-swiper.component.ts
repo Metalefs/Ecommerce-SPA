@@ -6,7 +6,9 @@ import { Produto } from 'libs/data/src/lib/classes';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ProdutoService } from '../../../data/service';
 import { ProdutoState } from '../../../data/store/state';
+import { removeDuplicates } from '../../../helper/ObjHelper';
 
 @Component({
   selector: 'personalizados-lopes-tag-produto-swiper',
@@ -14,12 +16,13 @@ import { ProdutoState } from '../../../data/store/state';
   styleUrls: ['./tag-produto-swiper.component.scss']
 })
 export class TagProdutoSwiperComponent implements OnInit {
-  @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<entities.Produto[]>;
+
   ProdutosTag:Produto[] = [];
   @Input()TAGS:string[];
   slidesPerView:number=5;
   constructor(
-    breakpointObserver: BreakpointObserver,) {
+    breakpointObserver: BreakpointObserver,
+    private service:ProdutoService) {
       this.swiperConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
@@ -64,10 +67,11 @@ export class TagProdutoSwiperComponent implements OnInit {
 
     swiperConfig$: Observable<SwiperConfigInterface>;
     ngOnInit(): void {
-      this.Produtos$.subscribe(x=>{
+      this.service.Ler().subscribe(x=>{
        this.TAGS.forEach((tag)=>{
           x.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
             this.ProdutosTag.push(match);
+            this.ProdutosTag = removeDuplicates(this.ProdutosTag,"_id")
           })
         });
       })

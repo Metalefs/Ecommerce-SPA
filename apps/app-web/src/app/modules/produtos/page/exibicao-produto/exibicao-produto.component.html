@@ -31,10 +31,7 @@
           [thumbPosition]="config.thumbPosition">
         </gallery>
 
-        <a href="#desc" pageScroll pageScrollDuration="5000" class="pos-sticky bellow-nav border my-3" mat-flat-button *ngIf="Produto.Descricao?.length > 0">
-          Mais informações
-          <mat-icon>keyboard_arrow_down</mat-icon>
-        </a>
+
         <div class="column pt-0 mt-0">
           <share-button class="mt-0" button="facebook" theme="modern-dark" [showText]="false"
             >
@@ -43,6 +40,10 @@
             >
           </share-button>
         </div>
+        <a href="#desc" pageScroll pageScrollDuration="5000" class="pos-sticky bellow-nav border my-3" mat-flat-button *ngIf="Produto.Descricao?.length > 0">
+          Mais informações
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </a>
 
       </div>
 
@@ -288,12 +289,12 @@
         <img src="{{Produto?.Imagem[0]}}" alt="">
       </figure>
     </div>
-
+    <div id="desc"></div>
     </div>
 
 
-    <div class="w-full columns">
-      <div id="desc" class="descricao-produto column is-12 w-full"
+    <div  class="w-full columns">
+      <div  class="descricao-produto column is-12 w-full"
         [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
     </div>
   </div>

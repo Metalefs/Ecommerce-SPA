@@ -14,6 +14,9 @@
             <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">
               {{opt.Nome}}
             </mat-option>
+            <mat-option>
+              <a mat-stroked-button (click)="CriarCategoria()">Criar Categoria</a>
+            </mat-option>
           </mat-select>
         </mat-form-field>
       </li>
@@ -96,8 +99,8 @@
           </div> -->
           <div class="my-1">
             <mat-form-field class="">
-              <input matInput type="text" min="1" [(ngModel)]="Produto.Preco" [value]="Produto.Preco"
-                placeholder="Preco" mask='00.00'>
+              <input matInput type="number" min="1" [(ngModel)]="Produto.Preco" [value]="Produto.Preco"
+                placeholder="Preco">
             </mat-form-field>
             <mat-form-field class="">
               <input matInput type="number" min="1" [(ngModel)]="Produto.Parcelas" [value]="Produto.Parcelas"
@@ -261,6 +264,25 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <h1>Dimensões</h1>
+      <div class="columns">
+        <mat-form-field class="column">
+          <mat-label>Altura</mat-label>
+          <input matInput type="number" min="1" placeholder="Altura em cm" [(ngModel)]="Produto.Dimensoes.Altura"
+            [value]="Produto.QuantidadeMinima">
+        </mat-form-field>
+        <mat-form-field class="column">
+          <mat-label>Largura</mat-label>
+          <input matInput type="number" min="1" placeholder="Largura em cm" [(ngModel)]="Produto.Dimensoes.Largura"
+            [value]="Produto.QuantidadeMinima">
+        </mat-form-field>
+        <mat-form-field class="column">
+          <mat-label>Comprimento</mat-label>
+          <input matInput type="number" min="1" placeholder="Comprimento em cm" [(ngModel)]="Produto.Dimensoes.Comprimento"
+            [value]="Produto.QuantidadeMinima">
+        </mat-form-field>
       </div>
 
       <figure class="image is-64x64 img-orcamento">

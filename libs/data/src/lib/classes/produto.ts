@@ -25,7 +25,7 @@ export class Produto extends MongoDocument implements entidadeBase{
   Especificacoes?:string;
   DescricaoRapida?:string;
   Parcelas?:number;
-  Dimensoes?:string;
+  Dimensoes?:Dimensoes = {Altura:0,Largura:0, Comprimento:0};
   Arte?:string | ArrayBuffer;
   ArteSecundaria?:string | ArrayBuffer;
   Rating?:number[] = [0];
@@ -51,9 +51,10 @@ export class Produto extends MongoDocument implements entidadeBase{
     Especificacoes?:string,
     DescricaoRapida?:string,
     Parcelas?:number,
+    Dimensoes?:Dimensoes,
     Arte?:string | ArrayBuffer,
     ArteSecundaria?:string | ArrayBuffer,
-    Rating?:number[]
+    Rating?:number[],
     ){
       super();
       this.Nome = Nome;
@@ -79,6 +80,7 @@ export class Produto extends MongoDocument implements entidadeBase{
       this.Arte = Arte;
       this.ArteSecundaria = ArteSecundaria;
       this.Rating = Rating;
+      this.Dimensoes = Dimensoes;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;
@@ -98,4 +100,9 @@ export enum StatusProduto{
   novo,
   promocao,
   esgotado,
+}
+export interface Dimensoes{
+  Altura:number;
+  Largura:number;
+  Comprimento:number;
 }
