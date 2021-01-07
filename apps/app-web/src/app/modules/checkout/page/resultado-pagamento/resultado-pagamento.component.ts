@@ -91,12 +91,13 @@ export class ResultadoPagamentoComponent implements OnInit {
   }
 
   SalvarOrcamento(){
-    if(this.Orcamento.Usuario.Email&&!this.Finalizado ){
+    if(this.OrcamentoValido()){
       if(this.Orcamento.Preco >0)
       this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
+        alert("Pedido salvo")
         setTimeout(()=>{
           this.Finalizado = true;
-
+          localStorage.setItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento,"true");
           (function smoothscroll() {
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
             if (currentScroll > 0) {
@@ -112,6 +113,12 @@ export class ResultadoPagamentoComponent implements OnInit {
         },3500)
       });
     }
+  }
+
+  OrcamentoValido(){
+    return this.Orcamento.Usuario.Email&&
+    !this.Finalizado&&
+    !localStorage.getItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento);
   }
 
   ngOnDestroy(){
@@ -133,7 +140,6 @@ export class ResultadoPagamentoComponent implements OnInit {
         if(orcamento.Usuario.Email)
         this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
           this._init_point = result;
-          console.log(this._init_point);
           this.Loading = false;
           (function smoothscroll() {
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;

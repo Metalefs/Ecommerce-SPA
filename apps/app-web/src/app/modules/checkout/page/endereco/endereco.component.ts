@@ -7,6 +7,7 @@ import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { Estado } from 'apps/app-web/src/app/data/models';
+import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
@@ -85,29 +86,35 @@ export class EnderecoComponent implements OnInit {
   Pagar:boolean = false;
   goCheckout(){
     this.ErroCadastro = true;
-    if(this.ValidarDados()){
+    this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento)).subscribe(()=>{
+      this.CheckoutSeDadosValidos();
+    })
+  }
+
+  private CheckoutSeDadosValidos() {
+    if (this.ValidarDados()) {
       this.ErroCadastro = false;
       this.Orcamento$.subscribe(orcamento => {
         this.Loading = true;
-        this.integracoesService.Ler().subscribe(x=>{
-          this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
+        this.integracoesService.Ler().subscribe(x => {
+          this.checkoutService.goCheckout(orcamento, x).subscribe(result => {
+            this.cadastroTemporario();
             this._init_point = result;
-            console.log(this._init_point);
             this.Loading = false;
             this.Pagar = true;
             (function smoothscroll() {
               var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
               if (currentScroll > 0) {
-                  window.requestAnimationFrame(smoothscroll);
-                  window.scrollTo(0, currentScroll - (currentScroll / 8));
+                window.requestAnimationFrame(smoothscroll);
+                window.scrollTo(0, currentScroll - (currentScroll / 8));
               }
             })();
-          })
-        })
-      })
-    }else{
+          });
+        });
+      });
+    } else {
       this.ErroCadastro = true;
-      if(!this.Orcamento.Usuario.CPF)
+      if (!this.Orcamento.Usuario.CPF)
         this.router.navigateByUrl('/checkout/dados');
     }
   }
