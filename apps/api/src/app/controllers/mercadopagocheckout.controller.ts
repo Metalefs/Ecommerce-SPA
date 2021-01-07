@@ -38,7 +38,7 @@ MercadoPagoController
     let mercadoPagoService = new MercadoPagoService();
     mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
       console.log(payment);
-      switch(payment.response.results[0].status){
+      switch(payment.status){
         case('approved'):{
           mercadoPagoService.refund(req.body.idPagamento).then(x=>{
             res.send(x);

@@ -31,12 +31,12 @@ export class OrcamentoDetailComponent implements OnInit {
 
   Devolver(orcamento:Orcamento){
     if(orcamento.ResultadoPagamentoMP.status == "approved"){
-      let confirmation = confirm("Deletar?");
+      let confirmation = confirm("Devolver o pedido?");
       if(confirmation)
       this.ServicoMercadoPago.refund(orcamento.ResultadoPagamentoMP.payment_id).subscribe(x=>{
         orcamento.Status = StatusOrcamento.devolvido;
         orcamento.ResultadoPagamentoMP.status = "cancelled";
-
+        console.log(x)
         this.store.dispatch(new EditarOrcamento(orcamento,orcamento._id)).subscribe(x=>{
           this.snack.open("Pedido alterado","Fechar");
         });
@@ -56,7 +56,7 @@ export class OrcamentoDetailComponent implements OnInit {
   }
 
   Remover(orcamento:Orcamento){
-    let confirmation = confirm("Deletar?");
+    let confirmation = confirm("Devolver o pedido?");
     if(confirmation){
       this.store.dispatch(new RemoverOrcamento(orcamento._id)).subscribe(x=>{
         this.snack.open("Pedido removido","Fechar");

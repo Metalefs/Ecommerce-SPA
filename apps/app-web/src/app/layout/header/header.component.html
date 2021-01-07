@@ -29,8 +29,8 @@
     </div>
     <div class="columns mx-3  is-hidden-mobile link-section">
 
-      <div class="column is-2">
-        <span class="icon is-small is-right hoverable clickable" (click)="search = !search">
+      <div class="column is-1">
+        <span class="icon pt-2 is-small hoverable clickable" (click)="search = !search">
           <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
         </span>
       </div>
@@ -61,7 +61,7 @@
               [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
               class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
               <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
-              {{link.name}}
+              {{link.name == "Básicos"? 'Produtos' : link.name}}
             </a>
             <div class="dropdown-content">
               <a
@@ -137,17 +137,6 @@
               </button>
           </div>
         </div>
-        <!-- <div class="column is-hidden-mobile">
-          <div class="w-full">
-            <div class="select w-full">
-              <select class="py-2  w-full" (selectionChange)="SelecionarCategoria($event)"
-              [(ngModel)]="Categoria"
-              [value]="Categoria">
-                <option *ngFor="let cat of Categorias;" [value]="cat.Nome">{{cat.Nome}}</option>
-              </select>
-            </div>
-          </div>
-        </div> -->
       </div>
       <div class="box hoverable clickable float-r">
         <span class="icon is-small is-right hoverable clickable float-r" (click)="search = !search">

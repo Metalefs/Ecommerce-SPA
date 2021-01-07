@@ -80,12 +80,14 @@ a{
   background-repeat: no-repeat;
   background: url(/assets/images/footer_curve.svg);
 }
-
+h4{
+  letter-spacing: 1px;
+}
 @media only screen and  (min-width: 1023px) {
 
   .img-badge{
-    height: 110px !important;
-    width: 300px !important;
+    height: 60px !important;
+    width: 180px !important;
   }
 }
 
