@@ -15,7 +15,7 @@
   </div>
 
 
-  <div class="section w-full">
+  <div class="section w-full"  *ngIf="(Orcamento$ |async).Produto.length > 0">
     <div class="has-text-left  w-full">
       <h2 class="subtitle">Dados do comprador</h2>
     </div>
@@ -88,14 +88,13 @@
             [(ngModel)]="Orcamento.Mensagem"
             ></textarea>
         </mat-form-field>
-        <ng-template *ngIf="!usuario">
+        <div *ngIf="!usuario">
 
           <section class="example-section">
             <mat-checkbox
               [(indeterminate)]="indeterminate"
               [labelPosition]="labelPosition"
-              [(ngModel)]="registrarse"
-              (change)= "registrar()"
+              [(ngModel)]= "registrarse"
               class=""
             >Registrar-se ?
             </mat-checkbox>
@@ -111,14 +110,14 @@
               class="control has-icons-right input"
               matInput
               placeholder="********"
-              (change)="Orcamento.Usuario.Senha = senha.value"
+              [(ngModel)]="Orcamento.Usuario.Senha"
               >
               <a
                 (click)="senha.type= senha.type=='text'? 'password':'text'">
                 <mat-icon>{{senha.type=='text'?'visibility_off':'visibility'}}</mat-icon>
               </a>
           </mat-form-field>
-        </ng-template>
+        </div>
 
         <div @fadeIn class="notification is-danger" *ngIf="ErroCadastro">
           <button class="delete" (click)="ErroCadastro = false"></button>
