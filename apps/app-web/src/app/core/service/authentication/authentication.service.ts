@@ -27,6 +27,7 @@ export class AuthenticationService {
       this.currentUserSubject.next(user);
     }
     signup(Usuario : entities.Usuario){
+      if(Usuario.Senha)
         return this.http.post<any>(`${environment.endpoint}`+RouteDictionary.Usuario +RouteDictionary.Registro, { Usuario })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -44,6 +45,9 @@ export class AuthenticationService {
                 throw user.error;
             }
         }));
+      else{
+        this.tempSignup(Usuario)
+      }
     }
     tempSignup(Usuario : entities.Usuario){
       return this.http.post<any>(`${environment.endpoint}`+RouteDictionary.Usuario +RouteDictionary.RegistroTemporario, { Usuario })
