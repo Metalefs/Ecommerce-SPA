@@ -48,7 +48,7 @@ export class ProdutoSwiperComponent implements OnInit {
               lazy                   : false,
               observer               : true,
               navigation             : true,
-              centerInsufficientSlides   : true,
+              centerInsufficientSlides   : false,
               slidesPerView:5,
               autoplay: {
                 delay               : 4000,

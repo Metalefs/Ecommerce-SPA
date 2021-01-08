@@ -101,15 +101,10 @@
             aria-label="Botão abrir Orçamento"
             color="none"
             class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
-            <div class="columns line-height-small is-mobile">
-              <!-- <div class="column has-text-right">
-                <p class="cart-title">Pedido</p>
-              </div> -->
-            </div>
             <div class="columns">
               <div class="column">
                 <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-                <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s)</p>
+                <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s) no carrinho</p>
                 <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
                 <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
               </div>

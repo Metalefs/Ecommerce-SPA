@@ -70,6 +70,7 @@
          Disponível em {{Produto.Cores?.length}} cores
        </span>
      </div>
+
      <mat-card-header class="w-full txt-left pt-1">
         <mat-card-title class="w-full txt-left titulo-produto">{{Produto?.Nome}}</mat-card-title>
         <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
@@ -121,6 +122,11 @@
         [step]="0.5"
         staticColor="ok"
         [starType]="'svg'"></star-rating>
+      </div>
+      <div class="px-4">
+        <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="button is-small is-fullwidth card is-disabled px-4">
+          Veja mais
+        </span>
       </div>
     </mat-card-footer>
     <a [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">

@@ -18,6 +18,16 @@
       </div>
   </div>
   <div class="columns mt-0 py-0 px-0">
+
+      <div data-aos="slide-right"  class="column py-0 px-0">
+        <div class="w-full">
+          <video #video [muted]="true" onloadstart="this.volume=0.03" autoplay loop class="w-full" >
+            <source src="assets/videos/longdrink.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <button class="mute-btn" mat-icon-button (click)="video.muted = !video.muted"><mat-icon>{{video.muted? 'volume_up': 'volume_off'}}</mat-icon></button>
+      </div>
       <div class="column card py-0 px-0 card">
         <mat-card data-aos-offset="200" class="w-full box is-pulled-left empresa-card">
           <mat-card-header class="py-1 mx-0">
@@ -30,15 +40,6 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <div data-aos="slide-right"  class="column py-0 px-0">
-        <div class="w-full">
-          <video #video [muted]="true" onloadstart="this.volume=0.03" autoplay loop class="w-full" >
-            <source src="assets/videos/longdrink.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-      <button class="mute-btn" mat-icon-button (click)="video.muted = !video.muted"><mat-icon>{{video.muted? 'volume_up': 'volume_off'}}</mat-icon></button>
-  </div>
+    </div>
 
 </section>

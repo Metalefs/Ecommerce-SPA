@@ -82,7 +82,6 @@ export class DadosComponent implements OnInit, OnDestroy {
   SubmeterDadosPessoais(){
     this.ErroCadastro = true;
     if(this.ValidarDados()){
-      alert(this.Orcamento.Usuario.Senha)
       this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento)).subscribe(x=>{
         this.router.navigateByUrl("/checkout/endereco");
       })

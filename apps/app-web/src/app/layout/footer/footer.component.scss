@@ -40,7 +40,7 @@ a{
   @extend .base;
   line-height: 33px;
   display: flex;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500;
   align-items: center;
   letter-spacing: 0.08em !important;
@@ -105,7 +105,7 @@ h4{
 .footer {
   position: relative;
   padding: 60px 0 0 0;
-  background: #111111;
+  background: #fe0000c4;
 }
 
 .footer .footer-widget {
@@ -115,7 +115,7 @@ h4{
 }
 
 .footer .footer-widget .title {
-  color: #ffffff;
+  // color: #ffffff;
   letter-spacing: 1px;
   padding-bottom: 10px;
   margin-bottom: 25px;
@@ -140,13 +140,17 @@ h4{
   margin-bottom: 0;
 }
 
-.footer .footer-widget ul li a {
+.footer .footer-widget ul li a{
   color: #ffffff;
   white-space: nowrap;
   display: block;
   line-height: 23px;
 }
 
+.footer .footer-widget ul li a:hover {
+  padding-left: 10px;
+  color: #c5c3c3;
+}
 .footer .footer-widget ul li a::before {
   content: '\f061';
   font-family: 'Font Awesome 5 Free';
@@ -154,16 +158,12 @@ h4{
   padding-right: 5px;
 }
 
-.footer .footer-widget ul li a:hover {
-  padding-left: 10px;
-  color: #FF6F61;
-}
 
 .footer .contact-info p {
   margin-bottom: 10px;
   color: #ffffff;
 }
-
+.footer > div.w-full.pink.shadow-light > div > div.column.text-center > a > p,
 .footer .contact-info p i {
   color: #ffffff;
   margin-right: 5px;
@@ -197,7 +197,7 @@ h4{
   padding: 0 15px;
   border: none;
   background: #111111;
-  color: #ffffff;
+  // color: #ffffff;
   font-size: 14px;
   border: 1px solid #ffffff;
   border-radius: 0 4px 4px 0;
@@ -241,6 +241,9 @@ h4{
     color: #999;
   }
   .footer .footer-widget ul li a {
+    color: #999;
+  }
+  .footer .footer-widget ul li a p {
     color: #999;
   }
 }
