@@ -12,6 +12,10 @@
   z-index: -1;
   background:url(/assets/images/empresa/double-bubble-outline.png)
 }
+.bg-transp{
+  background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgba(255,255,255,1) 51%, rgba(0,212,255,0) 100%);
+}
 .shadow{
   box-shadow: 0 10px 60px #00000057;
 }

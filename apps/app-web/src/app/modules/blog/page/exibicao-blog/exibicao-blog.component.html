@@ -1,13 +1,20 @@
-<div [@cardFlip]="state" class="section-block">
-  <div class="funding-meta">
-    <h1>{{Post.Titulo}}</h1>
-    <span class="type-meta"><i class="fa fa-user"></i> {{Post.Autor.Nome}}</span>
-    <span class="type-meta">
-      <i class="fa fa-tag"></i>
-      <a href="#" *ngFor="let tag of Post.Tags">{{tag}},</a>
-    </span>
-    <!--img src="assets/img/image-heartbeat.jpg" class="img-responsive" alt="launch HTML5 Crowdfunding"-->
-    <div class="section" [innerHTML]="Post.Conteudo"></div>
+
+<div class="columns" [@cardFlip]="state">
+  <div class="column">
+    <div class="section-block">
+      <div class="funding-meta">
+        <h1 class="is-uppercase">{{Post.Titulo}}</h1>
+        <span class="type-meta"><i class="fa fa-user"></i> {{Post.Autor.Nome}}</span>
+        <span class="type-meta">
+          <i class="fa fa-tag"></i>
+          <a href="#" *ngFor="let tag of Post.Tags">{{tag}},</a>
+        </span>
+        <div class="section" [innerHTML]="Post.Conteudo"></div>
+      </div>
+    </div>
+  </div>
+  <div class="column is-4-desktop is-12-mobile">
+    <personalizados-lopes-sidebar></personalizados-lopes-sidebar>
   </div>
 </div>
 <div [@cardFlip]="state" class="section-block">

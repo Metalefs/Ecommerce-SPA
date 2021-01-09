@@ -7,7 +7,7 @@
         <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       </section>
     </div>
-    <div class="margin py-4 px-2 ">
+    <div class="margin py-4 px-2 bg-transp">
       <personalizados-lopes-produto-swiper class="z-index-1"></personalizados-lopes-produto-swiper>
       <section class="py-3" *ngIf="(Clientes$|async).length>0">
         <div data-aos="zoom-down" class="testimonial">
@@ -21,9 +21,10 @@
           </span>
         </div>
         <div class="titleContent py-3 txt-center">
-          <h1 class='title'>
-            BLOG
-          </h1>
+          <div class="w-full hoverable border py-1 px-2">
+            <h2>BLOG</h2>
+            <span class="hr-inner-style"></span>
+          </div>
         </div>
         <div>
          <personalizados-lopes-blog-swiper></personalizados-lopes-blog-swiper>
