@@ -33,7 +33,7 @@
       <a
       pageScroll
       href="#topo"
-      (pageScrollFinish)="close()"
+      (click)="delayClose(1300)"
       [routerLink]="['/produtos/']"
       routerLinkActive="router-link-active">
         <button mat-stroked-button mat-stroked-button class="button is-dark">
@@ -163,7 +163,11 @@
             class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
               orçamento</span></a>
           <button class="py-3 pb-3  w-full">
-            <a href="#topo" class="py-3" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher
+            <a
+            href="#topo"
+            class="py-3"
+            (pageScrollFinish)="close()"
+            [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher
               mais
               produtos</a>
           </button>

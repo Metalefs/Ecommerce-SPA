@@ -57,13 +57,13 @@ export class CheckoutDisplayComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  delayClose(){
+  delayClose(off:number = 0){
     try{
       document.getElementsByClassName("animate__animated")[0].classList.remove("animate__slideInRight")
       document.getElementsByClassName("animate__animated")[0].classList.add("animate__slideOutRight");
       setTimeout(()=>{
         this.close()
-      },0);
+      },off);
     }
     catch(ex){this.close()}
   }

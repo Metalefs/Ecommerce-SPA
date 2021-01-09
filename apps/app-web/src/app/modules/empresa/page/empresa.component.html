@@ -12,7 +12,7 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content class="dashboard-card-content">
-            <p class="txt-justify card-text" [innerHTML]="(Sobre$ | async)?.Historia"></p>
+            <div class="txt-justify card-text" [innerHTML]="(Sobre$ | async)?.Historia"></div>
           </mat-card-content>
         </mat-card>
       </div>
@@ -35,8 +35,8 @@
               <p class="header is-uppercase">Nossos Produtos</p>
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <p class="txt-justify card-text" [innerHTML]="(Sobre$ | async)?.Fabricacao"></p>
+          <mat-card-content>
+            <div class="txt-justify card-text" [innerHTML]="(Sobre$ | async)?.Fabricacao"></div>
           </mat-card-content>
         </mat-card>
       </div>

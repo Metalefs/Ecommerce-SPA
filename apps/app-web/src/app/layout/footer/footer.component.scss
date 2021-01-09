@@ -36,6 +36,7 @@ a{
   }
 
 }
+
 .footer-title{
   @extend .base;
   line-height: 33px;
@@ -66,8 +67,8 @@ a{
   background: #ff4081;
   // background: rgba(0, 0, 0, 0.52);
 }
-.pink{
-  // background: #ff4081;
+.txt-justify.footer-text.has-text-white p{
+  color:white
 }
 
 .footer::before{
@@ -169,7 +170,6 @@ h4{
   margin-right: 5px;
 }
 
-
 .footer .newsletter {
   position: relative;
   width: 100%;
@@ -227,6 +227,10 @@ h4{
   }
   .footer > div.w-full.pink.shadow-light > div > div.column.text-center > a > p,
   .footer .contact-info p i {
+    color: #999;
+  }
+
+  .txt-justify.footer-text.has-text-white p{
     color: #999;
   }
   .footer{

@@ -81,7 +81,7 @@
 
       <div class="column">
         <h3 class="footer-title">Sobre</h3>
-        <p class="txt-justify footer-text">{{(Sobre$ | async)?.Historia}}</p>
+        <div class="txt-justify footer-text has-text-white" [innerHTML]="(Sobre$ | async)?.Historia"></div>
       </div>
 
     </div>

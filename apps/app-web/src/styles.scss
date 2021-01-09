@@ -237,7 +237,7 @@ img{
   line-height: 122.19%;
   /* or 27px */
 
-  display: flex;
+  display: block;
   align-items: center;
   text-align: justify;
   letter-spacing: 0.04em;
@@ -386,13 +386,6 @@ img{
  */
 
 /*-Base-*/
-
-p {
-	color:#666;
-}
-a {
-	// color:#85AD90;
-}
 
 /*-Section Blocks-*/
 .section-block {
