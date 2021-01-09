@@ -14,7 +14,10 @@
 .mat-card{
   animation: bounce 1s ease forwards;
   background:#eae8e9
-
+}
+.mat-card-image{
+  margin:0;
+  margin-top: -16px;
 }
 .image.is-square, .image.is-1by1 {
   padding-top: 73%;
