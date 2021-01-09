@@ -1,7 +1,8 @@
 <div class="w-full" *ngIf="(Produtos$|async).length >0">
   <div class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
-    <div class="w-full hoverable">
-      <h2>Explore os produtos</h2>
+    <div class="w-full hoverable border">
+      <h2>Novidades</h2>
+      <span class="hr-inner-style"></span>
     </div>
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let produto of Produtos$|async" >

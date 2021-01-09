@@ -1,24 +1,62 @@
-<a *ngIf="CanView"
-  [routerLink]="['/blog/'+ Post.Titulo]"
-  href="#topo"
-  pageScroll>
-  <mat-card
-    class="card latest-blog clickable hoverable">
-    <figure class="image is-square">
-      <img mat-card-image id="logo-blog"
-        [src]="Post?.FotoCapa"
-        alt="blogpostimage">
-    </figure>
+<mat-card *ngIf="CanView" class="card latest-blog">
+  <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
 
-    <mat-card-footer class="blog-post-box card-body">
-      <ul>
-        <li> <p class="titulo-produto">Por: {{Post?.Autor?.Nome}} &nbsp; &nbsp;|</p></li>
-      </ul>
+    <figure class="image is-square">
+      <img mat-card-image [src]="Post?.FotoCapa" alt="blogpostimage">
+    </figure>
+  </a>
+  <div class="post-views">
+    <i class="fa fa-eye"></i>
+    {{this.Post.Visualizacoes}}
+  </div>
+
+  <mat-card-title>
+    <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
       <h3>
         {{Post.Titulo}}
       </h3>
-      <span> 06/05/2020 14:56:00</span>
-      <p class="is-size-6	" [innerHTML]="Post?.Conteudo?.substr(0,140)+'<span>...</span>'"> </p>
-    </mat-card-footer>
-  </mat-card>
-</a>
+    </a>
+    <div class="columns is-vcentered is-mobile">
+      <div class="column">
+        <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
+          <p class="title">
+            <span class="fa fa-calendar"></span>
+            <span> {{Post.DataHoraAlteracao||Post.DataHoraCriacao}}</span>
+          </p>
+        </a>
+      </div>
+      <div class="column">
+        <p>
+          <mat-icon>person</mat-icon>
+          <span> {{Post?.Autor?.Nome}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="my-3">
+      <star-rating
+      [rating]="meanRating()"
+      [hoverEnabled]="true"
+      [readOnly]="true"
+      [showHalfStars]="true"
+      [step]="0.5"
+      staticColor="default"
+      [starType]="'svg'"></star-rating>
+    </div>
+  </mat-card-title>
+
+  <mat-card-content>
+    <div class="is-size-6	" [innerHTML]="Post?.Conteudo?.substr(0,140)+Link"> </div>
+
+    <mat-divider></mat-divider>
+    <div class="blog-post-box card-body py-2 txt-right">
+      <div class="dis-flex flex-l">
+        <span class="">
+          <span class="fa fa-comment"></span>
+          {{Post.Comentarios.length}} Comentarios
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+
+
+</mat-card>

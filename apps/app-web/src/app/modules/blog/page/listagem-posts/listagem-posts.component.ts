@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { BlogPostService } from 'apps/app-web/src/app/data/service';
-import { CanViewPost } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BlogPost, Usuario } from 'libs/data/src/lib/classes';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
-import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -34,8 +32,5 @@ export class ListagemPostsComponent implements OnInit {
     this.authService.currentUser.subscribe(x=>{
       this.user = x;
     })
-  }
-  CanView(post:BlogPost){
-    return CanViewPost(post,this.user);
   }
 }

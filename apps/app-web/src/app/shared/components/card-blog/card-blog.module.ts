@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../../material.module';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { Routes, RouterModule } from '@angular/router';
-
+import { StarRatingModule } from 'angular-star-rating';
 import { CardBlogComponent } from './card-blog.component'
 @NgModule({
   declarations: [CardBlogComponent],
@@ -11,11 +11,12 @@ import { CardBlogComponent } from './card-blog.component'
     CommonModule,
     MaterialModule,
     NgxPageScrollModule,
-    RouterModule
+    RouterModule,
+    StarRatingModule
   ],
   exports:[
     CardBlogComponent,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class CardBlogModule { }

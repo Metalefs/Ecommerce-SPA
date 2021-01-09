@@ -13,7 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class ExibicaoBlogComponent implements OnInit {
   Post:BlogPost;
-  state = "flipped"
+  state = "flipped";
+  Viewed:boolean = false;
   constructor(private activeRoute:ActivatedRoute,
     private router: Router,
     private BlogService:BlogPostService) { }
@@ -27,7 +28,8 @@ export class ExibicaoBlogComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.Post = data.filter(x=>x.Titulo == id)[0]
+      this.Post = data.filter(x=>x.Titulo == id)[0];
+      this.updateViews();
     });setTimeout(()=>{
       this.flip()
     },0)
@@ -42,6 +44,13 @@ export class ExibicaoBlogComponent implements OnInit {
       this.state = "flipped";
     } else {
       this.state = "default";
+    }
+  }
+  updateViews(){
+    if(!localStorage.getItem("vblog"+this.Post.key)){
+      ++this.Post.Visualizacoes;
+      this.BlogService.update(this.Post.key,this.Post);
+      localStorage.setItem("vblog"+this.Post.key,"true");
     }
   }
 }

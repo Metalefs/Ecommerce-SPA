@@ -1,26 +1,23 @@
-<div id="Blog" >
+<div id="Blog">
 
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <h1 [routerLink]="'/blog'">
+        Blog
+      </h1>
+      <span class="spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <section class="bg-blog main-content margin" id="Blog">
+    <div class="columns  margin">
+      <div class="column is-12 ">
+        <router-outlet [@routeAnimations]="prepareRoute(outlet3)" @fadeIn #outlet3></router-outlet>
 
-<mat-toolbar color="" class="">
-  <mat-toolbar-row>
-    <a [routerLink]="'/blog'" class="logo">
-      Blog
-    </a>
-    <span class="spacer"></span>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<section class="bg-blog main-content" id="Blog">
-  <div class="columns  margin">
-    <div class="column is-12-mobile ">
-      <router-outlet [@routeAnimations]="prepareRoute(outlet3)" @fadeIn #outlet3></router-outlet>
-
-      <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
+        <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
+      </div>
+      <!-- <div class="column is-4-desktop is-12-mobile">
+        <personalizados-lopes-sidebar></personalizados-lopes-sidebar>
+      </div> -->
     </div>
-    <div class="column is-4-desktop is-12-mobile">
-      <!--================Blog Area =================-->
-      <personalizados-lopes-sidebar></personalizados-lopes-sidebar>
-    </div>
-  </div>
-</section>
+  </section>
 </div>

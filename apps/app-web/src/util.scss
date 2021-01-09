@@ -90,7 +90,13 @@ button {
 button:focus {outline: none;}
 
 iframe {border: none;}
-
+.img-container{
+  position: relative;
+  padding-bottom: 55.97%;
+  height: 0;
+  overflow: hidden;
+  margin-bottom: -.535%;
+}
 input{
   -webkit-writing-mode: horizontal-tb !important;
   text-rendering: auto;
