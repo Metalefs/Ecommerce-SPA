@@ -95,21 +95,23 @@
             </p>
           </div>
 
+          <a>
           <button
             [disabled]="Produto.Status == statusProduto.esgotado"
             mat-stroked-button
             (click)="AdicionarAoOrcamento(Produto)"
             color="primary"
-            class="has-background-light w-full px-2 has-text-grey btn-cart">
+            class="has-background-light w-full px-2 has-text-primary btn-cart">
             <ng-container *ngIf="Produto.Status != statusProduto.esgotado
             then adicionar else esgotado"></ng-container>
             <ng-template #adicionar>
-              <mat-icon>add_shopping_cart</mat-icon>Adicionar
-            </ng-template>
-            <ng-template #esgotado>
-              Esgotado
-            </ng-template>
-          </button>
+               <mat-icon>add_shopping_cart</mat-icon>Adicionar
+              </ng-template>
+              <ng-template #esgotado>
+                Esgotado
+              </ng-template>
+            </button>
+          </a>
         </mat-card-subtitle>
       </mat-card-header>
       <div class="my-3">
@@ -124,7 +126,10 @@
         [starType]="'svg'"></star-rating>
       </div>
       <div class="px-4">
-        <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="button is-small is-fullwidth card is-disabled px-4">
+        <span
+        [routerLink]="['/produtos/'+ Produto._id]"
+        routerLinkActive="router-link-active"
+        class="button is-small is-warning is-fullwidth card px-4 mb-2 pb-2">
           Veja mais
         </span>
       </div>

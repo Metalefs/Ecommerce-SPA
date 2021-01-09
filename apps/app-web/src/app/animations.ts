@@ -22,6 +22,7 @@ export const slider =
   trigger('routeAnimations', [
     transition('* => isLeft', slideTo('top') ),
     transition('* => isRight', slideTo('top') ),
+    transition('isRight => flip', cardFlipQ() ),
     transition('isRight => *', slideTo('top') ),
     transition('isLeft => *', slideTo('top') )
   ]);
@@ -83,7 +84,29 @@ trigger('cardFlip', [
     animate('200ms')
   ])
 ])
-
+function cardFlipQ(){
+const optional = { optional: true };
+return [
+  query(':enter, :leave', [
+    style({
+      transform: 'none',
+      position:'absolute',
+      top:0
+    })
+  ], optional),
+  query(':enter', [
+    style({ transform: 'rotateY(180deg)'})
+  ],optional),
+  group([
+    query(':leave', [
+      animate('1000ms ease', style({ transform: 'rotateY(180deg)'}))
+    ], optional),
+    query(':enter', [
+      animate('1000ms ease', style({transform: 'none'}))
+    ],optional)
+  ]),
+];
+}
 export const sliderSide =
   trigger('routeAnimationsSide', [
     transition('* => *', slideToSide('left') ),
