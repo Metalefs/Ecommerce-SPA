@@ -299,14 +299,14 @@
   </div>
 </div>
 
-<div class="w-full flex-w flex-sa px-6 shadow-light ">
-  <a [routerLink]="'/produtos'" class="has-text-grey-light">
+<div class="w-full flex-w flex-sa px-6 shadow-light border has-background-light">
+  <a [routerLink]="'/produtos'" class="has-text-grey">
     <button mat-icon-button>
       <mat-icon>chevron_left</mat-icon>
       <span>Produtos</span>
     </button>
   </a>
-  <a [routerLink]="'/showcase'" class="has-text-grey-light">
+  <a [routerLink]="'/showcase'" class="has-text-grey">
     <button mat-icon-button>
       <mat-icon>collections</mat-icon>
       <!-- <span>Galeria</span> -->
@@ -326,11 +326,11 @@
   <personalizados-lopes-blog-swiper [TAGS]="Produto.Tags"></personalizados-lopes-blog-swiper>
 </div>
 
-<div class="card pos-fixed shadow-light right-0 bottom-0 bg-azul z-index-2">
+<div class="pos-fixed right-0 bottom-0 z-index-2">
 
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header class="dis-flex flex-m py-2 ">
+  <mat-accordion >
+    <mat-expansion-panel class="">
+      <mat-expansion-panel-header class="dis-flex flex-m box border shadow-light bo-0 ">
         <mat-panel-title>
           <mat-icon mat-card-avatar class="has-text-dark">comment</mat-icon>
         </mat-panel-title>

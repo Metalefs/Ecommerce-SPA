@@ -24,7 +24,8 @@ export const slider =
     transition('* => isRight', slideTo('top') ),
     transition('isRight => flip', cardFlipQ() ),
     transition('isRight => *', slideTo('top') ),
-    transition('isLeft => *', slideTo('top') )
+    transition('isLeft => flip', cardFlipQ() ),
+    transition('isLeft => *', slideTo('top') ),
   ]);
 
 function slideTo(direction) {

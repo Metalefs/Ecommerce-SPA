@@ -1,4 +1,4 @@
-<div class="sticky-nav  shadow-light"
+<div class="sticky-nav py-4 border shadow-light"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
@@ -164,6 +164,7 @@
     </div>
   </div>
 </mat-toolbar>
+
 <mat-toolbar-row
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'is-hidden'">
 </mat-toolbar-row>

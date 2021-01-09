@@ -40,7 +40,6 @@ a{
   margin-right: 50px;
 }
 .mat-toolbar {
-  height: 90px;
   background: rgba($color: white, $alpha: 0.99);
   margin-top: 0px;
   padding-top: 25px;
@@ -208,6 +207,8 @@ a.nav-link:hover{
   background-color: rgba(225, 225, 237,.5);
   height: 8px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
+  top: 22px;
+    position: relative;
 }
 .is-hidden{
   display: none;

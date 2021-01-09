@@ -36,7 +36,9 @@ a{
   }
 
 }
-
+.nsw-btn:hover{
+  background: #6fa9fa !important;
+}
 .footer-title{
   @extend .base;
   line-height: 33px;
@@ -229,9 +231,8 @@ h4{
   .footer .contact-info p i {
     color: #999;
   }
-
   .txt-justify.footer-text.has-text-white p{
-    color: #999;
+    color: #999 !important;
   }
   .footer{
     background: #f1f1f1;

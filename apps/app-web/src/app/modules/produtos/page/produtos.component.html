@@ -1,19 +1,23 @@
-<div class="columns is-gapless my-3 shadow-light is-mobile is-hidden-tablet w-full pos-sticky bellow-nav top-0 z-index-top">
-  <div class="column has-background-white bo-0">
-    <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
-      <p>Categorias</p>
-      <span class="is-size-7"><em>({{CategoriaAtiva.Nome}})</em></span>
-      <!-- <mat-icon>category</mat-icon> -->
+<mat-toolbar class="py-4 w-full has-background-white shadow-light pos-sticky bellow-nav top-0 z-index-top">
+  <mat-toolbar-row class="py-2">
+    <div class="columns is-gapless my-3 is-mobile is-hidden-tablet w-full">
+      <div class="column has-background-white bo-0">
+        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
+          <p>Categorias</p>
+          <span class="is-size-7"><em>({{CategoriaAtiva.Nome}})</em></span>
+          <!-- <mat-icon>category</mat-icon> -->
+        </div>
+      </div>
+      <div class="column has-background-white bo-0">
+        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoOrdenacao()">
+            <p>Ordenar</p>
+            <span class="is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
     </div>
-  </div>
-  <div class="column has-background-white bo-0">
-    <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoOrdenacao()">
-        <p>Ordenar</p>
-        <span class="is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-</div>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <!-- <carousel
   #carousel

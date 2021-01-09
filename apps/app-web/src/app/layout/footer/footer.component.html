@@ -39,7 +39,7 @@
             <div class="control">
               <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="email">
             </div>
-            <a mat-icon-button class="has-background-light has-text-black" (click)="AssinarNewsLetter()">
+            <a mat-icon-button class="has-background-light has-text-black nsw-btn" (click)="AssinarNewsLetter()">
               <mat-icon>chevron_right</mat-icon>
             </a>
           </div>
@@ -81,7 +81,7 @@
 
       <div class="column">
         <h3 class="footer-title">Sobre</h3>
-        <div class="txt-justify footer-text has-text-white" [innerHTML]="(Sobre$ | async)?.Historia"></div>
+        <div class="txt-justify footer-text" [innerHTML]="(Sobre$ | async)?.Historia"></div>
       </div>
 
     </div>
