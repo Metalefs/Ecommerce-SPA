@@ -221,15 +221,6 @@
             </div>
 
           </div>
-          <mat-divider></mat-divider>
-          <div class="descricao-produto w-full py-4">
-            <h2 class="preto6"><b>Especificações</b></h2>
-            <div class="w-full">
-              <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes">
-              </ckeditor>
-            </div>
-            <div [innerHTML]="Produto?.Especificacoes || 'Sem especificações'"></div>
-          </div>
         </div>
         <div class="column is-6">
           <div class="columns is-multiline">
@@ -311,9 +302,20 @@
     <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao"></ckeditor>
   </div>
 
-  <div class="w-full columns">
-    <div id="desc" class="descricao-produto column is-12 w-full"
-      [innerHTML]="this.Produto.Descricao || 'Este produto está sem uma descrição'"></div>
+  <div class="margin">
+    <div  class="w-full columns ">
+      <div  class="descricao-produto column is-6 w-full"
+        [innerHTML]="Produto.Descricao || 'Este produto está sem uma descrição'"></div>
+
+      <div  class="descricao-produto column is-6 w-full">
+        <h2 class="preto6"><b>Especificações</b></h2>
+        <div class="w-full">
+          <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes">
+          </ckeditor>
+        </div>
+        <div [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+      </div>
+    </div>
   </div>
 
   <mat-card class="">

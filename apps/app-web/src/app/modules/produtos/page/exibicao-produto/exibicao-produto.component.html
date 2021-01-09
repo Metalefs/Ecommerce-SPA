@@ -138,11 +138,6 @@
               </div>
 
             </div>
-            <mat-divider></mat-divider>
-            <div class="descricao-produto w-full py-4">
-              <h2 class="preto6"><b>Especificações</b></h2>
-              <div [innerHTML]="Produto?.Especificacoes || 'Sem especificações'"></div>
-            </div>
           </div>
           <div class="column is-6">
             <div class="columns is-multiline">
@@ -293,9 +288,13 @@
     </div>
 
 
-    <div  class="w-full columns">
-      <div  class="descricao-produto column is-12 w-full"
-        [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
+    <div class="margin">
+      <div  class="w-full columns ">
+        <div  class="descricao-produto column is-6 w-full"
+          [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
+        <div  class="descricao-produto column is-6 w-full"
+          [innerHTML]="Produto.Especificacoes || 'Este produto está sem especificações'"></div>
+      </div>
     </div>
   </div>
 </div>
