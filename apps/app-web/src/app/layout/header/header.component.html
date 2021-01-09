@@ -99,13 +99,13 @@
         <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
             title="Checkout"
             aria-label="Botão abrir Orçamento"
-            color="none"
+            color="accent"
             class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
+            <mat-icon class="material-icons-outlined dis-block">shopping_bag</mat-icon>
+            <!-- <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s) no carrinho</p>
+            <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p> -->
             <div class="columns">
               <div class="column">
-                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-                <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s) no carrinho</p>
-                <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p>
                 <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
               </div>
             </div>

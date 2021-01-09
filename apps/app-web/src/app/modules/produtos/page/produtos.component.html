@@ -40,13 +40,15 @@
               class="pointer w-full w-full-m cat-item"
               (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
-              <a mat-strocked-button>
-                <mat-icon
-                  [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
-                  {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
-                </mat-icon>
-                {{defaultCategory}}
-              </a>
+              <button>
+                <a mat-strocked-button>
+                  <mat-icon
+                    [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
+                  </mat-icon>
+                  {{defaultCategory}}
+                </a>
+              </button>
               <mat-divider></mat-divider>
             </mat-list-item>
             <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
@@ -56,13 +58,15 @@
               class="pointer w-full w-full-m"
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
-              <a mat-strocked-button>
-                <mat-icon
-                  [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">
-                  {{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'arrow_left'}}
-                </mat-icon>
-                {{categoria.Nome}}
-              </a>
+              <button>
+                <a mat-strocked-button>
+                  <mat-icon
+                    [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'arrow_left'}}
+                  </mat-icon>
+                  {{categoria.Nome}}
+                </a>
+              </button>
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
@@ -96,7 +100,7 @@
             </div>
           </div>
         </div>
-        <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2> -->
+        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
           <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]" class="m-lr-auto">

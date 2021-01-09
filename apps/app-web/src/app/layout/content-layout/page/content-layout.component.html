@@ -13,9 +13,10 @@
     <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
   </div>
 
-  <!-- [@routeAnimations]="prepareRoute(outlet)" -->
+  <!-- [@cardFlip]="prepareRoute(outlet)" -->
   <div
-  [@cardFlip]="prepareRoute(outlet)"
+
+  [@routeAnimations]="prepareRoute(outlet)"
   [ngClass]="NavState.open? 'main is-active': ''"
   (mouseover)="CloseNav()">
     <section class="split-home">
@@ -25,10 +26,10 @@
       <div class="main-content">
         <router-outlet #outlet="outlet"></router-outlet>
       </div>
-      <personalizados-lopes-footer></personalizados-lopes-footer>
     </section>
     <personalizados-lopes-icone-whatsapp [Whatsapp]="(InformacoesContato$|async)?.Whatsapp" [Mensagem]="Mensagem">
     </personalizados-lopes-icone-whatsapp>
     <personalizados-lopes-scroll-top></personalizados-lopes-scroll-top>
   </div>
+  <personalizados-lopes-footer></personalizados-lopes-footer>
 </div>

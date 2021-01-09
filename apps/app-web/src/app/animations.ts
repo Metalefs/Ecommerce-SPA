@@ -33,9 +33,8 @@ function slideTo(direction) {
       style({
         position: 'absolute',
         // opacity: '.50',
-        top: 0,
-        // [direction]: 0,
-
+        [direction]: 0,
+        zIndex: 1,
         width: '100%'
       })
     ], optional),
@@ -44,10 +43,10 @@ function slideTo(direction) {
     ],optional),
     group([
       query(':leave', [
-        animate('700ms ease-in', style({ [direction]: '100%'}))
+        animate('1000ms ease', style({ [direction]: '100%'}))
       ], optional),
       query(':enter', [
-        animate('700ms ease-in', style({ [direction]: '0%'}))
+        animate('1000ms ease', style({ [direction]: '0%'}))
       ],optional)
     ]),
     // Normalize the page style... Might not be necessary

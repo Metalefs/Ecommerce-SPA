@@ -225,6 +225,10 @@ h4{
   .footer::before{
     left: 0;
   }
+  .footer > div.w-full.pink.shadow-light > div > div.column.text-center > a > p,
+  .footer .contact-info p i {
+    color: #999;
+  }
   .footer{
     background: #f1f1f1;
   }

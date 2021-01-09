@@ -85,6 +85,9 @@ a{
   vertical-align: middle;
   width: 30px;
 }
+.mat-mini-fab .mat-button-wrapper{
+  display: block !important;
+}
 .cart-counter{
   position: absolute;
   margin-left: auto;
@@ -100,7 +103,7 @@ a{
   font-weight: 600;
 }
 .how-social{
-  box-shadow: none;
+  // box-shadow: none;
 }
 @media (min-width: 320px ) and (max-width: 1023px) {
 
@@ -128,17 +131,15 @@ a{
   line-height: 30px;
   transition: 0.25s all ease-in-out;
   color: #4b4b4d;
-  background-color: white;
-  font-weight: 400;
+  font-weight: 500;
   &:hover{
     filter: brightness(.7) contrast(2.5);
   };
-  border-color: #4d4c4c3d;
+  border-color: #acabab3d;
   border-left-style: solid;
-  background: white;
-  border-radius: 5px;
+  // border-radius: 5px;
   border-left-width: 1px;
-  margin-left: -13px;
+  margin-left: -6px;
 }
 a.nav-link:hover{
 

@@ -39,7 +39,7 @@ export class EmpresaComponent implements OnInit {
   ngOnInit(): void {
     this.Atualizar();
     setTimeout(()=>{
-      this.flip()
+      // this.flip()
     },0)
   }
 
