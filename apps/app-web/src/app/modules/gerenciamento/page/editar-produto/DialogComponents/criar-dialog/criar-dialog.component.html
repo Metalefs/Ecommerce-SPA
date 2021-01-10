@@ -288,42 +288,42 @@
     </mat-chip-list>
   </mat-form-field>
 
-  <div class="w-full">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Descrição</mat-card-title>
-        <mat-card-content>
-          Explore a ferramenta
-          <p>Aqui é possível inserir conteúdos externos como fotos e videos, postagens de redes sociais e criação de
-            tabelas de caracteristicas</p>
-        </mat-card-content>
-      </mat-card-header>
-    </mat-card>
-    <ckeditor [editor]="Editor" [(ngModel)]="Produto.Descricao" [data]="Produto.Descricao"></ckeditor>
-  </div>
-
-  <div class="margin">
-    <div  class="w-full columns ">
-      <div  class="descricao-produto column is-6 w-full"
-        [innerHTML]="Produto.Descricao || 'Este produto está sem uma descrição'"></div>
-
-      <div  class="descricao-produto column is-6 w-full">
-        <h2 class="preto6"><b>Especificações</b></h2>
-        <div class="w-full">
-          <ckeditor [editor]="Editor" [(ngModel)]="Produto.Especificacoes" [data]="Produto.Especificacoes">
-          </ckeditor>
+  <div class="w-full columns is-mobile">
+    <div class="column">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Descrição</mat-card-title>
+          <mat-card-content>
+            Explore a ferramenta
+            <p>Aqui é possível inserir conteúdos externos como fotos e videos, postagens de redes sociais e criação de
+              tabelas de caracteristicas</p>
+          </mat-card-content>
+        </mat-card-header>
+      </mat-card>
+      <personalizados-lopes-editor [Conteudo]="Produto.Descricao"></personalizados-lopes-editor>
+      <div  class="descricao-produto w-full"
+      [innerHTML]="Produto.Descricao || 'Este produto está sem uma descrição'">
+      </div>
+      <div class="column">
+        <div  class="descricao-produto column is-6 w-full">
+          <h2 class="preto6"><b>Especificações</b></h2>
+          <div class="w-full">
+            <personalizados-lopes-editor [Conteudo]="Produto.Especificacoes"></personalizados-lopes-editor>
+          </div>
+          <div [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
         </div>
-        <div [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
       </div>
     </div>
   </div>
+
+
 
   <mat-card class="">
     <mat-card-title>Dicas</mat-card-title>
     <mat-card-subtitle>Cadastro de produto:</mat-card-subtitle>
     <mat-card-content>
       <div>
-        <div class="card">
+        <div class="">
           <h2>Titulo completo e descritivo</h2>
           <p> ex: <em>Tinta para parede xyz 3.6 Litros rosa</em></p>
           <p> ex: <em>(1)Sapatilha (2)Classica (3)Couro (4)Rosa</em></p>

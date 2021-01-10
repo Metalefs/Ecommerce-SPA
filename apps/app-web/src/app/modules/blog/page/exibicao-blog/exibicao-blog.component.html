@@ -9,7 +9,9 @@
           <i class="fa fa-tag"></i>
           <a href="#" *ngFor="let tag of Post?.Tags">{{tag}},</a>
         </span>
-        <div class="section" [innerHTML]="Post?.Conteudo"></div>
+        <div class="section">
+          <personalizados-lopes-editor [Disabled]="true" [Conteudo]="Post.Conteudo"></personalizados-lopes-editor>
+        </div>
       </div>
       <div class="mx-2">
         <div class="w-full flex-w">

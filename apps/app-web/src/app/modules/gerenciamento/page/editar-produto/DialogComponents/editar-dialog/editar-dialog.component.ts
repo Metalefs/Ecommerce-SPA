@@ -11,7 +11,7 @@ import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { GalleryConfig, GalleryItem, Gallery, ThumbnailsPosition } from 'ng-gallery';

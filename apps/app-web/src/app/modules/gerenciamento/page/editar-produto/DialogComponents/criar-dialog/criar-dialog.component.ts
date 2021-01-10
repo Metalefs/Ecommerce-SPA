@@ -12,7 +12,7 @@ import { BlogPost, Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { CriarCategoriaDialogComponent } from '../../../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 import { Store } from '@ngxs/store';
@@ -30,6 +30,7 @@ import { CriarPostComponent } from '../../../editar-blog/dialogs/criar-post/cria
   styleUrls: ['./criar-dialog.component.scss']
 })
 export class CriarProdutoDialogComponent implements OnInit {
+
   enumStatusProduto = StatusProduto;
   fileNames:string="nenhum arquivo selecionado.";
   Produto:Produto;
@@ -104,6 +105,7 @@ export class CriarProdutoDialogComponent implements OnInit {
       if(isNaN(parseInt(StatusProduto[enumMember])))
       this.statusProduto.push(StatusProduto[enumMember])
     }
+
   }
   CriarCategoria(): void {
 

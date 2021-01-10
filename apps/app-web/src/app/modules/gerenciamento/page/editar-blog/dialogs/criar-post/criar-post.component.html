@@ -32,7 +32,7 @@
         </mat-card-content>
       </mat-card-header>
     </mat-card>
-    <ckeditor [editor]="Editor" [(ngModel)]="BlogPost.Conteudo" [data]="BlogPost.Conteudo" ></ckeditor>
+    <personalizados-lopes-editor class="box" [Disabled]='false' [Conteudo]="BlogPost.Conteudo"></personalizados-lopes-editor>
   </div>
 
   <mat-form-field appearance="">

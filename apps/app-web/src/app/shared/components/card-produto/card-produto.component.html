@@ -66,7 +66,10 @@
 
    <mat-card-footer class="px-1">
      <div class="px-4">
-       <span *ngIf="Produto.Cores?.length > 1" [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="button is-small is-fullwidth card is-disabled px-4">
+       <span *ngIf="Produto.Cores?.length > 1"
+         [routerLink]="['/produtos/'+ Produto._id]"
+         routerLinkActive="router-link-active"
+         class="button is-small bo-0 is-fullwidth box border is-disabled px-4">
          Disponível em {{Produto.Cores?.length}} cores
        </span>
      </div>

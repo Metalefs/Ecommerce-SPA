@@ -2,12 +2,12 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BlogPost } from 'libs/data/src/lib/classes';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { categoriasBlogPost } from 'apps/app-web/src/app/data/models/categoriasBlogPost';
+
 @Component({
   selector: 'personalizados-lopes-editar-post',
   templateUrl: './editar-post.component.html',
@@ -21,7 +21,6 @@ export class EditarPostComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  public Editor = ClassicEditor;
   tagCtrl = new FormControl();
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
 

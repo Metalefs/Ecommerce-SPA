@@ -15,7 +15,6 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { StarRatingModule } from 'angular-star-rating';
 
 import { DynamicFormModule } from './components/dynamic-form/dynamic-form.module';
@@ -45,12 +44,11 @@ import { ExibirListaComentarioComponent } from './components/comentarios/exibir-
 import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';
 import { ProdutoSwiperComponent } from './components/produto-swiper/produto-swiper.component';
 import { ExibicaoPerfilComponent } from './components/exibicao-perfil/exibicao-perfil.component';
-import { CardPedidoComponent } from './components/card-pedido/card-pedido.component';
 import { CardBlogModule } from './components/card-blog/card-blog.module';
 import { CardPedidoModule } from './components/card-pedido/card-pedido.module';
 import { TagProdutoSwiperComponent } from './components/tag-produto-swiper/tag-produto-swiper.component';
 import { BlogSwiperComponent } from './components/blog-swiper/blog-swiper.component';
-
+import { EditorModule } from './components/editor/editor/editor.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -98,7 +96,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardProdutoModule,
     CardClienteModule,
     RouterModule,
-    CKEditorModule,
     ScrolltopModule,
     CountUpModule,
     IvyCarouselModule,
@@ -114,7 +111,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardComentarioProdutoModule,
     CardBlogModule,
     CardPedidoModule,
-
+    EditorModule
   ],
   exports: [
     CommonModule,
@@ -131,7 +128,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SocialNetworkLinksComponent,
     RouterModule,
     TestimonialComponent,
-    CKEditorModule,
     ScrolltopModule,
     CountUpModule,
     LoadingCubeComponent,
@@ -154,7 +150,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibicaoPerfilComponent,
     CardPedidoModule,
     TagProdutoSwiperComponent,
-    BlogSwiperComponent
+    BlogSwiperComponent,
+    EditorModule
   ],
   providers:[
     {

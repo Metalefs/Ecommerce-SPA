@@ -2,12 +2,13 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BlogPost } from 'libs/data/src/lib/classes';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { categoriasBlogPost } from'../../../../../../data/models/categoriasBlogPost';
+
+import { MatChipInputEvent } from '@angular/material/chips';
+
 @Component({
   selector: 'personalizados-lopes-criar-post',
   templateUrl: './criar-post.component.html',
@@ -21,7 +22,6 @@ export class CriarPostComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  public Editor = ClassicEditor;
   categorias = categoriasBlogPost;
   tagCtrl = new FormControl();
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;

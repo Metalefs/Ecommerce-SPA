@@ -9,7 +9,7 @@ import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/comp
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
 import { EmailNotificacao } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 @Component({
   selector: 'personalizados-lopes-editar-emails',
   templateUrl: './editar-emails.component.html',

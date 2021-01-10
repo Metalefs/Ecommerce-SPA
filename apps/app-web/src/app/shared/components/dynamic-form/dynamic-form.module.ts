@@ -9,11 +9,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EditorModule } from '../editor/editor/editor.module';
 
 @NgModule({
     declarations: [
         DynamicFormComponent,
-        DynamicFormQuestionComponent
+        DynamicFormQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -24,7 +25,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
         MatSelectModule,
         MatInputModule,
         MatButtonModule,
-        CKEditorModule
+        CKEditorModule,
+        EditorModule
     ],
     exports: [
         DynamicFormComponent,

@@ -5,7 +5,7 @@ import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { fade } from '../../../../../animations';
 import { AuthenticationService } from '../../../../../core/service/authentication/authentication.service';
 import { ComentarioProdutoService } from '../../../../../data/service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { coerceArray } from '@angular/cdk/coercion';
 import { storage } from 'firebase';
 @Component({

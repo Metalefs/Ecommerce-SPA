@@ -1,4 +1,13 @@
-<div>
+<h1 mat-dialog-title class="tem-cor-primaria">Dados do Pedido</h1>
+<div mat-dialog-content>
+  <!-- <mat-toolbar>
+    <mat-toolbar-row>
+     <H1>Dados do Pedido</H1>
+    </mat-toolbar-row>
+  </mat-toolbar> -->
+  <div class="card border my-3">
+    <personalizados-lopes-exibicao-perfil [user]="Pedido.Usuario"></personalizados-lopes-exibicao-perfil>
+  </div>
   <div class="w-full contents">
     <h2>Produtos: </h2>
     <mat-card class="w-full box" *ngFor="let prod of Pedido.Produto">
