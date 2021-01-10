@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { Select, Store } from '@ngxs/store';
-import { fade } from 'apps/app-web/src/app/animations';
+import { fade, slideInOut, sliderSide } from 'apps/app-web/src/app/animations';
 import { EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, LerOrcamento, RemoverProdutoOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
@@ -15,11 +16,12 @@ import { Observable, pipe } from 'rxjs';
   selector: 'personalizados-lopes-confirmacao',
   templateUrl: './confirmacao.component.html',
   styleUrls: ['./confirmacao.component.scss'],
-  animations:[fade]
+  animations:[fade,slideInOut]
 })
 export class ConfirmacaoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   ProdutoTable:MaterialTable;
+  dataSource: MatTableDataSource<CodProduto>;
   ErroCadastro:boolean = false;
   Total:number = 0;
   @Input() edit = true;
@@ -29,10 +31,7 @@ export class ConfirmacaoComponent implements OnInit {
     this.Orcamento$.subscribe(x=>{
 
       this.ProdutoTable = new MaterialTable();
-      let Produtos =  x.Produto;
-      // let DistinctProdutos = removeDuplicates(Produtos,"_id");
-      // this.ProdutoTable.dataSource = DistinctProdutos;
-      this.ProdutoTable.dataSource = Produtos;
+      this.dataSource = new MatTableDataSource<CodProduto>(x.Produto);
 
       this.ProdutoTable.displayedColumns = [
         "Produtos",
@@ -48,21 +47,26 @@ export class ConfirmacaoComponent implements OnInit {
     })
   }
   upload($event,produto){
-    let fileNames='';
-    getPreviewURL($event,fileNames,(res,name)=>{
-      produto.Arte = res;
-      fileNames = name;
-    })
-
+    if(produto){
+      let fileNames='';
+      getPreviewURL($event,fileNames,(res,name)=>{
+        produto.Arte = res;
+        fileNames = name;
+      })
+    }
   }
   IncrementarQuantidade(element){
-    element.Produto.Quantidade++;
-    this.EditarOrcamento(element);
+    if(element){
+      element.Produto.Quantidade++;
+      this.EditarOrcamento(element);
+    }
   }
   DecrescerQuantidade(element){
-    if(element.Produto.Quantidade > element.Produto.QuantidadeMinima)
-    element.Produto.Quantidade--;
-    this.EditarOrcamento(element);
+    if(element){
+      if(element.Produto.Quantidade > element.Produto.QuantidadeMinima)
+      element.Produto.Quantidade--;
+      this.EditarOrcamento(element);
+    }
   }
 
   EditarOrcamento(element:CodProduto){
@@ -70,9 +74,11 @@ export class ConfirmacaoComponent implements OnInit {
   }
 
   VerificarQuantidade($event,element){
-    if($event.target.value < element.QuantidadeMinima)
-      element.Quantidade = element.QuantidadeMinima;
-    this.EditarOrcamento(element)
+    if(element){
+      if($event.target.value < element.QuantidadeMinima)
+        element.Quantidade = element.QuantidadeMinima;
+      this.EditarOrcamento(element)
+    }
   }
 
   removerProduto(Produto:CodProduto){
@@ -80,26 +86,32 @@ export class ConfirmacaoComponent implements OnInit {
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
         let DistinctProdutos = removeDuplicates(Produtos,"_id");
-        this.ProdutoTable.dataSource = DistinctProdutos;
+        this.dataSource = DistinctProdutos;
       })
     });
   }
 
   CalcularPreco(produto:CodProduto){
     this.Orcamento$.subscribe(x=>{
-      let preco;
-      if(produto.Produto.PrecoPromocional){
-        preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+      if(produto.Produto){
+        let preco;
+        let Produto;
+        if(produto.Produto.PrecoPromocional){
+          preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+        }
+        let Produtos =  x.Produto;
+        let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
+        if(Produtos[index])
+        Produto = Produtos[index].Produto;
+        if(Produto)
+        this.Total = preco * Produto.Quantidade;
       }
-      let Produtos =  x.Produto;
-      let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
-      let Produto = Produtos[index].Produto;
-      this.Total = preco * Produto.Quantidade;
     })
     if(produto.Produto.Preco){
       let preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
-      return parseInt(preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
+      return (preco * produto.Produto.Quantidade).toFixed(2);
     }
+    this.dataSource.data = this.dataSource.data;
     return 0;
   }
 

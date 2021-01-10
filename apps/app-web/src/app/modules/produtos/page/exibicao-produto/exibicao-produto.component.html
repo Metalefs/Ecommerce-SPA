@@ -1,6 +1,6 @@
 <div class="bg">
   <div class="section has-background-white-bis mb-3 pt-3">
-    <nav class="breadcrumb is-left pt-0 box border py-3 my-3" aria-label="breadcrumbs">
+    <nav class="breadcrumb is-left pt-0 box border py-3 mb-3" aria-label="breadcrumbs">
       <ul class="">
         <li class="">
           <a [routerLink]="'/produtos'" href="#" class="">Todos os produtos</a>
@@ -14,7 +14,7 @@
         </li>
       </ul>
     </nav>
-    <div class="columns has-background-white" id="PRODUTO">
+    <div class="columns mt-3 has-background-white" id="PRODUTO">
       <div class="column is-4 mb-0 pos-sticky top-0 pt-3">
         <mat-chip-list class="is-left">
           <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto.Status)}}</mat-chip>
@@ -292,7 +292,7 @@
       <div  class="w-full columns ">
         <div  class="descricao-produto column is-6 w-full"
           [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
-        <div  class="descricao-produto column is-6 w-full"
+        <div  class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
           [innerHTML]="Produto.Especificacoes || 'Este produto está sem especificações'"></div>
       </div>
     </div>

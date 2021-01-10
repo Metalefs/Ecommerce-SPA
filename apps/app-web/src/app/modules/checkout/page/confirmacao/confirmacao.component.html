@@ -37,20 +37,20 @@
 
     <div class="box border w-full px-2">
 
-      <table mat-table [dataSource]="ProdutoTable.dataSource" class="w-full" >
+      <table mat-table [dataSource]="dataSource" class="w-full" >
 
         <ng-container matColumnDef="Produtos">
-          <th mat-header-cell *matHeaderCellDef> Produtos </th>
+          <th @fadeIn mat-header-cell *matHeaderCellDef> Produtos </th>
           <td @fadeIn mat-cell *matCellDef="let element">
             <div @fadeIn class="columns a-i-c mt-3">
               <div class="column flex-m" >
                 <figure class="image is-64x64">
-                  <img src="{{element.Produto.Imagem[0]}}">
+                  <img src="{{element?.Produto.Imagem[0]}}">
                 </figure>
                 <figure class="image is-64x64 d-block ">
-                  <ng-container *ngIf="element.Produto.Arte then arte else novaArte"></ng-container>
+                  <ng-container *ngIf="element?.Produto.Arte then arte else novaArte"></ng-container>
                   <ng-template #arte>
-                    <img src="{{element.Produto.Arte || ''}}">
+                    <img src="{{element?.Produto.Arte || ''}}">
                   </ng-template>
                   <ng-template #novaArte>
                     <div class="px-2 txt-center">
@@ -70,23 +70,23 @@
                 </figure>
                 <a
                 href="#topo"
-                [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
+                [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
                 routerLinkActive="router-link-active"
                 class="px-3 titulo-produto is-hidden-desktop"
-                >{{element.Produto.Nome}}
-                <p class="subtitle">{{element.Produto.Cor?.nome}}</p>
-                <p class="subtitle">{{element.Produto?.Tamanho}}</p>
+                >{{element?.Produto.Nome}}
+                <p class="subtitle">{{element?.Produto.Cor?.nome}}</p>
+                <p class="subtitle">{{element?.Produto?.Tamanho}}</p>
               </a>
               </div>
               <div class="column ">
                 <a
                 href="#topo"
-                [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
+                [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
                 routerLinkActive="router-link-active"
                 class="titulo-produto is-hidden-touch"
-                >{{element.Produto.Nome}}
-                <p class="subtitle">{{element.Produto.Cor?.nome}}</p>
-                <p class="subtitle">{{element.Produto?.Tamanho}}</p>
+                >{{element?.Produto.Nome}}
+                <p class="subtitle">{{element?.Produto.Cor?.nome}}</p>
+                <p class="subtitle">{{element?.Produto?.Tamanho}}</p>
               </a>
 
                 <button *ngIf="edit" (click)="removerProduto(element)">
@@ -150,7 +150,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
+        <tr @slideInOut mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
       </table>
       <div class="w-full pt-3">
         <div class="columns">

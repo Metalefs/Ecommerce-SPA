@@ -49,21 +49,44 @@ export class HeaderFooterComponent implements OnInit {
           elements.push(window.document.getElementById("yellow"));
           elements.push(window.document.getElementById("red"));
           elements.push(window.document.getElementById("blue"));
-
+          elements.push(window.document.getElementsByClassName("yellow"))
+          elements.push(window.document.getElementsByClassName("red"))
+          elements.push(window.document.getElementsByClassName("blue"))
           elements.forEach(el=>{
 
+            if(el.length){
+              toggleActiveArr(el);
+              toggleActiveArr(el);
+            }
+            else{
               toggleActive(el);
               toggleActive(el);
+            }
 
           })
         },2000);
         let timer=1000;
         function toggleActive(el){
           setTimeout(()=>{
-            if(el.classList.contains("active"))
-            el.classList.remove("active");
+            if(el.classList.contains("active") && !el.classList.contains("inactive")){
+              el.classList.remove("active");
+
+            }
             else
             el.classList.add("active");
+          },timer)
+          timer+=1000;
+        }
+        function toggleActiveArr(el){
+          setTimeout(()=>{
+            el.forEach(item=>{
+              if(item.classList.contains("active") && !item.classList.contains("inactive")){
+                item.classList.remove("active");
+
+              }
+              else
+              item.classList.add("active");
+            })
           },timer)
           timer+=1000;
         }

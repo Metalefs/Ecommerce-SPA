@@ -124,6 +124,7 @@ export class OrcamentoState {
   RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id,codOrcamento} : RemoverProdutoOrcamento){
     const state = getState();
     state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item.codOrcamento !== codOrcamento);
+
     this.atualizarPreco(state);
     patchState({
         Orcamentos: state.Orcamentos
