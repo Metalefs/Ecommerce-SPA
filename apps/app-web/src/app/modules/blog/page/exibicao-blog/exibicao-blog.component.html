@@ -3,14 +3,33 @@
   <div class="column">
     <div class="section-block">
       <div class="funding-meta">
-        <h1 class="is-uppercase">{{Post.Titulo}}</h1>
-        <span class="type-meta"><i class="fa fa-user"></i> {{Post.Autor.Nome}}</span>
+        <h1 class="is-uppercase">{{Post?.Titulo}}</h1>
+        <span class="type-meta"><i class="fa fa-user"></i> {{Post?.Autor.Nome}}</span>
         <span class="type-meta">
           <i class="fa fa-tag"></i>
-          <a href="#" *ngFor="let tag of Post.Tags">{{tag}},</a>
+          <a href="#" *ngFor="let tag of Post?.Tags">{{tag}},</a>
         </span>
-        <div class="section" [innerHTML]="Post.Conteudo"></div>
+        <div class="section" [innerHTML]="Post?.Conteudo"></div>
       </div>
+      <div class="mx-2">
+        <div class="w-full flex-w">
+          <p>Avalie a postagem!</p>
+          <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+              labelText="{{meanRating()}}"
+              [showHalfStars]="true"
+              [step]="0.5" size="medium"
+              staticColor="ok"
+              (starClickChange)="onClick($event)"
+              (ratingChange)="onRatingChange($event)"
+              [hoverEnabled]="true"
+              [starType]="'svg'"
+              (hoverRatingChange)="onHoverRatingChange($event)">
+          </star-rating>
+        </div>
+      </div>
+    </div>
+    <div class="section-block">
+      <personalizados-lopes-exibir-lista-comentario [Post]="Post"></personalizados-lopes-exibir-lista-comentario>
     </div>
   </div>
   <div class="column is-4-desktop is-12-mobile">
@@ -19,4 +38,36 @@
 </div>
 <div [@cardFlip]="state" class="section-block">
   <personalizados-lopes-blog-swiper [TAGS]="Post.Tags"></personalizados-lopes-blog-swiper>
+</div>
+
+
+<div class="pos-fixed right-0 bottom-0 z-index-2">
+
+  <mat-accordion >
+    <mat-expansion-panel class="">
+      <mat-expansion-panel-header class="dis-flex flex-m box border shadow-light bo-0 ">
+        <mat-panel-title>
+          <mat-icon mat-card-avatar class="has-text-dark">comment</mat-icon>
+        </mat-panel-title>
+        <mat-panel-description class="has-text-dark">
+          Escrever comentário/Avaliar
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="mx-2">
+        <!-- <div class="w-full flex-w">
+          <p>Avalie o produto</p>
+          <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+              labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium"
+              staticColor="ok" (starClickChange)="onClick($event)"
+              (ratingChange)="onRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'"
+              (hoverRatingChange)="onHoverRatingChange($event)">
+          </star-rating>
+        </div> -->
+
+        <personalizados-lopes-escrever-comentario (EnviarComentario)="EnviarComentario($event)"></personalizados-lopes-escrever-comentario>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
 </div>

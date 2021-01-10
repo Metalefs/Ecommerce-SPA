@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ComentarioProduto } from 'libs/data/src/lib/classes';
-import { Comentario } from 'libs/data/src/lib/classes/blogPost';
+import { BlogPost, Comentario } from 'libs/data/src/lib/classes/blogPost';
 
 @Component({
   selector: 'personalizados-lopes-exibir-lista-comentario',
@@ -9,7 +9,13 @@ import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 })
 export class ExibirListaComentarioComponent implements OnInit {
   @Input()
-  Comentarios:Comentario[];
+  Post:BlogPost;
+  @Input()
+  EhResposta:boolean;
+  @Input()
+  IndiceResposta:number;
+  @Input()
+  ComentarioPai:ComentarioProduto;
   constructor() { }
 
   ngOnInit(): void {

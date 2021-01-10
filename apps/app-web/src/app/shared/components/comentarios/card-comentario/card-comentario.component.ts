@@ -25,7 +25,8 @@ export class CardComentarioComponent implements OnInit {
   EhResposta:boolean
   @Input()
   IndiceResposta:number
-
+  @Input()
+  canEdit:boolean = true;
   usr:Usuario;
   querEditar:boolean =false;
   querResponder:boolean =false;

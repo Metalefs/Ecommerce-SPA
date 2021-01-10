@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 import { cardFlip, fade } from 'apps/app-web/src/app/animations';
-import { BlogPostService } from 'apps/app-web/src/app/data/service';
+import { BlogPostService, ComentarioProdutoService } from 'apps/app-web/src/app/data/service';
+import { RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { sum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BlogPost } from 'libs/data/src/lib/classes';
+import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -15,7 +19,9 @@ export class ExibicaoBlogComponent implements OnInit {
   Post:BlogPost;
   state = "flipped";
   Viewed:boolean = false;
+  loading:boolean = false;
   constructor(private activeRoute:ActivatedRoute,
+    private ComentarioService: ComentarioProdutoService,
     private router: Router,
     private BlogService:BlogPostService) { }
 
@@ -53,4 +59,47 @@ export class ExibicaoBlogComponent implements OnInit {
       localStorage.setItem("vblog"+this.Post.key,"true");
     }
   }
+  EnviarComentario($event:Comentario){
+    let Comentario:Comentario = $event;
+    Comentario.Respostas = [];
+    Comentario.DataHoraAlteracao = new Date();
+    Comentario.DataHoraCriacao = new Date();
+    this.Post.Comentarios.push(Comentario);
+    this.BlogService.update(this.Post.key,this.Post);
+  }
+  onClickResult: ClickEvent;
+  onHoverRatingChangeResult: HoverRatingChangeEvent;
+  onRatingChangeResult: RatingChangeEvent;
+  readonlyRating:boolean = false;
+  onClick = ($event: ClickEvent) => {
+    if(!localStorage.getItem(`evalPost${this.Post.key}`)){
+      this.loading = true;
+      if(!this.Post.Avaliacao)
+        Object.assign(this.Post, {Avaliacao: [$event.rating]});
+      else
+      this.Post.Avaliacao.push($event.rating)
+      this.BlogService.update(this.Post.key,this.Post).then(x=>{
+        this.readonlyRating = true;
+        localStorage.setItem(`evalPost${this.Post.key}`, $event.rating.toString());
+        this.loading = false;
+      });
+    }
+    else
+      return
+
+  };
+
+  meanRating(){
+    if (!this.Post.Avaliacao)
+    return 0;
+    return (sum(this.Post.Avaliacao) / this.Post.Avaliacao.length).toFixed(1)
+  }
+
+  onRatingChange = ($event: RatingChangeEvent) => {
+    this.onRatingChangeResult = $event;
+  };
+
+  onHoverRatingChange = ($event: HoverRatingChangeEvent) => {
+    this.onHoverRatingChangeResult = $event;
+  };
 }

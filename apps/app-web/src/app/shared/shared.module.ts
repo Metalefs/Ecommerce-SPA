@@ -39,7 +39,7 @@ import { MercadopagoButtonComponent } from './components/mercadopago-button/merc
 import { EscreverComentarioModule } from './components/comentarios/escrever-comentario/escrever-comentario.module';
 
 import { CardComentarioModule } from './components/comentarios/card-comentario/card-comentario.module';
-import { CardComentarioProdutoModule } from './components/comentarios/card-comentario-produto/card-comentario-produto.module';
+import { CardComentarioProdutoModule } from './components/comentarios/exibir-lista-comentario-produto/card-comentario-produto/card-comentario-produto.module';
 
 import { ExibirListaComentarioComponent } from './components/comentarios/exibir-lista-comentario/exibir-lista-comentario.component';
 import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';

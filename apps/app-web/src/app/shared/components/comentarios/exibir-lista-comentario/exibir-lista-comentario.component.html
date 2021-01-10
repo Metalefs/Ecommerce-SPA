@@ -1,14 +1,31 @@
-<div>
-  <h2>Comentários</h2>
 
-  <div *ngFor="let comentario of Comentarios">
+<div *ngIf="!EhResposta">
+  <h2>Comentários</h2>
+  <p *ngIf="Post.Comentarios?.length == 0">Não existem comentários ainda, seja o primeiro!</p>
+  <div *ngFor="let comentario of Post.Comentarios">
     <div>
-      <personalizados-lopes-card-comentario [Comentario]="comentario"></personalizados-lopes-card-comentario>
+      <personalizados-lopes-card-comentario [canEdit]="false" [Comentario]="comentario"></personalizados-lopes-card-comentario>
     </div>
-    <div class="pl-4">
-      <div class="card" *ngFor="let reposta of comentario.Respostas">
-        <personalizados-lopes-card-comentario [Comentario]="reposta"></personalizados-lopes-card-comentario>
+
+    <div class="container">
+      <div class="ml-6" *ngFor="let resposta of comentario.Respostas; let idx = index">
+        <personalizados-lopes-exibir-lista-comentario
+          [EhResposta]="true"
+          [IndiceResposta]="idx"
+          [Post]="[Post]"
+          [ComentarioPai]="comentario">
+        </personalizados-lopes-exibir-lista-comentario>
       </div>
     </div>
+  </div>
+</div>
+<div *ngFor="let comentario of Post.Comentarios">
+  <div *ngIf="EhResposta">
+    <personalizados-lopes-card-comentario
+    [EhResposta]="EhResposta"
+    [IndiceResposta]="IndiceResposta"
+    [Comentario]="comentario"
+    [ComentarioPai]="ComentarioPai">
+    </personalizados-lopes-card-comentario>
   </div>
 </div>
