@@ -1,6 +1,7 @@
-<ckeditor [config]="editorConfig"
-[disabled]="Disabled"
-
-[editor]="Editor"
-[(ngModel)]="Conteudo"
+<ckeditor
+ [config]="editorConfig"
+ [disabled]="Disabled"
+ [editor]="Editor"
+ [(ngModel)]="Conteudo"
+ (change)="onChange($event)"
 ></ckeditor>

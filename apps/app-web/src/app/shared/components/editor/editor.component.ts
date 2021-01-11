@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { CloudinaryUnsigned } from 'puff-puff/CKEditor';
@@ -12,15 +13,19 @@ export class EditorComponent implements OnInit {
   @Input() Conteudo:string;
   @Input() Disabled:boolean = false;
 
-  Editor = ClassicEditor;
+  @Output() Changed = new EventEmitter();
 
+  Editor = ClassicEditor;
   editorConfig = {
     placeholder: 'Escreva o conteúdo aqui!',
     extraPlugins: [ this.imagePluginFactory ],
   };
 
   constructor() { }
-
+  public onChange( { editor }: ChangeEvent ) {
+    const data = editor.getData();
+    this.Changed.emit(data);
+  }
   ngOnInit(): void {
   }
   imagePluginFactory(editor) {

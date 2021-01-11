@@ -32,7 +32,11 @@
         </mat-card-content>
       </mat-card-header>
     </mat-card>
-    <personalizados-lopes-editor class="box" [Disabled]='false' [Conteudo]="BlogPost.Conteudo"></personalizados-lopes-editor>
+    <personalizados-lopes-editor
+     class="box"
+     (Changed)="BlogPost.Conteudo = $event"
+     [Disabled]='false'
+     [Conteudo]="BlogPost.Conteudo"></personalizados-lopes-editor>
   </div>
 
   <mat-form-field appearance="">

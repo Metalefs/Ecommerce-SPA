@@ -32,7 +32,9 @@
         </mat-card-content>
       </mat-card-header>
     </mat-card>
-    <personalizados-lopes-editor [Conteudo]="BlogPost.Conteudo"></personalizados-lopes-editor>
+    <personalizados-lopes-editor
+    (Changed)="BlogPost.Conteudo = $event"
+    [Conteudo]="BlogPost.Conteudo"></personalizados-lopes-editor>
   </div>
 
   <mat-form-field appearance="">

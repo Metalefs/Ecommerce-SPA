@@ -300,7 +300,7 @@
           </mat-card-content>
         </mat-card-header>
       </mat-card>
-      <personalizados-lopes-editor [Conteudo]="Produto.Descricao"></personalizados-lopes-editor>
+      <personalizados-lopes-editor (Changed)="Produto.Descricao = $event" [Conteudo]="Produto.Descricao"></personalizados-lopes-editor>
       <div  class="descricao-produto w-full"
       [innerHTML]="Produto.Descricao || 'Este produto está sem uma descrição'">
       </div>
@@ -308,7 +308,7 @@
         <div  class="descricao-produto column is-6 w-full">
           <h2 class="preto6"><b>Especificações</b></h2>
           <div class="w-full">
-            <personalizados-lopes-editor [Conteudo]="Produto.Especificacoes"></personalizados-lopes-editor>
+            <personalizados-lopes-editor (Changed)="Produto.Especificacoes = $event" [Conteudo]="Produto.Especificacoes"></personalizados-lopes-editor>
           </div>
           <div [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
         </div>
