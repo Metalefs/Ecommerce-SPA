@@ -1,46 +1,40 @@
-<mat-card *ngIf="CanView" class="card latest-blog">
-  <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
-
-    <figure class="image is-square">
-      <img mat-card-image [src]="Post?.FotoCapa" alt="blogpostimage">
-    </figure>
-  </a>
-  <div class="post-views">
-    <i class="fa fa-eye"></i>
-    {{this.Post.Visualizacoes}}
-  </div>
-
-  <mat-card-title>
+<a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
+  <mat-card *ngIf="CanView" class="card latest-blog">
     <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
-      <h3 class="is-uppercase">
+      <figure class="image is-square">
+        <img mat-card-image [src]="Post?.FotoCapa" alt="blogpostimage">
+      </figure>
+    </a>
+    <div class="post-views">
+      <i class="fa fa-eye"></i>
+      {{this.Post.Visualizacoes}}
+    </div>
+
+    <mat-card-title>
+      <h3 class="my-3 is-uppercase has-text-weight-bold">
         {{Post.Titulo}}
       </h3>
-    </a>
-    <div class="columns is-vcentered is-mobile">
-      <div class="column">
-        <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
+      <div class="columns is-vcentered is-mobile">
+        <div class="column">
           <p class="title">
             <span class="fa fa-calendar"></span>
             <span> {{Post.DataHoraAlteracao||Post.DataHoraCriacao}}</span>
           </p>
-        </a>
+        </div>
+        <div class="column">
+          <p>
+            <mat-icon>person</mat-icon>
+            <span> {{Post?.Autor?.Nome}}</span>
+          </p>
+        </div>
       </div>
-      <div class="column">
-        <p>
-          <mat-icon>person</mat-icon>
-          <span> {{Post?.Autor?.Nome}}</span>
-        </p>
+      <div class="my-3">
+        <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true" [step]="0.5"
+          staticColor="default" [starType]="'svg'"></star-rating>
       </div>
-    </div>
-    <div class="my-3">
-      <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true" [step]="0.5"
-        staticColor="default" [starType]="'svg'"></star-rating>
-    </div>
-  </mat-card-title>
+    </mat-card-title>
 
-  <mat-card-content>
-     <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
-
+    <mat-card-content>
       <div class="is-size-6	" [innerHTML]="Post?.Conteudo?.substr(0,140)+Link"> </div>
 
       <mat-divider></mat-divider>
@@ -52,8 +46,8 @@
           </span>
         </div>
       </div>
-    </a>
-  </mat-card-content>
+    </mat-card-content>
 
 
-</mat-card>
+  </mat-card>
+</a>

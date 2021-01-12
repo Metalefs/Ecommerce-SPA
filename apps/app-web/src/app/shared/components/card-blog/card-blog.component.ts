@@ -14,7 +14,7 @@ export class CardBlogComponent implements OnInit {
   CanView:boolean;
   Link:string;
   ngOnInit(): void {
-    this.Link = "<a class='has-text-warning' href='/blog/"+this.Post.Titulo+"'>...Ler mais</a>"
+    this.Link = "<a class='has-text-info' href='/blog/"+this.Post.Titulo+"'>...Ler mais</a>"
     this.authService.currentUser.subscribe(x=>{
       this.CanView = CanViewPost(this.Post,x);
     })

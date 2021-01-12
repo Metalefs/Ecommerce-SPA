@@ -32,12 +32,13 @@ export class EdicaoCardBlogComponent implements OnInit {
     dialogRef.afterClosed().subscribe((post :BlogPost) => {
       if(post != undefined){
         const data = {
-          Titulo: this.BlogPost.Titulo,
-          Conteudo: this.BlogPost.Conteudo,
-          Categoria: this.BlogPost.Categoria,
-          FotoCapa: this.BlogPost.FotoCapa,
-          StatusPostagem: this.BlogPost.StatusPostagem,
+          Titulo: post.Titulo,
+          Conteudo: post.Conteudo,
+          Categoria: post.Categoria,
+          FotoCapa: post.FotoCapa,
+          StatusPostagem: post.StatusPostagem,
           DataHoraAlteracao: post.DataHoraAlteracao = new Date(),
+          Tags: post.Tags
         };
 
         this.BlogService.update(this.BlogPost.key, data)

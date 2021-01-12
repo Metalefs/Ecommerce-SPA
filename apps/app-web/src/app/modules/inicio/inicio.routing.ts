@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: 'inicio',
     component: InicioComponent,
     pathMatch: 'full',
-    // data: { animation:'isLeft' }
+    data: { animation:'isLeft' }
   }
 ];
 @NgModule({

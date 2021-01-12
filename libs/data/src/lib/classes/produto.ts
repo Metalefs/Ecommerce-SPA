@@ -28,7 +28,9 @@ export class Produto extends MongoDocument implements entidadeBase{
   Dimensoes?:Dimensoes = {Altura:0,Largura:0, Comprimento:0};
   Arte?:string | ArrayBuffer;
   ArteSecundaria?:string | ArrayBuffer;
-  Rating?:number[] = [0];
+  Rating?:number[] = [];
+  Marca?:string;
+  Modelo?:string;
   static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,
@@ -55,6 +57,8 @@ export class Produto extends MongoDocument implements entidadeBase{
     Arte?:string | ArrayBuffer,
     ArteSecundaria?:string | ArrayBuffer,
     Rating?:number[],
+    Marca?:string,
+    Modelo?:string,
     ){
       super();
       this.Nome = Nome;
@@ -81,6 +85,8 @@ export class Produto extends MongoDocument implements entidadeBase{
       this.ArteSecundaria = ArteSecundaria;
       this.Rating = Rating;
       this.Dimensoes = Dimensoes;
+      this.Marca = Marca;
+      this.Modelo = Modelo;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

@@ -9,6 +9,7 @@ import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable } from 'rxjs';
@@ -102,10 +103,10 @@ export class CheckoutDisplayComponent implements OnInit {
       let Produtos =  x.Produto;
       let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
       let Produto = Produtos[index].Produto;
-      this.Total = produto.Produto.PrecoPromocional??produto.Produto.Preco * Produto.Quantidade;
+      this.Total =  produto.Produto.Status == StatusProduto.promocao? produto.Produto.PrecoPromocional : produto.Produto.Preco * Produto.Quantidade;
     })
     if(produto.Produto.Preco){
-      let preco = produto.Produto.PrecoPromocional??produto.Produto.Preco
+      let preco =  produto.Produto.Status == StatusProduto.promocao? produto.Produto.PrecoPromocional : produto.Produto.Preco;
       return parseInt(preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
     }
     return 0;

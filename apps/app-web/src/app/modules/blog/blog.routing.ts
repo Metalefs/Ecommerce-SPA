@@ -7,13 +7,14 @@ export const routes: Routes = [
   {
     path: 'blog',
     component: BlogComponent,
-    data: { animation:'isLeft' },
+
+    data: { animation:'isRight' },
     children: [
       {
         path: "",
         // canActivate: [AuthGuard],
         component: ListagemPostsComponent,
-        data: { animation:'isLeft' },
+        data: { animation:'isRight' }
       },
     ]
   },

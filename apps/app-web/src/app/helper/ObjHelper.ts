@@ -20,10 +20,15 @@ export function translateEnum(myEnumType,myEnum){
 }
 export function sum(arr) {
   var sum = 0;
-  for (var index = 0; index < arr.length; index++) {
-    sum += arr[index];
+  try{
+    for (var index = 0; index < arr.length; index++) {
+      sum += arr[index];
+    }
+    return sum;
   }
-  return sum;
+  catch(ex){
+    return 0;
+  }
 }
 
 export function CanViewPost(post:BlogPost,user:Usuario){

@@ -9,6 +9,7 @@ import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
@@ -97,7 +98,7 @@ export class ConfirmacaoComponent implements OnInit {
         let preco;
         let Produto;
         if(produto.Produto.PrecoPromocional){
-          preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+          preco =  produto.Produto.Status == StatusProduto.promocao? produto.Produto.PrecoPromocional : produto.Produto.Preco;
         }
         let Produtos =  x.Produto;
         let index = x.Produto.findIndex(item => item.codOrcamento === produto.codOrcamento);
@@ -108,7 +109,8 @@ export class ConfirmacaoComponent implements OnInit {
       }
     })
     if(produto.Produto.Preco){
-      let preco = produto.Produto.PrecoPromocional?produto.Produto.PrecoPromocional :produto.Produto.Preco
+      let preco = produto.Produto.Status == StatusProduto.promocao? produto.Produto.PrecoPromocional : produto.Produto.Preco;
+
       return (preco * produto.Produto.Quantidade).toFixed(2);
     }
     this.dataSource.data = this.dataSource.data;

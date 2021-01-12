@@ -78,7 +78,7 @@ export class AppComponent {
     setTimeout(()=>{
       this.carregandoOque += " ...carregando";
       setTimeout(()=>{
-        this.carregandoOque += " ...Nosso banco de dados está em fase de testes";
+        this.carregandoOque += " ...Iniciando a aplicação";
       },2000)
     },6000)
     this.integracoesService.Ler().subscribe(x=>{

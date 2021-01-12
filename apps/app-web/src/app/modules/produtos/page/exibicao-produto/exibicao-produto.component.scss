@@ -12,6 +12,18 @@ gallery{
   background:url(/assets/images/empresa/double-bubble-outline.png);
   padding-bottom: 1rem;
 }
+
+.type-meta {
+	color:#A7A7A7;
+	font-size: 12px;
+	display: inline-block;
+  margin: 0px 10px 10px 0px;
+  text-align: center;
+}
+.type-meta i.fa {
+	color:#2F80ED;
+	margin-right:5px;
+}
 @media only screen and (max-width: 823px){
   gallery{
     height:40vh;

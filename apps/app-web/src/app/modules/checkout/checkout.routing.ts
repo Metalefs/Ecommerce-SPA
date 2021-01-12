@@ -9,7 +9,7 @@ export const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
-    data: { animation:'isLeft' },
+    data: { animation:'checkout' },
     children: [
       {
         path: "",

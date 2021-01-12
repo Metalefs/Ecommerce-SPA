@@ -13,3 +13,7 @@
     height: 21vh !important;
   }
 }
+:host ::ng-deep div.slideshow-container > a{
+  -webkit-transform: scaleX(1) !important;
+  transform: scaleX(1) !important;
+}

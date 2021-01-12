@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: 'showcase',
     component: ShowcaseComponent,
     pathMatch: 'full',
-    data: { animation:'isLeft' }
+    data: { animation:'isRight' }
   }
 ];
 @NgModule({

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
 import { OrcamentoState } from '../../../data/store/state';
-import { sum } from '../../../helper/ObjHelper';
+import { sum, translateEnum } from '../../../helper/ObjHelper';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
 
 @Component({
@@ -96,5 +96,8 @@ export class CardProdutoComponent implements OnInit {
       },
       panelClass:['no-padding']
     });
+  }
+  translateStatusProduto(status){
+    return translateEnum(StatusProduto,status);
   }
 }

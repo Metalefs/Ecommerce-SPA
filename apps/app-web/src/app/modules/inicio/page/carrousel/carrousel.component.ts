@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { CarouselState, ItemCarouselState } from 'apps/app-web/src/app/data/store/state';
+import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Carousel, ItemCarousel } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { ObterImagensCarousel } from '../../../../helper/FileHelper';
@@ -24,6 +25,7 @@ export class CarrouselComponent implements OnInit {
       if(x)
       x.forEach(img=>{
         this.imageUrls.push(img);
+        this.imageUrls = removeDuplicates(this.imageUrls,'url')
       })
     })
 

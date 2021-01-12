@@ -24,8 +24,11 @@ export class ProdutoSwiperComponent implements OnInit {
           if (res.matches) {
               return {
                 direction              : 'horizontal',
+                updateOnWindowResize   : true,
+                autoHeight             : true,
+                height                 : 400,
                 keyboard               : true,
-                // loop                   : true,
+                loop                   : true,
                 loopFillGroupWithBlank : false,
                 preloadImages          : true,
                 lazy                   : false,
@@ -35,14 +38,18 @@ export class ProdutoSwiperComponent implements OnInit {
                 autoplay: {
                   delay               : 4000,
                   disableOnInteraction: false,
+
                 },
               }
           }
           else{
             return {
               direction              : 'horizontal',
+              updateOnWindowResize   : true,
+              autoHeight             : true,
+              height                 : 400,
               keyboard               : true,
-              // loop                   : true,
+              loop                   : true,
               loopFillGroupWithBlank : false,
               preloadImages          : true,
               lazy                   : false,

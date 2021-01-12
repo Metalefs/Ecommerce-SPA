@@ -41,7 +41,7 @@
       </mat-form-field>
       <gallery gallerize
         id="myGallery"
-        class="pos-sticky bellow-nav"
+        class=""
         *ngIf="galleryConfig$ | async; let config"
         [counter]="false"
         [nav]="false"
@@ -94,9 +94,14 @@
             </mat-form-field>
             <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
           </div>
-          <!-- <div class="my-1 star-width dis-flex flex-w">
-            <span class="subtitle is-size-7">({{Produto.Rating.length}} avaliações)</span>
-          </div> -->
+
+          <mat-form-field class="w-full">
+            <input matInput type="text" [(ngModel)]="Produto.Marca" placeholder="Marca">
+          </mat-form-field>
+          <mat-form-field class="w-full">
+            <input matInput type="text" [(ngModel)]="Produto.Modelo" placeholder="Modelo">
+          </mat-form-field>
+
           <div class="my-1">
             <mat-form-field class="">
               <input matInput type="number" min="1" [(ngModel)]="Produto.Preco" [value]="Produto.Preco"
@@ -310,7 +315,7 @@
           </mat-card-content>
         </mat-card-header>
       </mat-card>
-      <personalizados-lopes-editor [Conteudo]="Produto.Descricao"></personalizados-lopes-editor>
+      <personalizados-lopes-editor (Changed)="Produto.Descricao = $event" [Conteudo]="Produto.Descricao"></personalizados-lopes-editor>
 
       <div  class="descricao-produto w-full"
       [innerHTML]="Produto.Descricao || 'Este produto está sem uma descrição'">
@@ -319,7 +324,7 @@
         <div  class="descricao-produto column is-6 w-full">
           <h2 class="preto6"><b>Especificações</b></h2>
           <div class="w-full">
-            <personalizados-lopes-editor [Conteudo]="Produto.Especificacoes"></personalizados-lopes-editor>
+            <personalizados-lopes-editor (Changed)="Produto.Especificacoes = $event" [Conteudo]="Produto.Especificacoes"></personalizados-lopes-editor>
 
           </div>
           <div [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>

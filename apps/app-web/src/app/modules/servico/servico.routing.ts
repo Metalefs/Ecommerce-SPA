@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: 'servicos',
     component: ServicoComponent,
     pathMatch: 'full',
-    data: { animation:'isRight' }
+    data: { animation:'isLeft' }
   }
 ];
 @NgModule({

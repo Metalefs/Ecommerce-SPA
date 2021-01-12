@@ -3,6 +3,16 @@ a {
   font-weight: 500;
 
 }
+
+.prod-status{
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  z-index: 3;
+}
 .image{
   -webkit-box-align: center;
     align-items: center;
@@ -18,7 +28,7 @@ img{
   width: 100%;
 }
 .mat-card{
-  min-height: 250px;
+  min-height: 577px;
   display: flex !important;
   align-items: center;
   // background: rgba(49, 47, 79,.25);
@@ -60,6 +70,35 @@ img{
     animation: hide 1s ease forwards !important;
   }
 }
+
+.mat-card-footer{
+  padding: 0;
+  margin:0;
+}
+
+.mat-card-actions{
+  margin-bottom: 20px;
+  width: 92%;
+  margin-top: -35px;
+}
+.mat-card-image{
+  margin: 0;
+  padding:2px;
+  height: 240px;
+  // width: auto;
+  width: 322px;
+}
+.zoom{
+  filter: opacity(1);
+  transition: .1s all ease-in-out;
+  &:hover{
+    opacity: 1;
+    filter: opacity(1);
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+    z-index: 2;
+  }
+}
 @keyframes show{
   0%{
     visibility: hidden;
@@ -89,10 +128,6 @@ img{
     visibility: hidden;
   }
 }
-.mat-card-footer{
-  padding: 0;
-  margin:0;
-}
 .preco-produto{
   color: black;
   font-size: large;
@@ -113,32 +148,9 @@ img{
     font-weight: 700;
     text-transform: lowercase;
     border: none;
-    border-radius: 1rem;
+    border-radius: .5rem;
     width: 100%;
     font-size: 16px;
-}
-.mat-card-actions{
-  margin-bottom: 20px;
-  width: 92%;
-  margin-top: -35px;
-}
-.mat-card-image{
-  margin: 0;
-  padding:2px;
-  height: 240px;
-  // width: auto;
-  width: 322px;
-}
-.zoom{
-  filter: opacity(1);
-  transition: .1s all ease-in-out;
-  &:hover{
-    opacity: 1;
-    filter: opacity(1);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
-    z-index: 2;
-  }
 }
 @media (min-width: 00px ) and (max-width: 1023px) {
 
@@ -167,7 +179,7 @@ img{
 
 .portfolio-overlay {
   background: rgba(255, 255, 255, 0.20);
-  // pointer-events: none;
+  pointer-events: none;
   &a{
     transition:none;
   }
@@ -181,13 +193,12 @@ img{
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
     transition: 0.5s;
-    z-index: 2;
 }
 
 .overlay-items {
  height: 100px;
  position: absolute;
- top: 10%;
+ top: 20%;
  z-index: 5;
  left: 0;
  right: 0;
@@ -204,7 +215,7 @@ img{
  padding: 5px 5px;
  height: min-content;
  top: -100px;
- background: #111111;
+ background: #16161642;
  display: inline-block;
  -webkit-transform: translateY(20px);
  -moz-transform: translateY(20px);

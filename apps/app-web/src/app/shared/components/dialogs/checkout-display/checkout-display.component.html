@@ -154,7 +154,7 @@
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
-          <tr @fadeIn mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
+          <tr @slideInOut mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
         </table>
         <div class="w-full">
           <a

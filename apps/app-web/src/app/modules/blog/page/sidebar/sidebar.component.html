@@ -19,12 +19,12 @@
     <p>
       <mat-toolbar color="" class="">
         <mat-toolbar-row class="py-6">
-          <div  *ngFor="let post of Blog">
-            <a *ngIf="CanView(post)" [routerLink]="'/blog/'+post.Titulo" class="logo" >
+          <mat-list  *ngFor="let post of Blog">
+            <a mat-list-item *ngIf="CanView(post)" [routerLink]="'/blog/'+post.Titulo" class="logo" >
               {{post.Titulo}}
             </a>
             <span class="spacer"></span>
-          </div>
+          </mat-list>
         </mat-toolbar-row>
 
       </mat-toolbar>

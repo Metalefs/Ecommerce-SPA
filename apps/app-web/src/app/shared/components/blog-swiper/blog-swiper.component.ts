@@ -13,7 +13,7 @@ import { removeDuplicates } from '../../../helper/ObjHelper';
   styleUrls: ['./blog-swiper.component.scss']
 })
 export class BlogSwiperComponent implements OnInit {
-  Blog:BlogPost[];
+  Blog:BlogPost[] = [];
   @Input()TAGS:string[];
   constructor(private BlogService:BlogPostService,
     breakpointObserver: BreakpointObserver,
@@ -70,17 +70,25 @@ export class BlogSwiperComponent implements OnInit {
           ({ key: c.payload.key, ...c.payload.val() })
         )
       )
-    ).subscribe(data => {
+    ).subscribe((data :BlogPost[]) => {
       if(this.TAGS)
-        this.TAGS.forEach((tag)=>{
-          data.filter(post=>post.Tags.filter((posttag) => posttag==tag)).forEach(match=>{
-            this.Blog.push(match);
-            this.Blog = removeDuplicates(this.Blog,"Titulo")
+        this.TAGS.forEach((tag)=>
+        {
+          data.filter((post)=>
+          {
+            return post.Tags.forEach((posttag) => {
+              if(posttag.includes(tag)){
+                this.Blog.push(post);
+                return true;
+              }
+              return false;
+            })
           })
+          this.Blog = removeDuplicates(this.Blog,"Titulo")
         });
-        else{
-          this.Blog = data;
-        }
+      else{
+        this.Blog = data;
+      }
     });
   }
 

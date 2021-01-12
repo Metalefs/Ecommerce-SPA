@@ -201,7 +201,9 @@ export class OrcamentoState {
     state.Orcamentos.Preco = 0;
     state.Orcamentos.Produto.forEach(prod=>{
       if(!isNaN(prod.Produto.Preco))
-      state.Orcamentos.Preco += prod.Produto.PrecoPromocional??prod.Produto.Preco * prod.Produto.Quantidade;
+      state.Orcamentos.Preco +=
+         prod.Produto.Status == StatusProduto.promocao? prod.Produto.PrecoPromocional : prod.Produto.Preco
+       * prod.Produto.Quantidade;
     })
   }
 }

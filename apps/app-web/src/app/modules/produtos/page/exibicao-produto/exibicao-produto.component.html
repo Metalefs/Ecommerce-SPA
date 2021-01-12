@@ -39,12 +39,15 @@
           <share-button class="mt-0" button="twitter" theme="modern-dark" [showText]="false"
             >
           </share-button>
+          <a href="#desc" pageScroll pageScrollDuration="5000" class="border" mat-flat-button *ngIf="Produto.Descricao?.length > 0">
+            Mais informações
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </a>
         </div>
-        <a href="#desc" pageScroll pageScrollDuration="5000" class="pos-sticky bellow-nav border my-3" mat-flat-button *ngIf="Produto.Descricao?.length > 0">
-          Mais informações
-          <mat-icon>keyboard_arrow_down</mat-icon>
-        </a>
-
+        <span class="type-meta">
+          <i class="fa fa-tag"></i>
+          <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}},</a>
+        </span>
       </div>
 
       <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky">

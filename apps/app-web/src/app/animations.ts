@@ -20,12 +20,21 @@ export let fade = trigger('fadeIn',[
 
 export const slider =
   trigger('routeAnimations', [
-    transition('* => isLeft', slideTo('top') ),
-    transition('* => isRight', slideTo('top') ),
+    transition('isLeft => isLeft', slideTo('left') ),
+    transition('isRight => isRight', slideTo('right') ),
+
+    transition('isRight => isLeft', slideTo('left') ),
+    transition('isLeft => isRight', slideTo('right') ),
+
     transition('isRight => flip', cardFlipQ() ),
-    transition('isRight => *', slideTo('top') ),
     transition('isLeft => flip', cardFlipQ() ),
-    transition('isLeft => *', slideTo('top') ),
+
+    transition('isLeft => checkout', slideTo('top') ),
+    transition('flip => checkout', slideTo('top') ),
+    transition('isRight => checkout', slideTo('top') ),
+
+    transition('checkout => isLeft', slideTo('right') ),
+    transition('checkout => isRight', slideTo('left') ),
   ]);
 
 function slideTo(direction) {
