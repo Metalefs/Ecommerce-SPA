@@ -2,22 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '../../../material.module';
-
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 import { EscreverComentarioComponent } from './escrever-comentario.component';
+import { EditorModule } from '../../editor/editor/editor.module';
+
 @NgModule({
   declarations: [EscreverComentarioComponent],
   imports: [
     MaterialModule,
     CommonModule,
-    CKEditorModule,
+    EditorModule,
     FormsModule,
     ReactiveFormsModule
   ],
   exports: [
     EscreverComentarioComponent,
-    CKEditorModule,
+    EditorModule,
     FormsModule,
     ReactiveFormsModule
   ]

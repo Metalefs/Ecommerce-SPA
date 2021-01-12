@@ -16,7 +16,7 @@
     </div>
   </mat-card-title>
   <mat-card-content>
-    <ckeditor [editor]="Editor" [(ngModel)]="Comentario.Texto" [data]="Comentario.Texto"></ckeditor>
+    <personalizados-lopes-editor [Conteudo]="Comentario.Texto" (Change)="Comentario.Texto = $event"></personalizados-lopes-editor>
   </mat-card-content>
   <mat-card-actions>
     <button mat-flat-button (click)="Enviar()" class="button is-success is-right">

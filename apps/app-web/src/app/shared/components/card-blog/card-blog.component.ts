@@ -24,4 +24,5 @@ export class CardBlogComponent implements OnInit {
     return 0;
     return  (sum(this.Post.Avaliacao) / this.Post.Avaliacao.length).toFixed(1)
   }
+
 }
