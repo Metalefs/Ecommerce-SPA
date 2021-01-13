@@ -10,13 +10,18 @@ import { Produto } from 'libs/data/src/lib/classes';
 export class ProdutoStateModel{
   Produtos: entities.Produto[];
   areProdutosLoaded: boolean;
-
+  Page:number;
+  Limit:number;
+  Total:number;
 }
 
 @State<ProdutoStateModel>({
   name:"Produtos",
   defaults: {
     Produtos:[],
+    Page:1,
+    Limit:12,
+    Total:0,
     areProdutosLoaded: false
   }
 })
@@ -44,7 +49,8 @@ export class ProdutoState {
           const state = getState();
           setState({
             ...state,
-            Produtos: result,
+            Produtos: result.items,
+            Total: result.total,
             areProdutosLoaded: true
           });
         }));

@@ -164,6 +164,32 @@ export module Repository {
       }
     }
 
+    export function CountFilter(collection: string, query: any) { // count documents in collection
+      try{
+
+        return new Promise((resolve, reject) => {
+            MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
+                if (err) {
+                    logger.log(err)
+                    reject(err);
+                }
+                var dbo = db.db(MongoDBName);
+                dbo.collection(collection).countDocuments(query, function (error: any, numOfDocs: any) {
+                    if (err) {
+                        logger.log(err)
+                        reject(err);
+                    }
+                    db.close();
+                    resolve(numOfDocs);
+                });
+            });
+        });
+      }
+      catch(ex){
+        throw ex;
+      }
+    }
+
     export async function FindOne(collection: string, query: any) { // finds by query
       try{
 
@@ -200,6 +226,31 @@ export module Repository {
                 }
                 var dbo = db.db(MongoDBName);
                 return dbo.collection(collection).find(query).toArray(function (err: any, result: any) {
+                    if (err) {
+                        logger.log(err)
+                        reject(err);
+                    }
+                    db.close();
+                    resolve(result)
+                });
+            });
+        });
+      }
+      catch(ex){
+        throw ex;
+      }
+    }
+    export async function Paginate(collection: string, query: any, limit:number, skip:number) { // filters by query
+      try{
+
+        return new Promise((resolve, reject) => {
+            MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
+                if (err) {
+                    logger.log(err)
+                    reject(err);
+                }
+                var dbo = db.db(MongoDBName);
+                return dbo.collection(collection).find(query).limit(limit).skip(limit*(skip-1)).toArray(function (err: any, result: any) {
                     if (err) {
                         logger.log(err)
                         reject(err);

@@ -15,13 +15,6 @@ export class DashboardComponent {
     this.service = service;
   }
 
-  LerProdutos(){
-    this.service.Ler().subscribe(x=>{
-      this.Produtos = x;
-    })
-  }
-
   ngOnInit(){
-    this.LerProdutos();
   }
 }

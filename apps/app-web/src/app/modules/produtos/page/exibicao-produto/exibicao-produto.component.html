@@ -26,6 +26,7 @@
          *ngIf="galleryConfig$ | async; let config"
           [counter]="false"
           [nav]="false"
+          [loadingStrategy]="'lazy'"
           [thumbWidth]="config.thumbWidth"
           [thumbHeight]="config.thumbHeight"
           [thumbPosition]="config.thumbPosition">

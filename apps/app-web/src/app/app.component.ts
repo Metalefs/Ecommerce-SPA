@@ -65,10 +65,6 @@ export class AppComponent {
     this.store.dispatch(new LerSobre()             ).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerServico()           ).subscribe();
     this.store.dispatch(new LerCategoria()         ).subscribe();
-    this.store.dispatch(new LerProduto()           ).subscribe(x=>{
-      this.store.dispatch(new AdicionarListaProdutosFiltroProduto(x.Produtos.Produtos))
-      this.carregandoOque = "Produtos listados"
-    });
     this.store.dispatch(new LerMensagem()          ).subscribe();
   }
 

@@ -69,7 +69,7 @@ export class TagProdutoSwiperComponent implements OnInit {
     ngOnInit(): void {
       this.service.Ler().subscribe(x=>{
        this.TAGS.forEach((tag)=>{
-          x.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
+          x.items.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
             this.ProdutosTag.push(match);
             this.ProdutosTag = removeDuplicates(this.ProdutosTag,"_id")
           })

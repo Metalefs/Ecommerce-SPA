@@ -175,6 +175,7 @@ export class CriarProdutoDialogComponent implements OnInit {
   SelecionarCategoria($event){
     console.log($event);
     this.Produto.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
+    this.Produto.NomeCategoria = this.Produto.Categoria.Nome;
     console.log(this.Produto.Categoria)
   }
 

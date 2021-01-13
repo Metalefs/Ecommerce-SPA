@@ -20,7 +20,7 @@ import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
-import { ComentarioProdutoService } from 'apps/app-web/src/app/data/service';
+import { ComentarioProdutoService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -60,7 +60,8 @@ export class ExibicaoProdutoComponent implements OnInit {
     private store: Store,
     public dialog: MatDialog,
     private ComentarioProdutoService: ComentarioProdutoService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private servicoProduto:ProdutoService
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -84,10 +85,10 @@ export class ExibicaoProdutoComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.LerProdutosCarregados();
     this.activeRoute.params.subscribe(routeParams => {
       this.LerProdutosCarregados();
     });
+
     if(this.Produto.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
     this.Url = `https://${window.location.href}`;
@@ -239,15 +240,20 @@ export class ExibicaoProdutoComponent implements OnInit {
 
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
     this.readonlyRating = localStorage.getItem(`rateproduto${id}`) == 'true' ? true: false;
+    const galleryRef = this.gallery.ref('myGallery');
+    galleryRef.reset();
 
     if(!this.orcamentoId){
       this.isOrcamento = false;
-      this.Produtos$.subscribe( res => {
-        const index = res.findIndex(item => item._id === id);
-        this.Produto = res[index];
-        if(!this.Produto)
+      this.servicoProduto.Filtrar(id).subscribe(prod=>{
+        console.log(prod)
+        this.Produto = prod[0];
+        if(!prod)
         this.router.navigateByUrl('/produtos');
-      });
+        prod[0]?.Imagem.forEach(img =>{
+          galleryRef.addImage({ src:img, thumb: img });
+        });
+      })
     }
     else{
       this.isOrcamento = true;
@@ -258,11 +264,7 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.Produto = res.Produto[index].Produto;
       });
     }
-    const galleryRef = this.gallery.ref('myGallery');
-    this.Produto?.Imagem.forEach(img =>{
-      console.log(img);
-      galleryRef.addImage({ src:img, thumb: img });
-    });
+
     this.LerComentariosProduto(id);
   }
 

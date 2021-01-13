@@ -6,10 +6,11 @@ import { email } from '../../config';
 
 import { Repository } from '../repositories/repository';
 import { EmailService } from './email.service';
+import { PaginationResponse } from 'libs/data/src/lib/interfaces';
 var ObjectId = require('mongodb').ObjectID;
 export class ProdutoService {
     async Ler(){
-        return  Repository.List(entities.Produto.NomeID).then(x => {
+        return Repository.List(entities.Produto.NomeID).then(x => {
             return x;
         });
     }
@@ -34,6 +35,20 @@ export class ProdutoService {
     }
     async Filtrar(filter:{}){
       return Repository.Filter(entities.Produto.NomeID, filter).then(x => {
+          return x;
+      });
+    }
+    async Search(filter:{},limit:number,skip:number):Promise<PaginationResponse<Produto>>{
+      // Find Demanded Products - Skipping page values, limit results per page
+
+      return Repository.Paginate(entities.Produto.NomeID, filter, limit, skip).then((x :Produto[]) => {
+          return this.Count(filter).then((count:number)=>{
+            return {items:x, total:count};
+          })
+      });
+    }
+    async Count(filter:{}){
+      return Repository.CountFilter(entities.Produto.NomeID, filter).then(x => {
           return x;
       });
     }

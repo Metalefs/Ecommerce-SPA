@@ -14,6 +14,9 @@ import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
 import { Produto } from 'libs/data/src/lib/classes';
 import { ErrorHandler } from '../../core/error.handler';
+import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
+
+import { PaginationResponse } from 'libs/data/src/lib/interfaces';
 @Injectable({
     providedIn: 'root'
 })
@@ -23,15 +26,31 @@ export class ProdutoService {
     private AuthenticationService: AuthenticationService,
     private servicoImagem: ImagemService) { }
 
-    Ler(): Observable<entities.Produto[]> {
-        return this.http.get<entities.Produto[]>(environment.endpoint + RouteDictionary.Produto).pipe(
+    Ler(limit?:number,size?:number): Observable<PaginationResponse<Produto>> {
+        return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produto).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
 
-    Filtrar(id:any): Observable<entities.Produto[]> {
-      return this.http.get<entities.Produto[]>(environment.endpoint + RouteDictionary.Produto + `?id = ${id}`).pipe(
+    Filtrar(id:any): Observable<Produto[]> {
+      return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produto + `${id}`).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
+    }
+
+    FiltrarProdutos(fields:FiltrarProdutoSearchQuery, page:number = 1, limit:number = 12): Observable<PaginationResponse<Produto>> {
+
+      let query = '?nome='+fields.Nome;
+      query += '&categoria='+fields.NomeCategoria;
+      query += '&preco='+fields.Preco;
+      query += '&status='+fields.Status;
+      query += '&marca='+fields.Marca;
+      query += '&modelo='+fields.Modelo;
+      query += '&limit='+limit;
+
+      return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.FiltrarProduto +`${page}/`+ query).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError) // then handle the error
       );

@@ -28,15 +28,8 @@ export class CardProdutoComponent implements OnInit {
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
   statusProduto=StatusProduto;
-  images: GalleryItem[];
-  images$: Observable<GalleryItem[]>;
   ngOnInit(): void {
-    const galleryRef = this.gallery.ref('myGallery');
     this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
-    this.Produto?.Imagem.forEach(img =>{
-      console.log(img);
-      galleryRef.addImage({ src:img, thumb: img });
-    });
   }
 
   swiperConfig: SwiperConfigInterface = {

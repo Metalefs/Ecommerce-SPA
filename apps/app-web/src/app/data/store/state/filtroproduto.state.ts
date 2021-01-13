@@ -23,7 +23,7 @@ export class FiltroProdutoStateModel{
     FiltroProdutos:[],
     Categoria: new Categoria(defaultCategory,defaultCategory),
     SearchFilter: "",
-    OrderFilter: 1,
+    OrderFilter: 0,
     areFiltroProdutosLoaded: false
   }
 })

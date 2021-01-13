@@ -50,6 +50,7 @@ export class EdicaoCardProdutoComponent implements OnInit {
         Produto._id = id;
         this.servicoCategoria.Ler().subscribe(x=>{
           Produto.Categoria = x.filter(cat => cat.Nome == Produto.NomeCategoria)[0];
+          Produto.NomeCategoria = Produto.Categoria.Nome;
           this.store.dispatch(new EditarProduto(Produto, Produto._id)).subscribe(X=>{
             this._snackBar.open("Produto alterado com sucesso", "Fechar", {
 

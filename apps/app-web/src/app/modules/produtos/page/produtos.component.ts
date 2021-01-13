@@ -17,6 +17,8 @@ import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto
 import { ObterImagensCarousel } from '../../../helper/FileHelper';
 import { FiltroCategoria, FiltroCategoriaDialogComponent } from './dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
 import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
+import { ProdutoService } from '../../../data/service';
+import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -34,6 +36,8 @@ export class ProdutosComponent implements OnInit {
   areCategoriasLoadedSub: Subscription;
 
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
+  Produtos:Produto[];
+
   @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<FiltroProdutoStateModel>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   areProdutosLoadedSub: Subscription;
@@ -41,6 +45,10 @@ export class ProdutosComponent implements OnInit {
   activeSearchFilter = "";
   activeOrderFilter:number = TiposOrdenacao.nome;
   @ViewChild('carousel', { static: true }) carousel
+
+  page:number = 1;
+  limit:number = 12;
+  total:number;
 
   loading:boolean = false;
   imagens:[{path:string}] = [{path:ObterImagensCarousel()[0]}];
@@ -54,7 +62,8 @@ export class ProdutosComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private store: Store,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private produtoService: ProdutoService
     ) {
 
   }
@@ -78,18 +87,6 @@ export class ProdutosComponent implements OnInit {
     this.carousel.handleTouchend = null;
   }
 
-  LerParametros(){
-    this.activeRoute.queryParams.filter(params => params.categoria)
-    .subscribe(params => {
-      this.SetCategoria(new Categoria(params.categoria, ""));
-    })
-    this.activeRoute.queryParams.filter(params => params.nome)
-    .subscribe(params => {
-      this.activeSearchFilter = params.nome;
-      this.atualizarFiltroAtivo();
-    })
-  }
-
   ngOnDestroy(){
     this.flip()
   }
@@ -104,11 +101,98 @@ export class ProdutosComponent implements OnInit {
 
   Atualizar(){
     this.atualizarFiltroAtivo();
-    this.RecarregarProdutos();
+    this.CarregarProdutos();
     this.RecarregarCategorias();
     this.LerParametros();
   }
 
+  LerParametros(){
+    this.activeRoute.queryParams.filter(params => params.categoria)
+    .subscribe(params => {
+      this.SetCategoria(new Categoria(params.categoria, ""));
+    })
+    this.activeRoute.queryParams.filter(params => params.nome)
+    .subscribe(params => {
+      this.activeSearchFilter = params.nome;
+      this.atualizarFiltroAtivo();
+    })
+  }
+  fQuery:FiltrarProdutoSearchQuery={
+    Nome:"",
+    NomeCategoria:"",
+    Preco:"",
+    Status:"",
+    Marca:"",
+    Modelo:"",
+  }
+  atualizarFiltroAtivo(){
+    this.loading = true;
+    this.fQuery.Nome = this.activeSearchFilter||''
+    this.fQuery.NomeCategoria  = this.CategoriaAtiva.Nome||"";
+
+    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(async x=>{
+      this.total = x.total;
+
+      switch(+this.activeOrderFilter){
+        case 0:
+         x.items = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
+        break;
+
+        case TiposOrdenacao.nomeDesc:
+         x.items = x.items.sort((a, b) => this.order(a,b,true));
+        break;
+
+        case TiposOrdenacao.preco:
+         x.items = x.items.sort((a, b) => this.orderPreco(a,b,false));
+        break;
+
+        case TiposOrdenacao.precoDesc:
+         x.items = x.items.sort((a, b) => this.orderPreco(a,b,true));
+        break;
+      }
+
+      let FiltroProduto:FiltroProduto = {
+        Categoria:this.CategoriaAtiva,
+        SearchFilter:this.activeSearchFilter,
+        OrderFilter:this.activeOrderFilter,
+        Produtos: x.items.filter(x=>this.filtroAtivo(x)),
+      };
+
+      this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe();
+      await delay(400).then(x=>{this.loading = x;});
+
+      function delay(ms: number): Promise<boolean> {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(false);
+          }, ms);
+        });
+      }
+    })
+  }
+
+  filtroAtivo(produto:Produto){
+    if(this.matchSearchFilter(produto))
+    return this.CategoriaAtiva?.Nome == this.defaultCategory
+            ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
+  }
+
+  matchSearchFilter(produto:Produto){
+    if(this.activeSearchFilter)
+    return this.activeSearchFilter.length > 0 ?
+     produto.Nome.toLocaleLowerCase().includes(this.activeSearchFilter.toLocaleLowerCase())
+     :
+     true;
+
+    return true;
+  }
+
+
+  redefinirBusca(){
+    this.SetCategoria(new Categoria(this.defaultCategory,this.defaultCategory));
+    this.activeSearchFilter= '',
+    this.activeOrderFilter=0;
+  }
   SetCategoria(categoria:Categoria){
     this.CategoriaAtiva = categoria == null ?
     new Categoria(this.defaultCategory,this.defaultCategory)
@@ -116,6 +200,24 @@ export class ProdutosComponent implements OnInit {
     this.CategoriaAtiva = categoria;
 
     this.atualizarFiltroAtivo();
+  }
+  CarregarProdutos(){
+
+    this.produtoService.Ler().subscribe(x=>{
+      this.total = x.total;
+      this.Produtos = x.items;
+      console.log(x);
+    })
+  }
+
+  RecarregarCategorias(){
+    this.areCategoriasLoadedSub = this.areCategoriasLoaded$.pipe(
+      tap((areCategoriasLoaded) => {
+        if(!areCategoriasLoaded)
+          this.store.dispatch(new LerCategoria());
+      })
+    ).subscribe(value => {
+    });
   }
 
   AbrirDialogoCategorias(){
@@ -155,84 +257,6 @@ export class ProdutosComponent implements OnInit {
         this.activeOrderFilter = result.id;
         this.atualizarFiltroAtivo()
       }
-    });
-  }
-
-  atualizarFiltroAtivo(){
-    this.loading = true;
-    this.Produtos$.subscribe(async x=>{
-      switch(+this.activeOrderFilter){
-        case 0:
-         x = x.sort((a, b) => a.Nome.localeCompare(b.Nome));
-        break;
-
-        case TiposOrdenacao.nomeDesc:
-         x = x.sort((a, b) => this.order(a,b,true));
-        break;
-
-        case TiposOrdenacao.preco:
-         x = x.sort((a, b) => this.orderPreco(a,b,false));
-        break;
-
-        case TiposOrdenacao.precoDesc:
-         x = x.sort((a, b) => this.orderPreco(a,b,true));
-        break;
-      }
-
-      let FiltroProduto:FiltroProduto = {
-        Categoria:this.CategoriaAtiva,
-        SearchFilter:this.activeSearchFilter,
-        OrderFilter:this.activeOrderFilter,
-        Produtos: x.filter(x=>this.filtroAtivo(x)),
-      };
-      this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe();
-      await this.delay(400).then(x=>{this.loading = x;});
-
-    })
-  }
-  private delay(ms: number): Promise<boolean> {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(false);
-      }, ms);
-    });
-  }
-
-  filtroAtivo(produto:Produto){
-    if(this.matchSearchFilter(produto))
-    return this.CategoriaAtiva?.Nome == this.defaultCategory
-            ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
-  }
-
-  matchSearchFilter(produto:Produto){
-    if(this.activeSearchFilter)
-    return this.activeSearchFilter.length > 0 ?
-     produto.Nome.toLocaleLowerCase().includes(this.activeSearchFilter.toLocaleLowerCase())
-     :
-     true;
-
-    return true;
-  }
-
-  RecarregarProdutos(){
-    this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
-      tap((areProdutosLoaded) => {
-        if(!areProdutosLoaded)
-          this.store.dispatch(new LerProduto());
-      })
-    ).subscribe(value => {
-      console.log(value);
-    });
-  }
-
-  RecarregarCategorias(){
-    this.areCategoriasLoadedSub = this.areCategoriasLoaded$.pipe(
-      tap((areCategoriasLoaded) => {
-        if(!areCategoriasLoaded)
-          this.store.dispatch(new LerCategoria());
-      })
-    ).subscribe(value => {
-      console.log(value);
     });
   }
 
@@ -288,11 +312,6 @@ export class ProdutosComponent implements OnInit {
       // a must be equal to b
       return 0;
     }
-  }
-  redefinirBusca(){
-    this.SetCategoria(new Categoria(this.defaultCategory,this.defaultCategory));
-    this.activeSearchFilter= '',
-    this.activeOrderFilter=0;
   }
   translate(orderId:number){
     return this.ordertypes.filter(x=>x.id == orderId)[0].name;

@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
@@ -15,6 +15,16 @@ import { ProdutoState } from '../../../data/store/state';
 export class ProdutoSwiperComponent implements OnInit {
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<entities.Produto[]>;
   slidesPerView:number=5;
+  @ViewChild('swiperEl') swiperEl: ElementRef;
+
+
+  onSwiperHover( hover: boolean ) {
+    if ( hover ) {
+      this.swiperEl.nativeElement.swiper.autoplay.stop();
+    } else {
+      this.swiperEl.nativeElement.swiper.autoplay.start();
+    }
+  }
   constructor(
     breakpointObserver: BreakpointObserver,) {
       this.swiperConfig$ = breakpointObserver.observe([

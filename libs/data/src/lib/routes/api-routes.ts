@@ -1,6 +1,7 @@
 
 export let RouteDictionary = {
     Produto:"/produto/",
+    FiltrarProduto:"/filtrarProduto/",
     GostarProduto:"/gostarproduto/",
     RateProduto:"/rateproduto/",
     InformacoesContato:"/informacoesContato/",
