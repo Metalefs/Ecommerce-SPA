@@ -24,9 +24,8 @@ export class OrcamentoService {
         );
     }
 
-    FiltrarOrcamentosPorUsuario(): Observable<entities.Orcamento[]> {
-      let payload = this.AuthenticationService.tokenize({});
-      return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Pedidos + `?token=${payload.token}`).pipe(
+    FiltrarOrcamentosPorUsuario(token:string): Observable<entities.Orcamento[]> {
+      return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Pedidos + `?token=${token}`).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError) // then handle the error
       );

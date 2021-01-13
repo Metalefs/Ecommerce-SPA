@@ -90,6 +90,68 @@ a {
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
 }
+.swiper-container{
+  &:hover > .swiper-button-prev{
+    animation: showArr 1s ease forwards !important;
+  }
+  &:hover > .swiper-button-next{
+    animation: showArr 1s ease forwards !important;
+  }
+}
+.swiper-button-prev,.swiper-button-next{
+  margin: 0 0 5px 0px;
+  padding: 20px;
+  font-size: 50px;
+  border: 2px solid;
+  position: absolute;
+    z-index: 100 !important;
+    pointer-events: all !important;
+    cursor: pointer !important;
+  background: #FF6F61;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+  border-radius: 6px;
+  animation: hideArr 1s ease forwards !important;
+  &::after{
+    font-size: 30px !important;
+  }
+  &:hover {
+    background: #000000;
+  }
+  & i {
+    padding-top: 9px;
+    color: #ffffff;
+  }
+}
+
+@keyframes showArr{
+  0%{
+    margin:-10px;
+    visibility: hidden;
+    opacity: 0;
+  }
+  100%{
+    margin:0;
+    visibility: show;
+    opacity: 1;
+    z-index: 10;
+  }
+}
+@keyframes hideArr{
+  0%{
+
+    visibility: show;
+    opacity: 1;
+  }
+  100%{
+
+    margin:-10px;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 :host ::ng-deep div.slideshow-container a{
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;

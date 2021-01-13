@@ -32,7 +32,7 @@ export module UsuarioService {
                     token
                 };
             }
-            if (!user.Senha) return {erro:'E-mail ou senha incorretos'};
+            if (!user.Senha) throw "Email ou senha incorretos";
 
         });
     }
@@ -42,7 +42,7 @@ export module UsuarioService {
         let find = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email});
         console.log("FIND",find);
         if (find != 0 && find != undefined) {
-            return {erro:'E-mail "' + NovoUsuario.Email + '" já está sendo usado!'};
+            throw 'E-mail "' + NovoUsuario.Email + '" já está sendo usado!';
         }
         // hash password
         if (NovoUsuario.Senha) {
@@ -67,7 +67,7 @@ export module UsuarioService {
             };
         }else{
           console.log("usuário não cadastrado");
-          return {erro:'usuário não cadastrado'};
+          throw 'usuário não cadastrado';
         }
     }
 
@@ -92,11 +92,11 @@ export module UsuarioService {
           });
         }
         else{
-          return {erro: 'Senha atual incorreta'}
+          throw 'Senha atual incorreta'
         }
       }
       else{
-        return {erro: 'E-mail não encontrado'}
+        throw 'E-mail não encontrado'
       }
     }
 
@@ -116,7 +116,7 @@ export module UsuarioService {
         });
       }
       else{
-        return {erro: 'E-mail não encontrado'}
+        throw 'E-mail não encontrado'
       }
     }
 
@@ -124,7 +124,7 @@ export module UsuarioService {
       // validate
       let find = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email});
       if (find != 0 && find != undefined) {
-          return {erro:'E-mail "' + NovoUsuario.Email + '" já está sendo usado!'};
+          throw 'E-mail "' + NovoUsuario.Email + '" já está sendo usado!';
       }
       // hash password
       if (NovoUsuario.Senha) {
@@ -152,7 +152,7 @@ export module UsuarioService {
           };
       }else{
         console.log("usuário não cadastrado");
-        return {erro:'usuário não cadastrado'};
+        throw 'usuário não cadastrado';
       }
   }
 
@@ -179,7 +179,7 @@ export module UsuarioService {
         const user = await getById(Usuario._id);
 
         // validate
-        if (!user) return {erro:'Usuário não encontrado'};
+        if (!user) throw 'Usuário não encontrado';
 
         // copy userParam properties to user
         Object.assign(user, Usuario);

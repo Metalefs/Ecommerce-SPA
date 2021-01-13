@@ -101,7 +101,6 @@ export class ProdutosComponent implements OnInit {
 
   Atualizar(){
     this.atualizarFiltroAtivo();
-    this.CarregarProdutos();
     this.RecarregarCategorias();
     this.LerParametros();
   }
@@ -132,7 +131,7 @@ export class ProdutosComponent implements OnInit {
 
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(async x=>{
       this.total = x.total;
-
+      this.Produtos = x.items;
       switch(+this.activeOrderFilter){
         case 0:
          x.items = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
@@ -201,11 +200,12 @@ export class ProdutosComponent implements OnInit {
 
     this.atualizarFiltroAtivo();
   }
-  CarregarProdutos(){
 
-    this.produtoService.Ler().subscribe(x=>{
+  CarregarMaisProdutos(){
+    this.page++;
+    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(x=>{
       this.total = x.total;
-      this.Produtos = x.items;
+      x.items.forEach(item=>this.Produtos.push(item))
       console.log(x);
     })
   }

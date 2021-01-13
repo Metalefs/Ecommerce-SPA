@@ -104,6 +104,7 @@
             </div>
           </div>
         </div>
+        <p>Exibindo {{Produtos.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
         <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
@@ -131,8 +132,8 @@
               ></personalizados-lopes-card-produto>
             </div>
           </ng-container>
-
         </div>
+        <a *ngIf="total > Produtos.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
       </div>
     </div>
   </div>

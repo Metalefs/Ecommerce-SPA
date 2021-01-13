@@ -13,11 +13,11 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     console.log(req.body);
     try{
       UsuarioService.authenticate(req.body)
-          .then((user: entities.Usuario) => res.json(user))
+          .then((user: entities.Usuario) => res.status(200).json(user))
           .catch(reason => ErrorHandler.AuthorizationException(reason,res));
     }
     catch(ex){
-     ErrorHandler.AuthorizationException(ex,res);
+      ErrorHandler.AuthorizationException(ex,res);
     }
 }).post(RouteDictionary.Registro, (req,res, next) =>{
   try{

@@ -262,6 +262,9 @@ export class ExibicaoProdutoComponent implements OnInit {
         if(index<0)
         this.router.navigateByUrl('/produtos');
         this.Produto = res.Produto[index].Produto;
+        this.Produto.Imagem.forEach(img =>{
+          galleryRef.addImage({ src:img, thumb: img });
+        });
       });
     }
 

@@ -16,19 +16,16 @@
   </div>
   <div class="section-block">
     <h1 class="section-title">Últimas postagens</h1>
-    <p>
-      <mat-toolbar color="" class="">
-        <mat-toolbar-row class="py-6">
-          <mat-list  *ngFor="let post of Blog">
-            <a mat-list-item *ngIf="CanView(post)" [routerLink]="'/blog/'+post.Titulo" class="logo" >
-              {{post.Titulo}}
-            </a>
-            <span class="spacer"></span>
-          </mat-list>
-        </mat-toolbar-row>
-
-      </mat-toolbar>
-    </p>
+    <mat-toolbar color="" class="w-full of-x-scroll">
+      <mat-toolbar-row class="py-6">
+        <mat-list  *ngFor="let post of Blog">
+          <a mat-list-item *ngIf="CanView(post)" [routerLink]="'/blog/'+post.Titulo" class="logo" >
+            {{post.Titulo}}
+            <mat-divider></mat-divider>
+          </a>
+        </mat-list>
+      </mat-toolbar-row>
+    </mat-toolbar>
   </div>
   <!--credits-->
   <div class="section-block">

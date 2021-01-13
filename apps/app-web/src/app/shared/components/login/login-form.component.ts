@@ -10,7 +10,6 @@ import { entities } from '@personalizados-lopes/data';
 import { InformacoesContatoService } from '../../../data/service/InformacoesContatoService';
 import { Usuario } from 'libs/data/src/lib/classes';
 import { Store } from '@ngxs/store';
-import { EditarOrcamento } from '../../../data/store/actions/orcamento.actions';
 
 class Login_Form {
   Email:string;
@@ -35,7 +34,6 @@ export class LoginFormComponent implements OnInit {
   InformacoesContato:entities.InformacoesContato = null;
 
   form = new Login_Form();
-  AceitaCartao:boolean;
   Logado:boolean;
   EmailError:boolean;
   PassError:boolean;
@@ -49,18 +47,10 @@ export class LoginFormComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private CadastroService: CadastroService,
     private formBuilder: FormBuilder,
-    private store:Store
     )
     {
         this.authenticationService.currentUser.subscribe(x =>console.log(x));
     }
-
-  LerInformacoesContato() {
-    this.infocontatoservice.Ler().subscribe(data=>{
-      this.InformacoesContato = data[0];
-      console.log(this.InformacoesContato);
-    });
-  }
 
   SetCadastrar(val){
     this.CadastroService.setCadastrar(val);
@@ -79,7 +69,7 @@ export class LoginFormComponent implements OnInit {
                 this.error = null;
                 this.Logado = true;
 
-                this.router.navigateByUrl(this.returnUrl);
+                this.router.navigate([this.returnUrl]);
             },
             error => {
                 console.log(error);
@@ -92,7 +82,6 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    this.LerInformacoesContato();
     this.authenticationService.currentUser.subscribe(x=>{
       this.usuario = x;
       this.Logado = x != undefined

@@ -19,11 +19,11 @@ export class ProdutoSwiperComponent implements OnInit {
 
 
   onSwiperHover( hover: boolean ) {
-    if ( hover ) {
-      this.swiperEl.nativeElement.swiper.autoplay.stop();
-    } else {
-      this.swiperEl.nativeElement.swiper.autoplay.start();
-    }
+    // if ( hover ) {
+    //   this.swiperEl.nativeElement.swiper.autoplay.stop();
+    // } else {
+    //   this.swiperEl.nativeElement.swiper.autoplay.start();
+    // }
   }
   constructor(
     breakpointObserver: BreakpointObserver,) {
@@ -43,11 +43,14 @@ export class ProdutoSwiperComponent implements OnInit {
                 preloadImages          : true,
                 lazy                   : false,
                 observer               : true,
-                navigation             : true,
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
                 slidesPerView:1,
                 autoplay: {
                   delay               : 4000,
-                  disableOnInteraction: false,
+                  disableOnInteraction: true,
 
                 },
               }
@@ -64,7 +67,10 @@ export class ProdutoSwiperComponent implements OnInit {
               preloadImages          : true,
               lazy                   : false,
               observer               : true,
-              navigation             : true,
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
               centerInsufficientSlides   : false,
               slidesPerView:5,
               autoplay: {

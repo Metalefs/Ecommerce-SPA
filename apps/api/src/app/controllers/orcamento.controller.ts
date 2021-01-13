@@ -26,7 +26,7 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, (req: any, res) => {
         let OrcamentoService:Services.OrcamentoService = new Services.OrcamentoService();
 
         OrcamentoService.FiltrarOrcamentosPorUsuario(user).then(x=>{
-            res.send(x);
+          res.send(x);
         }).catch(ex=>{
           throw ex;
         });
