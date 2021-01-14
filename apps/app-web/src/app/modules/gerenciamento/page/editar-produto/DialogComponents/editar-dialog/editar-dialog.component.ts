@@ -113,7 +113,7 @@ export class EditarProdutoDialogComponent implements OnInit {
 
   }
   CarregarCategorias(){
-    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x;console.log(x)});
+    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x;});
   }
 
   ngOnInit() {

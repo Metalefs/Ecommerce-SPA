@@ -13,7 +13,6 @@ export class HeaderFooterComponent implements OnInit {
   }
   ngOnInit(): void {
     this.imagemService.FiltrarPorNome("GIF Produtos").subscribe(x=>{
-      console.log(x);
       this.Cards = [
         {
           title:"Produtos",

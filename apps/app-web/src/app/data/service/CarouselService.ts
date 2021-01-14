@@ -24,7 +24,6 @@ export class CarouselService {
     }
     Editar(item: entities.Carousel): Observable<entities.Carousel> {
         let payload = this.AuthenticationService.tokenize({Carousel:item});
-        console.log(payload);
         return this.http.put<entities.Carousel>(environment.endpoint + RouteDictionary.Carousel,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times

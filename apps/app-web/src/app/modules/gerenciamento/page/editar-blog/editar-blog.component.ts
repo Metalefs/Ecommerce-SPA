@@ -39,6 +39,7 @@ export class EditarBlogComponent implements OnInit {
         this.authService.currentUser.subscribe(usr=>{
           post.Autor.Nome = usr.Nome;
           post.Autor.Email = usr.Email;
+
           post.DataHoraAlteracao = new Date();
           post.DataHoraCriacao = new Date();
           this.BlogService.create(post).then(() => {

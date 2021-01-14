@@ -83,11 +83,10 @@ export class HeaderComponent implements OnInit {
   }
 
   CarregarCategorias(){
-    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x; console.log(x)});
+    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x;});
   }
 
   SelecionarCategoria($event){
-    console.log($event);
     this.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
     this.store.dispatch(new EditarCategoriaFiltroProduto(this.Categoria)).subscribe();
   }

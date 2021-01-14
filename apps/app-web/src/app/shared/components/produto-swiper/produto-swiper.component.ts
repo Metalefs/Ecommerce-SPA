@@ -1,10 +1,12 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
+import { Produto } from 'libs/data/src/lib/classes';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { ProdutoState } from '../../../data/store/state';
 
 @Component({
@@ -13,7 +15,12 @@ import { ProdutoState } from '../../../data/store/state';
   styleUrls: ['./produto-swiper.component.scss']
 })
 export class ProdutoSwiperComponent implements OnInit {
-  @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<entities.Produto[]>;
+  @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
+
+  @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
+
+  areProdutosLoadedSub: Subscription;
+
   slidesPerView:number=5;
   @ViewChild('swiperEl') swiperEl: ElementRef;
 
@@ -26,7 +33,7 @@ export class ProdutoSwiperComponent implements OnInit {
     }
   }
   constructor(
-    breakpointObserver: BreakpointObserver,) {
+    breakpointObserver: BreakpointObserver,private store:Store) {
       this.swiperConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
@@ -81,6 +88,14 @@ export class ProdutoSwiperComponent implements OnInit {
           }
         })
       );
+      this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
+        tap((areProdutosLoaded) => {
+          if(!areProdutosLoaded)
+            this.store.dispatch(new LerProduto());
+        })
+      ).subscribe(value => {
+        console.log(value);
+      });
     }
 
     swiperConfig$: Observable<SwiperConfigInterface>;
