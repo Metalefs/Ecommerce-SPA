@@ -19,11 +19,11 @@ export class ProdutoSwiperComponent implements OnInit {
 
 
   onSwiperHover( hover: boolean ) {
-    // if ( hover ) {
-    //   this.swiperEl.nativeElement.swiper.autoplay.stop();
-    // } else {
-    //   this.swiperEl.nativeElement.swiper.autoplay.start();
-    // }
+    if ( hover ) {
+      this.swiperEl.nativeElement.swiper.autoplay.stop();
+    } else {
+      this.swiperEl.nativeElement.swiper.autoplay.start();
+    }
   }
   constructor(
     breakpointObserver: BreakpointObserver,) {
@@ -85,6 +85,7 @@ export class ProdutoSwiperComponent implements OnInit {
 
     swiperConfig$: Observable<SwiperConfigInterface>;
   ngOnInit(): void {
+    this.swiperEl.nativeElement.swiper.autoplay.start();
   }
 
 }

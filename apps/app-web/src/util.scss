@@ -205,7 +205,10 @@ button{
   font: 400 13.3333px Arial;
   padding: 1px 6p
 }
-
+.bg-transp{
+  background: rgb(255,255,255);
+background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgba(255,255,255,1) 51%, rgba(0,212,255,0) 100%);
+}
 
 .a-i-c{
   align-items: center;

@@ -12,15 +12,18 @@
     <div *ngIf="search" class="w-full columns is-mobile is-multiline is-vcentered mx-3 w-full animate__animated animate__slideInLeft">
       <div class="column is-12-mobile animate__animated animate__slideInLeft">
         <div class="control has-icons-right animate__animated animate__slideInLeft">
-          <input
-            [(ngModel)]="search_filter"
-            class="py-2 input"
-            type="text"
-            list="lista"
-            placeholder="buscar produtos">
-            <button [routerLink]="['/produtos']" [queryParams]="{nome:search_filter}" class="s-button z-top">
-              <mat-icon>search</mat-icon>
-            </button>
+          <form type="get" action="/produtos/?nome={{search_filter}}">
+            <input
+              name="filter"
+              [(ngModel)]="search_filter"
+              class="py-2 input"
+              type="text"
+              list="lista"
+              placeholder="buscar produtos">
+              <button [routerLink]="['/produtos']" [queryParams]="{nome:search_filter}" class="s-button z-top">
+                <mat-icon>search</mat-icon>
+              </button>
+          </form>
         </div>
         <datalist id="lista">
           <option *ngFor="let produto of Produto$|async" [value]="produto.Nome">
@@ -126,15 +129,18 @@
     <div *ngIf="search" class="columns is-mobile is-multiline is-vcentered mx-3 animate__animated animate__slideInRight">
         <div class="column is-12-mobile">
           <div class="control has-icons-right">
-            <input
-              [(ngModel)]="search_filter"
-              class="py-2 input "
-              type="text"
-              list="lista"
-              placeholder="buscar produtos">
+            <form type="get" action="/produtos/?nome={{search_filter}}">
+              <input
+                name="search_mobile"
+                [(ngModel)]="search_filter"
+                class="py-2 input "
+                type="text"
+                list="lista"
+                placeholder="buscar produtos">
               <button class="s-button z-top" [routerLink]="['/produtos']" [queryParams]="{nome:search_filter}" >
                 <mat-icon>search</mat-icon>
               </button>
+            </form>
           </div>
         </div>
       </div>

@@ -1,7 +1,19 @@
-<div class="w-full" *ngIf="(Produtos$|async).length >0">
-  <div #swiperEl
-  (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
-  class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+<ng-container *ngIf="(Produtos$|async).length >0 then data else nodata"></ng-container>
+<ng-template #nodata>
+  <div class="w-full">
+    <p>Não encontramos nenhum produto relacionado ainda.. Não encontrou o que queria?
+        Que tal nos mandar uma sugestão de produto.
+
+    </p>
+    <a mat-mat-flat-button class="has-background-dark button" [routerLink]="['orcamento']">Contato</a>
+  </div>
+</ng-template>
+<ng-template #data>
+
+  <div class="w-full">
+    <div #swiperEl
+    (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
+    class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
     <div class="swiper-button-prev z-index-top clickable hoverable"></div>
     <div class="swiper-button-next z-index-top clickable hoverable"></div>
     <div class="w-full hoverable border py-1 px-2">
@@ -11,8 +23,10 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let produto of Produtos$|async" >
         <personalizados-lopes-card-produto [Produto]="produto"
-          [TrocaImagem]="false"></personalizados-lopes-card-produto>
+        [TrocaImagem]="false"></personalizados-lopes-card-produto>
       </div>
     </div>
   </div>
 </div>
+
+</ng-template>

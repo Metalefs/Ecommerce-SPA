@@ -46,6 +46,7 @@ import { EditarPostComponent } from './page/editar-blog/dialogs/editar-post/edit
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarIntegracaoDialogComponent } from './page/editar-integracoes/dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
+import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
 
 @NgModule({
@@ -91,7 +92,7 @@ import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-deta
     MatIconModule,
     MatButtonModule,
     LayoutModule,
-    CKEditorModule
+    EditorModule
   ],
   exports: [
     GerenciamentoComponent,
@@ -111,7 +112,7 @@ import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-deta
     EditarMensagemComponent,
     EditarBlogComponent,
     OrcamentoDetailComponent,
-    CKEditorModule
+    EditorModule
   ]
 })
 export class GerenciamentoModule { }

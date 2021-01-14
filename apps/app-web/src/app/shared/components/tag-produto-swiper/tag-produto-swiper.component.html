@@ -1,5 +1,26 @@
-<div class="w-full" *ngIf="(ProdutosTag).length >0">
-  <div class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+<ng-container *ngIf="(ProdutosTag).length >0 then data else nodata"></ng-container>
+<ng-template #nodata>
+  <div class="w-full">
+    <p>Não encontramos nenhum produto relacionado ainda..
+    </p>
+    Não encontrou o que queria?
+        Que tal nos mandar uma sugestão de produto ?
+
+    <a
+    [href]="'/orcamento/'"
+    routerLinkActive="router-link-active">
+      <button mat-stroked-button mat-stroked-button class="button is-dark">
+        Contato
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </a>
+  </div>
+</ng-template>
+<ng-template #data>
+<div class="w-full">
+  <div #swiperEl2
+  (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
+  class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
     <div class="w-full hoverable">
       <h2>Produtos Relacionados</h2>
       <p>Abaixo, algumas de nossas sugestões</p>
@@ -12,3 +33,4 @@
     </div>
   </div>
 </div>
+</ng-template>

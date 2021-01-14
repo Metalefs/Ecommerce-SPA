@@ -143,7 +143,7 @@
           </div>
           <mat-form-field class="">
             <mat-label>Quantidade Minima</mat-label>
-            <input matInput type="number" min="1" [(ngModel)]="Produto.QuantidadeMinima"
+            <input matInput type="number" min="1" value="1" [(ngModel)]="Produto.QuantidadeMinima"
               [value]="Produto.QuantidadeMinima">
           </mat-form-field>
           <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">

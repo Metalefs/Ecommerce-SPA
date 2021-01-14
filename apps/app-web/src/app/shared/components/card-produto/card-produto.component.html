@@ -48,9 +48,9 @@
                 [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
             </div>
           </mat-card-title>
-          <mat-card-subtitle class="mat-card-subtitle preco is-6 of-x-scroll">{{Produto?.Subtitulo}}</mat-card-subtitle>
+          <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
-          <mat-card-subtitle mat-card-subtitle
+          <mat-card-subtitle
             class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
@@ -162,7 +162,7 @@
                 [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
             </div>
           </mat-card-title>
-          <mat-card-subtitle class="mat-card-subtitle preco is-6 of-x-scroll">{{Produto?.Subtitulo}}</mat-card-subtitle>
+          <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle mat-card-subtitle
             class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 is-3 preco">

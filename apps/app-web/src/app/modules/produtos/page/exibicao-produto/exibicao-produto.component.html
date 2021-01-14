@@ -320,16 +320,18 @@
   </a>
 </div>
 
-<div class="margin px-6 py-6 mb-6">
-  <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
-</div>
+<div class="bg-transp">
+  <div class="margin px-6 py-6 mb-6">
+    <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+  </div>
 
-<div class="margin px-6 py-6 mb-6">
-  <personalizados-lopes-tag-produto-swiper [TAGS]="Produto.Tags"></personalizados-lopes-tag-produto-swiper>
-</div>
+  <div class="margin px-6 py-6 mb-6">
+    <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
+  </div>
 
-<div class="margin px-6 py-6">
-  <personalizados-lopes-blog-swiper [TAGS]="Produto.Tags"></personalizados-lopes-blog-swiper>
+  <div class="margin px-6 py-6">
+    <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
+  </div>
 </div>
 
 <div class="pos-fixed right-0 bottom-0 z-index-2 w-full-md ml-6">

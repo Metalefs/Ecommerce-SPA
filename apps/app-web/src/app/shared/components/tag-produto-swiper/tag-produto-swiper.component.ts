@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -20,6 +20,16 @@ export class TagProdutoSwiperComponent implements OnInit {
   ProdutosTag:Produto[] = [];
   @Input()TAGS:string[];
   slidesPerView:number=5;
+  @ViewChild('swiperEl2') swiperEl2: ElementRef;
+
+
+  onSwiperHover( hover: boolean ) {
+    if ( hover ) {
+      this.swiperEl2.nativeElement.swiper.autoplay.stop();
+    } else {
+      this.swiperEl2.nativeElement.swiper.autoplay.start();
+    }
+  }
   constructor(
     breakpointObserver: BreakpointObserver,
     private service:ProdutoService) {
@@ -36,7 +46,10 @@ export class TagProdutoSwiperComponent implements OnInit {
                 preloadImages          : true,
                 lazy                   : false,
                 observer               : true,
-                navigation             : true,
+                navigation: {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                },
                 slidesPerView:1,
                 autoplay: {
                   delay               : 4000,
@@ -53,7 +66,10 @@ export class TagProdutoSwiperComponent implements OnInit {
               preloadImages          : true,
               lazy                   : false,
               observer               : true,
-              navigation             : true,
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              },
               slidesPerView:5,
               autoplay: {
                 delay               : 4000,
