@@ -9,7 +9,8 @@ import { AuthenticationService } from 'apps/app-web/src/app/core/service/authent
 import { Estado } from 'apps/app-web/src/app/data/models';
 import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
-import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { User } from 'firebase';
+import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
@@ -56,7 +57,7 @@ export class EnderecoComponent implements OnInit {
 
   ErroCadastro:boolean = false;
   estados: Estado[];
-
+  user:Usuario;
   _init_point:{};
 
   constructor(private store:Store,
@@ -78,6 +79,7 @@ export class EnderecoComponent implements OnInit {
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;
     })
+    this.auth.currentUser.subscribe(usr=>{this.user = usr});
     setTimeout(()=>{
       this.flip()
     },0);

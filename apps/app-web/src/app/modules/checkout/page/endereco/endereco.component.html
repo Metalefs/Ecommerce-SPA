@@ -177,6 +177,7 @@
           <div *ngIf="Loading" class="w-full">
             <mat-progress-bar mode="indeterminate"></mat-progress-bar>
           </div>
+          <p *ngIf="!user" class="subtitle is-size-7 my-3">*Você não está logado. Ao clicar em Finalizar, um perfil temporário será criado para que você possa acompanhar o seu pedido. Verifique o e-mail inserido em 'dados do comprador' para mais informações.</p>
         </div>
       </div>
     </ng-template>
