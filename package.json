@@ -90,6 +90,8 @@
     "ngx-swiper-wrapper": "^10.0.0",
     "nodemailer": "^6.4.16",
     "npm": "^6.14.10",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.1.0",
     "puff-puff": "^1.0.0",
     "rxjs": "~6.5.5",
     "save": "^2.4.0",

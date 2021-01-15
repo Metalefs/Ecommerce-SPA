@@ -1,7 +1,7 @@
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 
@@ -36,11 +36,11 @@ import { environment } from '../environments/environment';
   imports:
   [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     SharedModule,
     HttpClientModule,
     CKEditorModule,
-    BrowserAnimationsModule,
     AngularFireStorageModule,
     HammerModule,
     CookieLawModule,

@@ -90,8 +90,13 @@ export class HeaderComponent implements OnInit {
     this.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
     this.store.dispatch(new EditarCategoriaFiltroProduto(this.Categoria)).subscribe();
   }
+
   abrir_procurar(){
     this.search = !this.search;
+  }
+
+  handleSearchValue($event){
+
   }
 
   openCheckout(){

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
+import { PrimeNgModule } from './primeng.module';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
@@ -49,6 +50,7 @@ import { CardPedidoModule } from './components/card-pedido/card-pedido.module';
 import { TagProdutoSwiperComponent } from './components/tag-produto-swiper/tag-produto-swiper.component';
 import { BlogSwiperComponent } from './components/blog-swiper/blog-swiper.component';
 import { EditorModule } from './components/editor/editor/editor.module';
+import { AutocompleteDropdownModule } from './components/autocomplete-dropdown/autocomplete-dropdown.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -89,6 +91,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CommonModule,
     FontAwesomeModule,
     MaterialModule,
+    PrimeNgModule,
     DynamicFormModule,
     LoginFormModule,
     FormsModule,
@@ -111,12 +114,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardComentarioProdutoModule,
     CardBlogModule,
     CardPedidoModule,
-    EditorModule
+    EditorModule,
+    AutocompleteDropdownModule
   ],
   exports: [
     CommonModule,
     FontAwesomeModule,
     MaterialModule,
+    PrimeNgModule,
     DynamicFormModule,
     LoginFormModule,
     FormsModule,
@@ -151,7 +156,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardPedidoModule,
     TagProdutoSwiperComponent,
     BlogSwiperComponent,
-    EditorModule
+    EditorModule,
+    AutocompleteDropdownModule
   ],
   providers:[
     {

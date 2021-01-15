@@ -1,0 +1,20 @@
+<p-autoComplete
+  [(ngModel)]="selectedProdutoAdvanced"
+  [suggestions]="filteredProdutoes"
+  (completeMethod)="filterProduto($event)"
+  (onKeyUp)="outputNewValue()"
+  field="name"
+  class="w-full"
+  [size]="30"
+  [minLength]="1"
+  placeholder="Busque por produtos"
+  [dropdown]="true">
+  <ng-template let-produto pTemplate="item">
+      <div class="produto-item">
+          <figure class="image is-64x64">
+            <img src="{{produto.Imagem[0]}}">
+          </figure>
+          <div>{{produto.Nome}}</div>
+      </div>
+  </ng-template>
+</p-autoComplete>

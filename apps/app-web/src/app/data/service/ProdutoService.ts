@@ -26,7 +26,7 @@ export class ProdutoService {
     private AuthenticationService: AuthenticationService,
     private servicoImagem: ImagemService) { }
 
-    Ler(limit?:number,size?:number): Observable<PaginationResponse<Produto>> {
+    Ler(limit?:number,skip?:number): Observable<PaginationResponse<Produto>> {
         return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produto).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.ErrorHandler.handleError) // then handle the error
