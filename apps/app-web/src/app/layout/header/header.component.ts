@@ -96,7 +96,7 @@ export class HeaderComponent implements OnInit {
   }
 
   handleSearchValue($event){
-
+    this.search_filter = $event;
   }
 
   openCheckout(){

@@ -116,12 +116,14 @@
             <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a busca</button>
           </div>
           <mat-divider class="pb-2"></mat-divider>
+
           <ng-container *ngFor="let produto of Produtos" class="mx-0 px-0 ">
             <div @fadeIn
-              class="column is-4-desktop is-12-mobile is-4-tablet  is-6-mobile"
-              *ngIf="loading"
-              >
-              <mat-spinner></mat-spinner>
+            class="column is-4-desktop is-12-mobile is-4-tablet skeleton is-6-mobile"
+            *ngIf="loading"
+            >
+            <p-skeleton >
+            </p-skeleton>
             </div>
             <div @fadeIn
               class="column is-4-desktop is-12-mobile is-4-tablet pt-4"

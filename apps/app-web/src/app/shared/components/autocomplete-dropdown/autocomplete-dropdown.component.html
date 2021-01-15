@@ -10,11 +10,30 @@
   placeholder="Busque por produtos"
   [dropdown]="true">
   <ng-template let-produto pTemplate="item">
-      <div class="produto-item">
+    <a [href]="'/produtos/'+produto._id">
+      <div class="produto-item level">
+        <div class="level-left">
           <figure class="image is-64x64">
             <img src="{{produto.Imagem[0]}}">
           </figure>
-          <div>{{produto.Nome}}</div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <p>{{produto.Nome}} - </p>
+            <p *ngIf="produto.Marca">{{produto.Marca}} - </p>
+            <p *ngIf="produto.Modelo">{{produto.Modelo}} - </p>
+            <p>R${{produto.Preco.toFixed(2)}}</p>
+          </div>
+        </div>
       </div>
+    </a>
+    <div *ngIf="Produtos.length == 0" pTemplate="item">
+      <p>Nenhum produto encontrado</p>
+      <figure class="image is-64x64 no-match-img">
+        <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
+      </figure>
+      <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
+      <button md-mat-stroked-button color="primary" (click)="selectedProdutoAdvanced = ''">Clique para redefinir a busca</button>
+    </div>
   </ng-template>
 </p-autoComplete>

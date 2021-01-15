@@ -149,6 +149,9 @@ input{
   height: 100%;
   color: #696D8C;
 }
+.control.is-small input{
+  max-width: 40px;
+}
 
 .input-container{
     height: 40px;
