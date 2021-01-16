@@ -36,16 +36,16 @@ export class ItemCarouselService {
     }
 
     async Editar(item: entities.ItemCarousel): Promise<Observable<entities.ItemCarousel>> {
-      return this.EditarImagens(item).then(x=>{
-          let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
-          alert("Editando !");
-          console.log(item);
-          return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
-            payload).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError)
-          )
-      });
+      // return this.EditarImagens(item).then(x=>{
+      //     // alert("Editando !");
+      //     console.log(item);
+      //   });
+      let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
+      return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
+        payload).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.ErrorHandler.handleError)
+      )
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});

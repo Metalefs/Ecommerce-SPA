@@ -1,8 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { AuthenticationService } from '../../../../core/service/authentication/authentication.service';
-import { Usuario } from 'libs/data/src/lib/classes';
+
 @Component({
   selector: 'personalizados-lopes-escrever-comentario',
   templateUrl: './escrever-comentario.component.html',
@@ -29,7 +28,6 @@ export class EscreverComentarioComponent implements OnInit {
     DataHoraCriacao:new Date(),
     DataHoraExclusao: null
   };
-  Editor = ClassicEditor;
   constructor(auth:AuthenticationService) {
     auth.currentUser.subscribe(x=>{
       if(x && x._id){

@@ -34,7 +34,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   textoAtualizar:string = 'Atualizar carrinho';
   textoEsgotado:string  = 'Esgotado';
   Url:string;
-  Produto:Produto;
+  Produto:Produto = null;
   statusProduto=StatusProduto;
   Liked:boolean = false;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
@@ -250,7 +250,7 @@ export class ExibicaoProdutoComponent implements OnInit {
         console.log(prod)
         this.Produto = prod[0];
         if(!prod)
-        this.router.navigateByUrl('/produtos');
+        this.router.navigate(['/produtos']);
         prod[0]?.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
         });
@@ -261,7 +261,7 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.Orcamento$.subscribe( res => {
         const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
         if(index<0)
-        this.router.navigateByUrl('/produtos');
+        this.router.navigate(['/produtos']);
         this.Produto = res.Produto[index].Produto;
         this.Produto.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });

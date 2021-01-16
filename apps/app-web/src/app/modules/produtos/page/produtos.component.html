@@ -104,7 +104,8 @@
             </div>
           </div>
         </div>
-        <p>Exibindo {{Produtos.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
+        <p *ngIf="total!=0">Exibindo {{Produtos.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
+        <p-skeleton *ngIf="total==0"></p-skeleton>
         <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
@@ -120,10 +121,10 @@
           <ng-container *ngFor="let produto of Produtos" class="mx-0 px-0 ">
             <div @fadeIn
             class="column is-4-desktop is-12-mobile is-4-tablet skeleton is-6-mobile"
-            *ngIf="loading"
-            >
-            <p-skeleton >
-            </p-skeleton>
+              *ngIf="loading"
+              >
+              <p-skeleton >
+              </p-skeleton>
             </div>
             <div @fadeIn
               class="column is-4-desktop is-12-mobile is-4-tablet pt-4"

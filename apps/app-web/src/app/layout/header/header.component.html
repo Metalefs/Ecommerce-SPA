@@ -4,7 +4,7 @@
 >
   <!-- container -->
   <mat-toolbar
-  class="pos-sticky container mr-0 ">
+  class="mat-toolbar pos-sticky mr-0 dis-flex flex-c w-full">
   <div class="w-full margin dis-flex flex-m flex-ba py-4 mx-3" style="height: 90px;">
 
     <a @fadeIn href="#" class="logo"><img class=" pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO"></a>
@@ -13,7 +13,9 @@
       <div class="column is-12-mobile animate__animated animate__slideInLeft">
         <div class="control has-icons-right animate__animated animate__slideInLeft">
           <form type="get" action="/produtos/?nome={{search_filter}}">
-              <personalizados-lopes-autocomplete-dropdown class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
+              <personalizados-lopes-autocomplete-dropdown
+               (VerTodosResultados)="executar_pesquisa()"
+               class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
               <button [routerLink]="['/produtos']" [queryParams]="{nome:search_filter}" class="ml-6 s-button z-top">
                 <mat-icon>search</mat-icon>
               </button>
@@ -78,8 +80,8 @@
       </div>
     </div>
 
-    <div class="pb-4 dis-flex flex-m mx-6">
-      <div class="is-hidden-desktop box hoverable clickable float-r ml-6">
+    <div class="pb-4 dis-flex flex-m">
+      <div class="is-hidden-desktop box hoverable clickable float-r ml-4">
         <div class="ml-4"></div>
         <span class=" icon is-small is-right hoverable clickable float-r" (click)="search = !search">
           <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>

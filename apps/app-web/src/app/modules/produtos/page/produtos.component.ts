@@ -48,7 +48,7 @@ export class ProdutosComponent implements OnInit {
 
   page:number = 1;
   limit:number = 12;
-  total:number;
+  total:number = 0;
 
   loading:boolean = false;
   imagens:[{path:string}] = [{path:ObterImagensCarousel()[0]}];

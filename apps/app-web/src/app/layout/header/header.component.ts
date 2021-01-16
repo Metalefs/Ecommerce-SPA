@@ -94,7 +94,9 @@ export class HeaderComponent implements OnInit {
   abrir_procurar(){
     this.search = !this.search;
   }
-
+  executar_pesquisa(){
+    this.router.navigate(['/produtos',{queryParams:{nome:this.search_filter}}])
+  }
   handleSearchValue($event){
     this.search_filter = $event;
   }

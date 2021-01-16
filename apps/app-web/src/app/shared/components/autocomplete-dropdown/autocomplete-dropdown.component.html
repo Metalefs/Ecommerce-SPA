@@ -11,14 +11,14 @@
   [dropdown]="true">
   <ng-template let-produto pTemplate="item">
     <a [href]="'/produtos/'+produto._id">
-      <div class="produto-item level">
-        <div class="level-left">
+      <div class="produto-item columns is-mobile of-x-scroll">
+        <div class="column">
           <figure class="image is-64x64">
             <img src="{{produto.Imagem[0]}}">
           </figure>
         </div>
-        <div class="level-right">
-          <div class="level-item">
+        <div class="column">
+          <div class="">
             <p>{{produto.Nome}} - </p>
             <p *ngIf="produto.Marca">{{produto.Marca}} - </p>
             <p *ngIf="produto.Modelo">{{produto.Modelo}} - </p>
@@ -27,13 +27,20 @@
         </div>
       </div>
     </a>
-    <div *ngIf="Produtos.length == 0" pTemplate="item">
-      <p>Nenhum produto encontrado</p>
-      <figure class="image is-64x64 no-match-img">
-        <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
-      </figure>
-      <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
-      <button md-mat-stroked-button color="primary" (click)="selectedProdutoAdvanced = ''">Clique para redefinir a busca</button>
-    </div>
+
   </ng-template>
+  <a (click)="verTodosResultados()">
+    <button mat-flat-button class="border">
+      Ver todos os resultados
+    </button>
+  </a>
+  <div *ngIf="Produtos.length == 0" pTemplate="item">
+    <p>Nenhum produto encontrado</p>
+    <figure class="image is-64x64 no-match-img">
+      <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
+    </figure>
+    <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
+    <button md-mat-stroked-button color="primary" (click)="selectedProdutoAdvanced = ''">Clique para redefinir a busca</button>
+  </div>
+
 </p-autoComplete>

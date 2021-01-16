@@ -18,6 +18,8 @@ export class AutocompleteDropdownComponent implements OnInit {
 
   @Output()
   SearchValueChanged = new EventEmitter();
+  @Output()
+  VerTodosResultados = new EventEmitter();
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",
     NomeCategoria:"",
@@ -36,10 +38,11 @@ export class AutocompleteDropdownComponent implements OnInit {
     })
   }
   outputNewValue(){
-    console.log(this.selectedProdutoAdvanced)
     this.SearchValueChanged.emit(this.selectedProdutoAdvanced);
   }
-
+  verTodosResultados(){
+    this.VerTodosResultados.emit(this.selectedProdutoAdvanced);
+  }
   filterProduto(event) {
     let query = event.query;
     this.fQuery.Nome = query;

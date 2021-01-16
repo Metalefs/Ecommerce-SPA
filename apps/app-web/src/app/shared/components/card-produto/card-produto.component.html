@@ -171,12 +171,12 @@
             <ng-template #preco_promo>
               <div class="txt-left">
                 <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+                <p class="preco-produto  has-text-success promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
               </div>
             </ng-template>
             <ng-template #preco_normal>
               <div class="txt-left">
-                <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                <p class="preco-produto has-text-success ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
               </div>
             </ng-template>
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">

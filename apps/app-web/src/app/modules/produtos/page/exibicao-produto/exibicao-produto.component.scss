@@ -8,6 +8,21 @@ gallery{
 #lightbox-lightbox > gallery{
   background-color:#000000bf !important;
 }
+
+.skeleton{
+  min-height: 577px;
+  border: 1px solid #e7e7e7;
+  padding: 0 !important;
+  margin: 0 !important;
+  &:hover{
+    box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
+    background:rgb(229, 229, 229) none repeat scroll 0% 0%;
+    border: 1px solid rgb(215, 215, 215);
+    &button{
+      display: block;
+    }
+  }
+}
 .bg{
   background:url(/assets/images/empresa/double-bubble-outline.png);
   padding-bottom: 1rem;
