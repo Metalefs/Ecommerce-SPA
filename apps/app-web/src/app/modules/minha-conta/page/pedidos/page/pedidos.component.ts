@@ -13,7 +13,7 @@ import { DetalhesPedidoComponent } from '../detalhes-pedido/detalhes-pedido.comp
   animations:[fade]
 })
 export class PedidosComponent implements OnInit {
-  Pedidos:Orcamento[];
+  Pedidos:Orcamento[] = null;
   Loading:boolean = true;
   constructor(private orcamentoService:OrcamentoService,
    private auth:AuthenticationService,

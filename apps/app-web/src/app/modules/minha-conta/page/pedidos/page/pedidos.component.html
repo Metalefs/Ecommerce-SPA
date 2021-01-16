@@ -7,7 +7,7 @@
     <mat-spinner></mat-spinner>
   </div>
   <div class="w-full of-x-scroll">
-    <table class="w-full card table is-striped is-hoverable">
+    <table *ngIf="Pedidos" class="w-full card table is-striped is-hoverable">
       <thead>
         <tr >
           <th>ID</th>
@@ -40,5 +40,9 @@
         </tr>
       </tbody>
     </table>
+    <div *ngIf="!Pedidos">
+      <h1>Nenhum pedido encontrado. </h1>
+      <p >Quando fizer um pedido na sua conta, você vai poder encontra-lo aqui.</p>
+    </div>
   </div>
 </section>
