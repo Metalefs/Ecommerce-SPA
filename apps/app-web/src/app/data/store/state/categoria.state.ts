@@ -5,6 +5,7 @@ import { CategoriaService } from '../../service';
 import { LerCategoria, EditarCategoria, AdicionarCategoria, RemoverCategoria } from '../actions/categoria.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { order } from '../../../helper/ObjHelper';
 
 export class CategoriaStateModel{
   Categorias: entities.Categoria[];
@@ -43,7 +44,7 @@ export class CategoriaState {
           const state = getState();
           setState({
             ...state,
-            Categorias: result,
+            Categorias: result.sort((a, b) => order(a,b,true)),
             areCategoriasLoaded: true
           });
         }));

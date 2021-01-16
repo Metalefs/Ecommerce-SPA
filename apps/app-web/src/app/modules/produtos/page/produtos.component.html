@@ -4,7 +4,7 @@
       <div class="column has-background-white bo-0">
         <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
           <p>Categorias</p>
-          <span class="is-size-7"><em>({{CategoriaAtiva.Nome}})</em></span>
+          <span class="is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
           <!-- <mat-icon>category</mat-icon> -->
         </div>
       </div>
@@ -61,14 +61,14 @@
               data-aos-delay="50"
               class="pointer w-full w-full-m"
               (click)="SetCategoria(categoria)"
-              [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
+              [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active' : ''">
               <a mat-strocked-button>
               <button>
                   <mat-icon
-                    [ngClass]="CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">
-                    {{CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'arrow_left'}}
+                    [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == categoria?.Nome ?  'done' : 'arrow_left'}}
                   </mat-icon>
-                  {{categoria.Nome}}
+                  {{categoria?.Nome}}
                 </button>
               </a>
               <mat-divider></mat-divider>
@@ -98,15 +98,15 @@
               <div class="w-full">
                 <div class="select w-full">
                   <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()" [value]="activeOrderFilter">
-                    <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order.id">{{order.name}}</option>
+                    <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order?.id">{{order?.name}}</option>
                   </select>
                 </div>
             </div>
           </div>
         </div>
-        <p *ngIf="total!=0">Exibindo {{Produtos.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
+        <p *ngIf="total!=0">Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
         <p-skeleton *ngIf="total==0"></p-skeleton>
-        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva.Nome}}</h2>
+        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva?.Nome}}</h2>
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
           <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]&&total == 0" class="m-lr-auto">
@@ -136,7 +136,7 @@
             </div>
           </ng-container>
         </div>
-        <a *ngIf="total > Produtos.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
+        <a *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
       </div>
     </div>
   </div>

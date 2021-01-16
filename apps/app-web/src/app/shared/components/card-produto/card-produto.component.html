@@ -11,14 +11,18 @@
       </a>
 
       <a matRipple [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="dis-flex flex-w">
-        <img mat-card-image #imgProduto (mouseenter)="
+        <img mat-card-image #imgProduto
+        class="w-full-i"
+        (mouseenter)="
       this.imgProduto.classList.add('hide');
       this.imgProduto.classList.remove('show');
       this.imgProduto2.classList.remove('hide');
       this.imgProduto2.classList.add('show');
       " [src]="Produto.Imagem[0]" [style.opacity]="'1'" [style.display]="'block'"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-        <img mat-card-image #imgProduto2 (mouseout)="
+        <img mat-card-image #imgProduto2
+        class="w-full-i"
+        (mouseout)="
       this.imgProduto2.classList.remove('show');
       this.imgProduto2.classList.add('hide');
       this.imgProduto.classList.remove('hide');
@@ -51,7 +55,7 @@
           <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle
-            class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 is-3 preco">
+            class="pos-relative w-full z-index-2 px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -130,14 +134,18 @@
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </a>
 
-      <div class="swiper-container z-index-1" [swiper]="swiperConfig">
+      <div class="swiper-container" [swiper]="swiperConfig">
         <div class="swiper-wrapper">
           <div class="swiper-slide" *ngFor="let image of Produto.Imagem">
-            <img mat-card-image #imgProduto [src]="image" [style.opacity]="'1'" [style.display]="'block'"
+            <img mat-card-image
+             class="w-small"
+             #imgProduto [src]="image" [style.opacity]="'1'" [style.display]="'block'"
               alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
           </div>
         </div>
         <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev fa fa-thumbs-up bo-cir has-background-info z-index-top clickable hoverable"></div>
+        <div class="swiper-button-next fa fa-thumbs-up bo-cir has-background-info z-index-top clickable hoverable"></div>
       </div>
 
 
@@ -165,7 +173,7 @@
           <mat-card-subtitle class="mat-card-subtitle preco is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle mat-card-subtitle
-            class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 is-3 preco">
+            class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>

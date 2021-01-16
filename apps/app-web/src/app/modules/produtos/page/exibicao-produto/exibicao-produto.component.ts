@@ -24,10 +24,12 @@ import { ComentarioProdutoService, ProdutoService } from 'apps/app-web/src/app/d
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { fade } from 'apps/app-web/src/app/animations';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
-  styleUrls: ['./exibicao-produto.component.scss']
+  styleUrls: ['./exibicao-produto.component.scss'],
+  animations:[fade]
 })
 export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;

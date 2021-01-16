@@ -9,6 +9,59 @@ export function isEmpty(obj) {
   }
   return true;
 }
+export function order(a,b,desc){
+  if(desc){
+    if (a.Nome < b.Nome) {
+      return 1;
+    }
+    if (a.Nome > b.Nome) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+  else{
+    if (a.Nome > b.Nome) {
+      return 1;
+    }
+    if (a.Nome < b.Nome) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+}
+export function orderPreco(a,b,desc){
+
+  if(!a.Preco)
+  a.Preco = 0;
+
+  if(!b.Preco)
+  b.Preco = 0;
+
+  if(a.Preco && b.Preco)
+
+  if(!desc){
+    if (a?.Preco < b?.Preco) {
+      return 1;
+    }
+    if (a?.Preco > b?.Preco) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+  else{
+    if (a?.Preco > b?.Preco) {
+      return 1;
+    }
+    if (a?.Preco < b?.Preco) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+}
 export function removeDuplicates(myArr, prop) {
   return myArr.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;

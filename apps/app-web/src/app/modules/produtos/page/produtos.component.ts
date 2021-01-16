@@ -19,6 +19,7 @@ import { FiltroCategoria, FiltroCategoriaDialogComponent } from './dialogs/filtr
 import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 import { ProdutoService } from '../../../data/service';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
+import { order, orderPreco } from '../../../helper/ObjHelper';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -185,7 +186,12 @@ export class ProdutosComponent implements OnInit {
 
     return true;
   }
-
+  order(a,b,desc){
+    return order(a,b,desc)
+  }
+  orderPreco(a,b,desc){
+    return orderPreco(a,b,desc)
+  }
 
   redefinirBusca(){
     this.SetCategoria(new Categoria(this.defaultCategory,this.defaultCategory));
@@ -260,59 +266,6 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  order(a,b,desc){
-    if(desc){
-      if (a.Nome < b.Nome) {
-        return 1;
-      }
-      if (a.Nome > b.Nome) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
-    }
-    else{
-      if (a.Nome > b.Nome) {
-        return 1;
-      }
-      if (a.Nome < b.Nome) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
-    }
-  }
-  orderPreco(a,b,desc){
-
-    if(!a.Preco)
-    a.Preco = 0;
-
-    if(!b.Preco)
-    b.Preco = 0;
-
-    if(a.Preco && b.Preco)
-
-    if(!desc){
-      if (a?.Preco < b?.Preco) {
-        return 1;
-      }
-      if (a?.Preco > b?.Preco) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
-    }
-    else{
-      if (a?.Preco > b?.Preco) {
-        return 1;
-      }
-      if (a?.Preco < b?.Preco) {
-        return -1;
-      }
-      // a must be equal to b
-      return 0;
-    }
-  }
   translate(orderId:number){
     return this.ordertypes.filter(x=>x.id == orderId)[0].name;
   }

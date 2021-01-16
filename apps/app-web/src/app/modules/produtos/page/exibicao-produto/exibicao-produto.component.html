@@ -52,7 +52,7 @@
         </span>
       </div>
 
-      <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky">
+      <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky bbr">
 
         <div class="columns is-multiline mb-0 pb-0">
 
@@ -243,7 +243,7 @@
                   </button>
                 </div>
               </div>
-              <div class="box columns is-multiline" *ngIf="this.Produto?.Arte">
+              <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
                 <a>Como essa arte será usada no produto?</a>
                 <div class="column">
                   <mat-card>
@@ -260,8 +260,8 @@
                     </mat-card-actions>
                   </mat-card>
                 </div>
-                <div class="column">
-                  <mat-card *ngIf="Produto?.ArteSecundaria">
+                <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column">
+                  <mat-card >
                     <mat-card-header>
                       <mat-card-subtitle>Secundaria</mat-card-subtitle>
                     </mat-card-header>
@@ -344,7 +344,32 @@
 
 <div class="bg-transp">
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
+    <div class=" z-index-2 my-6">
+
+      <mat-accordion >
+        <mat-expansion-panel class="">
+          <mat-expansion-panel-header class="dis-flex flex-m box bo-0 ">
+            <mat-panel-title>
+              <mat-icon mat-card-avatar class="has-text-dark">comment</mat-icon>
+            </mat-panel-title>
+            <mat-panel-description class="has-text-dark">
+              Comentar
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="mx-2">
+            <div class="w-full flex-w">
+              <p>Avalie o produto</p>
+
+            </div>
+            <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    </div>
     <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+
   </div>
 
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
@@ -356,27 +381,3 @@
   </div>
 </div>
 
-<div class="pos-fixed right-0 bottom-0 z-index-2 w-full-md ml-6">
-
-  <mat-accordion >
-    <mat-expansion-panel class="">
-      <mat-expansion-panel-header class="dis-flex flex-m box border shadow-light bo-0 ">
-        <mat-panel-title>
-          <mat-icon mat-card-avatar class="has-text-dark">comment</mat-icon>
-        </mat-panel-title>
-        <mat-panel-description class="has-text-dark">
-          Comentar
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div class="mx-2">
-        <div class="w-full flex-w">
-          <p>Avalie o produto</p>
-
-        </div>
-        <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-      </div>
-    </mat-expansion-panel>
-  </mat-accordion>
-
-
-</div>

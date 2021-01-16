@@ -27,20 +27,14 @@
         </div>
       </div>
     </a>
-
   </ng-template>
-  <a (click)="verTodosResultados()">
-    <button mat-flat-button class="border">
-      Ver todos os resultados
-    </button>
-  </a>
-  <div *ngIf="Produtos.length == 0" pTemplate="item">
+  <ng-template  *ngIf="Produtos.length == 0" pTemplate="item">
     <p>Nenhum produto encontrado</p>
     <figure class="image is-64x64 no-match-img">
       <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
     </figure>
     <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
     <button md-mat-stroked-button color="primary" (click)="selectedProdutoAdvanced = ''">Clique para redefinir a busca</button>
-  </div>
+  </ng-template>
 
 </p-autoComplete>

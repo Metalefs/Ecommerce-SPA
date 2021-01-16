@@ -28,7 +28,7 @@ img{
   width: 100%;
 }
 .mat-card{
-  min-height: 577px;
+  min-height: 620px;
   display: flex !important;
   align-items: center;
   // background: rgba(49, 47, 79,.25);
@@ -87,9 +87,14 @@ img{
 .mat-card-image{
   margin: 0;
   padding:2px;
-  height: 240px;
-  // width: auto;
-  // width: 322px;
+  height: 300px;
+
+}
+.w-full-i{
+  width: 100% !important;
+}
+.w-small{
+  width: 385px;
 }
 .zoom{
   filter: opacity(1);

@@ -80,6 +80,7 @@ export class ProdutoSwiperComponent implements OnInit {
               },
               centerInsufficientSlides   : false,
               slidesPerView:5,
+              spaceBetween: 2,
               autoplay: {
                 delay               : 4000,
                 disableOnInteraction: false,
