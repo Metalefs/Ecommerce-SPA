@@ -38,3 +38,9 @@
     </div>
   </div>
 </div>
+
+<div *ngIf="loading" class="a-i-c columns is-multiline bg flex-sa mlr-auto">
+  <div class="column is-4 my-1" *ngFor="let card of [].constructor(3);">
+    <p-skeleton width="10rem" height="4rem"></p-skeleton>
+  </div>
+</div>

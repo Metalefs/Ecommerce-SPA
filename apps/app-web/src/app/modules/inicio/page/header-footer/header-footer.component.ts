@@ -8,11 +8,13 @@ import { ImagemService } from 'apps/app-web/src/app/data/service';
 })
 export class HeaderFooterComponent implements OnInit {
   Cards:SobreCard[];
+  loading:boolean = true;
   constructor(private imagemService:ImagemService) {
 
   }
   ngOnInit(): void {
     this.imagemService.FiltrarPorNome("GIF Produtos").subscribe(x=>{
+      this.loading = false;
       this.Cards = [
         {
           title:"Produtos",
