@@ -13,7 +13,9 @@
 }
 .mat-card{
   animation: bounce 1s ease forwards;
-  background:#ffffff
+  background:#ffffff;
+  border-radius:1rem;
+  // border-top-left-radius:2rem;
 }
 .mat-card-image{
   margin:0;

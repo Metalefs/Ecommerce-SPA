@@ -23,6 +23,7 @@ import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { ComentarioProdutoService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -37,6 +38,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   Produto:Produto = null;
   statusProduto=StatusProduto;
   Liked:boolean = false;
+  iconeWhatsapp = faWhatsapp;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
@@ -315,6 +317,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     if(!localStorage.getItem(`rateproduto${this.Produto._id}`)){
       this.loading = true;
       this.store.dispatch(new RateProduto(this.Produto._id, $event.rating)).subscribe(x=>{
+        this.Produto.Rating.push($event.rating);
         this.readonlyRating = true;
         localStorage.setItem(`rateproduto${this.Produto._id}`, $event.rating.toString());
         this.loading = false;

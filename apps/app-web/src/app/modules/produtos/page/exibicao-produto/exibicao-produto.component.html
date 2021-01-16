@@ -68,7 +68,7 @@
                 labelText="{{meanRating()}}"
                 [showHalfStars]="true" [step]="0.5" size="medium"
                 [rating]="meanRating()"
-                staticColor="ok" [readOnly]="true"
+                staticColor="ok"
                 (starClickChange)="onClick($event)"
                 (ratingChange)="onRatingChange($event)"
                 (hoverRatingChange)="onHoverRatingChange($event)"
@@ -202,7 +202,7 @@
             <div class="mh-70 pt-3 px-2 txt-left of-x-scroll">
               <div class="columns is-vcentered px-2 is-multiline">
                 <div class="column px-2">
-                  <button mat-flat-button class="button file is-info has-name pb-3">
+                  <button mat-flat-button class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
                     <label class="file-label">
                       <input class="file-input" multiple type="file" (change)="upload($event)">
                       <span class="file-cta">
@@ -225,7 +225,7 @@
                   </mat-checkbox>
                 </div>
                 <div class="column px-2">
-                  <button *ngIf="arte_traseira" mat-flat-button class="button file is-info has-name pb-3">
+                  <button *ngIf="arte_traseira" mat-flat-button class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
                     <label class="file-label">
                       <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
                       <span class="file-cta">
@@ -286,8 +286,10 @@
                   <div class="columns w-full pb-2 is-gapless is-multiline">
                     <div class="column w-full is-12-mobile">
                       <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                      title="Entrar em contato pelo whatsapp"
                         class="button mb-2 is-success w-full has-text-white has-text-weight-medium">
-                        <span class="nunitoParagraphy16 has-text-white">Entrar em contato via whatsapp</span>
+                        <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
+                        <span class="ml-3 nunitoParagraphy16 has-text-white">Contatar via whatsapp</span>
                       </button>
                     </div>
                 </div>
