@@ -1,0 +1,21 @@
+.is-pri-image{
+  transform: rotate(0deg);
+  position: relative;
+  top: 0;
+  z-index: 1;
+  right: 0;
+  &:hover{
+    // z-index: 2;
+  }
+}
+.is-sec-image{
+  transform: rotate(15deg);
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  border: 1px solid;
+  left: 4px;
+  &:hover{
+    z-index: 2;
+  }
+}

@@ -1,0 +1,89 @@
+<h1 mat-dialog-title class="tem-cor-primaria">Qual arte será usada?</h1>
+
+<div mat-dialog-content>
+  <div class="columns is-mobile">
+    <div class="column">
+      <figure class="image is-128x182">
+        <img src="{{Produto.Imagem[0]}}" alt="">
+      </figure>
+    </div>
+    <div class="column">
+      <h1>+</h1>
+    </div>
+    <div class="column">
+      <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
+      <ng-template #arte>
+        <mat-card >
+          <mat-card-header>
+            <mat-card-subtitle>Primaria</mat-card-subtitle>
+          </mat-card-header>
+          <figure class="image is-128x128">
+            <img mat-mat-card-image [src]="this.Produto?.Arte" height="200">
+          </figure>
+          <mat-card-actions>
+            <a mat-icon-button (click)="Produto.Arte = null">
+              <mat-icon>clear</mat-icon>
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      </ng-template>
+      <ng-template #novaArte>
+        <div class="px-2 txt-center">
+          <em>Sem Arte</em>
+          <button mat-flat-button class="button file is-info has-name pb-3 px-0">
+            <label class="file-label">
+              <input class="file-input" type="file" (change)="upload($event,Produto)">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+              </span>
+            </label>
+          </button>
+        </div>
+      </ng-template>
+    </div>
+    <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column">
+      <mat-card >
+        <mat-card-header>
+          <mat-card-subtitle>Secundaria</mat-card-subtitle>
+        </mat-card-header>
+        <figure class="image is-128x128">
+          <img mat-mat-card-image [src]="this.Produto?.ArteSecundaria" height="200">
+        </figure>
+        <mat-card-actions>
+          <a mat-icon-button (click)="Produto.ArteSecundaria = null">
+            <mat-icon>clear</mat-icon>
+          </a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div class="column">
+    <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
+      Tem arte traseira
+    </mat-checkbox>
+  </div>
+  <div class="column px-2">
+    <button @fadeIn *ngIf="arte_traseira && !Produto.ArteSecundaria" mat-flat-button class="button file is-info has-name pb-3"
+      title="Enviar arte para usar no produto">
+      <label class="file-label">
+        <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">
+            Enviar arte secundaria <span class="mr-1"> </span>
+          </span>
+          <span class="file-name">
+            {{' '+ secondaryfileNames}}
+          </span>
+        </span>
+      </label>
+    </button>
+    <button mat-flat-button [mat-dialog-close]="Produto">
+      Concluir
+    </button>
+  </div>
+</div>

@@ -24,7 +24,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     console.log(req.body.Usuario);
     UsuarioService.create(req.body.Usuario)
         .then((user: entities.Usuario | any) => res.json(user))
-        .catch(reason => ErrorHandler.AuthorizationException(reason,res));
+        .catch(reason => ErrorHandler.ConflictException(reason,res));
   }
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
@@ -35,9 +35,9 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     let user:Usuario = req.body.Usuario;
     let senha = UsuarioService.generateRandomPassword();
     user.Senha = senha;
-    UsuarioService.create(req.body.Usuario)
+    UsuarioService.createTempAccount(req.body.Usuario)
         .then((user: entities.Usuario | any) => res.json(user))
-        .catch(reason => ErrorHandler.AuthorizationException(reason,res));
+        .catch(reason => ErrorHandler.ConflictException(reason,res));
   }
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);

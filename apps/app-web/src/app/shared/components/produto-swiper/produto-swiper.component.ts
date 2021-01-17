@@ -1,5 +1,5 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -24,6 +24,9 @@ export class ProdutoSwiperComponent implements OnInit {
   slidesPerView:number=5;
   @ViewChild('swiperEl') swiperEl: ElementRef;
 
+  mobileQuery: MediaQueryList;
+  tabletQuery: MediaQueryList;
+  deskQuery: MediaQueryList;
 
   onSwiperHover( hover: boolean ) {
     if ( hover ) {
@@ -32,63 +35,102 @@ export class ProdutoSwiperComponent implements OnInit {
       this.swiperEl.nativeElement.swiper.autoplay.start();
     }
   }
-  constructor(
-    breakpointObserver: BreakpointObserver,private store:Store) {
-      this.swiperConfig$ = breakpointObserver.observe([
-        Breakpoints.HandsetPortrait
-      ]).pipe(
-        map(res => {
-          if (res.matches) {
-              return {
-                direction              : 'horizontal',
-                updateOnWindowResize   : true,
-                autoHeight             : true,
-                height                 : 400,
-                keyboard               : true,
-                loop                   : true,
-                loopFillGroupWithBlank : false,
-                preloadImages          : true,
-                lazy                   : false,
-                observer               : true,
-                navigation: {
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                },
-                slidesPerView:1,
-                autoplay: {
-                  delay               : 4000,
-                  disableOnInteraction: true,
 
-                },
-              }
-          }
-          else{
-            return {
-              direction              : 'horizontal',
-              updateOnWindowResize   : true,
-              autoHeight             : true,
-              height                 : 400,
-              keyboard               : true,
-              loop                   : true,
-              loopFillGroupWithBlank : false,
-              preloadImages          : true,
-              lazy                   : false,
-              observer               : true,
-              navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              },
-              centerInsufficientSlides   : false,
-              slidesPerView:5,
-              spaceBetween: 2,
-              autoplay: {
-                delay               : 4000,
-                disableOnInteraction: false,
-              },
-            }
-          }
-        })
-      );
+  swiperConfig$: Observable<SwiperConfigInterface>;
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private store:Store) {
+
+      this.swiperConfig$ = this.breakpointObserver
+            .observe([Breakpoints.Small, Breakpoints.HandsetPortrait]).pipe(
+              map((state: BreakpointState) => {
+
+                if (state.matches) {
+                  return {
+                    direction              : 'horizontal',
+                    updateOnWindowResize   : true,
+                    autoHeight             : true,
+                    height                 : 400,
+                    keyboard               : true,
+                    loop                   : true,
+                    loopFillGroupWithBlank : false,
+                    preloadImages          : true,
+                    lazy                   : false,
+                    observer               : true,
+                    slidesPerView          : 1,
+                    navigation: {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                    },
+                    autoplay: {
+                      delay               : 4000,
+                      disableOnInteraction: true,
+                    }
+                  }
+                }
+            })
+            );
+      this.swiperConfig$ = this.breakpointObserver
+            .observe([Breakpoints.Tablet]).pipe(
+              map((state: BreakpointState) => {
+
+                if (state.matches) {
+                  return {
+                    direction              : 'horizontal',
+                    updateOnWindowResize   : true,
+                    autoHeight             : true,
+                    height                 : 400,
+                    keyboard               : true,
+                    loop                   : true,
+                    loopFillGroupWithBlank : false,
+                    preloadImages          : true,
+                    lazy                   : false,
+                    observer               : true,
+                    slidesPerView          : 3,
+                    navigation: {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                    },
+                    autoplay: {
+                      delay               : 4000,
+                      disableOnInteraction: true,
+                    }
+                  }
+                }
+            })
+            );
+      this.swiperConfig$ = this.breakpointObserver
+            .observe([Breakpoints.Web]).pipe(
+              map((state: BreakpointState) => {
+
+                if (state.matches) {
+                  return {
+                    direction              : 'horizontal',
+                    updateOnWindowResize   : true,
+                    autoHeight             : true,
+                    height                 : 400,
+                    keyboard               : true,
+                    loop                   : true,
+                    loopFillGroupWithBlank : false,
+                    preloadImages          : true,
+                    lazy                   : false,
+                    observer               : true,
+                    slidesPerView          : 5,
+                    navigation: {
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev',
+                    },
+                    autoplay: {
+                      delay               : 4000,
+                      disableOnInteraction: true,
+                    }
+                  }
+                }
+            })
+            );
+
+
+
       this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
         tap((areProdutosLoaded) => {
           if(!areProdutosLoaded)
@@ -99,9 +141,9 @@ export class ProdutoSwiperComponent implements OnInit {
       });
     }
 
-    swiperConfig$: Observable<SwiperConfigInterface>;
   ngOnInit(): void {
     this.swiperEl.nativeElement.swiper.autoplay.start();
+
   }
 
 }

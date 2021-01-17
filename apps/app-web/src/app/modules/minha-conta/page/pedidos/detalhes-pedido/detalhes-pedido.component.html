@@ -1,10 +1,37 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Dados do Pedido</h1>
 <div mat-dialog-content>
-  <!-- <mat-toolbar>
-    <mat-toolbar-row>
-     <H1>Dados do Pedido</H1>
-    </mat-toolbar-row>
-  </mat-toolbar> -->
+  <h4 class="subtitle flex-m">
+    <i>Status do pagamento:  </i>
+    <mat-chip-list>
+      <mat-chip>
+        {{Pedido.ResultadoPagamentoMP?.status}}
+      </mat-chip>
+    </mat-chip-list>
+  </h4>
+  <mat-divider></mat-divider>
+  <mat-list>
+    <mat-list-item>
+      <p>Total do pedido:</p>
+    </mat-list-item>
+    <mat-list-item>
+      <h2 class="preco">R${{Pedido.Preco.toFixed(2)}}</h2>
+    </mat-list-item>
+  </mat-list>
+  <mat-divider></mat-divider>
+  <div class="py-2">
+    <personalizados-lopes-exibicao-perfil [user]="Pedido.Usuario"></personalizados-lopes-exibicao-perfil>
+  </div>
+  <p><strong>Mensagem do pedido: </strong> {{Pedido.Mensagem}}</p>
+  <mat-card>
+    <mat-card-actions>
+      <div class="box">
+        <p>Criado em:{{Pedido.DataHoraCriacao}} </p>
+        <p>Alterado em: {{Pedido.DataHoraAlteracao}}</p>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+  <mat-divider></mat-divider>
+
   <div class="card border my-3">
     <personalizados-lopes-exibicao-perfil [user]="Pedido.Usuario"></personalizados-lopes-exibicao-perfil>
   </div>

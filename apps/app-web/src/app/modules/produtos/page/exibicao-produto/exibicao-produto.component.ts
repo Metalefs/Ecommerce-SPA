@@ -25,6 +25,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { fade } from 'apps/app-web/src/app/animations';
+import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -132,18 +133,35 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
           this.orcamentoId = x.codOrcamento;
         });
-        this.navegarParaCheckout();
+        if(!this.Produto.Arte){
+          this.AbrirModalArte();
+        }else{
+          this.navegarParaCheckout();
+        }
       }
       else{
         this.Produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
-        this.navegarParaCheckout();
-        this.openCheckout();
+        if(!this.Produto.Arte){
+          this.AbrirModalArte();
+        }else{
+          this.navegarParaCheckout();
+          this.openCheckout();
+        }
       }
       this.textoAdicionar = this.textoAtualizar;
       this.isOrcamento = true;
 
     });
+  }
+  AbrirModalArte(){
+    let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
+      data:this.Produto
+    })
+    dialogref.afterClosed().subscribe(x=>{
+      this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+      this.navegarParaCheckout();
+    })
   }
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{

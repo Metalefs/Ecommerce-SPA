@@ -50,7 +50,14 @@
                 <figure class="image is-64x64 d-block ">
                   <ng-container *ngIf="element?.Produto.Arte then arte else novaArte"></ng-container>
                   <ng-template #arte>
-                    <img src="{{element?.Produto.Arte || ''}}">
+
+                    <figure class="image is-64x64 is-pri-image">
+                      <img src="{{element?.Produto.Arte || ''}}" class="">
+                    </figure>
+
+                    <figure *ngIf="element?.Produto.ArteSecundaria" class="image is-64x64 is-sec-image">
+                      <img src="{{element?.Produto.Imagem[0]}}">
+                    </figure>
                   </ng-template>
                   <ng-template #novaArte>
                     <div class="px-2 txt-center">

@@ -10,7 +10,7 @@ import { CriarProdutoDialogComponent } from './DialogComponents/criar-dialog/cri
 import { Imagem, Produto } from 'libs/data/src/lib/classes';
 import { ProdutoState } from 'apps/app-web/src/app/data/store/state/produto.state';
 import { AdicionarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
-import { CategoriaService } from 'apps/app-web/src/app/data/service';
+import { CategoriaService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -20,10 +20,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EditarProdutoComponent implements OnInit {
 
-  @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
-
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
-
+  Produtos:Produto[];
   ProdutoToBeUpdated: Produto;
 
   isUpdateActivated = false;
@@ -32,22 +30,26 @@ export class EditarProdutoComponent implements OnInit {
 
   constructor(
     private store: Store,
+    private pService: ProdutoService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     ) {
 
-
+      this.Atualizar();
   }
 
+  ngOnInit(): void {
+    // this.Atualizar();
+   }
+
+   ngOnDestroy() {
+     this.areProdutosLoadedSub.unsubscribe();
+   }
+
   Atualizar(){
-    this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
-      tap((areProdutosLoaded) => {
-        if(!areProdutosLoaded)
-        this.store.dispatch(new LerProduto());
-      })
-    ).subscribe(value => {
-      console.log(value);
-    });
+    this.pService.Ler().subscribe(x=>{
+      this.Produtos = x.items;
+    })
   }
   Refresh(){
     this.store.dispatch(new LerProduto());
@@ -68,14 +70,6 @@ export class EditarProdutoComponent implements OnInit {
         });
       }
     });
-  }
-
-  ngOnInit(): void {
-   this.Atualizar();
-  }
-
-  ngOnDestroy() {
-    this.areProdutosLoadedSub.unsubscribe();
   }
 
 }

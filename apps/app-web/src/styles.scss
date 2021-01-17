@@ -90,6 +90,23 @@ a {
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
 }
+.slideshow-container{
+  &:hover{
+    & >.arrow-container.prev{
+      animation: showArr 1s ease forwards !important;
+    }
+    & > .arrow-container.next{
+      animation: showArr 1s ease forwards !important;
+    }
+  }
+}
+.arrow-container.prev,.arrow-container.next{
+}
+.arrow-container{
+  // height: 50px;
+  // background:$orange;
+  transition: all 1s ease;
+}
 .p-autocomplete-panel {
   overflow: auto;
   position: absolute;

@@ -9,6 +9,21 @@ gallery{
   background-color:#000000bf !important;
 }
 
+.prod-disclaimer{
+  position: sticky;
+  bottom: 400px;
+  right: 0;
+  left: 100px;
+  z-index: 2;
+  background: #ffc0586b;
+  z-index: 11;
+  text-align: center;
+  color: #524a4a;
+  font-weight: 400;
+  width: 80%;
+  margin: 0 auto;
+  opacity: .2;
+}
 .skeleton{
   min-height: 577px;
   border: 1px solid #e7e7e7;
@@ -44,6 +59,11 @@ gallery{
     height:40vh;
   }
 
+  .prod-disclaimer{
+    position: absolute;
+    bottom: 200px;
+    left: 10px;
+  }
 }
 @media only screen and (max-width: 1023px){
 

@@ -13,12 +13,12 @@ import { Link } from '../../../data/models';
   styleUrls: ['./gerenciamento.component.scss']
 })
 export class GerenciamentoComponent implements OnInit {
-  mobileQuery: MediaQueryList;
   user: entities.Usuario;
   activenav:string = "Produtos";
 
   navs:Link[];
 
+  mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
   constructor(private cdr: ChangeDetectorRef,

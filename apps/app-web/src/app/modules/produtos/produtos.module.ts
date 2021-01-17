@@ -17,9 +17,10 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { ExibicaoProdutoComponent } from './page/exibicao-produto/exibicao-produto.component';
 import { FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
 import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
+import { ExibicaoArteProdutoComponent } from './page/dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

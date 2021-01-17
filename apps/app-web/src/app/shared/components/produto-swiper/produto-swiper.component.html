@@ -14,8 +14,10 @@
 
   <div class="w-full">
     <div #swiperEl
-    (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
-    class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+    (mouseenter)="onSwiperHover( true )"
+    (mouseleave)="onSwiperHover( false )"
+    class="swiper-container w-full z-index-1 px-1"
+    [swiper]="swiperConfig$ |async">
     <div class="swiper-button-prev z-index-top clickable hoverable"></div>
     <div class="swiper-button-next z-index-top clickable hoverable"></div>
     <div class="w-full hoverable border py-1 px-2">

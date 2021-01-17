@@ -94,7 +94,7 @@ img{
   width: 100% !important;
 }
 .w-small{
-  width: 385px;
+  width: 240px;
 }
 .zoom{
   filter: opacity(1);
@@ -165,9 +165,9 @@ img{
   .zoom{
     filter: opacity(1);
   }
-  // .mat-card{
-  //   background: rgb(255, 255, 255);
-  // }
+  .w-small{
+    width: 385px;
+  }
 }
 
 .portfolio-item {

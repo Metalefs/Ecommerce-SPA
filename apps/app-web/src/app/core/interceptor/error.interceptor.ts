@@ -12,16 +12,26 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
-            if (err.status === 400) {
-                // auto logout if 401 response returned from api
-                this.authenticationService.logout();
-                this.snack.open("Sua sessão expirou.","Ok",{
+            switch(err.status){
+              case(400): {
+                  // auto logout if 401 response returned from api
+                  this.authenticationService.logout();
+                  this.snack.open("Sua sessão expirou.","Ok",{
+                    verticalPosition:"top"
+                  })
+                  location.reload(true);
+                  break;
+              }
+              case(409):{
+                // alert if 409 response returned from api
+                this.snack.open(err.erro,"Ok",{
                   verticalPosition:"top"
                 })
-                location.reload(true);
+                alert(err.erro);
+              }
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err.error.message || err.statusText || err.erro;
             return throwError(error);
         }))
     }
