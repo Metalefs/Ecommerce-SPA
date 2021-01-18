@@ -52,7 +52,9 @@ export class EditarProdutoComponent implements OnInit {
     })
   }
   Refresh(){
-    this.store.dispatch(new LerProduto());
+    this.pService.Ler().subscribe(x=>{
+      this.Produtos = x.items;
+    })
   }
   Criar(): void {
     const dialogRef = this.dialog.open(CriarProdutoDialogComponent, {

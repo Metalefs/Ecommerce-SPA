@@ -2,7 +2,6 @@
   filter:drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: rotate(2deg);
   box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
-  filter:grayscale(0) !important;
 
 }
 @mixin unhover{
@@ -84,7 +83,6 @@ p{
   transition: .5s hoverAnim ease forwards;
 }
 .yellow,.red,.blue{
-  filter:grayscale(1);
   &:hover{
     @include hover;
     & mat-card > article > mat-card-header > div.mat-card-avatar{

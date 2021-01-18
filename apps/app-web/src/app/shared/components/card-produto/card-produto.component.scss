@@ -31,8 +31,6 @@ img{
   min-height: 620px;
   display: flex !important;
   align-items: center;
-  // background: rgba(49, 47, 79,.25);
-  // background: rgb(255, 255, 255);
   border: 1px solid #e7e7e7;
   padding: 0 !important;
   margin: 0 !important;
@@ -55,13 +53,15 @@ img{
   // }
 }
 .mat-card-image,img{
-  padding:0 !important;
-  margin:0 !important;
   background: rgb(255, 255, 255);
   position: relative;
   border-radius: 0;
   transition: 1s all;
   display: flex;
+  margin:0;
+
+  height: 300px;
+  object-fit: fill;
   filter: grayscale(0) !important;
   &.show{
     animation: show 1s ease forwards !important;
@@ -84,17 +84,15 @@ img{
 .mat-card-subtitle{
   margin-bottom: 0px;
 }
-.mat-card-image{
-  margin: 0;
-  padding:2px;
-  height: 300px;
 
-}
 .w-full-i{
-  width: 100% !important;
+  width: 100%!important;
+  margin: 0;
 }
 .w-small{
-  width: 240px;
+  width: 335px;
+  height: 300px;
+  margin: inherit;
 }
 .zoom{
   filter: opacity(1);
@@ -167,6 +165,9 @@ img{
   }
   .w-small{
     width: 385px;
+  }
+  .mat-card-image,img{
+    object-fit: contain;
   }
 }
 

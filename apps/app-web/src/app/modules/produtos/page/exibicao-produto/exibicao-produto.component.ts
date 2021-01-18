@@ -51,7 +51,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   images$: Observable<GalleryItem[]>;
   isOrcamento:boolean = false;
   loading:boolean = false;
-  el = document.createElement( 'html' );
+  el: HTMLElement;
   arte_traseira:boolean=false;
 
   ComentariosProduto:ComentarioProduto[];
@@ -92,6 +92,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.activeRoute.params.subscribe(routeParams => {
       this.LerProdutosCarregados();
+      this.AdicionarDescricao();
     });
 
     if(this.Produto.Quantidade == 0)
@@ -101,17 +102,6 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.textoAdicionar = this.textoEsgotado;
 
 
-    this.el.innerHTML = this.Produto?.Descricao;
-    this.el.querySelectorAll( 'oembed[url]' ).forEach( element => {
-      // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
-      // to discover the media.
-      const anchor = document.createElement( 'a' );
-
-      anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
-      anchor.className = 'embedly-card';
-
-      element.appendChild( anchor );
-    } );
     (function smoothscroll() {
       var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
       if (currentScroll > 0) {
@@ -160,6 +150,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     })
     dialogref.afterClosed().subscribe(x=>{
       this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+      if(this.Produto.Arte)
       this.navegarParaCheckout();
     })
   }
@@ -269,8 +260,9 @@ export class ExibicaoProdutoComponent implements OnInit {
     if(!this.orcamentoId){
       this.isOrcamento = false;
       this.servicoProduto.Filtrar(id).subscribe(prod=>{
-        console.log(prod)
         this.Produto = prod[0];
+
+        this.AdicionarDescricao();
         if(!prod)
         this.router.navigate(['/produtos']);
         prod[0]?.Imagem.forEach(img =>{
@@ -285,12 +277,12 @@ export class ExibicaoProdutoComponent implements OnInit {
         if(index<0)
         this.router.navigate(['/produtos']);
         this.Produto = res.Produto[index].Produto;
+        this.AdicionarDescricao();
         this.Produto.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
         });
       });
     }
-
     this.LerComentariosProduto(id);
   }
 
@@ -312,6 +304,23 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.loading = false;
     });
 
+  }
+
+  AdicionarDescricao(){
+    let element:HTMLElement = document.createElement("div");
+
+    element.innerHTML = this.Produto.Descricao;
+    element.querySelectorAll( 'oembed[url]' ).forEach( element => {
+      // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+      // to discover the media.
+      const anchor = document.createElement( 'a' );
+
+      anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+      anchor.className = 'embedly-card';
+
+      element.appendChild( anchor );
+    } );
+    this.el = element;
   }
 
   translateStatusProduto(status){

@@ -82,7 +82,7 @@
         </span>
       </label>
     </button>
-    <button mat-flat-button [mat-dialog-close]="Produto">
+    <button *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
       Concluir
     </button>
   </div>

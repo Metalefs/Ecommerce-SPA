@@ -1,8 +1,8 @@
-<ng-container *ngIf="(Produtos$|async).length >0 then data else nodata"></ng-container>
+<ng-container *ngIf="(Produtos).length >0 then data else nodata"></ng-container>
 <ng-template #nodata>
   <div class="w-full">
     <p>Não encontramos nenhum produto relacionado ainda.. Não encontrou o que queria?
-        Que tal nos mandar uma sugestão de produto.
+        Que tal nos mandar uma sugestão de produto?
 
     </p>
     <a mat-flat-button class="has-background-dark has-text-light button" [routerLink]="['/orcamento']">
@@ -25,7 +25,7 @@
       <span class="hr-inner-style"></span>
     </div>
     <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let produto of Produtos$|async" >
+      <div class="swiper-slide" *ngFor="let produto of Produtos" >
         <personalizados-lopes-card-produto [Produto]="produto"
         [TrocaImagem]="false"></personalizados-lopes-card-produto>
       </div>

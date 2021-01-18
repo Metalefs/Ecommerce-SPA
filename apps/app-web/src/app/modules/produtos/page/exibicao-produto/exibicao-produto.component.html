@@ -324,7 +324,7 @@
     <div class="margin py-3">
       <div  class="w-full columns ">
         <div  class="descricao-produto column is-6 w-full"
-          [innerHTML]="el.innerHTML || 'Este produto está sem uma descrição'"></div>
+          [innerHTML]="(el.innerHTML)"></div>
         <div  class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
           [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
       </div>

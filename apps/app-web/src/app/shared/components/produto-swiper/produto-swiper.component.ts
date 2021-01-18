@@ -6,6 +6,7 @@ import { Produto } from 'libs/data/src/lib/classes';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { ProdutoService } from '../../../data/service';
 import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { ProdutoState } from '../../../data/store/state';
 
@@ -15,12 +16,7 @@ import { ProdutoState } from '../../../data/store/state';
   styleUrls: ['./produto-swiper.component.scss']
 })
 export class ProdutoSwiperComponent implements OnInit {
-  @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
-
-  @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
-
-  areProdutosLoadedSub: Subscription;
-
+  Produtos:Produto[];
   slidesPerView:number=5;
   @ViewChild('swiperEl') swiperEl: ElementRef;
 
@@ -39,7 +35,7 @@ export class ProdutoSwiperComponent implements OnInit {
   swiperConfig$: Observable<SwiperConfigInterface>;
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private store:Store) {
+    private pService:ProdutoService) {
 
       this.swiperConfig$ = this.breakpointObserver
             .observe([Breakpoints.Small, Breakpoints.HandsetPortrait]).pipe(
@@ -131,14 +127,9 @@ export class ProdutoSwiperComponent implements OnInit {
 
 
 
-      this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
-        tap((areProdutosLoaded) => {
-          if(!areProdutosLoaded)
-            this.store.dispatch(new LerProduto());
-        })
-      ).subscribe(value => {
-        console.log(value);
-      });
+      this.pService.Ler().subscribe(x=>{
+        this.Produtos=x.items
+      })
     }
 
   ngOnInit(): void {
