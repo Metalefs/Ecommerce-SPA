@@ -31,10 +31,6 @@
     </mat-card-actions>
   </mat-card>
   <mat-divider></mat-divider>
-
-  <div class="card border my-3">
-    <personalizados-lopes-exibicao-perfil [user]="Pedido.Usuario"></personalizados-lopes-exibicao-perfil>
-  </div>
   <div class="w-full contents">
     <h2>Produtos: </h2>
     <mat-card class="w-full box" *ngFor="let prod of Pedido.Produto">
