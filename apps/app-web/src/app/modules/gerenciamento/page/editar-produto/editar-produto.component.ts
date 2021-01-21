@@ -12,6 +12,7 @@ import { ProdutoState } from 'apps/app-web/src/app/data/store/state/produto.stat
 import { AdicionarProduto, LerProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { CategoriaService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 
 @Component({
   selector: 'personalizados-lopes-editar-produto',
@@ -23,7 +24,9 @@ export class EditarProdutoComponent implements OnInit {
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   Produtos:Produto[];
   ProdutoToBeUpdated: Produto;
-
+  pagina:number=1;
+  items:number=12;
+  total:number=0;
   isUpdateActivated = false;
 
   areProdutosLoadedSub: Subscription;
@@ -45,15 +48,26 @@ export class EditarProdutoComponent implements OnInit {
    ngOnDestroy() {
      this.areProdutosLoadedSub.unsubscribe();
    }
-
+   fQuery:FiltrarProdutoSearchQuery={
+    Nome:"",
+    NomeCategoria:"",
+    Preco:"",
+    Status:"",
+    Marca:"",
+    Modelo:"",
+  }
   Atualizar(){
-    this.pService.Ler().subscribe(x=>{
+    this.pService.FiltrarProdutos(this.fQuery,1,50).subscribe(x=>{
       this.Produtos = x.items;
+      this.total = x.total;
     })
   }
-  Refresh(){
-    this.pService.Ler().subscribe(x=>{
-      this.Produtos = x.items;
+  CarregarMaisProdutos(){
+    this.pagina++;
+    this.pService.FiltrarProdutos(this.fQuery,this.pagina,this.items).subscribe(x=>{
+      this.total = x.total;
+      x.items.forEach(item=>this.Produtos.push(item))
+      console.log(x);
     })
   }
   Criar(): void {

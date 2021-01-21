@@ -203,10 +203,12 @@ export class ProdutosComponent implements OnInit {
     new Categoria(this.defaultCategory,this.defaultCategory)
     :
     this.CategoriaAtiva = categoria;
-
+    this.ResetPage();
     this.atualizarFiltroAtivo();
   }
-
+  ResetPage(){
+    this.page = 1;
+  }
   CarregarMaisProdutos(){
     this.page++;
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(x=>{

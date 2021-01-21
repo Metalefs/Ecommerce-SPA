@@ -120,9 +120,6 @@ export class ExibicaoProdutoComponent implements OnInit {
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
       if(!this.orcamentoId){
-        this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
-          this.orcamentoId = x.codOrcamento;
-        });
         if(!this.Produto.Arte){
           this.AbrirModalArte();
         }else{
@@ -149,9 +146,16 @@ export class ExibicaoProdutoComponent implements OnInit {
       data:this.Produto
     })
     dialogref.afterClosed().subscribe(x=>{
-      this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
-      if(this.Produto.Arte)
-      this.navegarParaCheckout();
+      if(this.Produto.Arte){
+        if(!this.orcamentoId){
+          this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
+            this.orcamentoId = x.codOrcamento;
+          });
+        }else{
+          this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+        }
+        this.navegarParaCheckout();
+      }
     })
   }
   DuplicarOrcamento(){

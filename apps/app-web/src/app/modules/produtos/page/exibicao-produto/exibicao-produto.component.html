@@ -125,7 +125,23 @@
               <div class="columns is-mobile mb-0">
                 <div class="column is-6 pb-0">
                   <p><em>Cores</em></p>
-                  <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                  <div class="columns is-multiline" *ngIf="Produto?.Cores">
+                    <div id="column" *ngFor="let cor of Produto?.Cores; let i =index">
+                        <input
+                          class="px-2 py-2 mx-1"
+                          (click)="Produto.Cor=cor;"
+                          [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
+                          type="radio" alt="{{cor.nome}}" id="cor{{i}}" class="mx-1">
+                        <label
+                        title="{{cor.nome}}"
+                        [style.background]="cor.cor"
+                        [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
+                        (click)="Produto.Cor=cor;" for="cor{{i}}"></label>
+                        <span (click)="Produto.Cor=cor;" [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
+                        ></span>
+                      </div>
+                  </div>
+                  <!-- <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
                     <mat-label>Selecione uma cor</mat-label>
                     <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
                       <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
@@ -135,7 +151,7 @@
                         </div>
                       </mat-option>
                     </mat-select>
-                  </mat-form-field>
+                  </mat-form-field> -->
                 </div>
                 <div class="column is-6 pb-0"  *ngIf="Produto?.Tamanhos">
                   <p><em>Tamanhos</em></p>
