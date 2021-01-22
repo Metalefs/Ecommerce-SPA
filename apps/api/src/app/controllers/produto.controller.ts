@@ -70,6 +70,9 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
   if(req.query.modelo){
     sQuery.Modelo = new RegExp(decodeURI(escapeRegex(req.query.modelo)), 'gi');
   }
+  if(req.query.tags){
+    sQuery.Tags = new RegExp(decodeURI(escapeRegex(req.query.tags)), 'gi');
+  }
 
   ProdutoService.Search(
     sQuery

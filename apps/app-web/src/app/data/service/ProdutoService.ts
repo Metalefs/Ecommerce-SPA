@@ -48,6 +48,7 @@ export class ProdutoService {
       query += '&status='+fields.Status;
       query += '&marca='+fields.Marca;
       query += '&modelo='+fields.Modelo;
+      query += '&tags='+fields.Tags;
       query += '&limit='+limit;
 
       return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.FiltrarProduto +`${page}/`+ query).pipe(

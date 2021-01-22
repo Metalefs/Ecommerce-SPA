@@ -3,6 +3,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Produto } from 'libs/data/src/lib/classes';
+import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -81,10 +82,18 @@ export class TagProdutoSwiperComponent implements OnInit {
         })
       );
     }
-
     swiperConfig$: Observable<SwiperConfigInterface>;
     ngOnInit(): void {
-      this.service.Ler().subscribe(x=>{
+      let fQuery:FiltrarProdutoSearchQuery={
+        Nome:"",
+        NomeCategoria:"",
+        Preco:"",
+        Status:"",
+        Marca:"",
+        Modelo:"",
+        Tags:this.TAGS[0],
+      }
+      this.service.FiltrarProdutos(fQuery,1,20).subscribe(x=>{
        this.TAGS.forEach((tag)=>{
           x.items.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
             this.ProdutosTag.push(match);

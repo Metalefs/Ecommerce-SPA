@@ -124,7 +124,7 @@
 
               <div class="columns is-mobile mb-0">
                 <div class="column is-6 pb-0">
-                  <p><em>Cores</em></p>
+                  <p><em>Cor:</em><strong>{{Produto?.Cor?.nome}}</strong></p>
                   <div class="columns is-multiline" *ngIf="Produto?.Cores">
                     <div id="column" *ngFor="let cor of Produto?.Cores; let i =index">
                         <input
@@ -224,7 +224,7 @@
                 <div class="column px-2">
                   <button mat-flat-button class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
                     <label class="file-label">
-                      <input class="file-input" multiple type="file" (change)="upload($event)">
+                      <input class="file-input" multiple type="file" (change)="upload($event)" (click)="this.AbrirModalArte()">
                       <span class="file-cta">
                         <span class="file-icon">
                           <i class="fas fa-upload"></i>
@@ -240,7 +240,7 @@
                   </button>
                   <p class="is-subtitle is-size-7">*Envie uma estampa a ser utilizada no produto</p>
                 </div>
-                <div class="column">
+                <!-- <div class="column">
                   <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
                     Tem arte traseira
                   </mat-checkbox>
@@ -262,7 +262,7 @@
                       </span>
                     </label>
                   </button>
-                </div>
+                </div> -->
               </div>
               <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
                 <a>Como essa arte será usada no produto?</a>
@@ -395,6 +395,10 @@
 
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
+  </div>
+
+  <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
+    <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
   </div>
 
   <div class="margin px-6 py-6">

@@ -5,4 +5,5 @@ export interface FiltrarProdutoSearchQuery{
   Status?:RegExp|string;
   Marca?:RegExp|string;
   Modelo?:RegExp|string;
+  Tags?:RegExp|string;
 };

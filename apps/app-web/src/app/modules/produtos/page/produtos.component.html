@@ -136,7 +136,7 @@
             </div>
           </ng-container>
         </div>
-        <a *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
+        <a mat-flat-button class="border py-2 px-3 w-full txt-center" *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
       </div>
     </div>
   </div>

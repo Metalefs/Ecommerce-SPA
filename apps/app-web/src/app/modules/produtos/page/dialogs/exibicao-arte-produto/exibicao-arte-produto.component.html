@@ -82,8 +82,22 @@
         </span>
       </label>
     </button>
-    <button *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
-      Concluir
-    </button>
+  </div>
+
+  <button mat-flat-button class="button border is-info has-name pb-3" *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
+    Concluir
+  </button>
+  <div>
+    <p><strong>Atenção às regras de personalização!</strong></p>
+
+    <div class="columns">
+      <div class="column" *ngFor="let rule of rules">
+        <mat-card class="border">
+          <mat-card-content>
+            <p>{{rule}}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>

@@ -124,6 +124,7 @@ export class ProdutosComponent implements OnInit {
     Status:"",
     Marca:"",
     Modelo:"",
+    Tags:"",
   }
   atualizarFiltroAtivo(){
     this.loading = true;

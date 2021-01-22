@@ -21,7 +21,13 @@ export class ExibicaoArteProdutoComponent implements OnInit {
   }
   fileNames:string="";
   secondaryfileNames:string="";
+  rules:string[] = [
+    "É permitido o uso de nomes de marcas ou logomarcas, apenas da sua empresa. Não é permitido utilizar outras, incluindo a Personalizados Lopes."
 
+    ,"Não é permitido o uso de imagem ou nome de celebridades."
+
+    ,"Não é permitido conteúdo de caráter político, religioso, violento ou que contenha partes de música ou livros."
+  ]
   upload($event){
     getPreviewURL($event,this.fileNames,(res,name)=>{this.Produto.Arte = res;this.fileNames = name})
   }
