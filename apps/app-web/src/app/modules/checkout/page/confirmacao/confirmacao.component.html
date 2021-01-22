@@ -1,30 +1,27 @@
 <ng-container *ngIf="(Orcamento$ |async).Produto.length > 0 then pedido else vazio"></ng-container>
 <ng-template #vazio>
 
-  <div class=" w-full">
-    <figure class="image is-square">
+  <div class="margin a-i-c flex-m m-lr-auto has-text-center w-full">
+    <figure class="image has-ratio">
       <img src="/assets/images/figures/undraw_empty_cart_co35.svg">
 
     </figure>
+    <div class="">
+      <h2 class="subtitle mb-0 pt-0">Seu carrinho está vazio</h2>
+      <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
+      <div>
+        <a pageScroll
+        href="#TOPO"
+        [routerLink]="['/produtos/']"
+        routerLinkActive="router-link-active">
+        <button mat-stroked-button mat-stroked-button class="button is-dark">
+          Ver produtos
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+        </a>
+      </div>
+    </div>
   </div>
-  <div class="has-text-left">
-    <h2 class="subtitle mb-0 pt-0">Seu carrinho está vazio</h2>
-    <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
-  </div>
-  <div class="a-i-c pt-3">
-
-    <a pageScroll
-    href="#TOPO"
-    [routerLink]="['/produtos/']"
-    routerLinkActive="router-link-active">
-    <button mat-stroked-button mat-stroked-button class="button is-dark">
-      Ver produtos
-      <mat-icon>keyboard_arrow_right</mat-icon>
-    </button>
-  </a>
-
-</div>
-
 </ng-template>
 <ng-template #pedido>
 
