@@ -27,6 +27,7 @@ export class AutocompleteDropdownComponent implements OnInit {
     Status:"",
     Marca:"",
     Modelo:"",
+    Tags:""
   }
   ngOnInit(): void {
      this.filtrar();

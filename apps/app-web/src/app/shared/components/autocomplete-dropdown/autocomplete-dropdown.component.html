@@ -10,25 +10,25 @@
   placeholder="Busque por produtos"
   [dropdown]="true">
   <ng-template let-produto pTemplate="item">
-    <a [href]="'/produtos/'+produto._id">
+    <a [href]="'/produtos/'+produto?._id">
       <div class="produto-item columns is-mobile of-x-scroll">
         <div class="column">
           <figure class="image is-64x64">
-            <img src="{{produto.Imagem[0]}}">
+            <img src="{{produto?.Imagem[0]}}">
           </figure>
         </div>
         <div class="column">
           <div class="">
-            <p>{{produto.Nome}} - </p>
-            <p *ngIf="produto.Marca">{{produto.Marca}} - </p>
-            <p *ngIf="produto.Modelo">{{produto.Modelo}} - </p>
+            <p>{{produto?.Nome}} - </p>
+            <p *ngIf="produto?.Marca">{{produto?.Marca}} - </p>
+            <p *ngIf="produto?.Modelo">{{produto?.Modelo}} - </p>
             <p>R${{produto.Preco.toFixed(2)}}</p>
           </div>
         </div>
       </div>
     </a>
   </ng-template>
-  <ng-template  *ngIf="Produtos.length == 0" pTemplate="item">
+  <ng-template  *ngIf="Produtos?.length == 0" pTemplate="item">
     <p>Nenhum produto encontrado</p>
     <figure class="image is-64x64 no-match-img">
       <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
