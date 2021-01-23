@@ -79,6 +79,7 @@ img{
 }
 .mat-card-subtitle{
   margin-bottom: 0px;
+  position: absolute;
 }
 
 .w-full-i{
@@ -86,7 +87,7 @@ img{
   margin: 0;
 }
 .w-small{
-  width: 335px;
+  width: 385px;
   height: 300px;
   margin: inherit;
 }
@@ -155,12 +156,14 @@ img{
     font-size: 16px;
 }
 @media (min-width: 00px ) and (max-width: 1023px) {
-
+  .mat-card{
+    min-height: auto;
+  }
+  .mat-card-subtitle{
+    position: relative;
+  }
   .zoom{
     filter: opacity(1);
-  }
-  .w-small{
-    width: 385px;
   }
   .mat-card-image,img{
     object-fit: contain;

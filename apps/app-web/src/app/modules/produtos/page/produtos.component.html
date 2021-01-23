@@ -136,7 +136,13 @@
             </div>
           </ng-container>
         </div>
-        <a mat-flat-button class="border py-2 px-3 w-full txt-center" *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
+        <a [ngClass]="loading ? 'button is-loading':''"
+          mat-flat-button
+          class="border py-2 px-3 w-full txt-center "
+          *ngIf="total > Produtos?.length"
+          (click)="CarregarMaisProdutos()">
+          Exibir mais resultados
+        </a>
       </div>
     </div>
   </div>

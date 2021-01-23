@@ -130,7 +130,8 @@ export class ProdutosComponent implements OnInit {
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter||''
     this.fQuery.NomeCategoria  = this.CategoriaAtiva.Nome||"";
-
+    if(this.page > 1)
+      this.page =1;
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(async x=>{
       this.total = x.total;
       this.Produtos = x.items;

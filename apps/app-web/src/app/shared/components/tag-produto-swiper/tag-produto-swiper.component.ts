@@ -32,9 +32,30 @@ export class TagProdutoSwiperComponent implements OnInit {
     }
   }
   constructor(
-    breakpointObserver: BreakpointObserver,
+    private breakpointObserver: BreakpointObserver,
     private service:ProdutoService) {
-      this.swiperConfig$ = breakpointObserver.observe([
+
+    }
+    swiperConfig$: Observable<SwiperConfigInterface>;
+    ngOnInit(): void {
+      let fQuery:FiltrarProdutoSearchQuery={
+        Nome:"",
+        NomeCategoria:"",
+        Preco:"",
+        Status:"",
+        Marca:"",
+        Modelo:"",
+        Tags:this.TAGS[0],
+      }
+      this.service.FiltrarProdutos(fQuery,1,20).subscribe(x=>{
+       this.TAGS.forEach((tag)=>{
+          x.items.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
+            this.ProdutosTag.push(match);
+            this.ProdutosTag = removeDuplicates(this.ProdutosTag,"_id")
+          })
+        });
+      })
+      this.swiperConfig$ = this.breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
         map(res => {
@@ -81,25 +102,5 @@ export class TagProdutoSwiperComponent implements OnInit {
           }
         })
       );
-    }
-    swiperConfig$: Observable<SwiperConfigInterface>;
-    ngOnInit(): void {
-      let fQuery:FiltrarProdutoSearchQuery={
-        Nome:"",
-        NomeCategoria:"",
-        Preco:"",
-        Status:"",
-        Marca:"",
-        Modelo:"",
-        Tags:this.TAGS[0],
-      }
-      this.service.FiltrarProdutos(fQuery,1,20).subscribe(x=>{
-       this.TAGS.forEach((tag)=>{
-          x.items.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
-            this.ProdutosTag.push(match);
-            this.ProdutosTag = removeDuplicates(this.ProdutosTag,"_id")
-          })
-        });
-      })
     }
 }

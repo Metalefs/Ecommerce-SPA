@@ -227,8 +227,10 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.Produto.Likes++;
         this.Liked = true;
         localStorage.setItem(`heartproduto${this.Produto._id}`,'true');
-        this.loading = false;
       });
+      setTimeout(()=>{
+        this.loading = false;
+      },3000)
     }
     else
       return
@@ -373,6 +375,9 @@ export class ExibicaoProdutoComponent implements OnInit {
         localStorage.setItem(`rateproduto${this.Produto._id}`, $event.rating.toString());
         this.loading = false;
       });
+      setTimeout(()=>{
+        this.loading = false;
+      },3000)
     }
     else
       return
