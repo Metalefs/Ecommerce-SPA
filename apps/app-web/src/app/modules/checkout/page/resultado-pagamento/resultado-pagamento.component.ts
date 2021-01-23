@@ -8,8 +8,9 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
 import { AdicionarOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
-import { MercadoPagoCheckoutService, IntegracoesService } from 'apps/app-web/src/app/data/service';
+import { MercadoPagoCheckoutService, IntegracoesService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
+import { EditarProduto, IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -36,13 +37,18 @@ export class ResultadoPagamentoComponent implements OnInit {
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
+      if(this.Orcamento.Produto){
+        this.Orcamento.Produto.forEach(prod=>{
+          prod.Produto.Vendas++;
+          this.store.dispatch(new IncrementarVendaProduto(prod.Produto._id));
+        })
+      }
       if(this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
     })
     setTimeout(()=>{
       this.flip()
       this.LerParametros();
-
       this.SalvarOrcamento();
     },0);
   }

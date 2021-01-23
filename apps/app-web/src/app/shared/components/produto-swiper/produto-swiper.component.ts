@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -19,7 +19,8 @@ export class ProdutoSwiperComponent implements OnInit {
   Produtos:Produto[];
   slidesPerView:number=5;
   @ViewChild('swiperEl') swiperEl: ElementRef;
-
+  @Input() TipoOrdenacao:TipoOrdenacaoSwiperProduto = TipoOrdenacaoSwiperProduto.Inclusao;
+  tipoOrdenacaoSwiperProduto = TipoOrdenacaoSwiperProduto;
   mobileQuery: MediaQueryList;
   tabletQuery: MediaQueryList;
   deskQuery: MediaQueryList;
@@ -128,7 +129,16 @@ export class ProdutoSwiperComponent implements OnInit {
 
 
       this.pService.Ler().subscribe(x=>{
-        this.Produtos=x.items
+        this.Produtos=x.items.sort();
+        switch(this.TipoOrdenacao){
+          case TipoOrdenacaoSwiperProduto.Vendas:{
+            this.Produtos.sort((a,b)=>a.Vendas - b.Vendas);
+            break;
+          }
+          case TipoOrdenacaoSwiperProduto.Visualizacoes:{
+            this.Produtos.sort((a,b)=>a.Visualizacoes - b.Visualizacoes)
+          }
+        }
       })
     }
 
@@ -137,4 +147,9 @@ export class ProdutoSwiperComponent implements OnInit {
 
   }
 
+}
+export enum TipoOrdenacaoSwiperProduto{
+  Inclusao,
+  Visualizacoes,
+  Vendas
 }

@@ -22,6 +22,17 @@ export class ProdutoService {
         });
       });
     }
+    async IncrementarVenda(id:string){
+      return Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
+        if(!x.Vendas)
+        Object.assign(x, {Vendas: 1});
+        else
+        x.Vendas += 1;
+          return Repository.Edit(entities.Produto.NomeID, x._id, {Vendas: x.Vendas}).then(y => {
+            return y;
+        });
+      });
+    }
     async Rate(id:string,rating:number){
       return Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
         if(!x.Rating)

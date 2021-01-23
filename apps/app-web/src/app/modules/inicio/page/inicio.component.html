@@ -9,6 +9,7 @@
     </div>
     <div class="py-4 px-2 bg-transp margin">
       <personalizados-lopes-produto-swiper class="z-index-1"></personalizados-lopes-produto-swiper>
+      <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
       <section class="py-3" *ngIf="(Clientes$|async).length>0">
         <div data-aos="zoom-down" class="testimonial">
           <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>

@@ -31,6 +31,8 @@ export class Produto extends MongoDocument implements entidadeBase{
   Rating?:number[] = [];
   Marca?:string;
   Modelo?:string;
+  Visualizacoes:number;
+  Vendas?:number;
   static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,
@@ -59,6 +61,8 @@ export class Produto extends MongoDocument implements entidadeBase{
     Rating?:number[],
     Marca?:string,
     Modelo?:string,
+    Visualizacoes?:number,
+    Vendas?:number,
     ){
       super();
       this.Nome = Nome;

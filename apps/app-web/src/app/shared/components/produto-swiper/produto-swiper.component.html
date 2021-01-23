@@ -21,7 +21,14 @@
     <div class="swiper-button-prev z-index-top clickable hoverable"></div>
     <div class="swiper-button-next z-index-top clickable hoverable"></div>
     <div class="w-full hoverable pt-4 px-4">
-      <h1>Produtos para chamar de seus!</h1>
+      <h1  *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao">Produtos para chamar de seus!</h1>
+      <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes"></ng-container>
+      <ng-template #Vendas>
+        <h1>Produtos mais vendidos!</h1>
+      </ng-template>
+      <ng-template #Visualizacoes>
+        <h1>Produtos mais procurados!</h1>
+      </ng-template>
       <span class="hr-inner-style"></span>
     </div>
     <div class="swiper-wrapper">

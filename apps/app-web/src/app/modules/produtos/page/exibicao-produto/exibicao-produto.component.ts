@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ComentarioProduto, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { GostarProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { EditarProduto, GostarProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -26,6 +26,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { fade } from 'apps/app-web/src/app/animations';
 import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
+import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/components/produto-swiper/produto-swiper.component';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -54,6 +55,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   el: HTMLElement;
   arte_traseira:boolean=false;
 
+  tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   ComentariosProduto:ComentarioProduto[];
   Comentarios:Comentario[] = [];
 
@@ -264,11 +266,14 @@ export class ExibicaoProdutoComponent implements OnInit {
     if(!this.orcamentoId){
       this.isOrcamento = false;
       this.servicoProduto.Filtrar(id).subscribe(prod=>{
+        if(!prod)
+          this.router.navigate(['/produtos']);
+
         this.Produto = prod[0];
 
         this.AdicionarDescricao();
-        if(!prod)
-        this.router.navigate(['/produtos']);
+        this.updateViews(prod);
+
         prod[0]?.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
         });
@@ -279,17 +284,30 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.Orcamento$.subscribe( res => {
         const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
         if(index<0)
-        this.router.navigate(['/produtos']);
+          this.router.navigate(['/produtos']);
+
         this.Produto = res.Produto[index].Produto;
+        this.updateViews(res.Produto[index].Produto);
         this.AdicionarDescricao();
+
         this.Produto.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
         });
       });
     }
     this.LerComentariosProduto(id);
-  }
 
+  }
+  updateViews(prod){
+    if(!localStorage.getItem("vprod"+prod._id)){
+      if(!prod.Visualizacoes){
+        Object.assign(prod,{Visualizacoes:0});
+      }
+      ++prod.Visualizacoes;
+      this.store.dispatch(new EditarProduto(prod,prod._id));
+      localStorage.setItem("vprod"+prod._id,"true");
+    }
+  }
   LerComentariosProduto(idProduto:string){
     this.ComentarioProdutoService.getAll().snapshotChanges().pipe(
       map(changes =>

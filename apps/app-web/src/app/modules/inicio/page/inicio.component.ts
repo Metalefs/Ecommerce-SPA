@@ -11,6 +11,7 @@ import { AuthenticationService } from '../../../core/service/authentication/auth
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { trigger } from '@angular/animations';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { TipoOrdenacaoSwiperProduto } from '../../../shared/components/produto-swiper/produto-swiper.component';
 
 @Component({
   selector: 'personalizados-lopes-inicio',
@@ -25,6 +26,7 @@ export class InicioComponent implements OnInit {
   @Select(ClienteState.areClientesLoaded) areClientesLoaded$;
   areClientesLoadedSub: Subscription;
   slidesPerView:number=5;
+  tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   constructor(
     private authService: AuthenticationService ) {
     }
