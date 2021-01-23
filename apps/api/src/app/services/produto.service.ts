@@ -33,6 +33,17 @@ export class ProdutoService {
         });
       });
     }
+    async IncrementarVisualizacoes(id:string){
+      return Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
+        if(!x.Visualizacoes)
+        Object.assign(x, {Visualizacoes: 1});
+        else
+        x.Visualizacoes += 1;
+          return Repository.Edit(entities.Produto.NomeID, x._id, {Visualizacoes: x.Visualizacoes}).then(y => {
+            return y;
+        });
+      });
+    }
     async Rate(id:string,rating:number){
       return Repository.FindOne(entities.Produto.NomeID, { "_id": new ObjectId(id) }).then((x:  Produto)=> {
         if(!x.Rating)

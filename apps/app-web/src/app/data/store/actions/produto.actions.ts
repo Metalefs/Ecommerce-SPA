@@ -37,6 +37,13 @@ export class IncrementarVendaProduto {
   constructor(public id: string){}
 }
 
+export class IncrementarVisualizacoesProduto {
+
+  static readonly type = '[Produto] IncrementarVisualizacoes'
+
+  constructor(public id: string){}
+}
+
 export class RateProduto {
 
   static readonly type = '[Produto] Rate'

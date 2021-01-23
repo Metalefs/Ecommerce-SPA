@@ -79,6 +79,20 @@ export class ProdutoService {
       );
     }
 
+    IncrementarVenda(id:string) :Observable<entities.Produto> {
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.IncrementarVendaProduto, {id:id}).pipe(
+          retry(3),
+          catchError(this.ErrorHandler.handleError)
+      );
+    }
+
+    IncrementarVisualizacoes(id:string) :Observable<entities.Produto> {
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.IncrementarVisualizacoesProduto, {id:id}).pipe(
+          retry(3),
+          catchError(this.ErrorHandler.handleError)
+      );
+    }
+
     Rate(id:string,rating:number) :Observable<entities.Produto> {
       return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.RateProduto, {id:id, rating:rating}).pipe(
           retry(3),

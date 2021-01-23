@@ -1,21 +1,21 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Qual arte será usada?</h1>
 
 <div mat-dialog-content>
-  <div class="columns is-mobile">
+  <div class="columns is-mobile is-vcentered">
     <div class="column">
       <figure class="image is-128x182">
         <img src="{{Produto.Imagem[0]}}" alt="">
       </figure>
     </div>
-    <div class="column">
+    <div class="column has-text-centered">
       <h1>+</h1>
     </div>
-    <div class="column">
+    <div class="column is-3">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
         <mat-card >
           <mat-card-header>
-            <mat-card-subtitle>Primaria</mat-card-subtitle>
+            <mat-card-subtitle>Arte Primaria</mat-card-subtitle>
           </mat-card-header>
           <figure class="image is-128x128">
             <img mat-mat-card-image [src]="this.Produto?.Arte" height="200">
@@ -43,10 +43,10 @@
         </div>
       </ng-template>
     </div>
-    <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column">
+    <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column is-3">
       <mat-card >
         <mat-card-header>
-          <mat-card-subtitle>Secundaria</mat-card-subtitle>
+          <mat-card-subtitle>Arte Secundaria</mat-card-subtitle>
         </mat-card-header>
         <figure class="image is-128x128">
           <img mat-mat-card-image [src]="this.Produto?.ArteSecundaria" height="200">
@@ -84,10 +84,10 @@
     </button>
   </div>
 
-  <button mat-flat-button class="button border is-info has-name pb-3" *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
+  <button mat-flat-button class="button border w-full is-info" *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
     Concluir
   </button>
-  <div>
+  <div class="pt-6">
     <p><strong>Atenção às regras de personalização!</strong></p>
 
     <div class="columns">

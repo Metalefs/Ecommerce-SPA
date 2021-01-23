@@ -5,6 +5,7 @@ export let RouteDictionary = {
     GostarProduto:"/gostarproduto/",
     RateProduto:"/rateproduto/",
     IncrementarVendaProduto:"/incrementarVenda/",
+    IncrementarVisualizacoesProduto:"/incrementarVisualizacoes/",
     InformacoesContato:"/informacoesContato/",
     Cliente:"/cliente/",
     Sobre:"/sobre/",

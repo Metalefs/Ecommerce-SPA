@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto, IncrementarVendaProduto } from '../actions/produto.actions'
+import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto, IncrementarVendaProduto, IncrementarVisualizacoesProduto } from '../actions/produto.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -106,12 +106,29 @@ export class ProdutoState {
 
   @Action(IncrementarVendaProduto)
   IncrementarVendaProduto({getState,setState}: StateContext<ProdutoStateModel>, {id} : IncrementarVendaProduto){
-    return this.ProdutoService.Gostar(id).pipe(
+    return this.ProdutoService.IncrementarVenda(id).pipe(
       tap(result => {
         const state = getState();
         const ListaProdutos = [...state.Produtos];
         const index = ListaProdutos.findIndex(item => item._id === id);
         ListaProdutos[index].Vendas = result.Vendas;
+
+        setState({
+          ...state,
+          Produtos: ListaProdutos,
+        });
+      })
+    );
+  }
+
+  @Action(IncrementarVisualizacoesProduto)
+  IncrementarVisualizacoesProduto({getState,setState}: StateContext<ProdutoStateModel>, {id} : IncrementarVisualizacoesProduto){
+    return this.ProdutoService.IncrementarVisualizacoes(id).pipe(
+      tap(result => {
+        const state = getState();
+        const ListaProdutos = [...state.Produtos];
+        const index = ListaProdutos.findIndex(item => item._id === id);
+        ListaProdutos[index].Vendas = result.Visualizacoes;
 
         setState({
           ...state,

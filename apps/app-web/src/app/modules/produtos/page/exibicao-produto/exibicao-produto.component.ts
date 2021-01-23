@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { ComentarioProduto, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { EditarProduto, GostarProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { EditarProduto, GostarProduto, IncrementarVisualizacoesProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -304,7 +304,7 @@ export class ExibicaoProdutoComponent implements OnInit {
         Object.assign(prod,{Visualizacoes:0});
       }
       ++prod.Visualizacoes;
-      this.store.dispatch(new EditarProduto(prod,prod._id));
+      this.store.dispatch(new IncrementarVisualizacoesProduto(prod._id));
       localStorage.setItem("vprod"+prod._id,"true");
     }
   }
