@@ -105,6 +105,15 @@
               <span>{{link.name}}</span>
             </a>
           </mat-list-item>
+          <mat-list-item>
+            <a
+              [ngClass]="(NavState$ |async).activeNav =='Galeria' ? 'active-nav': ''"
+              matLine (click)="SetActiveNav({name:'Galeria'})" (pageScrollFinish)="ToggleNav(0)" [routerLink]="['showcase']"
+              routerLinkActive="Active" pageScroll href="#showcase">
+              <mat-icon mat-list-icon>photo</mat-icon>
+              <span>Galeria</span>
+            </a>
+          </mat-list-item>
           <mat-divider></mat-divider>
           <div mat-subheader>Dúvidas</div>
           <mat-list-item

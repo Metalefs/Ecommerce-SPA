@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import {SkeletonModule} from 'primeng/skeleton';
-
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [],
   exports: [
@@ -15,7 +15,8 @@ import {SkeletonModule} from 'primeng/skeleton';
     ButtonModule,
     TableModule,
     DialogModule,
-    SkeletonModule
+    SkeletonModule,
+    DropdownModule
   ]
 })
 export class PrimeNgModule {}

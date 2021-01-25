@@ -4,7 +4,14 @@
   <ng-container *ngIf="TrocaImagem then troca else naotroca"> </ng-container>
 
   <ng-template #troca>
-    <mat-card @fadeIn matRipple class="portfolio-item zoom" [style.backgroundColor]="Produto.Categoria.Cor">
+    <mat-card @fadeIn
+    (mouseenter)="
+      this.imgProduto.classList.add('hide');
+      this.imgProduto.classList.remove('show');
+      this.imgProduto2.classList.remove('hide');
+      this.imgProduto2.classList.add('show');
+      "
+    matRipple class="portfolio-item zoom" [style.backgroundColor]="Produto.Categoria.Cor">
       <a class="prod-status">
         <i class="fa fa-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
@@ -13,12 +20,7 @@
       <a matRipple [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="dis-flex flex-w">
         <img mat-card-image #imgProduto
         class="w-full-i"
-        (mouseenter)="
-      this.imgProduto.classList.add('hide');
-      this.imgProduto.classList.remove('show');
-      this.imgProduto2.classList.remove('hide');
-      this.imgProduto2.classList.add('show');
-      " [src]="Produto.Imagem[0]" [style.opacity]="'1'" [style.display]="'block'"
+        [src]="Produto.Imagem[0]" [style.opacity]="'1'" [style.display]="'block'"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
         <img mat-card-image #imgProduto2
         class="w-full-i"

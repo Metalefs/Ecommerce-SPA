@@ -1,4 +1,4 @@
-<ng-container *ngIf="(ProdutosTag).length >0 then data else nodata"></ng-container>
+<ng-container *ngIf="(ProdutosTag)?.length >0 then data else nodata"></ng-container>
 <ng-template #nodata>
   <div class="w-full">
     <p>Não encontramos nenhum produto relacionado ainda..

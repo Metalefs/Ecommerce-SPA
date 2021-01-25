@@ -1,4 +1,4 @@
-<ng-container *ngIf="(Produtos).length >0 then data else nodata"></ng-container>
+<ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
 <ng-template #nodata>
   <div class="w-full">
     <p>Não encontramos nenhum produto relacionado ainda.. Não encontrou o que queria?
@@ -23,7 +23,7 @@
     <div class="w-full hoverable pt-4 px-4">
       <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro"></ng-container>
       <ng-template #Inclusao>
-        <h1>Produtos para chamar de seus!</h1>
+        <h1>Produtos mais recentes</h1>
       </ng-template>
       <ng-template #Outro>
         <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes"></ng-container>

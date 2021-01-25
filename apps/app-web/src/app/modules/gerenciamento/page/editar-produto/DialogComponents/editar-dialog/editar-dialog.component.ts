@@ -68,6 +68,7 @@ export class EditarProdutoDialogComponent implements OnInit {
     private store:Store,
     private snack:MatSnackBar
   ) {
+    dialogRef.disableClose = true;
     this.Produto = data;
     if(!this.Produto.Cores){
       this.Produto.Cores = [{cor:'',nome:''}]

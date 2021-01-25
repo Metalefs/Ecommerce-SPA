@@ -42,7 +42,7 @@ export class EditarProdutoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.Atualizar();
+    this.Atualizar();
    }
 
    ngOnDestroy() {
@@ -55,6 +55,7 @@ export class EditarProdutoComponent implements OnInit {
     Status:"",
     Marca:"",
     Modelo:"",
+    Tags:""
   }
   Atualizar(){
     this.pService.FiltrarProdutos(this.fQuery,1,50).subscribe(x=>{

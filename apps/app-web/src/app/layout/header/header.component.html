@@ -8,7 +8,7 @@
   <div class="w-full margin dis-flex flex-c flex-m flex-ba py-4 ml-1 mr-1 px-3" style="height: 90px;">
 
     <a @fadeIn href="#" class="">
-      <img class=" pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO">
+      <img class="logo pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO">
     </a>
     <span class="spacer"></span>
     <div *ngIf="search" class="w-full columns is-mobile is-multiline is-vcentered mx-3 w-full animate__animated animate__slideInLeft">
@@ -29,11 +29,11 @@
     </div>
     <div class="columns mx-3 is-hidden-touch link-section ">
 
-      <div class="column is-1">
+      <!-- <div class="column is-1">
         <span class="icon pt-2 is-small hoverable clickable" (click)="search = !search">
           <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
         </span>
-      </div>
+      </div> -->
       <div *ngFor="let link of links" class="column">
 
         <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
@@ -63,9 +63,9 @@
               <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
               {{link.name == "Básicos"? 'Produtos' : link.name}}
             </a>
-            <div class="dropdown-content">
+            <div class="dropdown-content has-background-white box">
               <a
-              class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
+              class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"
               pageScroll
               routerLinkActive="Active"
               href="#{{link.name == 'Básicos' ? 'topo' : link.name}}"

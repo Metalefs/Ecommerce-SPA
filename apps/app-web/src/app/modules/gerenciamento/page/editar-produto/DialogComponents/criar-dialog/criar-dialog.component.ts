@@ -71,6 +71,7 @@ export class CriarProdutoDialogComponent implements OnInit {
     private BlogService:BlogPostService
 
     ) {
+      dialogRef.disableClose = true;
       this.Produto = new Produto (
         "",
         "",

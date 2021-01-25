@@ -136,7 +136,7 @@ export class ProdutosComponent implements OnInit {
       this.total = x.total;
       this.Produtos = x.items;
       switch(+this.activeOrderFilter){
-        case 0:
+        case TiposOrdenacao.nome:
          x.items = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
         break;
 
@@ -272,6 +272,9 @@ export class ProdutosComponent implements OnInit {
 
   translate(orderId:number){
     return this.ordertypes.filter(x=>x.id == orderId)[0].name;
+  }
+  Ceil(number){
+    return Math.ceil(number);
   }
 }
 export enum TiposOrdenacao {

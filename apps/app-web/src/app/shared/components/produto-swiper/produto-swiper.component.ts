@@ -70,8 +70,9 @@ export class ProdutoSwiperComponent implements OnInit {
                     }
                   }
                 }
-            })
+              })
             );
+
       this.swiperConfig$ = this.breakpointObserver
             .observe([Breakpoints.Tablet]).pipe(
               map((state: BreakpointState) => {
@@ -105,7 +106,8 @@ export class ProdutoSwiperComponent implements OnInit {
                   }
                 }
             })
-            );
+          );
+
       this.swiperConfig$ = this.breakpointObserver
             .observe([Breakpoints.Web]).pipe(
               map((state: BreakpointState) => {
@@ -118,9 +120,10 @@ export class ProdutoSwiperComponent implements OnInit {
                     height                 : 400,
                     keyboard               : true,
                     loop                   : true,
-                    loopFillGroupWithBlank : false,
+                    loopFillGroupWithBlank : true,
+
                     preloadImages          : true,
-                    lazy                   : false,
+                    lazy                   : true,
                     observer               : true,
                     slidesPerView          : 5,
                     navigation: {

@@ -17,7 +17,7 @@ export class HeaderFooterComponent implements OnInit {
       this.loading = false;
       this.Cards = [
         {
-          title:"Produtos",
+          title:"Produtos para personalizar",
           icon:"photo_library",
           color:"#FFB041",
           class:"yellow",
@@ -33,16 +33,16 @@ export class HeaderFooterComponent implements OnInit {
           class:"red",
           link:"/showcase",
           id:"#SHOWCASE",
-          content:"Recebemos pedidos personalizados para a arte do seu produto."
+          content:"Dê uma olhada nos ultimos items que personalizamos!"
         },
         {
-          title:"Contato",
+          title:"Entre em Contato",
           icon:"email",
           color:"#3AB8FF",
           class:"blue",
           link:"/orcamento",
           id:"#ORCAMENTO",
-          content:`Faça seu orçamento e envie o seu pedido. <a href="/orcamento">Clique aqui.</a>`
+          content:`Precisa de um orçamento? alguma dúvida ou sujestão? <a href="/orcamento">Clique aqui !</a>`
         },
       ]
       let elements = [];
@@ -81,10 +81,8 @@ export class HeaderFooterComponent implements OnInit {
         function toggleActiveArr(el){
           setTimeout(()=>{
             el.forEach(item=>{
-              if(item.classList.contains("active") && !item.classList.contains("inactive")){
+              if(item.classList.contains("active") && !item.classList.contains("inactive"))
                 item.classList.remove("active");
-
-              }
               else
               item.classList.add("active");
             })

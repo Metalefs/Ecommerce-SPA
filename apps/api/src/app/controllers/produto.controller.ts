@@ -77,7 +77,6 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
   ProdutoService.Search(
     sQuery
   , limit, page).then(x=>{
-    console.log(x)
     res.send(x);
   });
 })
@@ -121,7 +120,7 @@ post(RouteDictionary.Produto, (req: any, res) => {
       ErrorHandler.DefaultException(err, res)
   }
 })
-.put(RouteDictionary.IncrementarVendaProduto, (req: any, res)=>{
+.post(RouteDictionary.IncrementarVendaProduto, (req: any, res)=>{
   try {
     let ProdutoService:Services.ProdutoService = new Services.ProdutoService();
     ProdutoService.IncrementarVenda(req.body.id).then(x=>{
@@ -132,7 +131,7 @@ post(RouteDictionary.Produto, (req: any, res) => {
       ErrorHandler.DefaultException(err, res)
   }
 })
-.put(RouteDictionary.IncrementarVisualizacoesProduto, (req: any, res)=>{
+.post(RouteDictionary.IncrementarVisualizacoesProduto, (req: any, res)=>{
   try {
     let ProdutoService:Services.ProdutoService = new Services.ProdutoService();
     ProdutoService.IncrementarVisualizacoes(req.body.id).then(x=>{

@@ -30,8 +30,7 @@
  [images]="imagens">
 </carousel> -->
 
-<div [@cardFlip]="state" class="section mb-0 px-1c pb-0" id="Básicos">
-
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1" id="Básicos">
 
   <div class="columns px-3 px-1c py-4">
     <div class="column is-12-mobile is-hidden-mobile">
@@ -97,14 +96,22 @@
             <div class="column is-hidden-mobile">
               <div class="w-full">
                 <div class="select w-full">
-                  <select class="py-2  w-full" [(ngModel)]="activeOrderFilter" (change)="atualizarFiltroAtivo()" [value]="activeOrderFilter">
-                    <option *ngFor="let order of ordertypes; let i = index" [selected]="i == 0" [value]="order?.id">{{order?.name}}</option>
-                  </select>
+                  <p-dropdown
+                  class="w-full"
+                  [options]="ordertypes"
+                  [(ngModel)]="activeOrderFilter"
+                  (onChange)="atualizarFiltroAtivo()"
+                   optionLabel="name"
+                   optionValue="id"
+                   ></p-dropdown>
                 </div>
             </div>
           </div>
         </div>
-        <p *ngIf="total!=0">Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
+        <div *ngIf="total!=0" class="w-full dis-flex flex-sb">
+          <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
+          <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/limit))}}</span>
+        </div>
         <p-skeleton *ngIf="total==0"></p-skeleton>
         <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva?.Nome}}</h2>
 

@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
     },delay);
   }
 
-  SetActiveNav(link:Link){
+  SetActiveNav(link:any){
     this.store.dispatch(new EditarNavState({activeNav:link.name}));
     this.NavState$.subscribe()
   }

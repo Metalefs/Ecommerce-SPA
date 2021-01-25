@@ -12,6 +12,7 @@ export class BlogPostService extends FireBaseService{
 
   constructor(private db: AngularFireDatabase) {
     super(db.list('/BlogPosts'));
+
   }
 
 }

@@ -44,8 +44,10 @@ environment.production ? [
   {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
   {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
+  {name: "Galeria",   href:"showcase", icon:'gallery', group:GrupoNavLink.none},
 ] : [
   {name: "Básicos",   href:"produtos", icon:'store', group:GrupoNavLink.produtos},
   {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
   {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
+  {name: "Galeria",   href:"showcase", icon:'gallery', group:GrupoNavLink.none},
 ];

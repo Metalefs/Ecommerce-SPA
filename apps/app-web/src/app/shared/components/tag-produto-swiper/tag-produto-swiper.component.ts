@@ -63,7 +63,7 @@ export class TagProdutoSwiperComponent implements OnInit {
               return {
                 direction              : 'horizontal',
                 keyboard               : true,
-                // loop                   : true,
+                loop                   : true,
                 loopFillGroupWithBlank : false,
                 preloadImages          : true,
                 lazy                   : false,
@@ -82,22 +82,25 @@ export class TagProdutoSwiperComponent implements OnInit {
           else{
             return {
               direction              : 'horizontal',
+              updateOnWindowResize   : true,
+              autoHeight             : true,
+              height                 : 400,
               keyboard               : true,
-              // loop                   : true,
-              loopFillGroupWithBlank : false,
+              loop                   : true,
+              loopFillGroupWithBlank : true,
+
               preloadImages          : true,
-              lazy                   : false,
+              lazy                   : true,
               observer               : true,
+              slidesPerView          : 5,
               navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
               },
-              spaceBetween: 2,
-              slidesPerView:5,
               autoplay: {
                 delay               : 4000,
-                disableOnInteraction: false,
-              },
+                disableOnInteraction: true,
+              }
             }
           }
         })

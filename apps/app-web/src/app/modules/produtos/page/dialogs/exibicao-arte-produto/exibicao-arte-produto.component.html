@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="tem-cor-primaria">Qual arte será usada?</h1>
 
 <div mat-dialog-content>
-  <div class="columns is-mobile is-vcentered">
+  <div class="columns is-multiline is-vcentered">
     <div class="column">
       <figure class="image is-128x182">
         <img src="{{Produto.Imagem[0]}}" alt="">
@@ -30,7 +30,7 @@
       <ng-template #novaArte>
         <div class="px-2 txt-center">
           <em>Sem Arte</em>
-          <button mat-flat-button class="button file is-info has-name pb-3 px-0">
+          <button mat-flat-button class="button file is-outlined has-name pb-3 px-0">
             <label class="file-label">
               <input class="file-input" type="file" (change)="upload($event,Produto)">
               <span class="file-cta">

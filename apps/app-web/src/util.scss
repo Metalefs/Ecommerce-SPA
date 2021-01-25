@@ -3200,6 +3200,21 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
 .of-x-scroll{
   overflow-x: scroll;
 }
+.of-x-scroll{
+  overflow-x: scroll;
+}
+.of-x-scroll::-webkit-scrollbar{
+  display: none;
+}
+.of-x-scroll::-webkit-scrollbar-thumb{
+  background: rgba(0,0,0,0.5);
+  border-radius: 90px;
+  cursor: pointer;
+}
+.of-x-scroll::-webkit-scrollbar-track-piece{
+  border-radius: 90px;
+  cursor: pointer;
+}
 .of-x-hidden{
   overflow-x: hidden;
 }
@@ -3208,7 +3223,7 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
 }
 
 .margin{
-  max-width: 1250px;
+  max-width: 1350px;
   margin: 0px auto;
 }
 /**/

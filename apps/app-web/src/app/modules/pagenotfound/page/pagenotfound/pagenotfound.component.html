@@ -11,11 +11,12 @@
   <div class="section">
     <div class="px-6 pt-4">
       <p class="header2">Últimos lançamentos</p>
-      <div class="columns is-mobile portfolio-container of-x-scroll">
-        <div class="column is-4" *ngFor="let produto of Produtos$ | async">
+      <div class="columns is-gapless is-mobile portfolio-container of-x-scroll">
+        <div class="column is-2 is-6-mobile" *ngFor="let produto of Produtos$ | async">
           <personalizados-lopes-card-produto class="portfolio-item" [Produto]="produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>
         </div>
       </div>
+      <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
     </div>
   </div>
 </div>

@@ -21,9 +21,10 @@ export class FooterComponent implements OnInit {
   Links:Link[] = [
     {name:"Quem Somos", href:"empresa", id:"Sobre"},
     {name:"Produtos",   href:"produtos", id:"Básicos"},
-    {name:"Contato",  href:"orcamento", id:"Contato"},
+    {name:"Contato",    href:"orcamento", id:"Contato"},
     {name:"Inicio",     href:"inicio",  id:"INICIO"},
     {name:"Blog",       href:"blog",  id:"Blog"},
+    {name:"Galeria",    href:"showcase",  id:"showcase"},
   ];
   links = NavLinks;
   Ano:number = new Date().getFullYear();

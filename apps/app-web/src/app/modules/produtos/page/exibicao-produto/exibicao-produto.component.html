@@ -1,6 +1,6 @@
 <div class="bg">
   <div class="section has-background-white-bis mb-3 pt-3">
-    <nav class="breadcrumb is-left pt-0 box border py-3 mb-3" aria-label="breadcrumbs">
+    <nav class="breadcrumb is-left pt-0 box border py-3 mb-3 of-x-scroll" aria-label="breadcrumbs">
       <ul class="">
         <li class="">
           <a [routerLink]="'/produtos'" href="#" class="">Todos os produtos</a>
@@ -122,7 +122,7 @@
             </span>
             <div class="w-full py-3 mb-0">
 
-              <div class="columns is-mobile mb-0">
+              <div class="columns px-6 pt-4 is-mobile">
                 <div class="column is-6 pb-0">
                   <p><em>Cor:</em><strong>{{Produto?.Cor?.nome}}</strong></p>
                   <div class="columns is-multiline" *ngIf="Produto?.Cores">
@@ -135,7 +135,6 @@
                         <label
                         title="{{cor.nome}}"
                         [style.background]="cor.cor"
-                        [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
                         (click)="Produto.Cor=cor;" for="cor{{i}}"></label>
                         <span (click)="Produto.Cor=cor;" [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
                         ></span>
@@ -220,9 +219,9 @@
               </div>
             </div>
             <div class="mh-70 pt-3 px-2 txt-left of-x-scroll">
-              <div class="columns is-vcentered px-2 is-multiline">
+              <div class="columns is-vcentered is-multiline">
                 <div class="column px-2">
-                  <button mat-flat-button class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
+                  <button mat-flat-button class="button file is-outlined has-name pl-0 pb-3" title="Enviar arte para usar no produto">
                     <label class="file-label">
                       <input class="file-input" multiple type="file" (change)="upload($event)" (click)="this.AbrirModalArte()">
                       <span class="file-cta">
@@ -340,7 +339,7 @@
     <div class="margin py-3">
       <div  class="w-full columns ">
         <div  class="descricao-produto column is-6 w-full"
-          [innerHTML]="(el.innerHTML)"></div>
+          [innerHTML]="(el?.innerHTML)"></div>
         <div  class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
           [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
       </div>
@@ -378,10 +377,11 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="mx-2">
-            <div class="w-full flex-w">
-              <p>Avalie o produto</p>
-
+            <div class="w-full">
+              <p>Você já tem este produto?</p>
+              <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
             </div>
+            <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
             <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
           </div>
         </mat-expansion-panel>
@@ -405,7 +405,7 @@
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
   </div>
 
-  <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
+  <div class="margin px-6 py-6 mb-6 has-background-warning" *ngIf="Produto">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
   </div>
 

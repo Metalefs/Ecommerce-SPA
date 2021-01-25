@@ -164,7 +164,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
-      if(ProdutosOrcamento.length == 0){
+      if(ProdutosOrcamento?.length == 0){
         return
       }
       else{
@@ -199,7 +199,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
-      if(ProdutosOrcamento.length == 0){
+      if(ProdutosOrcamento?.length == 0){
         this.isOrcamento = false;
       }
       else{
@@ -224,11 +224,13 @@ export class ExibicaoProdutoComponent implements OnInit {
     if(!localStorage.getItem(`heartproduto${this.Produto._id}`)){
       this.loading = true;
       this.store.dispatch(new GostarProduto(this.Produto._id)).subscribe(x=>{
-        this.Produto.Likes++;
         this.Liked = true;
         localStorage.setItem(`heartproduto${this.Produto._id}`,'true');
       });
       setTimeout(()=>{
+        this.Liked = true;
+        localStorage.setItem(`heartproduto${this.Produto._id}`,'true');
+        this.Produto.Likes++;
         this.loading = false;
       },3000)
     }
@@ -273,8 +275,8 @@ export class ExibicaoProdutoComponent implements OnInit {
 
         this.Produto = prod[0];
 
+        this.updateViews();
         this.AdicionarDescricao();
-        this.updateViews(prod);
 
         prod[0]?.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
@@ -286,12 +288,12 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.Orcamento$.subscribe( res => {
         const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
         if(index<0)
-          this.router.navigate(['/produtos']);
+        this.router.navigate(['/produtos']);
 
         this.Produto = res.Produto[index].Produto;
-        this.updateViews(res.Produto[index].Produto);
         this.AdicionarDescricao();
 
+        this.updateViews();
         this.Produto.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
         });
@@ -300,14 +302,14 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.LerComentariosProduto(id);
 
   }
-  updateViews(prod){
-    if(!localStorage.getItem("vprod"+prod._id)){
-      if(!prod.Visualizacoes){
-        Object.assign(prod,{Visualizacoes:0});
+  updateViews(){
+    if(!localStorage.getItem("vprod"+this.Produto._id)){
+      if(!this.Produto.Visualizacoes){
+        Object.assign(this.Produto,{Visualizacoes:0});
       }
-      ++prod.Visualizacoes;
-      this.store.dispatch(new IncrementarVisualizacoesProduto(prod._id));
-      localStorage.setItem("vprod"+prod._id,"true");
+      ++this.Produto.Visualizacoes;
+      this.store.dispatch(new IncrementarVisualizacoesProduto(this.Produto._id));
+      localStorage.setItem("vprod"+this.Produto._id,"true");
     }
   }
   LerComentariosProduto(idProduto:string){
@@ -324,7 +326,6 @@ export class ExibicaoProdutoComponent implements OnInit {
         x.Comentario.key = x.key;
         this.Comentarios.push(x.Comentario)
       })
-      console.log(this.ComentariosProduto)
       this.loading = false;
     });
 
@@ -370,12 +371,12 @@ export class ExibicaoProdutoComponent implements OnInit {
     if(!localStorage.getItem(`rateproduto${this.Produto._id}`)){
       this.loading = true;
       this.store.dispatch(new RateProduto(this.Produto._id, $event.rating)).subscribe(x=>{
-        this.Produto.Rating.push($event.rating);
         this.readonlyRating = true;
         localStorage.setItem(`rateproduto${this.Produto._id}`, $event.rating.toString());
         this.loading = false;
       });
       setTimeout(()=>{
+        this.Produto.Rating.push($event.rating);
         this.loading = false;
       },3000)
     }
@@ -387,7 +388,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   meanRating(){
     if (!this.Produto.Rating)
     return 0;
-    return (sum(this.Produto.Rating||0) / this.Produto.Rating.length||0).toFixed(1)
+    return (sum(this.Produto?.Rating||0) / this.Produto.Rating?.length||0).toFixed(1)
   }
 
   onRatingChange = ($event: RatingChangeEvent) => {
