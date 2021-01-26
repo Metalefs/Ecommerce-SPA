@@ -365,7 +365,10 @@ img{
 }
 .mat-card:not([class*="mat-elevation-z"]){
   box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  // box-shadow: none !important
+  box-shadow: none !important
+}
+.boxshadow-none{
+  box-shadow: none !important;
 }
 .shadow{
   box-shadow: 0 10px 60px #00000057;

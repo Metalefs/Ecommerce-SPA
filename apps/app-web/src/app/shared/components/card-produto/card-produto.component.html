@@ -10,6 +10,11 @@
       this.imgProduto.classList.remove('show');
       this.imgProduto2.classList.remove('hide');
       this.imgProduto2.classList.add('show');
+      " (mouseout)="
+      this.imgProduto2.classList.remove('show');
+      this.imgProduto2.classList.add('hide');
+      this.imgProduto.classList.remove('hide');
+      this.imgProduto.classList.add('show');
       "
     matRipple class="portfolio-item zoom" [style.backgroundColor]="Produto.Categoria.Cor">
       <a class="prod-status">
@@ -24,12 +29,7 @@
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
         <img mat-card-image #imgProduto2
         class="w-full-i"
-        (mouseout)="
-      this.imgProduto2.classList.remove('show');
-      this.imgProduto2.classList.add('hide');
-      this.imgProduto.classList.remove('hide');
-      this.imgProduto.classList.add('show');
-      " class="hide" [src]="Produto.Imagem[1] || Produto.Imagem[0]"
+        class="hide" [src]="Produto.Imagem[1] || Produto.Imagem[0]"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
       </a>
 
