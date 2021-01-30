@@ -45,9 +45,7 @@ export class EditarProdutoComponent implements OnInit {
     this.Atualizar();
    }
 
-   ngOnDestroy() {
-     this.areProdutosLoadedSub.unsubscribe();
-   }
+
    fQuery:FiltrarProdutoSearchQuery={
     Nome:"",
     NomeCategoria:"",

@@ -44,7 +44,7 @@ import { CardComentarioProdutoModule } from './components/comentarios/exibir-lis
 import { ExibirListaComentarioComponent } from './components/comentarios/exibir-lista-comentario/exibir-lista-comentario.component';
 import { ExibirListaComentarioProdutoComponent } from './components/comentarios/exibir-lista-comentario-produto/exibir-lista-comentario-produto.component';
 import { ProdutoSwiperComponent } from './components/produto-swiper/produto-swiper.component';
-import { ExibicaoPerfilComponent } from './components/exibicao-perfil/exibicao-perfil.component';
+import { ExibicaoPerfilModule } from './components/exibicao-perfil/exibicao-perfil.module';
 import { CardBlogModule } from './components/card-blog/card-blog.module';
 import { CardPedidoModule } from './components/card-pedido/card-pedido.module';
 import { TagProdutoSwiperComponent } from './components/tag-produto-swiper/tag-produto-swiper.component';
@@ -83,7 +83,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      ExibirListaComentarioComponent,
      ExibirListaComentarioProdutoComponent,
      ProdutoSwiperComponent,
-     ExibicaoPerfilComponent,
      TagProdutoSwiperComponent,
      BlogSwiperComponent
     ],
@@ -111,6 +110,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NgxMaskModule.forRoot(),
     EscreverComentarioModule,
     CardComentarioModule,
+    ExibicaoPerfilModule,
     CardComentarioProdutoModule,
     CardBlogModule,
     CardPedidoModule,
@@ -152,7 +152,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibirListaComentarioComponent,
     ExibirListaComentarioProdutoComponent,
     ProdutoSwiperComponent,
-    ExibicaoPerfilComponent,
+    ExibicaoPerfilModule,
     CardPedidoModule,
     TagProdutoSwiperComponent,
     BlogSwiperComponent,

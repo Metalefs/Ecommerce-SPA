@@ -4,13 +4,16 @@ import { ChangeDetectorRef,  OnDestroy } from '@angular/core';
 import { entities } from '@personalizados-lopes/data';
 
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { Link } from '../../../data/models';
+import { slider } from '../../../animations';
 
 @Component({
   selector: 'personalizados-lopes-gerenciamento',
   templateUrl: './gerenciamento.component.html',
-  styleUrls: ['./gerenciamento.component.scss']
+  styleUrls: ['./gerenciamento.component.scss'],
+
+  animations: [slider]
 })
 export class GerenciamentoComponent implements OnInit {
   user: entities.Usuario;
@@ -47,7 +50,7 @@ export class GerenciamentoComponent implements OnInit {
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
 
     this.navs = [
-      {name: "Produtos", href: "."},
+      {name: "Produtos", href: "/gerenciamento"},
       {name: "Pedidos", href: "pedidos"},
       {name: "Usuarios Interessados", href: "emails"},
       {name: "Categorias de produtos", href: "categoria"},
@@ -62,5 +65,12 @@ export class GerenciamentoComponent implements OnInit {
       {name: "Integrações", href: "integracoes"},
     ]
   }
+  prepareRoute(outlet: RouterOutlet) {
+    try{
+      return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
+    catch(ex){
 
+    }
+  }
 }

@@ -26,6 +26,7 @@ export class OrcamentoDetailComponent implements OnInit {
     let id = this.activeRoute.snapshot.params['id'];
     this.Orcamentos$.subscribe(x=>{
       this.Orcamento = x.find(x=>x._id == id);
+      console.log(this.Orcamento);
     })
   }
 
