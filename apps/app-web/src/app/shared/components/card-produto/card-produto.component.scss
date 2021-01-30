@@ -83,7 +83,7 @@ img{
 }
 
 .w-full-i{
-  width: 100%!important;
+  width: 322px;
   margin: 0;
 }
 .w-small{
@@ -187,7 +187,7 @@ img{
 
 .portfolio-overlay {
   background: rgba(255, 255, 255, 0.20);
-  // pointer-events: none;
+
   &a{
     transition:none;
   }
@@ -201,6 +201,9 @@ img{
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
     transition: 0.5s;
+    & ~ a{
+        display: none;
+    }
 }
 
 .overlay-items {
@@ -243,6 +246,13 @@ img{
 .portfolio-item:hover .portfolio-overlay {
  transform: scale(1);
  opacity: 1;
+}
+.portfolio-item:hover .portfolio-overlay ~a{
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  width: 90%;
+  top: 40%;
 }
 
 .portfolio-item:hover .overlay-items {

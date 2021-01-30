@@ -1,43 +1,32 @@
+<mat-toolbar class="w-full dis-flex flex-m py-4 flex-c a-i-c z-index-top">
+  <div class="columns ">
+    <div class="column is-12 ">
+      <div class="control has-icons-right">
+        <form type="get" action="/produtos/?nome={{search_filter}}" *ngIf="(Produto$|async)?.length>0">
+            <personalizados-lopes-autocomplete-dropdown
+             (VerTodosResultados)="executar_pesquisa()"
+             class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
+        </form>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
 <div class="sticky-nav py-4 border shadow-light"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
-  <!-- container -->
-  <mat-toolbar
-  class="mat-toolbar pos-sticky mr-0 dis-flex flex-c w-full">
-  <div class="w-full margin dis-flex flex-c flex-m flex-ba py-4 ml-1 mr-1 px-3" style="height: 90px;">
+  <mat-toolbar class="mat-toolbar pos-sticky dis-flex flex-c-m  w-full flex-sb a-i-c ">
+  <div class="w-full dis-flex flex-c flex-m flex-sb py-4 px-2" style="height: 90px;">
 
-    <a @fadeIn href="#" class="">
+    <a @fadeIn href="#" class="logo">
       <img class="logo pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO">
     </a>
-    <span class="spacer"></span>
-    <div *ngIf="search" class="w-full columns is-mobile is-multiline is-vcentered mx-3 w-full animate__animated animate__slideInLeft">
-      <div class="column is-12-mobile animate__animated animate__slideInLeft">
-        <div class="control has-icons-right animate__animated animate__slideInLeft">
-          <form type="get" action="/produtos/?nome={{search_filter}}" *ngIf="(Produto$|async)?.length>0">
-              <personalizados-lopes-autocomplete-dropdown
-               (VerTodosResultados)="executar_pesquisa()"
-               class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
-              <!-- <button [routerLink]="['/produtos']" [queryParams]="{nome:search_filter}" class="ml-6 s-button z-top">
-                <mat-icon>search</mat-icon>
-              </button> -->
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="ml-1">
-    </div>
+
     <div class="columns mx-3 is-hidden-touch link-section ">
 
-      <!-- <div class="column is-1">
-        <span class="icon pt-2 is-small hoverable clickable" (click)="search = !search">
-          <mat-icon matSuffix>{{search ? 'close' : 'search'}}</mat-icon>
-        </span>
-      </div> -->
       <div *ngFor="let link of links" class="column">
 
         <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
-
         <ng-template #normal>
           <a
             (click)="SetActiveNav(link)"
@@ -111,14 +100,12 @@
           </div>
         </button>
       </div>
-      <div class="is-hidden-touch">
-        <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
+      <div class="is-hidden-touch m-r-60 ">
+        <button mat-mini-fab (click)="openCheckout()"
             title="Checkout"
             aria-label="Botão abrir Orçamento"
-            color="accent"
+            color="none"
             class="size4 boxshadow-none flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
-            <!-- <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length > 0">{{(Orcamento$|async)?.Produto.length}} item(s) no carrinho</p>
-              <p class="cart-subtitle" *ngIf="(Orcamento$|async)?.Produto.length == 0">carrinho vazio</p> -->
               <div class="columns is-mobile is-vcentered">
                 <div class="column">
                   <mat-icon class="material-icons-outlined pl-2">shopping_bag</mat-icon>

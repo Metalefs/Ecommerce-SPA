@@ -132,13 +132,11 @@ a{
   padding: .5em;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  color: #4b4b4d;
   font-weight: 500;
   &:hover{
-    filter: brightness(.7) contrast(2.5);
+    filter: brightness(.7) contrast(1.5);
   };
   border-color: #acabab3d;
-  border-left-style: solid;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-left-width: 1px;

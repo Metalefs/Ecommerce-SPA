@@ -93,7 +93,6 @@ p{
 }
 @media screen and (max-width:720px){
   .yellow,.red,.blue{
-    filter:grayscale(.25);
     &:hover{
       @include hover;
       & mat-card > article > mat-card-header > div.mat-card-avatar{

@@ -1,6 +1,6 @@
 <section  [@cardFlip]="state" class="section py-0">
 
-  <p>Comprando {{(Orcamento$|async).Produto?.length}} item(s) no valor de {{(Orcamento$|async).Preco}} reais</p>
+  <p>Comprando {{(Orcamento$|async).Produto?.length}} item(s) no valor de R${{(Orcamento$|async).Preco.toFixed(2) || ''}} reais</p>
   <personalizados-lopes-confirmacao  [edit]="false"></personalizados-lopes-confirmacao>
 
   <div class="dis-flex flex-m has-text-left pt-4">

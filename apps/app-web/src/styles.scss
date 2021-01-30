@@ -119,6 +119,11 @@ a {
 .p-dropdown{
   width: 100%;
 }
+.p-button {
+  color: #ffffff;
+  background: #e66363fc;
+  border: 0px;
+}
 .p-autocomplete-item {
   cursor: pointer;
   overflow: scroll;
@@ -216,9 +221,11 @@ img{
   border:1px solid $neutral-lightest
 }
 .logo{
-  width: 60%;
-  height: 80px;
-  top:0;
+  width: 80px;
+  // left: 20px;
+  height: 60px;
+  position: relative;
+  top: 0;
   max-height:95px;
   // position: absolute;
 }

@@ -174,6 +174,10 @@ input{
     color:rgb(13, 199, 139);
   }
 }
+
+.events-none{
+  pointer-events: none;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -2525,6 +2529,9 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
 .min-w-full {min-width: 100%;}
 .min-h-full,.mh-full {min-height: 100%;}
 
+.vw-100 {
+  max-width:  100vw !important;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ BACKGROUND ]*/

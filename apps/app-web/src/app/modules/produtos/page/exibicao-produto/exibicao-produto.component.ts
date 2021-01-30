@@ -35,8 +35,8 @@ import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/componen
 })
 export class ExibicaoProdutoComponent implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
-  textoAdicionar:string = 'Comprar';
-  textoAtualizar:string = 'Atualizar carrinho';
+  textoAdicionar:string = 'COMPRAR';
+  textoAtualizar:string = 'ATUALIZAR CARRINHO';
   textoEsgotado:string  = 'Esgotado';
   Url:string;
   Produto:Produto = null;
@@ -58,7 +58,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   ComentariosProduto:ComentarioProduto[];
   Comentarios:Comentario[] = [];
-
+  mobile:boolean;
   constructor(
     breakpointObserver: BreakpointObserver,
     private gallery: Gallery,
@@ -76,12 +76,14 @@ export class ExibicaoProdutoComponent implements OnInit {
       ]).pipe(
         map(res => {
           if (res.matches) {
+            this.mobile=true;
             return {
               thumbPosition: ThumbnailsPosition.Bottom,
               thumbWidth: 80,
               thumbHeight: 80,
             };
           }
+          this.mobile=false;
           return {
             thumbPosition: ThumbnailsPosition.Bottom,
             thumbWidth: 120,

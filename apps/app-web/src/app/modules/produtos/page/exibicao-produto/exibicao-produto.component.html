@@ -24,7 +24,7 @@
         <gallery
           gallerize
           id="myGallery"
-          class="pos-sticky bellow-nav"
+          [ngClass]="mobile?'pos-sticky bellow-nav':''"
           *ngIf="galleryConfig$ | async; let config"
           [counter]="false"
           [nav]="false"
@@ -101,74 +101,13 @@
                 </p>
               </div>
             </div>
-            <p *ngIf="Produto?.QuantidadeMinima > 1"><em>Quantidade</em></p>
-            <div class="field w-full">
-              <div class="control border is-large flex-c flex-m w-full">
-                <button mat-icon-button (click)="DecrescerQuantidade()">
-                  <mat-icon class="less">remove</mat-icon>
-                </button>
-                <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
-                  (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
-                  class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
-                <button mat-icon-button (click)="IncrementarQuantidade()">
-                  <mat-icon class="more">add</mat-icon>
-                </button>
-              </div>
-            </div>
+
             <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
               <em>
                 *Minimo {{Produto?.QuantidadeMinima}} unidades
               </em>
             </span>
-            <div class="w-full py-3 mb-0">
 
-              <div class="columns px-6 pt-4 is-mobile">
-                <div class="column is-6 pb-0">
-                  <p><em>Cor:</em><strong>{{Produto?.Cor?.nome}}</strong></p>
-                  <div class="columns is-multiline" *ngIf="Produto?.Cores">
-                    <div id="column" *ngFor="let cor of Produto?.Cores; let i =index">
-                        <input
-                          class="px-2 py-2 mx-1"
-                          (click)="Produto.Cor=cor;"
-                          [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
-                          type="radio" alt="{{cor.nome}}" id="cor{{i}}" class="mx-1">
-                        <label
-                        title="{{cor.nome}}"
-                        [style.background]="cor.cor"
-                        (click)="Produto.Cor=cor;" for="cor{{i}}"></label>
-                        <span (click)="Produto.Cor=cor;" [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
-                        ></span>
-                      </div>
-                  </div>
-                  <!-- <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
-                    <mat-label>Selecione uma cor</mat-label>
-                    <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
-                      <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
-                        <div class="cor-produto card box w-full" [style.backgroundColor]="opt.cor"
-                          (click)="Produto.Cor = opt">
-                          <p>{{opt.nome}}</p>
-                        </div>
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field> -->
-                </div>
-                <div class="column is-6 pb-0"  *ngIf="Produto?.Tamanhos">
-                  <p><em>Tamanhos</em></p>
-                  <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
-                    <mat-label>Selecione um tamanho</mat-label>
-                    <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
-                      <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
-                        <div class="cor-produto card box w-full"
-                          (click)="Produto.Tamanho = opt">
-                          <p>{{opt}}</p>
-                        </div>
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-
-            </div>
           </div>
 
           <div class="column is-6"  *ngIf="!Produto">
@@ -185,16 +124,61 @@
 
           <div class="column is-6">
             <div class="columns is-multiline">
-              <div class="column is-12-mobile">
+              <div class="column">
+                <div class="w-full py-3 mb-0">
+                  <p *ngIf="Produto?.QuantidadeMinima >= 1"><em>Quantidade</em></p>
+                  <div class="field ">
+                    <div class="control border is-large flex-c flex-m ">
+                      <button mat-icon-button (click)="DecrescerQuantidade()">
+                        <mat-icon class="less">remove</mat-icon>
+                      </button>
+                      <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
+                        (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                        class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
+                      <button mat-icon-button (click)="IncrementarQuantidade()">
+                        <mat-icon class="more">add</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="columns is-gapless pt-4 is-mobile">
+
+                    <div class="column is-6 pb-0">
+                      <p><em>Cor:</em><strong>{{Produto?.Cor?.nome}}</strong></p>
+                      <div class="columns mt-5 px-3 is-multiline dis-flex flex-c" *ngIf="Produto?.Cores">
+                        <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
+                            <input
+                              class="px-2 py-2 mx-1"
+                              (click)="Produto.Cor=cor;"
+                              [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
+                              type="radio" alt="{{cor.nome}}" id="cor{{i}}" class="mx-1">
+                            <label
+                            title="{{cor.nome}}"
+                            [style.background]="cor.cor"
+                            [ngClass]="{'selected':Produto?.Cor?.cor == cor.cor}"
+                            (click)="Produto.Cor=cor;" for="cor{{i}}"></label>
+                            <span (click)="Produto.Cor=cor;"
+                            ></span>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="column is-6 pb-0"  *ngIf="Produto?.Tamanhos">
+                      <p><em>Tamanhos</em></p>
+                      <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                        <mat-label>Selecione um tamanho</mat-label>
+                        <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
+                          <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
+                            <div class="cor-produto card box w-full"
+                              (click)="Produto.Tamanho = opt">
+                              <p>{{opt}}</p>
+                            </div>
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                </div>
                 <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-center ">
-                  <button @fadeIn *ngIf="Produto" mat-raised-button
-                    [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                    (click)="AdicionarAoOrcamento()"
-                    class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium">
-                    {{textoAdicionar}}
-                    <!-- <mat-icon>shopping_bag</mat-icon> -->
-                  </button>
-                  <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c pb-2 mx-2"></p-skeleton>
                   <mat-list>
                     <mat-list-item *ngIf="! Produto?.Tamanho">
                       <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
@@ -203,6 +187,14 @@
                       <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
                     </mat-list-item>
                   </mat-list>
+                  <button @fadeIn *ngIf="Produto" mat-raised-button
+                    [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                    (click)="AdicionarAoOrcamento()"
+                    class="share-button background-light-red w-full flex-m flex-c px-2 pb-2 mx-2 has-text-white has-text-weight-medium">
+                    {{textoAdicionar}}
+                    <mat-icon>shopping_bag</mat-icon>
+                  </button>
+                  <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c pb-2 mx-2"></p-skeleton>
                 </div>
                 <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
                   <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
@@ -212,57 +204,13 @@
                 <button mat-flat-button title="Criar novo pedido"
                   [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                   (click)="DuplicarOrcamento()" color="accent"
-                  class="background-light-red  mx-2 has-text-white has-text-weight-medium bo-cir">
+                  class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
                   Novo
                   <mat-icon>add</mat-icon>
                 </button>
               </div>
             </div>
             <div class="mh-70 pt-3 px-2 txt-left of-x-scroll">
-              <div class="columns is-vcentered is-multiline">
-                <div class="column px-2">
-                  <button mat-flat-button class="button file is-outlined has-name pl-0 pb-3" title="Enviar arte para usar no produto">
-                    <label class="file-label">
-                      <input class="file-input" multiple type="file" (change)="upload($event)" (click)="this.AbrirModalArte()">
-                      <span class="file-cta">
-                        <span class="file-icon">
-                          <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                          Personalizar <span class="mr-1"> </span>
-                        </span>
-                        <span class="">
-                          {{' '+ fileNames}}
-                        </span>
-                      </span>
-                    </label>
-                  </button>
-                  <p class="is-subtitle is-size-7">*Envie uma estampa a ser utilizada no produto</p>
-                </div>
-                <!-- <div class="column">
-                  <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
-                    Tem arte traseira
-                  </mat-checkbox>
-                </div>
-                <div class="column px-2">
-                  <button *ngIf="arte_traseira" mat-flat-button class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
-                    <label class="file-label">
-                      <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
-                      <span class="file-cta">
-                        <span class="file-icon">
-                          <i class="fas fa-upload"></i>
-                        </span>
-                        <span class="file-label">
-                          Enviar arte secundaria <span class="mr-1"> </span>
-                        </span>
-                        <span class="file-name">
-                          {{' '+ secondaryfileNames}}
-                        </span>
-                      </span>
-                    </label>
-                  </button>
-                </div> -->
-              </div>
               <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
                 <a>Como essa arte será usada no produto?</a>
                 <div class="column">
@@ -307,9 +255,9 @@
                     <div class="column w-full is-12-mobile">
                       <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
                       title="Entrar em contato pelo whatsapp"
-                        class="button mb-2 is-success w-full has-text-white has-text-weight-medium">
+                        class="button is-success w-full flex-m flex-c pb-2 mx-2 has-text-white has-text-weight-medium">
                         <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
-                        <span class="ml-3 nunitoParagraphy16 has-text-white">Contato via whatsapp</span>
+                        <span class="ml-3 nunitoParagraphy16 has-text-white">Comprar pelo whatsapp</span>
                       </button>
                     </div>
                 </div>
@@ -326,6 +274,14 @@
           </div>
 
         </div>
+        <div class="margin py-3">
+          <div  class="w-full columns ">
+            <div  class="descricao-produto column is-6 w-full"
+              [innerHTML]="(el?.innerHTML)"></div>
+            <div  class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+          </div>
+        </div>
       </div>
 
       <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
@@ -336,14 +292,7 @@
     </div>
 
 
-    <div class="margin py-3">
-      <div  class="w-full columns ">
-        <div  class="descricao-produto column is-6 w-full"
-          [innerHTML]="(el?.innerHTML)"></div>
-        <div  class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
-          [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
-      </div>
-    </div>
+
   </div>
 </div>
 
@@ -366,27 +315,14 @@
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
     <div class=" z-index-2 my-6">
 
-      <mat-accordion >
-        <mat-expansion-panel class="">
-          <mat-expansion-panel-header class="dis-flex flex-m box bo-0 ">
-            <mat-panel-title>
-              <mat-icon mat-card-avatar class="has-text-dark">comment</mat-icon>
-            </mat-panel-title>
-            <mat-panel-description class="has-text-dark">
-              Comentar
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <div class="mx-2">
-            <div class="w-full">
-              <p>Você já tem este produto?</p>
-              <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-            </div>
-            <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-            <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-
+      <div class="mx-2">
+        <div class="w-full">
+          <p>Você já tem este produto?</p>
+          <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+        </div>
+        <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+        <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+      </div>
 
     </div>
     <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>

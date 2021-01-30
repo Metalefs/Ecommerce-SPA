@@ -76,6 +76,7 @@ export class ConfirmacaoComponent implements OnInit {
 
   VerificarQuantidade($event,element){
     if(element){
+      element.QuantidadeMinima  = element.QuantidadeMinima== 0 ?1:element.QuantidadeMinima;
       if($event.target.value < element.QuantidadeMinima)
         element.Quantidade = element.QuantidadeMinima;
       this.EditarOrcamento(element)

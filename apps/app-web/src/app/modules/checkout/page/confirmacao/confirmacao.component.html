@@ -109,7 +109,7 @@
                     value="{{element?.Produto.QuantidadeMinima}}"
                     type="number"
                     (change)="VerificarQuantidade($event,element)"
-                    min="{{element?.Produto.QuantidadeMinima}}"
+                    min="{{element?.Produto.QuantidadeMinima==0?1:element?.Produto.QuantidadeMinima}}"
                     class="quantidade-produto is-rounded"
                     [(ngModel)]="(element).Produto.Quantidade">
                   <button *ngIf="edit" mat-icon-button (click)="IncrementarQuantidade(element)">
@@ -161,7 +161,7 @@
           <div class="column"></div>
           <div class="column"></div>
           <div class="column has-text-right">
-            <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async).Preco}}</span></p>
+            <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async).Preco.toFixed(2) || ''}}</span></p>
           </div>
         </div>
       </div>
