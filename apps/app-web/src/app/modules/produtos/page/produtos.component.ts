@@ -52,6 +52,7 @@ export class ProdutosComponent implements OnInit {
   total:number = 0;
 
   loading:boolean = false;
+  loading_more:boolean = false;
   imagens:[{path:string}] = [{path:ObterImagensCarousel()[0]}];
   ordertypes:OrderType[]= [
     {name:'nome (a-z)', id: TiposOrdenacao.nome},
@@ -213,10 +214,11 @@ export class ProdutosComponent implements OnInit {
   }
   CarregarMaisProdutos(){
     this.page++;
+    this.loading_more = true;
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(x=>{
       this.total = x.total;
       x.items.forEach(item=>this.Produtos.push(item))
-      console.log(x);
+      this.loading_more = false;
     })
   }
 

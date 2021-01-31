@@ -18,9 +18,10 @@ import { ExibicaoProdutoComponent } from './page/exibicao-produto/exibicao-produ
 import { FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
 import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 import { ExibicaoArteProdutoComponent } from './page/dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
+import { CostumizationComponent } from './page/dialogs/exibicao-arte-produto/costumization/costumization.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

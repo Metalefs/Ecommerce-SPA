@@ -4,16 +4,17 @@
 }
 @media screen and (max-width: 768px){
 
-  :host :ng-deep .slideshow-container{
-    max-height: 21vh;
-    height: 21vh !important;
-  }
-  .slideshow-container{
-    max-height: 21vh;
-    height: 21vh !important;
-  }
+  // :host :ng-deep .slideshow-container{
+  //   max-height: 2vh !important;
+  // }
+  // .slideshow-container{
+  //   max-height: 2vh !important;
+  // }
 }
 :host ::ng-deep div.slideshow-container > a{
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
+}
+.mb_-4{
+  margin-bottom: -4px;
 }

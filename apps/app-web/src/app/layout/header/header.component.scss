@@ -113,7 +113,7 @@ a{
     height: 65px;
   }
   .logo{
-
+    margin-left: 0;
   }
 
 }
@@ -132,9 +132,10 @@ a{
   padding: .5em;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  font-weight: 500;
+  font-weight: 400;
   &:hover{
     filter: brightness(.7) contrast(1.5);
+    font-weight: 500;
   };
   border-color: #acabab3d;
   border-top-left-radius: 5px;

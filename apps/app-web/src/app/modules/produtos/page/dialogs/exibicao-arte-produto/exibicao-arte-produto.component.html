@@ -2,14 +2,6 @@
 
 <div mat-dialog-content>
   <div class="columns is-multiline is-vcentered">
-    <div class="column">
-      <figure class="image is-128x182">
-        <img src="{{Produto.Imagem[0]}}" alt="">
-      </figure>
-    </div>
-    <div class="column has-text-centered">
-      <h1>+</h1>
-    </div>
     <div class="column is-3">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
@@ -58,6 +50,16 @@
         </mat-card-actions>
       </mat-card>
     </div>
+    <div class="column has-text-centered">
+      <h1>+</h1>
+    </div>
+    <div class="column">
+      <personalizados-lopes-costumization></personalizados-lopes-costumization>
+      <figure class="image is-128x182 img-produto">
+        <img src="{{Produto.Imagem[0]}}" alt="">
+      </figure>
+    </div>
+
   </div>
   <div class="column">
     <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
@@ -87,6 +89,8 @@
   <button mat-raised-button class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium" *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
     Concluir
   </button>
+
+
   <div class="pt-6">
     <p><strong>Atenção às regras de personalização!</strong></p>
 

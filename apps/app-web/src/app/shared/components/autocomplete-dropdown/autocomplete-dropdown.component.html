@@ -37,4 +37,15 @@
     <button md-mat-stroked-button color="primary" (click)="selectedProdutoAdvanced = ''">Clique para redefinir a busca</button>
   </ng-template>
 
+  <div>
+    <a [href]="'/produtos/?nome='+selectedProdutoAdvanced?.toString()">
+      <button
+        color="primary"
+        class="border shadow-light w-full px-2 btn-cart dis-flex flex-sb">
+
+          <span class="spacer"></span>
+          <span>Visualizar todos os resultados</span>
+      </button>
+    </a>
+  </div>
 </p-autoComplete>

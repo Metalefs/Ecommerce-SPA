@@ -18,3 +18,20 @@
     opacity: .5;
   }
 }
+
+.img-produto{
+  &::before{
+    content: "SUA ARTE AQUI";
+    margin: 0 auto;
+    top: 40%;
+    left: 28%;
+    position: absolute;
+    padding: 1rem;
+    font-family: 'Montserrat';
+    color: white;
+    box-shadow: 0px 0px 2px #acacac9e;
+    font-size: medium;
+    z-index: 1;
+    background: #fc7f7f;
+  }
+}

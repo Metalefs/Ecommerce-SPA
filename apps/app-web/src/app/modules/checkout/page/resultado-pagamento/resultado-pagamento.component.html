@@ -68,7 +68,7 @@
 
   </div>
 
-  <div #Erro  #Sucesso *ngIf="status == StatusPagamento.rejeitado">
+  <div #Erro  #Sucesso *ngIf="status == StatusPagamento.rejeitado || status == StatusPagamento.desistencia">
     <!-- <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao> -->
     <div class=" has-text-left py-4">
       <a

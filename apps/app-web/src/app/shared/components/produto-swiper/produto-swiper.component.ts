@@ -56,8 +56,6 @@ export class ProdutoSwiperComponent implements OnInit {
                     observer               : true,
                     slidesPerView          : 1,
                     roundLengths           : true,
-                    observeSlideChildren   : true,
-                    observeParents         : true,
                     parallax:true,
                     flip:true,
                     navigation: {
@@ -91,8 +89,6 @@ export class ProdutoSwiperComponent implements OnInit {
                     observer               : true,
                     slidesPerView          : 3,
                     roundLengths           : true,
-                    observeSlideChildren   : true,
-                    observeParents         : true,
                     parallax:true,
                     flip:true,
                     navigation: {

@@ -15,10 +15,10 @@
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
 >
-  <mat-toolbar class="mat-toolbar pos-sticky dis-flex flex-c-m  w-full flex-sb a-i-c ">
+  <mat-toolbar class="mat-toolbar z-index-top pos-sticky dis-flex flex-c-m  w-full flex-sb a-i-c ">
   <div class="w-full dis-flex flex-c flex-m flex-sb py-4 px-2" style="height: 90px;">
 
-    <a @fadeIn href="#" class="logo">
+    <a @fadeIn href="#" class="logo m-l-60">
       <img class="logo pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO">
     </a>
 

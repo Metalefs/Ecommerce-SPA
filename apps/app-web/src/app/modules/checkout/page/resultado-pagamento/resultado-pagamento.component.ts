@@ -49,7 +49,6 @@ export class ResultadoPagamentoComponent implements OnInit {
     setTimeout(()=>{
       this.flip()
       this.LerParametros();
-      this.SalvarOrcamento();
     },0);
   }
 
@@ -76,7 +75,11 @@ export class ResultadoPagamentoComponent implements OnInit {
           this.status = StatusPagamento.pendente;
           break;
         }
+        default:{
+          this.status = StatusPagamento.desistencia;
+        }
       }
+      this.SalvarOrcamento();
     })
   }
 
@@ -168,5 +171,6 @@ export class ResultadoPagamentoComponent implements OnInit {
 export enum StatusPagamento{
   aprovado,
   pendente,
-  rejeitado
+  rejeitado,
+  desistencia
 }

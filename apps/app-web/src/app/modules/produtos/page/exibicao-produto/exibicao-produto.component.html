@@ -132,7 +132,7 @@
                       <button mat-icon-button (click)="DecrescerQuantidade()">
                         <mat-icon class="less">remove</mat-icon>
                       </button>
-                      <input placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
+                      <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
                         (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
                         class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
                       <button mat-icon-button (click)="IncrementarQuantidade()">
@@ -328,23 +328,23 @@
     <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 
   </div>
-
+  <mat-divider></mat-divider>
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
-
+  <mat-divider></mat-divider>
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
     <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
   </div>
-
+  <mat-divider></mat-divider>
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
   </div>
-
+  <mat-divider></mat-divider>
   <div class="margin px-6 py-6 mb-6 has-background-warning" *ngIf="Produto">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
   </div>
-
+  <mat-divider></mat-divider>
   <div class="margin px-6 py-6">
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
   </div>

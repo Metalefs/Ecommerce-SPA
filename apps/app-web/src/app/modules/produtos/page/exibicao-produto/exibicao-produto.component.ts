@@ -147,7 +147,8 @@ export class ExibicaoProdutoComponent implements OnInit {
   }
   AbrirModalArte(){
     let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
-      data:this.Produto
+      data:this.Produto,
+      panelClass:['animate__animated','animate__bounceIn', 'border']
     })
     dialogref.afterClosed().subscribe(x=>{
       if(this.Produto.Arte){
