@@ -1,0 +1,42 @@
+<div class="overlay of-y-scroll">
+  <div class="popup of-y-scroll">
+    <div class="header-container">
+      <h2>Importe um design</h2>
+      <a class="close"  (click)="close()">&times;</a>
+    </div>
+    <div class="container-modal">
+      <div class="import-zone">
+        <div class="accept">
+          <p class="warning">
+            Ao importar uma imagem, você confirma que ela não viola a lei ou os direitos de terceiros. Você
+            pode saber mais sobre os motivos de recusa de imagens <a href="">aqui</a></p>
+          <div class="toggle-contain">
+            <div id="toggle">
+              <div class="inner-container" id='toggle-container'>
+                <div class="toggle" [ngClass]="toggleNumber? 'active': ''" (click)="toggleImport()">
+                  <p>Sim</p>
+                </div>
+                <div class="toggle" [ngClass]="toggleNumber? '': 'active'" (click)="toggleImport()">
+                  <p>Não</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <label id="largeFile" for="file">
+          <input type="file" [disabled]="!toggleNumber" (change)="loadFile($event)" id="file" />
+          Importe um arquivo
+        </label>
+
+      </div>
+      <div class="content-imported">
+        <img [src]='src' />
+      </div>
+    </div>
+    <div class="container-button">
+      <button (click)="importFile()">importar</button>
+      <button (click)="importSVG()">svg</button>
+    </div>
+  </div>
+</div>

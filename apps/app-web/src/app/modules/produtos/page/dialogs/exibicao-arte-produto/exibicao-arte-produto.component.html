@@ -2,7 +2,14 @@
 
 <div mat-dialog-content>
   <div class="columns is-multiline is-vcentered">
-    <div class="column is-3">
+
+    <div class="column">
+      <personalizados-lopes-costumization [ImagemProduto]="Produto?.Imagem[0]"></personalizados-lopes-costumization>
+      <!-- <figure class="image is-128x182 img-produto">
+        <img src="{{Produto.Imagem[0]}}" alt="">
+      </figure> -->
+    </div>
+    <div *ngIf="Produto?.Arte" class="column is-3">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
         <mat-card >
@@ -50,16 +57,6 @@
         </mat-card-actions>
       </mat-card>
     </div>
-    <div class="column has-text-centered">
-      <h1>+</h1>
-    </div>
-    <div class="column">
-      <personalizados-lopes-costumization></personalizados-lopes-costumization>
-      <figure class="image is-128x182 img-produto">
-        <img src="{{Produto.Imagem[0]}}" alt="">
-      </figure>
-    </div>
-
   </div>
   <div class="column">
     <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
@@ -91,14 +88,14 @@
   </button>
 
 
-  <div class="pt-6">
-    <p><strong>Atenção às regras de personalização!</strong></p>
+  <div class="">
+    <span class="has-text-danger"><strong>Atenção às regras de personalização!</strong></span>
 
-    <div class="columns">
+    <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card class="border">
+        <mat-card class="border has-background-black">
           <mat-card-content>
-            <p>{{rule}}</p>
+            <span class="has-text-white">{{rule}}</span>
           </mat-card-content>
         </mat-card>
       </div>

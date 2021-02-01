@@ -19,9 +19,11 @@ import { FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-
 import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 import { ExibicaoArteProdutoComponent } from './page/dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
 import { CostumizationComponent } from './page/dialogs/exibicao-arte-produto/costumization/costumization.component';
+import { StockImageComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/stock-image/stock-image.component';
+import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/importacao/importacao.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

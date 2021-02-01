@@ -1,0 +1,78 @@
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 50ms;
+  display: none;
+  opacity: 0;
+  &.active{
+    display: flex;
+    opacity: 1;
+  }
+  }
+  .overlay:target {
+  display: flex;
+  opacity: 1;
+  }
+
+  .popup {
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  width: 70%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  }
+  .header-container {
+  border-bottom: 4px solid #131313;
+  display: flex;
+  }
+  .popup h2 {
+  margin: 0 0 20px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  }
+  .popup .close {
+  margin: 0 0 0 auto;
+  transition: all 200ms;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  }
+  .popup .close:hover {
+  color: #056FFA;
+  }
+  .popup .content {
+  max-height: 30%;
+  overflow: auto;
+  }
+  .container-modal {
+  display: flex;
+  }
+  .container-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    height: 52px;
+    border: none;
+    border-radius: 0;
+    background-color: #131313;
+    color: white;
+    padding: 0 24px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      background-color: #056FFA
+    }
+  }
+  }

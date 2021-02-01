@@ -27,9 +27,9 @@ export class ProdutoSwiperComponent implements OnInit {
 
   onSwiperHover( hover: boolean ) {
     if ( hover ) {
-      this.swiperEl.nativeElement.swiper.autoplay.stop();
+      this.swiperEl?.nativeElement.swiper.autoplay.stop();
     } else {
-      this.swiperEl.nativeElement.swiper.autoplay.start();
+      this.swiperEl?.nativeElement.swiper.autoplay.start();
     }
   }
 
@@ -152,7 +152,7 @@ export class ProdutoSwiperComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.swiperEl.nativeElement.swiper.autoplay.start();
+    this.swiperEl?.nativeElement.swiper.autoplay.start();
 
   }
 

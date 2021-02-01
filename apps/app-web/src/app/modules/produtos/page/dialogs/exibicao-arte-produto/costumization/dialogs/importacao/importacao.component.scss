@@ -1,0 +1,192 @@
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 50ms;
+  display: none;
+  opacity: 0;
+  &.active{
+    display: flex;
+    opacity: 1;
+  }
+  }
+  .overlay:target {
+  display: flex;
+  opacity: 1;
+  }
+
+  .popup {
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  width: 70%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  }
+  .header-container {
+  border-bottom: 4px solid #131313;
+  display: flex;
+  }
+  .popup h2 {
+  margin: 0 0 20px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  }
+  .popup .close {
+  margin: 0 0 0 auto;
+  transition: all 200ms;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  }
+  .popup .close:hover {
+  color: #056FFA;
+  }
+  .popup .content {
+  max-height: 30%;
+  overflow: auto;
+  }
+  .container-modal {
+  display: flex;
+  }
+  .container-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  button {
+    height: 52px;
+    border: none;
+    border-radius: 0;
+    background-color: #131313;
+    color: white;
+    padding: 0 24px;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      background-color: #056FFA
+    }
+  }
+  }
+// Toggle button https://codepen.io/jareko999/pen/eBayYL?editors=1111
+.toggle-contain {
+  position: relative
+  }
+  #toggle {
+  width: 160px;
+  height: 36px;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+  border: 3px solid #131313;
+  margin-top: 8px
+  }
+
+  .inner-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: inherit;
+  height: inherit;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: .2em;
+  }
+
+  .inner-container:first-child {
+  background: #FFF;
+  color: #131313;
+  }
+
+  .inner-container:nth-child(2) {
+  background: #131313;
+  color: white;
+  clip-path: inset(0 50% -1px -1px);
+  transition: .3s cubic-bezier(0,0,0,1);
+  }
+
+  .toggle {
+  width: 50%;
+  position: absolute;
+  height: inherit;
+  display: flex;
+  box-sizing: border-box;
+  font-weight: bold;
+  }
+
+  .toggle p {
+  margin: auto;
+  }
+
+  .toggle:nth-child(1) {
+  right: 0;
+  }
+
+  label#largeFile {
+  margin-top: 16px;
+  content:"Importer votre fichier";
+  left:0;
+  right:0;
+  text-align:center;
+  padding:50px 0px 50px 0px;
+  border:3px dashed #131313;
+  color:#131313;
+  font-size:18px;
+  // pointer-events: none;
+  user-select: none;
+  }
+
+  label#largeFile:hover {
+  cursor:pointer;
+  }
+
+  label#largeFile input#file {
+    width: 0px;
+    height: 0px;
+  }
+  .content-imported {
+  margin: 16px;
+  display: flex;
+  }
+  #output {
+  height: auto;
+  max-height: 500px;
+  max-width: 100%;
+  margin: auto
+  }
+
+  .item-panel {
+  visibility: hidden;
+  &.visible {
+    visibility: visible
+  }
+  }
+  #toggle {
+    width: 160px;
+    height: 36px;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    cursor: pointer;
+    border: 3px solid #131313;
+    margin-top: 8px
+  }
+  .toggle {
+    clipPath : inset(0 50% -1px -1px);
+    font-weight: bolder;
+    color: black;
+    background: white;
+    &.active{
+      clipPath: inset(0 -1px -1px 50%);
+      color: white;
+      background-color :#131313;
+    }
+  }

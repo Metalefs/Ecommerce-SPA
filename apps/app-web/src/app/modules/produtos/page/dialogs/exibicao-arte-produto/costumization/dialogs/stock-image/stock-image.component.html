@@ -1,0 +1,35 @@
+<div #popup1 id="popup1" class="overlay of-y-scroll" >
+  <div class="popup of-y-scroll">
+    <div class="header-container">
+      <h2>Selecione um Design</h2>
+      <a class="close" >&times;</a>
+    </div>
+    <div class="container-modal">
+      <div class="category-list">
+        <div class="category-item" (click)="changeImgSrc(imgSrc)">
+          <span>Imagens</span>
+        </div>
+        <div class="category-item" (click)="changeImgSrc(illuSrc)">
+          <span>Ilustrações</span>
+        </div>
+        <div class="category-item" (click)="changeImgSrc(girlSrc)">
+          <span>Infantis</span>
+        </div>
+      </div>
+      <div class="content">
+        <ul class="assets" #list>
+          <li class="item-modal" *ngFor="let item of list">
+              <img
+               [src] = "item.img"
+               class="img-stock"
+               (click)="addStockImg($event)">
+              <div class="infos-item">
+                <span class="name">{{item.name}}</span>
+                <span class="price">{{item.price}}</span>
+              </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

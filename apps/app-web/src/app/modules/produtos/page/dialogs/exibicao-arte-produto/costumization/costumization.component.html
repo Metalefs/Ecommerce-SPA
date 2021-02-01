@@ -1,133 +1,65 @@
-<div class="container-app">
+<div class="container-app columns is-vcentered is-multiline py-4">
 
-  <div class="controls">
+  <div class="controls border-dark column is-3">
 
     <a id="add" class="button" (click)="addText()">Texto</a>
-    <a class="button" (click)="popup1.classList.remove('overlay')" >Design</a>
-    <a class="button" (click)="popup2.classList.remove('overlay')" >Importar</a>
+    <a class="button" (click)="addStockImg()" >Design</a>
+    <a class="button" (click)="importFile()" >Importar</a>
   </div>
-  <canvas #canvas id="c" width="500" height="500" style="border:3px solid #131313"></canvas>
-  <div class="item-selected">
-    <div id='i-text' class="item-panel">
-      <div id="general-controls">
-        <div id="text-controls-additional">
-          <div id="color-select" onclick="clickColor()" class="color-select">
-            <div id="color-selected" class="color-item"></div>
-            <span class="caption">Cor</span>
-          </div>
-          <input type='checkbox' name='fonttype' id="text-cmd-bold">
-          <label class="text-control" for="text-cmd-bold">
-            <b>B</b>
-          </label>
-          <input type='checkbox' name='fonttype' id="text-cmd-italic">
-          <label class="text-control" for="text-cmd-italic">
-            <i>I</i>
-          </label>
-          <input type='checkbox' name='fonttype' id="text-cmd-underline">
-          <label class="text-control" for="text-cmd-underline">
-            <span style="text-decoration:underline">U</span>
-          </label>
-        </div>
-        <label for="font-family" style="display:inline-block">Familia da Fonte:</label>
-        <select id="font-family">
-          <option value="arial">Arial</option>
-          <option value="helvetica" selected>Helvetica</option>
-          <option value="comic sans ms">Comic Sans MS</option>
-        </select>
-      </div>
-      <div id="color-controls">
-        <div class="header-control">
-          <span onclick="back()">
-            < </span>
-              <p>Ecolha uma cor</p>
-        </div>
-        <div id="color-list">
+  <div class="column is-8">
+    <canvas #canvas id="c" height="500" class=" w-full border-dark card"></canvas>
+  </div>
+  <div class="column">
 
-        </div>
-      </div>
-    </div>
-    <div id='image' class="item-panel">
-      <label for="text-color">color:</label>
-      <input type="color" value="" id="fill-color" size="10">
-    </div>
-  </div>
-</div>
-<button (click)="exportToSvg()" class="export-btn">Download</button>
-<div #popup1 id="popup1" class="overlay" href="#">
-  <div class="popup">
-    <div class="header-container">
-      <h2>Selecione um Design</h2>
-      <a class="close" href="#">&times;</a>
-    </div>
-    <div class="container-modal">
-      <div class="category-list">
-        <div class="category-item" onclick="changeImgSrc(imgSrc)">
-          <span>Imagens</span>
-        </div>
-        <div class="category-item" onclick="changeImgSrc(illuSrc)">
-          <span>Ilustrações</span>
-        </div>
-        <div class="category-item" onclick="changeImgSrc(girlSrc)">
-          <span>Infantis</span>
-        </div>
-      </div>
-      <div class="content">
-        <ul class="assets" id="list">
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div #popup2 id="popup2" class="overlay" href="#">
-  <div class="popup">
-    <div class="header-container">
-      <h2>Importe um design</h2>
-      <a class="close" href="#">&times;</a>
-    </div>
-    <div class="container-modal">
-      <div class="import-zone">
-        <div class="accept">
-          <p class="warning">
-            Ao importar uma imagem, você confirma que ela não viola a lei ou os direitos de terceiros. Você
-            pode saber mais sobre os motivos de recusa de imagens <a href="">aqui</a></p>
-          <div class="toggle-contain">
-            <div id="toggle">
-              <div class="inner-container" id='toggle-container'>
-                <div class="toggle" [ngClass]="toggleNumber?'active':''" (click)="toggleImport()">
-                  <p>Sim</p>
-                </div>
-                <div class="toggle" [ngClass]="toggleNumber?'':'active'" (click)="toggleImport()">
-                  <p>Não</p>
-                </div>
-              </div>
+    <button (click)="exportToSvg()" class="export-btn">Concluir</button>
+    <div class="item-selected">
+      <div id='i-text' class="item-panel">
+        <div id="general-controls">
+          <div id="text-controls-additional">
+            <div id="color-select" (click)="clickColor()" class="color-select">
+              <div id="color-selected" class="color-item"></div>
+              <span class="caption">Cor</span>
             </div>
+            <input type='checkbox' name='fonttype' id="text-cmd-bold">
+            <label class="text-control" for="text-cmd-bold">
+              <b>B</b>
+            </label>
+            <input type='checkbox' name='fonttype' id="text-cmd-italic">
+            <label class="text-control" for="text-cmd-italic">
+              <i>I</i>
+            </label>
+            <input type='checkbox' name='fonttype' id="text-cmd-underline">
+            <label class="text-control" for="text-cmd-underline">
+              <span style="text-decoration:underline">U</span>
+            </label>
+          </div>
+          <label for="font-family" style="display:inline-block">Familia da Fonte:</label>
+          <select id="font-family">
+            <option value="arial">Arial</option>
+            <option value="helvetica" selected>Helvetica</option>
+            <option value="comic sans ms">Comic Sans MS</option>
+          </select>
+        </div>
+        <div id="color-controls">
+          <div class="header-control">
+            <span onclick="back()">
+              < </span>
+                <p>Ecolha uma cor</p>
+          </div>
+          <div id="color-list">
+
           </div>
         </div>
-
-        <label id="largeFile" for="file">
-          <input type="file" [disabled]="!toggleNumber" (change)="loadFile($event)" id="file" />
-          Importe um arquivo
-        </label>
-
       </div>
-      <div class="content-imported">
-        <img id="output" />
+      <div id='image' class="item-panel">
+        <label for="text-color">color:</label>
+        <input type="color" value="" id="fill-color" size="10">
       </div>
-    </div>
-    <div class="container-button">
-      <button (click)="importFile()">importar</button>
-      <button (click)="importSVG()">svg</button>
     </div>
   </div>
 </div>
 
 <script>
-
-  //document.getElementById('text-color').onchange = function() {
-  // canvas.getActiveObject().set("fill", this.value);
-  // canvas.renderAll();
-  //};
   document.getElementById('fill-color').onchange = function () {
       __canvas.getActiveObject().set("fill", this.value);
       __canvas.renderAll();
@@ -136,9 +68,4 @@
     canvas.getActiveObject().set("fontFamily", this.value);
     canvas.renderAll();
   };
-
-  function sendMessage() {
-    window.parent.postMessage("To page code", "http://mysite.com");
-  }
-
 </script>

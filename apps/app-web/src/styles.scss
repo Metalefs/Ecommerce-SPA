@@ -219,6 +219,9 @@ img{
 .border-light{
   border:1px solid $neutral-lightest
 }
+.border-dark{
+  border:3px solid #000000bf
+}
 .logo{
   width: 80px;
   // left: 20px;
@@ -232,6 +235,90 @@ img{
   filter:none !important;
   max-height:95px;
 }
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 16px 16px 0;
+  }
+  .category-item {
+  line-height: 56px;
+  background-color: #131313;
+  padding: 0 16px;
+  margin: 4px 0;
+  text-align: center;
+  font-family: arial;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    background-color: #056FFA;
+  }
+  }
+  ul {
+  margin: 0 !important;
+  margin-block-start: 0;
+  padding-inline-start: 0
+  }
+  .assets {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0 !important;
+  padding: 16px;
+  img {
+    height : 150px;
+    width: auto;
+    margin: auto 16px;
+  }
+  }
+  .item-modal {
+  margin: 8px 0;
+  cursor: pointer;
+  &:hover {
+    .img-stock {
+      background-color: #E5E5E5;
+    }
+  }
+  }
+  .img-stock {
+  background-color: #F6F7FB;
+  padding: 8px;
+  }
+  .infos-item {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 16px;
+  text-transform: uppercase;
+  .name {
+    padding: 4px;
+    font-size: 12px
+  }
+  .price {
+    background-color: #131313;
+    padding: 4px;
+    color: white;
+    font-size: 12px
+  }
+  }
+
+  .import-zone {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  .warning {
+    font-size: 14px;
+    color: #131313
+  }
+  }
+  .content-imported {
+  display: flex;
+  flex: 4;
+  flex-direction: column;
+  }
 .button.is-success{
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   font-size: 16px;

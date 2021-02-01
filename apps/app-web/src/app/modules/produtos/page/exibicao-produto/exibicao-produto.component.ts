@@ -99,10 +99,10 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.AdicionarDescricao();
     });
 
-    if(this.Produto.Quantidade == 0)
+    if(this.Produto?.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
     this.Url = `https://${window.location.href}`;
-    if(this.Produto.Status == StatusProduto.esgotado)
+    if(this.Produto?.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
 
 
@@ -307,7 +307,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   }
   updateViews(){
     if(!localStorage.getItem("vprod"+this.Produto._id)){
-      if(!this.Produto.Visualizacoes){
+      if(!this.Produto?.Visualizacoes){
         Object.assign(this.Produto,{Visualizacoes:0});
       }
       ++this.Produto.Visualizacoes;
@@ -324,7 +324,7 @@ export class ExibicaoProdutoComponent implements OnInit {
       )
     ).subscribe(data => {
       this.Comentarios = [];
-      this.ComentariosProduto = data.filter(x=>x.IdProduto == this.Produto._id);
+      this.ComentariosProduto = data.filter(x=>x.IdProduto == this.Produto?._id);
       this.ComentariosProduto.forEach(x=>{
         x.Comentario.key = x.key;
         this.Comentarios.push(x.Comentario)
@@ -337,18 +337,21 @@ export class ExibicaoProdutoComponent implements OnInit {
   AdicionarDescricao(){
     let element:HTMLElement = document.createElement("div");
 
-    element.innerHTML = this.Produto.Descricao;
-    element.querySelectorAll( 'oembed[url]' ).forEach( element => {
-      // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
-      // to discover the media.
-      const anchor = document.createElement( 'a' );
+    if(this.Produto){
 
-      anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
-      anchor.className = 'embedly-card';
+      element.innerHTML = this.Produto?.Descricao;
+      element.querySelectorAll( 'oembed[url]' ).forEach( element => {
+        // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+        // to discover the media.
+        const anchor = document.createElement( 'a' );
 
-      element.appendChild( anchor );
-    } );
-    this.el = element;
+        anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+        anchor.className = 'embedly-card';
+
+        element.appendChild( anchor );
+      } );
+      this.el = element;
+    }
   }
 
   translateStatusProduto(status){
