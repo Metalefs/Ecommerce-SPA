@@ -12,7 +12,20 @@
             pode saber mais sobre os motivos de recusa de imagens <a href="">aqui</a></p>
           <div class="toggle-contain">
             <div id="toggle">
-              <div class="inner-container" id='toggle-container'>
+              <div class="inner-container">
+                <div class="toggle" (click)="toggleImport()">
+                  <p>Sim</p>
+                </div>
+                <div class="toggle" (click)="toggleImport()">
+                  <p>Não</p>
+                </div>
+              </div>
+              <div
+              class="inner-container"
+              id='toggle-container'
+              [style.clipPath] = "toggleNumber? 'inset(0 -1px -1px 50%)':'inset(0 50% -1px -1px)'"
+              [style.backgroundColor] = "toggleNumber? '#131313':'#131313'"
+              >
                 <div class="toggle" [ngClass]="toggleNumber? 'active': ''" (click)="toggleImport()">
                   <p>Sim</p>
                 </div>
@@ -24,7 +37,7 @@
           </div>
         </div>
 
-        <label id="largeFile" for="file">
+        <label id="largeFile" for="file" [style.pointerEvents]="toggleNumber? 'auto': 'none'">
           <input type="file" [disabled]="!toggleNumber" (change)="loadFile($event)" id="file" />
           Importe um arquivo
         </label>
@@ -36,7 +49,7 @@
     </div>
     <div class="container-button">
       <button (click)="importFile()">importar</button>
-      <button (click)="importSVG()">svg</button>
+      <!-- <button (click)="importSVG()">svg</button> -->
     </div>
   </div>
 </div>

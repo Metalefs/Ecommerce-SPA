@@ -5,7 +5,7 @@ import { ExibicaoBlogComponent } from './page/exibicao-blog/exibicao-blog.compon
 import { ListagemPostsComponent } from './page/listagem-posts/listagem-posts.component';
 export const routes: Routes = [
   {
-    path: 'blog',
+    path: '',
     component: BlogComponent,
 
     data: { animation:'isRight' },
@@ -20,11 +20,10 @@ export const routes: Routes = [
   },
   {
 
-    path: 'blog/:id',
+    path: ':id',
     component: BlogComponent,
     pathMatch: 'full',
     data: { animation:'isRight' },
-
     children: [
       {
         path: "",

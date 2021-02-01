@@ -14,16 +14,22 @@ ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
         if(req.query.src){
           ImagemService.Filtrar({Src: req.query.src}).then(x=>{
             res.send(x);
+          }).catch((ex)=>{
+            ErrorHandler.AuthorizationException(ex,res);
           });
         }
         if(req.query.nome){
           ImagemService.Filtrar({Nome: req.query.nome}).then(x=>{
             res.send(x);
+          }).catch((ex)=>{
+            ErrorHandler.AuthorizationException(ex,res);
           });
         }
         else{
           ImagemService.Ler().then(x=>{
               res.send(x);
+          }).catch((ex)=>{
+            ErrorHandler.AuthorizationException(ex,res);
           });
         }
     }
@@ -36,6 +42,8 @@ ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
 
           ImagemService.Inserir(req.body.item).then(x=>{
               res.send(x);
+          }).catch((ex)=>{
+            ErrorHandler.AuthorizationException(ex,res);
           });
     }
     catch (err) {
@@ -49,9 +57,13 @@ ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
 
             ImagemService.Alterar(user,req.body.item.Imagem).then(x=>{
                 res.send(x);
+            }).catch((ex)=>{
+              ErrorHandler.AuthorizationException(ex,res);
             });
 
-        });
+        }).catch((ex)=>{
+          ErrorHandler.AuthorizationException(ex,res);
+        });;
     }
     catch (err) {
         ErrorHandler.DefaultException(err, res)
@@ -65,9 +77,13 @@ ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
 
             ImagemService.Deletar(user,req.query.id).then(x=>{
                 res.send(x);
-            });
+            }).catch((ex)=>{
+              ErrorHandler.AuthorizationException(ex,res);
+            });;
 
-        });
+        }).catch((ex)=>{
+          ErrorHandler.AuthorizationException(ex,res);
+        });;
     }
     catch (err) {
         ErrorHandler.DefaultException(err, res)

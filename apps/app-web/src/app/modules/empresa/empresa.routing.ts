@@ -5,9 +5,8 @@ import { EmpresaComponent } from './page/empresa.component';
 
 export const routes: Routes = [
   {
-    path: 'empresa',
+    path: '',
     component: EmpresaComponent,
-    pathMatch: 'full',
     data: { animation:'isRight' }
   }
 ];

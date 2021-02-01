@@ -4,7 +4,7 @@ import { ShowcaseComponent } from './page/showcase.component';
 
 export const routes: Routes = [
   {
-    path: 'showcase',
+    path: '',
     component: ShowcaseComponent,
     pathMatch: 'full',
     data: { animation:'isRight' }

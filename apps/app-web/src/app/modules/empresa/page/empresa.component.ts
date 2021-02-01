@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { cardFlip, fade } from '../../../animations';
 import { SobreCard } from '../../../data/models';
+import { ImagemService } from '../../../data/service';
 import { LerSobre } from '../../../data/store/actions/sobre.actions';
 import { SobreState } from '../../../data/store/state';
 
@@ -22,7 +23,7 @@ export class EmpresaComponent implements OnInit {
 
   IsSobreLoadedSub: Subscription;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store, private imagemService: ImagemService) { }
 
 
   Atualizar(){
@@ -35,9 +36,12 @@ export class EmpresaComponent implements OnInit {
       // console.log(value);
     });
   }
-
+  url:string = '';
   ngOnInit(): void {
     this.Atualizar();
+    this.imagemService.FiltrarPorNome("empresa").subscribe(x=>{
+      this.url = x[0].Src;
+    })
     setTimeout(()=>{
       // this.flip()
     },0)

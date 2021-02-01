@@ -4,7 +4,7 @@ import { OrcamentoComponent } from './page/orcamento.component';
 
 export const routes: Routes = [
   {
-    path: 'orcamento',
+    path: '',
     component: OrcamentoComponent,
     pathMatch: 'full',
     data: { animation:'isLeft' }

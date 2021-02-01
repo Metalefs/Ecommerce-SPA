@@ -4,9 +4,8 @@ import { InicioComponent } from './page/inicio.component';
 
 export const routes: Routes = [
   {
-    path: 'inicio',
+    path: '',
     component: InicioComponent,
-    pathMatch: 'full',
     data: { animation:'isLeft' }
   }
 ];

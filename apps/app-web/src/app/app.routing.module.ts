@@ -23,6 +23,50 @@ const routes: Routes = [
     redirectTo: '/inicio',
     pathMatch: 'full'
   },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./modules/inicio/inicio.module').then(m => m.InicioModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'gerenciamento/app',
+    loadChildren: () => import('./modules/gerenciamento/gerenciamento.module').then(m => m.GerenciamentoModule)
+  },
+  {
+    path: 'empresa',
+    loadChildren: () => import('./modules/empresa/empresa.module').then(m => m.EmpresaModule)
+  },
+  {
+    path: 'servicos',
+    loadChildren: () => import('./modules/servico/servico.module').then(m => m.ServicoModule)
+  },
+  {
+    path: 'produtos',
+    loadChildren: () => import('./modules/produtos/produtos.module').then(m => m.ProdutosModule)
+  },
+  {
+    path: 'orcamento',
+    loadChildren: () => import('./modules/orcamento/orcamento.module').then(m => m.OrcamentoModule)
+  },
+  {
+    path: 'showcase',
+    loadChildren: () => import('./modules/showcase/showcase.module').then(m => m.ShowcaseModule)
+  },
+  {
+    path: 'minha-conta',
+    loadChildren: () => import('./modules/minha-conta/minha-conta.module').then(m => m.MinhaContaModule)
+  },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./modules/checkout/checkout.module').then(m => m.CheckoutModule)
+  },
+  {
+    path: 'blog',
+    loadChildren: () => import('./modules/blog/blog.module').then(m => m.BlogModule)
+  },
   { path: '**', redirectTo: 'pagenotfound' }
 ];
 
@@ -30,34 +74,13 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     LayoutModule,
-    LoginModule,
-    GerenciamentoModule,
     UnderConstructionModule,
-    InicioModule,
-    EmpresaModule,
-    ServicoModule,
-    ShowcaseModule,
-    ProdutosModule,
-    OrcamentoModule,
-    CheckoutModule,
-    BlogModule,
-    MinhaContaModule,
     PagenotfoundModule
   ],
   exports: [
     RouterModule,
     LayoutModule,
-    LoginModule,
-    GerenciamentoModule,
     UnderConstructionModule,
-    InicioModule,
-    EmpresaModule,
-    ServicoModule,
-    ShowcaseModule,
-    ProdutosModule,
-    OrcamentoModule,
-    BlogModule,
-    MinhaContaModule,
     PagenotfoundModule
   ],
 

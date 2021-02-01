@@ -6,7 +6,7 @@ import { PedidosComponent } from './page/pedidos/page/pedidos.component';
 import { MinhaContaComponent } from './page/minha-conta/minha-conta.component';
 export const routes: Routes = [
   {
-    path: 'minha-conta',
+    path: '',
     component: MinhaContaComponent,
     data: { animation:'isLeft' },
     canActivate: [AuthGuard],

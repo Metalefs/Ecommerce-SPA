@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="tem-cor-primaria">Qual arte será usada?</h1>
+<h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Qual arte será usada?</h1>
 
 <div mat-dialog-content>
   <div class="columns is-multiline is-vcentered">
@@ -90,13 +90,13 @@
 
 
   <div class="">
-    <h4 class="has-text-danger"><strong>Atenção às regras de personalização!</strong></h4>
+    <h4 class="has-text-danger"><em>Atenção às regras de personalização!</em></h4>
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card class="border has-background-black">
+        <mat-card class="box border has-background-warning">
           <mat-card-content>
-            <span class="has-text-white">{{rule}}</span>
+            <span class="has-text-dark">{{rule}}</span>
           </mat-card-content>
         </mat-card>
       </div>

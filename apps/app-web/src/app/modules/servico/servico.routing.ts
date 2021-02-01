@@ -4,7 +4,7 @@ import { ServicoComponent } from './page/servico.component';
 
 export const routes: Routes = [
   {
-    path: 'servicos',
+    path: '',
     component: ServicoComponent,
     pathMatch: 'full',
     data: { animation:'isLeft' }

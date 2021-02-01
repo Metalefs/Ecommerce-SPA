@@ -7,7 +7,7 @@ import { EnderecoComponent } from './page/endereco/endereco.component';
 import { ResultadoPagamentoComponent } from './page/resultado-pagamento/resultado-pagamento.component';
 export const routes: Routes = [
   {
-    path: 'checkout',
+    path: '',
     component: CheckoutComponent,
     data: { animation:'checkout' },
     children: [

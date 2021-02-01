@@ -5,19 +5,18 @@ import { ProdutosComponent } from './page/produtos.component';
 
 export const routes: Routes = [
   {
-    path: 'produtos',
+    path: '',
     component: ProdutosComponent,
-    pathMatch: 'full',
     data: { animation:'isRight' }
   },
   {
-    path: 'produtos/:id',
+    path: ':id',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
     data: { animation:'flip' }
   },
   {
-    path: 'produtos/:id/:orcamentoId',
+    path: ':id/:orcamentoId',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
     // data: { animation:'isRight' }

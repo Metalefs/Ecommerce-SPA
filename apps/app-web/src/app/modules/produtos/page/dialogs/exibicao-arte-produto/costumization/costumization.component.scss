@@ -16,7 +16,8 @@
 .prod-img{
   position: static;
   height: 500px;
-  width: 400px;
+  width: 100%;
+  width: -webkit-fill-available;
   margin-bottom: -508px;
 }
 .container-app {

@@ -205,7 +205,7 @@ export class CostumizationComponent implements OnInit {
           self.__canvas.add(oImg).renderAll();
           var a = self.__canvas.setActiveObject(oImg);
         });
-
+        self.Produto.Arte = imgObj;
       }
 
     })
