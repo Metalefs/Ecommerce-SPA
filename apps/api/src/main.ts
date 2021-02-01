@@ -9,10 +9,8 @@ const app = express();
 import * as ControllerUsuario  from './app/controllers/usuario.controller';
 import { Routers } from './app/controllers';
 import { SeedingService } from './app/services/seeding/seeding.service';
-const compression = require('compression')
 
 app.use(cors());
-app.use(compression());
 app.use(express.static('./static-files'));
 app.use(bodyParser.json({limit: '10mb', extended: true}))
 app.use(bodyParser.urlencoded({limit: '10mb', extended: true}))
