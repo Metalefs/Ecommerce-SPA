@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 
 @Component({
   selector: 'personalizados-lopes-importacao',
@@ -23,15 +24,15 @@ export class ImportacaoComponent implements OnInit {
   src:any = ''
   loadFile(event){
     this.fileLoaded = event
-    this.src = URL.createObjectURL(event.target.files[0]);
+    getPreviewURL(event,[],(res,fnames)=>this.src=res);
   }
   importFile(){
-    this.close(this.fileLoaded);
+    this.close(this.src);
   }
   importSVG(){
     this.close();
   }
   close(event = null){
-    this.dialogRef.close();
+    this.dialogRef.close(event);
   }
 }

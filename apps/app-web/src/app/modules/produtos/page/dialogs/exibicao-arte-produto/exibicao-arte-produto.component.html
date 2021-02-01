@@ -3,16 +3,14 @@
 <div mat-dialog-content>
   <div class="columns is-multiline is-vcentered">
 
-    <div class="column">
-      <personalizados-lopes-costumization [ImagemProduto]="Produto?.Imagem[0]"></personalizados-lopes-costumization>
-      <!-- <figure class="image is-128x182 img-produto">
-        <img src="{{Produto.Imagem[0]}}" alt="">
-      </figure> -->
+    <div class="column is-hidden-touch">
+      <personalizados-lopes-costumization [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
-    <div *ngIf="Produto?.Arte" class="column is-3">
+
+    <div class="column is-3">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
-        <mat-card >
+        <mat-card>
           <mat-card-header>
             <mat-card-subtitle>Arte Primaria</mat-card-subtitle>
           </mat-card-header>
@@ -43,7 +41,7 @@
       </ng-template>
     </div>
     <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column is-3">
-      <mat-card >
+      <mat-card>
         <mat-card-header>
           <mat-card-subtitle>Arte Secundaria</mat-card-subtitle>
         </mat-card-header>
@@ -58,14 +56,15 @@
       </mat-card>
     </div>
   </div>
+
   <div class="column">
     <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
       Tem arte traseira
     </mat-checkbox>
   </div>
   <div class="column px-2">
-    <button @fadeIn *ngIf="arte_traseira && !Produto.ArteSecundaria" mat-flat-button class="button file is-info has-name pb-3"
-      title="Enviar arte para usar no produto">
+    <button @fadeIn *ngIf="arte_traseira && !Produto.ArteSecundaria" mat-flat-button
+      class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
       <label class="file-label">
         <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
         <span class="file-cta">
@@ -83,13 +82,15 @@
     </button>
   </div>
 
-  <button mat-raised-button class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium" *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
+  <button mat-raised-button
+    class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium"
+    *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
     Concluir
   </button>
 
 
   <div class="">
-    <span class="has-text-danger"><strong>Atenção às regras de personalização!</strong></span>
+    <h4 class="has-text-danger"><strong>Atenção às regras de personalização!</strong></h4>
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">

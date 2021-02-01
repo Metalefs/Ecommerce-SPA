@@ -67,7 +67,7 @@ export class StockImageComponent implements OnInit {
       price: "3€"
     }];
 
-  @ViewChildren("list") private list: HTMLUListElement;
+  list:any=[];
   constructor(public dialogRef: MatDialogRef<StockImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  any) {
     }

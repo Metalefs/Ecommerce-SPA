@@ -142,7 +142,7 @@
 
       <div class="swiper-container" [swiper]="swiperConfig">
         <div class="swiper-wrapper">
-          <div class="swiper-slide" *ngFor="let image of Produto.Imagem">
+          <div class="swiper-slide" *ngFor="let image of Produto?.Imagem">
             <img mat-card-image
              class="w-full-i vw-100"
              #imgProduto [src]="image" [style.opacity]="'1'" [style.display]="'block'"

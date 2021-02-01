@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { fabric } from "fabric";
+import { Produto } from 'libs/data/src/lib/classes';
 import { ImportacaoComponent } from './dialogs/importacao/importacao.component';
 import { StockImageComponent } from './dialogs/stock-image/stock-image.component';
 
@@ -11,10 +12,9 @@ import { StockImageComponent } from './dialogs/stock-image/stock-image.component
 })
 export class CostumizationComponent implements OnInit {
 
-  @Input() ImagemProduto:string;
+  @Input() Produto:Produto;
   __canvas:any;
-  deleteIcon:any = "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Ebene_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='595.275px' height='595.275px' viewBox='200 215 230 470' xml:space='preserve'%3E%3Ccircle style='fill:%23F44336;' cx='299.76' cy='439.067' r='218.516'/%3E%3Cg%3E%3Crect x='267.162' y='307.978' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -222.6202 340.6915)' style='fill:white;' width='65.545' height='262.18'/%3E%3Crect x='266.988' y='308.153' transform='matrix(0.7071 0.7071 -0.7071 0.7071 398.3889 -83.3116)' style='fill:white;' width='65.544' height='262.179'/%3E%3C/g%3E%3C/svg%3E";
-  img:any = document.createElement('img');
+
   fabric = fabric;
   cornerSize:any;
   fileLoaded:any;
@@ -30,7 +30,6 @@ export class CostumizationComponent implements OnInit {
   ngOnInit(): void {
     this.__canvas = new this.fabric.Canvas('c');
 
-    this.img.src = this.deleteIcon;
     this.fabric.Object.prototype.cornerColor = '#131313';
     this.fabric.Object.prototype.transparentCorners = false;
 
@@ -39,7 +38,7 @@ export class CostumizationComponent implements OnInit {
 
   setup(){
 
-    this.uploadImageURL(this.ImagemProduto);
+    // this.uploadImageURL(this.Produto.Imagem[0]);
 
     this.__canvas.on('selection:created', ()=>{this.onObjectSelected()});
     this.__canvas.on('selection:cleared', ()=>{this.onObjectCleared()});
@@ -115,7 +114,8 @@ export class CostumizationComponent implements OnInit {
     this.dialog.open(ImportacaoComponent,{
       data:this.fileLoaded
     }).afterClosed().subscribe(x=>{
-      this.uploadImage(x)
+      if(x)
+      this.uploadImageURL(x)
     })
 
   }
@@ -136,8 +136,8 @@ export class CostumizationComponent implements OnInit {
         });
 
         self.__canvas.add(oImg).renderAll();
-        var a = this.__canvas.setActiveObject(oImg);
-        var dataURL = this.__canvas.toDataURL({ format: 'png', quality: 0.8 });
+        var a = self.__canvas.setActiveObject(oImg);
+        var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
 
       });
     };
@@ -156,15 +156,10 @@ export class CostumizationComponent implements OnInit {
       });
 
       self.__canvas.add(oImg).renderAll();
-      if(self.__canvas){
-        var a = self.__canvas.setActiveObject(oImg);
-        var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
-      }
-
-    }.bind(this),{
-      crossOrigin: 'anonymous'
+      var a = self.__canvas.setActiveObject(oImg);
+      var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
+      self.Produto.Arte = url;
     });
-
   }
 
   importSVG() {
@@ -194,22 +189,24 @@ export class CostumizationComponent implements OnInit {
     let dialogRef = this.dialog.open(StockImageComponent, {
 
     })
+    let self = this;
     dialogRef.afterClosed().subscribe(e=>{
+      if(e){
+        var imgObj = e.srcElement.currentSrc;
+        fabric.Image.fromURL(imgObj, function (img) {
+          img.scaleToWidth(300);
+          var oImg = img.set({
+            left: 0,
+            top: 0,
+            angle: 0,
+            id: "00ab"
+          });
 
-      var imgObj = e.srcElement.currentSrc;
-      let self = this;
-      fabric.Image.fromURL(imgObj, function (img) {
-        img.scaleToWidth(300);
-        var oImg = img.set({
-          left: 0,
-          top: 0,
-          angle: 0,
-          id: "00ab"
+          self.__canvas.add(oImg).renderAll();
+          var a = self.__canvas.setActiveObject(oImg);
         });
 
-        self.__canvas.add(oImg).renderAll();
-        var a = this.__canvas.setActiveObject(oImg);
-      });
+      }
 
     })
   }
@@ -220,28 +217,33 @@ export class CostumizationComponent implements OnInit {
     var json_data = JSON.stringify(this.__canvas.toDatalessJSON());
     console.log(json_data);
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(json_data);
-    document.querySelector('#list').innerHTML = '<a href="" id="downloadAnchorElem"></a>';
-    var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href",     dataStr     );
-    dlAnchorElem.setAttribute("download", "scene.json");
-    dlAnchorElem.click();
+    this.Produto.Arte = this.__canvas.toDatalessJSON().src;
+    // document.querySelector('#list').innerHTML = '<a href="" id="downloadAnchorElem"></a>';
+    // var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    // dlAnchorElem.setAttribute("href",     dataStr     );
+    // dlAnchorElem.setAttribute("download", "scene.json");
+    // dlAnchorElem.click();
   }
 
   deleteObject(eventData, target) {
-    var canvas = target.canvas;
+    var canvas = target.target.canvas;
     alert("delete");
     console.log(target)
     console.log(canvas);
-    canvas.remove(target);
+    canvas.remove(target.target);
     canvas.requestRenderAll();
   }
 
   renderIcon(ctx, left, top, styleOverride, fabricObject) {
     var size = this.cornerSize;
+    var deleteIcon = "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Ebene_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='595.275px' height='595.275px' viewBox='200 215 230 470' xml:space='preserve'%3E%3Ccircle style='fill:%23F44336;' cx='299.76' cy='439.067' r='218.516'/%3E%3Cg%3E%3Crect x='267.162' y='307.978' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -222.6202 340.6915)' style='fill:white;' width='65.545' height='262.18'/%3E%3Crect x='266.988' y='308.153' transform='matrix(0.7071 0.7071 -0.7071 0.7071 398.3889 -83.3116)' style='fill:white;' width='65.544' height='262.179'/%3E%3C/g%3E%3C/svg%3E";
+    var img = document.createElement('img');
+
+    img.src = deleteIcon;
     ctx.save();
     ctx.translate(left, top);
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-    ctx.drawImage(this.img, -size / 2, -size / 2, size, size);
+    ctx.drawImage(img, -size / 2, -size / 2, size, size);
     ctx.restore();
   }
 
