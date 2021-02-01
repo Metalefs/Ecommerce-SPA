@@ -21,7 +21,7 @@ import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-deta
 
 export const routes: Routes = [
   {
-    path: "app",
+    path: '',
     component: GerenciamentoComponent,
     canActivate: [AuthGuard],
     children: [
