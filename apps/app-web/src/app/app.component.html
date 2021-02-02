@@ -5,13 +5,12 @@
   <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction>
   <cookie-law #cookieLaw position="bottom"
   name="ng4topCookieLaw" expiration="1"
-  class="px-3 mx-3 my-3 flex-m z-index-top shadow-light pt-0 txt-center">
+  class="px-3 mx-3 my-3 flex-m has-text-centered z-index-top shadow-light pt-0 txt-center">
   Para melhorar a sua experiência neste site, analisamos seus hábitos
   de navegação e salvamos alguns dados por meio de cookies, conforme a nossa
   política de privacidade
   <button mat-raised-button
-    color="warn"
-    href="/"
+    class="button is-success is-rounded"
     (click)="dismissCookieLaw()"
     class="has-text-white is-primary">
     Eu Aceito
