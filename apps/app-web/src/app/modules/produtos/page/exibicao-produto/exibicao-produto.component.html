@@ -123,7 +123,7 @@
           </div>
 
           <div class="column is-6">
-            <div class="columns is-multiline">
+            <div class="columns is-multiline pr-3">
               <div class="column">
                 <div class="w-full py-3 mb-0">
                   <p *ngIf="Produto?.QuantidadeMinima >= 1"><em>Quantidade</em></p>
@@ -163,7 +163,7 @@
                     </div>
                     <div class="column is-6 pb-0"  *ngIf="Produto?.Tamanhos">
                       <p><em>Tamanhos</em></p>
-                      <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                      <mat-form-field class="w-full" *ngIf="Produto?.Cores" >
                         <mat-label>Selecione um tamanho</mat-label>
                         <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
                           <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
@@ -255,7 +255,7 @@
                     <div class="column w-full is-12-mobile">
                       <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
                       title="Entrar em contato pelo whatsapp"
-                        class="button is-success w-full flex-m flex-c pb-2 mx-2 has-text-white has-text-weight-medium">
+                        class="button is-success w-full flex-m flex-c pb-2 has-text-white has-text-weight-medium">
                         <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
                         <span class="ml-3 nunitoParagraphy16 has-text-white">Comprar pelo whatsapp</span>
                       </button>
@@ -313,7 +313,7 @@
 
 <div class="bg-transp">
   <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-    <div class="z-index-2 my-6">
+    <div class="z-index-2 px-2 py-2 my-6">
 
       <div class="mx-2 border">
         <div class="w-full">

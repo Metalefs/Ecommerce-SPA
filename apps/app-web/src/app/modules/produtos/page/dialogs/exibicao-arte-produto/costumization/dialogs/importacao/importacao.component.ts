@@ -17,6 +17,7 @@ export class ImportacaoComponent implements OnInit {
 
   toggleImport(){
     this.toggleNumber = !this.toggleNumber;
+
   }
 
   ngOnInit(): void {

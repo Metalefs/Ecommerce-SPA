@@ -88,20 +88,18 @@
     </div>
   </div>
 
-  <div class="w-full has-background-dark">
-    <div class="w-full margin py-4 px-6">
+  <mat-toolbar-row class="w-full has-background-dark">
+    <div class="w-full margin py-4 pr-1">
       <div class="w-full flex-sb">
         <span class="has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</span>
+        <a title="Desenvolvido por Devportable -Jackson P.Ramalho">
+          <figure class="image is-16x16">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_5lFisntpyXJSeccu5NN14dQLO8MgK4q3GQ&usqp=CAU" alt="Desenvolvido por Jackson Pires Ramalho">
+          </figure>
+        </a>
       </div>
     </div>
-    <div class="w-full py-1 px-3 flex-r">
-      <a title="Desenvolvido por Devportable -Jackson P.Ramalho">
-        <figure class="image is-16x16">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_5lFisntpyXJSeccu5NN14dQLO8MgK4q3GQ&usqp=CAU" alt="Desenvolvido por Jackson Pires Ramalho">
-        </figure>
-      </a>
-    </div>
-  </div>
+  </mat-toolbar-row>
 
 </footer>
 

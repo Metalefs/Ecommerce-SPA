@@ -4,8 +4,8 @@
       <h2>Importe um design</h2>
       <a class="close"  (click)="close()">&times;</a>
     </div>
-    <div class="container-modal">
-      <div class="import-zone">
+    <div class="columns is-multiline container-modal dis-flex overflow-y-scroll">
+      <div class="column import-zone">
         <div class="accept">
           <p class="warning">
             Ao importar uma imagem, você confirma que ela não viola a lei ou os direitos de terceiros. Você
@@ -47,7 +47,7 @@
         <img [src]='src' />
       </div>
     </div>
-    <div class="container-button">
+    <div class="column container-button">
       <button (click)="importFile()">importar</button>
       <!-- <button (click)="importSVG()">svg</button> -->
     </div>
