@@ -26,7 +26,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: "",
+        path: "produtos",
         // canActivate: [AuthGuard],
         component: EditarProdutoComponent,
       },
@@ -113,6 +113,7 @@ export const routes: Routes = [
         pathMatch: 'full',
       }
     ],
+
   },
 ];
 @NgModule({

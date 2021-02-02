@@ -1,3 +1,4 @@
+import { IfStmt } from '@angular/compiler';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { fabric } from "fabric";
@@ -205,7 +206,10 @@ export class CostumizationComponent implements OnInit {
           self.__canvas.add(oImg).renderAll();
           var a = self.__canvas.setActiveObject(oImg);
         });
-        self.Produto.Arte = imgObj;
+        if(!self.Produto.Arte){
+          self.Produto.Arte = imgObj;
+        }
+        self.Produto.Design = imgObj;
       }
 
     })
@@ -215,9 +219,13 @@ export class CostumizationComponent implements OnInit {
     var exportSvg = this.__canvas.toSVG();
     localStorage.setItem('svg', exportSvg);
     var json_data = JSON.stringify(this.__canvas.toDatalessJSON());
+    if(!this.Produto.Canvas)
+      Object.assign(this.Produto, {Canvas: this.__canvas.toDatalessJSON().src});
+    else
+      this.Produto.Canvas = this.__canvas.toDatalessJSON().src;
+
     console.log(json_data);
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(json_data);
-    this.Produto.Arte = this.__canvas.toDatalessJSON().src;
+    // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(json_data);
     // document.querySelector('#list').innerHTML = '<a href="" id="downloadAnchorElem"></a>';
     // var dlAnchorElem = document.getElementById('downloadAnchorElem');
     // dlAnchorElem.setAttribute("href",     dataStr     );
@@ -227,7 +235,6 @@ export class CostumizationComponent implements OnInit {
 
   deleteObject(eventData, target) {
     var canvas = target.target.canvas;
-    alert("delete");
     console.log(target)
     console.log(canvas);
     canvas.remove(target.target);

@@ -6,6 +6,9 @@ export function ObterImagensCarousel(){
     'assets/images/inicio/carousel/FAIXA10.jpg',
   ]
 }
+export function ObterGIFProdutos(){
+  return  'assets/images/GIF.gif'
+}
 export function getPreviewURL($event,fileNames,callback){
 
   let filelist = $event.target.files;

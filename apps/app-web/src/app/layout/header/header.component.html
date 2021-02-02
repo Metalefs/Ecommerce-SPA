@@ -2,7 +2,7 @@
   <div class="columns ">
     <div class="column is-12 ">
       <div class="control has-icons-right">
-        <form type="get" action="/produtos/?nome={{search_filter}}" *ngIf="(Produto$|async)?.length>0">
+        <form type="get" action="/produtos/?nome={{search_filter}}">
             <personalizados-lopes-autocomplete-dropdown
              (VerTodosResultados)="executar_pesquisa()"
              class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
@@ -106,15 +106,18 @@
             aria-label="Botão abrir Orçamento"
             color="none"
             class="size4 boxshadow-none flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
-              <div class="columns is-mobile is-vcentered">
-                <div class="column">
-                  <mat-icon class="material-icons-outlined pl-2">shopping_bag</mat-icon>
-                  <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
-                </div>
-                <div class="column is-hidden-touch">
-                  <p class="preco" *ngIf="(Orcamento$|async).Preco">
-                    R${{(Orcamento$|async).Preco.toFixed(2) || ''}}
-                  </p>
+              <div class="columns is-multiline is-vcentered">
+
+                <div class="columns">
+                  <div class="column">
+                    <mat-icon class="material-icons-outlined pl-2">shopping_bag</mat-icon>
+                    <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+                  </div>
+                  <div class="column is-hidden-touch">
+                    <p class="preco" *ngIf="(Orcamento$|async).Preco">
+                      R${{(Orcamento$|async).Preco.toFixed(2) || ''}}
+                    </p>
+                  </div>
                 </div>
               </div>
           </button>

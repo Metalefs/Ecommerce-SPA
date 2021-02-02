@@ -3,7 +3,7 @@
 <div mat-dialog-content>
   <div class="columns is-multiline is-vcentered">
 
-    <div class="column is-hidden-touch">
+    <div class="column ">
       <personalizados-lopes-costumization [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
@@ -94,9 +94,9 @@
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card class="box border has-background-dark">
+        <mat-card class="box border">
           <mat-card-content>
-            <span class="has-text-white">{{rule}}</span>
+            <span class="">{{rule}}</span>
           </mat-card-content>
         </mat-card>
       </div>

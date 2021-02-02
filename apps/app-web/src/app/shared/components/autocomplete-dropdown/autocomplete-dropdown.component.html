@@ -5,9 +5,9 @@
   (onKeyUp)="outputNewValue()"
   field="name"
   class="w-full"
-  [size]="30"
+  [size]="20"
   [minLength]="1"
-  placeholder="Busque por produtos"
+  placeholder="busque por produtos"
   [dropdown]="true">
   <ng-template let-produto pTemplate="item">
     <a [href]="'/produtos/'+produto?._id">

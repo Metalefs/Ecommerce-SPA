@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SobreCard } from 'apps/app-web/src/app/data/models';
 import { ImagemService } from 'apps/app-web/src/app/data/service';
+import { ObterGIFProdutos } from 'apps/app-web/src/app/helper/FileHelper';
 @Component({
   selector: 'personalizados-lopes-header-footer',
   templateUrl: './header-footer.component.html',
@@ -33,7 +34,8 @@ export class HeaderFooterComponent implements OnInit {
           class:"red",
           link:"/showcase",
           id:"#SHOWCASE",
-          content:"Dê uma olhada nos ultimos items que personalizamos!"
+          content:"Dê uma olhada nos ultimos items que personalizamos!",
+          img_src:ObterGIFProdutos()
         },
         {
           title:"Entre em Contato",
