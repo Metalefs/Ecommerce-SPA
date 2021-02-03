@@ -44,4 +44,7 @@ export class EscreverComentarioComponent implements OnInit {
   Enviar(){
     this.EnviarComentario.emit(this.Comentario)
   }
+  onTextChange($event){
+    this.Comentario.Texto = $event;
+  }
 }

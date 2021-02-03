@@ -382,8 +382,13 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.loading = false;
       });
       setTimeout(()=>{
-        this.Produto.Rating.push($event.rating);
-        this.loading = false;
+        if(this.loading){
+
+          this.Produto.Rating.push($event.rating);
+          this.readonlyRating = true;
+          localStorage.setItem(`rateproduto${this.Produto._id}`, $event.rating.toString());
+          this.loading = false;
+        }
       },3000)
     }
     else

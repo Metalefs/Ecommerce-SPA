@@ -55,6 +55,9 @@ export class ImagemService {
           console.log(x);
           this.Remover(caminho);
           resolve(x);
+        }).catch((ex)=>{
+          this.Remover(caminho);
+          resolve();
         });
       }
       catch(ex){

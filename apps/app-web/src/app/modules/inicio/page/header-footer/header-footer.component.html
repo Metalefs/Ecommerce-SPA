@@ -1,46 +1,48 @@
 <div class="a-i-c columns is-multiline bg flex-sa mlr-auto">
-  <div class="column is-4 my-1" *ngFor="let card of Cards;let i = index;">
+  <div class="column is-4-desktop is-12-mobile my-1" *ngFor="let card of Cards;let i = index;">
     <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
     <div data-aos="zoom-in-up" [id]="card.class" class="card-bg {{card?.class}}">
+      <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="min-h-full">
       <mat-card class="border-light" [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
         <article class="media min-h-full">
           <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="min-h-full">
-            <img *ngIf="card.img_src" src="{{card.img_src}}" class="min-h-full">
-          </a>
-          <mat-card-header class="ml-4">
-            <div *ngIf="!card.img_src" mat-card-avatar  class="{{card?.class}}">
-              <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
-                <mat-icon>{{card.icon}}</mat-icon>
-              </a>
-            </div>
-          </mat-card-header>
-          <div class="media-content">
-            <div class="content">
-              <mat-card-title>
-                <a [routerLink]="card.link" href="{{card.id}}" pageScroll><p class="title header-card header">{{card.title}}</p></a>
-              </mat-card-title>
-
-              <mat-card-content>
-                <p [innerHtml]="card.content" class="has-text-justified mt-3">
-                </p>
-              </mat-card-content>
-            </div>
-            <nav class="level is-mobile">
-              <div class="level-left">
-
+            <img *ngIf="card.img_src" src="{{card.img_src}}" class="">
+            </a>
+            <mat-card-header class="ml-4">
+              <div *ngIf="!card.img_src" mat-card-avatar  class="{{card?.class}}">
+                <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
+                  <mat-icon>{{card.icon}}</mat-icon>
+                </a>
               </div>
-            </nav>
-          </div>
-        </article>
+            </mat-card-header>
+            <div class="media-content">
+              <div class="content">
+                <mat-card-title>
+                  <a [routerLink]="card.link" href="{{card.id}}" pageScroll><p class="title header-card header">{{card.title}}</p></a>
+                </mat-card-title>
 
-      </mat-card>
+                <mat-card-content>
+                  <p [innerHtml]="card.content" class="has-text-justified mt-3">
+                  </p>
+                </mat-card-content>
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+
+                </div>
+              </nav>
+            </div>
+          </article>
+
+        </mat-card>
+      </a>
+      </div>
     </div>
   </div>
-</div>
 
-<div *ngIf="loading" class="a-i-c columns is-multiline bg flex-sa mlr-auto">
-  <div class="column card-bg is-4 my-1" *ngFor="let card of [].constructor(3);">
-    <mat-card>
+  <div *ngIf="loading" class="a-i-c columns is-multiline bg flex-sa mlr-auto">
+    <div class="column card-bg is-4 my-1" *ngFor="let card of [].constructor(3);">
+      <mat-card>
 
       <p-skeleton styleClass="mat-card" width="100%" height="100%"></p-skeleton>
     </mat-card>

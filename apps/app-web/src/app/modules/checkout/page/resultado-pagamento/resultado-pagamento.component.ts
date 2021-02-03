@@ -39,6 +39,8 @@ export class ResultadoPagamentoComponent implements OnInit {
       this.Orcamento = x;
       if(this.Orcamento.Produto){
         this.Orcamento.Produto.forEach(prod=>{
+          if(!prod.Produto.Vendas)
+            Object.assign(prod.Produto,{Vendas:0})
           prod.Produto.Vendas++;
           this.store.dispatch(new IncrementarVendaProduto(prod.Produto._id));
         })
@@ -53,7 +55,7 @@ export class ResultadoPagamentoComponent implements OnInit {
   }
 
   LerParametros(){
-    this.activeRoute.queryParams.filter(params => params.status)
+    this.activeRoute.params
     .subscribe(params => {
       this.PreencherDadosPagamentoNoOrcamento(params);
       switch(params.status){
@@ -78,6 +80,9 @@ export class ResultadoPagamentoComponent implements OnInit {
         default:{
           this.status = StatusPagamento.desistencia;
         }
+      }
+      if(!params || params.status == "null"||params.status == null){
+        this.status = StatusPagamento.desistencia;
       }
       this.SalvarOrcamento();
     })

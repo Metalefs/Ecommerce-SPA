@@ -160,7 +160,7 @@
   @include NunitoLabel12($text-align:left)
 }
 /*setting default caligraphy*/
-h1{
+h1,h2{
   @extend .buenard40;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -37,10 +37,12 @@ export class EmpresaComponent implements OnInit {
     });
   }
   url:string = '';
+  url2:string = '';
   ngOnInit(): void {
     this.Atualizar();
     this.imagemService.FiltrarPorNome("empresa").subscribe(x=>{
-      this.url = x[0].Src;
+      this.url = x.filter(x=>x.Nome == "empresa")[0].Src;
+      this.url2 = x.filter(x=>x.Nome == "Fundo")[0].Src;
     })
     setTimeout(()=>{
       // this.flip()

@@ -78,8 +78,8 @@
         </a>
         <div class="dropdown-content right-0">
           <a mat-menu-item *ngIf="!user" (click)="openLogin()">Login</a>
-          <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/perfil']">Meu Perfil</a>
-          <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento']">Gerenciamento</a>
+          <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
+          <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
           <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
         </div>
       </div>
@@ -87,7 +87,6 @@
        <button mat-mini-fab data-aos="fade-up" (click)="openCheckout()"
           title="Checkout"
           aria-label="Botão abrir Orçamento"
-          color="accent"
           class="size4 flex-c-m how-social boxshadow-none border shadow-light orcamento trans-04 m-b-3 m-t-3">
           <div class="columns line-height-small is-mobile">
 

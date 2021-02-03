@@ -16,7 +16,7 @@
     </div>
   </mat-card-title>
   <mat-card-content>
-    <personalizados-lopes-editor [Conteudo]="Comentario.Texto" (Change)="Comentario.Texto = $event"></personalizados-lopes-editor>
+    <personalizados-lopes-editor [Conteudo]="Comentario.Texto" (Changed)="onTextChange($event)"></personalizados-lopes-editor>
   </mat-card-content>
   <mat-card-actions>
     <button mat-flat-button (click)="Enviar()" class="button is-success is-right">

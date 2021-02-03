@@ -29,9 +29,8 @@
         </button>
       </mat-toolbar>
       <div
-        [@routeAnimations]="prepareRoute(outlet)"
         class="px-3 py-3">
-        <router-outlet  #outlet="outlet"></router-outlet>
+        <router-outlet  [@routeAnimations]="prepareRoute(outlet4)" @fadeIn #outlet4></router-outlet>
         <footer class="card-footer py-4">
           @RobertPersonalizados - Último login : {{user?.DataHoraAlteracao}}
         </footer>

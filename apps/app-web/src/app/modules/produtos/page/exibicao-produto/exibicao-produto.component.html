@@ -10,7 +10,7 @@
             (click)="editarCategoriaFiltroProduto()">{{Produto?.Categoria.Nome}}</a>
         </li>
         <li class="is-active desb">
-          <a href="#" class="">{{Produto?.Nome}}</a>
+          <a href="#" class="has-text-grey-light">{{Produto?.Nome}}</a>
         </li>
       </ul>
     </nav>
@@ -56,7 +56,7 @@
         </span>
       </div>
 
-      <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky bbr">
+      <div class="column is-8 py-6 px-3 has-background-white z-index-2 pos-sticky bbr">
 
         <div class="columns is-multiline mb-0 pb-0">
 
@@ -126,7 +126,7 @@
             <div class="columns is-multiline pr-3">
               <div class="column">
                 <div class="w-full py-3 mb-0">
-                  <p *ngIf="Produto?.QuantidadeMinima >= 1"><em>Quantidade</em></p>
+                  <p *ngIf="Produto?.QuantidadeMinima >= 1"><span>Quantidade</span></p>
                   <div class="field ">
                     <div class="control border is-large flex-c flex-m ">
                       <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -143,7 +143,7 @@
                   <div class="columns is-gapless pt-4 is-mobile">
 
                     <div class="column is-6 pb-0">
-                      <p><em>Cor:</em><strong>{{Produto?.Cor?.nome}}</strong></p>
+                      <p><span>Cores:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                       <div class="columns mt-5 px-3 is-multiline dis-flex flex-c" *ngIf="Produto?.Cores">
                         <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input
@@ -162,7 +162,7 @@
                       </div>
                     </div>
                     <div class="column is-6 pb-0"  *ngIf="Produto?.Tamanhos">
-                      <p><em>Tamanhos</em></p>
+                      <p><span>Tamanhos</span></p>
                       <mat-form-field class="w-full" *ngIf="Produto?.Cores" >
                         <mat-label>Selecione um tamanho</mat-label>
                         <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
@@ -179,21 +179,21 @@
 
                 </div>
                 <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-center ">
-                  <mat-list>
-                    <mat-list-item *ngIf="! Produto?.Tamanho">
-                      <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
-                    </mat-list-item>
-                    <mat-list-item *ngIf="! Produto?.Cor">
-                      <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
-                    </mat-list-item>
-                  </mat-list>
                   <button @fadeIn *ngIf="Produto" mat-raised-button
-                    [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                    (click)="AdicionarAoOrcamento()"
-                    class="share-button background-light-red w-full flex-m flex-c px-2 pb-2 mx-2 has-text-white has-text-weight-medium">
-                    {{textoAdicionar}}
-                    <mat-icon>shopping_bag</mat-icon>
-                  </button>
+                  [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                  (click)="AdicionarAoOrcamento()"
+                  class="share-button background-light-red w-full flex-m flex-c px-2 pb-2 mx-2 has-text-white has-text-weight-medium">
+                  {{textoAdicionar}}
+                  <mat-icon>shopping_bag</mat-icon>
+                </button>
+                <mat-list>
+                  <mat-list-item *ngIf="! Produto?.Tamanho">
+                    <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
+                  </mat-list-item>
+                  <mat-list-item *ngIf="! Produto?.Cor">
+                    <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
+                  </mat-list-item>
+                </mat-list>
                   <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c pb-2 mx-2"></p-skeleton>
                 </div>
                 <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
@@ -331,10 +331,6 @@
   <mat-divider></mat-divider>
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="margin px-6 py-6 mb-6" *ngIf="Produto?._id">
-    <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
   </div>
   <mat-divider></mat-divider>
   <div class="margin px-6 py-6 mb-6" *ngIf="Produto?._id">

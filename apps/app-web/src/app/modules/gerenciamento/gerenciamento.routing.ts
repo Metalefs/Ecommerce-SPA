@@ -21,96 +21,111 @@ import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-deta
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'app',
     component: GerenciamentoComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: "produtos",
-        // canActivate: [AuthGuard],
+        path: "",
+        // pathMatch: 'full',
         component: EditarProdutoComponent,
+        data: { animation:'isRight' }
       },
       {
         path: "pedidos",
-        // canActivate: [AuthGuard],
+        // pathMatch: 'full',
         component: EditarOrcamentoComponent,
+        data: { animation:'isRight' }
       },
       {
         path: "pedidos/:id",
-        // canActivate: [AuthGuard],
+        pathMatch: 'full',
         component: OrcamentoDetailComponent,
+        data: { animation:'isRight' }
       },
       {
         path: 'categoria',
         // canActivate: [AuthGuard],
         component: EditarCategoriaComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'cliente',
         // canActivate: [AuthGuard],
         component: EditarClientesComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'blog',
         // canActivate: [AuthGuard],
         component: EditarBlogComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'sobre',
         // canActivate: [AuthGuard],
         component: EditarSobreComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'informacaocontato',
         // canActivate: [AuthGuard],
         component: EditarInformacoesContatoComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'servico',
         // canActivate: [AuthGuard],
         component: EditarServicoComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'carrosel',
         // canActivate: [AuthGuard],
         component: EditarCarouselComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'mensagem',
         // canActivate: [AuthGuard],
         component: EditarMensagemComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'emails',
         // canActivate: [AuthGuard],
         component: EditarEmailsComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'imagens',
         // canActivate: [AuthGuard],
         component: EditarImagemComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'integracoes',
         // canActivate: [AuthGuard],
         component: EditarIntegracoesComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       },
       {
         path: 'tema',
         // canActivate: [AuthGuard],
         component: EditarTemaComponent,
         pathMatch: 'full',
+        data: { animation:'isRight' }
       }
     ],
 

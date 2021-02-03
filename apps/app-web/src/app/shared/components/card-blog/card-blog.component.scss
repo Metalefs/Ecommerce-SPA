@@ -9,7 +9,8 @@
 }
 .card.latest-blog {
 	-webkit-transform: translateY(-20px);
-				transform: translateY(-20px);
+        transform: translateY(-20px);
+        box-shadow: none ;
 }
 .mat-card{
   animation: bounce 1s ease forwards;

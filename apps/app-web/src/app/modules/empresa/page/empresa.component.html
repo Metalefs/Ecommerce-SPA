@@ -1,8 +1,12 @@
 <section  id="Sobre" class="mt-3">
-
-  <div class="columns mb-0 px-0">
+  <figure class="image is-square is-hidden-desktop pos-sticky top-0">
+    <img class="imagem-empresa"  [src]='url'>
+  </figure>
+  <div class="columns is-vcentered py-0 my-0">
       <div class="column card py-0 px-0 is-hidden-mobile">
-        <div class="imagem-empresa"  [style.background]="'url('+url+')'"></div>
+        <figure class="image is-square">
+          <img class="imagem-empresa"  [src]='url'>
+        </figure>
       </div>
       <div data-aos="slide-right" class="column py-0 px-0 card">
         <mat-card data-aos-offset="200" class="w-full box is-pulled-right empresa-card">
@@ -17,14 +21,16 @@
         </mat-card>
       </div>
   </div>
-  <div class="columns mt-0 py-0 px-0">
+  <div class="columns is-vcentered mt-0 py-0 px-0">
 
       <div data-aos="slide-right"  class="column py-0 px-0">
         <div class="w-full">
-          <video #video [muted]="true" onloadstart="this.volume=0.03" autoplay loop class="w-full" >
-            <source src="assets/videos/longdrink.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <figure class="image ">
+            <video #video [muted]="true" onloadstart="this.volume=0.03" autoplay loop class="w-full" >
+              <source src="assets/videos/longdrink.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </figure>
         </div>
         <button class="mute-btn" mat-icon-button (click)="video.muted = !video.muted"><mat-icon>{{video.muted? 'volume_up': 'volume_off'}}</mat-icon></button>
       </div>

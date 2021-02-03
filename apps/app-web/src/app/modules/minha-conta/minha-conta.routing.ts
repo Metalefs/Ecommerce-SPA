@@ -6,13 +6,13 @@ import { PedidosComponent } from './page/pedidos/page/pedidos.component';
 import { MinhaContaComponent } from './page/minha-conta/minha-conta.component';
 export const routes: Routes = [
   {
-    path: '',
+    path: 'pessoal',
     component: MinhaContaComponent,
     data: { animation:'isLeft' },
     canActivate: [AuthGuard],
     children:[
       {
-        path: 'perfil',
+        path: '',
         component: PerfilComponent,
         data: { animation:'isLeft' }
       },

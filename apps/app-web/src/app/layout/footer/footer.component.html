@@ -3,7 +3,7 @@
   <div class="w-full bg-azul py-3 shadow-light bbr">
     <div class="margin w-full dis-flex flex-sa flex-m">
       <div class="columns is-gapless is-multiline is-vcentered">
-        <div class="column pb-1">
+        <div class="column pb-0">
           <h2 class="has-text-white">ASSINE NOSSA NEWSLETTER</h2>
         </div>
         <div class="column">
@@ -27,6 +27,23 @@
   <div class="hero is-medium w-full pink shadow-light bbr ">
     <div class="hero-body columns margin ">
 
+      <div class="column">
+        <h3 class="footer-title">Sobre</h3>
+        <div class="txt-justify footer-text" [innerHTML]="(Sobre$ | async)?.Historia"></div>
+      </div>
+
+      <div class="column text-center">
+        <h3 class="mb-2 footer-title">Acesso Rápido</h3>
+        <a *ngFor="let link of Links"
+          class="footer-text links"
+          pageScroll
+          href="#{{link.id}}"
+          [routerLink]="[link.href]"
+          routerLinkActive="active">
+          <p >{{link.name}}</p>
+        </a>
+      </div>
+
       <div class="column social">
         <div class="footer-widget">
           <h3 class="mb-2 footer-title">Contate-nos</h3>
@@ -42,24 +59,6 @@
           </div>
         </div>
       </div>
-
-      <div class="column text-center">
-        <h3 class="mb-2 footer-title">Acesso Rápido</h3>
-        <a *ngFor="let link of Links"
-          class="footer-text links"
-          pageScroll
-          href="#{{link.id}}"
-          [routerLink]="[link.href]"
-          routerLinkActive="active">
-          <p >{{link.name}}</p>
-        </a>
-      </div>
-
-      <div class="column">
-        <h3 class="footer-title">Sobre</h3>
-        <div class="txt-justify footer-text" [innerHTML]="(Sobre$ | async)?.Historia"></div>
-      </div>
-
     </div>
   </div>
 

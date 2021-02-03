@@ -121,7 +121,7 @@ a {
 }
 .p-button {
   color: #ffffff;
-  background: #e66363fc;
+  background: rgb(254 0 0);
   border: 0px;
 }
 .p-autocomplete-item {
@@ -374,10 +374,10 @@ canvas{
 }
 
 .background-light-red{
-  background: #D66363 !important;
+  background: #fe3131!important ;
   transition: all 1s;
   &:hover{
-    background: $red2 !important;
+    background: $red !important;
   }
 }
 
@@ -464,8 +464,7 @@ canvas{
   }
 }
 .mat-card:not([class*="mat-elevation-z"]){
-  box-shadow: 0px -1px 1px 0px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-  box-shadow: none !important
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
 }
 .boxshadow-none{
   box-shadow: none !important;
@@ -522,7 +521,6 @@ canvas{
   background: white;
   border-radius: 11px;
   padding:20% 46px !important;
-  margin-bottom:28px;
   width: 100%;
 }
 .imagem-empresa{
@@ -771,7 +769,9 @@ canvas{
 	background-color: #85AD90;
 	color: #fff;
 }
-
+.button.is-small{
+  border-radius: 20px;
+}
 
 /*-Footer-*/
 .copyright {

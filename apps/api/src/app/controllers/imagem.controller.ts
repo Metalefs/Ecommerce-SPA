@@ -15,21 +15,21 @@ ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
           ImagemService.Filtrar({Src: req.query.src}).then(x=>{
             res.send(x);
           }).catch((ex)=>{
-            ErrorHandler.AuthorizationException(ex,res);
+            ErrorHandler.DefaultException(ex,res);
           });
         }
         if(req.query.nome){
           ImagemService.Filtrar({Nome: req.query.nome}).then(x=>{
             res.send(x);
           }).catch((ex)=>{
-            ErrorHandler.AuthorizationException(ex,res);
+            ErrorHandler.DefaultException(ex,res);
           });
         }
         else{
           ImagemService.Ler().then(x=>{
               res.send(x);
           }).catch((ex)=>{
-            ErrorHandler.AuthorizationException(ex,res);
+            ErrorHandler.DefaultException(ex,res);
           });
         }
     }

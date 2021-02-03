@@ -35,7 +35,7 @@ export class HeaderFooterComponent implements OnInit {
           link:"/showcase",
           id:"#SHOWCASE",
           content:"Dê uma olhada nos ultimos items que personalizamos!",
-          img_src:ObterGIFProdutos()
+
         },
         {
           title:"Entre em Contato",

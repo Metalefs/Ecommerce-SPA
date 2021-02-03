@@ -4,7 +4,7 @@
   <div class="columns is-multiline is-vcentered">
 
     <div class="column ">
-      <personalizados-lopes-costumization [Produto]="Produto"></personalizados-lopes-costumization>
+      <personalizados-lopes-costumization (DesignSaved)="close($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
     <div class="column is-3">
@@ -81,13 +81,6 @@
       </label>
     </button>
   </div>
-
-  <button mat-raised-button
-    class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium"
-    *ngIf="Produto.Arte" mat-flat-button [mat-dialog-close]="Produto">
-    Concluir
-  </button>
-
 
   <div class="">
     <h4 class="has-text-danger py-3"><em>Atenção às regras de personalização!</em></h4>

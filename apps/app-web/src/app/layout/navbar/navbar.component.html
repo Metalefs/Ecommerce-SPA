@@ -38,7 +38,7 @@
       </div>
 
       <div class="column">
-        <button [routerLink]="['/minha-conta/pedidos']"
+        <button [routerLink]="['/minha-conta/pessoal/pedidos']"
         href="#topo"
         (pageScrollFinish)="ToggleNav(0)"
         routerLinkActive="Active"
@@ -59,14 +59,14 @@
       (pageScrollFinish)="ToggleNav(0)"
       routerLinkActive="Active"
       pageScroll
-      [routerLink]="['/minha-conta/perfil']">{{usuario.Nome}}</button>
+      [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
       <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
       <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin"
       href="#topo"
       (pageScrollFinish)="ToggleNav(0)"
       routerLinkActive="Active"
       pageScroll
-       [routerLink]="['/gerenciamento']">Gerenciamento</button>
+       [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>
   </mat-menu>

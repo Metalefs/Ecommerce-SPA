@@ -1,5 +1,5 @@
 <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
-  <mat-card *ngIf="CanView" class="card latest-blog">
+  <mat-card *ngIf="CanView" class="box latest-blog">
     <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
       <figure class="image is-square">
         <img mat-card-image [src]="Post?.FotoCapa" alt="blogpostimage">
@@ -11,9 +11,9 @@
     </div>
 
     <mat-card-title>
-      <h3 class="my-3 is-uppercase ">
+      <h4 class="my-3 is-uppercase ">
         {{Post.Titulo}}
-      </h3>
+      </h4>
       <div class="columns is-vcentered is-mobile">
         <!-- <div class="column">
           <p class="title">
@@ -35,11 +35,11 @@
     </mat-card-title>
 
     <mat-card-content>
-      <div class="is-size-6	" [innerHTML]="Post?.Conteudo?.substr(0,140)+Link"> </div>
+      <div class="is-size-7	" [innerHTML]="Post?.Conteudo?.substr(0,140)+Link"> </div>
 
       <mat-divider></mat-divider>
-      <div class="blog-post-box card-body py-2 txt-right">
-        <div class="dis-flex flex-l">
+      <div class="blog-post-box card-body pt-4 txt-center">
+        <div class="dis-flex flex-w">
           <span class="">
             <span class="fa fa-comment"></span>
             {{Post.Comentarios.length}} Comentarios

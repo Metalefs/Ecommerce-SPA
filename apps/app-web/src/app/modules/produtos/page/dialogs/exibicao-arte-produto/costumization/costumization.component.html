@@ -1,4 +1,8 @@
-<div class="container-app columns is-vcentered is-multiline py-4 w-full">
+<div class="txt-center w-full flex-sa">
+  <h1>Esboço</h1>
+  <p>Não representa o resultado final!</p>
+</div>
+<div class="container-app columns is-vcentered txt-center is-multiline py-4 w-full">
 
   <div class="controls border-dark column is-4 box">
 
@@ -12,10 +16,15 @@
     </figure>
     <canvas id="c" height="500" style="border:3px solid #131313"></canvas>
   </div>
-  <div class="column box">
+  <div class="column ">
 
-    <button (click)="exportToSvg()" class="export-btn">Salvar</button>
-    <div class="item-selected dis-flex">
+    <button (click)="SaveDesign()"
+      class="export-btn button w-full pb-2 mx-2 background-light-red has-text-white has-text-weight-medium"
+      *ngIf="Produto.Arte" mat-flat-button>
+      Concluir
+    </button>
+
+    <div class="item-selected dis-flex box">
       <div id='i-text' class="item-panel">
         <div id="general-controls">
           <div id="text-controls-additional">
@@ -61,17 +70,3 @@
     </div>
   </div>
 </div>
-
-<script>
-  var canvas = this.__canvas = new fabric.Canvas('c');
-  fabric.Object.prototype.cornerColor = '#131313';
-  fabric.Object.prototype.transparentCorners = false;
-  document.getElementById('fill-color').onchange = function () {
-      __canvas.getActiveObject().set("fill", this.value);
-      __canvas.renderAll();
-    };
-  document.getElementById('font-family').onchange = function () {
-    canvas.getActiveObject().set("fontFamily", this.value);
-    canvas.renderAll();
-  };
-</script>

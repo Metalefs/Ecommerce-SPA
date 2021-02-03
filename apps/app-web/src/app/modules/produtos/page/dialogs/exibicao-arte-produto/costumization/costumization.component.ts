@@ -1,5 +1,5 @@
 import { IfStmt } from '@angular/compiler';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { fabric } from "fabric";
 import { Produto } from 'libs/data/src/lib/classes';
@@ -13,7 +13,9 @@ import { StockImageComponent } from './dialogs/stock-image/stock-image.component
 })
 export class CostumizationComponent implements OnInit {
 
+  @Output() DesignSaved = new EventEmitter();
   @Input() Produto:Produto;
+
   __canvas:any;
 
   fabric = fabric;
@@ -35,6 +37,7 @@ export class CostumizationComponent implements OnInit {
     this.fabric.Object.prototype.transparentCorners = false;
 
     this.setup();
+    this.importFile();
   }
 
   setup(){
@@ -54,7 +57,17 @@ export class CostumizationComponent implements OnInit {
       render: this.renderIcon,
       cornerSize: 24
     });
-
+    fabric.Object.prototype.cornerColor = '#131313';
+    fabric.Object.prototype.transparentCorners = false;
+    let self = this;
+    document.getElementById('fill-color').onchange = function (x) {
+        self.__canvas.getActiveObject().set("fill", x.returnValue);
+        self.__canvas.renderAll();
+      };
+    document.getElementById('font-family').onchange = function (x) {
+      self.__canvas.getActiveObject().set("fontFamily", x.returnValue);
+      self.__canvas.renderAll();
+    };
     this.radios5 = document.getElementsByName("fonttype");
     for (var i = 0, max = this.radios5.length; i < max; i++) {
       this.radios5[i].onclick = function () {
@@ -113,7 +126,9 @@ export class CostumizationComponent implements OnInit {
   importFile() {
 
     this.dialog.open(ImportacaoComponent,{
-      data:this.fileLoaded
+      data:this.fileLoaded,
+
+      panelClass:['animate__animated','animate__bounceIn', 'border']
     }).afterClosed().subscribe(x=>{
       if(x)
       this.uploadImageURL(x)
@@ -189,6 +204,7 @@ export class CostumizationComponent implements OnInit {
   addStockImg() {
     let dialogRef = this.dialog.open(StockImageComponent, {
 
+      panelClass:['animate__animated','animate__bounceIn', 'border']
     })
     let self = this;
     dialogRef.afterClosed().subscribe(e=>{
@@ -215,7 +231,7 @@ export class CostumizationComponent implements OnInit {
     })
   }
 
-  exportToSvg() {
+  SaveDesign() {
     var exportSvg = this.__canvas.toSVG();
     localStorage.setItem('svg', exportSvg);
     var json_data = JSON.stringify(this.__canvas.toDatalessJSON());
@@ -224,7 +240,8 @@ export class CostumizationComponent implements OnInit {
     else
       this.Produto.Canvas = this.__canvas.toDatalessJSON().src;
 
-    console.log(json_data);
+    this.DesignSaved.emit(this.__canvas.toDatalessJSON().src);
+
     // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(json_data);
     // document.querySelector('#list').innerHTML = '<a href="" id="downloadAnchorElem"></a>';
     // var dlAnchorElem = document.getElementById('downloadAnchorElem');

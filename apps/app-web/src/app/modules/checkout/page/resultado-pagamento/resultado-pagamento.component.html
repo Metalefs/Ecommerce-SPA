@@ -87,7 +87,7 @@
     </div>
     <div class="has-text-left">
       <h2 class="subtitle mb-0 pt-0">Ocorreu um erro ao processar o seu pagamento.</h2>
-      <span class="subtitle">Fique tranquilo, podes tentar novamente..</span>
+      <span class="subtitle">Fique tranquilo, pode tentar novamente..</span>
     </div>
     <div class="a-i-c pt-3">
 
@@ -95,7 +95,7 @@
         <personalizados-lopes-mercadopago-button [init_point]="_init_point"></personalizados-lopes-mercadopago-button>
       </div>
       <div *ngIf="!_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
-        <button mat-flat-button (click)="goCheckout()">Tentar novamente</button>
+        <button mat-flat-button color="accent" (click)="goCheckout()">Tentar novamente</button>
       </div>
 
     </div>
