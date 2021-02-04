@@ -151,15 +151,18 @@ export class ExibicaoProdutoComponent implements OnInit {
       panelClass:['animate__animated','animate__bounceIn', 'border']
     })
     dialogref.afterClosed().subscribe(x=>{
-      if(this.Produto.Arte){
-        if(!this.orcamentoId){
-          this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
-            this.orcamentoId = x.codOrcamento;
-          });
-        }else{
-          this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+      if(x){
+
+        if(this.Produto.Arte){
+          if(!this.orcamentoId){
+            this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
+              this.orcamentoId = x.codOrcamento;
+            });
+          }else{
+            this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+          }
+          this.navegarParaCheckout();
         }
-        this.navegarParaCheckout();
       }
     })
   }
@@ -184,11 +187,12 @@ export class ExibicaoProdutoComponent implements OnInit {
   editarCategoriaFiltroProduto(){
     this.store.dispatch(new EditarCategoriaFiltroProduto(this.Produto.Categoria)).subscribe();
   }
-
+  redirecionando:boolean = false;
   navegarParaCheckout(){
+    this.redirecionando = true;
      setTimeout(()=>{
       this.router.navigateByUrl("/checkout");
-    },1500)
+    },500)
   }
   fileNames:string="";
   secondaryfileNames:string="";

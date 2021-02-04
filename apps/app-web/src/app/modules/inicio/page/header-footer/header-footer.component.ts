@@ -67,8 +67,8 @@ export class HeaderFooterComponent implements OnInit {
             }
 
           })
-        },2000);
-        let timer=1000;
+        },500);
+        let timer=500;
         function toggleActive(el){
           setTimeout(()=>{
             if(el.classList.contains("active") && !el.classList.contains("inactive")){
@@ -78,7 +78,7 @@ export class HeaderFooterComponent implements OnInit {
             else
             el.classList.add("active");
           },timer)
-          timer+=1000;
+          timer+=500;
         }
         function toggleActiveArr(el){
           setTimeout(()=>{
@@ -89,7 +89,7 @@ export class HeaderFooterComponent implements OnInit {
               item.classList.add("active");
             })
           },timer)
-          timer+=1000;
+          timer+=500;
         }
     })
 

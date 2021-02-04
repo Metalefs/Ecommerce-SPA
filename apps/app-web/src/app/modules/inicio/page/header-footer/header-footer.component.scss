@@ -69,10 +69,10 @@ p{
 }
 
 .red .card-bg .mat-card{
-  transition: .5s hoverAnim ease forwards;
+  transition: .25s hoverAnim ease forwards;
 }
 .yellow .card-bg .mat-card{
-  transition: .5s hoverAnim ease forwards;
+  transition: .25s hoverAnim ease forwards;
   // filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));
   & :hover{
     filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));

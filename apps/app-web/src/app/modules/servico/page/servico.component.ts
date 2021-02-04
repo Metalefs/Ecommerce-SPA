@@ -33,10 +33,22 @@ export class ServicoComponent implements OnInit {
   }
 
   LerServicosCarregados(){
+    let element:HTMLElement = document.createElement("div");
     this.Servico$.subscribe(x=>{
       console.log(x);
       x.forEach(servico =>{
+        element.innerHTML = servico.Descricao;
+        element.querySelectorAll( 'oembed[url]' ).forEach( element => {
+          // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
+          // to discover the media.
+          const anchor = document.createElement( 'a' );
 
+          anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
+          anchor.className = 'embedly-card';
+
+          element.appendChild( anchor );
+        } );
+        servico.Descricao = element.innerHTML;
         let classe = servico.Categoria.Nome == "Serigrafia" ? "left" : "right";
         this.Cards.push(
           {

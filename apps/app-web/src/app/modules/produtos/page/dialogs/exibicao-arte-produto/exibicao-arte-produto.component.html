@@ -4,7 +4,7 @@
   <div class="columns is-multiline is-vcentered">
 
     <div class="column ">
-      <personalizados-lopes-costumization (DesignSaved)="close($event)" [Produto]="Produto"></personalizados-lopes-costumization>
+      <personalizados-lopes-costumization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
     <div class="column is-3">
@@ -95,4 +95,15 @@
       </div>
     </div>
   </div>
+</div>
+
+<div mat-dialog-actions>
+  <button  [mat-dialog-close]="Produto"
+    class="export-btn button w-full pb-2 mx-2 background-light-red has-text-white has-text-weight-medium"
+    *ngIf="Produto.Arte" mat-flat-button>
+    Concluir
+  </button>
+  <button mat-raised-button color="basic" [mat-dialog-close]="Produto" cdkFocusInitial>
+    Cancelar
+  </button>
 </div>

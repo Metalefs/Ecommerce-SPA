@@ -263,10 +263,12 @@
                 </div>
 
                 <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
-                  <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
-                    {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
-                  {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
-                  {{Liked? '- Obrigado por nos apoiar ' : ''}}
+                  <p>
+                    <mat-icon  [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
+                      {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+                      {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
+                      {{Liked? '- Obrigado por nos apoiar ' : ''}}
+                  </p>
                 </button>
 
               </div>
@@ -274,7 +276,7 @@
           </div>
 
         </div>
-        <div class="margin py-3">
+        <div class="margin py-3 px-3 border-light">
           <div  class="w-full columns ">
             <div  class="descricao-produto column is-6 w-full"
               [innerHTML]="(el?.innerHTML)"></div>
@@ -344,5 +346,9 @@
   <div class="margin px-6 py-6">
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
   </div>
+
+  <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="'Redirecionando para checkout'"></personalizados-lopes-loading-cube>
+
+
 </div>
 

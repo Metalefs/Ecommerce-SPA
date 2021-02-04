@@ -7,32 +7,38 @@
         <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       </section>
     </div>
-    <div class="py-4 px-2 bg-transp">
-      <section class="py-3" *ngIf="(Clientes$|async).length>0">
-        <div data-aos="zoom-down" class="testimonial">
-          <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-        </div>
-      </section>
-      <div class="margin py-6">
-        <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
-        <div class="has-background-warning">
-          <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
+    <div class="bg-transp">
+      <div class="hero is-medium">
+        <div class="hero-body">
+          <p class="hero-title"></p>
+          <section class="py-3" *ngIf="(Clientes$|async).length>0">
+            <div data-aos="zoom-down" class="testimonial">
+              <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+            </div>
+          </section>
         </div>
       </div>
-      <div>
-        <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
-          <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
-            <span class="hr-inner-style"></span>
-          </span>
-        </div>
-        <div class="titleContent py-3 txt-center">
-          <div class="w-full hoverable border py-1 px-2">
-            <h2>BLOG</h2>
-            <span class="hr-inner-style"></span>
+
+      <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
+
+      <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
+
+      <div class="hero is-info is-half-height">
+        <div class="hero-body">
+          <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
+            <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
+              <span class="hr-inner-style"></span>
+            </span>
           </div>
-        </div>
-        <div>
-         <personalizados-lopes-blog-swiper></personalizados-lopes-blog-swiper>
+          <div class="hero-title titleContent py-3 txt-center">
+            <div class="w-full hoverable border py-1 px-2">
+              <h2>BLOG</h2>
+              <span class="hr-inner-style"></span>
+            </div>
+          </div>
+          <div>
+           <personalizados-lopes-blog-swiper></personalizados-lopes-blog-swiper>
+          </div>
         </div>
       </div>
     </div>

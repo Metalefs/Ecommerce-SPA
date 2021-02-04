@@ -96,6 +96,7 @@ export class CostumizationComponent implements OnInit {
         this.__canvas.renderAll();
       }
     }
+    this.SaveDesign();
   }
 
   addText() {
@@ -107,6 +108,7 @@ export class CostumizationComponent implements OnInit {
     });
 
     this.__canvas.add(itext);
+    this.SaveDesign();
   }
   // add rectangle
   addRect() {
@@ -122,6 +124,7 @@ export class CostumizationComponent implements OnInit {
 
     this.__canvas.add(rect);
     this.__canvas.setActiveObject(rect);
+    this.SaveDesign();
   }
   importFile() {
 
@@ -154,7 +157,7 @@ export class CostumizationComponent implements OnInit {
         self.__canvas.add(oImg).renderAll();
         var a = self.__canvas.setActiveObject(oImg);
         var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
-
+        this.SaveDesign();
       });
     };
     reader.readAsDataURL(file);
@@ -175,6 +178,7 @@ export class CostumizationComponent implements OnInit {
       var a = self.__canvas.setActiveObject(oImg);
       var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
       self.Produto.Arte = url;
+      this.SaveDesign();
     });
   }
 
@@ -197,6 +201,7 @@ export class CostumizationComponent implements OnInit {
         svg.scaleToWidth(50);
         this.__canvas.add(svg).renderAll();
       });
+      this.SaveDesign();
     });
   }
 
@@ -227,7 +232,7 @@ export class CostumizationComponent implements OnInit {
         }
         self.Produto.Design = imgObj;
       }
-
+      this.SaveDesign();
     })
   }
 
@@ -256,6 +261,7 @@ export class CostumizationComponent implements OnInit {
     console.log(canvas);
     canvas.remove(target.target);
     canvas.requestRenderAll();
+    this.SaveDesign();
   }
 
   renderIcon(ctx, left, top, styleOverride, fabricObject) {
@@ -269,6 +275,7 @@ export class CostumizationComponent implements OnInit {
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
     ctx.drawImage(img, -size / 2, -size / 2, size, size);
     ctx.restore();
+    this.SaveDesign();
   }
 
 
@@ -286,7 +293,7 @@ export class CostumizationComponent implements OnInit {
       formatted = JSON.stringify(result, null, 2);
       console.log("formatted", formatted);
 
-      loadJson(formatted)
+      loadJson(formatted);
     }
 
     fr.readAsText(json);
@@ -295,7 +302,7 @@ export class CostumizationComponent implements OnInit {
       this.__canvas.loadFromJSON(formatted, function (obj) {
         console.log(' this is a callback. invoked when canvas is loaded!xxx ');
         this.__canvas.renderAll();
-
+        this.SaveDesign();
       });
     }
   }
@@ -326,6 +333,7 @@ export class CostumizationComponent implements OnInit {
       default:
         console.log(`Sorry, we are out of`);
     }
+    this.SaveDesign();
   }
 
   onObjectSelected() {
@@ -337,6 +345,7 @@ export class CostumizationComponent implements OnInit {
       this.objType = (this.__canvas.getActiveObject().type ? this.__canvas.getActiveObject().type : "");
       this.switchDisplayFont(this.objType)
     }
+    this.SaveDesign();
   }
   onObjectCleared() {
     var node;
@@ -345,6 +354,7 @@ export class CostumizationComponent implements OnInit {
     for (var i = 0; i < elements.length; i++) {
       elements[i].classList.remove('visible');
     }
+    this.SaveDesign();
   }
   onObjectUpdated() {
     var node;
@@ -355,7 +365,8 @@ export class CostumizationComponent implements OnInit {
     }
     // check if type is a property of active element
     this.objType = (this.__canvas.getActiveObject().type ? this.__canvas.getActiveObject().type : "");
-    this.switchDisplayFont(this.objType)
+    this.switchDisplayFont(this.objType);
+    this.SaveDesign();
   }
 
   clickColor() {
@@ -364,7 +375,8 @@ export class CostumizationComponent implements OnInit {
     general.classList.add("display");
     this.node = document.getElementById('color-controls');
     this.node.classList.add("display");
-    this.listColor(colorList)
+    this.listColor(colorList);
+    this.SaveDesign();
   };
   back() {
     this.objType = (this.__canvas.getActiveObject().type ? this.__canvas.getActiveObject().type : "");
@@ -406,6 +418,7 @@ export class CostumizationComponent implements OnInit {
     this.__canvas.getActiveObject().set("fill", "#" + color);
     this.__canvas.renderAll();
     var node = document.getElementById(color);
-    node.classList.add("active")
+    node.classList.add("active");
+    this.SaveDesign();
   }
 }

@@ -34,9 +34,7 @@ export class ExibicaoArteProdutoComponent implements OnInit {
   uploadSecundario($event){
     getPreviewURL($event,this.secondaryfileNames,(res,name)=>{this.Produto.ArteSecundaria = res;this.secondaryfileNames = name})
   }
-  close(event){
-    this.Produto.Canvas = event;
-    console.log(event);
-    this.dialogRef.close(this.Produto);
+  attCanvas($event){
+    this.Produto.Canvas = $event;
   }
 }

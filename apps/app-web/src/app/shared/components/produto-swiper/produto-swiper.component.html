@@ -1,48 +1,51 @@
-<ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
-<ng-template #nodata>
-  <div class="w-full">
-    <p>Não encontramos nenhum produto relacionado ainda.. Não encontrou o que queria?
-        Que tal nos mandar uma sugestão de produto?
+<div class="hero is-fullheight-with-navbar" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' is-warning':'is-danger'">
+  <div class="hero-body">
+    <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
+    <ng-template #nodata>
+      <div class="w-full">
+        <p>Não encontramos nenhum produto relacionado ainda.. Não encontrou o que queria?
+          Que tal nos mandar uma sugestão de produto?
 
-    </p>
-    <a mat-flat-button class="has-background-dark has-text-light button" [routerLink]="['/orcamento']">
-      <button class="has-text-light">Contato</button>
-    </a>
-  </div>
-</ng-template>
-<ng-template #data>
-
-  <div class="w-full">
-    <div #swiperEl
-    (mouseenter)="onSwiperHover( true )"
-    (mouseleave)="onSwiperHover( false )"
-    class="swiper-container w-full z-index-1 px-1"
-    [swiper]="swiperConfig$ |async">
-    <div class="swiper-button-prev z-index-top clickable hoverable"></div>
-    <div class="swiper-button-next z-index-top clickable hoverable"></div>
-    <div class="w-full hoverable pt-4 px-4">
-      <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro"></ng-container>
-      <ng-template #Inclusao>
-        <h1>Produtos mais recentes</h1>
-      </ng-template>
-      <ng-template #Outro>
-        <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes"></ng-container>
-        <ng-template #Vendas>
-          <h1>Produtos mais vendidos!</h1>
-        </ng-template>
-        <ng-template #Visualizacoes>
-          <h1>Produtos mais procurados!</h1>
-        </ng-template>
-      </ng-template>
-      <span class="hr-inner-style"></span>
-    </div>
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let produto of Produtos" >
-        <personalizados-lopes-card-produto [Produto]="produto"
-        [TrocaImagem]="false"></personalizados-lopes-card-produto>
+        </p>
+        <a mat-flat-button class="has-background-dark has-text-light button" [routerLink]="['/orcamento']">
+          <button class="has-text-light">Contato</button>
+        </a>
       </div>
-    </div>
+    </ng-template>
+    <ng-template #data>
+
+      <div class="w-full">
+        <div #swiperEl (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
+          class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+          <div class="swiper-button-prev z-index-top clickable hoverable"></div>
+          <div class="swiper-button-next z-index-top clickable hoverable"></div>
+          <div class="w-full hoverable pt-4 px-4">
+            <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
+            </ng-container>
+            <ng-template #Inclusao>
+              <h1>Produtos mais recentes</h1>
+            </ng-template>
+            <ng-template #Outro>
+              <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes">
+              </ng-container>
+              <ng-template #Vendas>
+                <h1>Produtos mais vendidos!</h1>
+              </ng-template>
+              <ng-template #Visualizacoes>
+                <h1>Produtos mais procurados!</h1>
+              </ng-template>
+            </ng-template>
+            <span class="hr-inner-style"></span>
+          </div>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let produto of Produtos">
+              <personalizados-lopes-card-produto [Produto]="produto" [TrocaImagem]="false">
+              </personalizados-lopes-card-produto>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
   </div>
 </div>
-
-</ng-template>
