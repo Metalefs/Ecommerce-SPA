@@ -64,7 +64,10 @@ export class ExibicaoBlogComponent implements OnInit {
     Comentario.Respostas = [];
     Comentario.DataHoraAlteracao = new Date();
     Comentario.DataHoraCriacao = new Date();
-    this.Post.Comentarios.push(Comentario);
+    if(!this.Post.Comentarios)
+      Object.assign(this.Post,{Comentarios:[Comentario]})
+    else
+      this.Post.Comentarios.push(Comentario);
     this.BlogService.update(this.Post.key,this.Post);
   }
   onClickResult: ClickEvent;
@@ -90,9 +93,8 @@ export class ExibicaoBlogComponent implements OnInit {
   };
 
   meanRating(){
-    if (!this.Post.Avaliacao)
-    return 0;
-    return (sum(this.Post.Avaliacao) / this.Post.Avaliacao.length).toFixed(1)
+    return !this.Post?.Avaliacao ? "0" :
+        (sum(this.Post.Avaliacao) / this.Post.Avaliacao.length).toFixed(1).toString()
   }
 
   onRatingChange = ($event: RatingChangeEvent) => {

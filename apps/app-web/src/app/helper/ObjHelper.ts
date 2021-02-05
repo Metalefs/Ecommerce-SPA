@@ -73,9 +73,11 @@ export function translateEnum(myEnumType,myEnum){
 }
 export function sum(arr) {
   var sum = 0;
+  arr = arr.filter(x=>!isNaN(parseFloat(x)) && x != undefined)
+  console.log(arr);
   try{
     for (var index = 0; index < arr.length; index++) {
-      sum += arr[index];
+      sum += parseFloat(arr[index]);
     }
     return sum;
   }

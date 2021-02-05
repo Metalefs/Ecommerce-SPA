@@ -11,8 +11,8 @@
     <a @fadeIn href="#" class="logo m-l-60">
       <img class="logo pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO">
     </a>
-    <div class="columns mx-1">
-      <div class="column is-12-desktop is-10-mobile ">
+    <div class="columns mx-0">
+      <div class="column is-12">
         <div class="control has-icons-right">
           <form type="get" action="/produtos/?nome={{search_filter}}">
               <personalizados-lopes-autocomplete-dropdown
@@ -71,7 +71,7 @@
     <div class="pb-4 dis-flex flex-m">
 
       <div class="dropdown">
-        <a class="wrap-pic-cir border mr-3 w-full mb-4"
+        <a class="wrap-pic-cir border w-full mb-4"
           mat-icon-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>
@@ -102,7 +102,7 @@
           </div>
         </button>
       </div>
-      <div class="is-hidden-touch m-r-60 ">
+      <div class="is-hidden-touch ml-4 m-r-60 ">
         <button mat-mini-fab (click)="openCheckout()"
             title="Checkout"
             aria-label="Botão abrir Orçamento"

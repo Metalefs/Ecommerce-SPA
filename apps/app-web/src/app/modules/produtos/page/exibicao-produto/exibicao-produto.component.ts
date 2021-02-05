@@ -119,7 +119,14 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Produto.Tamanho = this.Produto.Tamanho == tamanho ? null: tamanho
   }
 
+  IsValid:boolean=true;
+  Erros:{erro:string}[] = [];
   AdicionarAoOrcamento(){
+    this.Erros = this.Validar();
+    this.IsValid = this.Erros.length > 0 ? false : true;
+    if(!this.IsValid)
+    return;
+
     this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
 
@@ -144,6 +151,17 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.isOrcamento = true;
 
     });
+  }
+
+  Validar(){
+    let Erros:{erro:string}[] = [];
+    if(!this.Produto.Cor){
+      Erros.push({erro:"Selecione uma cor para o item"});
+    }
+    if(!this.Produto.Tamanho){
+      Erros.push({erro:"Selecione um tamanho para o item"});
+    }
+    return Erros;
   }
   AbrirModalArte(){
     let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{

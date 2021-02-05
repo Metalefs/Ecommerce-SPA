@@ -10,16 +10,18 @@
           <a href="#" *ngFor="let tag of Post?.Tags">{{tag}},</a>
         </span>
         <div class="section">
-          <personalizados-lopes-editor [Disabled]="true" [Conteudo]="Post.Conteudo"></personalizados-lopes-editor>
+          <personalizados-lopes-editor [Disabled]="true" [Conteudo]="Post?.Conteudo"></personalizados-lopes-editor>
         </div>
       </div>
       <div class="mx-2">
         <div class="w-full flex-w">
           <p>Avalie a postagem!</p>
-          <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
-              labelText="{{meanRating()}}"
+          <star-rating *ngIf="Post?.Avaliacao"
+          [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+              [labelText]="meanRating()"
               [showHalfStars]="true"
-              [step]="0.5" size="medium"
+              [step]="0.5"
+              size="medium"
               staticColor="ok"
               (starClickChange)="onClick($event)"
               (ratingChange)="onRatingChange($event)"
@@ -30,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="section-block">
+    <div class="section-block" *ngIf="Post">
       <personalizados-lopes-exibir-lista-comentario [Post]="Post"></personalizados-lopes-exibir-lista-comentario>
     </div>
   </div>
@@ -39,7 +41,7 @@
   </div>
 </div>
 <div [@cardFlip]="state" class="section-block">
-  <personalizados-lopes-blog-swiper [TAGS]="Post.Tags"></personalizados-lopes-blog-swiper>
+  <personalizados-lopes-blog-swiper [TAGS]="(Post)?.Tags"></personalizados-lopes-blog-swiper>
 </div>
 
 

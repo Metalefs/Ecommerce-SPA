@@ -63,8 +63,8 @@
           <div class="column is-6" *ngIf="Produto">
             <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
             <div class="descricao-produto w-full pb-4">
-              Marca:<p class="preto6">{{Produto?.Marca || ''}}</p>
-              Modelo:<p class="preto6">{{Produto?.Modelo || ''}}</p>
+              <b>Marca:</b><p class="preto6">{{Produto?.Marca || ''}}</p>
+              <b>Modelo:</b><p class="preto6">{{Produto?.Modelo || ''}}</p>
               <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
             </div>
             <div class="my-1 star-width dis-flex flex-w">
@@ -140,11 +140,11 @@
                       </button>
                     </div>
                   </div>
-                  <div class="columns is-gapless pt-4 is-mobile">
+                  <div class="columns is-gapless pt-4 is-multiline">
 
-                    <div class="column is-6 pb-0">
+                    <div class="column is-6-desktop  mb-5 is-12-mobile pb-0">
                       <p><span>Cores:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
-                      <div class="columns mt-5 px-3 is-multiline dis-flex flex-c" *ngIf="Produto?.Cores">
+                      <div class="columns px-3 mt-3 is-multiline dis-flex flex-c" *ngIf="Produto?.Cores">
                         <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input
                               class="px-2 py-2 mx-1"
@@ -161,7 +161,7 @@
                           </div>
                       </div>
                     </div>
-                    <div class="column is-6 pb-0"  *ngIf="Produto?.Tamanhos">
+                    <div class="column is-6-desktop is-12-mobile pb-0"  *ngIf="Produto?.Tamanhos">
                       <p><span>Tamanhos</span></p>
                       <mat-form-field class="w-full" *ngIf="Produto?.Cores" >
                         <mat-label>Selecione um tamanho</mat-label>
@@ -180,18 +180,15 @@
                 </div>
                 <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-center ">
                   <button @fadeIn *ngIf="Produto" mat-raised-button
-                  [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                  [disabled]="Produto?.Status == statusProduto.esgotado"
                   (click)="AdicionarAoOrcamento()"
-                  class="share-button background-light-red w-full flex-m flex-c px-2 pb-2 mx-2 has-text-white has-text-weight-medium">
+                  class="share-button background-light-red w-full flex-m flex-c pb-2 px-2 mx-2 has-text-white has-text-weight-medium">
                   {{textoAdicionar}}
                   <mat-icon>shopping_bag</mat-icon>
                 </button>
-                <mat-list>
-                  <mat-list-item *ngIf="! Produto?.Tamanho">
-                    <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
-                  </mat-list-item>
-                  <mat-list-item *ngIf="! Produto?.Cor">
-                    <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
+                <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
+                  <mat-list-item *ngFor="let erro of Erros">
+                    <p class="subtitle is-size-6">*{{erro.erro}}</p>
                   </mat-list-item>
                 </mat-list>
                   <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c pb-2 mx-2"></p-skeleton>
@@ -331,15 +328,15 @@
 
   </div>
   <mat-divider></mat-divider>
-  <div class="margin px-6 py-6 mb-6" *ngIf="Produto?._id">
+  <div class="margin px-6 py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
   <mat-divider></mat-divider>
-  <div class="margin px-6 py-6 mb-6" *ngIf="Produto?._id">
+  <div class="margin px-6 py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
   </div>
   <mat-divider></mat-divider>
-  <div class="margin px-6 py-6 mb-6 has-background-warning" *ngIf="Produto?._id">
+  <div class="margin px-6 py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
   </div>
   <mat-divider></mat-divider>

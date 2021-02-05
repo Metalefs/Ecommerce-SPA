@@ -38,7 +38,7 @@
       <div class="is-size-7	" [innerHTML]="Post?.Conteudo?.substr(0,140)+Link"> </div>
 
       <mat-divider></mat-divider>
-      <div class="blog-post-box card-body pt-4 txt-center">
+      <div class="blog-post-box card-body pt-4 txt-center" *ngIf="Post.Comentarios">
         <div class="dis-flex flex-w">
           <span class="">
             <span class="fa fa-comment"></span>
