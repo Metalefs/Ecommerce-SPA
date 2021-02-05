@@ -102,7 +102,7 @@ input[type="radio"] + label{
   transform:scale(1);
 }
 .section{
-  animation: shrink 1s ease forwards;
+  animation: shrink 1s ease reverse;
   // animation-delay: 1s;
   margin: 0px auto;
 }
@@ -141,7 +141,8 @@ font-size: 15px !important;
   cursor: default;
 }
 .control{
-  font-family: Roboto;
+  font-family: 'Helvetica';
+
   font-style: normal;
   font-weight: 500;
   line-height: 122.19%;
@@ -197,7 +198,8 @@ input[type=number] {
 .share-button{
   border-radius: 4px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
-  font-family: Roboto;
+  font-family: 'Helvetica';
+
   font-style: normal;
   font-weight: 500;
   line-height: 122.19%;
@@ -223,6 +225,8 @@ input[type=number] {
   margin: 0;
 }
 .titulo-produto{
+  font-family: 'Helvetica';
+
   font-size: 30px;
   line-height: 47px;
   text-transform: uppercase;
@@ -232,7 +236,8 @@ input[type=number] {
 }
 .preco{
   font-size: 20px;
-  font-family: Nunito;
+  font-family: 'Helvetica';
+
 }
 .cor-produto{
   height: 20px;

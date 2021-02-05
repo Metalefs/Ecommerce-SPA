@@ -21,13 +21,13 @@
           <div class="card-bg-rot" *ngFor = 'let item of sliderData; let i = index;' >
 
             <mat-card class = 'commentContent ' [@sliderAnimations] = 'animationsStates[i]'>
-              <mat-card-header class="w-full">
+              <div mat-card-header class="w-full">
                 <!-- <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon> -->
-                <p class="card-text title text-content">
+                <p class="card-text text-content">
                   "{{item?.Comentario}}"
                 </p>
                 <!-- <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon> -->
-              </mat-card-header>
+              </div>
               <mat-card-content>
                 <div class="flex-w flex-sb w-full">
                 </div>

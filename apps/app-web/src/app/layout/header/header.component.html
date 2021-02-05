@@ -1,15 +1,5 @@
 <mat-toolbar class="w-full dis-flex flex-m py-4 flex-c a-i-c z-index-top">
-  <div class="columns ">
-    <div class="column is-12 ">
-      <div class="control has-icons-right">
-        <form type="get" action="/produtos/?nome={{search_filter}}">
-            <personalizados-lopes-autocomplete-dropdown
-             (VerTodosResultados)="executar_pesquisa()"
-             class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
-        </form>
-      </div>
-    </div>
-  </div>
+
 </mat-toolbar>
 <div class="sticky-nav py-4 border shadow-light"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
@@ -21,7 +11,17 @@
     <a @fadeIn href="#" class="logo m-l-60">
       <img class="logo pb-3" src="assets/images/icons/Logo-full.png" alt="LOGO">
     </a>
-
+    <div class="columns mx-1">
+      <div class="column is-12-desktop is-10-mobile ">
+        <div class="control has-icons-right">
+          <form type="get" action="/produtos/?nome={{search_filter}}">
+              <personalizados-lopes-autocomplete-dropdown
+               (VerTodosResultados)="executar_pesquisa()"
+               class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
+          </form>
+        </div>
+      </div>
+    </div>
     <div class="columns mx-3 is-hidden-touch link-section ">
 
       <div *ngFor="let link of links" class="column">
@@ -70,8 +70,8 @@
 
     <div class="pb-4 dis-flex flex-m">
 
-      <div class="dropdown mr-4">
-        <a class="wrap-pic-cir border w-full mb-4"
+      <div class="dropdown">
+        <a class="wrap-pic-cir border mr-3 w-full mb-4"
           mat-icon-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>

@@ -1,21 +1,25 @@
 <div class="container-fluid" #testimonialContent>
-  <div class="columns">
-    <div class="column is-12 p-0 allContent">
 
-      <div class="testimonialContent noselect" #sliderContent (mousemove)='sliderMuve($event)'
-        (mousedown)='mousedownInSlider($event)' (mouseup)='leftSlider()' (mouseleave)='leftSlider()'>
-        <personalizados-lopes-card-cliente *ngFor="let cliente of Clientes |async; let i = index;" [Cliente]="cliente"
-          [animationsStates]="animationsStates" [position]="i" [length]="(Clientes | async).length">
-        </personalizados-lopes-card-cliente>
+  <div class="w-full">
+    <div #swiperEl3
+      class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+      <div class="w-full hoverable">
+        <h2>Produtos Relacionados</h2>
+        <p>Abaixo, algumas de nossas sugestões</p>
       </div>
-
+      <div class="swiper-wrapper">
+        <div class="swiper-slide testimonialContent noselect" *ngFor="let cliente of Clientes;" >
+          <personalizados-lopes-card-cliente
+             [Cliente]="cliente"></personalizados-lopes-card-cliente>
+        </div>
+      </div>
       <div class='buttonsContent'>
-        <div class="turnButtonLeft noselect" (click)='clickToLeft()'>
+        <div class="swiper-button-prev turnButtonLeft z-index-top clickable hoverable">
           <div class='arrowContentLeft'>
             <img class='nextToLeft' src='assets/images/next.png'>
           </div>
         </div>
-        <div class="turnButtonRight noselect" (click)='clickToRight()'>
+        <div class="swiper-button-next turnButtonRight z-index-top clickable hoverable">
           <div class='arrowContentRight'>
             <img class='nextToRight' src='assets/images/next.png'>
           </div>
@@ -23,3 +27,5 @@
       </div>
     </div>
   </div>
+
+

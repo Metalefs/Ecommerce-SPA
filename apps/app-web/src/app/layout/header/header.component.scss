@@ -26,6 +26,7 @@ a{
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   transition: all .5s ease;
+  pointer-events: none;
 }
 
 .dropdown-content a {
@@ -37,11 +38,14 @@ a{
 }
 
 .dropdown-content a:hover {background-color: #ddd;}
-
+.dropdown-content a.nav-link{
+  text-transform: lowercase;
+}
 .dropdown:hover .dropdown-content {
   opacity: 1;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  pointer-events: initial;
 }
 
 .container{
@@ -115,7 +119,7 @@ a{
 }
 .nav-link{
   font-size: 13px;
-  text-transform: lowercase;
+  text-transform: uppercase;
   padding: 0.5em;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
