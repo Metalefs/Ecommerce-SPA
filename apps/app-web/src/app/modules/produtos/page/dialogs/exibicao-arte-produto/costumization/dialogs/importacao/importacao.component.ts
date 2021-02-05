@@ -33,6 +33,9 @@ export class ImportacaoComponent implements OnInit {
   importSVG(){
     this.close();
   }
+  escolherPronto(){
+    this.close("design")
+  }
   close(event = null){
     this.dialogRef.close(event);
   }

@@ -129,7 +129,7 @@
   right: 0;
   }
 
-  label#largeFile {
+  label.largeFile {
   margin-top: 16px;
   content:"Importer votre fichier";
   left:0;
@@ -143,11 +143,11 @@
   user-select: none;
   }
 
-  label#largeFile:hover {
+  label.largeFile:hover {
   cursor:pointer;
   }
 
-  label#largeFile input#file {
+  label.largeFile input {
     width: 0px;
     height: 0px;
   }

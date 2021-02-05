@@ -133,8 +133,12 @@ export class CostumizationComponent implements OnInit {
 
       panelClass:['animate__animated','animate__bounceIn', 'border']
     }).afterClosed().subscribe(x=>{
-      if(x)
-      this.uploadImageURL(x)
+      if(x){
+        if(x == 'design')
+          this.addStockImg();
+        else
+          this.uploadImageURL(x)
+      }
     })
 
   }

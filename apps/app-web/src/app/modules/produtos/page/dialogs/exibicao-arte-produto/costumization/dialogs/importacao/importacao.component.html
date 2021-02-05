@@ -37,9 +37,13 @@
           </div>
         </div>
 
-        <label id="largeFile" for="file" [style.pointerEvents]="toggleNumber? 'auto': 'none'">
+        <label id="largeFile" class="largeFile" for="file" [style.pointerEvents]="toggleNumber? 'auto': 'none'">
           <input type="file" [disabled]="!toggleNumber" (change)="loadFile($event)" id="file" />
           Importe um arquivo
+        </label>
+        <label id="largeFileDesign" class="largeFile" for="design" [style.pointerEvents]="toggleNumber? 'auto': 'none'">
+          <input type="button" [disabled]="!toggleNumber" (click)="escolherPronto()" id="design" />
+          Escoher um pronto
         </label>
 
       </div>
