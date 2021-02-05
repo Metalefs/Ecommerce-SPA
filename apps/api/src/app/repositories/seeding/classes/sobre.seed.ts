@@ -12,5 +12,6 @@ new entities.Sobre(
         `,
         `Nós vendemos produtos diversos de excelente qualidade, dentre eles, camisas, uniformes empresariais e escolares, camisas para eventos de todos os tipos, Canecas de Porcelana personalizadas, Copos do tipo Long Drink para festas,
         almofadas,
-        Chinelos, Azulejo e também Mouse-pads.`
+        Chinelos, Azulejo e também Mouse-pads.`,
+        '29.281.832/0001-05'
 );

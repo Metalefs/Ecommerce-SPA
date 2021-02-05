@@ -27,7 +27,7 @@
       </a>
       <a pageScroll
         href="#TOPO"
-        [routerLink]="['/pedidos/']"
+        [routerLink]="['/minha-conta/pedidos/']"
         routerLinkActive="router-link-active">
         <a mat-stroked-button mat-stroked-button class="button is-warning">
           Meus pedidos
@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <div #Pendente  #Sucesso *ngIf="status == StatusPagamento.pendente">
+  <div #Pendente *ngIf="status == StatusPagamento.pendente">
     <!-- <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao> -->
     <div class=" has-text-left py-4">
       <a
@@ -68,7 +68,7 @@
 
   </div>
 
-  <div #Erro  #Sucesso *ngIf="status == StatusPagamento.rejeitado || status == StatusPagamento.desistencia">
+  <div #Erro *ngIf="status == StatusPagamento.rejeitado || status == StatusPagamento.desistencia">
     <!-- <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao> -->
     <div class=" has-text-left py-4">
       <a

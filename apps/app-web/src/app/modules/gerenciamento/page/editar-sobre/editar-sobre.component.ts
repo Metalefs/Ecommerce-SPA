@@ -66,6 +66,7 @@ export class EditarSobreComponent implements OnInit {
           result[1].value,
           result[2].value,
           result[3].value,
+          result[4].value,
         )
         Sobre._id = id;
         this.store.dispatch(new EditarSobre(Sobre, Sobre._id)).subscribe(x=> {

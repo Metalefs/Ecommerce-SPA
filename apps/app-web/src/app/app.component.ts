@@ -73,10 +73,8 @@ export class AppComponent {
     this.LerServicosAPI();
     setTimeout(()=>{
       this.carregandoOque += " ...carregando";
-      setTimeout(()=>{
-        this.carregandoOque += " ...Iniciando a aplicação";
-      },2000)
-    },6000)
+
+    },8000)
     this.integracoesService.Ler().subscribe(x=>{
       Mercadopago.setPublishableKey(x.public_key);
     })

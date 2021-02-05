@@ -1,25 +1,14 @@
 <div class="container-fluid" #testimonialContent>
   <div class="columns">
     <div class="column is-12 p-0 allContent">
-      <div style=" margin-top:70px; margin-bottom:70px;"
-        class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
-        <span
-          class="hr-inner   inner-border-av-border-fat"
-          style=" width:100px; border-color:#762625;">
-          <span class="hr-inner-style"></span>
-        </span>
-      </div>
-      <div class="titleContent">
-        <p class='subtitle is-3'>
-          Alguns de nossos clientes
-        </p>
-      </div>
+
       <div class="testimonialContent noselect" #sliderContent (mousemove)='sliderMuve($event)'
         (mousedown)='mousedownInSlider($event)' (mouseup)='leftSlider()' (mouseleave)='leftSlider()'>
         <personalizados-lopes-card-cliente *ngFor="let cliente of Clientes |async; let i = index;" [Cliente]="cliente"
           [animationsStates]="animationsStates" [position]="i" [length]="(Clientes | async).length">
         </personalizados-lopes-card-cliente>
       </div>
+
       <div class='buttonsContent'>
         <div class="turnButtonLeft noselect" (click)='clickToLeft()'>
           <div class='arrowContentLeft'>

@@ -76,6 +76,20 @@
           </mat-expansion-panel>
         </mat-accordion>
 
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                CNPJ
+              </mat-panel-title>
+              <mat-panel-description>
+                Alterar CNPJ
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>{{(Sobre$ | async)?.CNPJ}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+
       </mat-card-content>
     </mat-card>
   </mat-expansion-panel>

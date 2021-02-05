@@ -50,22 +50,23 @@ export class TestimonialComponent implements OnInit, OnDestroy {
     this.createResizeListener();
     this.decideSliderSizeFromWindowSize();
   }
-
+  clicking:boolean = false;
   AutoTurn(){
     this.AutoTurnTimer = setInterval(() => {
+      if(!this.clicking)
       this.clickToRight();
-    }, 7000);
+    }, 9000);
   }
 
   decideSliderSizeFromWindowSize() {
     if (!this.mobileQuery.matches && !this.TabletQuery.matches) {
       this.makeAnimationsState();
     }
-    if (this.TabletQuery.matches) {
+    else if (this.TabletQuery.matches) {
       this.AutoTurn();
       this.makeAnimationStateForMiddleSize();
     }
-    if (this.mobileQuery.matches)  {
+    else if (this.mobileQuery.matches)  {
       this.AutoTurn();
       this.makeAnimationStateForSmallSize();
     }
@@ -135,11 +136,15 @@ export class TestimonialComponent implements OnInit, OnDestroy {
   }
   clickToRight() {
     this.turnTimer ? this.time += 300 : this.time = 100;
+
+
     this.turnTimer = setTimeout(() => {
       const toLeft = this.animationsStates.pop();
       this.animationsStates.unshift(toLeft);
       this.turnTimer = null;
     }, this.time);
+
+    this.clicking = true;
   }
   mousedownInSlider(event) {
     this.catchSlider = true;

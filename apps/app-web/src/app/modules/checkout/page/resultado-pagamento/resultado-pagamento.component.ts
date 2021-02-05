@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
@@ -55,9 +55,10 @@ export class ResultadoPagamentoComponent implements OnInit {
   }
 
   LerParametros(){
-    this.activeRoute.params
-    .subscribe(params => {
+
+    this.activeRoute.queryParams.subscribe(params => {
       this.PreencherDadosPagamentoNoOrcamento(params);
+
       switch(params.status){
         case ("approved"): {
           this.status = StatusPagamento.aprovado;
@@ -81,11 +82,11 @@ export class ResultadoPagamentoComponent implements OnInit {
           this.status = StatusPagamento.desistencia;
         }
       }
-      if(!params || params.status == "null"||params.status == null){
+      if(!params.status||params.status == 'null'){
         this.status = StatusPagamento.desistencia;
       }
       this.SalvarOrcamento();
-    })
+    });
   }
 
   PreencherDadosPagamentoNoOrcamento(resultadoPagamento:any){
@@ -98,7 +99,7 @@ export class ResultadoPagamentoComponent implements OnInit {
       external_reference: resultadoPagamento.external_reference ??' ',
       payment_id: resultadoPagamento.payment_id ?? 0,
       merchant_order_id: resultadoPagamento.merchant_order_id ?? 0,
-      preference_id: resultadoPagamento.preference_id ?? '',
+      preference_id: resultadoPagamento.eference_id ?? '',
       payment_type: resultadoPagamento.payment_type ?? '',
       processing_mode: resultadoPagamento.processing_mode ??''
     }
