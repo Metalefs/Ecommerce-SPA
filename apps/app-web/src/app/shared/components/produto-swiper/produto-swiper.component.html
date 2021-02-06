@@ -19,7 +19,7 @@
           class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
           <div class="swiper-button-prev z-index-top clickable hoverable"></div>
           <div class="swiper-button-next z-index-top clickable hoverable"></div>
-          <div class="w-full hoverable pt-4 px-4">
+          <div class="w-full hoverable px-4">
             <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
             </ng-container>
             <ng-template #Inclusao>

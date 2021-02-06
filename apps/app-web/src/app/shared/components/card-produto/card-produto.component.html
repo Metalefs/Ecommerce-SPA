@@ -151,12 +151,12 @@
       </a>
 
       <a matRipple [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="dis-flex flex-w">
-        <img
+        <img loading="lazy"
           mat-card-image #imgProduto
           class=""
           [src]="Produto.Imagem[0]" [style.opacity]="'1'" [style.display]="'block'"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-        <img
+        <img loading="lazy"
           mat-card-image #imgProduto2
           class="hide" [src]="Produto.Imagem[1] || Produto.Imagem[0]"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">

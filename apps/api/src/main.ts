@@ -5,7 +5,8 @@ const cors = require("cors");
 import * as express from 'express';
 
 const app = express();
-
+var compression = require('compression')
+app.use(compression())
 import * as ControllerUsuario  from './app/controllers/usuario.controller';
 import { Routers } from './app/controllers';
 import { SeedingService } from './app/services/seeding/seeding.service';
