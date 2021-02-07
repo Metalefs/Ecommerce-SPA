@@ -23,8 +23,12 @@ a{
   @extend .base;
   text-decoration: none;
   display: inline;
+  &.footer-text.links p{
+    text-align: left;
+    line-height: 20px;
+  }
   &.footer-text.links p:hover{
-    color: #FF6F61;
+    color: #FF6F61 !important;
     padding-left: 10px;
     transition: 1s all;
   }

@@ -78,6 +78,10 @@ export class AppComponent {
     this.integracoesService.Ler().subscribe(x=>{
       Mercadopago.setPublishableKey(x.public_key);
     })
+    const element = document.createElement('link');
+    element.href = 'lazy-style.css';
+    element.rel = 'stylesheet';
+    document.body.appendChild(element);
   }
 
   dismissCookieLaw(){

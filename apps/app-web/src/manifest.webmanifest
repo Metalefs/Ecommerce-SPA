@@ -559,5 +559,9 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
+  ],
+  "permissions": [
+    "cookies",
+    "<all_urls>"
   ]
 }

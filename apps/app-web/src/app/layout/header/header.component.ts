@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
   @Select(SobreState.IsSobreLoaded) IsSobreLoaded$;
   IsSobreLoadedSub: Subscription;
-  links = NavLinks;
+  links = NavLinksRes;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   @Select(ProdutoState.ObterListaProdutos) Produto$: Observable<Produto[]>;
   @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;

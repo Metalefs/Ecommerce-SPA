@@ -149,6 +149,7 @@ export class ProdutoSwiperComponent implements OnInit {
           }
         }
       })
+      this.swiperEl?.nativeElement.swiper.autoplay.start();
     }
 
   ngOnInit(): void {

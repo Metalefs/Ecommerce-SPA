@@ -3,133 +3,114 @@
 </mat-toolbar>
 <div class="sticky-nav py-4 border shadow-light"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
-  [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''"
->
+  [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
   <mat-toolbar class="mat-toolbar z-index-top pos-sticky dis-flex flex-c-m  w-full flex-sb a-i-c ">
-  <div class="w-full dis-flex flex-c flex-m flex-sb py-4 px-2" style="height: 90px;">
+    <div class="w-full dis-flex flex-c flex-m flex-sb py-4 px-2" style="height: 90px;">
 
-    <a @fadeIn href="#" class="logo m-l-60">
-      <img loading="lazy" class="logo pb-3" src="assets/images/icons/Logo-full.jpg" alt="LOGO">
-    </a>
-    <div class="columns mx-0">
-      <div class="column is-12">
-        <div class="control has-icons-right">
-          <form type="get" action="/produtos/?nome={{search_filter}}">
-              <personalizados-lopes-autocomplete-dropdown
-               (VerTodosResultados)="executar_pesquisa()"
-               class="w-full" (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
-          </form>
+      <a @fadeIn href="#" class="logo m-l-60">
+        <img loading="lazy" class="logo pb-3" src="assets/images/icons/Logo-full.jpg" alt="LOGO">
+      </a>
+
+      <div class="columns mx-0">
+        <div class="column is-12">
+          <div class="control has-icons-right">
+            <form type="get" action="/produtos/?nome={{search_filter}}">
+              <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
+                (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="columns mx-3 is-hidden-touch link-section ">
 
-      <div *ngFor="let link of links" class="column">
+      <div class="columns mx-3 is-hidden-touch link-section ">
 
-        <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
-        <ng-template #normal>
-          <a
-            (click)="SetActiveNav(link)"
-            [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-            class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}"
-            pageScroll
-            [routerLink]="link.href"
-            routerLinkActive="Active"
-            href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
-            <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
-            {{link.name == "Básicos"? 'Produtos' : link.name}}
-          </a>
-        </ng-template>
+        <div *ngFor="let link of links" class="column">
 
-        <ng-template #dropdown>
-          <div class="dropdown">
-            <a (click)="SetActiveNav(link)"
-              [routerLink]="link.href"
-              pageScroll
-              routerLinkActive="Active"
-              [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-              class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
+          <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
+          <ng-template #normal>
+            <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+              class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
+              routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
               <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
               {{link.name == "Básicos"? 'Produtos' : link.name}}
             </a>
-            <div class="dropdown-content has-background-white box">
-              <a
-              class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"
-              pageScroll
-              routerLinkActive="Active"
-              href="#{{link.name == 'Básicos' ? 'topo' : link.name}}"
-              [routerLink]="opt.link"
-              [queryParams]="opt.queryParams"
-              *ngFor="let opt of link.options">{{opt.nome}}</a>
+          </ng-template>
+
+          <ng-template #dropdown>
+            <div class="dropdown">
+              <a (click)="SetActiveNav(link)" [routerLink]="link.href" pageScroll routerLinkActive="Active"
+                [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+                class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
+                <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
+                {{link.name == "Básicos"? 'Produtos' : link.name}}
+              </a>
+              <div class="dropdown-content has-background-white box">
+                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll routerLinkActive="Active"
+                  href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
+                  [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>
+              </div>
             </div>
-          </div>
-        </ng-template>
+          </ng-template>
 
-      </div>
-    </div>
-
-    <div class="pb-4 dis-flex flex-m">
-
-      <div class="dropdown">
-        <a class="wrap-pic-cir border w-full mb-4"
-          mat-icon-button
-          title="Perfil">
-          <mat-icon>person_outline</mat-icon>
-        </a>
-        <div class="dropdown-content right-0">
-          <a mat-menu-item *ngIf="!user" (click)="openLogin()">Login</a>
-          <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
-          <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin" [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
-          <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
         </div>
       </div>
-      <div class="pb-4 is-hidden-desktop ml-4">
-       <button
-        mat-mini-fab
-        [color]=""
-        (click)="openCheckout()"
-        title="Checkout"
-        aria-label="Botão abrir Orçamento"
-        class="size4 flex-c-m how-social boxshadow-none border shadow-light orcamento trans-04 m-b-3 m-t-3">
-          <div class="columns line-height-small is-mobile">
 
+      <div class="pb-4 dis-flex flex-m">
+
+        <div class="dropdown">
+          <a class="wrap-pic-cir border w-full mb-4" mat-icon-button color="accent" title="Perfil">
+            <mat-icon>person_outline</mat-icon>
+          </a>
+          <div class="dropdown-content right-0">
+            <a mat-menu-item *ngIf="!user" (click)="openLogin()">Login</a>
+            <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
+            <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin"
+              [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
+            <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
           </div>
-          <div class="columns">
+        </div>
+
+        <div class="pb-4 is-hidden-desktop ml-4">
+          <button mat-mini-fab [color]="" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+            class="size4 flex-c-m how-social boxshadow-none border shadow-light orcamento trans-04 m-b-3 m-t-3">
+            <div class="columns line-height-small is-mobile">
+
+            </div>
+            <div class="columns">
+              <div class="column">
+                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+                <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <div class="is-hidden-touch ml-4 m-r-60 ">
+          <div class="columns is-multiline is-vcentered">
             <div class="column">
-              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-              <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+              <button mat-mini-fab (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+                color="none"
+                class="size4 boxshadow-none flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
+
+                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+                <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
+              </button>
+            </div>
+            <div class="column is-hidden-touch">
+              <p class="preco" *ngIf="(Orcamento$|async).Preco">
+                R${{(Orcamento$|async).Preco.toFixed(2) || ''}}
+              </p>
             </div>
           </div>
-        </button>
-      </div>
-      <div class="is-hidden-touch ml-4 m-r-60 ">
-        <button mat-mini-fab (click)="openCheckout()"
-            title="Checkout"
-            aria-label="Botão abrir Orçamento"
-            color="none"
-            class="size4 boxshadow-none flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
-              <div class="columns is-multiline is-vcentered">
+        </div>
 
-                <div class="columns">
-                  <div class="column">
-                    <mat-icon class="material-icons-outlined pl-2">shopping_bag</mat-icon>
-                    <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
-                  </div>
-                  <div class="column is-hidden-touch">
-                    <p class="preco" *ngIf="(Orcamento$|async).Preco">
-                      R${{(Orcamento$|async).Preco.toFixed(2) || ''}}
-                    </p>
-                  </div>
-                </div>
-              </div>
-          </button>
       </div>
+
     </div>
-  </div>
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-toolbar-row
-  [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'is-hidden'">
-</mat-toolbar-row>
+  <mat-toolbar-row
+    [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'is-hidden'">
+  </mat-toolbar-row>
 
 </div>

@@ -9,6 +9,11 @@
 @import '~css-star-rating/css/star-rating.min.css';
 @import '~@angular/cdk/overlay-prebuilt.css';
 @import '~swiper/swiper-bundle.min.css';
+
+:root {
+  --animate-duration: .5s;
+}
+
 html, body {
   height: 100%;
   max-width: 100vw !important;

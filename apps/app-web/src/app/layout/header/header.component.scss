@@ -105,7 +105,7 @@ a{
   margin-left: auto;
   margin-right: auto;
   right: 0;
-  bottom: 17px;
+  bottom: 29px;
   text-align: center;
   color: #000000;
   font-size: 10px;
@@ -118,14 +118,14 @@ a{
   padding: 0;
 }
 .nav-link{
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
   padding: 0.5em;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  font-weight: 500;
+  font-weight: 600;
   border-color: #acababce;
-  color: #666;
+  // color: #666;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-width: 1px;
@@ -155,14 +155,16 @@ a.nav-link:hover{
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
-  // color: #b6cad6!important;
+  &:hover > .mat-icon{
+    color:#ff4081
+  }
 }
 .inicio{
   border-left: none;
 }
 .active-nav{
   color: $capri;
-  font-weight: 500;
+  font-weight: 600;
   animation: selected 2s ease-out forwards;
 }
 @keyframes selected{
@@ -190,7 +192,7 @@ a.nav-link:hover{
   animation: AnimationName 1s ease forwards;
   & a.nav-link{
     // color:white;
-    font-weight: 500;
+    font-weight: 600;
   }
   & .active-nav{
     color:$crayola !important;

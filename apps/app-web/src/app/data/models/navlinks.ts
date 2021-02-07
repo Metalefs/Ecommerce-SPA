@@ -23,14 +23,13 @@ export interface NavLinkOptions{
 
 export let NavLinks:NavLink[] =
 environment.production ? [
-  {name: "INICIO",    href:"inicio",   icon:'',group:GrupoNavLink.none},
   {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
-  {name: "INICIO",    href:"inicio",   icon:'',group:GrupoNavLink.none},
+  {name: "Institucional", href:"", icon:'',group:GrupoNavLink.none},
   {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
@@ -41,13 +40,27 @@ environment.production ? [
 
 export let NavLinksRes:NavLink[] =
 environment.production ? [
-  {name: "Básicos",   href:"produtos", icon:'store',group:GrupoNavLink.produtos},
-  {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
-  {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
-  {name: "Galeria",   href:"showcase", icon:'gallery', group:GrupoNavLink.none},
+  {
+    name: "Institucional", href:"", icon:'',group:GrupoNavLink.none,
+    options:[
+      {nome:"Inicio",link:`/inicio`,queryParams:{}},
+      {nome:"Sobre",link:`/empresa`,queryParams:{}},
+      {nome:"Serviços",link:`/servicos`,queryParams:{}},
+    ]
+  },
+  {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
-  {name: "Básicos",   href:"produtos", icon:'store', group:GrupoNavLink.produtos},
-  {name: "Blog",      href:"blog",     icon:'rss_feed', group:GrupoNavLink.duvidas},
-  {name: "Contato",   href:"orcamento",icon:'perm_phone_msg', group:GrupoNavLink.duvidas},
-  {name: "Galeria",   href:"showcase", icon:'gallery', group:GrupoNavLink.none},
+  {
+    name: "Institucional", href:"", icon:'',group:GrupoNavLink.none,
+    options:[
+      {nome:"Inicio",link:`/inicio`,queryParams:{}},
+      {nome:"Sobre",link:`/empresa`,queryParams:{}},
+      {nome:"Serviços",link:`/servicos`,queryParams:{}},
+    ]
+  },
+  {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ];
