@@ -20,8 +20,8 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Produtos para personalizar",
           icon:"photo_library",
-          color:"#FFB041",
-          class:"yellow",
+          color:"#FD6D13",
+          class:"red",
           link:"/produtos",
           id:"#PRODUTO",
           content:`Confira nossas canecas, camisetas, almofadas e outros.`,
@@ -30,8 +30,8 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Galeria",
           icon:"group_work",
-          color:"#FD6D13",
-          class:"red",
+          color:"#FFB041",
+          class:"yellow",
           link:"/showcase",
           id:"#SHOWCASE",
           content:"Dê uma olhada nos ultimos items que personalizamos!",

@@ -9,6 +9,9 @@ export function ObterImagensCarousel(){
 export function ObterGIFProdutos(){
   return  'assets/images/GIF.gif'
 }
+export function ObterIcones(name){
+  return  `assets/icons/${name}_icon.png`
+}
 export function getPreviewURL($event,fileNames,callback){
 
   let filelist = $event.target.files;

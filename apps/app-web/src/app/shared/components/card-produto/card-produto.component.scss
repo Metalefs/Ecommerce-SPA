@@ -26,6 +26,7 @@ img{
 .mat-card{
   min-height: 600px;
   max-height: 600px;
+
   display: flex !important;
   align-items: center;
   border: 1px solid #e7e7e7;
@@ -127,9 +128,12 @@ img{
     visibility: hidden;
   }
 }
+.mat-card-subtitle{
+  margin-bottom: 0;
+}
 .preco-produto{
   color: black;
-  font-size: large;
+  font-size: 24px;
   &.linethr{
     font-size: small;
     font-weight: 400;

@@ -33,20 +33,24 @@
 </div> -->
 
 <div class="social">
-  <a href=""><i class="fab fa-twitter"></i></a>
-  <a  href="https://facebook.com/{{(InformacoesContato$ | async)?.Facebook}}"
+  <a href=""><i class="pi pi-twitter"></i></a>
+
+  <a href="https://facebook.com/{{(InformacoesContato$ | async)?.Facebook}}"
   target="_blank"
   rel="noopener"
   aria-label="Botão abrir Facebook"
   class="how-social facebook"
-  title="Visite o nosso Facebook"><i class="fab fa-facebook-f"></i></a>
-  <a href="" class="how-social facebook"><i class="fab fa-linkedin-in"></i></a>
-  <a    href="https://instagram.com/{{(InformacoesContato$ | async)?.Instagram}}"
+  title="Visite o nosso Facebook"><i class="pi pi-facebook"></i></a>
+
+  <!-- <a href="" class="how-social facebook"><i class="fab fa-linkedin-in"></i></a> -->
+
+  <a href="https://instagram.com/{{(InformacoesContato$ | async)?.Instagram}}"
   target="_blank"
   rel="noopener"
   aria-label="Botão abrir Instagram"
   title="Visite o nosso Instagram"
-  class="how-social instagram"><i class="fab fa-instagram"></i></a>
-  <a href="" class="how-social instagram"><i class="fab fa-youtube"></i></a>
+  class="how-social instagram"><img class="how-social "[src]="ObterIcone('instagram')"></a>
+
+  <a href="" class="how-social instagram"><img class="how-social "[src]="ObterIcone('youtube')"></a>
 
 </div>

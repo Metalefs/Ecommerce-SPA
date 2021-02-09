@@ -23,7 +23,7 @@
             <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
             </ng-container>
             <ng-template #Inclusao>
-              <h1>Produtos mais recentes</h1>
+              <h1 class="has-text-light">Produtos mais recentes</h1>
             </ng-template>
             <ng-template #Outro>
               <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes">
@@ -32,7 +32,7 @@
                 <h1>Produtos mais vendidos!</h1>
               </ng-template>
               <ng-template #Visualizacoes>
-                <h1>Produtos mais procurados!</h1>
+                <h1 class="has-text-light">Produtos mais procurados!</h1>
               </ng-template>
             </ng-template>
             <span class="hr-inner-style"></span>

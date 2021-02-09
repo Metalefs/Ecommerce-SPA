@@ -32,25 +32,25 @@
         <div class="level-right">
           <a class="level-item" aria-label="reply" (click)="querResponder = !querResponder">
             <span class="icon is-small">
-              <i class="fas fa-reply" aria-hidden="true"></i>
+              <i class="pi pi-comment" aria-hidden="true"></i>
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="querEditar = !querEditar"
           *ngIf="this.usr?._id == Comentario.Comentario.idUsuario || ''">
             <span class="icon is-small">
-              <i class="fas fa-edit" aria-hidden="true"></i>
+              <i class="pi pi-user-edit" aria-hidden="true"></i>
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="like()">
             {{Comentario.Comentario.Likes}}
             <span class="icon is-small">
-              <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+              <i class="pi pi-thumbs-up" aria-hidden="true"></i>
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="dislike()">
             {{Comentario.Comentario.Dislikes}}
             <span class="icon is-small">
-              <i class="fas  fa-thumbs-down" aria-hidden="true"></i>
+              <i class="pi pi-thumbs-down" aria-hidden="true"></i>
             </span>
           </a>
           <a *ngIf="this.usr?.Tipo == tipoUsuario.admin" class="level-item" aria-label="reply" (click)="deletar()">

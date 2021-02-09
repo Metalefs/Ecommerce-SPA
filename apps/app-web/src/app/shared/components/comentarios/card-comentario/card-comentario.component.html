@@ -40,23 +40,23 @@
         <div class="level-right">
           <a class="level-item" aria-label="reply" (click)="querResponder = !querResponder" *ngIf="canEdit">
             <span class="icon is-small">
-              <i class="fas fa-reply" aria-hidden="true"></i>
+              <i class="pi pi-comment" aria-hidden="true"></i>
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="querEditar = !querEditar"
           *ngIf="this.usr?._id == (Comentario?.idUsuario || '')">
             <span class="icon is-small">
-              <i class="fas fa-edit" aria-hidden="true"></i>
+              <i class="pi pi-user-edit" aria-hidden="true"></i>
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="like()" *ngIf="canEdit">
             <span class="icon is-small">
-              <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+              <i class="pi pi-thumbs-up" aria-hidden="true"></i>
             </span>
           </a>
           <a class="level-item" aria-label="reply" (click)="dislike()" *ngIf="canEdit">
             <span class="icon is-small">
-              <i class="fas  fa-thumbs-down" aria-hidden="true"></i>
+              <i class="pi pi-thumbs-down" aria-hidden="true"></i>
             </span>
           </a>
           <a *ngIf="this.usr?.Tipo == tipoUsuario.admin && canEdit"

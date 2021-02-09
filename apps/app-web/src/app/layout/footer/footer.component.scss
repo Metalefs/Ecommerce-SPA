@@ -33,8 +33,8 @@ a{
     transition: 1s all;
   }
   &.footer-text.links p::before {
-    content: '\f061';
-    font-family: 'Font Awesome 5 Free';
+    content: "\e91b";
+    font-family: 'primeicons';
     font-weight: 900;
     padding-right: 5px;
   }
@@ -162,8 +162,8 @@ h4{
   color: #c5c3c3;
 }
 .footer .footer-widget ul li a::before {
-  content: '\f061';
-  font-family: 'Font Awesome 5 Free';
+  content: "\e91b";
+  font-family: 'primeicons';
   font-weight: 900;
   padding-right: 5px;
 }

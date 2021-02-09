@@ -74,7 +74,6 @@ export class FooterComponent implements OnInit {
   ngOnInit(){
     this.Carregar();
   }
-
   AssinarNewsLetter(){
     if(this.Email != "" && this.email.nativeElement.validity.valid){
       let emailnotificacao = new EmailNotificacao(this.Email, this.Nome, null);

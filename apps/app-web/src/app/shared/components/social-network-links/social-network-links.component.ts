@@ -6,6 +6,7 @@ import { Select, Store } from '@ngxs/store';
 import { InformacoesContato } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { InformacoesContatoState } from '../../../data/store/state';
+import { ObterIcones } from '../../../helper/FileHelper';
 
 @Component({
   selector: 'personalizados-lopes-social-network-links',
@@ -26,4 +27,7 @@ export class SocialNetworkLinksComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ObterIcone(name){
+    return ObterIcones(name);
+  }
 }

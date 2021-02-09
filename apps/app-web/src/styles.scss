@@ -419,7 +419,7 @@ canvas{
   background: $crayola;
 }
 .preco{
-  font-size: 14px;
+  font-size: 24px;
   color:rgb(105, 109, 140);
   font-weight: 500;
   font-family: 'Helvetica';
@@ -428,6 +428,14 @@ canvas{
 .preco strong{
   // color:#fe0000;
   font-size: 35px;
+}
+.parcelas{
+  display: flex;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0 .3rem;
+  line-height: 1.25;
+  font-size: 14px;
 }
 .card-bg{
   z-index: 0;

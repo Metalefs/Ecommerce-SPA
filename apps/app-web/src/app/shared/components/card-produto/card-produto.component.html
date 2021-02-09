@@ -16,9 +16,9 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      matRipple class="portfolio-item zoom" [style.backgroundColor]="Produto.Categoria.Cor">
+      matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
       <a class="prod-status">
-        <i class="fa fa-tag"></i>
+        <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </a>
 
@@ -58,7 +58,7 @@
           <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle
-            class="pos-relative w-full z-index-2 px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
+            class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -73,14 +73,15 @@
               </div>
             </ng-template>
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
-              <p class="preto6" *ngIf="Produto.Parcelas > 1">
+              <p class="preto6 parcelas" *ngIf="Produto.Parcelas > 1">
                 Em até {{Produto.Parcelas}}x <span
-                  class="preco-produto"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
+                  class="parcelas">
+                  <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
-              <p class="preto6" *ngIf="Produto.Parcelas == 1">
+              <p class="preto6 parcelas" *ngIf="Produto.Parcelas == 1">
                 Á vista por <span
-                  class="preco-produto"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
+                  class="parcelas"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
             </div>
@@ -144,9 +145,9 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      matRipple class="portfolio-item zoom" [style.backgroundColor]="Produto.Categoria.Cor">
+      matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
       <a class="prod-status">
-        <i class="fa fa-tag"></i>
+        <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </a>
 
@@ -163,11 +164,9 @@
       </a>
 
      <a class="prod-status">
-        <i class="fa fa-tag"></i>
+        <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </a>
-
-
 
       <mat-card-footer class="px-1 z-index-2">
         <div class="px-4">
@@ -193,7 +192,7 @@
           <mat-card-subtitle class="txt-center w-full is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle mat-card-subtitle
-            class="w-full z-index-2 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
+            class="w-full pos-absolute z-index-2 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -208,14 +207,15 @@
               </div>
             </ng-template>
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
-              <p class="preto6" *ngIf="Produto.Parcelas > 1">
+              <p class="preto6 parcelas" *ngIf="Produto.Parcelas > 1">
                 Em até {{Produto.Parcelas}}x <span
-                  class="preco-produto"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
+                  class="parcelas">
+                  <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
-              <p class="preto6" *ngIf="Produto.Parcelas == 1">
+              <p class="preto6 parcelas" *ngIf="Produto.Parcelas == 1">
                 Á vista por <span
-                  class="preco-produto"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
+                  class="parcelas"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
             </div>

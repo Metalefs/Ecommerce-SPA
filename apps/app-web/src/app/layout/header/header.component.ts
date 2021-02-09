@@ -124,9 +124,9 @@ export class HeaderComponent implements OnInit {
 
   Carregar(){
     this.Categoria$.subscribe(cats=>{
-      this.links[3].options = [];
+      this.links[1].options = [];
       cats.forEach(cat=>{
-        this.links[3].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
+        this.links[1].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
       })
     })
 

@@ -14,6 +14,8 @@
  .social {
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
  .social a {
@@ -26,6 +28,9 @@
   font-size: 18px;
   background: #ffffff;
   border-radius: 4px;
+  & > img{
+    margin-top:-4px;
+  }
 }
 
  .social a i {
