@@ -44,7 +44,7 @@
               (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
               <a mat-strocked-button>
-              <button>
+              <button class="border-0">
                   <mat-icon
                     [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
                     {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
@@ -62,7 +62,7 @@
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active' : ''">
               <a mat-strocked-button>
-              <button>
+              <button class="border-0">
                   <mat-icon
                     [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
                     {{CategoriaAtiva?.Nome == categoria?.Nome ?  'done' : 'arrow_left'}}

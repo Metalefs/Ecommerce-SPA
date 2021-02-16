@@ -46,6 +46,7 @@ environment.production ? [
       {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
       {nome:"Serviços",link:`/servicos`,queryParams:{}},
+      {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},

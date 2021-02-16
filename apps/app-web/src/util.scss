@@ -89,7 +89,9 @@ button {
   border-bottom-right-radius: 15px !important;
 }
 button:focus {outline: none;}
-
+.border-0{
+  border:none !important;
+}
 iframe {border: none;}
 .img-container{
   position: relative;

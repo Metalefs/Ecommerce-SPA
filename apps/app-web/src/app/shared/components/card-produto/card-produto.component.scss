@@ -253,9 +253,10 @@ img{
   margin: 0 auto;
   width: 90%;
   top: 30%;
-  margin-left: 5px;
-  box-shadow: 1px 1px 4px grey;
+  margin: 0 auto 0 -1px;
+  box-shadow: 1px 1px 4px #d1d1d199;
   border-bottom-right-radius: 15px;
+  transition: all 1s;
 }
 
 .portfolio-item:hover .overlay-items {
