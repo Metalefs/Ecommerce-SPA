@@ -133,7 +133,7 @@
                         <mat-icon class="less">remove</mat-icon>
                       </button>
                       <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}" value="{{Produto?.QuantidadeMinima}}" type="number"
-                        (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima}}"
+                        (change)="VerificarQuantidade($event)" min="{{Produto?.QuantidadeMinima ||1}}"
                         class="quantidade-produto input" [(ngModel)]="(Produto).Quantidade">
                       <button mat-icon-button (click)="IncrementarQuantidade()">
                         <mat-icon class="more">add</mat-icon>

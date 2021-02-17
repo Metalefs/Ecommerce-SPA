@@ -16,7 +16,7 @@
         </h1>
       </div>
       <div class="">
-        <div class="testimonialContent  noselect card box" #sliderContent (mousemove) = 'sliderMuve($event)'
+        <div class="testimonialContent  noselect card box" #sliderContent (mousemove) = 'sliderMove($event)'
         (mousedown) = 'mousedownInSlider($event)' (mouseup) = 'leftSlider()' (mouseleave) = 'leftSlider()'>
           <div class="card-bg-rot" *ngFor = 'let item of sliderData; let i = index;' >
 

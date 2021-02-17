@@ -64,7 +64,7 @@ export class ConfirmacaoComponent implements OnInit {
   }
   DecrescerQuantidade(element){
     if(element){
-      if(element.Produto.Quantidade > element.Produto.QuantidadeMinima)
+      if(element.Produto.Quantidade > element.Produto.QuantidadeMinima || element.Quantidade > 1)
       element.Produto.Quantidade--;
       this.EditarOrcamento(element);
     }

@@ -74,7 +74,7 @@ export class CheckoutDisplayComponent implements OnInit {
     this.EditarOrcamento(element);
   }
   DecrescerQuantidade(element){
-    if(element.Quantidade > element.QuantidadeMinima)
+    if(element.Quantidade > element.QuantidadeMinima || element.Quantidade > 1)
     element.Quantidade--;
     this.EditarOrcamento(element);
   }

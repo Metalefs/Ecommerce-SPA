@@ -63,13 +63,13 @@ export class TestimonialComponent implements OnInit, OnDestroy {
       this.makeAnimationsState();
     }
     else if (this.TabletQuery.matches) {
-      this.AutoTurn();
       this.makeAnimationStateForMiddleSize();
     }
     else if (this.mobileQuery.matches)  {
-      this.AutoTurn();
       this.makeAnimationStateForSmallSize();
     }
+
+    this.AutoTurn();
 
   }
   makeAnimationsState() {
@@ -144,7 +144,6 @@ export class TestimonialComponent implements OnInit, OnDestroy {
       this.turnTimer = null;
     }, this.time);
 
-    this.clicking = true;
   }
   mousedownInSlider(event) {
     this.catchSlider = true;
@@ -153,7 +152,7 @@ export class TestimonialComponent implements OnInit, OnDestroy {
   leftSlider() {
     this.catchSlider = false;
   }
-  sliderMuve(event) {
+  sliderMove(event) {
     if (this.catchSlider) {
       const x = event.clientX;
       if (this.mouseDownposition - x > 150) {

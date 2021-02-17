@@ -267,7 +267,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.Produto.Quantidade++;
   }
   DecrescerQuantidade(){
-    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
+    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima || this.Produto.Quantidade > 1)
     this.Produto.Quantidade--;
   }
   VerificarQuantidade($event){
