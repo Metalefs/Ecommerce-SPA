@@ -1,38 +1,41 @@
 <div id="Contato">
 
+  <iframe data-aos="zoom-up" class="w-full vh-25 mb-0 pb-0" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
   <div class="section pl-20 pr-20 pt-3 has-background-white">
-    <iframe data-aos="zoom-up" class="w-full vh-25 mb-0 pb-0" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=11&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-    <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
+    <div class="margin">
 
-    <ng-template #Produtos>
-      <h2 class="titulo is-uppercase my-2">Preencha os dados abaixo para entrar em contato conosco.</h2>
-      <mat-divider></mat-divider>
-      <div class="columns mt-4 mb-6 reverse-col-mobile " data-aos="flip-left">
-        <div class="column bg-contato  has-text-centered">
-          <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
-        </div>
-        <div class="column ">
-          <personalizados-lopes-formulario [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
-          <button mat-raised-button (click)="EnviarOrcamento()" class="w-full is-pulled-right my-3 background-light-red has-text-white submit">Entrar em contato</button>
-        </div>
-      </div>
-      <personalizados-lopes-card-contato class="box"></personalizados-lopes-card-contato>
-    </ng-template>
+      <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
 
-    <ng-template #Padrao>
-      <div class="columns " data-aos="flip-left">
-        <div class="column">
-          <h2 class="titulo is-uppercase my-5">Entrar em Contato</h2>
-          <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
-          <div class="w-full flex-w flex-m">
-            <button mat-raised-button (click)="EnviarOrcamento()" class="w-full background-light-red has-text-white submit">Entrar em contato</button>
+      <ng-template #Produtos>
+        <h2 class="titulo is-uppercase my-2">Preencha os dados abaixo para entrar em contato conosco.</h2>
+        <mat-divider></mat-divider>
+        <div class="columns mt-4 mb-6 reverse-col-mobile " data-aos="flip-left">
+          <div class="column bg-contato  has-text-centered">
+            <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
+          </div>
+          <div class="column ">
+            <personalizados-lopes-formulario [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
+            <button mat-raised-button (click)="EnviarOrcamento()" class="w-full is-pulled-right my-3 background-light-red has-text-white submit">Entrar em contato</button>
           </div>
         </div>
-        <div class="column  bg-contato">
-          <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
+        <personalizados-lopes-card-contato class="box"></personalizados-lopes-card-contato>
+      </ng-template>
+
+      <ng-template #Padrao>
+        <div class="columns " data-aos="flip-left">
+          <div class="column">
+            <h2 class="titulo is-uppercase my-5">Entrar em Contato</h2>
+            <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
+            <div class="w-full flex-w flex-m">
+              <button mat-raised-button (click)="EnviarOrcamento()" class="w-full background-light-red has-text-white submit">Entrar em contato</button>
+            </div>
+          </div>
+          <div class="column  bg-contato">
+            <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
+          </div>
         </div>
-      </div>
-    </ng-template>
+      </ng-template>
+    </div>
 
     <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
   </div>

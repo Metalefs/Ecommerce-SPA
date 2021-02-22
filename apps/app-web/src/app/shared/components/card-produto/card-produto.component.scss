@@ -8,6 +8,9 @@
   color: #fff;
   padding: 5px 10px;
   z-index: 3;
+  border-radius: .51em;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
 }
 .image{
   -webkit-box-align: center;
@@ -26,7 +29,6 @@ img{
 .mat-card{
   min-height: 600px;
   max-height: 600px;
-
   display: flex !important;
   align-items: center;
   border: 1px solid #e7e7e7;
@@ -49,6 +51,9 @@ img{
   // &:hover > .mat-card-footer .preco-produto{
   //   color: white ;
   // }
+}
+.mat-card-header .mat-card-title{
+  text-align: center;
 }
 .mat-card-image,img{
   background: rgb(255, 255, 255);
@@ -181,7 +186,7 @@ img{
   display: block;
   -webkit-box-align: stretch;
   align-items: stretch;
-  border-radius: 0px;
+  border-radius: 1em;
   display: flex;
   flex-direction: column;
   height: 100%;

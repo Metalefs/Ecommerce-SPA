@@ -15,7 +15,7 @@
       </ul>
     </nav>
     <div class="columns mt-3 has-background-white" id="PRODUTO">
-      <div class="column is-4 mb-0 pos-sticky top-0 pt-3">
+      <div class="column is-6 mb-0 pos-sticky top-0 pt-3">
         <mat-chip-list class="is-left">
           <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
         </mat-chip-list>
@@ -56,7 +56,7 @@
         </span>
       </div>
 
-      <div class="column is-8 py-6 px-3 has-background-white z-index-2 pos-sticky bbr">
+      <div class="column is-6 py-6 px-3 has-background-white z-index-2 pos-sticky bbr">
 
         <div class="columns is-multiline mb-0 pb-0">
 
@@ -80,28 +80,8 @@
               </star-rating>
               <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
             </div>
-            <div class="my-1">
-              <ng-container *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
-              </ng-container>
-              <ng-template #preco_promo>
-                <div class="txt-left">
-                  <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                  <p class="preco promocao preto6">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-                </div>
-              </ng-template>
-              <ng-template #preco_normal>
-                <div class="txt-left">
-                  <p class="preco preto6">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                </div>
-              </ng-template>
-              <div class="my-1" *ngIf="Produto?.Parcelas && Produto?.Parcelas > 0">
-                <p class="preto6">
-                  Em até {{Produto?.Parcelas}}x <span
-                    class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas).toFixed(2)}}</b></span> sem juros
-                </p>
-              </div>
-            </div>
-
+            <div  class="descricao-produto w-full" style="border-left: 1px solid #0000000a;"
+            [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
             <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
               <em>
                 *Minimo {{Produto?.QuantidadeMinima}} unidades
@@ -144,7 +124,7 @@
 
                     <div class="column is-6-desktop  mb-5 is-12-mobile pb-0">
                       <p><span>Cores:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
-                      <div class="columns px-3 mt-3 is-multiline dis-flex flex-c" *ngIf="Produto?.Cores">
+                      <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" *ngIf="Produto?.Cores">
                         <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input
                               class="px-2 py-2 mx-1"
@@ -163,7 +143,7 @@
                     </div>
                     <div class="column is-6-desktop is-12-mobile pb-0"  *ngIf="Produto?.Tamanhos">
                       <p><span>Tamanhos</span></p>
-                      <mat-form-field class="w-full" *ngIf="Produto?.Cores" >
+                      <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
                         <mat-label>Selecione um tamanho</mat-label>
                         <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
                           <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
@@ -179,6 +159,27 @@
 
                 </div>
                 <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-center ">
+                  <div class="mx-2 py-2">
+                    <ng-container *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
+                    </ng-container>
+                    <ng-template #preco_promo>
+                      <div class="txt-left">
+                        <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                        <p class="preco promocao preto6">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+                      </div>
+                    </ng-template>
+                    <ng-template #preco_normal>
+                      <div class="txt-left">
+                        <p class="preco preto6">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                      </div>
+                    </ng-template>
+                    <div class="my-1" *ngIf="Produto?.Parcelas && Produto?.Parcelas > 0">
+                      <p class="preto6">
+                        Em até {{Produto?.Parcelas}}x <span
+                          class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas).toFixed(2)}}</b></span> sem juros
+                      </p>
+                    </div>
+                  </div>
                   <button @fadeIn *ngIf="Produto" mat-raised-button
                   [disabled]="Produto?.Status == statusProduto.esgotado"
                   (click)="AdicionarAoOrcamento()"

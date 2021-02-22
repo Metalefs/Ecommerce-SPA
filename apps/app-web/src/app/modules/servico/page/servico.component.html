@@ -1,11 +1,11 @@
 <section [@cardFlip]="state" id="Serviços" class="mt-3 w-full">
 
-  <div class="columns" *ngFor="let card of Cards;let i = index">
+  <div class="columns" [ngClass]="{'section py-0 px-0':i%2 != 0}" *ngFor="let card of Cards;let i = index">
 
     <ng-container  *ngIf="i%2 == 0 then left else right"></ng-container>
 
     <ng-template #right>
-      <div class="column is-6 section" [style.background] = "'url('+card.content.Imagem+')'" style="background-size: contain !important;" data-aos="slide-right">
+      <div class="column is-6" [style.background] = "'url('+card.content.Imagem+')'" style="background-size: contain !important;" data-aos="slide-right">
 
       </div>
 

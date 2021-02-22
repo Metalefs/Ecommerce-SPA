@@ -28,7 +28,7 @@ export class HeaderFooterComponent implements OnInit {
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         {
-          title:"Galeria",
+          title:"Nossa produção",
           icon:"group_work",
           color:"#FFB041",
           class:"yellow",
