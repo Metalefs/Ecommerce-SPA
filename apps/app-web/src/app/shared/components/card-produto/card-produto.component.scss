@@ -4,7 +4,7 @@
   position: absolute;
   top: 30px;
   right: 0;
-  background: #000;
+  background: #fe0000ba;
   color: #fff;
   padding: 5px 10px;
   z-index: 3;
@@ -144,6 +144,11 @@ img{
 }
 ::ng-deep .mat-card-header-text{
   width: 100%;
+  margin: 0 16px;
+}
+.mat-card-header-text{
+  width: 100%;
+  margin: 0 16px;
 }
 .btn-cart{
   // background: #0b4d88;

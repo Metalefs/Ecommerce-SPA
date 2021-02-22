@@ -9,6 +9,13 @@
     </mat-chip-list>
   </h4>
   <mat-divider></mat-divider>
+  <div class="w-full contents">
+    <h2>Produtos: </h2>
+    <mat-card class="w-full box" *ngFor="let prod of Pedido.Produto">
+      <personalizados-lopes-card-pedido [CodProduto]="prod" ></personalizados-lopes-card-pedido>
+    </mat-card>
+  </div>
+  <mat-divider></mat-divider>
   <mat-list>
     <mat-list-item>
       <p>Total do pedido:</p>
@@ -21,7 +28,8 @@
   <div class="py-2">
     <personalizados-lopes-exibicao-perfil [user]="Pedido.Usuario"></personalizados-lopes-exibicao-perfil>
   </div>
-  <p><strong>Mensagem do pedido: </strong> {{Pedido.Mensagem}}</p>
+  <p class="box"><strong>Mensagem do pedido: </strong> {{Pedido.Mensagem}}</p>
+  <mat-divider></mat-divider>
   <mat-card>
     <mat-card-actions>
       <div class="box">
@@ -30,11 +38,4 @@
       </div>
     </mat-card-actions>
   </mat-card>
-  <mat-divider></mat-divider>
-  <div class="w-full contents">
-    <h2>Produtos: </h2>
-    <mat-card class="w-full box" *ngFor="let prod of Pedido.Produto">
-      <personalizados-lopes-card-pedido [CodProduto]="prod" ></personalizados-lopes-card-pedido>
-    </mat-card>
-  </div>
 </div>

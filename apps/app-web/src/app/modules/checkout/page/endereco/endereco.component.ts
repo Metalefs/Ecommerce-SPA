@@ -100,6 +100,7 @@ export class EnderecoComponent implements OnInit {
         this.Loading = true;
         this.integracoesService.Ler().subscribe(x => {
           this.checkoutService.goCheckout(orcamento, x).subscribe(result => {
+            console.log(x);
             this.cadastroTemporario();
             this._init_point = result;
             this.Loading = false;

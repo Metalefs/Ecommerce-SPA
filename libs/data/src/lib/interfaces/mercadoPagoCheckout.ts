@@ -97,12 +97,12 @@ export interface mp_shipments{
   // custom   // Custom shipping.
   // me2   // Mercado Envíos.
   // not_specified   // Shipping mode not specified.
-  local_pickup:boolean;//  Preferência de remoção de pacotes em agência(mode:me2 somente).
+  local_pickup?:boolean;//  Preferência de remoção de pacotes em agência(mode:me2 somente).
   dimensions:string; //  Tamanho do pacote em cm x cm x cm, gr (mode:me2 somente)
   default_shipping_method?:number; //  Escolha um método de envio padrão no _checkout_(mode:me2 somente).
   free_methods?: mp_paymentID //Oferecer um método de frete grátis (mode:me2 somente).
-  cost:number; //  Custo do transporte (mode:custom somente).
-  free_shipping:boolean;//  Preferência de frete grátis para mode:custom.
+  cost?:number; //  Custo do transporte (mode:custom somente).
+  free_shipping?:boolean;//  Preferência de frete grátis para mode:custom.
   receiver_address:mp_reciever_address;
 }
 export interface mp_reciever_address{

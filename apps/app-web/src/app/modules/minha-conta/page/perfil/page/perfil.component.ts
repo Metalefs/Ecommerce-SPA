@@ -54,7 +54,7 @@ export class PerfilComponent implements OnInit {
       width:"512px",
       height:"100vh",
       position:{
-        left:"0"
+        right:"0"
       }
     });
   }

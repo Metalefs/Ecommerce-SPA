@@ -46,7 +46,7 @@ export class MercadoPagoCheckoutService {
         items: this.getItems(orcamento),
         payer: this.getPayer(orcamento),
         payment_methods: this.getPaymentMethod(orcamento,integracoes),
-        // shipments:this.getShipments(orcamento),
+        shipments:this.getShipments(orcamento),
         back_urls: {
           success: "https://www.personalizadoslopes.com.br/checkout/success",
           failure: "https://www.personalizadoslopes.com.br/checkout/failure",
@@ -127,12 +127,12 @@ export class MercadoPagoCheckoutService {
     }
     getShipments(orcamento:Orcamento):mp_shipments{
       return {
-        mode:'custom',
+        mode:'me2',
         local_pickup:false,
-        dimensions:orcamento.Dimensoes,
-        default_shipping_method:0,
-        cost:orcamento.Preco,
-        free_shipping:false,
+        dimensions:orcamento.Dimensoes + ",500",
+        // default_shipping_method:0,
+        // cost:orcamento.Preco,
+        // free_shipping:false,
         receiver_address: {
           zip_code: orcamento.Usuario.EnderecoEntrega.CEP,
           street_name: orcamento.Usuario.EnderecoEntrega.Rua,

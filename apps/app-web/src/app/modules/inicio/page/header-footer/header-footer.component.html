@@ -3,7 +3,7 @@
     <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
     <div data-aos="zoom-in-up" [id]="card.class" class="card-bg {{card?.class}}">
       <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="min-h-full">
-      <mat-card class="border-light" [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
+      <mat-card class="" [attr.data-aos]="i == 0 ? '' : 'flip-left'" >
         <article class="media min-h-full">
           <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="min-h-full">
             <img loading="lazy" *ngIf="card.img_src" src="{{card.img_src}}" class="">

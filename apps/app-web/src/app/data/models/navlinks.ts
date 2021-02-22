@@ -41,7 +41,7 @@ environment.production ? [
 export let NavLinksRes:NavLink[] =
 environment.production ? [
   {
-    name: "Institucional", href:"", icon:'',group:GrupoNavLink.none,
+    name: "Institucional", href:"", icon:'home',group:GrupoNavLink.none,
     options:[
       {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
