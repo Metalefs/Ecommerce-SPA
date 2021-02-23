@@ -38,7 +38,7 @@
         <div class="px-4">
           <a [href]="'/produtos/'+Produto._id">
             <span *ngIf="Produto.Cores?.length > 1" routerLinkActive="router-link-active"
-              class="button is-small bo-0 is-fullwidth box  is-disabled px-4">
+              class="button is-small bo-0 is-fullwidth is-disabled px-4">
               Disponível em {{Produto.Cores?.length}} cores
             </span>
           </a>
@@ -172,7 +172,7 @@
         <div class="px-4">
           <a [href]="'/produtos/'+Produto._id">
             <span *ngIf="Produto.Cores?.length > 1" routerLinkActive="router-link-active"
-              class="button is-small bo-0 is-fullwidth box border is-disabled px-4">
+              class="button is-small bo-0 is-fullwidth border is-disabled px-4">
               Disponível em {{Produto.Cores?.length}} cores
             </span>
           </a>
@@ -255,8 +255,8 @@
               </p>
             </div>
           </div>
-          <a matRipple class="reset-a" [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-          mat-flat-button class="button">Comprar Agora</a>
+          <a matRipple class="reset-a box" [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
+          mat-flat-button class="button"><mat-icon>shopping_bag</mat-icon>Comprar Agora</a>
         </div>
       </div>
     </mat-card>

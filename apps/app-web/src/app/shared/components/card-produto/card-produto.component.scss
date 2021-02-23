@@ -62,7 +62,8 @@ img{
   transition: 1s all;
   display: flex;
   margin:0;
-
+  border-bottom-left-radius: .31em;
+  border-bottom-right-radius: .31em;
   height: 300px;
   object-fit: fill;
   filter: grayscale(0) !important;
@@ -265,7 +266,7 @@ img{
   top: 30%;
   margin: 0 auto 0 -1px;
   box-shadow: 1px 1px 4px #d1d1d199;
-  border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 0;
   transition: all 1s;
 }
 

@@ -205,7 +205,7 @@ a.nav-link:hover{
   animation: AnimationName 1s ease forwards;
   & a.nav-link{
     // color:white;
-    font-weight: 500;
+    font-weight: 600;
   }
   & .active-nav{
     color:$capri !important;
@@ -219,8 +219,8 @@ a.nav-link:hover{
   height: 8px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
   top: 22px;
-    position: relative;
-    pointer-events: none;
+  position: relative;
+  pointer-events: none;
 }
 .is-hidden{
   display: none;
