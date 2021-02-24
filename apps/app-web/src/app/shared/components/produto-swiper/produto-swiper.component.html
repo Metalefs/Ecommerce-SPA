@@ -1,5 +1,5 @@
-<div class="hero is-fullheight-with-navbar" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' is-light':'is-danger'">
-  <div class="hero-body">
+<div class="hero is-fullheight-with-navbar pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' is-light':'is-danger'">
+  <div class="hero-body pb-2">
     <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
     <ng-template #nodata>
       <div class="w-full">

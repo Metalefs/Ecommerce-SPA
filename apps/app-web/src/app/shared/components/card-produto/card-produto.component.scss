@@ -27,8 +27,9 @@ img{
   width: 100%;
 }
 .mat-card{
-  min-height: 600px;
+  min-height: 495px;
   max-height: 600px;
+
   display: flex !important;
   align-items: center;
   border: 1px solid #e7e7e7;
@@ -64,7 +65,7 @@ img{
   margin:0;
   border-bottom-left-radius: .31em;
   border-bottom-right-radius: .31em;
-  height: 300px;
+  height: 270px;
   object-fit: fill;
   filter: grayscale(0) !important;
   &.show{
@@ -139,7 +140,7 @@ img{
 }
 .preco-produto{
   color: black;
-  font-size: 24px;
+  font-size: 16px;
   &.linethr{
     font-size: small;
     font-weight: 400;
@@ -167,9 +168,12 @@ img{
     font-size: 16px;
 }
 @media (min-width: 00px ) and (max-width: 1023px) {
-  // .mat-card{
-  //   min-height: auto;
-  // }
+  .preco-produto{
+    font-size: 16px;
+  }
+  .mat-card{
+    min-height: 465px;
+  }
   .mat-card-subtitle{
     position: relative;
   }
@@ -177,7 +181,10 @@ img{
     filter: opacity(1);
   }
   .mat-card-image,img{
-    object-fit: contain;
+    object-fit: fit;
+
+    height: 240px;
+    min-height: auto;
   }
 }
 

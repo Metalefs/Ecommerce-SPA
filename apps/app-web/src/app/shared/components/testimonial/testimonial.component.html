@@ -1,48 +1,48 @@
-<div class="container-fluid my-3">
+<div class="my-3">
   <div class="columns">
-    <div class="column is-12 p-0 allContent">
-      <!-- testimonial content -->
+    <div class="column is-12 p-0">
       <div
         class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
-        <span
-          class="hr-inner   inner-border-av-border-fat"
-          style=" width:100px; border-color:#762625;">
+        <span class="hr-inner   inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
           <span class="hr-inner-style"></span>
         </span>
       </div>
       <div class="titleContent py-3">
-        <h1 class = 'testimonial-title has-text-weight-bold'>
-          DEPOIMENTOS
+        <h1 class='testimonial-title has-text-weight-bold'>
+          Nossos clientes
         </h1>
       </div>
-      <div class="">
-        <div class="testimonialContent  noselect card box" #sliderContent (mousemove) = 'sliderMove($event)'
-        (mousedown) = 'mousedownInSlider($event)' (mouseup) = 'leftSlider()' (mouseleave) = 'leftSlider()'>
-          <div class="card-bg-rot" *ngFor = 'let item of sliderData; let i = index;' >
+    <div class="swiper-container margin" #swiperElTestimonial (mouseenter)="onSwiperHover( true )"
+      (mouseleave)="onSwiperHover( false )" [swiper]="swiperConfig$ |async">
 
-            <mat-card class = 'commentContent ' [@sliderAnimations] = 'animationsStates[i]'>
-              <div mat-card-header class="w-full">
-                <!-- <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon> -->
-                <p class="card-text text-content">
-                  "{{item?.Comentario}}"
-                </p>
-                <!-- <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon> -->
-              </div>
-              <mat-card-content>
-                <div class="flex-w flex-sb w-full">
+      <div class="swiper-button-prev z-index-top clickable hoverable"></div>
+      <div class="swiper-button-next z-index-top clickable hoverable"></div>
+
+
+          <div class="swiper-wrapper pt-3">
+            <div class="swiper-slide" *ngFor='let item of sliderData'>
+              <mat-card>
+                <div mat-card-header class="w-full dis-flex flex-c flex-m txt-center">
+                  <p class="card-text text-content txt-center">
+                    <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon>
+                    "{{item?.Comentario}}"
+                    <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon>
+                  </p>
                 </div>
-                <div class="userInfo">
-                  <img class = 'userLogo' loading="lazy" mat-card-avatar [src] = 'item?.Foto'>
-                  <div class = 'userName has-text-weight-medium'>{{item?.Nome}}</div>
-                  <div class = 'userName'>{{item?.Tipo}} {{item?.Origem}}</div>
-                </div>
-              </mat-card-content>
-            </mat-card>
+                <mat-card-content>
+                  <div class="flex-w flex-sb w-full">
+                  </div>
+                  <div class="userInfo">
+                    <img class='userLogo' loading="lazy" mat-card-avatar [src]='item?.Foto'>
+                    <div class='userName has-text-weight-medium'>{{item?.Nome}}</div>
+                    <div class='userName'>{{item?.Tipo}} {{item?.Origem}}</div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
           </div>
-
         </div>
       </div>
 
     </div>
-  </div>
 </div>

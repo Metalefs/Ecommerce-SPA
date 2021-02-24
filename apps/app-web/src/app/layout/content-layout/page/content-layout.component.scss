@@ -23,7 +23,7 @@
   padding: 8px;
   position: fixed;
   top: 25px;
-  left: 20px;
+  right: 20px;
   border-radius: 25px;
   cursor: pointer;
   color: black;
@@ -62,7 +62,7 @@
   position: absolute;
   width: 22px;
   height: 2px;
-	left: 2px;
+	right: 2px;
   background: #111111;
   transform-origin: 100% 50%;
   transition: all 100ms ease-in-out;
@@ -112,7 +112,7 @@
   width: 100%;
   height: 0;
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.1) !important;
   opacity: 0;
@@ -156,23 +156,23 @@
 }
 
   .nav-trigger:active .hamburger {
-	transition: transform 50ms;
-	transform: scale(.95);
+    transition: transform 50ms;
+    transform: scale(.95);
   }
 
   .hamburger::before, .hamburger::after, .hamburger .icon {
 	content: '';
-	position: absolute;
-	width: 22px;
-	height: 2px;
-	  left: 2px;
-	background: #111111;
-	transform-origin: 100% 50%;
-	transition: all 100ms ease-in-out;
+    position: absolute;
+    width: 22px;
+    height: 2px;
+      right: 2px;
+    background: #111111;
+    transform-origin: 100% 50%;
+	  transition: all 100ms ease-in-out;
   }
 
   .hamburger::before {
-	top: 5px;
+	  top: 5px;
   }
   .hamburger .icon {
 	  width: 21px;
@@ -180,7 +180,7 @@
     transform-origin: 50% 50%;
   }
   .hamburger::after {
-	top: 17px;
+	  top: 17px;
   }
   /*
   .is-active .hamburger {
@@ -193,18 +193,18 @@
   .is-active .hamburger::before,
   .is-active .hamburger::after,
   .is-active .hamburger .icon {
-	background: #111111;
+	  background: #111111;
   }
 
   .is-active .hamburger::before {
-	transform: translate3d(-4px, -1px, 0) rotateZ(-45deg);
+	  transform: translate3d(-4px, -1px, 0) rotateZ(-45deg);
   }
   .is-active .hamburger .icon {
-	transform: rotateY(-90deg);
-	transition: transform 100ms, background-color 400ms ease-in-out;
+    transform: rotateY(-90deg);
+    transition: transform 100ms, background-color 400ms ease-in-out;
   }
   .is-active .hamburger::after {
-	transform: translate3d(-4px, 2px, 0) rotateZ(45deg);
+	  transform: translate3d(-4px, 2px, 0) rotateZ(45deg);
   }
 
   /*-----------------------------------------------------
@@ -215,7 +215,7 @@
 
   #nav-menu {
     position: fixed;
-    left: 0;
+    right: 0;
     top: 0;
     z-index: 110;
     max-width: 95%;
@@ -225,11 +225,11 @@
     -webkit-transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-      -webkit-transform: translateX(-130vw);
-      -moz-transform: translateX(-130vw);
-      -ms-transform: translateX(-130vw);
-      -o-transform: translateX(-130vw);
-      transform: translateX(-130vw);
+      -webkit-transform: translateX(100vw);
+      -moz-transform: translateX(100vw);
+      -ms-transform: translateX(100vw);
+      -o-transform: translateX(100vw);
+      transform: translateX(100vw);
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
       transition: all .3s;
@@ -246,7 +246,7 @@
 	  width: 100vw;
 	  height: 0;
 	  position: fixed;
-	  left: 0;
+	  right: 0;
 	  top: 0;
 	  background: rgba(0, 0, 0, 0.5) !important;
 	  opacity: 0;
@@ -278,16 +278,16 @@
 
 
   #nav-menu.is-active {
-	-webkit-transform: translateX(0);
-	-moz-transform: translateX(0);
-	-ms-transform: translateX(0);
-	-o-transform: translateX(0);
-	transform: translateX(0);
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	transition: all 0.5s;
-	transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
-	-webkit-overflow-scrolling: touch;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+    transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
+    -webkit-overflow-scrolling: touch;
   }
 
 

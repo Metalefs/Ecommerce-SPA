@@ -1,6 +1,6 @@
 <footer data-aos="fade-up"  data-aos-offset="-100" class="footer footer-color flex-w flex-sb py-0 px-0">
 
-  <div class="w-full bg-footer py-3 shadow-light bbr">
+  <div class="w-full bg-footer py-0 shadow-light bbr">
     <div class="margin w-full dis-flex flex-sa flex-m">
       <div class="columns is-gapless is-multiline is-vcentered">
         <div class="column pb-0 w-full dis-flex flex-m  flex-c">
@@ -62,20 +62,19 @@
     </div>
   </div>
 
-  <div class="dis-flex flex-sa flex-m w-full has-background-dark px-6 py-3 is-vcentered ">
-    <div class="txt-center">
+  <div class="dis-flex flex-sa flex-m w-full columns is-multiline has-background-dark px-6 py-3 is-vcentered ">
+    <div class="column txt-center">
       <h4 class="">Formas de pagamento</h4>
       <img
         loading="lazy"
-        src="assets/images/icons/bandeiras-mercado-pago-removebg-preview.png"
-        width="150"
-        height="50"
-        [style.height]="'150px !important'"
-        [style.width]="'50px !important'"
-        class="img-badge"
+        src="https://imgmp.mlstatic.com/org-img/MLB/MP/BANNERS/tipo2_468X60.jpg?v=1"
+        alt="Mercado Pago - Meios de pagamento" title="Mercado Pago - Meios de pagamento"
+        width="468" height="60"
+        [style.height]="'60px !important'"
+        [style.width]="'468px !important'"
        >
       </div>
-      <div class="txt-center">
+      <div class="column txt-center">
         <h4 class="">Site seguro</h4>
         <img
           loading="lazy"
@@ -89,10 +88,10 @@
     </div>
   </div>
 
-  <mat-toolbar-row class="w-full has-background-dark">
+  <mat-toolbar-row class="w-full has-background-dark" style="white-space: break-spaces;">
     <div class="w-full margin py-4 pr-1">
-      <div class="w-full flex-sb">
-        <span class="has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</span>
+      <div class="w-full flex-sa txt-center">
+        <p class="is-size-6 has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</p>
 
       </div>
     </div>

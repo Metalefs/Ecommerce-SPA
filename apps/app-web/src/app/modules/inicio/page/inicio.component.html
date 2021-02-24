@@ -8,24 +8,29 @@
       </section>
     </div>
     <div class="bg-transp">
-      <div class="hero is-medium">
-        <div class="hero-body">
-          <p class="hero-title"></p>
-          <section class="py-3" *ngIf="(Clientes$|async).length>0">
-            <div data-aos="zoom-down" class="testimonial">
-              <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-            </div>
-          </section>
+
+      <div data-aos="fade-up"  class="">
+
+        <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
+
+        <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
+
+        <div class="hero is-medium">
+          <div class="hero-body pt-4">
+            <p class="hero-title"></p>
+            <section class="py-3" *ngIf="(Clientes$|async).length>0">
+              <div data-aos="zoom-down" class="testimonial">
+                <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+              </div>
+            </section>
+          </div>
         </div>
-      </div>
-      <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
-      <div data-aos="flip-left" class="">
 
-        <personalizados-lopes-produto-swiper data-aos="flip-left" class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
+        <div class="margin">
+          <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
+        </div>
 
-        <personalizados-lopes-produto-swiper data-aos="flip-left" class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
-
-        <div data-aos="flip-left" class="hero is-half-height">
+        <div data-aos="zoom-in-down"  class="hero is-medium">
           <div class="hero-body">
             <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
               <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">

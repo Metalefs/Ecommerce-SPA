@@ -26,14 +26,14 @@ environment.production ? [
   {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
   {name: "Institucional", href:"", icon:'',group:GrupoNavLink.none},
   {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ];
 
@@ -50,7 +50,7 @@ environment.production ? [
     ]
   },
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
   {
@@ -62,6 +62,6 @@ environment.production ? [
     ]
   },
   {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ];

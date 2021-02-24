@@ -50,6 +50,7 @@ export class HeaderComponent implements OnInit {
   Categorias: entities.Categoria[];
   defaultCategory = "Todos os produtos";
   TipoUsuario = TipoUsuario;
+  galeria = {name:"Galeria",href:`/showcase`,queryParams:{}};
   constructor(
     private AuthenticationService:AuthenticationService,
     private location: Location, private router: Router,
