@@ -68,6 +68,7 @@ export class TagProdutoSwiperComponent implements OnInit {
                 preloadImages          : true,
                 lazy                   : true,
                 observer               : true,
+                spaceBetween           : 2,
                 navigation: {
                   nextEl: '.swiper-button-next',
                   prevEl: '.swiper-button-prev',
@@ -88,7 +89,7 @@ export class TagProdutoSwiperComponent implements OnInit {
               keyboard               : true,
               loop                   : true,
               loopFillGroupWithBlank : true,
-
+              spaceBetween           : 2,
               preloadImages          : true,
               lazy                   : true,
               observer               : true,

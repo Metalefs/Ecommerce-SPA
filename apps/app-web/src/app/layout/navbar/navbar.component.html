@@ -78,18 +78,26 @@
           matRipple
             *ngFor="let link of linksProdutos"
             >
-            <a
-              [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-              matLine
-              (click)="SetActiveNav(link)"
-              (pageScrollFinish)="ToggleNav(0)"
-              [routerLink]="link.href"
-              routerLinkActive="Active"
-              pageScroll
-              href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
-              <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
-              <span>{{link.name}}</span>
-            </a>
+            <div class="dropdown">
+              <a
+                [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
+                matLine
+                (click)="SetActiveNav(link)"
+                (pageScrollFinish)="ToggleNav(0)"
+                [routerLink]="link.href"
+                routerLinkActive="Active"
+                pageScroll
+                href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
+                <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
+                <span>{{link.name}}</span>
+              </a>
+
+              <div class="dropdown-content has-background-white box">
+                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll routerLinkActive="Active"
+                  href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
+                  [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>
+              </div>
+            </div>
           </mat-list-item>
           <mat-divider></mat-divider>
           <div mat-subheader>Institucional</div>

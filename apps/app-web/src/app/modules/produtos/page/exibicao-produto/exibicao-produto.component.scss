@@ -19,7 +19,8 @@ input[type='radio'] {
 input[type='radio'] + label {
   width: 25px;
   height: 25px;
-  padding: 2px;
+  padding: 10px;
+  border-radius: 10px;
   border: 1px solid #dcdcdc;
   margin-right: 3px;
   cursor: pointer;
@@ -27,6 +28,7 @@ input[type='radio'] + label {
 
 .selected {
   border: 2px solid green !important;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 .input[type='radio'] + label span {
   width: 100%;

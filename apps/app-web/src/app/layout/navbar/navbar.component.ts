@@ -7,10 +7,10 @@ import { SideNavState } from '../content-layout/page/content-layout.component';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { NavStateState } from '../../data/store/state';
+import { CategoriaState, NavStateState } from '../../data/store/state';
 import { Link, NavState } from '../../data/models';
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
-import { Usuario } from 'libs/data/src/lib/classes';
+import { Categoria, Usuario } from 'libs/data/src/lib/classes';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../../modules/login/page/login.component';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit {
   GrupoNavLink = GrupoNavLink;
   Copyright:string = "Personalizados Lopes"
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
+  @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
   constructor(private AuthenticationService:AuthenticationService,
     private router: Router,
     private store: Store,
@@ -64,8 +65,14 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.Categoria$.subscribe(cats=>{
+      this.linksProdutos = this.links.filter(x=>x.group == GrupoNavLink.produtos)
+      this.linksProdutos[0].options = [];
+      cats.forEach(cat=>{
+        this.linksProdutos[0].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
+      })
+    })
     this.linksIntitucional = this.links.filter(x=>x.group == GrupoNavLink.institucional)
-    this.linksProdutos = this.links.filter(x=>x.group == GrupoNavLink.produtos)
     this.linksDuvidas = this.links.filter(x=>x.group == GrupoNavLink.duvidas)
     this.linksOutros = this.links.filter(x=>x.group == GrupoNavLink.none)
     this.AuthenticationService.currentUser.subscribe(x=>{
