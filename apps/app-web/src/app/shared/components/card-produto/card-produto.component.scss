@@ -274,7 +274,8 @@ img{
   margin: 0 auto 0 -1px;
   box-shadow: 1px 1px 4px #d1d1d199;
   border-bottom-right-radius: 0;
-  transition: all 1s;
+  transition: all .25s;
+  opacity: .8;
 }
 
 .portfolio-item:hover .overlay-items {

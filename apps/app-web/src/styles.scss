@@ -24,11 +24,13 @@ body {
   margin: 0;
   font-style: normal;
   font-weight: 400;
-  font-family: 'Helvetica',system-ui, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+  // font-family: 'Helvetica',system-ui, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
   // font-family: 'Poppins',"PT Sans",system-ui, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
   height: auto;
 }
-
+body, button, input, optgroup, select, textarea {
+  font-family: 'Times New Roman';
+}
 #jcont{
   --right:17px;
 }
@@ -508,12 +510,12 @@ canvas{
   line-height: 47px;
   display: flex;
   align-items: center;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.03em;
   text-transform: capitalize;
 }
 
 .header{
-  // font-family: Open Sans !important;
+  font-family: Open Sans !important;
   font-style: normal;
   font-weight: 600;
   font-size: 1em;

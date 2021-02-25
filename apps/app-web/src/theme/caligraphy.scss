@@ -8,7 +8,7 @@
   line-height: 52px;
 }
 @mixin BuenardHeading32($font-size :32px, $weight:400, $color:$neutral-darkest){
-  font-family: Buenard !important;
+  // font-family: Buenard !important;
   font-style: #{$weight};
   font-weight: #{$weight};
   font-size: #{$font-size};
