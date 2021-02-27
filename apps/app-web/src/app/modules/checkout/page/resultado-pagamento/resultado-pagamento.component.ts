@@ -109,7 +109,7 @@ export class ResultadoPagamentoComponent implements OnInit {
     if(this.OrcamentoValido()){
       if(this.Orcamento.Preco >0)
       this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
-        alert("Pedido salvo")
+
         setTimeout(()=>{
           this.Finalizado = true;
           localStorage.setItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento,"true");

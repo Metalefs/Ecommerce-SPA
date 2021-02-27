@@ -42,6 +42,8 @@
           <th>Arte Frontal</th>
           <th>Arte Traseira</th>
           <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Cor</th>
         </tr>
       </thead>
       <tbody>
@@ -59,7 +61,7 @@
             </a>
           </td>
           <td>
-            <figure class="image is-64x64" *ngIf="produto.Produto.ArteSecundaria">
+            <figure class="image is-64x64" *ngIf="produto.Produto.Arte">
               <img src="{{produto.Produto.Arte}}">
             </figure>
           </td>
@@ -71,6 +73,8 @@
           <td>
             <p class="title is-6">R${{produto.Produto.Preco.toFixed(2)}}</p>
           </td>
+          <td>{{produto.Produto.Quantidade}}</td>
+          <td>{{produto.Produto.Cor.nome}}</td>
         </tr>
       </tbody>
     </table>

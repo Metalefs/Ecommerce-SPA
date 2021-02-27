@@ -123,10 +123,18 @@ export class AuthenticationService {
               'Instruções para troca de senha enviadas ao e-mail inserido (' +
                 email +
                 ')',
-              'Fechar'
+              'Fechar',
+              {
+                verticalPosition:"top",
+                horizontalPosition:"left"
+              }
             );
           } else {
-            this.snack.open('E-mail não encontrado', 'Fechar');
+            this.snack.open('E-mail não encontrado', 'Fechar',
+            {
+              verticalPosition:"top",
+              horizontalPosition:"left"
+            });
           }
         })
       );

@@ -36,6 +36,7 @@ export class EditarOrcamentoComponent implements OnInit {
 
   ngOnInit(): void {
     this.Orcamentos$.subscribe(x=>{
+      x = x.sort((i,f)=>new Date(f.DataHoraCriacao).getTime() - new Date(i.DataHoraCriacao).getTime());
       this.dataSource = new MatTableDataSource(x);
     })
   }
