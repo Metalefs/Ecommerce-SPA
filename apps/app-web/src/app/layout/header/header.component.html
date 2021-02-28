@@ -13,12 +13,12 @@
 
       <div class="columns mx-0 is-hidden-touch">
         <div class="column is-12">
-          <!-- <div class="control has-icons-right">
+          <div class="control has-icons-right">
             <form type="get" action="/produtos/?nome={{search_filter}}">
               <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
                 (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
             </form>
-          </div> -->
+          </div>
           <a (click)="SetActiveNav(galeria)" [ngClass]="(NavState$ |async).activeNav == 'Galeria' ? 'active-nav': ''"
             class="nav-link hoverable" pageScroll [routerLink]="'showcase'"
             routerLinkActive="Active" href="#topo">
@@ -64,7 +64,7 @@
       <div class="pb-4 dis-flex flex-r">
 
         <div class="dropdown">
-          <a class="wrap-pic-cir border w-full mb-4" mat-icon-button color="accent" title="Perfil">
+          <a class="wrap-pic-cir border-light w-full" mat-icon-button color="accent" title="Perfil">
             <mat-icon>person_outline</mat-icon>
           </a>
           <div class="dropdown-content right-0">

@@ -23,9 +23,12 @@ html, body {
 body {
   margin: 0;
   font-style: normal;
+  font-family: open sans,sans-serif;
   font-weight: 400;
-  // font-family: 'Helvetica',system-ui, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
-  // font-family: 'Poppins',"PT Sans",system-ui, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+  color: #666;
+  font-size: 12px;
+  line-height: 20px;
+  width: 100%;
   height: auto;
 }
 body, button, input, optgroup, select, textarea {

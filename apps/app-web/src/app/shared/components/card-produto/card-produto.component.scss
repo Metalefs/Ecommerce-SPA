@@ -66,25 +66,31 @@ img{
   border-bottom-left-radius: .31em;
   border-bottom-right-radius: .31em;
   height: 270px;
-  object-fit: fill;
+  max-height: 270px !important;
+  object-fit: contain;
   filter: grayscale(0) !important;
+  margin-top: -16px;
   &.show{
     animation: show 1s ease forwards !important;
+    filter: brightness(0.9) !important;
+    margin-top: -16px;
   }
   &.hide{
     animation: hide 1s ease forwards !important;
+
   }
 }
 
 .mat-card-footer{
-  padding: 0;
   margin:0;
+  padding: 0 20px;
+  min-height: 180px;
 }
 
 .mat-card-actions{
-  margin-bottom: 20px;
-  width: 92%;
-  margin-top: -35px;
+  width: 100%;
+  // margin-bottom: 20px;
+  // margin-top: -35px;
 }
 .w-full-i{
   width: 400px;
@@ -139,8 +145,8 @@ img{
   margin-bottom: 0;
 }
 .preco-produto{
-  color: black;
-  font-size: 16px;
+  color: #444;
+  font-size: 12px;
   &.linethr{
     font-size: small;
     font-weight: 400;
@@ -153,9 +159,13 @@ img{
   width: 100%;
   margin: 0 16px;
 }
-.mat-card-header-text{
-  width: 100%;
-  margin: 0 16px;
+.mat-card-header{
+  // height:75px;
+  // overflow: hidden;
+  &-text{
+    width: 100%;
+    margin: 0 16px;
+  }
 }
 .btn-cart{
   // background: #0b4d88;

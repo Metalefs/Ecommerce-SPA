@@ -178,6 +178,7 @@ h4{
 p{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
 }
 .mat-error{
 @include NunitoLabel12($text-align:left);

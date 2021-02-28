@@ -119,7 +119,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     keyboard               : true,
                     loop                   : true,
                     loopFillGroupWithBlank : true,
-                    spaceBetween           : 2,
+                    spaceBetween           : 15,
                     preloadImages          : true,
                     lazy                   : true,
                     observer               : true,
@@ -143,11 +143,11 @@ export class ProdutoSwiperComponent implements OnInit {
         this.Produtos=x.items.sort();
         switch(this.TipoOrdenacao){
           case TipoOrdenacaoSwiperProduto.Vendas:{
-            this.Produtos.sort((a,b)=>a.Vendas - b.Vendas);
+            this.Produtos.sort((a,b)=>b.Vendas - a.Vendas);
             break;
           }
           case TipoOrdenacaoSwiperProduto.Visualizacoes:{
-            this.Produtos.sort((a,b)=>a.Visualizacoes - b.Visualizacoes)
+            this.Produtos.sort((a,b)=>b.Visualizacoes - a.Visualizacoes)
           }
         }
       })

@@ -44,21 +44,23 @@
           </a>
         </div>
 
-        <mat-card-header class="w-full txt-left pt-1">
+        <mat-card-title class="w-full my-3 txt-left titulo-produto px-3">
 
-          <mat-card-title class="w-full txt-left titulo-produto">
-            <a matRipple class="reset-a" [href]="['/produtos/'+ Produto._id]">
-              {{Produto?.Nome}}
-            </a>
-            <!-- <div class="my-3">
-              <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
-                [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
-            </div> -->
-          </mat-card-title>
+          <a matRipple class="reset-a" [href]="['/produtos/'+ Produto._id]">
+            {{Produto?.Nome}}
+          </a>
+          <!-- <div class="my-3">
+            <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
+              [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
+          </div> -->
+        </mat-card-title>
+
+        <mat-card-header class="w-full txt-left pt-1 of-y-scroll">
+
           <!-- <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
 
           <mat-card-subtitle
-            class="pos-absolute w-full z-index-2 px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
+            class="w-full z-index-2 px-3  pb-4 pt-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -84,33 +86,35 @@
                   class="parcelas"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
-              <mat-divider class="my-2"></mat-divider>
             </div>
-            <div class="px-4 py-2">
-              <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-                class="button is-small is-fullwidth box px-4 mb-2 pb-2">
-                <span>Veja mais</span>
-              </span>
-            </div>
-            <a>
-              <button [disabled]="Produto.Status == statusProduto.esgotado" mat-flat-button
-                (click)="AdicionarAoOrcamento(Produto)" color="primary"
-                class="border shadow-light w-full px-2 btn-cart dis-flex flex-sb">
-                <ng-container *ngIf="Produto.Status != statusProduto.esgotado
-            then adicionar else esgotado"></ng-container>
-                <ng-template #adicionar>
-                  <mat-icon>add_shopping_cart</mat-icon>
-                  <span class="spacer"></span>
-                  <span>Carrinho</span>
-                </ng-template>
-                <ng-template #esgotado>
-                  Esgotado
-                </ng-template>
-              </button>
-            </a>
 
           </mat-card-subtitle>
         </mat-card-header>
+        <mat-card-actions class="pos-absolute bottom-0">
+          <mat-divider class="my-2"></mat-divider>
+          <div class="px-4 py-2">
+            <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
+              class="button is-small is-fullwidth box px-4 mb-2 pb-2">
+              <span>Veja mais</span>
+            </span>
+          </div>
+        </mat-card-actions>
+        <!-- <a>
+          <button [disabled]="Produto.Status == statusProduto.esgotado" mat-flat-button
+            (click)="AdicionarAoOrcamento(Produto)" color="primary"
+            class="border shadow-light w-full px-2 btn-cart dis-flex flex-sb">
+            <ng-container *ngIf="Produto.Status != statusProduto.esgotado
+        then adicionar else esgotado"></ng-container>
+            <ng-template #adicionar>
+              <mat-icon>add_shopping_cart</mat-icon>
+              <span class="spacer"></span>
+              <span>Carrinho</span>
+            </ng-template>
+            <ng-template #esgotado>
+              Esgotado
+            </ng-template>
+          </button>
+        </a> -->
 
       </mat-card-footer>
       <div class="z-index-1">
@@ -188,11 +192,6 @@
               <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
                 [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
             </div> -->
-          </mat-card-title>
-          <!-- <mat-card-subtitle class="txt-center w-full is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
-
-          <mat-card-subtitle mat-card-subtitle
-            class="w-full pos-absolute z-index-2 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -206,6 +205,11 @@
                 <p class="preco-produto ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
               </div>
             </ng-template>
+          </mat-card-title>
+          <!-- <mat-card-subtitle class="txt-center w-full is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
+
+          <mat-card-subtitle mat-card-subtitle
+            class="w-full pos-absolute z-index-2 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
               <p class="preto6 parcelas" *ngIf="Produto.Parcelas > 1">
                 Em até {{Produto.Parcelas}}x <span
@@ -219,31 +223,30 @@
                 sem juros
               </p>
             </div>
-            <div class="px-4">
-              <a href="/produtos/{{Produto._id}}"
-                class="button is-small is-fullwidth box px-4 mb-2 pb-2">
-                <span>Veja mais</span>
-              </a>
-            </div>
-            <a>
-              <button [disabled]="Produto.Status == statusProduto.esgotado" mat-flat-button
-                (click)="AdicionarAoOrcamento(Produto)" color="primary"
-                class="border shadow-light w-full px-2 btn-cart dis-flex flex-sb">
-                <ng-container *ngIf="Produto.Status != statusProduto.esgotado
-            then adicionar else esgotado"></ng-container>
-                <ng-template #adicionar>
-                  <mat-icon>add_shopping_cart</mat-icon>
-                  <span class="spacer"></span>
-                  <span>Carrinho</span>
-                </ng-template>
-                <ng-template #esgotado>
-                  Esgotado
-                </ng-template>
-              </button>
-            </a>
-
           </mat-card-subtitle>
         </mat-card-header>
+        <div class="px-4">
+          <a href="/produtos/{{Produto._id}}"
+            class="button is-small is-fullwidth box px-4 mb-2 pb-2">
+            <span>Veja mais</span>
+          </a>
+        </div>
+        <a>
+          <button [disabled]="Produto.Status == statusProduto.esgotado" mat-flat-button
+            (click)="AdicionarAoOrcamento(Produto)" color="primary"
+            class="border shadow-light w-full px-2 btn-cart dis-flex flex-sb">
+            <ng-container *ngIf="Produto.Status != statusProduto.esgotado
+             then adicionar else esgotado"></ng-container>
+            <ng-template #adicionar>
+              <mat-icon>add_shopping_cart</mat-icon>
+              <span class="spacer"></span>
+              <span>Carrinho</span>
+            </ng-template>
+            <ng-template #esgotado>
+              Esgotado
+            </ng-template>
+          </button>
+        </a>
 
       </mat-card-footer>
       <div class="z-index-1">

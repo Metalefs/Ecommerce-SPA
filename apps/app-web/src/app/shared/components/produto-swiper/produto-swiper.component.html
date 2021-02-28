@@ -1,5 +1,5 @@
-<div class="hero is-fullheight-with-navbar pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' is-light':'is-danger'">
-  <div class="hero-body pb-2">
+<div class="hero is-fullheight-with-navbar pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' is-light':'is-grey-light'">
+  <div class=" pb-2 hero-body" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' ':'px-3'">
     <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
     <ng-template #nodata>
       <div class="w-full">
@@ -19,20 +19,26 @@
           class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
           <div class="swiper-button-prev z-index-top clickable hoverable"></div>
           <div class="swiper-button-next z-index-top clickable hoverable"></div>
-          <div class="w-full hoverable px-4">
+          <div class="w-full hoverable py-4">
             <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
             </ng-container>
             <ng-template #Inclusao>
-              <h1 class="has-text-light">Produtos mais recentes</h1>
+              <mat-toolbar>
+                <h1 class="has-text-light">Produtos mais recentes</h1>
+              </mat-toolbar>
             </ng-template>
             <ng-template #Outro>
               <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes">
               </ng-container>
               <ng-template #Vendas>
-                <h1>Produtos mais vendidos!</h1>
+                <mat-toolbar>
+                  <h1>Produtos mais vendidos!</h1>
+                </mat-toolbar>
               </ng-template>
               <ng-template #Visualizacoes>
-                <h1 class="has-text-light">Produtos mais procurados!</h1>
+                <mat-toolbar>
+                  <h1 class="">Produtos mais procurados!</h1>
+                </mat-toolbar>
               </ng-template>
             </ng-template>
             <span class="hr-inner-style"></span>

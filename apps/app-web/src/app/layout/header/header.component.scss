@@ -72,9 +72,11 @@
   padding: 0;
 }
 .nav-link{
-  font-size: 14px;
+  font-size: 12px;
   text-transform: capitalize;
-  padding: 0.5em;
+  // padding: 0.5em;
+  padding: 10px 15px;
+  min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
   font-weight: 600;
@@ -84,7 +86,7 @@
   border-top-right-radius: 5px;
   border-width: 1px;
   margin-left: 0;
-  font-family: Helvetica !important;
+  font-family: open sans, sans-serif !important;
 
 }
 a.nav-link::before{

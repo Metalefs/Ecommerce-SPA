@@ -1,5 +1,5 @@
 <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
-  <mat-card *ngIf="CanView" class="box latest-blog">
+  <mat-card *ngIf="CanView" class=" latest-blog">
     <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
       <figure class="image is-square">
         <img loading="lazy" mat-card-image [src]="Post?.FotoCapa" alt="blogpostimage">
@@ -11,7 +11,7 @@
     </div>
 
     <mat-card-title>
-      <h4 class="is-size-5 my-3 is-uppercase ">
+      <h4 class="is-size-6 my-3 is-uppercase ">
         {{Post.Titulo}}
       </h4>
       <div class="columns is-vcentered is-mobile">
@@ -22,10 +22,12 @@
           </p>
         </div> -->
         <div class="column">
-          <p>
+          <span>
             <mat-icon>person</mat-icon>
-            <span> {{Post?.Autor?.Nome}}</span>
-          </p>
+          </span>
+        </div>
+        <div class="column">
+          <span> {{Post?.Autor?.Nome}}</span>
         </div>
       </div>
       <!-- <div class="my-3">

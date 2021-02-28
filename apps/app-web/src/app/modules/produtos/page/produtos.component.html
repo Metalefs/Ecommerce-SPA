@@ -37,20 +37,23 @@
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div class="is-hidden-mobile  w-full">
           <mat-list class="w-full">
-            <h2 class="title is-5 texto-categorias">Categorias</h2>
+            <mat-toolbar>
+              <h2 class="title is-5 texto-categorias">Categorias</h2>
+            </mat-toolbar>
             <mat-list-item @fadeIn
               data-aos="fade-down"
               class="pointer w-full w-full-m cat-item"
               (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
-              <a mat-strocked-button>
-              <button class="border-0">
+              <a mat-strocked-button class="dis-flex flex-sb flex-m">
+                <button button class="border-0">
                   <mat-icon
                     [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
                     {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
                   </mat-icon>
-                  {{defaultCategory}}
+
                 </button>
+                <p>{{defaultCategory}}</p>
               </a>
               <mat-divider></mat-divider>
             </mat-list-item>
@@ -61,14 +64,14 @@
               class="pointer w-full w-full-m"
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active' : ''">
-              <a mat-strocked-button>
-              <button class="border-0">
+              <a mat-strocked-button class="dis-flex flex-sb flex-m">
+                <button class="border-0">
                   <mat-icon
                     [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
                     {{CategoriaAtiva?.Nome == categoria?.Nome ?  'done' : 'arrow_left'}}
                   </mat-icon>
-                  {{categoria?.Nome}}
                 </button>
+                <p>{{categoria?.Nome}}</p>
               </a>
               <mat-divider></mat-divider>
             </mat-list-item>
@@ -113,6 +116,7 @@
           <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/limit))}}</span>
         </div>
         <p-skeleton *ngIf="total==0"></p-skeleton>
+
         <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva?.Nome}}</h2>
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
