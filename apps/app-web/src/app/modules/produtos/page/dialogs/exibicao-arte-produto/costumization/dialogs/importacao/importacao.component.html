@@ -1,7 +1,9 @@
+<h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Importe um design</h1>
+
 <div mat-dialog-content>
   <div class="popup">
     <div class="header-container">
-      <h2>Importe um design</h2>
+
       <a class="close"  (click)="close()">&times;</a>
     </div>
     <div class="columns reverse-column is-multiline container-modal dis-flex overflow-y-scroll">
@@ -51,11 +53,14 @@
         <img [src]='src' />
       </div>
     </div>
-    <div class="column container-button">
-      <button (click)="importFile()">importar</button>
-      <!--
-        <button (click)="importSVG()">svg</button>
-       -->
-    </div>
+
+  </div>
+</div>
+<div mat-dialog-actions>
+  <div class="column container-button">
+    <button (click)="importFile()">importar</button>
+    <!--
+      <button (click)="importSVG()">svg</button>
+     -->
   </div>
 </div>

@@ -162,11 +162,13 @@
 /*setting default caligraphy*/
 h1{
   @extend .buenard32;
+  line-height: 52px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 h2{
   // @extend .buenard24;
+  line-height: 31px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
