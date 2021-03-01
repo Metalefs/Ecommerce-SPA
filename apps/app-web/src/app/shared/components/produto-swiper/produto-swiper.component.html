@@ -1,4 +1,4 @@
-<div class="hero is-fullheight-with-navbar pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':'bg-transp'">
+<div class="hero pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':'bg-transp'">
   <div class=" pb-2 hero-body" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' ':'px-3'">
     <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
     <ng-template #nodata>
@@ -19,7 +19,7 @@
           class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
           <div class="swiper-button-prev z-index-top clickable hoverable"></div>
           <div class="swiper-button-next z-index-top clickable hoverable"></div>
-          <div class="w-full hoverable py-4">
+          <div class="w-full hoverable ">
             <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
             </ng-container>
             <ng-template #Inclusao>
@@ -43,7 +43,7 @@
             </ng-template>
             <span class="hr-inner-style"></span>
           </div>
-          <div class="swiper-wrapper py-2">
+          <div class="swiper-wrapper ">
             <div class="swiper-slide" *ngFor="let produto of Produtos">
               <personalizados-lopes-card-produto [Produto]="produto" [TrocaImagem]="false">
               </personalizados-lopes-card-produto>
