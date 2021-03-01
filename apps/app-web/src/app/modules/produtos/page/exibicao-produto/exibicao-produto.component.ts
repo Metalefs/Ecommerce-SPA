@@ -170,7 +170,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     })
     dialogref.afterClosed().subscribe(x=>{
       if(x){
-
+        console.log(x,this.Produto);
         if(this.Produto.Arte){
           if(!this.orcamentoId){
             this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{

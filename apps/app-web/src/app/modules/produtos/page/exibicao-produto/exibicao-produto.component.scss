@@ -112,7 +112,7 @@ input[type='radio'] + label {
   }
 }
 .bg {
-  background: url(/assets/images/figures/3445.png);
+  background: center/ cover no-repeat url(/assets/images/produtos/daniele-levis-pelusi-UUjxTEET0c0-unsplash.jpg);
   padding-bottom: 1rem;
 }
 
@@ -267,6 +267,12 @@ input[type='number'] {
   flex-direction: column;
   margin: 0;
 }
+.wp-btn{
+  background-color: #229ac8;
+  background-image: linear-gradient(to bottom,#23a1d1,#1f90bb);
+  background-repeat: repeat-x;
+  border-color: #1f90bb #1f90bb #145e7a;
+}
 .titulo-produto {
   font-family: 'Helvetica';
   margin-bottom: 10px;
@@ -287,7 +293,7 @@ input[type='number'] {
 .descricao-produto {
   line-height: 33px;
   letter-spacing: 0.04em;
-  font-size: 16px;
+  font-size: 14px;
 }
 .mh-70 {
   min-height: 70%;

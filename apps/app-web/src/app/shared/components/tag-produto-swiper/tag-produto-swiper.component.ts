@@ -89,7 +89,7 @@ export class TagProdutoSwiperComponent implements OnInit {
               keyboard               : true,
               loop                   : true,
               loopFillGroupWithBlank : true,
-              spaceBetween           : 2,
+              spaceBetween           : 22,
               preloadImages          : true,
               lazy                   : true,
               observer               : true,

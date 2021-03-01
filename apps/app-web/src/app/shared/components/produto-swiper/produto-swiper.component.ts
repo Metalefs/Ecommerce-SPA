@@ -119,7 +119,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     keyboard               : true,
                     loop                   : true,
                     loopFillGroupWithBlank : true,
-                    spaceBetween           : 15,
+                    spaceBetween           : 22,
                     preloadImages          : true,
                     lazy                   : true,
                     observer               : true,
