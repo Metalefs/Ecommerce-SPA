@@ -53,7 +53,7 @@ export class EdicaoCardProdutoComponent implements OnInit {
           Produto.NomeCategoria = Produto.Categoria.Nome;
           this.store.dispatch(new EditarProduto(Produto, Produto._id)).subscribe(X=>{
             this._snackBar.open("Produto alterado com sucesso", "Fechar", {
-
+              duration: 3000
             });
           });
         });
@@ -72,7 +72,7 @@ export class EdicaoCardProdutoComponent implements OnInit {
     if(confirmation){
       (await this.service.Remover(this.Produto._id)).subscribe(async x=>{
         this._snackBar.open("Produto "+this.Produto.Nome+" removido com sucesso", "Fechar", {
-
+          duration: 3000
         });
         delete this.Produto; this.Isdeleted.emit();
       });

@@ -132,7 +132,7 @@ export class EnderecoComponent implements OnInit {
                 console.log(data);
             },
             error => {
-                this.snack.open('Erro ao cadastrar com senha temporária: '+error,'fechar')
+                this.snack.open('Erro ao cadastrar com senha temporária: '+error,'fechar',{duration:5000})
             });
       }
     })

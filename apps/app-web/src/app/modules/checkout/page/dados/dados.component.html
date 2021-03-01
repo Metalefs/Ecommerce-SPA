@@ -24,7 +24,7 @@
     <div class="pt-3">
       <div>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="">
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>Insira seu nome</mat-label>
           <input matInput name="nome" [(ngModel)]="Orcamento.Usuario.Nome"
             [formControl]="nomeFormControl" placeholder="Ex. Fulano de tal">
@@ -36,7 +36,7 @@
           </span>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="">
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>seu e-mail</mat-label>
           <input class="w-full" matInput name="email"
             [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl" placeholder="Ex. meu@email.com">
@@ -51,7 +51,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="">
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>seu CPF</mat-label>
           <input class="w-full" matInput name="CPF" mask="000.000.000-00"
             [(ngModel)]="Orcamento.Usuario.CPF" [formControl]="cpfFormControl" placeholder="000.000.000-00">
@@ -66,7 +66,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="">
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>insira um telefone para contato</mat-label>
           <input class="w-full input" matInput name="telefone"
             [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl" placeholder="(00) 0 0000 0000"
@@ -79,7 +79,7 @@
           </span>
         </mat-form-field>
 
-        <mat-form-field class="w-full control has-icons-right" appearance="">
+        <mat-form-field class="w-full control has-icons-right" appearance="fill">
           <mat-label>Como devemos usar a arte para os produtos, etc..</mat-label>
           <textarea
             class="control has-icons-right  input"
@@ -102,7 +102,7 @@
           <mat-form-field
             @fadeIn
             *ngIf="registrarse"
-            class="w-full control has-icons-right" appearance="">
+            class="w-full control has-icons-right" appearance="fill">
             <mat-label>Insira uma senha para o perfil</mat-label>
             <input
               type='password'
@@ -126,7 +126,7 @@
         <p class="has-text-left w-full">*Por favor, Insira o número completo do seu telefone</p>
 
         <button
-          class="button is-success w-full" (click)="SubmeterDadosPessoais()">Continuar</button>
+          class="button is-success w-full mt-6" (click)="SubmeterDadosPessoais()">Continuar</button>
       </div>
     </div>
 

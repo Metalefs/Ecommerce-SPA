@@ -38,7 +38,7 @@ export class UnderConstructionComponent implements OnInit {
       let emailnotificacao = new EmailNotificacao(this.Email, "");
       this.EmailNotificacaoService.Incluir(emailnotificacao).subscribe(x=> {
         this._snackBar.open("Você será avisado por e-mail quando o site inaugurar", "Fechar", {
-
+          duration:3000
         });
       });
     }

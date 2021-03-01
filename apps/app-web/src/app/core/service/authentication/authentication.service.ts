@@ -47,9 +47,13 @@ export class AuthenticationService {
                 this.currentUserSubject.next(user);
                 return user;
               }
-              this.snack.open('Já existe um usuário com este e-mail', 'Fechar');
+              this.snack.open('Já existe um usuário com este e-mail', 'Fechar', {
+                duration: 3000
+              });
             } else {
-              this.snack.open(user.error, 'Fechar');
+              this.snack.open(user.error, 'Fechar', {
+                duration: 3000
+              });
               throw user.error;
             }
           })
@@ -76,9 +80,13 @@ export class AuthenticationService {
               this.currentUserSubject.next(user);
               return user;
             }
-            this.snack.open('Já existe um usuário com este e-mail', 'Fechar');
+            this.snack.open('Já existe um usuário com este e-mail', 'Fechar',{
+              duration: 3000
+            });
           } else {
-            this.snack.open(user.error, 'Fechar');
+            this.snack.open(user.error, 'Fechar',{
+              duration: 3000
+            });
             throw user.error;
           }
         })
@@ -100,7 +108,9 @@ export class AuthenticationService {
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
           } else {
-            this.snack.open('Nome ou senha inválidos', 'Fechar');
+            this.snack.open('Nome ou senha inválidos', 'Fechar',{
+              duration: 3000
+            });
             throw 'Nome ou senha inválidos';
           }
         })
@@ -126,14 +136,16 @@ export class AuthenticationService {
               'Fechar',
               {
                 verticalPosition:"top",
-                horizontalPosition:"left"
+                horizontalPosition:"left",
+                duration:5000
               }
             );
           } else {
             this.snack.open('E-mail não encontrado', 'Fechar',
             {
               verticalPosition:"top",
-              horizontalPosition:"left"
+              horizontalPosition:"left",
+              duration:5000
             });
           }
         })

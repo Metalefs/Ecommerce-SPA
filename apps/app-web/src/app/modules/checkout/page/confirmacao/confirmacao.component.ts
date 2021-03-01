@@ -41,7 +41,7 @@ export class ConfirmacaoComponent implements OnInit {
       ];
 
       if(x.Status == StatusOrcamento.enviado){
-        this.snack.open("Orçamento já foi enviado! Responderemos em até 48 horas.", "Fechar").afterOpened().subscribe(x=>{
+        this.snack.open("Orçamento já foi enviado! Responderemos em até 48 horas.", "Fechar",{duration:5000}).afterOpened().subscribe(x=>{
           this.store.dispatch(new ResetarOrcamento());
         });
       }

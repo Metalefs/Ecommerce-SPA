@@ -26,7 +26,7 @@ export class ImagemService {
       try{
         this.AF.storage.ref(foto).getDownloadURL().then(x=>{
           this.Incluir(new Imagem(x,nome,tipo)).subscribe();
-          alert("getting image url "+ x)
+          // alert("getting image url "+ x)
           resolve(x);
         });
       }
@@ -38,9 +38,9 @@ export class ImagemService {
     console.log(caminho);
     return new Promise((resolve, reject) => {
       try{
-        alert("uploading")
+        // alert("uploading")
         this.AF.upload(dir+`${Math.random()}${caminho.name}`,caminho).then(x=>{
-          alert("stored image " + x.task.snapshot.metadata.fullPath)
+          // alert("stored image " + x.task.snapshot.metadata.fullPath)
           resolve(x);
         });
       }

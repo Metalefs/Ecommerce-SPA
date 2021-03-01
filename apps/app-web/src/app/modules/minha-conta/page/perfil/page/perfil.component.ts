@@ -34,7 +34,7 @@ export class PerfilComponent implements OnInit {
 
   AtualizarInformacoes(){
     this.usuarioService.AtualizarInformacoes(this.user).subscribe(x=>{
-      this.snack.open('Informações atualizadas','Fechar');
+      this.snack.open('Informações atualizadas','Fechar',{duration:5000});
       this.authenticationService.setUser(x);
     });
   }
@@ -45,7 +45,7 @@ export class PerfilComponent implements OnInit {
       height:"100vh",
       position:{
         left:"0"
-      }
+      },
     });
   }
 

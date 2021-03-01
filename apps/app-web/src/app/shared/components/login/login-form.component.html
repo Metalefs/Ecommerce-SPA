@@ -2,7 +2,7 @@
   Digite seu e-mail e senha para entrar.
   <form clrForm class="login">
       <div class="login-group pt-0">
-          <mat-form-field class="w-full">
+          <mat-form-field class="w-full" appearance="fill">
               <mat-label>E-mail</mat-label>
               <input matInput
                aria-mat-label="E-mail"
@@ -15,7 +15,7 @@
                required />
               <mat-error *ngIf="emailControl.hasError('required')">O Campo de e-mail é necessário para o login ou troca de senha</mat-error>
             </mat-form-field>
-            <mat-form-field class="w-full">
+            <mat-form-field class="w-full" appearance="fill">
               <mat-label>Senha</mat-label>
               <input matInput
                 aria-mat-label="Senha"

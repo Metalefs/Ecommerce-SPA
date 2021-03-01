@@ -46,7 +46,7 @@
         <div class="pt-3">
           <form>
 
-            <mat-form-field class=" control has-icons-right" appearance="">
+            <mat-form-field class=" control has-icons-right" appearance="fill">
               <mat-label>CEP</mat-label>
               <input matInput
                 required (change)="CarregarDetalhesCEP()" [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.CEP"
@@ -60,7 +60,7 @@
               </span>
             </mat-form-field>
 
-            <mat-form-field class="w-full control has-icons-right" appearance="">
+            <mat-form-field class="w-full control has-icons-right" appearance="fill">
               <mat-label>Endereço</mat-label>
               <input class="w-full input"
                 matInput
@@ -78,7 +78,7 @@
 
             <div class="columns">
               <div class="column">
-                <mat-form-field class="w-full control has-icons-right" appearance="">
+                <mat-form-field class="w-full control has-icons-right" appearance="fill">
                   <mat-label>Número</mat-label>
                   <textarea
                     class="control has-icons-right  input"
@@ -96,7 +96,7 @@
                 </mat-form-field>
               </div>
               <div class="column">
-                <mat-form-field class="w-full control has-icons-right" appearance="">
+                <mat-form-field class="w-full control has-icons-right" appearance="fill">
                   <mat-label>Complemento</mat-label>
                   <textarea
                     class="control has-icons-right  input"
@@ -109,7 +109,7 @@
 
             <div class="columns">
               <div class="column">
-                <mat-form-field class="w-full control has-icons-right" appearance="">
+                <mat-form-field class="w-full control has-icons-right" appearance="fill">
                   <mat-label>Bairro</mat-label>
                   <textarea
                     class="control has-icons-right  input"
@@ -127,7 +127,7 @@
                 </mat-form-field>
               </div>
               <div class="column">
-                <mat-form-field class="w-full control has-icons-right" appearance="">
+                <mat-form-field class="w-full control has-icons-right" appearance="fill">
                   <mat-label>Cidade</mat-label>
                   <textarea
                     class="control has-icons-right  input"
@@ -146,7 +146,7 @@
               </div>
             </div>
 
-            <mat-form-field appearance="" class="w-full">
+            <mat-form-field appearance="fill" class="w-full">
               <mat-label>Estado</mat-label>
               <mat-select matNativeControl class="w-full"
                 [(ngModel)]="Orcamento.Usuario.EnderecoEntrega.Estado"

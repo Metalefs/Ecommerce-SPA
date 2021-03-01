@@ -117,7 +117,8 @@ export class NovoEnderecoComponent implements OnInit {
 
         this.snack.open("Endereço adicionado", "Fechar", {
           verticalPosition:'top',
-          horizontalPosition:'left'
+          horizontalPosition:'left',
+          duration:3000
         });
         this.authService.setUser(x);
         this.Loading = false;

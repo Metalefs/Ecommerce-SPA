@@ -446,7 +446,7 @@ export class ExibicaoProdutoComponent implements OnInit {
       comentarioProduto.Avaliacao = parseInt(avaliacao);
       this.ComentarioProdutoService.create(comentarioProduto);
     }else{
-      this.snack.open('Por favor, avalie o produto primeiro',"fechar");
+      this.snack.open('Por favor, avalie o produto primeiro',"fechar",{duration:3000});
     }
   }
 

@@ -79,7 +79,7 @@ export class FooterComponent implements OnInit {
       let emailnotificacao = new EmailNotificacao(this.Email, this.Nome, null);
       this.emailNotificacaoService.Incluir(emailnotificacao).subscribe(x=> {
         let snack = this._snackBar.open("Iremos avisá-lo por e-mail das nossas promoções e novidades!", "Fechar", {
-
+          duration: 3000
         });
       });
     }

@@ -61,7 +61,7 @@ export class ProdutoService {
         return this.EditarImagens(item).then(x=>{
 
           let payload = this.AuthenticationService.tokenize({Produto:item});
-          alert("Editando !");
+          // alert("Editando !");
           console.log(item);
           return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produto,
             payload).pipe(

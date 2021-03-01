@@ -27,7 +27,7 @@ export class CaixaObterEmailComponent implements OnInit {
       let emailnotificacao = new EmailNotificacao(this.Email, this.data.Nome, this.data);
       this.EmailNotificacaoService.Incluir(emailnotificacao).subscribe(x=> {
         let snack = this._snackBar.open("Você será avisado por e-mail quando o produto voltar ao estoque", "Fechar", {
-
+          duration:3000
         });
         snack.afterDismissed().subscribe(()=>this.dialogRef.close())
       });

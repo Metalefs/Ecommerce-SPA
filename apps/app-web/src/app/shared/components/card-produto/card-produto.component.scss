@@ -67,7 +67,7 @@ img{
   border-bottom-right-radius: .31em;
   height: 270px;
   max-height: 270px !important;
-  object-fit: contain;
+  object-fit: cover;
   filter: grayscale(0) !important;
   margin-top: -16px;
   &.show{
@@ -278,12 +278,12 @@ img{
 .portfolio-item:hover .portfolio-overlay ~a{
   display: block;
   position: absolute;
-  margin: 0 auto;
+  margin: 0 5%;
+  font-size: 14px;
   width: 90%;
   top: 30%;
-  margin: 0 auto 0 -1px;
   box-shadow: 1px 1px 4px #d1d1d199;
-  border-bottom-right-radius: 0;
+  border-radius: 1rem;
   transition: all .25s;
   opacity: .8;
 }

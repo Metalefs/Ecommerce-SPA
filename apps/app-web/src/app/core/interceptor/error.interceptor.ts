@@ -17,7 +17,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                   // auto logout if 401 response returned from api
                   this.authenticationService.logout();
                   this.snack.open("Sua sessão expirou.","Ok",{
-                    verticalPosition:"top"
+                    verticalPosition:"top",
+                    duration: 5000
                   })
                   location.reload(true);
                   break;
@@ -25,7 +26,8 @@ export class ErrorInterceptor implements HttpInterceptor {
               case(409):{
                 // alert if 409 response returned from api
                 this.snack.open(err.erro,"Ok",{
-                  verticalPosition:"top"
+                  verticalPosition:"top",
+                  duration: 5000
                 })
                 alert(err.erro);
               }

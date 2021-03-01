@@ -11,6 +11,7 @@ import { AdicionarOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/
 import { MercadoPagoCheckoutService, IntegracoesService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
 import { EditarProduto, IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { duration } from 'moment';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -166,7 +167,8 @@ export class ResultadoPagamentoComponent implements OnInit {
         })
         else{
           this.snack.open("Carrinho inválido, tente finalizar o pedido no carrinho novamente para concluir o pagamento.","fechar",{
-            verticalPosition:'top'
+            verticalPosition:'top',
+            duration:5000
           });
 
         }

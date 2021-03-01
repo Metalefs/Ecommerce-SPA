@@ -35,7 +35,8 @@ export class NovaSenhaComponent implements OnInit {
         this.Finalizado = true;
         this.snack.open("Senha alterada", "Fechar", {
           verticalPosition:'top',
-          horizontalPosition:'left'
+          horizontalPosition:'left',
+          duration:3000
         });
         console.log(x)
         if(x.Nome)
@@ -43,7 +44,8 @@ export class NovaSenhaComponent implements OnInit {
         else
           this.snack.open(x.erro,"Fechar", {
             verticalPosition:'top',
-            horizontalPosition:'left'
+            horizontalPosition:'left',
+            duration:5000
           });
         this.Loading = false;
       });
