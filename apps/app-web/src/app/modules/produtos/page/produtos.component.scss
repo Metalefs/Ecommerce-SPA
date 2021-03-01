@@ -95,21 +95,15 @@
   .of-y-scroll-desktop{
     overflow-y: scroll;
     max-height: 79vh;
-    ::-webkit-scrollbar{
-      display: none;
-    }
-    ::-webkit-scrollbar-thumb{
-      background: rgba(0,0,0,0.5);
-      border-radius: 90px;
-      cursor: pointer;
-    }
-    ::-webkit-scrollbar-track-piece{
-      border-radius: 90px;
-      cursor: pointer;
-    }
+
   }
 
 }
+.of-y-scroll-desktop
+  ::-webkit-scrollbar{
+    display: none;
+  }
+
 
 @media (max-width: 1024px) {
   .w-full-m{

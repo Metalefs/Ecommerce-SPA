@@ -5,7 +5,7 @@ gallery {
 :host ::ng-deep #lightbox-lightbox > gallery {
   background-color: #000000bf !important;
 }
-.breadcrumb>li+li:before {
+.breadcrumb>li+li::before {
   content: '';
   padding: 0;
 }
@@ -22,9 +22,9 @@ gallery {
 .breadcrumb li + li::before {
   padding: 0 5px;
   color: #ccc;
-  content: "\e901" !important;
+  content: "/\00a0" !important;
 }
-.breadcrumb>li:after {
+.breadcrumb>li::after {
   content: '';
   display: block;
   position: absolute;

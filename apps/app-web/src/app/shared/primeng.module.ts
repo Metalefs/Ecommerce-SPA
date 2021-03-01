@@ -12,7 +12,7 @@ import {DropdownModule} from 'primeng/dropdown';
     InputTextModule,
     ButtonModule,
     SkeletonModule,
-    DropdownModule
+    DropdownModule,
   ]
 })
 export class PrimeNgModule {}

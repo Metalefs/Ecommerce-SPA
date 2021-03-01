@@ -1,4 +1,4 @@
-<div class="hero is-fullheight-with-navbar pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' is-light':'is-grey-light'">
+<div class="hero is-fullheight-with-navbar pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':'bg-transp'">
   <div class=" pb-2 hero-body" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' ':'px-3'">
     <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
     <ng-template #nodata>
@@ -31,7 +31,7 @@
               <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes">
               </ng-container>
               <ng-template #Vendas>
-                <mat-toolbar class="has-background-white">
+                <mat-toolbar>
                   <h1>Produtos mais vendidos!</h1>
                 </mat-toolbar>
               </ng-template>

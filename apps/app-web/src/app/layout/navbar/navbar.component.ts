@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
   Logado:boolean;
   @Input()NavState:SideNavState;
   GrupoNavLink = GrupoNavLink;
+  search_filter:string="";
   Copyright:string = "Personalizados Lopes"
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
   @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
@@ -79,6 +80,13 @@ export class NavbarComponent implements OnInit {
       this.usuario = x;
       this.Logado = x != undefined;
     })
+  }
+
+  executar_pesquisa(){
+    this.router.navigate(['/produtos',{queryParams:{nome:this.search_filter}}])
+  }
+  handleSearchValue($event){
+    this.search_filter = $event;
   }
 
 }

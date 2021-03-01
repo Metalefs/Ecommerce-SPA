@@ -79,8 +79,8 @@
         </div>
       </div>
     </div>
-    <div class="column is-9 is-12-mobile produto-column ">
-      <div class="pb-0 mb-0 of-y-scroll-desktop">
+    <div class="column is-9 is-12-mobile produto-column of-y-scroll-desktop of-y-scroll">
+      <div class="pb-0 mb-0 ">
         <div class="w-full">
           <div class="columns is-mobile is-multiline is-vcentered">
             <div class="column is-12-mobile">
@@ -111,13 +111,13 @@
             </div>
           </div>
         </div>
-        <div *ngIf="total!=0" class="w-full dis-flex flex-sb">
+        <div *ngIf="total!=0" class="w-full dis-flex flex-sb is-hidden-mobile">
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
           <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/limit))}}</span>
         </div>
         <p-skeleton *ngIf="total==0"></p-skeleton>
 
-        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa">{{CategoriaAtiva?.Nome}}</h2>
+        <h2 class="subtitle is-3 mb-5 texto-categoria-ativa is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
           <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]&&total == 0" class="m-lr-auto">

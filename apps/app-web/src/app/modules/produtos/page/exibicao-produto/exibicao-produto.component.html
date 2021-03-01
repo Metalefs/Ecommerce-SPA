@@ -68,8 +68,8 @@
               </star-rating>
               <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
             </div>
-            <div class="descricao-produto w-full is-hidden-desktop" style="border-left: 1px solid #0000000a;"
-              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+            <!-- <div class="descricao-produto w-full is-hidden-desktop" style="border-left: 1px solid #0000000a;"
+              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div> -->
             <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
               <em>
                 *Minimo {{Produto?.QuantidadeMinima}} unidades
