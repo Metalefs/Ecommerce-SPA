@@ -150,10 +150,10 @@
       this.imgProduto.classList.add('show');
       "
       matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
-      <a class="prod-status is-hidden-desktop">
+      <span class="prod-status is-hidden-desktop">
         <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
-      </a>
+      </span>
 
       <a matRipple [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active" class="dis-flex flex-w">
         <img loading="lazy"
@@ -167,10 +167,10 @@
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
       </a>
 
-     <a class="prod-status">
+     <span class="prod-status">
         <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
-      </a>
+      </span>
 
       <mat-card-footer class="px-1 z-index-2">
         <div class="px-4">

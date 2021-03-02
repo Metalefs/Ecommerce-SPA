@@ -14,7 +14,7 @@ export let fade = trigger('fadeIn',[
     state('void', style({opacity:0})),
 
     transition(':enter, :leave', [ //void <=> *
-      animate(100)
+      animate(300)
     ]),
 ]);
 

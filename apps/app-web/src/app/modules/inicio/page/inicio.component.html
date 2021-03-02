@@ -2,20 +2,11 @@
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   <div class="bg">
-    <mat-toolbar>
-        <h5>Destaques</h5>
-    </mat-toolbar>
+
     <div class="bg-transp">
-      <div class="w-full dis-flex flex-l mx-3 mt-3">
-        <figure class="image is-128x128 card">
-          <img src="/assets/images/GIF.gif">
-        </figure>
-      </div>
       <div  class="">
 
         <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
-
-        <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
 
         <div class="hero is-medium">
           <div class="hero-body pt-4">
@@ -28,12 +19,15 @@
           </div>
         </div>
 
+        <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
+
+
         <div data-aos="zoom-in-down" class="margin">
           <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
         </div>
 
         <div data-aos="zoom-in-down"  class="hero is-medium">
-          <div class="hero-body has-background-white">
+          <!-- <div class="hero-body pb-2 has-background-white">
             <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
               <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
                 <span class="hr-inner-style"></span>
@@ -48,7 +42,7 @@
             <div>
             <personalizados-lopes-blog-swiper></personalizados-lopes-blog-swiper>
             </div>
-          </div>
+          </div> -->
           <div class="px-3 has-background-white">
             <section class="section w-full px-3" id="headerGfooter">
               <personalizados-lopes-header-footer></personalizados-lopes-header-footer>

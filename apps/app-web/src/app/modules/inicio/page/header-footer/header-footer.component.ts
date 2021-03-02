@@ -23,7 +23,7 @@ export class HeaderFooterComponent implements OnInit {
           color:"#FD6D13",
           class:"red",
           link:"/produtos",
-          id:"#PRODUTO",
+          id:"#topo",
           content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
@@ -43,7 +43,7 @@ export class HeaderFooterComponent implements OnInit {
           color:"#3AB8FF",
           class:"blue",
           link:"/orcamento",
-          id:"#ORCAMENTO",
+          id:"#topo",
           content:`Precisa de um orçamento? alguma dúvida ou sujestão? <a href="/orcamento">Clique aqui !</a>`
         },
       ]

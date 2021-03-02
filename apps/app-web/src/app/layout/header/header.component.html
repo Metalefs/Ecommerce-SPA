@@ -12,13 +12,8 @@
       </a>
 
       <div class="columns mx-0 py-2 is-hidden-touch">
-        <div class="column is-12 py-2">
-          <div class="control has-icons-right ">
-            <form type="get" action="/produtos/?nome={{search_filter}}">
-              <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
-                (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
-            </form>
-          </div>
+        <div class="column is-12 py-2 dis-flex flex-w">
+
           <a (click)="SetActiveNav(galeria)" [ngClass]="(NavState$ |async).activeNav == 'Galeria' ? 'active-nav': ''"
             class="nav-link hoverable" pageScroll [routerLink]="'showcase'"
             routerLinkActive="Active" href="#topo">
@@ -64,9 +59,9 @@
       <div class="pb-4 dis-flex flex-r">
 
         <div class="dropdown">
-          <a class="wrap-pic-cir border-light w-full" mat-icon-button color="accent" title="Perfil">
+          <button class="wrap-pic-cir border-light w-full" mat-icon-button color="accent" title="Perfil">
             <mat-icon>person_outline</mat-icon>
-          </a>
+          </button>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
             <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
@@ -108,8 +103,21 @@
               </p>
             </div>
           </div>
+
         </div>
 
+        <div class="is-hidden-mobile dis-flex flex-w m-l-20">
+
+          <div @fadeIn class="control has-icons-right" *ngIf="search">
+            <form type="get" action="/produtos/?nome={{search_filter}}">
+              <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
+                (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
+            </form>
+          </div>
+          <button mat-icon-button (click)="search = !search">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
       </div>
 
     </div>
