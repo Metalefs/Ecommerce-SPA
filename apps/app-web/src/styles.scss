@@ -498,7 +498,8 @@ canvas{
   }
 }
 .mat-card:not([class*="mat-elevation-z"]){
-  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+  //box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 3%), 0 0 0 1px rgb(10 10 10 / 0%);
 }
 .boxshadow-none{
   box-shadow: none !important;
