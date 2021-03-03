@@ -180,9 +180,9 @@ img{
   .preco-produto{
     font-size: 16px;
   }
-  .mat-card{
-    min-height: 465px;
-  }
+  // .mat-card{
+  //   min-height: 465px;
+  // }
   .mat-card-subtitle{
     position: relative;
   }
@@ -194,6 +194,14 @@ img{
 
     height: 240px;
     min-height: auto;
+  }
+  .mat-card-header{
+    height: 50px;
+    // overflow: hidden;
+    &-text{
+      width: 100%;
+      margin: 0 16px;
+    }
   }
 }
 

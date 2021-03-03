@@ -13,10 +13,7 @@
       this.imgProduto.classList.add('show');
       "
       matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
-      <a class="prod-status is-hidden-touch is-hidden-desktop">
-        <i class="pi pi-tag"></i>
-        {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
-      </a>
+
 
       <div #imgProduto matRipple class="dis-flex flex-w">
         <!-- <img
@@ -35,7 +32,7 @@
               [showArrows]="(Carrosel$|async)?.showArrows"
               [disableSwiping]="false"
               [autoPlay]="false"
-              [backgroundSize]="(Carrosel$|async)?.backgroundSize"
+              [backgroundSize]="'contain'"
               [backgroundPosition]="(Carrosel$|async)?.backgroundPosition"
               [backgroundRepeat]="(Carrosel$|async)?.backgroundRepeat"
               [showDots]="(Carrosel$|async)?.showDots"
@@ -162,10 +159,10 @@
       this.imgProduto.classList.add('show');
       "
       matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
-      <span class="prod-status is-hidden-desktop">
+      <!-- <span class="prod-status is-hidden-desktop">
         <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
-      </span>
+      </span> -->
 
       <div #imgProduto matRipple class="dis-flex flex-w">
         <!-- <img
@@ -183,8 +180,8 @@
                [arrowSize]="(Carrosel$|async)?.arrowSize"
                [showArrows]="(Carrosel$|async)?.showArrows"
                [disableSwiping]="false"
+               [backgroundSize]="'contain'"
                [autoPlay]="false"
-               [backgroundSize]="(Carrosel$|async)?.backgroundSize"
                [backgroundPosition]="(Carrosel$|async)?.backgroundPosition"
                [backgroundRepeat]="(Carrosel$|async)?.backgroundRepeat"
                [showDots]="(Carrosel$|async)?.showDots"

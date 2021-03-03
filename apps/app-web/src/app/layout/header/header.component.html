@@ -1,14 +1,14 @@
 <!-- <mat-toolbar class="w-full dis-flex flex-m py-4 flex-c a-i-c z-index-top">
 
 </mat-toolbar> -->
-<div class="sticky-nav border shadow-light py-2"
+<div class="border shadow-light py-2"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
-  <mat-toolbar class="mat-toolbar z-index-top pos-sticky dis-flex flex-c-m  w-full flex-sb a-i-c ">
+  <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
     <div class="w-full dis-flex flex-c flex-m flex-sb py-2 px-2" style="height: 60px;">
 
       <a @fadeIn href="#" class="logo m-l-60">
-        <img loading="lazy" class="logo pb-3" src="assets/images/icons/Logo-full.jpg" alt="LOGO">
+        <img loading="lazy" class="logo pb-3" src="assets/images/icons/Logo.jpg" alt="LOGO">
       </a>
 
       <div class="columns mx-0 py-2 is-hidden-touch">

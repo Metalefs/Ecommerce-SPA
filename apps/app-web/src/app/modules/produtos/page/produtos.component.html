@@ -1,16 +1,16 @@
-<mat-toolbar class="py-4 w-full has-background-white is-hidden-tablet shadow-light pos-sticky bellow-nav top-0 z-index-top">
-  <mat-toolbar-row class="py-2">
-    <div class="columns is-gapless my-3 is-mobile w-full">
-      <div class="column has-background-white bo-0">
+<mat-toolbar class="py-4 w-full has-background-white is-hidden-tablet shadow-light pos-sticky top-0 z-index-top">
+  <mat-toolbar-row class="py-1">
+    <div class="columns is-gapless my-2 is-mobile w-full">
+      <div class="column card has-background-white bo-0">
         <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
-          <p>Categorias</p>
+          <p>Categoria</p>
           <span class="is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
           <!-- <mat-icon>category</mat-icon> -->
         </div>
       </div>
-      <div class="column has-background-white bo-0">
+      <div class="column card has-background-white bo-0">
         <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoOrdenacao()">
-            <p>Ordenar</p>
+            <p>Ordenação</p>
             <span class="is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
         </div>
       </div>
@@ -84,13 +84,13 @@
         <div class="w-full">
           <div class="columns is-mobile is-multiline is-vcentered">
             <div class="column is-12-mobile">
-              <div class="control has-icons-right">
+              <div class="control has-icons-right w-full">
                 <input
                   [(ngModel)]="activeSearchFilter"
                   (change)="atualizarFiltroAtivo()"
-                  class="py-2 input"
+                  class="border py-2"
                   type="text"
-                  placeholder="filtrar produtos na categoria {{CategoriaAtiva?.Nome}}">
+                  placeholder="Filtrar na categoria {{CategoriaAtiva?.Nome}}">
                   <span class="icon is-small is-right">
                     <mat-icon>search</mat-icon>
                   </span>
@@ -101,6 +101,7 @@
                 <div class="w-full">
                   <p-dropdown
                   class="w-full"
+                  [styleClass]="'border'"
                   [options]="ordertypes"
                   [(ngModel)]="activeOrderFilter"
                   (onChange)="atualizarFiltroAtivo()"
@@ -131,14 +132,14 @@
 
           <ng-container *ngFor="let produto of Produtos" class="mx-0 px-0 ">
             <div @fadeIn
-            class="column is-3-desktop is-12-mobile is-4-tablet skeleton is-6-mobile"
+            class="column is-4-desktop is-12-mobile is-4-tablet skeleton"
               *ngIf="loading"
               >
               <p-skeleton >
               </p-skeleton>
             </div>
             <div @fadeIn
-              class="column is-3-desktop is-12-mobile is-4-tablet pt-4"
+              class="column is-4-desktop is-12-mobile is-4-tablet pt-4"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @slideInOut
                 [Produto]="produto"

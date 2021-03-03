@@ -2,13 +2,22 @@
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   <div class="bg">
-
+    <div class="">
+      <a pageScroll
+      href="#TOPO"
+      [routerLink]="['/produtos/']"
+      routerLinkActive="router-link-active">
+      <button mat-flat-button mat-stroked-button class="w-full bo-0 py-2 my-3" color="accent">
+        Ver produtos
+      </button>
+      </a>
+    </div>
     <div class="bg-transp">
       <div class="">
 
         <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
 
-        <div class="hero is-medium">
+        <div class="hero ">
           <div class="hero-body pt-4">
             <p class="hero-title"></p>
             <section class="py-3" *ngIf="(Clientes$|async).length>0">
@@ -20,7 +29,6 @@
         </div>
 
         <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas"></personalizados-lopes-produto-swiper>
-
 
         <!-- <div data-aos="zoom-in-down" class="margin">
           <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>

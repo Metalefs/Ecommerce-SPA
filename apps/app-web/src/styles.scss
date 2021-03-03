@@ -102,6 +102,7 @@ a {
 .slideshow-container a{
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
+  background-size: contain !important;
 }
 .slideshow-container{
   &:hover{
@@ -149,6 +150,12 @@ a {
   font-family: 'Open Sans';
   color: #23a1d1;
 }
+.p-breadcrumb{
+  border: none;
+}
+.p-breadcrumb ul {
+  flex-wrap: nowrap !important;
+}
 .swiper-container{
   &:hover > .swiper-button-prev{
     animation: showArr 1s ease forwards !important;
@@ -166,13 +173,13 @@ a {
   z-index: 100!important;
   pointer-events: all!important;
   cursor: pointer!important;
-  background: #fe4545;
+  background: #fe45458c;
 
   color: #ffffff;
   border-radius: 20px;
   text-align: center;
   transition: all 0.5s ease-in-out;
-  border-radius: 6px;
+  border-radius: 1px;
   animation: hideArr 1s ease forwards !important;
   &::after{
     font-size: 30px !important;

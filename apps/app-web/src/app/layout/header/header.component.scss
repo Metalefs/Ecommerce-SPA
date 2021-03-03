@@ -79,7 +79,6 @@
   min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  font-weight: 600;
   border-color: #acababce;
   // color: #666;
   border-top-left-radius: 5px;
@@ -147,10 +146,9 @@ a.nav-link:hover{
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
   animation: AnimationName 1s ease forwards;
-  & a.nav-link{
-    // color:white;
-    font-weight: 600;
-  }
+  // & a.nav-link{
+  //   font-weight: 600;
+  // }
   // & .active-nav{
   //   color:$crayola !important;
   // }
