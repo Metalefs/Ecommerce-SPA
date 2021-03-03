@@ -108,7 +108,7 @@
 
         <div class="is-hidden-mobile dis-flex flex-w m-l-20">
 
-          <div @fadeIn class="control has-icons-right" *ngIf="search">
+          <div @slideInOut class="control has-icons-right" *ngIf="search">
             <form type="get" action="/produtos/?nome={{search_filter}}">
               <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
                 (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>

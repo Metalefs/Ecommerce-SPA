@@ -2,14 +2,15 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
-import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { Carousel, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Gallery, GalleryComponent, GalleryItem } from 'ng-gallery';
+import { IImage } from 'ng-simple-slideshow';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
-import { OrcamentoState } from '../../../data/store/state';
+import { CarouselState, OrcamentoState } from '../../../data/store/state';
 import { sum, translateEnum } from '../../../helper/ObjHelper';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
 
@@ -21,6 +22,8 @@ import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-d
 })
 export class CardProdutoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
+  @Select(CarouselState.ObterCarousel) Carrosel$: Observable<Carousel>;
+
   isOrcamento:boolean;
   Liked:boolean = false;
   constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery,) { }
@@ -28,8 +31,21 @@ export class CardProdutoComponent implements OnInit {
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
   statusProduto=StatusProduto;
+  imageUrls: (string | IImage)[] = [
+
+  ];
   ngOnInit(): void {
     this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
+    if(this.Produto.Imagem)
+    this.Produto.Imagem.forEach(img=>{
+      this.imageUrls.push({
+        url:img,
+        href:"",
+        backgroundSize:"cover",
+        backgroundPosition:"center",
+        caption:"",
+      });
+    })
   }
 
   swiperConfig: SwiperConfigInterface = {

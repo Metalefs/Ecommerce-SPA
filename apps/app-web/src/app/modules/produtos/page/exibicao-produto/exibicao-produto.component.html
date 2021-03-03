@@ -1,21 +1,8 @@
 <div class="bg">
-  <nav class="breadcrumb w-full pt-0 px-3 box border py-3 mb-3 of-x-scroll" aria-label="breadcrumbs">
-    <ul class="dis-flex flex-w flex-c flex-m of-x-scroll">
-      <li class="">
-        <a [routerLink]="'/produtos'" href="#" class=""><i class="pi pi-home"></i></a>
-      </li>
-      <li>
-        <a [routerLink]="'/produtos'" href="#" class=""
-          (click)="editarCategoriaFiltroProduto()">{{Produto?.Categoria.Nome}}</a>
-      </li>
-      <li class="is-active desb">
-        <a href="#" class="has-text-grey-light">{{Produto?.Nome}}</a>
-      </li>
-    </ul>
-  </nav>
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
   <div class="section has-background-white-bis mb-3 pt-3">
     <div class="columns mt-3 has-background-white" id="PRODUTO">
-      <div class="column is-6 mb-0  top-0 pt-3">
+      <div class="column is-8 mb-0  top-0 pt-3">
         <!-- <mat-chip-list class="is-left">
           <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
         </mat-chip-list> -->
@@ -43,42 +30,11 @@
 
       </div>
 
-      <div class="column is-6 py-3 px-3 has-background-white z-index-2 pos-sticky bbr">
+      <div class="column is-4 py-3 px-3 has-background-white z-index-2 pos-sticky bbr">
 
-        <div class="columns is-multiline mb-0 pb-0">
+        <div class="mb-0 pb-0">
 
-          <div class="column is-6 pb-0" *ngIf="Produto">
-            <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
-            <span class="type-meta">
-              <i class="pi pi-tag"></i>
-              <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}},</a>
-            </span>
-            <div class="descricao-produto w-full pb-4">
-              <b>Marca:</b>
-              <p class="preto6">{{Produto?.Marca || ''}}</p>
-              <b>Modelo:</b>
-              <p class="preto6">{{Produto?.Modelo || ''}}</p>
-              <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
-            </div>
-            <div class="my-1 star-width dis-flex flex-w">
-              <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
-                labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
-                staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
-                (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
-              </star-rating>
-              <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
-            </div>
-            <!-- <div class="descricao-produto w-full is-hidden-desktop" style="border-left: 1px solid #0000000a;"
-              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div> -->
-            <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
-              <em>
-                *Minimo {{Produto?.QuantidadeMinima}} unidades
-              </em>
-            </span>
-
-          </div>
-
-          <div class="column is-6 pb-0" *ngIf="!Produto">
+          <div class="pb-0" *ngIf="!Produto">
             <div class="p-grid p-formgrid">
               <div class="p-field p-col-12 p-md-6">
                 <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
@@ -90,7 +46,37 @@
             </div>
           </div>
 
-          <div class="column is-6">
+          <div class="">
+            <div class="" *ngIf="Produto">
+              <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+              <span class="type-meta">
+                <i class="pi pi-tag"></i>
+                <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}},</a>
+              </span>
+              <div class="descricao-produto w-full pb-4">
+                <b>Marca:</b>
+                <p class="preto6">{{Produto?.Marca || ''}}</p>
+                <b>Modelo:</b>
+                <p class="preto6">{{Produto?.Modelo || ''}}</p>
+                <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
+              </div>
+              <div class="my-1 star-width dis-flex flex-w">
+                <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+                  labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
+                  staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
+                  (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
+                </star-rating>
+                <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
+              </div>
+              <!-- <div class="descricao-produto w-full is-hidden-desktop" style="border-left: 1px solid #0000000a;"
+                [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div> -->
+              <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
+                <em>
+                  *Minimo {{Produto?.QuantidadeMinima}} unidades
+                </em>
+              </span>
+
+            </div>
             <div class="columns is-multiline is-vcentered pr-3">
               <div class="column">
                 <div class="w-full py-3 mb-0">
@@ -109,9 +95,9 @@
                       </button>
                     </div>
                   </div>
-                  <div class="columns is-gapless pt-4 is-multiline">
+                  <div class="columns is-gapless pt-0 is-multiline">
 
-                    <div class="column is-12-desktop  mb-5 is-12-mobile pb-0">
+                    <div class="column is-12-desktop  mb-5 is-12-mobile py-0">
                       <p><span>Cores:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                       <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" *ngIf="Produto?.Cores">
                         <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
@@ -125,7 +111,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="column is-12-desktop is-12-mobile pb-0" *ngIf="Produto?.Tamanhos">
+                    <div class="column is-12-desktop is-12-mobile py-0" *ngIf="Produto?.Tamanhos">
                       <!-- <p><span>Tamanhos</span></p> -->
                       <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
                         <mat-label>Selecione um tamanho</mat-label>
@@ -258,33 +244,6 @@
             </div>
 
           </div>
-          <mat-tab-group>
-            <mat-tab label="Informações">
-              <div class="margin py-3 px-3 border-light">
-                <div class="w-full columns ">
-                  <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
-                  <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
-                    [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
-                </div>
-              </div>
-
-            </mat-tab>
-            <mat-tab label="Avaliações">
-              <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-                <div class="z-index-2 px-2 py-2 my-6">
-                  <div class="mx-2">
-                    <div class="w-full">
-                      <p>Você já tem este produto?</p>
-                      <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-                    </div>
-                    <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-                    <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-                  </div>
-                </div>
-                <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
-              </div>
-            </mat-tab>
-          </mat-tab-group>
         </div>
 
         <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
@@ -294,6 +253,33 @@
       <div id="desc"></div>
     </div>
 
+    <mat-tab-group>
+      <mat-tab label="Informações">
+        <div class="margin py-3 px-3 border-light">
+          <div class="w-full columns ">
+            <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
+            <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+          </div>
+        </div>
+
+      </mat-tab>
+      <mat-tab label="Avaliações">
+        <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+          <div class="z-index-2 px-2 py-2 my-6">
+            <div class="mx-2">
+              <div class="w-full">
+                <p>Você já tem este produto?</p>
+                <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+              </div>
+              <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+              <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+            </div>
+          </div>
+          <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
 
 
   </div>

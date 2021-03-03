@@ -229,7 +229,7 @@ img{
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
     transition: 0.5s;
-    & ~ a{
+    & ~ button{
         display: none;
     }
 }
@@ -275,7 +275,7 @@ img{
  transform: scale(1);
  opacity: 1;
 }
-.portfolio-item:hover .portfolio-overlay ~a{
+.portfolio-item:hover .portfolio-overlay ~button{
   display: block;
   position: absolute;
   margin: 0 5%;

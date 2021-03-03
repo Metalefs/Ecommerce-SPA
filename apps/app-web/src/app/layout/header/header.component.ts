@@ -20,7 +20,7 @@ import { Link } from '../../data/models';
 import { ConfirmacaoComponent } from '../../modules/checkout/page/confirmacao/confirmacao.component';
 import { CheckoutDisplayComponent } from '../../shared/components/dialogs/checkout-display/checkout-display.component';
 import { LoginComponent } from '../../modules/login/page/login.component';
-import { fade } from '../../animations';
+import { fade, slideInOut } from '../../animations';
 import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
 import { EditarCategoria } from '../../data/store/actions/categoria.actions';
 import { CategoriaService } from '../../data/service';
@@ -29,7 +29,7 @@ import { TipoUsuario } from 'libs/data/src/lib/enums';
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  animations: [fade]
+  animations: [fade,slideInOut]
 })
 export class HeaderComponent implements OnInit {
   user: entities.Usuario;

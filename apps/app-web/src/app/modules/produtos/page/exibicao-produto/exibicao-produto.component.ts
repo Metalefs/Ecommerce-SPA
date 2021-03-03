@@ -27,6 +27,7 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { fade } from 'apps/app-web/src/app/animations';
 import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
 import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/components/produto-swiper/produto-swiper.component';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -54,7 +55,8 @@ export class ExibicaoProdutoComponent implements OnInit {
   loading:boolean = false;
   el: HTMLElement;
   arte_traseira:boolean=false;
-
+  items: MenuItem[];
+  home: MenuItem;
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   ComentariosProduto:ComentarioProduto[];
   Comentarios:Comentario[] = [];
@@ -85,7 +87,7 @@ export class ExibicaoProdutoComponent implements OnInit {
           }
           this.mobile=false;
           return {
-            thumbPosition: ThumbnailsPosition.Bottom,
+            thumbPosition: ThumbnailsPosition.Left,
             thumbWidth: 120,
             thumbHeight: 90
           };
@@ -97,6 +99,13 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.activeRoute.params.subscribe(routeParams => {
       this.LerProdutosCarregados();
       this.AdicionarDescricao();
+      if(this.Produto)
+      this.items = [
+          {label:this.Produto?.Categoria?.Nome, routerLink:"/produtos/?categoria="+this.Produto?.Categoria?.Nome},
+          {label:this.Produto?.Nome, styleClass:'desb'}
+
+      ];
+      this.home = {icon: 'pi pi-home', routerLink:"/produtos"};
     });
 
     if(this.Produto?.Quantidade == 0)

@@ -5,6 +5,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {SkeletonModule} from 'primeng/skeleton';
 import {DropdownModule} from 'primeng/dropdown';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+
 @NgModule({
   declarations: [],
   exports: [
@@ -13,6 +15,7 @@ import {DropdownModule} from 'primeng/dropdown';
     ButtonModule,
     SkeletonModule,
     DropdownModule,
+    BreadcrumbModule
   ]
 })
 export class PrimeNgModule {}

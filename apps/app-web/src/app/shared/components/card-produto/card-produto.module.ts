@@ -10,6 +10,9 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { StarRatingModule } from 'angular-star-rating';
 import { GalleryModule } from 'ng-gallery';
 import { SwiperModule } from 'ngx-swiper-wrapper';
+
+
+import { SlideshowModule } from 'ng-simple-slideshow';
 @NgModule({
   declarations: [CardProdutoComponent],
   imports: [
@@ -21,10 +24,12 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     NgxPageScrollCoreModule,
     SwiperModule,
     StarRatingModule.forRoot(),
-    GalleryModule
+    GalleryModule,
+    SlideshowModule
   ],
   exports: [
-    CardProdutoComponent
+    CardProdutoComponent,
+    SlideshowModule
   ]
 })
 export class CardProdutoModule { }
