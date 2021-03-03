@@ -10,6 +10,7 @@
 
         <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
           [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
+          [dots]="true"
           [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
         </gallery>
         <!-- <div class="prod-disclaimer box">
@@ -27,7 +28,33 @@
             <mat-icon>keyboard_arrow_down</mat-icon>
           </a> -->
         </div>
+        <mat-tab-group>
+          <mat-tab label="Informações">
+            <div class="margin py-3 px-3 border-light">
+              <div class="w-full columns ">
+                <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
+                <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+                  [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+              </div>
+            </div>
 
+          </mat-tab>
+          <mat-tab label="Avaliações">
+            <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+              <div class="z-index-2 px-2 py-2 my-6">
+                <div class="mx-2">
+                  <div class="w-full">
+                    <p>Você já tem este produto?</p>
+                    <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+                  </div>
+                  <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+                  <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+                </div>
+              </div>
+              <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
       </div>
 
       <div class="column is-4 py-3 px-3 has-background-white z-index-2 pos-sticky bbr">
@@ -48,18 +75,31 @@
 
           <div class="">
             <div class="" *ngIf="Produto">
+              <div class="w-full">
+
+                <div class="pt-0">
+
+                  <button class="w-full dis-flex flex-w flex-m" title="Gostei" matBadge="{{Produto.Likes}}" matBadgeColor="accent" (click)="Like()" mat-icon-button [ngClass]="Liked? 'liked': ''" [ngClass]="loading ? 'button is-loading':''">
+                    <p>
+                      <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
+                        {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+                      </p>
+                    </button>
+                    <mat-chip-list  *ngIf="Liked" aria-label="Thanks">
+                      <mat-chip color="primary" selected>Você curtiu este produto</mat-chip>
+                    </mat-chip-list>
+                </div>
+              </div>
               <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
               <span class="type-meta">
                 <i class="pi pi-tag"></i>
                 <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}},</a>
               </span>
-              <div class="descricao-produto w-full pb-4">
-                <b>Marca:</b>
-                <p class="preto6">{{Produto?.Marca || ''}}</p>
-                <b>Modelo:</b>
-                <p class="preto6">{{Produto?.Modelo || ''}}</p>
-                <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
-              </div>
+              <ul class="list-unstyled">
+                <li>Modelo: {{Produto?.Modelo || ''}}</li>
+                <li>Marca: {{Produto?.Marca || ''}}</li>
+                <li>Disponibilidade: {{translateStatusProduto(Produto?.Status)}} - Sob orçamento</li>
+                </ul>
               <div class="my-1 star-width dis-flex flex-w">
                 <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
                   labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
@@ -79,9 +119,9 @@
             </div>
             <div class="columns is-multiline is-vcentered pr-3">
               <div class="column">
-                <div class="w-full py-3 mb-0">
-                  <p *ngIf="Produto?.QuantidadeMinima >= 1"><span>Quantidade</span></p>
-                  <div class="field ">
+                <div class="w-full pt-3 mb-0">
+                  <p *ngIf="Produto?.QuantidadeMinima >= 1"><span>Qtd</span></p>
+                  <div class="field pb-0 mb-0">
                     <div class="control is-large flex-c flex-m ">
                       <button mat-icon-button (click)="DecrescerQuantidade()">
                         <mat-icon class="less">remove</mat-icon>
@@ -152,7 +192,7 @@
                   </div>
                   <button @fadeIn *ngIf="Produto" mat-raised-button
                     [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
-                    class="share-button background-light-red border-light w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                    class="share-button wp-btn border-light w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
                     {{textoAdicionar}}
                     <mat-icon>shopping_bag</mat-icon>
                   </button>
@@ -215,21 +255,7 @@
 
               <mat-divider></mat-divider>
 
-              <div class="w-full">
 
-                <div class="pt-0">
-
-                  <button (click)="Like()" mat-icon-button [ngClass]="loading ? 'button is-loading':''">
-                    <p>
-                      <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
-                        {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
-                      {{Produto?.Likes ? Produto?.Likes : 0}} coraç{{Produto?.Likes == 1 ? "ão" : "ões"}}
-                      {{Liked? '- Obrigado por nos apoiar ' : ''}}
-                    </p>
-                  </button>
-
-                </div>
-              </div>
             </div>
 
             <div class="columns w-full is-gapless is-multiline">
@@ -252,35 +278,6 @@
       </div>
       <div id="desc"></div>
     </div>
-
-    <mat-tab-group>
-      <mat-tab label="Informações">
-        <div class="margin py-3 px-3 border-light">
-          <div class="w-full columns ">
-            <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
-            <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
-              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
-          </div>
-        </div>
-
-      </mat-tab>
-      <mat-tab label="Avaliações">
-        <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-          <div class="z-index-2 px-2 py-2 my-6">
-            <div class="mx-2">
-              <div class="w-full">
-                <p>Você já tem este produto?</p>
-                <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-              </div>
-              <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-              <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-            </div>
-          </div>
-          <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-
 
   </div>
 </div>
@@ -309,11 +306,11 @@
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
   </div>
-  <mat-divider></mat-divider>
+  <!-- <mat-divider></mat-divider>
   <div class="margin  mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Vendas">
     </personalizados-lopes-produto-swiper>
-  </div>
+  </div> -->
   <mat-divider></mat-divider>
   <div class="margin ">
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>

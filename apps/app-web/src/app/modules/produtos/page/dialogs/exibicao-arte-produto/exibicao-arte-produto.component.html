@@ -98,10 +98,11 @@
 </div>
 
 <div mat-dialog-actions>
-  <button  [mat-dialog-close]="Produto"
-    class="export-btn button w-full pb-2 mx-2 background-light-red has-text-white has-text-weight-medium"
-    *ngIf="Produto.Arte" mat-flat-button>
-    Concluir
+  <button  mat-flat-button color="accent"
+  [mat-dialog-close]="Produto"
+    class="export-btn button w-full pb-2 mx-2 has-text-white has-text-weight-medium"
+    [disabled]="!Produto.Arte" mat-flat-button>
+    {{!Produto.Arte?"Adicione uma arte":"Concluir"}}
   </button>
   <button mat-raised-button color="basic" [mat-dialog-close]="Produto" cdkFocusInitial>
     Cancelar

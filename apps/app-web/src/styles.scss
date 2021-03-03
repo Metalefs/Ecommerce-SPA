@@ -42,9 +42,11 @@ body, button, input, optgroup, select, textarea {
 }
 :host ::ng-deep #lightbox-lightbox > gallery{
   background-color:#000000bf !important;
+  height: 451px;
 }
 #lightbox-lightbox > gallery{
   background-color:#000000bf !important;
+  height: 451px;
 }
 .file.is-info .file-cta {
   background-color: #4d69b1;
@@ -152,15 +154,15 @@ a {
 }
 
 .swiper-button-prev,.swiper-button-next{
-  margin: 0 0 5px 0px;
-  padding: 20px;
+  margin: 0 0 5px;
+  padding: 2rem;
   font-size: 50px;
-  border: 2px solid;
   position: absolute;
-    z-index: 100 !important;
-    pointer-events: all !important;
-    cursor: pointer !important;
-  background: #FF6F61;
+  z-index: 100!important;
+  pointer-events: all!important;
+  cursor: pointer!important;
+  background: #fe4545;
+
   color: #ffffff;
   border-radius: 20px;
   text-align: center;
@@ -423,6 +425,9 @@ canvas{
   background-color: initial !important;
   border: 1px solid #9bb6d23b !important;
   border-radius: 4px;
+}
+.mat-list-item {
+  font-family: "Open sans" !important;
 }
 .background-primary-warmer{
   background: $crayola;

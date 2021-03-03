@@ -151,11 +151,11 @@ export class ProdutoSwiperComponent implements OnInit {
           }
         }
       })
-      this.swiperEl?.nativeElement.swiper.autoplay.start();
     }
 
   ngOnInit(): void {
-    this.swiperEl?.nativeElement.swiper.autoplay.start();
+    setTimeout(()=>{this.swiperEl?.nativeElement.swiper.autoplay.start();},2000)
+
 
   }
 

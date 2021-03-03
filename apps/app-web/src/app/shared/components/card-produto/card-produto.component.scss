@@ -4,7 +4,7 @@
   position: absolute;
   top: 30px;
   right: 0;
-  background: #fe0000ba;
+  // background: #fe0000ba;
   color: #fff;
   padding: 5px 10px;
   z-index: 3;
@@ -27,8 +27,8 @@ img{
   width: 100%;
 }
 .mat-card{
-  min-height: 495px;
-  max-height: 600px;
+  min-height: 395px;
+  max-height: 550px;
 
   display: flex !important;
   align-items: center;
@@ -89,8 +89,7 @@ img{
 
 .mat-card-actions{
   width: 100%;
-  // margin-bottom: 20px;
-  // margin-top: -35px;
+  margin: 0;
 }
 .w-full-i{
   width: 400px;
@@ -160,7 +159,7 @@ img{
   margin: 0 16px;
 }
 .mat-card-header{
-  // height:75px;
+  height: 75px;
   // overflow: hidden;
   &-text{
     width: 100%;
@@ -224,12 +223,12 @@ img{
   left: 5px;
   height: calc(100% - 10px);
   width: calc(100% - 10px);
-  opacity: 0;
+  // opacity: 0;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
     transition: 0.5s;
-    & ~ button{
+    & ~ button, ~ a{
         display: none;
     }
 }
@@ -253,7 +252,7 @@ img{
  color: #FFF;
  padding: 5px 5px;
  height: min-content;
- top: -100px;
+ top: -150px;
  background: #16161642;
  display: inline-block;
  -webkit-transform: translateY(20px);
@@ -273,19 +272,22 @@ img{
 
 .portfolio-item:hover .portfolio-overlay {
  transform: scale(1);
- opacity: 1;
+ opacity: .5;
 }
-.portfolio-item:hover .portfolio-overlay ~button{
+.portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
   display: block;
   position: absolute;
   margin: 0 5%;
   font-size: 14px;
   width: 90%;
-  top: 30%;
+  top: 40%;
   box-shadow: 1px 1px 4px #d1d1d199;
   border-radius: 1rem;
   transition: all .25s;
-  opacity: .8;
+  opacity: .85;
+  &:hover{
+    opacity: 1;
+  }
 }
 
 .portfolio-item:hover .overlay-items {

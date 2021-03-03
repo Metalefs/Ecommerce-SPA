@@ -17,16 +17,16 @@ export class HeaderFooterComponent implements OnInit {
     this.imagemService.FiltrarPorNome("GIF Produtos").subscribe(x=>{
       this.loading = false;
       this.Cards = [
-        {
-          title:"Produtos",
-          icon:"photo_library",
-          color:"#FD6D13",
-          class:"red",
-          link:"/produtos",
-          id:"#topo",
-          content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
-          img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
-        },
+        // {
+        //   title:"Produtos",
+        //   icon:"photo_library",
+        //   color:"#FD6D13",
+        //   class:"red",
+        //   link:"/produtos",
+        //   id:"#topo",
+        //   content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
+        //   img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
+        // },
         // {
         //   title:"Galeria",
         //   icon:"group_work",
