@@ -144,6 +144,11 @@ a {
   /* position: relative; */
   /* white-space: pre-wrap; */
 }
+.p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
+  font-size: 14px;
+  font-family: 'Open Sans';
+  color: #23a1d1;
+}
 .swiper-container{
   &:hover > .swiper-button-prev{
     animation: showArr 1s ease forwards !important;

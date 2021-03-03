@@ -99,13 +99,8 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.activeRoute.params.subscribe(routeParams => {
       this.LerProdutosCarregados();
       this.AdicionarDescricao();
-      if(this.Produto)
-      this.items = [
-          {label:this.Produto?.Categoria?.Nome, routerLink:"/produtos/?categoria="+this.Produto?.Categoria?.Nome},
-          {label:this.Produto?.Nome, styleClass:'desb'}
 
-      ];
-      this.home = {icon: 'pi pi-home', routerLink:"/produtos"};
+      this.home = {icon: 'pi pi-home', url:"/produtos"};
     });
 
     if(this.Produto?.Quantidade == 0)
@@ -308,7 +303,10 @@ export class ExibicaoProdutoComponent implements OnInit {
           this.router.navigate(['/produtos']);
 
         this.Produto = prod[0];
-
+        this.items = [
+          {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
+          {label:this.Produto?.Nome, styleClass:'desb'}
+      ];
         this.updateViews();
         this.AdicionarDescricao();
 
@@ -325,6 +323,10 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.router.navigate(['/produtos']);
 
         this.Produto = res.Produto[index].Produto;
+        this.items = [
+          {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
+          {label:this.Produto?.Nome, styleClass:'desb'}
+        ];
         this.AdicionarDescricao();
 
         this.updateViews();
@@ -333,6 +335,7 @@ export class ExibicaoProdutoComponent implements OnInit {
         });
       });
     }
+
     this.LerComentariosProduto(id);
 
   }

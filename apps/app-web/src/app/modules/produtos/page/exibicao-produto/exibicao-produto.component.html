@@ -1,5 +1,6 @@
 <div class="bg">
-  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+  <p-breadcrumb *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
+  <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb"></p-skeleton>
   <div class="section has-background-white-bis mb-3 pt-3">
     <div class="columns mt-3 has-background-white" id="PRODUTO">
       <div class="column is-8 mb-0  top-0 pt-3">
