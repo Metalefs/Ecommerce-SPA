@@ -56,6 +56,14 @@
             </a>
           </td>
           <td>
+            <div class="column is-10-desktop is-12-mobile box">
+              <figure>
+                <img [src]="produto.Produto.Imagem[0]"  class="prod-img">
+              </figure>
+              <canvas id="c" height="500" style="border:3px solid #131313"></canvas>
+            </div>
+          </td>
+          <td>
             <a [routerLink]="['/produtos/'+produto.Produto._id]">
               {{produto.Produto.Nome}}
             </a>

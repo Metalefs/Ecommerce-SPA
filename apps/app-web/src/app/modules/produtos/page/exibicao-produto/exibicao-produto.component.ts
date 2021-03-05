@@ -173,7 +173,7 @@ export class ExibicaoProdutoComponent implements OnInit {
       panelClass:['animate__animated','animate__bounceIn', 'border']
     })
     dialogref.afterClosed().subscribe(x=>{
-      if(x){
+      if(x.Canvas){
         console.log(x,this.Produto);
         if(this.Produto.Arte){
           if(!this.orcamentoId){

@@ -24,6 +24,7 @@ body {
   margin: 0;
   font-style: normal;
   font-family: Montserrat,sans-serif;
+  font:500 20px/32px Montserrat, "Helvetica Neue", sans-serif;
   font-weight: 400;
   color: #666;
   font-size: 12px;
@@ -430,7 +431,7 @@ canvas{
   color:$crayola;
 }
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
-  font-family: "Helvetica",sans-serif !important;
+  font: 500 20px/32px Montserrat, "Helvetica Neue", sans-serif;
 }
 .no-padding .mat-dialog-container{
   padding: 0 !important;
@@ -450,8 +451,19 @@ canvas{
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   background-color: #fe0000;
 }
+.mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
+  font-family: "Montserrat";
+}
 .mat-list-item {
   font-family: "Open sans" !important;
+}
+.mat-tab-group {
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
 }
 .background-primary-warmer{
   background: $crayola;
@@ -501,10 +513,12 @@ canvas{
   background:#ffffff;
   // border-radius:1rem;
   border-bottom-right-radius:2rem;
-  font-family: 'open sans';
+  font-family: "Montserrat";
+
 }
 .card-text{
-  font-family: 'open sans';
+  font-family: "Montserrat";
+
   font-style: normal;
   line-height: 122.19%;
   /* or 27px */

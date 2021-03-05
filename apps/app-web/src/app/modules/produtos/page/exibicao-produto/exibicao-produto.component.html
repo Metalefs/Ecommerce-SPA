@@ -29,7 +29,7 @@
             <mat-icon>keyboard_arrow_down</mat-icon>
           </a> -->
         </div>
-        <mat-tab-group>
+        <mat-tab-group class="is-hidden-touch">
           <mat-tab label="Informações">
             <div class="margin py-3 px-3 border-light">
               <div class="w-full columns ">
@@ -278,6 +278,33 @@
         </figure>
       </div>
       <div id="desc"></div>
+      <mat-tab-group class="is-hidden-desktop">
+        <mat-tab label="Informações">
+          <div class="margin py-3 px-3 border-light">
+            <div class="w-full columns ">
+              <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
+              <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+                [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+            </div>
+          </div>
+
+        </mat-tab>
+        <mat-tab label="Avaliações">
+          <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+            <div class="z-index-2 px-2 py-2 my-6">
+              <div class="mx-2">
+                <div class="w-full">
+                  <p>Você já tem este produto?</p>
+                  <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+                </div>
+                <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+                <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+              </div>
+            </div>
+            <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
     </div>
 
   </div>

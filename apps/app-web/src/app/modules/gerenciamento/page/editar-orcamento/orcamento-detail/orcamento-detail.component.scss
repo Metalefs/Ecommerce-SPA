@@ -1,0 +1,149 @@
+.export-btn {
+  background-color: #131313;
+  color: white;
+  padding: 0 24px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    background-color: #056FFA
+  }
+}
+.prod-img{
+  position: static;
+  height: 500px;
+  width: 100%;
+  width: -webkit-fill-available;
+  margin-bottom: -508px;
+}
+.container-app {
+display: flex;
+justify-content: space-around;
+}
+.controls {
+display: flex;
+flex-direction: column;
+width: 80px;
+height: calc(3 * 80px);
+border: 3px solid #131313;
+padding: 0;
+.button {
+  height: 80px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  color: #a7a7a7;
+  border: none;
+  background-color: white;
+  border-radius: 0px;
+  cursor: pointer;
+  user-select: none;
+  &:hover {
+    color: white;
+    background-color: #131313
+  }
+}
+}
+.header-control {
+display: flex;
+border-bottom: 3px solid #131313;
+padding-bottom: 16px;
+p {
+  margin: 0 auto
+}
+span {
+  cursor: pointer
+}
+}
+.item-panel {
+  border: 3px solid #131313;
+  padding: 16px;
+  max-width: 250px
+}
+#general-controls {
+display: block;
+&.display {
+  display: none
+}
+}
+#color-controls {
+display: none;
+&.display {
+  display: block
+}
+}
+#color-list {
+display: flex;
+flex-wrap: wrap;
+.color-item {
+  height: 32px;
+  width: 32px;
+  margin: 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+  &.active {
+    border: 3px solid #056FFA !important
+  }
+  &#FFFFFF {
+    border: 1px solid #131313
+  }
+}
+}
+.caption {
+font-size: 10px;
+text-align: center;
+color: #131313
+}
+.color-select {
+height: 40px;
+width: 40px;
+margin: auto;
+display: flex;
+flex-direction: column;
+cursor: pointer;
+&:hover {
+  background-color: #E2E2E2
+}
+.color-item {
+  margin: auto auto 2px auto;
+  height: 16px;
+  width: 16px;
+}
+.caption {
+  margin: 0 auto auto auto
+}
+}
+#text-controls-additional {
+border: 3px solid #131313;
+display: flex;
+width: fit-content;
+}
+input[type="checkbox"] {
+display: none;
+&:checked {
+  + .text-control {
+    background-color: #131313;
+    color: white;
+  }
+}
+}
+.text-control {
+height: 40px;
+width: 40px;
+text-align: center;
+line-height: 40px;
+display: block;
+cursor: pointer;
+&:hover {
+  background-color: #E2E2E2
+}
+}
+.item-panel {
+  visibility: hidden;
+  &.visible {
+    visibility: visible
+  }
+}

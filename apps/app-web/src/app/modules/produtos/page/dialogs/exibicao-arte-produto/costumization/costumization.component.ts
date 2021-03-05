@@ -243,13 +243,14 @@ export class CostumizationComponent implements OnInit {
   SaveDesign() {
     var exportSvg = this.__canvas.toSVG();
     localStorage.setItem('svg', exportSvg);
-    var json_data = JSON.stringify(this.__canvas.toDatalessJSON());
+    var json = this.__canvas.toDatalessJSON();
+    console.log(json)
     if(!this.Produto.Canvas)
-      Object.assign(this.Produto, {Canvas: this.__canvas.toDatalessJSON().src});
+      Object.assign(this.Produto, {Canvas: json});
     else
-      this.Produto.Canvas = this.__canvas.toDatalessJSON().src;
+      this.Produto.Canvas = json;
 
-    this.DesignSaved.emit(this.__canvas.toDatalessJSON().src);
+    this.DesignSaved.emit(json);
 
     // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(json_data);
     // document.querySelector('#list').innerHTML = '<a href="" id="downloadAnchorElem"></a>';

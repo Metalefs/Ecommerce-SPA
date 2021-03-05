@@ -1,10 +1,11 @@
-<div class="animate__animated animate__slideInRight">
+
+<div class="">
 
   <p>
     <mat-toolbar color="primary" class="pri-toolbar">
       <mat-toolbar-row class="pt-3">
+        <h2 class="subtitle mb-0 pt-0">{{(Orcamento$ |async).Produto.length > 0 ? "Carrinho" : "Seu carrinho está vazio"}}</h2>
         <span class="spacer"></span>
-
         <button mat-icon-button
         aria-label="fechar carrinho"
         (click)="delayClose()">
@@ -26,7 +27,7 @@
         </figure>
       </div>
       <div class="has-text-left">
-        <h2 class="subtitle mb-0 pt-0">Seu carrinho está vazio</h2>
+
         <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
       </div>
       <div class="a-i-c pt-3">
@@ -49,7 +50,7 @@
   </ng-template>
   <ng-template #pedido>
 
-    <section class="section py-0">
+    <section class="section py-2">
       <div class="has-text-left">
         <h2 class="subtitle">Confira o seu pedido</h2>
         <span class="subtitle">Revise seus produtos e continue para inserir seus dados pessoais.</span>

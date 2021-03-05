@@ -36,5 +36,6 @@ export class ExibicaoArteProdutoComponent implements OnInit {
   }
   attCanvas($event){
     this.Produto.Canvas = $event;
+    console.log(this.Produto.Canvas)
   }
 }
