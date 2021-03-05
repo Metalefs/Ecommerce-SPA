@@ -25,6 +25,9 @@ import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../d
 import { EditarCategoria } from '../../data/store/actions/categoria.actions';
 import { CategoriaService } from '../../data/service';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
+import { NgDialogAnimationService } from 'ng-dialog-animation';
+
+
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
@@ -56,7 +59,7 @@ export class HeaderComponent implements OnInit {
     private location: Location, private router: Router,
     private ativatedRoute: ActivatedRoute,
     private store: Store,
-    public dialog: MatDialog,
+    public dialog: NgDialogAnimationService,
     private ServicoCategoria: CategoriaService
     ) {
 
@@ -106,11 +109,19 @@ export class HeaderComponent implements OnInit {
     this.dialog.open(CheckoutDisplayComponent, {
       restoreFocus: false,
       width:'512px',
-      height:'100vh',
-      position:{
-        right:'0'
+      animation: {
+        to: "left",
+        incomingOptions: {
+          keyframeAnimationOptions: { easing: "ease", duration: 300 }
+        },
+        outgoingOptions: {
+          keyframeAnimationOptions: { easing: "ease", duration: 300 }
+        }
       },
-      panelClass:['no-padding','cart_slide','animate__animated','animate__slideInRight']
+      position: { rowStart: "0" },
+      height:'100vh',
+
+      panelClass:['no-padding','cart_slide','animate__animated','animate__slideInRight'],
     });
   }
 

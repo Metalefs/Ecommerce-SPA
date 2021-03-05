@@ -30,6 +30,7 @@ import { CEPService, EmailNotificacaoService, EstadoService, ImagemService, Item
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NgDialogAnimationService } from "ng-dialog-animation";
 
 @NgModule({
   declarations: [AppComponent],
@@ -64,6 +65,7 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
+    NgDialogAnimationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: Document },

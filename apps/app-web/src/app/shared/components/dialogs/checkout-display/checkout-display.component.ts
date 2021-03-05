@@ -59,14 +59,9 @@ export class CheckoutDisplayComponent implements OnInit {
   }
 
   delayClose(off:number = 0){
-    try{
-      document.getElementsByClassName("cart_slide")[0].classList.remove("animate__slideInRight")
-      document.getElementsByClassName("cart_slide")[0].classList.add("animate__slideOutRight");
-      setTimeout(()=>{
-        this.close()
-      },off);
-    }
-    catch(ex){this.close()}
+    setTimeout(()=>{
+      this.close()
+    },off);
   }
 
   IncrementarQuantidade(element){
