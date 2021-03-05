@@ -23,7 +23,7 @@ html, body {
 body {
   margin: 0;
   font-style: normal;
-  font-family: open sans,sans-serif;
+  font-family: Montserrat,sans-serif;
   font-weight: 400;
   color: #666;
   font-size: 12px;
@@ -32,7 +32,7 @@ body {
   height: auto;
 }
 body, button, input, optgroup, select, textarea {
-  font-family: 'open sans';
+  font-family: 'Montserrat';
 }
 #jcont{
   --right:17px;
@@ -146,9 +146,11 @@ a {
   /* white-space: pre-wrap; */
 }
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
-  font-size: 14px;
-  font-family: 'Open Sans';
+
+  font-size: 13px;
+  font-family: "Montserrat";
   color: #23a1d1;
+  font-weight: 400;
 }
 .p-breadcrumb{
   border: none;
@@ -412,6 +414,13 @@ canvas{
   &:hover{
     color: $red2;
   }
+}
+
+.wp-btn{
+  background-color: #229ac8;
+  background-image: linear-gradient(to bottom,#23a1d1,#1f90bb);
+  background-repeat: repeat-x;
+  border-color: #1f90bb #1f90bb #145e7a;
 }
 /**/
 .mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element{

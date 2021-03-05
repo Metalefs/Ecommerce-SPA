@@ -57,9 +57,12 @@
   background-color: #4267B2;
   color: #fff;
 }
-.how-social.instagram a:hover {
-  background: linear-gradient(to top, #b224ef, #7579ff);;
-  color: #fff;
+.social a.how-social.instagram{
+  background: none;
+  a:hover {
+    background: linear-gradient(to top, #b224ef, #7579ff);;
+    color: #fff;
+  }
 }
 .how-social.orcamento a:hover {
   background-color: $capri;

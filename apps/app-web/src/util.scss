@@ -50,7 +50,7 @@ body, html {
 
 ::selection {
     color: #1106CC;
-    background: #FFFF99;
+    background: #fffefe;
 }
 
 /*---------------------------------------------*/
@@ -3383,4 +3383,12 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
     .w-full-ssm {width: 100%;}
     /*---------------------------------------------*/
 
+  }
+
+
+  @media (max-width:768px){
+    .reverse-col-mobile{
+      flex-direction: column-reverse;
+      display: flex;
+    }
   }

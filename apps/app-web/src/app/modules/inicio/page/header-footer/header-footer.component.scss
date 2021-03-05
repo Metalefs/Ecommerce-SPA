@@ -115,7 +115,11 @@ p{
   }
 }
 .blue{
-  background:#3AB8FF !important;
+  background:#3AB8FF ;
+  p{
+    background: none;
+    color: #3AB8FF !important;
+  }
   &.active{
     @include hover;
   }

@@ -306,7 +306,7 @@ export class ExibicaoProdutoComponent implements OnInit {
         this.items = [
           {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
           {label:this.Produto?.Nome, styleClass:'desb'}
-      ];
+        ];
         this.updateViews();
         this.AdicionarDescricao();
 

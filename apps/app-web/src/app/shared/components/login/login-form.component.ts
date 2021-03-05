@@ -68,7 +68,7 @@ export class LoginFormComponent implements OnInit {
                 this.PassError = false;
                 this.error = null;
                 this.Logado = true;
-
+                if(this.returnUrl != "/")
                 this.router.navigate([this.returnUrl]);
             },
             error => {
