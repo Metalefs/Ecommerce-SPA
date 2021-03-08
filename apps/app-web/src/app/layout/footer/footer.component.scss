@@ -41,7 +41,7 @@ a{
 
 }
 .nsw-btn:hover{
-  background: #fe0000 !important;
+  background: transparent!important;
 }
 .footer-title{
   @extend .base;
@@ -72,7 +72,8 @@ a{
   // background: #f1f1f1;
   // background: #ff4081;
   // background: #4b4b4b;
-  background: #323232;
+  // background: #323232;
+  background: #3a3a3a;
   // background: rgba(0, 0, 0, 0.52);
 }
 .txt-justify.footer-text.has-text-white p{

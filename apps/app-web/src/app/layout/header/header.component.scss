@@ -8,6 +8,7 @@
 
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
+  background: #fb0202;
   margin-top: 0px;
   padding-top: 25px;
 }
@@ -67,26 +68,28 @@
   border-radius: 90px;
   width: 20px;
   font-weight: 600;
+  padding: 5px;
 }
 .mat-mini-fab .mat-button-wrapper{
   padding: 0;
 }
 .nav-link{
-  font-size: 12px;
+  font-size: 14px;
   text-transform: capitalize;
   // padding: 0.5em;
   padding: 10px 15px;
   min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  border-color: #acababce;
-  // color: #666;
+  border-color: #313030ce;
+  color: #666;
+  color: white;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-width: 1px;
   margin-left: 0;
   font-family: open sans, sans-serif !important;
-
+  font-weight: bold;
 }
 a.nav-link::before{
   content: "";
@@ -111,37 +114,38 @@ a.nav-link:hover{
     transform: translateZ(0);
   }
   &:hover > .mat-icon{
-    color:#ff4081
+    color:white
   }
-  color:#ff4081
+  color:white
 }
 .inicio{
   border-left: none;
 }
 .active-nav{
-  color: $capri;
+  color: white;
   font-weight: 600;
   animation: selected 2s ease-out forwards;
 }
 @keyframes selected{
   0%{
-    color: white;
+    color: gray;
   }
 
   100%{
-    color: $red;
+    color: white;
     // text-decoration: underline;
   }
 }
 .mat-toolbar{
-  background: transparent;
+  // background: transparent;
 }
 .sticky-nav{
   // background: #fff;
-  background: #ffffff;
+  background: #fb0202;
 }
 .produtos-nav{
   background: #ffffff;
+  background: #fb0202;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -157,7 +161,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #ffffff;
+  background: #fb0202;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;

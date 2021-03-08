@@ -112,22 +112,22 @@ input,select{
   text-shadow: none;
   display: inline-block;
   text-align: start;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
   appearance: textfield;
-  background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+  background-color: -internal-light-dark(white, #3b3b3b);
   -webkit-rtl-ordering: logical;
   cursor: text;
-  margin: 0em;
-  font: 400 13.3333px Arial;
-  padding: 2px;
+  /* margin: 0em; */
+  /* font: 400 13.3333px Arial; */
+  /* padding: 2px; */
   border-width: 2px;
   border-style: inset;
-  // border-color: -internal-light-dark(rgb(118, 118, 118), rgb(195, 195, 195));
   border-image: initial;
   border-radius: 8px;
-  border:0 !important;
-  // box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 18%) !important;
-    max-width: 100%;
-    width: 100%;
+  border: 0 !important;
+  max-width: 100%;
+  width: 100%;
 }
 
 .reverse-column{
@@ -144,8 +144,6 @@ input,select{
 .titulo-produto{
   font-size: 15px!important;
   line-height: 1.7rem;
-  color: #666;
-  // font-family: 'Roboto';
 }
 
 input{

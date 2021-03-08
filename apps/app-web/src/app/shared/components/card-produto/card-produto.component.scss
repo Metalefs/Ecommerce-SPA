@@ -144,7 +144,7 @@ img{
   margin-bottom: 0;
 }
 .preco-produto{
-  color: #444;
+  color: #f00;
   font-size: 12px;
   &.linethr{
     font-size: small;
@@ -285,9 +285,9 @@ img{
 .portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
   display: block;
   position: absolute;
-  margin: 0 5%;
+  margin: 0 25%;
   font-size: 14px;
-  width: 90%;
+  width: 50%;
   top: 35%;
   box-shadow: 1px 1px 4px #d1d1d199;
   border-radius: 1rem;

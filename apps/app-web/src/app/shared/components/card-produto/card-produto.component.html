@@ -57,7 +57,7 @@
 
       <mat-card-footer class="px-1 z-index-2">
 
-        <mat-card-title class="w-full my-3 txt-left titulo-produto px-3">
+        <mat-card-title class="w-full my-3 txt-center titulo-produto px-3">
 
           <a matRipple class="reset-a" [href]="['/produtos/'+ Produto._id]">
             {{Produto?.Nome}}
@@ -104,10 +104,10 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions class="">
-          <mat-divider class="my-0"></mat-divider>
+          <!-- <mat-divider class="my-0"></mat-divider> -->
           <div class="px-4 py-2">
             <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-              class="button is-small is-fullwidth box px-4 mb-2 pb-2">
+              class="button border is-small is-fullwidth box px-4 mb-2 pb-2">
               <span><i class="pi pi-plus"></i> Veja mais</span>
             </span>
           </div>
@@ -255,10 +255,10 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions class="pos-absolute bottom-0">
-          <mat-divider class="my-2"></mat-divider>
+          <!-- <mat-divider class="my-2"></mat-divider> -->
           <div class="px-4 py-2">
             <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-              class="button is-small is-fullwidth box px-4 mb-2 pb-2">
+              class="button border is-small is-fullwidth box px-4 mb-2 pb-2">
               <span><i class="pi pi-plus"></i> Veja mais</span>
             </span>
           </div>

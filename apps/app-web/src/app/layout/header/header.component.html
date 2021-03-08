@@ -1,7 +1,7 @@
-<!-- <mat-toolbar class="w-full dis-flex flex-m py-4 flex-c a-i-c z-index-top">
+<mat-toolbar class="w-full dis-flex flex-m py-0 shadow-light flex-c a-i-c z-index-top">
 
-</mat-toolbar> -->
-<div class="border shadow-light py-2"
+</mat-toolbar>
+<div class="border shadow-light py-2 mat-toolbar"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
   <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
@@ -14,12 +14,22 @@
       <div class="columns mx-0 py-2 is-hidden-touch">
         <div class="column is-12 py-2 dis-flex flex-w">
 
-          <a (click)="SetActiveNav(galeria)" [ngClass]="(NavState$ |async).activeNav == 'Galeria' ? 'active-nav': ''"
+          <!-- <a (click)="SetActiveNav(galeria)" [ngClass]="(NavState$ |async).activeNav == 'Galeria' ? 'active-nav': ''"
             class="nav-link hoverable" pageScroll [routerLink]="'showcase'"
             routerLinkActive="Active" href="#topo">
             <mat-icon>photo</mat-icon>
             Galeria
-          </a>
+          </a> -->
+
+          <button mat-icon-button (click)="search = !search" class="has-background-white mx-3">
+            <mat-icon>search</mat-icon>
+          </button>
+          <div @fadeIn class="control has-icons-right" *ngIf="search">
+            <form type="get" action="/produtos/?nome={{search_filter}}">
+              <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
+                (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
+            </form>
+          </div>
         </div>
       </div>
 
@@ -46,7 +56,7 @@
                 {{link.name == "Básicos"? 'Produtos' : link.name}}
               </a>
               <div class="dropdown-content has-background-white box">
-                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll routerLinkActive="Active"
+                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}} of-x-scroll" pageScroll routerLinkActive="Active"
                   href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
                   [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>
               </div>
@@ -58,10 +68,10 @@
 
       <div class="pb-4 dis-flex flex-r">
 
-        <div class="dropdown">
-          <button class="wrap-pic-cir border-light w-full" mat-icon-button color="accent" title="Perfil">
+        <div class="dropdown is-hidden-touch">
+          <a class="wrap-pic-cir boxshadow-none border-light w-full" mat-fab color="" title="Perfil">
             <mat-icon>person_outline</mat-icon>
-          </button>
+          </a>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
             <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
@@ -71,8 +81,8 @@
           </div>
         </div>
 
-        <div class="pb-4 is-hidden-desktop ml-4 m-r-35">
-          <button mat-mini-fab [color]="" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+        <div class="pb-4 is-hidden-desktop ml-4 m-r-40">
+          <a mat-fab mat-ripple [color]="" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
             class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 m-b-3 m-t-3">
             <div class="columns line-height-small is-mobile">
 
@@ -83,19 +93,19 @@
                 <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
               </div>
             </div>
-          </button>
+          </a>
         </div>
 
         <div class="is-hidden-touch ml-4 m-r-60 ">
           <div class="columns is-multiline is-vcentered">
             <div class="column">
-              <button mat-mini-fab (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+              <a mat-fab  mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
                 color="accent"
                 class="size4 boxshadow-none flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
 
                 <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
                 <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
-              </button>
+              </a>
             </div>
             <div class="column is-hidden-touch">
               <p class="preco" *ngIf="(Orcamento$|async).Preco">
@@ -108,7 +118,7 @@
 
         <div class="is-hidden-mobile dis-flex flex-w m-l-20">
 
-          <div @slideInOut class="control has-icons-right" *ngIf="search">
+          <!-- <div @slideInOut class="control has-icons-right" *ngIf="search">
             <form type="get" action="/produtos/?nome={{search_filter}}">
               <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
                 (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
@@ -116,7 +126,7 @@
           </div>
           <button mat-icon-button (click)="search = !search">
             <mat-icon>search</mat-icon>
-          </button>
+          </button> -->
         </div>
       </div>
 

@@ -1,8 +1,8 @@
 <section [@cardFlip]="state" class="section py-0">
 
   <div #Endereco>
-    <div class="columns">
-      <div class="column is-12-mobile reverse-col-mobile">
+    <div class="columns  reverse-col-mobile">
+      <div class="column is-12-mobile">
         <ng-container *ngIf="Pagar then pagamento else endereco"></ng-container>
 
         <ng-template #pagamento>

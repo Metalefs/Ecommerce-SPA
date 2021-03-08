@@ -7,7 +7,7 @@
 
         <span class="spacer"></span>
 
-  <!-- <button mat-icon-button aria-label="fechar carrinho" (click)="close()">
+        <!-- <button mat-icon-button aria-label="fechar carrinho" (click)="close()">
           <mat-icon>close</mat-icon>
         </button> -->
       </mat-toolbar-row>
@@ -26,9 +26,7 @@
   <div class="pt-4 px-4 mb-0 pt-0">
     <div class="columns py-0 is-mobile is-gapless">
       <div class="column">
-        <button
-          [matMenuTriggerFor]="appMenu2"
-          class="w-full  card box has-text-centered border-light" mat-flat-button
+        <button [matMenuTriggerFor]="appMenu2" class="w-full  card box has-text-centered border-light" mat-flat-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>
           <p>Minha conta</p>
@@ -36,12 +34,8 @@
       </div>
 
       <div class="column">
-        <button [routerLink]="['/minha-conta/pessoal/pedidos']"
-        href="#topo"
-        (pageScrollFinish)="ToggleNav(0)"
-        routerLinkActive="Active"
-        pageScroll
-        class="w-full card box has-text-centered border-light" mat-flat-button>
+        <button [routerLink]="['/minha-conta/pessoal/pedidos']" href="#topo" (pageScrollFinish)="ToggleNav(0)"
+          routerLinkActive="Active" pageScroll class="w-full card box has-text-centered border-light" mat-flat-button>
           <mat-icon>receipt_long</mat-icon>
           <p>Meus pedidos</p>
         </button>
@@ -52,94 +46,83 @@
 
   <mat-menu mat-menu #appMenu2="matMenu">
     <ng-template matMenuContent let-name="name">
-      <button mat-menu-item *ngIf="usuario"
-      href="#topo"
-      (pageScrollFinish)="ToggleNav(0)"
-      routerLinkActive="Active"
-      pageScroll
-      [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
+      <button mat-menu-item *ngIf="usuario" href="#topo" (pageScrollFinish)="ToggleNav(0)" routerLinkActive="Active"
+        pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
       <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
-      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin"
-      href="#topo"
-      (pageScrollFinish)="ToggleNav(0)"
-      routerLinkActive="Active"
-      pageScroll
-       [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
+      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin" href="#topo"
+        (pageScrollFinish)="ToggleNav(0)" routerLinkActive="Active" pageScroll
+        [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
       <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
     </ng-template>
   </mat-menu>
 
   <ul class="navigation">
-      <!-- Produtos -->
-      <mat-list>
-        <!-- <div class="control has-icons-right">
+    <!-- Produtos -->
+    <mat-list>
+      <!-- <div class="control has-icons-right">
           <form type="get" action="/produtos/?nome={{search_filter}}">
             <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
               (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
           </form>
         </div> -->
-        <mat-divider></mat-divider>
-        <div mat-subheader>Produtos</div>
-          <mat-list-item
-          matRipple
-            *ngFor="let link of linksProdutos"
-            >
-            <a
-              [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-              matLine
-              (click)="SetActiveNav(link)"
-              (pageScrollFinish)="ToggleNav(0)"
-              [routerLink]="link.href"
-              routerLinkActive="Active"
-              pageScroll
+      <mat-divider></mat-divider>
+
+      <div mat-subheader>Produtos</div>
+      <mat-list-item matRipple *ngFor="let link of linksProdutos">
+        <mat-expansion-panel class="bo-0 w-full boxshadow-none">
+          <mat-expansion-panel-header class="w-full boxshadow-none">
+
+            <a [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''" matLine (click)="SetActiveNav(link)"
+              (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href" routerLinkActive="Active" pageScroll
               href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
               <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
               <span>{{link.name}}</span>
             </a>
-            <div class="dropdown">
+          </mat-expansion-panel-header>
 
-              <div class="dropdown-content has-background-white box">
-                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll routerLinkActive="Active"
+          <ng-template matExpansionPanelContent>
+            <div class="dropdown-mobile">
+              <mat-list-item matRipple *ngFor="let link of linksProdutos">
+              <div class="dropdown-content-mobile has-background-white box">
+                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"(pageScrollFinish)="ToggleNav(0)"  pageScroll routerLinkActive="Active"
                   href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
                   [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>
               </div>
+              </mat-list-item>
             </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <div mat-subheader>Institucional</div>
-          <mat-list-item
-            *ngFor="let link of linksIntitucional">
-            <a
-              [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-              matLine (click)="SetActiveNav(link)" (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href"
-              routerLinkActive="Active" pageScroll href="#{{link.name}}">
-              <mat-icon mat-list-icon class="inst">{{link.icon || 'check_box_outline_blank'}}</mat-icon>
-              <span>{{link.name}}</span>
-            </a>
-          </mat-list-item>
-          <mat-list-item>
-            <a
-              [ngClass]="(NavState$ |async).activeNav =='Galeria' ? 'active-nav': ''"
-              matLine (click)="SetActiveNav({name:'Galeria'})" (pageScrollFinish)="ToggleNav(0)" [routerLink]="['showcase']"
-              routerLinkActive="Active" pageScroll href="#showcase">
-              <mat-icon mat-list-icon>photo</mat-icon>
-              <span>Galeria</span>
-            </a>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-          <div mat-subheader>Dúvidas</div>
-          <mat-list-item
-            *ngFor="let link of linksDuvidas"
-            >
-            <a
-              [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
-              matLine (click)="SetActiveNav(link)" (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href"
-              routerLinkActive="Active" pageScroll href="#{{link.name}}">
-              <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
-              <span>{{link.name}}</span>
-            </a>
-          </mat-list-item>
-      </mat-list>
+          </ng-template>
+        </mat-expansion-panel>
+      </mat-list-item>
+
+      <mat-divider></mat-divider>
+      <div mat-subheader>Institucional</div>
+      <mat-list-item *ngFor="let link of linksIntitucional">
+        <a [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''" matLine (click)="SetActiveNav(link)"
+          (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href" routerLinkActive="Active" pageScroll
+          href="#{{link.name}}">
+          <mat-icon mat-list-icon class="inst">{{link.icon || 'check_box_outline_blank'}}</mat-icon>
+          <span>{{link.name}}</span>
+        </a>
+      </mat-list-item>
+      <mat-list-item>
+        <a [ngClass]="(NavState$ |async).activeNav =='Galeria' ? 'active-nav': ''" matLine
+          (click)="SetActiveNav({name:'Galeria'})" (pageScrollFinish)="ToggleNav(0)" [routerLink]="['showcase']"
+          routerLinkActive="Active" pageScroll href="#showcase">
+          <mat-icon mat-list-icon>photo</mat-icon>
+          <span>Galeria</span>
+        </a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <div mat-subheader>Dúvidas</div>
+      <mat-list-item *ngFor="let link of linksDuvidas">
+        <a [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''" matLine (click)="SetActiveNav(link)"
+          (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href" routerLinkActive="Active" pageScroll
+          href="#{{link.name}}">
+          <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
+          <span>{{link.name}}</span>
+        </a>
+      </mat-list-item>
+    </mat-list>
 
     <li *ngIf="user?.Tipo == TipoUsuario.admin">
       <button mat-icon-button (click)="Logout()" title="logout">
