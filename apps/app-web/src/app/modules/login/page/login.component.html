@@ -1,8 +1,12 @@
 
-  <div class="flex-w flex-c">
-    <mat-card class="px-3">
-      <h1>Não está cadastrado?</h1>
-      <span>Digite os dados para criar sua conta ou clique em entrar caso já tenha uma.</span>
+
+  <div mat-dialog-title>
+    <h1>Não está cadastrado?</h1>
+    <mat-divider></mat-divider>
+    <span class="is-size-7">Digite os dados para criar sua conta ou clique em entrar caso já tenha uma.</span>
+  </div>
+  <div mat-dialog-content class="flex-w flex-c px-1">
+    <mat-card>
       <mat-tab-group animationDuration="0ms" #tabs [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
         <mat-tab label="Cadastre-se">
           <mat-vertical-stepper [linear]="true" #stepper>
