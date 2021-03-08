@@ -22,7 +22,7 @@
             Produto personalizado com a sua estampa!
             <span>@Personalizadoslopes</span>
           </div> -->
-          <div class="column pt-0 mt-0">
+          <div class="column pt-0 mt-0 is-hidden-touch">
             <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
             </share-button>
             <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
@@ -110,9 +110,9 @@
               <div class="columns is-multiline is-vcentered pr-3">
                 <div class="column">
                   <div class="w-full pt-3 mb-0">
-                    <p *ngIf="Produto?.QuantidadeMinima >= 1"><span>Qtd</span></p>
+                    <p><span>Selecione a quantidade</span></p>
                     <div class="field pb-0 mb-0">
-                      <div class="control is-large flex-c flex-m ">
+                      <div class="control border is-large flex-c flex-m ">
                         <button mat-icon-button (click)="DecrescerQuantidade()">
                           <mat-icon class="less">remove</mat-icon>
                         </button>
@@ -128,7 +128,7 @@
                     <div class="columns is-gapless pt-0 is-multiline">
 
                       <div class="column is-12-desktop  mb-5 is-12-mobile py-0">
-                        <p><span>Cores:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
+                        <p><span>Selecione uma cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                         <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" *ngIf="Produto?.Cores">
                           <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input class="px-2 py-2 mx-1" (click)="Produto.Cor=cor;"
@@ -164,16 +164,16 @@
                       <ng-template #preco_promo>
                         <div class="txt-left">
                           <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                          <p class="preco promocao preto6">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+                          <p class="preco promocao ">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
                         </div>
                       </ng-template>
                       <ng-template #preco_normal>
                         <div class="txt-left">
-                          <p class="preco preto6">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                          <p class="preco ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
                         </div>
                       </ng-template>
                       <div class="my-1" *ngIf="Produto?.Parcelas && Produto?.Parcelas > 0">
-                        <p class="preto6">
+                        <p class="">
                           Em até {{Produto?.Parcelas}}x <span
                             class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas).toFixed(2)}}</b></span>
                           sem juros
@@ -270,6 +270,16 @@
                     <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
                     <span class="ml-3 nunitoParagraphy16 has-text-white">Comprar pelo whatsapp</span>
                   </button>
+                </div>
+                <div class="column pt-0 mt-0 is-hidden-desktop">
+                  <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+                  </share-button>
+                  <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+                  </share-button>
+                  <!-- <a href="#desc" pageScroll pageScrollDuration="5000" class="border" mat-flat-button *ngIf="Produto?.Descricao?.length > 0">
+                    Mais informações
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </a> -->
                 </div>
               </div>
 

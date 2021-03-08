@@ -114,15 +114,15 @@ a.nav-link:hover{
     transform: translateZ(0);
   }
   &:hover > .mat-icon{
-    color:white
+    color:#484848
   }
-  color:white
+  color:#484848
 }
 .inicio{
   border-left: none;
 }
 .active-nav{
-  color: white;
+  // color: white;
   font-weight: 600;
   animation: selected 2s ease-out forwards;
 }
@@ -132,7 +132,7 @@ a.nav-link:hover{
   }
 
   100%{
-    color: white;
+    // color: white;
     // text-decoration: underline;
   }
 }
@@ -171,7 +171,7 @@ a.nav-link:hover{
     font-weight: 600;
   }
   & .active-nav{
-    color:$capri !important;
+    color:#484848
   }
   & .border-light{
     background:whitesmoke;

@@ -32,7 +32,7 @@ img{
 
   display: flex !important;
   align-items: center;
-  border: 1px solid #e7e7e7;
+  // border: 1px solid #e7e7e7;
   padding: 0 !important;
   margin: 0 !important;
   &:hover{
@@ -55,6 +55,7 @@ img{
 }
 .mat-card-header .mat-card-title{
   text-align: center;
+  margin-bottom: 0;
 }
 .mat-card-image,img{
   background: rgb(255, 255, 255);
@@ -211,7 +212,7 @@ img{
   display: block;
   -webkit-box-align: stretch;
   align-items: stretch;
-  border-radius: 1em;
+  border-radius: 0px;
   display: flex;
   flex-direction: column;
   height: 100%;

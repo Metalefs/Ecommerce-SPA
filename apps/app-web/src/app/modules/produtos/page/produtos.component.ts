@@ -20,6 +20,7 @@ import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './dialogs/filtr
 import { ProdutoService } from '../../../data/service';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { order, orderPreco } from '../../../helper/ObjHelper';
+import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -62,7 +63,7 @@ export class ProdutosComponent implements OnInit {
   ]
 
   constructor(
-    private dialog: MatDialog,
+    private dialog: NgDialogAnimationService,
     private store: Store,
     private activeRoute: ActivatedRoute,
     private produtoService: ProdutoService
@@ -239,9 +240,16 @@ export class ProdutosComponent implements OnInit {
         width:'512px',
         data:{Categorias:x,CategoriaAtiva:this.CategoriaAtiva} as FiltroCategoria,
         height:'100vh',
-        position:{
-          left:'0'
+        animation: {
+          to: "left",
+          incomingOptions: {
+            keyframeAnimationOptions: { easing: "ease", duration: 300 }
+          },
+          outgoingOptions: {
+            keyframeAnimationOptions: { easing: "ease", duration: 300 }
+          }
         },
+        position: { rowEnd: "0" },
         panelClass:['','animate__animated','animate__slideInLeft']
       });
       dialogRef.afterClosed().subscribe((result :Categoria) => {
@@ -259,9 +267,17 @@ export class ProdutosComponent implements OnInit {
         activeOrderFilter:this.activeOrderFilter
       } as FiltroOrdenacao,
       height:'100vh',
-      position:{
-        right:'0'
+      animation: {
+        to: "left",
+        incomingOptions: {
+          keyframeAnimationOptions: { easing: "ease", duration: 300 }
+        },
+        outgoingOptions: {
+          keyframeAnimationOptions: { easing: "ease", duration: 300 }
+        }
       },
+      position: { rowStart: "0" },
+
       panelClass:['','animate__animated','animate__slideInRight']
     });
     dialogRef.afterClosed().subscribe((result :OrderType) => {
