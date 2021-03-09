@@ -16,7 +16,7 @@
   </p>
 
   <div class="card w-full px-6 pt-0 mt-0">
-    <button *ngIf="!Logado" (click)="Login()" mat-flat-button class="box  w-full">
+    <button *ngIf="!Logado" (click)="Login()" mat-flat-button class="box bo-0 w-full">
       <mat-icon>login</mat-icon>
       <span>Entrar</span>
     </button>
@@ -26,7 +26,7 @@
   <div class="pt-4 px-4 mb-0 pt-0">
     <div class="columns py-0 is-mobile is-gapless">
       <div class="column">
-        <button [matMenuTriggerFor]="appMenu2" class="w-full  card box has-text-centered border-light" mat-flat-button
+        <button [matMenuTriggerFor]="appMenu2" class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
           title="Perfil">
           <mat-icon>person_outline</mat-icon>
           <p>Minha conta</p>
@@ -35,7 +35,7 @@
 
       <div class="column">
         <button [routerLink]="['/minha-conta/pessoal/pedidos']" href="#topo" (pageScrollFinish)="ToggleNav(0)"
-          routerLinkActive="Active" pageScroll class="w-full card box has-text-centered border-light" mat-flat-button>
+          routerLinkActive="Active" pageScroll class="w-full bo-0 card box has-text-centered border-light" mat-flat-button>
           <mat-icon>receipt_long</mat-icon>
           <p>Meus pedidos</p>
         </button>
@@ -83,7 +83,7 @@
           <ng-template matExpansionPanelContent>
             <div class="dropdown-mobile">
               <mat-list-item matRipple *ngFor="let link of linksProdutos">
-              <div class="dropdown-content-mobile has-background-white box">
+              <div class="dropdown-content-mobile has-background-white box of-y-scroll">
                 <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"(pageScrollFinish)="ToggleNav(0)"  pageScroll routerLinkActive="Active"
                   href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
                   [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>

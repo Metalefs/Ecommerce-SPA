@@ -241,7 +241,7 @@ export class ProdutosComponent implements OnInit {
         data:{Categorias:x,CategoriaAtiva:this.CategoriaAtiva} as FiltroCategoria,
         height:'100vh',
         animation: {
-          to: "left",
+          to: "right",
           incomingOptions: {
             keyframeAnimationOptions: { easing: "ease", duration: 300 }
           },

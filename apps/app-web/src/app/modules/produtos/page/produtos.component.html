@@ -132,14 +132,14 @@
 
           <ng-container *ngFor="let produto of Produtos" class="mx-0 px-0 ">
             <div @fadeIn
-            class="column is-4-desktop is-12-mobile is-4-tablet skeleton"
+            class="column is-4-desktop is-6-mobile is-4-tablet skeleton"
               *ngIf="loading"
               >
               <p-skeleton >
               </p-skeleton>
             </div>
             <div @fadeIn
-              class="column is-4-desktop is-12-mobile is-4-tablet pt-4"
+              class="column is-4-desktop is-6-mobile is-4-tablet pt-4"
               *ngIf = "filtroAtivo(produto) && !loading">
               <personalizados-lopes-card-produto @slideInOut
                 [Produto]="produto"
