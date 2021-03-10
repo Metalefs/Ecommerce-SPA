@@ -108,7 +108,7 @@
               </a>
             </div>
             <div class="column is-hidden-touch">
-              <p class="preco" *ngIf="(Orcamento$|async).Preco">
+              <p class="preco has-text-white" (click)="openCheckout()" *ngIf="(Orcamento$|async).Preco">
                 R${{(Orcamento$|async).Preco.toFixed(2) || ''}}
               </p>
             </div>

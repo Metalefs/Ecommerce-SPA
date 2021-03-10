@@ -522,6 +522,11 @@ canvas{
   font-family: "Montserrat";
 
 }
+.table.mat-table{
+  border-spacing: 0;
+  will-change: height;
+  transition: 1s all ease;
+}
 .card-text{
   font-family: "Montserrat";
 
