@@ -12,18 +12,13 @@
       </a>
 
       <div class="columns mx-0 my-0 py-2 is-hidden-touch">
-        <div class="column is-12 py-2 dis-flex flex-w">
-
-          <!-- <a (click)="SetActiveNav(galeria)" [ngClass]="(NavState$ |async).activeNav == 'Galeria' ? 'active-nav': ''"
-            class="nav-link hoverable" pageScroll [routerLink]="'showcase'"
-            routerLinkActive="Active" href="#topo">
-            <mat-icon>photo</mat-icon>
-            Galeria
-          </a> -->
-
-          <button mat-icon-button (click)="search = !search" class="has-background-white mx-3">
+        <div class="column py-2 is-2">
+          <button mat-icon-button (click)="search = !search" class="has-background-white mx-1">
             <mat-icon>search</mat-icon>
           </button>
+        </div>
+        <div class="column py-2">
+
           <div @fadeIn class="control has-icons-right" *ngIf="search">
             <form type="get" action="/produtos/?nome={{search_filter}}">
               <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"

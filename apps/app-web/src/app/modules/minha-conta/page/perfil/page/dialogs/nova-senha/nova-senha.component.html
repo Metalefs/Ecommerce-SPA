@@ -13,7 +13,7 @@
     Campo obrigatório
   </mat-error>
   <span class="icon is-right" *ngIf="senhaAtualFormControl.hasError('required')">
-    <mat-icon class="has-text-warning">warning</mat-icon>
+    <mat-icon class="color-light-red">warning</mat-icon>
   </span>
   <a mat-icon-button (click)="senhaatual.type = senhaatual.type == 'text' ? 'password': 'text'">
     <mat-icon>visibility</mat-icon>
@@ -34,7 +34,7 @@
     Campo obrigatório
   </mat-error>
   <span class="icon is-right" *ngIf="senhaNovaFormControl.hasError('required')">
-    <mat-icon class="has-text-warning">warning</mat-icon>
+    <mat-icon class="color-light-red">warning</mat-icon>
   </span>
   <a mat-icon-button (click)="senhanova.type = senhanova.type == 'text' ? 'password': 'text'">
     <mat-icon>visibility</mat-icon>

@@ -1,14 +1,14 @@
 <section [@cardFlip]="state" class="section py-0">
   <p>Comprando {{(Orcamento$|async).Produto?.length}} item(s) no valor de
     R${{(Orcamento$|async).Preco.toFixed(2) || ''}} reais</p>
+    <div class="has-text-centered  w-full py-6">
+      <h1 class="subtitle">Dados do comprador</h1>
+    </div>
   <div class="columns  reverse-col-mobile">
 
     <div class="column is-12-mobile">
 
       <div class="section w-full" *ngIf="(Orcamento$ |async).Produto.length > 0">
-        <div class="has-text-left  w-full">
-          <h2 class="subtitle">Dados do comprador</h2>
-        </div>
 
         <span class="subtitle" @fadeIn
           *ngIf="nomeFormControl.hasError('required') || emailFormControl.hasError('required') || phoneFormControl.hasError('required')">Verifique
@@ -24,7 +24,7 @@
                 É necessário inserir seu <strong>nome</strong>
               </mat-error>
               <span class="icon is-right" *ngIf="!nomeFormControl.pristine && nomeFormControl.hasError('required')">
-                <mat-icon class="has-text-warning">warning</mat-icon>
+                <mat-icon class="color-light-red">warning</mat-icon>
               </span>
             </mat-form-field>
 
@@ -37,7 +37,7 @@
               </mat-error>
               <span class="icon is-right"
                 *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                <mat-icon class="has-text-warning">warning</mat-icon>
+                <mat-icon class="color-light-red">warning</mat-icon>
               </span>
               <mat-error *ngIf="!emailFormControl.pristine && emailFormControl.hasError('required')">
                 É necessário inserir seu <strong>e-mail</strong>
@@ -53,7 +53,7 @@
               </mat-error>
               <span class="icon is-right"
                 *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                <mat-icon class="has-text-warning">warning</mat-icon>
+                <mat-icon class="color-light-red">warning</mat-icon>
               </span>
               <mat-error *ngIf="!cpfFormControl.pristine && cpfFormControl.hasError('required')">
                 É necessário inserir seu <strong>CPF</strong>
@@ -68,7 +68,7 @@
                 É necessário inserir seu <strong>telefone</strong>
               </mat-error>
               <span class="icon is-right" *ngIf="!phoneFormControl.pristine && phoneFormControl.hasError('required')">
-                <mat-icon class="has-text-warning">warning</mat-icon>
+                <mat-icon class="color-light-red">warning</mat-icon>
               </span>
             </mat-form-field>
 

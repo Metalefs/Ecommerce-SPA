@@ -30,7 +30,7 @@
  [images]="imagens">
 </carousel> -->
 
-<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1" id="Básicos">
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1 pr-0" id="Básicos">
 
   <div class="columns px-3 px-1c py-4">
     <div class="column is-12-mobile is-hidden-mobile">
@@ -42,9 +42,9 @@
             </mat-toolbar>
             <mat-list-item @fadeIn
               data-aos="fade-down"
-              class="pointer w-full w-full-m cat-item"
+              class="pointer w-full w-full-m cat-item has-background-white hoverable"
               (click)="SetCategoria(null)"
-              [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active' : ''">
+              [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active box' : ''">
               <a mat-strocked-button class="dis-flex flex-sb flex-m">
                 <button button class="border-0">
                   <mat-icon
@@ -61,9 +61,9 @@
               [style.backgroundColor]="categoria?.Cor"
 
               data-aos-delay="50"
-              class="pointer w-full w-full-m"
+              class="pointer w-full w-full-m cat-item has-background-white hoverable"
               (click)="SetCategoria(categoria)"
-              [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active' : ''">
+              [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box' : ''">
               <a mat-strocked-button class="dis-flex flex-sb flex-m">
                 <button class="border-0">
                   <mat-icon
@@ -79,7 +79,7 @@
         </div>
       </div>
     </div>
-    <div class="column is-9 is-12-mobile produto-column of-y-scroll-desktop of-y-scroll">
+    <div class="column is-9 is-12-mobile produto-column has-background-white of-y-scroll-desktop of-y-scroll">
       <div class="pb-0 mb-0 ">
         <div class="w-full">
           <div class="columns is-mobile is-multiline is-vcentered">
