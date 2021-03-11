@@ -8,7 +8,7 @@
 
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
-  background: #d12020;
+  background: #f7f7f8;
   margin-top: 0px;
 }
 .busca{
@@ -82,7 +82,7 @@
   transition: 0.25s all ease-in-out;
   border-color: #313030ce;
   color: #666;
-  color: white;
+  // color: white;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   border-width: 1px;
@@ -140,11 +140,11 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: #d12020;
+  background: #f7f7f8;
 }
 .produtos-nav{
   background: #ffffff;
-  background: #d12020;
+  background: #f7f7f8;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -160,7 +160,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #d12020;
+  background: #f7f7f8;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
