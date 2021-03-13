@@ -1,5 +1,10 @@
 <mat-toolbar class="w-full dis-flex flex-m py-0 shadow-light flex-c a-i-c z-index-top">
+  <div class="w-full dis-flex flex-c flex-m flex-sb px-2" style="height: 60px;">
 
+    <a @fadeIn href="#" class="logo pb-4 m-l-60">
+      <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
+    </a>
+  </div>
 </mat-toolbar>
 <div class="border shadow-light py-2 mat-toolbar"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
@@ -7,17 +12,13 @@
   <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
     <div class="w-full dis-flex flex-c flex-m flex-sb py-2 px-2" style="height: 60px;">
 
-      <a @fadeIn href="#" class="logo pb-4 m-l-60">
-        <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
-      </a>
-
-      <div class="columns mx-0 my-0 py-2 is-hidden-touch">
-        <div class="column py-2 is-2">
+      <div class="columns mx-0 my-0 py-2 is-mobile">
+        <div class="column  is-2">
           <button mat-icon-button (click)="search = !search" class="has-background-white mx-1">
             <mat-icon>search</mat-icon>
           </button>
         </div>
-        <div class="column py-2">
+        <div class="column ">
 
           <div @fadeIn class="control has-icons-right" *ngIf="search">
             <form type="get" action="/produtos/?nome={{search_filter}}">
@@ -91,7 +92,7 @@
           </a>
         </div>
 
-        <div class="is-hidden-touch ml-4 m-r-60 ">
+        <div class="is-hidden-touch ml-4 m-r-30 ">
           <div class="columns is-multiline is-vcentered">
             <div class="column">
               <a mat-fab  mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
@@ -111,7 +112,7 @@
 
         </div>
 
-        <div class="is-hidden-mobile dis-flex flex-w m-l-20">
+        <div class="is-hidden-mobile dis-flex flex-w ">
 
           <!-- <div @slideInOut class="control has-icons-right" *ngIf="search">
             <form type="get" action="/produtos/?nome={{search_filter}}">

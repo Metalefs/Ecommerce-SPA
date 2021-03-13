@@ -215,7 +215,13 @@ button{
   // font: 400 13.3333px Arial;
   padding: 1px 6p
 }
-
+.button:not(.wp-btn){
+  background: black;
+  color:white;
+  :hover{
+    color:grey
+  }
+}
 .bbr{
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 2rem;
@@ -2527,7 +2533,7 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
 
 .vh-full {height: 100vh;}
 .mvh-full {min-height: 100vh;}
-.vh-full-nav {height: 80vh;}
+.vh-full-nav {height: 63vh;}
 .max-w-full {max-width: 100%;}
 .max-h-full {max-height: 100%;}
 .min-w-full {min-width: 100%;}

@@ -145,14 +145,14 @@ img{
   margin-bottom: 0;
 }
 .preco-produto{
-  color: #f00;
+  color: #f05558;
   font-size: 12px;
   &.linethr{
     font-size: small;
     font-weight: 400;
   }
   &.promocao{
-    color:red;
+    color:f05558;
   }
 }
 ::ng-deep .mat-card-header-text{

@@ -52,7 +52,7 @@
   </ng-template>
   <ng-template #pedido>
 
-    <section class="section py-2">
+    <section class="section py-2 vh-full-nav">
       <div class="has-text-left">
         <h2 class="subtitle">Confira o seu pedido</h2>
         <span class="subtitle">Revise seus produtos e continue para inserir seus dados pessoais.</span>
@@ -160,28 +160,29 @@
             <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
             <tr @slideInOut mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
           </table>
-          <div class="w-full">
-            <a
-              (click)="delayClose()"
-              [routerLink]="['/checkout/dados/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
-              class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
-                orçamento</span></a>
-            <button class="py-3 pb-3  w-full">
-              <a
-              href="#topo"
-              class="py-3"
-              (pageScrollFinish)="close()"
-              [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher
-                mais
-                produtos</a>
-            </button>
-          </div>
+
         </div>
 
       </div>
 
     </section>
-    <mat-toolbar class="w-full pt-3 pos-sticky bottom-0 pri-toolbar">
+    <div class="w-full ">
+      <a
+        (click)="delayClose()"
+        [routerLink]="['/checkout/dados/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
+        class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
+          orçamento</span></a>
+      <button class="py-3 pb-3  w-full">
+        <a
+        href="#topo"
+        class="py-3"
+        (pageScrollFinish)="close()"
+        [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher
+          mais
+          produtos</a>
+      </button>
+    </div>
+    <mat-toolbar class="w-full pt-3 pri-toolbar">
         <mat-toolbar-row>
           <div class="columns">
             <div class="column"></div>

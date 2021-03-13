@@ -64,6 +64,13 @@
           </a>
 
         </mat-card-title>
+        <mat-card-subtitle class="w-full my-3 txt-left titulo-produto">
+
+          <p matRipple>
+            {{Produto?.DescricaoRapida}}
+          </p>
+
+        </mat-card-subtitle>
 
         <mat-card-header class="w-full txt-left pt-1 of-y-scroll">
           <!-- <div class="my-3" *ngIf="Produto.Rating.length>0">
@@ -103,11 +110,11 @@
 
           </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions class="">
+        <mat-card-actions class="pos-absolute bottom-0">
           <!-- <mat-divider class="my-0"></mat-divider> -->
           <div class="px-4 py-2">
             <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-              class="button border is-small is-fullwidth box px-4 mb-2 pb-2">
+              class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
               <span><i class="pi pi-plus"></i> Comprar</span>
             </span>
           </div>
@@ -140,7 +147,7 @@
             </div>
           </div>
           <a title="Comprar" matRipple class="reset-a box m-lr-auto" [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-          mat-flat-button class="button"><mat-icon color='accent'>shopping_bag</mat-icon>Comprar Agora</a>
+          mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon>Comprar Agora</a>
         </div>
       </div>
     </mat-card>
@@ -258,7 +265,7 @@
           <!-- <mat-divider class="my-2"></mat-divider> -->
           <div class="px-4 py-2">
             <span [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-              class="button border is-small is-fullwidth box px-4 mb-2 pb-2">
+              class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
               <span><i class="pi pi-plus"></i> Veja mais</span>
             </span>
           </div>
@@ -276,7 +283,7 @@
             </div>
           </div>
           <a title="Comprar" matRipple class="reset-a box m-lr-auto" [href]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active"
-          mat-flat-button class="button"><mat-icon color='accent'>shopping_bag</mat-icon></a>
+          mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
         </div>
       </div>
     </mat-card>

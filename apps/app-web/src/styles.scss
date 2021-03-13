@@ -451,6 +451,7 @@ canvas{
   background-image: linear-gradient(to bottom,#23a1d1,#1f90bb);
   background-repeat: repeat-x;
   border-color: #1f90bb #1f90bb #145e7a;
+  color: white;
 }
 /**/
 .mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element{
@@ -950,8 +951,8 @@ canvas{
       display: block;
       &:hover {background-color: #ddd;}
       &.nav-link{
-        text-transform: lowercase;
-        color:#666
+        color:#666;
+        padding: 5px;
       }
     }
   }

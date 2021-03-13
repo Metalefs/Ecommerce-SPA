@@ -2,7 +2,7 @@
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb my-3 py-3"></p-skeleton>
 </div>
-<div class="section pt-4 bbr">
+<div class="section bbr">
   <div class="margin bbr">
     <div class=" has-background-white-bis bbr mb-3">
       <div class="columns mt-3 bbr  " id="PRODUTO">
@@ -92,7 +92,7 @@
                   </ul>
                 <div class="my-1 star-width dis-flex flex-w">
                   <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
-                    labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
+                    labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="small" [rating]="meanRating()"
                     staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
                     (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
                   </star-rating>

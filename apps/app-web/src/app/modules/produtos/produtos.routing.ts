@@ -13,7 +13,7 @@ export const routes: Routes = [
     path: ':id',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
-    data: { animation:'flip' }
+    data: { animation:'isLeft' }
   },
   {
     path: ':id/:orcamentoId',
