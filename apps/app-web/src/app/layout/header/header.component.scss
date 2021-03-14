@@ -180,7 +180,7 @@ a.nav-link:hover{
   }
 }
 .produtos-nav-under{
-  background-color: rgba(225, 225, 237,.5);
+  background-color: rgb(225 225 237 / 88%);
   height: 8px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
   top: 16px;
@@ -194,7 +194,10 @@ a.nav-link:hover{
   color:#666;
   font-size: 13px;
 }
-
+.border{
+  border-left: 0!important;
+  border-right: 0!important;
+}
 @media (min-width: 0px ) and (max-width: 1023px) {
 
   // .mat-toolbar {

@@ -38,6 +38,7 @@
     </li>
   </ul>
 </mat-toolbar>
+<div class="w-full py-0 shadow-light  z-index-top pos-sticky top-0">
 <div class="border shadow-light py-2 mat-toolbar"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
@@ -165,4 +166,5 @@
     [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'produtos-nav-under'">
   </mat-toolbar-row>
 
+</div>
 </div>

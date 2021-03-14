@@ -1,0 +1,38 @@
+a{
+    color: black;
+    padding: 10px;
+}
+.nav-icon.tile:first-of-type{
+    padding-left: 2rem;
+}
+navbaricon.nav-icon.tile{
+    cursor: pointer;
+    position: relative;
+    transition: .25s;
+}
+navbaricon.nav-icon.tile:hover{
+    top: 1px;
+}
+.nav-icon-p{
+    color: white;
+}
+a.active,a.Active{
+}
+a{
+  font-size: 10px;
+  font-weight: bold;
+  max-width: 100px;
+  border-radius: 50%;
+  height: 46px;
+  transition: all 0.2s ease;
+  width: 46px;
+}
+.border-white{
+    outline:1px solid #ccc;
+    outline-width: 0rem;
+}
+.active{
+    border-bottom: 1px yellow solid;
+    transition: .5s ease-in;
+    color: #222;
+}

@@ -110,7 +110,7 @@
               <div class="columns is-multiline is-vcentered pr-3">
                 <div class="column">
                   <div class="w-full pt-3 mb-0">
-                    <p><span>Selecione a quantidade</span></p>
+                    <p class="is-size-7 pt-2"><span class="is-size-7 pt-2">Selecione a quantidade</span></p>
                     <div class="field pb-0 mb-0">
                       <div class="control border is-large flex-c flex-m ">
                         <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -128,7 +128,7 @@
                     <div class="columns is-gapless pt-0 is-multiline">
 
                       <div class="column is-12-desktop  mb-5 is-12-mobile py-0">
-                        <p><span>Selecione uma cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
+                        <p class="is-size-7 pt-2"><span class="is-size-7 pt-2">Selecione uma cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                         <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" *ngIf="Produto?.Cores">
                           <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input class="px-2 py-2 mx-1" (click)="Produto.Cor=cor;"

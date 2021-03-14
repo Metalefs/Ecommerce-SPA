@@ -1,0 +1,5 @@
+
+<a [ngClass]="EstadoNav.pagina == Link? 'active' : ''" (click)="ChangeToThis()" [routerLink]="[Link]" href="#topo" routerLinkActive="Active" class="has-text-weight-semibold">
+    <i [ngClass]="EstadoNav.pagina == Link? Icon+' is-solid' : Icon"></i>
+    <a class="is-size-7 has-text-weight-semibold nav-icon-p">{{Titulo}}</a>
+</a>
