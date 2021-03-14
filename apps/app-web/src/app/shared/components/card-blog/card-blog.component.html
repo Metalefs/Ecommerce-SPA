@@ -1,7 +1,7 @@
 <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
   <mat-card *ngIf="CanView" class=" latest-blog">
     <a [routerLink]="['/blog/'+ Post.Titulo]" href="#topo" pageScroll>
-      <figure class="image is-square">
+      <figure class="image is-rounded">
         <img loading="lazy" mat-card-image [src]="Post?.FotoCapa" alt="blogpostimage">
       </figure>
     </a>

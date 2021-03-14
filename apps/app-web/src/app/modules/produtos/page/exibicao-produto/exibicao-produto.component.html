@@ -1,4 +1,4 @@
-<div class=" has-background-white bbr mb-3">
+<div class=" has-background-white-bis bbr mb-3">
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb my-3 py-3"></p-skeleton>
 </div>
@@ -185,6 +185,11 @@
                       class="share-button wp-btn border-light w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
                       {{textoAdicionar}}
                       <mat-icon>shopping_bag</mat-icon>
+                    </button>
+                    <button @fadeIn *ngIf="Produto" mat-raised-button
+                      [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+                      class="share-button button is-dark border-light w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                      Personalizar
                     </button>
                     <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
                       <mat-list-item *ngFor="let erro of Erros">

@@ -7,11 +7,11 @@ import { Select, Store } from '@ngxs/store';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CheckoutComponent } from '../../modules/checkout/page/checkout/checkout.component';
 
-import { Categoria, Orcamento, Produto, Sobre } from 'libs/data/src/lib/classes';
+import { Categoria, InformacoesContato, Orcamento, Produto, Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
-import { CategoriaState, NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
+import { CategoriaState, InformacoesContatoState, NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
 import { NavLinks, NavLinksRes } from '../../data/models/navlinks';
 
@@ -37,6 +37,7 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
 export class HeaderComponent implements OnInit {
   user: entities.Usuario;
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
+  @Select(InformacoesContatoState.ObterInformacoesContato) InfoContato$: Observable<InformacoesContato>;
   @Select(SobreState.IsSobreLoaded) IsSobreLoaded$;
   IsSobreLoadedSub: Subscription;
   links = NavLinksRes;

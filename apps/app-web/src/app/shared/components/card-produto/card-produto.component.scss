@@ -145,7 +145,7 @@ img{
   margin-bottom: 0;
 }
 .preco-produto{
-  color: #f05558;
+  // color: #f05558;
   font-size: 12px;
   &.linethr{
     font-size: small;
@@ -217,6 +217,13 @@ img{
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  &:hover{
+    .slideshow-container .slides:not(.link) {
+      &:hover{
+        background:  #e5e5e5 none repeat scroll 0% 0%
+      }
+    }
+  }
 }
 
 /* ----- Portfolio Filter Styling Ends ----- */
@@ -285,15 +292,16 @@ img{
 }
 .portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
   display: block;
-  position: absolute;
-  margin: 0 25%;
-  font-size: 14px;
-  width: 50%;
-  top: 35%;
-  box-shadow: 1px 1px 4px #d1d1d199;
-  border-radius: 1rem;
-  transition: all .25s;
-  opacity: .85;
+    position: absolute;
+    margin: 0 auto;
+    font-size: 12px;
+    width: 100%;
+    top: 20%;
+    box-shadow: 1px 1px 4px #d1d1d199;
+    border-radius: 0.5rem;
+    transition: all 0.25s;
+    opacity: 0.85;
+    z-index: 10;
   &:hover{
     opacity: 1;
   }

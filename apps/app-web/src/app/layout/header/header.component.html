@@ -1,10 +1,42 @@
-<mat-toolbar class="w-full dis-flex flex-m py-0 shadow-light flex-c a-i-c z-index-top">
+<mat-toolbar class="w-full dis-flex flex-sb py-0 shadow-light flex-c a-i-c z-index-top">
   <div class="w-full dis-flex flex-c flex-m flex-sb px-2" style="height: 60px;">
-
-    <a @fadeIn href="#" class="logo pb-4 m-l-60">
+    <a @fadeIn href="#" class="logo pb-4 m-l-30">
       <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
     </a>
+
   </div>
+  <ul class="level list-inline pr-30">
+    <li class="level-item px-2 has-text-centered">
+      <div>
+        <a class="title is-size-7"><i class="pi pi-mobile"></i> <span class="is-hidden-touch">{{(InfoContato$|async).Telefone}}</span></a>
+      </div>
+    </li>
+    <li class="level-item px-2 has-text-centered">
+      <div class="title is-size-7">
+         <div class="dropdown is-hidden-touch">
+           <a><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
+          <div class="dropdown-content right-0">
+            <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
+            <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>
+            <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
+            <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin"
+              [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
+            <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="level-item px-2 has-text-centered">
+      <div>
+        <a class="title is-size-7 " (click)="openCheckout()"><i class="pi pi-shopping-cart"></i> <span class="is-hidden-touch">Carrinho de compras</span></a>
+      </div>
+    </li>
+    <li class="level-item px-2 has-text-centered">
+      <div>
+        <a class=" is-size-7" [routerLink]="['checkout']"><i class="pi pi-reply"></i> <span class="is-hidden-touch">Finalizar pedido</span></a>
+      </div>
+    </li>
+  </ul>
 </mat-toolbar>
 <div class="border shadow-light py-2 mat-toolbar"
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
@@ -93,18 +125,18 @@
         </div>
 
         <div class="is-hidden-touch ml-4 m-r-30 ">
-          <div class="columns is-multiline is-vcentered">
+          <div class="columns is-mobile is-vcentered">
             <div class="column">
               <a mat-fab  mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
                 color="accent"
-                class="size4 boxshadow-none flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
+                class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
 
                 <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
                 <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
               </a>
             </div>
             <div class="column is-hidden-touch">
-              <p class="preco has-text-white" (click)="openCheckout()" *ngIf="(Orcamento$|async).Preco">
+              <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async).Preco">
                 R${{(Orcamento$|async).Preco.toFixed(2) || ''}}
               </p>
             </div>

@@ -5,7 +5,11 @@
 .container{
   max-width: 1290px;
 }
-
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
   background: #f7f7f8;
@@ -83,7 +87,7 @@
   border-left: 1px solid #ebebf1;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  color: #000;
+  color: #696d8c;
   // color: white;
   margin-left: 0;
   font-family: open sans, sans-serif !important;
@@ -189,7 +193,6 @@ a.nav-link:hover{
 .preco{
   color:#666;
   font-size: 13px;
-  font-family: 'Helvetica';
 }
 
 @media (min-width: 0px ) and (max-width: 1023px) {

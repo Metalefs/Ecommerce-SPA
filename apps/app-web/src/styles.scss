@@ -103,6 +103,7 @@ body, button, input, optgroup, select, textarea {
     height: 21vh !important;
   }
 }
+
 table td, table th {
   vertical-align: middle;
 }
@@ -138,6 +139,13 @@ a {
     & > .arrow-container.next{
       animation: showArr 1s ease forwards !important;
     }
+  }
+}
+.portfolio-item .slideshow-container .slides:not(.link) {
+  cursor: default;
+  filter: contrast(1.1) !important;
+  &:hover{
+    background:  #dedede none repeat scroll 0% 0%
   }
 }
 .slideshow-container .slick-dots li button{
@@ -479,7 +487,7 @@ canvas{
   border-radius: 4px;
 }
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
-  background-color: #ef383bd8;
+  background-color: #cf0003d8;
 }
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
   font-family: "Montserrat";
@@ -502,7 +510,6 @@ canvas{
   font-size: 22px;
   color:rgb(105, 109, 140);
   font-weight: 500;
-  font-family: 'Open sans';
 
 }
 .preco strong{
