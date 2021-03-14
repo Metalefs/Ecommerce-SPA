@@ -17,9 +17,9 @@ export class FactoryStepsComponent implements OnInit {
   EstadoNav = new EstadoNav();
   Opcoes:OpcaoNavbar[] = [
     new OpcaoNavbar("Inicio", "", "Home"),
-    new OpcaoNavbar("Produtos", "/produtos", "pi pi-checkbox"),
-    new OpcaoNavbar("Checkout", "/checkout", "pi pi-add-text"),
-    new OpcaoNavbar("Orcamento", "/orcamento", "pi pi-shopping-cart"),
+    new OpcaoNavbar("Produtos", "/produtos", "pi pi-shopping-cart"),
+    new OpcaoNavbar("Checkout", "/checkout", "pi pi-check"),
+    new OpcaoNavbar("Orcamento", "/orcamento", "pi pi-mobile"),
   ];
 
   ngOnInit(): void {

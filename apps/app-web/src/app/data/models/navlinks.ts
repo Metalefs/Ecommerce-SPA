@@ -11,6 +11,8 @@ export interface NavLink{
   name:string;
   href:string;
   icon?:string;
+  Picon?:string;
+  Micon?:string;
   group?:GrupoNavLink;
   options?:NavLinkOptions[];
 }
@@ -43,7 +45,7 @@ environment.production ? [
 export let NavLinksRes:NavLink[] =
 environment.production ? [
   {
-    name: "Institucional", href:"", icon:'home',group:GrupoNavLink.none,
+    name: "Institucional", href:"", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
     options:[
       {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
@@ -51,19 +53,20 @@ environment.production ? [
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
-  {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
+  {name: "Básicos",   href:"produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Orcamento",   href:"orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
+  {name: "Blog",      href:"blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
   {
-    name: "Institucional", href:"", icon:'home',group:GrupoNavLink.none,
+    name: "Institucional", href:"", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
     options:[
       {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
       {nome:"Serviços",link:`/servicos`,queryParams:{}},
+      {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
-  {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
+  {name: "Básicos",   href:"produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Orcamento",   href:"orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
+  {name: "Blog",      href:"blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ];

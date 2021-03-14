@@ -5,15 +5,15 @@
     </a>
 
   </div>
-  <ul class="level list-inline pr-30">
+  <ul class="level list-inline pr-30 w-full">
     <li class="level-item px-2 has-text-centered">
       <div>
-        <a class="title is-size-7"><i class="pi pi-mobile"></i> <span class="is-hidden-touch">{{(InfoContato$|async).Telefone}}</span></a>
+        <a class="title is-size-7"><i class="pi pi-mobile"></i> <span>{{(InfoContato$|async).Telefone}}</span></a>
       </div>
     </li>
     <li class="level-item px-2 has-text-centered">
       <div class="title is-size-7">
-         <div class="dropdown is-hidden-touch">
+         <div class="dropdown">
            <a><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
@@ -71,7 +71,8 @@
             <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
               class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
               routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
-              <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
+              <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
+              <i *ngIf="link.Picon" [class]="link.Picon"></i>
               {{link.name == "Básicos"? 'Produtos' : link.name}}
             </a>
           </ng-template>
