@@ -82,7 +82,8 @@
               <a (click)="SetActiveNav(link)" [routerLink]="link.href" pageScroll routerLinkActive="Active"
                 [ngClass]="(NavState$ |async).activeNav == link.name ? 'active-nav': ''"
                 class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
-                <mat-icon *ngIf="link.icon">{{link.icon}}</mat-icon>
+                <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
+                <i *ngIf="link.Picon" [class]="link.Picon"></i>
                 {{link.name == "Básicos"? 'Produtos' : link.name}}
               </a>
               <div class="dropdown-content has-background-white box">
@@ -97,19 +98,6 @@
       </div>
 
       <div class="my-0 dis-flex flex-r">
-
-        <div class="dropdown is-hidden-touch">
-          <a class="wrap-pic-cir boxshadow-none border-light w-full" mat-fab color="" title="Perfil">
-            <mat-icon>person_outline</mat-icon>
-          </a>
-          <div class="dropdown-content right-0">
-            <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
-            <a mat-menu-item *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
-            <a mat-menu-item *ngIf="user && user?.Tipo == TipoUsuario.admin"
-              [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
-            <a mat-menu-item *ngIf="user" (click)="Logout()">Sair</a>
-          </div>
-        </div>
 
         <div class="is-hidden-desktop ml-4 m-r-20">
           <a mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"

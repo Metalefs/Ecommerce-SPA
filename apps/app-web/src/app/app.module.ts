@@ -31,7 +31,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NgDialogAnimationService } from "ng-dialog-animation";
-
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [AppComponent],
   imports:
@@ -56,6 +56,7 @@ import { NgDialogAnimationService } from "ng-dialog-animation";
       measurementId: "G-DJB9B89GXD"
     }),
     AppRoutingModule,
+    NgxSpinnerModule,
     NgxsModule.forRoot(States),
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),

@@ -1,35 +1,37 @@
 <div id="INICIO" class="has-background-light pt-1">
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
-  <div class="tile is-ancestor">
-    <div class="tile is-4 is-vertical is-parent">
-      <div class="tile is-child box">
-        <a pageScroll
-        href="#TOPO"
-        [routerLink]="['/produtos/']"
-        routerLinkActive="router-link-active w-full"
-        class="w-full">
-        <button mat-flat-button class="bo-0 py-2 my-3 box w-full" color="accent">
-          Ver produtos
-        </button>
-      </a>
+  <div class="px-2">
+    <div class="tile is-ancestor">
+      <div class="tile is-4 is-vertical is-parent">
+        <div class="tile is-child box">
+          <a pageScroll
+          href="#topo"
+          [routerLink]="['/produtos/']"
+          routerLinkActive="router-link-active w-full"
+          class="w-full">
+          <button mat-flat-button class="bo-0 py-2 my-3 box w-full" color="accent">
+            Ver produtos
+          </button>
+        </a>
+        </div>
+        <div class="tile is-child box">
+          <a pageScroll
+          href="#topo"
+          [routerLink]="['/orcamento/']"
+          routerLinkActive="router-link-active w-full"
+          class="w-full">
+          <button mat-flat-button class="bo-0 py-2 mb-3 box hoverable w-full btn is-blue">
+            Orcamentos
+          </button>
+           </a>
+        </div>
       </div>
-      <div class="tile is-child box">
-        <a pageScroll
-        href="#TOPO"
-        [routerLink]="['/orcamento/']"
-        routerLinkActive="router-link-active w-full"
-        class="w-full">
-        <button mat-flat-button class="bo-0 py-2 mb-3 box hoverable w-full btn is-blue">
-          Orcamentos
-        </button>
-      </a>
-      </div>
-    </div>
-    <div class="tile is-parent">
-      <div class="tile is-child box">
-        <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
 
+        </div>
       </div>
     </div>
   </div>
@@ -37,31 +39,20 @@
     <div class="w-full px-3">
 
       <a pageScroll
-        href="#TOPO"
-        [routerLink]="['/produtos/']"
-        routerLinkActive="router-link-active w-full"
-        class="w-full">
-        <button mat-flat-button class="bo-0 py-2 my-3 box w-full" color="accent">
-          Ver produtos
-        </button>
-      </a>
+          href="#topo"
+          [routerLink]="['/orcamento/']"
+          routerLinkActive="router-link-active w-full"
+          class="w-full">
+          <button mat-flat-button class="bo-0 py-2 mb-3 box hoverable w-full btn is-blue">
+            Orcamentos
+          </button>
+           </a>
 
-      <a pageScroll
-        href="#TOPO"
-        [routerLink]="['/orcamento/']"
-        routerLinkActive="router-link-active w-full"
-        class="w-full">
-        <button mat-flat-button class="bo-0 py-2 mb-3 box hoverable w-full btn is-blue">
-          Orcamentos
-        </button>
-      </a>
     </div>
     <div class="bg-transp">
       <div class="">
 
-        <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
-
-        <div class="hero is-danger">
+        <div class="hero is-dark">
           <div class="hero-body pt-4">
             <p class="hero-title"></p>
             <section class="py-3" *ngIf="(Clientes$|async).length>0">

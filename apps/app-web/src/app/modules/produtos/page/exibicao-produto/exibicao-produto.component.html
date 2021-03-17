@@ -3,8 +3,8 @@
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb my-3 py-3"></p-skeleton>
 </div>
 <div class="section bbr">
-  <div class="margin bbr">
-    <div class=" has-background-white-bis bbr mb-3">
+  <div class="margin bbr box">
+    <div class="card pr-3 has-background-white-bis bbr mb-3">
       <div class="columns mt-3 bbr  " id="PRODUTO">
         <div class="column is-8 mb-0  top-0 pt-3">
           <!-- <mat-chip-list class="is-left">
@@ -193,7 +193,7 @@
                     </button>
                     <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
                       <mat-list-item *ngFor="let erro of Erros">
-                        <p class="subtitle is-size-6">*{{erro.erro}}</p>
+                        <p class="subtitle is-size-6 border">*{{erro.erro}}</p><hr>
                       </mat-list-item>
                     </mat-list>
                     <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c mx-2">

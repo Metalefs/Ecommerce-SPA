@@ -8,6 +8,7 @@
 .footer{
   @extend .z-top;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow-y: hidden;
 }
 .base{
   /* identical to box height */

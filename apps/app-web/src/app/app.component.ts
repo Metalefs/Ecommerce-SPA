@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 import { AdicionarListaProdutosFiltroProduto } from './data/store/actions/filtroproduto.actions';
 import { IntegracoesService } from './data/service';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare let gtag: Function;
 declare let Mercadopago: any;
 @Component({
@@ -39,6 +40,7 @@ export class AppComponent {
     private store: Store,
     private router: Router,
     private integracoesService: IntegracoesService,
+    private spinner: NgxSpinnerService
   ) {
       this.router.events.subscribe(event => {
          if(event instanceof NavigationEnd){
@@ -52,23 +54,26 @@ export class AppComponent {
   }
 
   LerServicosAPI(){
+
+
     this.store.dispatch(new LerCarousel()          ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
     this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerItemCarousel()      ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
     this.store.dispatch(new LerInformacoesContato()).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerCliente()           ).subscribe(
       x=>{
-        this.loading = false;
+        this.spinner.hide();
         this.carregandoOque = 'Clientes carregados'
       }
     );
-    this.store.dispatch(new LerSobre()             ).subscribe(x=>this.carregandoOque = '');
+    this.store.dispatch(new LerSobre()             ).subscribe(x=>this.carregandoOque = 'Serviços carregados');
     this.store.dispatch(new LerServico()           ).subscribe();
     this.store.dispatch(new LerCategoria()         ).subscribe();
     this.store.dispatch(new LerMensagem()          ).subscribe();
   }
 
   ngOnInit(){
+    this.spinner.show();
     AOS.init();
     this.LerServicosAPI();
     setTimeout(()=>{

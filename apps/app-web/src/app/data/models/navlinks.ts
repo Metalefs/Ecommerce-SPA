@@ -45,7 +45,7 @@ environment.production ? [
 export let NavLinksRes:NavLink[] =
 environment.production ? [
   {
-    name: "Institucional", href:"", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
+    name: "Institucional", href:"", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
     options:[
       {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
@@ -58,7 +58,7 @@ environment.production ? [
   {name: "Blog",      href:"blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
   {
-    name: "Institucional", href:"", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
+    name: "Institucional", href:"", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
     options:[
       {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
