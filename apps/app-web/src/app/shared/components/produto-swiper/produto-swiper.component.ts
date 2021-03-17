@@ -89,7 +89,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     lazy                   : true,
                     observer               : true,
                     spaceBetween           : 2,
-                    slidesPerView          : 3,
+                    slidesPerView          : 2,
                     roundLengths           : true,
                     parallax:true,
                     flip:true,
@@ -123,7 +123,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     preloadImages          : true,
                     lazy                   : true,
                     observer               : true,
-                    slidesPerView          : 3,
+                    slidesPerView          : 2,
                     navigation: {
                       nextEl: '.swiper-button-next',
                       prevEl: '.swiper-button-prev',

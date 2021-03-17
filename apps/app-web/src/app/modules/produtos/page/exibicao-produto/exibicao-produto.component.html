@@ -35,10 +35,10 @@
           <mat-tab-group class="is-hidden-touch">
             <mat-tab label="Informações">
               <div class=" py-3 px-3 border-light">
-                <div class="w-full columns ">
-                  <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
-                  <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+                <div class="w-full columns is-multiline">
+                  <div class="descricao-produto column is-12 " style="border-left: 1px solid #0000000a;"
                     [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+                  <div class="descricao-produto column is-12 " [innerHTML]="(el?.innerHTML)"></div>
                 </div>
               </div>
 
@@ -86,9 +86,9 @@
                   <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
                 </span>
                 <ul class="list-unstyled">
-                  <li>Modelo: {{Produto?.Modelo || ''}}</li>
-                  <li>Marca: {{Produto?.Marca || ''}}</li>
-                  <li>Disponibilidade: {{translateStatusProduto(Produto?.Status)}} - Sob orçamento</li>
+                  <li>Modelo: <span>{{Produto?.Modelo || ''}}</span></li>
+                  <li>Marca: <span>{{Produto?.Marca || ''}}</span></li>
+                  <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li>
                   </ul>
                 <div class="my-1 star-width dis-flex flex-w">
                   <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
