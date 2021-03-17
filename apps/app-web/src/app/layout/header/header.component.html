@@ -1,11 +1,11 @@
 <mat-toolbar class="w-full dis-flex flex-sb py-0 shadow-light flex-c a-i-c z-index-top">
-  <div class="w-full dis-flex flex-c flex-m flex-sb px-2" style="height: 60px;">
+  <div class="w-full dis-flex flex-m flex-l px-2" style="height: 60px;">
     <a @fadeIn href="#" class="logo pb-4 m-l-30">
       <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
     </a>
 
   </div>
-  <ul class="level list-inline pr-30 w-full">
+  <ul class="level list-inline pr-30">
     <li class="level-item px-2 has-text-centered">
       <div>
         <a class="title is-size-7"><i class="pi pi-mobile"></i> <span>{{(InfoContato$|async).Telefone}}</span></a>
@@ -43,9 +43,9 @@
   class="{{(NavState$ |async).activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async).activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
   <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
-    <div class="w-full dis-flex flex-c flex-m flex-sb py-2 px-2" style="height: 60px;">
+    <div class=" dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
 
-      <div class="columns mx-0 my-0 py-2 is-mobile">
+      <div class="columns mx-0 my-0 py-2 is-mobile is-gapless">
         <div class="column  is-2">
           <button mat-icon-button (click)="search = !search" class="has-background-white mx-1">
             <mat-icon>search</mat-icon>
@@ -112,8 +112,8 @@
         </div>
 
         <div class="is-hidden-desktop ml-4 m-r-20">
-          <a mat-fab mat-ripple [color]="" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
-            class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 m-b-3 m-t-3">
+          <a mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+            class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento pl-6 trans-04 m-b-3 m-t-3">
             <div class="columns line-height-small is-mobile">
 
             </div>
@@ -126,7 +126,7 @@
           </a>
         </div>
 
-        <div class="is-hidden-touch ml-4 m-r-30 ">
+        <div class="is-hidden-touch ml-4 ">
           <div class="columns is-mobile is-vcentered">
             <div class="column">
               <a mat-fab  mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
