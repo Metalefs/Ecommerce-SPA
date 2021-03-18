@@ -2,7 +2,7 @@
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   <div class="px-2">
-    <div class="tile is-ancestor">
+    <div class="tile is-ancestor of-x-scroll">
       <div class="tile is-4 is-vertical is-parent">
         <div class="tile is-child box">
           <a pageScroll
@@ -14,6 +14,15 @@
             Ver produtos
           </button>
         </a>
+        <a pageScroll
+        href="#topo"
+        [routerLink]="['/showcase/']"
+        routerLinkActive="router-link-active w-full"
+        class="w-full">
+        <button mat-flat-button class="bo-0 py-2 mb-3 box hoverable w-full btn is-blue">
+          Galeria
+        </button>
+         </a>
         </div>
         <div class="tile is-child box">
           <a pageScroll

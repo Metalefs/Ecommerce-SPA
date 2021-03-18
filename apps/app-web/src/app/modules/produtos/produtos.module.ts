@@ -21,6 +21,8 @@ import { ExibicaoArteProdutoComponent } from './page/dialogs/exibicao-arte-produ
 import { CostumizationComponent } from './page/dialogs/exibicao-arte-produto/costumization/costumization.component';
 import { StockImageComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/stock-image/stock-image.component';
 import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/importacao/importacao.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 @NgModule({
   declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent],
@@ -28,6 +30,7 @@ import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costum
     CommonModule,
     ProdutosPageRoutes,
     SharedModule,
+    NgxSliderModule,
     NgxPageScrollModule,
     NgxPageScrollCoreModule,
     FontAwesomeModule,

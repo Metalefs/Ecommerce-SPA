@@ -36,6 +36,39 @@
     <div class="column is-12-mobile is-hidden-mobile">
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div class="is-hidden-mobile  w-full">
+          <div class="w-full is-hidden-mobile">
+            <div class="w-full">
+              <p>Listar por</p>
+              <div class="w-full">
+                <span>Ordenação</span>
+                <p-dropdown
+                class="w-full"
+                [styleClass]="'border'"
+                [options]="ordertypes"
+                [(ngModel)]="activeOrderFilter"
+                (onChange)="atualizarFiltroAtivo()"
+                 optionLabel="name"
+                 optionValue="id"
+                 ></p-dropdown>
+              </div>
+              <mat-divider></mat-divider>
+              <p-dropdown
+                class="w-full"
+                [styleClass]="'border'"
+                [options]="orderLimit"
+                [(ngModel)]="activeOrderLimit"
+
+                (onChange)="atualizarFiltroAtivo()"
+                optionLabel="name"
+                optionValue="id"
+               ></p-dropdown>
+               <div>
+                 <mat-divider></mat-divider>
+                <span>Limite de preco</span>
+                <ngx-slider [(value)]="value"[(highValue)]="maxValue"  [options]="options"></ngx-slider>
+               </div>
+            </div>
+          </div>
           <mat-list class="w-full">
             <mat-toolbar>
               <h2 class="title is-5 texto-categorias">Categorias</h2>
@@ -96,26 +129,12 @@
                   </span>
               </div>
             </div>
-            <div class="column is-hidden-mobile">
-              <div class="w-full">
-                <div class="w-full">
-                  <p-dropdown
-                  class="w-full"
-                  [styleClass]="'border'"
-                  [options]="ordertypes"
-                  [(ngModel)]="activeOrderFilter"
-                  (onChange)="atualizarFiltroAtivo()"
-                   optionLabel="name"
-                   optionValue="id"
-                   ></p-dropdown>
-                </div>
-            </div>
-          </div>
+
         </div>
         <div *ngIf="total!=0" class="w-full dis-flex flex-sb is-hidden-mobile">
           <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
-          <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/limit))}}</span>
+          <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span>
           <mat-divider></mat-divider>
         </div>
         <p-skeleton *ngIf="total==0"></p-skeleton>

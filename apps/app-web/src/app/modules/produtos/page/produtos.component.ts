@@ -11,7 +11,6 @@ import { FiltroProduto } from '../../../data/models/filtroProduto';
 import { OrderType } from '../../../data/models/order-type';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
 import { EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
-import { LerProduto } from '../../../data/store/actions/produto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
 import { FiltroProdutoStateModel } from '../../../data/store/state/filtroproduto.state';
 import { ObterImagensCarousel } from '../../../helper/FileHelper';
@@ -22,6 +21,8 @@ import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { order, orderPreco } from '../../../helper/ObjHelper';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
+import { LabelType, Options } from '@angular-slider/ngx-slider';
+
 @Component({
   selector: 'personalizados-lopes-produtos',
   templateUrl: './produtos.component.html',
@@ -29,6 +30,22 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
   animations: [cardFlip,fade,slideInOut]
 })
 export class ProdutosComponent implements OnInit {
+  value: number = 1;
+  maxValue: number = 100;
+  options: Options = {
+    floor: 1,
+    ceil: 200,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return "<span>Minimo:</span> R$" + value;
+        case LabelType.High:
+          return "<span>Máximo:</span> R$" + value;
+        default:
+          return "";
+      }
+    }
+  };
   state = "flipped"
   defaultCategory = "Todos os produtos";
   CategoriaAtiva:Categoria;
@@ -49,7 +66,7 @@ export class ProdutosComponent implements OnInit {
   @ViewChild('carousel', { static: true }) carousel
 
   page:number = 1;
-  limit:number = 12;
+  activeOrderLimit:number = 10;
   total:number = 0;
 
   loading:boolean = false;
@@ -60,6 +77,12 @@ export class ProdutosComponent implements OnInit {
     {name:'nome (z-a)', id: TiposOrdenacao.nomeDesc},
     {name:'maior preço', id: TiposOrdenacao.preco},
     {name:'menor preço', id: TiposOrdenacao.precoDesc},
+  ]
+  orderLimit:OrderType[]= [
+    {name:'10 produtos por página', id: 10},
+    {name:'15 produtos por página', id: 15},
+    {name:'30 produtos por página', id: 30},
+    {name:'50 produtos por página', id: 50},
   ]
 
   constructor(
@@ -134,7 +157,7 @@ export class ProdutosComponent implements OnInit {
     this.fQuery.NomeCategoria  = this.CategoriaAtiva.Nome||"";
     if(this.page > 1)
       this.page =1;
-    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(async x=>{
+    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.activeOrderLimit).subscribe(async x=>{
       this.total = x.total;
       this.Produtos = x.items;
       switch(+this.activeOrderFilter){
@@ -176,11 +199,14 @@ export class ProdutosComponent implements OnInit {
   }
 
   filtroAtivo(produto:Produto){
-    if(this.matchSearchFilter(produto))
+    if(this.matchSearchFilter(produto) && this.matchPriceFilter(produto))
     return this.CategoriaAtiva?.Nome == this.defaultCategory
             ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
   }
-
+  matchPriceFilter(produto:Produto){
+    if(this.value)
+    return produto.Preco >= this.value && produto.Preco <= this.maxValue ;
+  }
   matchSearchFilter(produto:Produto){
     if(this.activeSearchFilter)
     return this.activeSearchFilter.length > 0 ?
@@ -216,7 +242,7 @@ export class ProdutosComponent implements OnInit {
   CarregarMaisProdutos(){
     this.page++;
     this.loading_more = true;
-    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.limit).subscribe(x=>{
+    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.activeOrderLimit).subscribe(x=>{
       this.total = x.total;
       x.items.forEach(item=>this.Produtos.push(item))
       this.loading_more = false;
