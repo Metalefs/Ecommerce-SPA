@@ -41,27 +41,28 @@
               <p>Listar por</p>
               <div class="w-full">
                 <span>Ordenação</span>
-                <p-dropdown
-                class="w-full"
-                [styleClass]="'border'"
-                [options]="ordertypes"
-                [(ngModel)]="activeOrderFilter"
-                (onChange)="atualizarFiltroAtivo()"
-                 optionLabel="name"
-                 optionValue="id"
-                 ></p-dropdown>
+               <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Página</mat-label>
+                <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
+                  <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
+                    <div class="box w-full" (click)="Produto.Tamanho = opt">
+                      <p>{{opt.name}}</p>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
               </div>
               <mat-divider></mat-divider>
-              <p-dropdown
-                class="w-full"
-                [styleClass]="'border'"
-                [options]="orderLimit"
-                [(ngModel)]="activeOrderLimit"
-
-                (onChange)="atualizarFiltroAtivo()"
-                optionLabel="name"
-                optionValue="id"
-               ></p-dropdown>
+               <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Página</mat-label>
+                <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
+                  <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
+                    <div class="box w-full" (click)="Produto.Tamanho = opt">
+                      <p>{{opt.name}}</p>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
                <div>
                  <mat-divider></mat-divider>
                 <span>Limite de preco</span>

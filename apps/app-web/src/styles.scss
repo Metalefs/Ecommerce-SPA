@@ -60,6 +60,9 @@ body {
 body, button, input, optgroup, select, textarea {
   font-family: 'Montserrat';
 }
+.button.is-small {
+  border-radius: 0!important ;
+}
 #jcont{
   --right:17px;
 }

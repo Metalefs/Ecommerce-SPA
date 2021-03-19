@@ -8,13 +8,13 @@
     <a class="button" (click)="addStockImg()" >Design</a>
     <a class="button" (click)="importFile()" >Importar</a>
   </div>
-  <div class="column is-10-desktop is-12-mobile box">
+  <div class="column is-10-desktop is-12-touch box">
     <figure>
       <img [src]="Produto.Imagem[0]"  class="prod-img">
     </figure>
     <canvas id="c" height="500" style="border:3px solid #131313"></canvas>
   </div>
-  <div class="column is-2 is-12-mobile">
+  <div class="column is-2 is-12-touch">
     <div class="item-selected dis-flex box">
       <p>Escolher Fontes e Cores</p>
       <div id='i-text' class="item-panel">
