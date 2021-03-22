@@ -13,20 +13,17 @@ export class RouteReuseService implements RouteReuseStrategy {
             return false;
         }
         let shouldReuse = false;
-        console.log('checking if this route should be re used or not', route);
         if (route.routeConfig.data) {
             route.routeConfig.data.reuse ? shouldReuse = true : shouldReuse = false;
         }
         return shouldReuse;
     }
     store(route: ActivatedRouteSnapshot, handler: DetachedRouteHandle): void {
-        console.log('storing handler');
         if (handler) {
             this.handlers[this.getUrl(route)] = handler;
         }
     }
     shouldAttach(route: ActivatedRouteSnapshot): boolean {
-        console.log('checking if it should be re attached');
         return !!this.handlers[this.getUrl(route)];
     }
     retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle {
@@ -48,7 +45,6 @@ export class RouteReuseService implements RouteReuseStrategy {
     getUrl(route: ActivatedRouteSnapshot): string {
         if (route.routeConfig) {
             const url = route.routeConfig.path;
-            console.log('returning url', url);
             return url;
         }
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID } from '@angular/core';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { entities } from '@personalizados-lopes/data';
@@ -25,6 +25,7 @@ import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 import { AutocompleteDropdownComponent } from '../../shared/components/autocomplete-dropdown/autocomplete-dropdown.component';
+import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
@@ -71,12 +72,15 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.Carregar();
-    this.router.events.subscribe(val => {
-      this.links.forEach(x=>{
-        if(x.href == this.route.replace("/",''))
-          this.SetActiveNav(x);
-      })
-    });
+    if(isPlatformBrowser(PLATFORM_ID)){
+
+      this.router.events.subscribe(val => {
+        this.links.forEach(x=>{
+          if(x.href == this.route.replace("/",''))
+            this.SetActiveNav(x);
+        })
+      });
+    }
     this.Orcamento$.subscribe(x=>{
       if(x.Produto.length > 1)
         this.carrinhoVazio = false;

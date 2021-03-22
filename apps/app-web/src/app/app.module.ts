@@ -29,7 +29,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NgDialogAnimationService } from "ng-dialog-animation";
-// import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { PageScrollService } from './data/service/page-scroll.service';
 import { WindowRef } from './data/service/window.service';
@@ -58,7 +58,7 @@ import { DocumentRef } from './data/service/document.service';
       measurementId: "G-DJB9B89GXD"
     }),
     AppRoutingModule,
-    // NgxSpinnerModule,
+    NgxSpinnerModule,
     NgxsModule.forRoot(States),
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),

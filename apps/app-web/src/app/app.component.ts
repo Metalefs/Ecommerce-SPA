@@ -16,7 +16,6 @@ import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
-import { AdicionarListaProdutosFiltroProduto } from './data/store/actions/filtroproduto.actions';
 import { IntegracoesService } from './data/service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { isPlatformBrowser } from '@angular/common';
@@ -45,15 +44,19 @@ export class AppComponent {
     @Inject(PLATFORM_ID) private platform: Object
 
   ) {
-      this.router.events.subscribe(event => {
-         if(event instanceof NavigationEnd){
-             gtag('config', 'UA-175817845-1',
-                {
-                  'page_path': event.urlAfterRedirects
-                }
-              );
-          }
-       });
+    if(isPlatformBrowser(PLATFORM_ID)){
+
+
+      // this.router.events.subscribe(event => {
+      //    if(event instanceof NavigationEnd){
+      //        gtag('config', 'UA-175817845-1',
+      //           {
+      //             'page_path': event.urlAfterRedirects
+      //           }
+      //         );
+      //     }
+      //  });
+    }
   }
 
   LerServicosAPI(){
@@ -83,10 +86,10 @@ export class AppComponent {
       this.carregandoOque += " ...carregando";
 
     },8000)
-    this.integracoesService.Ler().subscribe(x=>{
-      Mercadopago.setPublishableKey(x.public_key);
-    })
     if(isPlatformBrowser(PLATFORM_ID)){
+      this.integracoesService.Ler().subscribe(x=>{
+        Mercadopago.setPublishableKey(x.public_key);
+      })
 
       const element = document.createElement('link');
       element.href = 'lazy-style.css';
