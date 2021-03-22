@@ -5,6 +5,7 @@ import { Servico } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { cardFlip, fade } from '../../../animations';
 import { SobreCard } from '../../../data/models';
+import { DocumentRef } from '../../../data/service/document.service';
 import { ServicoState } from '../../../data/store/state';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 
@@ -25,12 +26,12 @@ export class ServicoComponent implements OnInit {
 
   IsServicoLoadedSub: Subscription;
 
-  constructor(@Inject(Document) private document: Document) {
+  constructor(private document: DocumentRef) {
 
   }
 
   LerServicosCarregados(){
-    let element:HTMLElement = this.document.createElement("div");
+    let element:HTMLElement = this.document.nativeDocument.createElement("div");
     this.Servico$.subscribe(x=>{
       console.log(x);
       x.forEach(servico =>{
@@ -38,7 +39,7 @@ export class ServicoComponent implements OnInit {
         element.querySelectorAll( 'oembed[url]' ).forEach( element => {
           // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
           // to discover the media.
-          const anchor = this.document.createElement( 'a' );
+          const anchor = this.document.nativeDocument.createElement( 'a' );
 
           anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
           anchor.className = 'embedly-card';

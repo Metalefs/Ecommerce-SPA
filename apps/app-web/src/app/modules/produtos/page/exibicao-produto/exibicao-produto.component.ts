@@ -31,6 +31,7 @@ import { MenuItem } from 'primeng/api';
 import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
+import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -78,7 +79,7 @@ export class ExibicaoProdutoComponent implements OnInit {
     private scrollService: PageScrollService,
     private servicoProduto:ProdutoService,
     private windowRef: WindowRef,
-    @Inject(Document) private document: Document
+    private document: DocumentRef
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -374,7 +375,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   }
 
   AdicionarDescricao(){
-    let element:HTMLElement = document.createElement("div");
+    let element:HTMLElement = this.document.nativeDocument.createElement("div");
 
     if(this.Produto){
 
@@ -382,7 +383,7 @@ export class ExibicaoProdutoComponent implements OnInit {
       element.querySelectorAll( 'oembed[url]' ).forEach( element => {
         // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
         // to discover the media.
-        const anchor = document.createElement( 'a' );
+        const anchor = this.document.nativeDocument.createElement( 'a' );
 
         anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
         anchor.className = 'embedly-card';
