@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -45,7 +44,7 @@ import { EditarPostComponent } from './page/editar-blog/dialogs/editar-post/edit
 
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarIntegracaoDialogComponent } from './page/editar-integracoes/dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
-import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
+// import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
 
@@ -80,7 +79,7 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
     EditarPostComponent,
     CriarPostComponent,
     EditarIntegracaoDialogComponent,
-    OrcamentoDetailComponent,
+    // OrcamentoDetailComponent,
   ],
   imports: [
     CommonModule,
@@ -111,7 +110,7 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
     EditarClientesComponent,
     EditarMensagemComponent,
     EditarBlogComponent,
-    OrcamentoDetailComponent,
+    // OrcamentoDetailComponent,
     EditorModule
   ]
 })

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Input, OnInit, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'personalizados-lopes-mercadopago-button',
@@ -11,6 +12,7 @@ export class MercadopagoButtonComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(isPlatformBrowser(PLATFORM_ID))
     this.loadScript();
   }
   loadScript() {

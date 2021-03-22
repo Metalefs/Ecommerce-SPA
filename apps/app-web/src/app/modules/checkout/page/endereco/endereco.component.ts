@@ -1,5 +1,6 @@
+import { isPlatformBrowser } from '@angular/common';
 import { IfStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -7,6 +8,7 @@ import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { Estado } from 'apps/app-web/src/app/data/models';
+import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { User } from 'firebase';
@@ -67,7 +69,8 @@ export class EnderecoComponent implements OnInit {
     private checkoutService: MercadoPagoCheckoutService,
     private integracoesService: IntegracoesService,
     private auth:AuthenticationService,
-    private router: Router
+    private router: Router,
+    private scrollService:PageScrollService
     ) { }
 
   ngOnInit(): void {
@@ -105,13 +108,8 @@ export class EnderecoComponent implements OnInit {
             this._init_point = result;
             this.Loading = false;
             this.Pagar = true;
-            (function smoothscroll() {
-              var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-              if (currentScroll > 0) {
-                window.requestAnimationFrame(smoothscroll);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
-              }
-            })();
+            if(isPlatformBrowser(PLATFORM_ID))
+              this.scrollService.scrollDown()
           });
         });
       });

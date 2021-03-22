@@ -33,11 +33,13 @@ import { environment } from '../environments/environment';
 import { NgDialogAnimationService } from "ng-dialog-animation";
 import { NgxSpinnerModule } from "ngx-spinner";
 
+import { PageScrollService } from './data/service/page-scroll.service';
+
 @NgModule({
   declarations: [AppComponent],
   imports:
   [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,
@@ -71,8 +73,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: Document },
+    { provide: Location },
     { provide: AngularFireStorage },
     { provide: ProdutoService },
+    { provide: PageScrollService },
     { provide: SobreService },
     { provide: OrcamentoService },
     { provide: EmailNotificacaoService },

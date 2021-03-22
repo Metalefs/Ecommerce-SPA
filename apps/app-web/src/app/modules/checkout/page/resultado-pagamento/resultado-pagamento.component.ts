@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
@@ -12,6 +12,8 @@ import { MercadoPagoCheckoutService, IntegracoesService, ProdutoService } from '
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
 import { EditarProduto, IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { duration } from 'moment';
+import { isPlatformBrowser } from '@angular/common';
+import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -33,6 +35,7 @@ export class ResultadoPagamentoComponent implements OnInit {
     private snack: MatSnackBar,
     private checkoutService: MercadoPagoCheckoutService,
     private integracoesService: IntegracoesService,
+    private scrollService:PageScrollService,
     private store:Store) { }
 
   ngOnInit(): void {
@@ -114,14 +117,8 @@ export class ResultadoPagamentoComponent implements OnInit {
         setTimeout(()=>{
           this.Finalizado = true;
           localStorage.setItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento,"true");
-          (function smoothscroll() {
-            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            if (currentScroll > 0) {
-                window.requestAnimationFrame(smoothscroll);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
-            }
-          }
-          )();
+          if(isPlatformBrowser(PLATFORM_ID))
+            this.scrollService.scrollDown();
 
           this.Loading = false;
           this.Orcamento.Status = StatusOrcamento.enviado;
@@ -157,13 +154,8 @@ export class ResultadoPagamentoComponent implements OnInit {
         this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
           this._init_point = result;
           this.Loading = false;
-          (function smoothscroll() {
-            var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            if (currentScroll > 0) {
-                window.requestAnimationFrame(smoothscroll);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
-            }
-          })();
+          if(isPlatformBrowser(PLATFORM_ID))
+            this.scrollService.scrollDown();
         })
         else{
           this.snack.open("Carrinho inválido, tente finalizar o pedido no carrinho novamente para concluir o pagamento.","fechar",{

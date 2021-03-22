@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SobreCard } from 'apps/app-web/src/app/data/models';
 import { ImagemService } from 'apps/app-web/src/app/data/service';
-import { ObterGIFProdutos } from 'apps/app-web/src/app/helper/FileHelper';
+
 @Component({
   selector: 'personalizados-lopes-header-footer',
   templateUrl: './header-footer.component.html',
@@ -10,7 +11,7 @@ import { ObterGIFProdutos } from 'apps/app-web/src/app/helper/FileHelper';
 export class HeaderFooterComponent implements OnInit {
   Cards:SobreCard[];
   loading:boolean = true;
-  constructor(private imagemService:ImagemService) {
+  constructor(@Inject(PLATFORM_ID) private platform: Object, private imagemService:ImagemService, private document: Document) {
 
   }
   ngOnInit(): void {
@@ -48,13 +49,16 @@ export class HeaderFooterComponent implements OnInit {
         },
       ]
       let elements = [];
-      setTimeout(()=>{
-          // elements.push(window.document.getElementById("yellow"));
-          elements.push(window.document.getElementById("red"));
-          elements.push(window.document.getElementById("blue"));
-          // elements.push(window.document.getElementsByClassName("yellow"))
-          elements.push(window.document.getElementsByClassName("red"))
-          elements.push(window.document.getElementsByClassName("blue"))
+
+      let timer=500;
+      if(isPlatformBrowser(PLATFORM_ID)) {
+        setTimeout(()=>{
+          elements.push(this.document.getElementById("yellow"));
+          elements.push(this.document.getElementById("red"));
+          elements.push(this.document.getElementById("blue"));
+          elements.push(this.document.getElementsByClassName("yellow"))
+          elements.push(this.document.getElementsByClassName("red"))
+          elements.push(this.document.getElementsByClassName("blue"))
           elements.forEach(el=>{
 
             if(el.length){
@@ -68,29 +72,31 @@ export class HeaderFooterComponent implements OnInit {
 
           })
         },500);
-        let timer=500;
-        function toggleActive(el){
-          setTimeout(()=>{
-            if(el.classList.contains("active") && !el.classList.contains("inactive")){
-              el.classList.remove("active");
 
-            }
+      }
+      function toggleActive(el){
+        setTimeout(()=>{
+          if(el.classList.contains("active") && !el.classList.contains("inactive")){
+            el.classList.remove("active");
+
+          }
+          else
+          el.classList.add("active");
+        },timer)
+        timer+=500;
+      }
+      function toggleActiveArr(el){
+        setTimeout(()=>{
+          el.forEach(item=>{
+            if(item.classList.contains("active") && !item.classList.contains("inactive"))
+              item.classList.remove("active");
             else
-            el.classList.add("active");
-          },timer)
-          timer+=500;
-        }
-        function toggleActiveArr(el){
-          setTimeout(()=>{
-            el.forEach(item=>{
-              if(item.classList.contains("active") && !item.classList.contains("inactive"))
-                item.classList.remove("active");
-              else
-              item.classList.add("active");
-            })
-          },timer)
-          timer+=500;
-        }
+            item.classList.add("active");
+          })
+        },timer)
+        timer+=500;
+      }
+
     })
 
 

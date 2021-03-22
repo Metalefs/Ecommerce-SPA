@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { ComentarioProduto, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { EditarProduto, GostarProduto, IncrementarVisualizacoesProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { GostarProduto, IncrementarVisualizacoesProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
 import { Observable, pipe, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -25,9 +25,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { fade } from 'apps/app-web/src/app/animations';
-import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
+// import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
 import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/components/produto-swiper/produto-swiper.component';
 import { MenuItem } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
+import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -62,6 +64,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   Comentarios:Comentario[] = [];
   mobile:boolean;
   constructor(
+    @Inject(PLATFORM_ID) private platform: Object,
     breakpointObserver: BreakpointObserver,
     private gallery: Gallery,
     private activeRoute:ActivatedRoute,
@@ -70,7 +73,10 @@ export class ExibicaoProdutoComponent implements OnInit {
     public dialog: MatDialog,
     private ComentarioProdutoService: ComentarioProdutoService,
     private snack: MatSnackBar,
-    private servicoProduto:ProdutoService
+    private scrollService: PageScrollService,
+    private servicoProduto:ProdutoService,
+    private location : Location,
+    @Inject(Document) private document: Document
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -105,18 +111,15 @@ export class ExibicaoProdutoComponent implements OnInit {
 
     if(this.Produto?.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
-    this.Url = `https://${window.location.href}`;
+
+    if(isPlatformBrowser(PLATFORM_ID))
+    this.Url = `https://${location.href}`;
+
     if(this.Produto?.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
 
-
-    (function smoothscroll() {
-      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      if (currentScroll > 0) {
-          window.requestAnimationFrame(smoothscroll);
-          window.scrollTo(0, currentScroll - (currentScroll / 8));
-      }
-    })();
+    if(isPlatformBrowser(PLATFORM_ID))
+      this.scrollService.scrollTop();
   }
 
   SelecionarTamanho(tamanho:string){
@@ -168,25 +171,25 @@ export class ExibicaoProdutoComponent implements OnInit {
     return Erros;
   }
   AbrirModalArte(){
-    let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
-      data:this.Produto,
-      panelClass:['animate__animated','animate__bounceIn', 'border']
-    })
-    dialogref.afterClosed().subscribe(x=>{
-      if(x.Canvas){
-        console.log(x,this.Produto);
-        if(this.Produto.Arte){
-          if(!this.orcamentoId){
-            this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
-              this.orcamentoId = x.codOrcamento;
-            });
-          }else{
-            this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
-          }
-          this.navegarParaCheckout();
-        }
-      }
-    })
+    // let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
+    //   data:this.Produto,
+    //   panelClass:['animate__animated','animate__bounceIn', 'border']
+    // })
+    // dialogref.afterClosed().subscribe(x=>{
+    //   if(x.Canvas){
+    //     console.log(x,this.Produto);
+    //     if(this.Produto.Arte){
+    //       if(!this.orcamentoId){
+    //         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
+    //           this.orcamentoId = x.codOrcamento;
+    //         });
+    //       }else{
+    //         this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+    //       }
+    //       this.navegarParaCheckout();
+    //     }
+    //   }
+    // })
   }
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{
@@ -282,8 +285,8 @@ export class ExibicaoProdutoComponent implements OnInit {
     this.InformacoesContato$.subscribe(x=>{
       let Whatsapp = x.Whatsapp;
       let Mensagem = `Olá, gostaria de ter mais informações sobre *${this.Produto.Nome}* ${this.Url}`;
-
-      window.open( `https://wa.me/${Whatsapp}?text=${Mensagem}`, "_blank");
+      if(isPlatformBrowser(PLATFORM_ID))
+        window.open( `https://wa.me/${Whatsapp}?text=${Mensagem}`, "_blank");
     })
   }
   orcamentoId:string;

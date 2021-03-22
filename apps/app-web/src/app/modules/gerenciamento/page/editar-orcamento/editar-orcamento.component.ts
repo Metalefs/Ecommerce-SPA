@@ -1,14 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Select, Store } from '@ngxs/store';
-import { EditarOrcamento, RemoverOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
-import { StatusOrcamento } from 'libs/data/src/lib/enums';
-import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -32,7 +28,7 @@ export class EditarOrcamentoComponent implements OnInit {
   ];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private store:Store, private snack:MatSnackBar) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.Orcamentos$.subscribe(x=>{

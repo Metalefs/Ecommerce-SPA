@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
+import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -10,16 +12,11 @@ import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private scrollService:PageScrollService) { }
 
   ngOnInit(): void {
-    (function smoothscroll() {
-      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
-      if (currentScroll > 0) {
-          window.requestAnimationFrame(smoothscroll);
-          window.scrollTo(0, currentScroll - (currentScroll / 8));
-      }
-    })();
+    if(isPlatformBrowser(PLATFORM_ID))
+      this.scrollService.scrollDown();
   }
 
   prepareRoute(outlet: RouterOutlet) {

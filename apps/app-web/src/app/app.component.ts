@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import AOS from 'aos'
 
@@ -19,6 +19,7 @@ import { NavigationEnd } from '@angular/router';
 import { AdicionarListaProdutosFiltroProduto } from './data/store/actions/filtroproduto.actions';
 import { IntegracoesService } from './data/service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { isPlatformBrowser } from '@angular/common';
 declare let gtag: Function;
 declare let Mercadopago: any;
 @Component({
@@ -40,7 +41,9 @@ export class AppComponent {
     private store: Store,
     private router: Router,
     private integracoesService: IntegracoesService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    @Inject(PLATFORM_ID) private platform: Object
+
   ) {
       this.router.events.subscribe(event => {
          if(event instanceof NavigationEnd){
@@ -83,10 +86,13 @@ export class AppComponent {
     this.integracoesService.Ler().subscribe(x=>{
       Mercadopago.setPublishableKey(x.public_key);
     })
-    const element = document.createElement('link');
-    element.href = 'lazy-style.css';
-    element.rel = 'stylesheet';
-    document.body.appendChild(element);
+    if(isPlatformBrowser(PLATFORM_ID)){
+
+      const element = document.createElement('link');
+      element.href = 'lazy-style.css';
+      element.rel = 'stylesheet';
+      document.body.appendChild(element);
+    }
   }
 
   dismissCookieLaw(){

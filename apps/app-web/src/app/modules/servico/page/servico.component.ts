@@ -1,13 +1,10 @@
-import { IfStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Servico } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
-import { async } from 'rxjs/internal/scheduler/async';
-import { tap } from 'rxjs/operators';
 import { cardFlip, fade } from '../../../animations';
 import { SobreCard } from '../../../data/models';
-import { LerServico } from '../../../data/store/actions/servico.actions';
 import { ServicoState } from '../../../data/store/state';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 
@@ -28,12 +25,12 @@ export class ServicoComponent implements OnInit {
 
   IsServicoLoadedSub: Subscription;
 
-  constructor(private store: Store ) {
+  constructor(private document: Document) {
 
   }
 
   LerServicosCarregados(){
-    let element:HTMLElement = document.createElement("div");
+    let element:HTMLElement = this.document.createElement("div");
     this.Servico$.subscribe(x=>{
       console.log(x);
       x.forEach(servico =>{
@@ -41,7 +38,7 @@ export class ServicoComponent implements OnInit {
         element.querySelectorAll( 'oembed[url]' ).forEach( element => {
           // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
           // to discover the media.
-          const anchor = document.createElement( 'a' );
+          const anchor = this.document.createElement( 'a' );
 
           anchor.setAttribute( 'href', element.getAttribute( 'url' ) );
           anchor.className = 'embedly-card';
@@ -66,6 +63,7 @@ export class ServicoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(isPlatformBrowser(PLATFORM_ID))
     this.LerServicosCarregados();
     setTimeout(()=>{
       this.flip()

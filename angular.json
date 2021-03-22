@@ -15,7 +15,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/app-web",
+            "outputPath": "dist/app-web/browser",
             "index": "apps/app-web/src/index.html",
             "main": "apps/app-web/src/main.ts",
             "polyfills": "apps/app-web/src/polyfills.ts",
@@ -98,7 +98,8 @@
           "options": {
             "tsConfig": [
               "apps/app-web/tsconfig.app.json",
-              "apps/app-web/tsconfig.spec.json"
+              "apps/app-web/tsconfig.spec.json",
+              "apps/app-web/tsconfig.server.json"
             ],
             "exclude": ["**/node_modules/**", "!apps/app-web/**/*"]
           }
@@ -108,6 +109,54 @@
           "options": {
             "jestConfig": "apps/app-web/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/app-web/server",
+            "main": "apps/app-web/server.ts",
+            "tsConfig": "apps/app-web/tsconfig.server.json",
+            "externalDependencies": ["@firebase/firestore","fabric","grpc","@grpc/proto-loader"]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/app-web/src/environments/environment.ts",
+                  "with": "apps/app-web/src/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "app-web:build",
+            "serverTarget": "app-web:server"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app-web:build:production",
+              "serverTarget": "app-web:server:production"
+            }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "app-web:build:production",
+            "serverTarget": "app-web:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
