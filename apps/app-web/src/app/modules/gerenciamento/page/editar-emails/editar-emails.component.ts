@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTable } from '@angular/material/table';
 import { entities } from '@personalizados-lopes/data';
 import { EmailNotificacaoService } from 'apps/app-web/src/app/data/service';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
@@ -9,7 +9,8 @@ import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/comp
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
 import { EmailNotificacao } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
+declare var require: any
+
 @Component({
   selector: 'personalizados-lopes-editar-emails',
   templateUrl: './editar-emails.component.html',
@@ -20,10 +21,20 @@ export class EditarEmailsComponent implements OnInit {
   emailTable:MaterialTable;
   emails:any;
   Loading:boolean = true;
-  public Editor = ClassicEditor;
-  constructor(private service:EmailNotificacaoService,
+  public Editor;
+  isBrowser = false;
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: any,
+    private service:EmailNotificacaoService,
     private dialog: MatDialog,
-    private _snackBar: MatSnackBar) { }
+    private _snackBar: MatSnackBar) {
+      this.isBrowser = isPlatformBrowser(platformId);
+      if (this.isBrowser) {
+         const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+         this.Editor = ClassicEditor;
+
+      }
+     }
 
   AtualizarTabela(){
     this.service.Ler().subscribe((x : entities.EmailNotificacao[])=>{

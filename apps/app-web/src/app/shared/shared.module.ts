@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MaterialModule } from './material.module';
-import { PrimeNgModule } from './primeng.module';
-import { Routes, RouterModule } from '@angular/router';
+
+import { RouterModule } from '@angular/router';
 import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask'
@@ -90,7 +90,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CommonModule,
     FontAwesomeModule,
     MaterialModule,
-    PrimeNgModule,
     DynamicFormModule,
     LoginFormModule,
     FormsModule,
@@ -121,7 +120,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CommonModule,
     FontAwesomeModule,
     MaterialModule,
-    PrimeNgModule,
     DynamicFormModule,
     LoginFormModule,
     FormsModule,

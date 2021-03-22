@@ -35,15 +35,7 @@
           <span class="is-hidden-touch"><i class="pi pi-shopping-cart"></i>Carrinho de compras</span></a>
           <div class="is-hidden-touch ml-4 ">
             <div class="columns is-mobile is-vcentered">
-              <!-- <div class="column">
-                <a mat-fab  mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
-                  color="accent"
-                  class="size4 flex-c-m how-social shadow-light orcamento trans-04 m-b-3 m-t-3">
 
-                  <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-                  <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
-                </a>
-              </div> -->
               <div class="column is-hidden-touch">
                 <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async).Preco">
                   R${{(Orcamento$|async).Preco.toFixed(2) || ''}}

@@ -22,7 +22,7 @@ import { CostumizationComponent } from './page/dialogs/exibicao-arte-produto/cos
 import { StockImageComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/stock-image/stock-image.component';
 import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/importacao/importacao.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
-
+import { PrimeNgModule } from '../../shared/primeng.module';
 
 @NgModule({
   declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent],
@@ -38,6 +38,7 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ShareModule,
     ShareButtonModule,
     ShareIconsModule,
+    PrimeNgModule
   ],
   exports: [
     FontAwesomeModule,

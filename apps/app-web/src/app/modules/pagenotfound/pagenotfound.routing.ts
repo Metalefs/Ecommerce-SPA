@@ -4,7 +4,7 @@ import { PagenotfoundComponent } from './page/pagenotfound/pagenotfound.componen
 
 export const routes: Routes = [
   {
-    path: 'pagenotfound',
+    path: '',
     component: PagenotfoundComponent,
     pathMatch: 'full',
     data: { animation:'isLeft' }

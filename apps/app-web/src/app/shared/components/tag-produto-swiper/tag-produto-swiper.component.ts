@@ -1,14 +1,12 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { entities } from '@personalizados-lopes/data';
+
 import { Produto } from 'libs/data/src/lib/classes';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProdutoService } from '../../../data/service';
-import { ProdutoState } from '../../../data/store/state';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 
 @Component({

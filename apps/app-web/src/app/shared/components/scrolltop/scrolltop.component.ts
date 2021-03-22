@@ -7,6 +7,8 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 
+import { WindowRef } from '../../../data/service/window.service';
+
 @Component({
   selector: 'personalizados-lopes-scroll-top',
   templateUrl: './scrolltop.component.html',
@@ -14,14 +16,14 @@ import {
 })
 export class ScrolltopComponent implements OnInit {
   windowScrolled: boolean;
-  constructor(@Inject(PLATFORM_ID) private platform: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platform: Object,private windowRef: WindowRef) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     if (isPlatformBrowser(PLATFORM_ID)) {
-      if (window.pageYOffset >= 600) {
+      if (this.windowRef.nativeWindow.pageYOffset >= 600) {
         this.windowScrolled = true;
-      } else if (this.windowScrolled && window.pageYOffset <= 600) {
+      } else if (this.windowScrolled && this.windowRef.nativeWindow.pageYOffset <= 600) {
         this.windowScrolled = false;
       }
     }
@@ -32,8 +34,8 @@ export class ScrolltopComponent implements OnInit {
         var currentScroll =
           document.documentElement.scrollTop || document.body.scrollTop;
         if (currentScroll > 0) {
-          window.requestAnimationFrame(smoothscroll);
-          window.scrollTo(0, currentScroll - currentScroll / 8);
+          this.windowRef.nativeWindow.requestAnimationFrame(smoothscroll);
+          this.windowRef.nativeWindow.scrollTo(0, currentScroll - currentScroll / 8);
         }
       })();
   }

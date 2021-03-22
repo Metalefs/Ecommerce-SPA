@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { LayoutModule } from './layout/layout.module';
-import { UnderConstructionModule } from './modules/under-construction/under-construction.module';
-
-import { PagenotfoundModule } from './modules/pagenotfound/pagenotfound.module';
+// import { UnderConstructionModule } from './modules/under-construction/under-construction.module';
 
 const routes: Routes = [
   {
@@ -15,6 +13,10 @@ const routes: Routes = [
   {
     path: 'inicio',
     loadChildren: () => import('./modules/inicio/inicio.module').then(m => m.InicioModule)
+  },
+  {
+    path: 'pagenotfound',
+    loadChildren: () => import('./modules/pagenotfound/pagenotfound.module').then(m => m.PagenotfoundModule)
   },
   {
     path: 'login',
@@ -63,16 +65,12 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
-}),
+  }),
     LayoutModule,
-    UnderConstructionModule,
-    PagenotfoundModule
   ],
   exports: [
     RouterModule,
     LayoutModule,
-    UnderConstructionModule,
-    PagenotfoundModule
   ],
 
 })

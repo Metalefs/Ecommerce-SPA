@@ -1,6 +1,6 @@
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, Injectable, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
@@ -31,9 +31,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NgDialogAnimationService } from "ng-dialog-animation";
-import { NgxSpinnerModule } from "ngx-spinner";
+// import { NgxSpinnerModule } from "ngx-spinner";
 
 import { PageScrollService } from './data/service/page-scroll.service';
+import { WindowRef } from './data/service/window.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -59,7 +60,7 @@ import { PageScrollService } from './data/service/page-scroll.service';
       measurementId: "G-DJB9B89GXD"
     }),
     AppRoutingModule,
-    NgxSpinnerModule,
+    // NgxSpinnerModule,
     NgxsModule.forRoot(States),
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
@@ -72,6 +73,7 @@ import { PageScrollService } from './data/service/page-scroll.service';
     NgDialogAnimationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: WindowRef },
     { provide: Document },
     { provide: Location },
     { provide: AngularFireStorage },

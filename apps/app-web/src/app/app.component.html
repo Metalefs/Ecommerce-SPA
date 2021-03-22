@@ -2,7 +2,7 @@
   <div >
     <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
   </div>
-  <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction>
+  <!-- <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction> -->
   <cookie-law #cookieLaw position="bottom"
   name="ng4topCookieLaw" expiration="1"
   class="px-3 mx-3 my-3 flex-m has-text-centered bg-transp z-index-top shadow-light pt-0 txt-center w-half a-i-c m-lr-auto">
@@ -17,5 +17,5 @@
 </cookie-law>
 </ng-container>
 <personalizados-lopes-loading-cube *ngIf="loading" [Mensagem]="carregandoOque"></personalizados-lopes-loading-cube>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > {{carregandoOque}} </p></ngx-spinner>
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > {{carregandoOque}} </p></ngx-spinner> -->
 

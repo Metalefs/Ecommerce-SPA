@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
 import { Location } from "@angular/common";
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,17 +17,15 @@ import { NavLinks, NavLinksRes } from '../../data/models/navlinks';
 
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Link } from '../../data/models';
-import { ConfirmacaoComponent } from '../../modules/checkout/page/confirmacao/confirmacao.component';
 import { CheckoutDisplayComponent } from '../../shared/components/dialogs/checkout-display/checkout-display.component';
 import { LoginComponent } from '../../modules/login/page/login.component';
 import { fade, slideInOut } from '../../animations';
 import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
-import { EditarCategoria } from '../../data/store/actions/categoria.actions';
 import { CategoriaService } from '../../data/service';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
-
+import { AutocompleteDropdownComponent } from '../../shared/components/autocomplete-dropdown/autocomplete-dropdown.component';
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
@@ -58,13 +56,21 @@ export class HeaderComponent implements OnInit {
   constructor(
     private AuthenticationService:AuthenticationService,
     private location: Location, private router: Router,
-    private ativatedRoute: ActivatedRoute,
+    private viewContainerRef: ViewContainerRef,
+    private cfr: ComponentFactoryResolver,
     private store: Store,
     public dialog: NgDialogAnimationService,
     private ServicoCategoria: CategoriaService
     ) {
 
   }
+  // async getAutoComplete() {
+  //   this.viewContainerRef.clear();
+  //   const { AutocompleteDropdownComponent } = await import('../../shared/components/autocomplete-dropdown/autocomplete-dropdown.component');
+  //   this.viewContainerRef.createComponent(
+  //     this.cfr.resolveComponentFactory(AutocompleteDropdownComponent)
+  //   );
+  // }
 
   ngOnInit(): void {
     this.Carregar();

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
-import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { fade } from '../../../animations';
 import { AdicionarOrcamento } from '../../../data/store/actions/orcamento.actions';

@@ -16,7 +16,7 @@ import { GerenciamentoComponent } from './page/gerenciamento.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
-// import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
+import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 
 
 export const routes: Routes = [
@@ -40,7 +40,7 @@ export const routes: Routes = [
       {
         path: "pedidos/:id",
         pathMatch: 'full',
-        // component: OrcamentoDetailComponent,
+        component: OrcamentoDetailComponent,
         data: { animation:'isRight' }
       },
       {
