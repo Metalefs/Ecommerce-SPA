@@ -2,64 +2,10 @@
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb my-3 py-3"></p-skeleton>
 </div>
-<div class="section bbr">
+<div class="section bbr pt-2">
   <div class="margin bbr box">
-    <div class="card pr-3 has-background-white-bis bbr mb-3">
-      <div class="columns mt-3 bbr  " id="PRODUTO">
-        <div class="column is-7 mb-0  top-0 pt-3">
-          <!-- <mat-chip-list class="is-left">
-            <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
-          </mat-chip-list> -->
-          <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
-
-          <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
-            [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
-            [dots]="true"
-            [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
-          </gallery>
-          <!-- <div class="prod-disclaimer box">
-            <i class="pi pi-shopping-cart"></i>
-            Produto personalizado com a sua estampa!
-            <span>@Personalizadoslopes</span>
-          </div> -->
-          <div class="column pt-0 mt-0 is-hidden-touch">
-            <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
-            </share-button>
-            <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
-            </share-button>
-            <!-- <a href="#desc" pageScroll pageScrollDuration="5000" class="border" mat-flat-button *ngIf="Produto?.Descricao?.length > 0">
-              Mais informações
-              <mat-icon>keyboard_arrow_down</mat-icon>
-            </a> -->
-          </div>
-          <mat-tab-group class="is-hidden-touch">
-            <mat-tab label="Informações">
-              <div class=" py-3 px-3 border-light">
-                <div class="w-full columns is-multiline">
-                  <div class="descricao-produto column is-12 " style="border-left: 1px solid #0000000a;"
-                    [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
-                  <div class="descricao-produto column is-12 " [innerHTML]="(el?.innerHTML)"></div>
-                </div>
-              </div>
-
-            </mat-tab>
-            <mat-tab label="Avaliações">
-              <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-                <div class="z-index-2 px-2 py-2 my-6">
-                  <div class="mx-2">
-                    <div class="w-full">
-                      <p>Você já tem este produto?</p>
-                      <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-                    </div>
-                    <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-                    <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-                  </div>
-                </div>
-                <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
-              </div>
-            </mat-tab>
-          </mat-tab-group>
-        </div>
+    <div class="card pr-3 pl-2 has-background-white-bis bbr mb-3">
+      <div class="columns reverse-col-mobile mt-3 bbr  " id="PRODUTO">
 
         <div class="column is-5 has-background-white bbr">
 
@@ -295,6 +241,61 @@
             <img src="{{Produto?.Imagem[0]}}" alt="">
           </figure>
         </div>
+        <div class="column is-7 mb-0  top-0 pt-3">
+          <!-- <mat-chip-list class="is-left">
+            <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
+          </mat-chip-list> -->
+          <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
+
+          <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
+            [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
+            [dots]="true"
+            [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
+          </gallery>
+          <!-- <div class="prod-disclaimer box">
+            <i class="pi pi-shopping-cart"></i>
+            Produto personalizado com a sua estampa!
+            <span>@Personalizadoslopes</span>
+          </div> -->
+          <div class="column pt-0 mt-0 is-hidden-touch">
+            <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+            </share-button>
+            <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+            </share-button>
+            <!-- <a href="#desc" pageScroll pageScrollDuration="5000" class="border" mat-flat-button *ngIf="Produto?.Descricao?.length > 0">
+              Mais informações
+              <mat-icon>keyboard_arrow_down</mat-icon>
+            </a> -->
+            <mat-tab-group class="is-hidden-touch">
+              <mat-tab label="Informações" (click)="AdicionarDescricao()">
+                <div class=" py-3 px-3 border-light">
+                  <div class="w-full columns is-multiline">
+                    <div class="descricao-produto column is-12 " style="border-left: 1px solid #0000000a;"
+                      [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+                    <div class="descricao-produto column is-12 " [innerHTML]="(el?.innerHTML)"></div>
+                  </div>
+                </div>
+
+              </mat-tab>
+              <mat-tab label="Avaliações">
+                <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+                  <div class="z-index-2 px-2 py-2 my-6">
+                    <div class="mx-2">
+                      <div class="w-full">
+                        <p>Você já tem este produto?</p>
+                        <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+                      </div>
+                      <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+                      <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+                    </div>
+                  </div>
+                  <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+
         <div id="desc"></div>
         <mat-tab-group class="is-hidden-desktop">
           <mat-tab label="Informações">
