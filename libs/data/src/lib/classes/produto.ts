@@ -112,6 +112,7 @@ export enum StatusProduto{
   novo,
   promocao,
   esgotado,
+  padrao,
 }
 export interface Dimensoes{
   Altura:number;

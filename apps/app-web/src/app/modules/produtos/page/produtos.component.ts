@@ -1,6 +1,5 @@
 import 'rxjs/add/operator/filter';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
@@ -8,7 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { cardFlip, fade, slideInOut } from '../../../animations';
 import { FiltroProduto } from '../../../data/models/filtroProduto';
-import { OrderType } from '../../../data/models/order-type';
+import { OrderStatus, OrderType } from '../../../data/models/order-type';
 import { LerCategoria } from '../../../data/store/actions/categoria.actions';
 import { EditarFiltroProduto } from '../../../data/store/actions/filtroproduto.actions';
 import { CategoriaState, FiltroProdutoState, ProdutoState } from '../../../data/store/state';
@@ -22,6 +21,7 @@ import { order, orderPreco } from '../../../helper/ObjHelper';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 import { LabelType, Options } from '@angular-slider/ngx-slider';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -84,6 +84,15 @@ export class ProdutosComponent implements OnInit {
     {name:'30 produtos por página', id: 30},
     {name:'50 produtos por página', id: 50},
   ]
+  activeOrderStatus : OrderStatus;
+  orderStatus:OrderStatus[]= [
+    {name:'Padrão', id: StatusProduto.padrao},
+    {name:'Novos', id: StatusProduto.novo},
+    {name:'Em promoção', id: StatusProduto.promocao},
+    {name:'Esgotados', id: StatusProduto.esgotado},
+  ]
+  Parcelamento:boolean;
+  MultiplasCores:boolean;
 
   constructor(
     private dialog: NgDialogAnimationService,
@@ -159,7 +168,6 @@ export class ProdutosComponent implements OnInit {
       this.page =1;
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.activeOrderLimit).subscribe(async x=>{
       this.total = x.total;
-      this.Produtos = x.items;
       switch(+this.activeOrderFilter){
         case TiposOrdenacao.nome:
          x.items = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
@@ -178,12 +186,15 @@ export class ProdutosComponent implements OnInit {
         break;
       }
 
+      this.Produtos = x.items;
       let FiltroProduto:FiltroProduto = {
         Categoria:this.CategoriaAtiva,
         SearchFilter:this.activeSearchFilter,
         OrderFilter:this.activeOrderFilter,
-        Produtos: x.items.filter(x=>this.filtroAtivo(x)),
+        Produtos: this.Produtos.filter(x=>this.filtroAtivo(x)),
       };
+
+      this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o=> o.Preco)) : this.Produtos[0].Preco);
 
       this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe();
       await delay(400).then(x=>{this.loading = x;});
@@ -197,15 +208,41 @@ export class ProdutosComponent implements OnInit {
       }
     })
   }
-
+  changeOptions(ceil:number) {
+    const newOptions: Options = Object.assign({}, this.options);
+    newOptions.ceil = ceil;
+    this.options = newOptions;
+  }
   filtroAtivo(produto:Produto){
-    if(this.matchSearchFilter(produto) && this.matchPriceFilter(produto))
+    if(this.matchSearchFilter(produto) &&
+        this.matchPriceFilter(produto) &&
+        this.matchStatusFilter(produto) &&
+        this.matchParcelamentoFilter(produto) &&
+        this.matchMultiplasCoresFilter(produto))
     return this.CategoriaAtiva?.Nome == this.defaultCategory
             ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
   }
+  matchParcelamentoFilter(produto:Produto){
+    if(this.Parcelamento)
+      return produto.Parcelas > 0;
+    return true;
+  }
+  matchMultiplasCoresFilter(produto:Produto){
+    if(this.MultiplasCores)
+      return produto.Cores.length > 1;
+    return true;
+  }
   matchPriceFilter(produto:Produto){
     if(this.value)
-    return produto.Preco >= this.value && produto.Preco <= this.maxValue ;
+      return produto.Preco >= this.value && produto.Preco <= this.maxValue ;
+  }
+  matchStatusFilter(produto:Produto){
+    if(this.activeOrderStatus)
+      if(this.activeOrderStatus.id == StatusProduto.padrao)
+        return true;
+      else
+        return produto.Status >= this.activeOrderStatus.id;
+    return true;
   }
   matchSearchFilter(produto:Produto){
     if(this.activeSearchFilter)
@@ -227,6 +264,9 @@ export class ProdutosComponent implements OnInit {
     this.SetCategoria(new Categoria(this.defaultCategory,this.defaultCategory));
     this.activeSearchFilter= '',
     this.activeOrderFilter=0;
+    this.activeOrderStatus = this.orderStatus[0];
+    this.Parcelamento = false;
+    this.MultiplasCores = false;
   }
   SetCategoria(categoria:Categoria){
     this.CategoriaAtiva = categoria == null ?

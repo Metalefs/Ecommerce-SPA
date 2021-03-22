@@ -45,7 +45,7 @@
                 <mat-label>Página</mat-label>
                 <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
                   <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
-                    <div class="box w-full" (click)="Produto.Tamanho = opt">
+                    <div class="box w-full">
                       <p>{{opt.name}}</p>
                     </div>
                   </mat-option>
@@ -57,7 +57,7 @@
                 <mat-label>Página</mat-label>
                 <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
                   <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
-                    <div class="box w-full" (click)="Produto.Tamanho = opt">
+                    <div class="box w-full">
                       <p>{{opt.name}}</p>
                     </div>
                   </mat-option>
@@ -110,6 +110,22 @@
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select matNativeControl [(ngModel)]="activeOrderStatus" (selectionChange)="atualizarFiltroAtivo()">
+              <mat-option *ngFor="let opt of orderStatus" [value]="opt.id" class="w-full">
+                <div class="box w-full">
+                  <p>{{opt.name}}</p>
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-checkbox matNativeControl [(ngModel)]="Parcelamento" (change)="atualizarFiltroAtivo()" [checked]= "false">
+            Parcelamento
+          </mat-checkbox>
+          <mat-checkbox matNativeControl [(ngModel)]="MultiplasCores" (change)="atualizarFiltroAtivo()" [checked]= "false">
+            Multiplas Cores
+          </mat-checkbox>
         </div>
       </div>
     </div>
@@ -136,13 +152,14 @@
           <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
           <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span>
-          <mat-divider></mat-divider>
+          <span class="subtitle is-size-7">Exibindo {{(Filtro$|async).FiltroProdutos.length}} itens</span>
         </div>
         <p-skeleton *ngIf="total==0"></p-skeleton>
 
 
         <div class="columns is-multiline is-gapless portfolio-container dis-flex">
-          <div @fadeIn *ngIf="!(Filtro$ | async).FiltroProdutos[0]&&total == 0" class="m-lr-auto">
+          <mat-divider></mat-divider>
+          <div @fadeIn *ngIf="(Filtro$ | async).FiltroProdutos.length == 0 || total == 0" class="m-lr-auto">
             <figure class="no-match-img">
               <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
             </figure>

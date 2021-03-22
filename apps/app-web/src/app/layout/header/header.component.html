@@ -28,12 +28,11 @@
     </li>
     <li class="level-item px-2 has-text-centered">
       <div>
-        <a class="title is-size-7 " (click)="openCheckout()"><i class="pi pi-shopping-cart"></i>
+        <a class="title is-size-7 " (click)="openCheckout()">
           <div class="is-hidden-touch">
-            <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
             <p class="cart-counter">{{(Orcamento$|async).Produto.length || 0}}</p>
           </div>
-          <span class="is-hidden-touch">Carrinho de compras</span></a>
+          <span class="is-hidden-touch"><i class="pi pi-shopping-cart"></i>Carrinho de compras</span></a>
           <div class="is-hidden-touch ml-4 ">
             <div class="columns is-mobile is-vcentered">
               <!-- <div class="column">
