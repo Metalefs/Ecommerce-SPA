@@ -47,7 +47,7 @@ import { EditarIntegracaoDialogComponent } from './page/editar-integracoes/dialo
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
-
+import { CKEditorModule } from 'ckeditor4-angular';
 @NgModule({
   declarations: [
     GerenciamentoComponent,
@@ -91,7 +91,8 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
     MatIconModule,
     MatButtonModule,
     LayoutModule,
-    EditorModule
+    EditorModule,
+    CKEditorModule
   ],
   exports: [
     GerenciamentoComponent,
@@ -111,7 +112,8 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
     EditarMensagemComponent,
     EditarBlogComponent,
     OrcamentoDetailComponent,
-    EditorModule
+    EditorModule,
+    CKEditorModule
   ]
 })
 export class GerenciamentoModule { }

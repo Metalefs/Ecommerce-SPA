@@ -25,7 +25,7 @@ export class ServicoComponent implements OnInit {
 
   IsServicoLoadedSub: Subscription;
 
-  constructor(private document: Document) {
+  constructor(@Inject(Document) private document: Document) {
 
   }
 

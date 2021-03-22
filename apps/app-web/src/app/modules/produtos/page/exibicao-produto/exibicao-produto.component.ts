@@ -77,7 +77,6 @@ export class ExibicaoProdutoComponent implements OnInit {
     private snack: MatSnackBar,
     private scrollService: PageScrollService,
     private servicoProduto:ProdutoService,
-    private location : Location,
     private windowRef: WindowRef,
     @Inject(Document) private document: Document
     ) {

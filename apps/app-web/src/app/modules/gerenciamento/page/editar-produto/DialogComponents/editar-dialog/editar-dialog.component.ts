@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { Component, ElementRef, Inject, OnInit, ViewChild,Input } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild,Input, PLATFORM_ID } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -11,7 +11,6 @@ import { CategoriaService } from 'apps/app-web/src/app/data/service';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { GalleryConfig, GalleryItem, Gallery, ThumbnailsPosition } from 'ng-gallery';
@@ -20,7 +19,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
 import { CriarCategoriaDialogComponent } from '../../../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
-
+import { isPlatformBrowser } from '@angular/common';
+declare var require: any;
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
   templateUrl: './editar-dialog.component.html',
@@ -36,7 +36,7 @@ export class EditarProdutoDialogComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  public Editor = ClassicEditor;
+  public Editor;
   colorCtrl = new FormControl();
   filteredColors: Observable<Cor[]>;
   allColors: Cor[] = [
@@ -59,7 +59,9 @@ export class EditarProdutoDialogComponent implements OnInit {
   @Input() Produto:Produto;
   Categorias: entities.Categoria[];
   statusProduto:string[] = [];
-  constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: any,
+    public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     breakpointObserver: BreakpointObserver,
     private gallery: Gallery,
     @Inject(MAT_DIALOG_DATA) public data:  entities.Produto,
@@ -94,6 +96,11 @@ export class EditarProdutoDialogComponent implements OnInit {
         };
       })
     );
+    if(isPlatformBrowser(this.platformId)){
+      const ClassicEditor = require('@ckeditor/ckeditor5-build-balloon');
+      this.Editor = ClassicEditor;
+
+    }
   }
   CriarCategoria(): void {
 

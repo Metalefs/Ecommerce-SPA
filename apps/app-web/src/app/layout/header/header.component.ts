@@ -1,5 +1,4 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewContainerRef } from '@angular/core';
-import { Location } from "@angular/common";
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { entities } from '@personalizados-lopes/data';
@@ -55,9 +54,7 @@ export class HeaderComponent implements OnInit {
   galeria = {name:"Galeria",href:`/showcase`,queryParams:{}};
   constructor(
     private AuthenticationService:AuthenticationService,
-    private location: Location, private router: Router,
-    private viewContainerRef: ViewContainerRef,
-    private cfr: ComponentFactoryResolver,
+    private router: Router,
     private store: Store,
     public dialog: NgDialogAnimationService,
     private ServicoCategoria: CategoriaService
@@ -75,11 +72,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.Carregar();
     this.router.events.subscribe(val => {
-      if (this.location.path() != "") {
-        this.route = this.location.path();
-      } else {
-        this.route = "inicio";
-      }
       this.links.forEach(x=>{
         if(x.href == this.route.replace("/",''))
           this.SetActiveNav(x);

@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ComentarioProduto, Usuario } from 'libs/data/src/lib/classes';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { fade } from '../../../../animations';
 import { AuthenticationService } from '../../../../core/service/authentication/authentication.service';
 import { ComentarioProdutoService } from '../../../../data/service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
-import { coerceArray } from '@angular/cdk/coercion';
+declare var require: any;
 @Component({
   selector: 'personalizados-lopes-card-comentario',
   templateUrl: './card-comentario.component.html',
@@ -15,7 +15,7 @@ import { coerceArray } from '@angular/cdk/coercion';
 })
 export class CardComentarioComponent implements OnInit {
   tipoUsuario = TipoUsuario;
-  Editor = ClassicEditor;
+  Editor;
 
   @Input()
   Comentario:Comentario;
@@ -31,9 +31,12 @@ export class CardComentarioComponent implements OnInit {
   querEditar:boolean =false;
   querResponder:boolean =false;
 
-
-
-  constructor(private service:ComentarioProdutoService, private auth:AuthenticationService) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: any, private service:ComentarioProdutoService, private auth:AuthenticationService) {
+    if(isPlatformBrowser(this.platformId)){
+      const ClassicEditor = require('@ckeditor/ckeditor5-build-balloon');
+      this.Editor = ClassicEditor;
+    }
+   }
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe(x=>{

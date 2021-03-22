@@ -9,7 +9,7 @@ import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/comp
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
 import { EmailNotificacao } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
-declare var require: any
+declare var require: any;
 
 @Component({
   selector: 'personalizados-lopes-editar-emails',
@@ -28,11 +28,10 @@ export class EditarEmailsComponent implements OnInit {
     private service:EmailNotificacaoService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar) {
-      this.isBrowser = isPlatformBrowser(platformId);
+      this.isBrowser = isPlatformBrowser(this.platformId);
       if (this.isBrowser) {
-         const ClassicEditor = require('@ckeditor/ckeditor5-build-classic');
+         const ClassicEditor = require('@ckeditor/ckeditor5-build-balloon');
          this.Editor = ClassicEditor;
-
       }
      }
 

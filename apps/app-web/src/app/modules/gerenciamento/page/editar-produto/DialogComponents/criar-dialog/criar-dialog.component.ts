@@ -1,6 +1,6 @@
 import { SelectionChange } from '@angular/cdk/collections';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -12,7 +12,6 @@ import { BlogPost, Produto } from 'libs/data/src/lib/classes';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { CriarCategoriaDialogComponent } from '../../../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 import { Store } from '@ngxs/store';
@@ -23,7 +22,8 @@ import { CriarClienteDialogComponent } from '../../../editar-clientes/DialogComp
 import { AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { CriarPostComponent } from '../../../editar-blog/dialogs/criar-post/criar-post.component';
-
+import { isPlatformBrowser } from '@angular/common';
+declare var require: any;
 @Component({
   selector: 'personalizados-lopes-criar-dialog',
   templateUrl: './criar-dialog.component.html',
@@ -38,7 +38,7 @@ export class CriarProdutoDialogComponent implements OnInit {
   selectable = true;
   removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
-  public Editor = ClassicEditor;
+  public Editor;
   colorCtrl = new FormControl();
   filteredColors: Observable<Cor[]>;
   allColors: Cor[] = [
@@ -68,8 +68,8 @@ export class CriarProdutoDialogComponent implements OnInit {
     private snack:MatSnackBar,
     private servicoImagens:ImagemService,
     private authService:AuthenticationService,
-    private BlogService:BlogPostService
-
+    private BlogService:BlogPostService,
+    @Inject(PLATFORM_ID) private platformId: any,
     ) {
       dialogRef.disableClose = true;
       this.Produto = new Produto (
@@ -100,6 +100,12 @@ export class CriarProdutoDialogComponent implements OnInit {
         "",
         "",
         );
+
+        if(isPlatformBrowser(this.platformId)){
+          const ClassicEditor = require('@ckeditor/ckeditor5-build-balloon');
+          this.Editor = ClassicEditor;
+
+        }
     }
 
   ngOnInit() {

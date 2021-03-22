@@ -2,6 +2,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { SobreCard } from 'apps/app-web/src/app/data/models';
 import { ImagemService } from 'apps/app-web/src/app/data/service';
+import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
 
 @Component({
   selector: 'personalizados-lopes-header-footer',
@@ -11,7 +12,7 @@ import { ImagemService } from 'apps/app-web/src/app/data/service';
 export class HeaderFooterComponent implements OnInit {
   Cards:SobreCard[];
   loading:boolean = true;
-  constructor(@Inject(PLATFORM_ID) private platform: Object, private imagemService:ImagemService, private document: Document) {
+  constructor(@Inject(PLATFORM_ID) private platform: Object, private imagemService:ImagemService, private document_: DocumentRef) {
 
   }
   ngOnInit(): void {
@@ -53,12 +54,12 @@ export class HeaderFooterComponent implements OnInit {
       let timer=500;
       if(isPlatformBrowser(PLATFORM_ID)) {
         setTimeout(()=>{
-          elements.push(this.document.getElementById("yellow"));
-          elements.push(this.document.getElementById("red"));
-          elements.push(this.document.getElementById("blue"));
-          elements.push(this.document.getElementsByClassName("yellow"))
-          elements.push(this.document.getElementsByClassName("red"))
-          elements.push(this.document.getElementsByClassName("blue"))
+          elements.push(this.document_.nativeDocument.getElementById("yellow"));
+          elements.push(this.document_.nativeDocument.getElementById("red"));
+          elements.push(this.document_.nativeDocument.getElementById("blue"));
+          elements.push(this.document_.nativeDocument.getElementsByClassName("yellow"))
+          elements.push(this.document_.nativeDocument.getElementsByClassName("red"))
+          elements.push(this.document_.nativeDocument.getElementsByClassName("blue"))
           elements.forEach(el=>{
 
             if(el.length){

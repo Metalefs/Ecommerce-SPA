@@ -5,8 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
 
-import { CKEditorModule } from 'ckeditor4-angular';
-
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from './core/interceptor';
 import { SharedModule } from './shared/shared.module';
@@ -35,6 +33,7 @@ import { NgDialogAnimationService } from "ng-dialog-animation";
 
 import { PageScrollService } from './data/service/page-scroll.service';
 import { WindowRef } from './data/service/window.service';
+import { DocumentRef } from './data/service/document.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,7 +44,6 @@ import { WindowRef } from './data/service/window.service';
     CoreModule,
     SharedModule,
     HttpClientModule,
-    CKEditorModule,
     AngularFireStorageModule,
     HammerModule,
     CookieLawModule,
@@ -74,8 +72,7 @@ import { WindowRef } from './data/service/window.service';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: WindowRef },
-    { provide: Document },
-    { provide: Location },
+    { provide: DocumentRef },
     { provide: AngularFireStorage },
     { provide: ProdutoService },
     { provide: PageScrollService },

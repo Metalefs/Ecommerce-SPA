@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
+declare var require: any;
 import { QuestionBase } from './question-base';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 @Component({
   selector: 'app-question',
   templateUrl: './dynamic-form-question.component.html'
@@ -12,8 +12,12 @@ export class DynamicFormQuestionComponent {
   @Input() form: FormGroup;
   get isValid() { return this.form.controls[this.question.key].valid; }
   images;
-  public Editor = ClassicEditor;
-  constructor(){
+  public Editor;
+  constructor(@Inject(PLATFORM_ID) private platformId: any,) {
+    if(isPlatformBrowser(this.platformId)){
+      const ClassicEditor = require('@ckeditor/ckeditor5-build-balloon');
+      this.Editor = ClassicEditor;
+    }
   }
   ngOnInit(){
   }

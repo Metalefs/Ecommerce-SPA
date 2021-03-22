@@ -8,15 +8,14 @@ import { FormsModule,ReactiveFormsModule} from '@angular/forms';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
-import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from  'ng-gallery/lightbox';
 
-import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperModule } from 'ngx-swiper-wrapper'; //NO SSR
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-import { StarRatingModule } from 'angular-star-rating';
+import { StarRatingModule } from 'angular-star-rating'; //NO SSR
 
 import { DynamicFormModule } from './components/dynamic-form/dynamic-form.module';
 import { LoginFormModule } from './components/login/login-form.module';
@@ -28,7 +27,6 @@ import { VisualizacaoClientesModule } from './components/visualizacao-clientes/v
 import { SocialNetworkLinksComponent } from './components/social-network-links/social-network-links.component';
 import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
 
-import { CountUpModule } from 'ngx-countup';
 import { LoadingCubeComponent } from './components/loading-cube/loading-cube.component';
 import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/checkout-display.component';
@@ -98,8 +96,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardClienteModule,
     RouterModule,
     ScrolltopModule,
-    CountUpModule,
-    IvyCarouselModule,
     GalleryModule,
     LightboxModule.withConfig({
       panelClass: 'fullscreen'
@@ -132,14 +128,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RouterModule,
     TestimonialComponent,
     ScrolltopModule,
-    CountUpModule,
     LoadingCubeComponent,
     NgxMaskModule,
     CloseBtnComponent,
     BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
     CardBlogModule,
-    IvyCarouselModule,
     GalleryModule,
     LightboxModule,
     SwiperModule,

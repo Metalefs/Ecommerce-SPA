@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-balloon';
 import { CloudinaryUnsigned } from 'puff-puff/CKEditor';
-
+declare var require: any;
 @Component({
   selector: 'personalizados-lopes-editor',
   templateUrl: './editor.component.html',
@@ -15,13 +15,18 @@ export class EditorComponent implements OnInit {
 
   @Output() Changed = new EventEmitter();
 
-  Editor = ClassicEditor;
+  Editor;
   editorConfig = {
     placeholder: 'Escreva o conteúdo aqui!',
     extraPlugins: [ this.imagePluginFactory ],
   };
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: any,) {
+    if(isPlatformBrowser(this.platformId)){
+      const ClassicEditor = require('@ckeditor/ckeditor5-build-balloon');
+      this.Editor = ClassicEditor;
+    }
+   }
   public onChange( { editor }: ChangeEvent ) {
     const data = editor.getData();
     this.Changed.emit(data);
