@@ -6,7 +6,7 @@
   <p>
     <mat-toolbar color="primary" class="pri-toolbar">
       <mat-toolbar-row class="pt-3">
-        <h2 class="subtitle mb-0 pt-0">{{(Orcamento$ |async).Produto.length > 0 ? "Carrinho" : "Seu carrinho está vazio"}}</h2>
+        <h2 class="subtitle mb-0 pt-0">{{(Orcamento$ |async)?.Produto.length > 0 ? "Carrinho" : "Seu carrinho está vazio"}}</h2>
         <span class="spacer"></span>
         <button mat-icon-button
         aria-label="fechar carrinho"
@@ -17,7 +17,7 @@
     </mat-toolbar>
   </p>
 
-  <ng-container *ngIf="(Orcamento$ |async).Produto.length > 0 then pedido else vazio"></ng-container>
+  <ng-container *ngIf="(Orcamento$ |async)?.Produto.length > 0 then pedido else vazio"></ng-container>
 
   <ng-template #vazio>
 
@@ -188,7 +188,7 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column has-text-right">
-              <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async).Preco}}</span></p>
+              <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco}}</span></p>
             </div>
           </div>
         </mat-toolbar-row>

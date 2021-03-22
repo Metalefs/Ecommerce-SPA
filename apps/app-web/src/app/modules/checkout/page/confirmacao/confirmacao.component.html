@@ -1,4 +1,4 @@
-<ng-container *ngIf="(Orcamento$ |async).Produto.length > 0 then pedido else vazio"></ng-container>
+<ng-container *ngIf="(Orcamento$ |async)?.Produto.length > 0 then pedido else vazio"></ng-container>
 <ng-template #vazio>
 
   <div class="margin a-i-c flex-m m-lr-auto has-text-center w-full">
@@ -161,7 +161,7 @@
           <div class="column"></div>
           <div class="column"></div>
           <div class="column has-text-right">
-            <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async).Preco.toFixed(2) || ''}}</span></p>
+            <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}</span></p>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@
         </ng-template>
 
         <ng-template #endereco>
-          <div class="af cs i2 i3 i4 w-full  w-full section" *ngIf="(Orcamento$ |async).Produto.length > 0">
+          <div class="af cs i2 i3 i4 w-full  w-full section" *ngIf="(Orcamento$ |async)?.Produto.length > 0">
             <div class="has-text-left  w-full">
               <h2 class="subtitle">Dados da entrega</h2>
               <span class="subtitle">Iremos preencher o máximo de informações através do seu CEP.</span>

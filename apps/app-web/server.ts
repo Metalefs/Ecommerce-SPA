@@ -6,6 +6,11 @@ import { join } from 'path';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
+
+import 'localstorage-polyfill'
+
+global['localStorage'] = localStorage;
+
 const domino = require('domino');
 const distFolder = join(process.cwd(), 'dist/app-web/browser');
 const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';

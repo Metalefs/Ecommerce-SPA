@@ -12,9 +12,9 @@
         <div class="hero is-white">
           <div class="hero-body pt-4">
             <p class="hero-title"></p>
-            <section class="py-3" *ngIf="(Clientes$|async).length>0">
+            <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
               <div data-aos="zoom-down" class="testimonial">
-                <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+                <app-testimonial [sliderData]="(Clientes$|async)?"></app-testimonial>
               </div>
             </section>
           </div>

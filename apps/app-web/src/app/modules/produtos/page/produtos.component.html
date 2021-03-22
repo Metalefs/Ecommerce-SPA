@@ -152,7 +152,7 @@
           <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
           <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span>
-          <span class="subtitle is-size-7">Exibindo {{(Filtro$|async).FiltroProdutos.length}} itens</span>
+          <span class="subtitle is-size-7">Exibindo {{(Filtro$|async)?.FiltroProdutos.length}} itens</span>
         </div>
         <p-skeleton *ngIf="total==0"></p-skeleton>
 

@@ -1,6 +1,6 @@
 <section [@cardFlip]="state" class="section py-0">
-  <p>Comprando {{(Orcamento$|async).Produto?.length}} item(s) no valor de
-    R${{(Orcamento$|async).Preco.toFixed(2) || ''}} reais</p>
+  <p>Comprando {{(Orcamento$|async)?.Produto?.length}} item(s) no valor de
+    R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}} reais</p>
     <div class="has-text-centered  w-full py-6">
       <h1 class="subtitle">Dados do comprador</h1>
     </div>
@@ -8,7 +8,7 @@
 
     <div class="column is-12-mobile">
 
-      <div class="section w-full" *ngIf="(Orcamento$ |async).Produto.length > 0">
+      <div class="section w-full" *ngIf="(Orcamento$ |async)?.Produto.length > 0">
 
         <span class="subtitle" @fadeIn
           *ngIf="nomeFormControl.hasError('required') || emailFormControl.hasError('required') || phoneFormControl.hasError('required')">Verifique
