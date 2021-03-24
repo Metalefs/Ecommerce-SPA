@@ -54,7 +54,7 @@
 
               </div>
               <div class="columns is-multiline is-vcentered pr-3">
-                <div class="column">
+                <div class="column pr-0">
                   <div class="w-full pt-3 mb-0">
                     <p class="is-size-7 pt-2"><span class="is-size-7 pt-2">Selecione a quantidade</span></p>
                     <div class="field pb-0 mb-0">
@@ -241,7 +241,7 @@
             <img src="{{Produto?.Imagem[0]}}" alt="">
           </figure>
         </div>
-        <div class="column is-7 mb-0  top-0 pt-3">
+        <div class="column is-7 mb-0 top-0 pt-3" style="background: #0088ff0a;">
           <!-- <mat-chip-list class="is-left">
             <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
           </mat-chip-list> -->
@@ -257,7 +257,7 @@
             Produto personalizado com a sua estampa!
             <span>@Personalizadoslopes</span>
           </div> -->
-          <div class="column pt-0 mt-0 is-hidden-touch">
+          <div class="column pt-0 mt-0 is-hidden-touch ">
             <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
             </share-button>
             <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
@@ -268,7 +268,7 @@
             </a> -->
             <mat-tab-group class="is-hidden-touch">
               <mat-tab label="Informações" (click)="AdicionarDescricao()">
-                <div class=" py-3 px-3 border-light">
+                <div class="has-background-white py-3 px-3 border-light">
                   <div class="w-full columns is-multiline">
                     <div class="descricao-produto column is-12 " style="border-left: 1px solid #0000000a;"
                       [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
