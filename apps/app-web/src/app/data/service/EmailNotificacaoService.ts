@@ -26,7 +26,6 @@ export class EmailNotificacaoService {
 
     Editar(item: entities.EmailNotificacao): any {
         let payload = this.AuthenticationService.tokenize({EmailNotificacao:item});
-        console.log(payload);
         return this.http.put<entities.EmailNotificacao>(environment.endpoint + RouteDictionary.EmailNotificacao,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times

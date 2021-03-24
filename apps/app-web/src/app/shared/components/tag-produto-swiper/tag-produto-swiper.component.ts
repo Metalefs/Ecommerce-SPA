@@ -24,9 +24,9 @@ export class TagProdutoSwiperComponent implements OnInit {
 
   onSwiperHover( hover: boolean ) {
     if ( hover ) {
-      this.swiperEl2.nativeElement.swiper.autoplay.stop();
+      this.swiperEl2?.nativeElement?.swiper?.autoplay.stop();
     } else {
-      this.swiperEl2.nativeElement.swiper.autoplay.start();
+      this.swiperEl2?.nativeElement?.swiper?.autoplay.start();
     }
   }
   constructor(

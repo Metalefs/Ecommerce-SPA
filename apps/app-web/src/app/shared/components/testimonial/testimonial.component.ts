@@ -79,9 +79,9 @@ export class TestimonialComponent implements OnInit {
   @ViewChild('swiperElTestimonial') swiperElTestimonial: ElementRef;
   onSwiperHover( hover: boolean ) {
     if ( hover ) {
-      this.swiperElTestimonial?.nativeElement.swiper.autoplay.stop();
+      this.swiperElTestimonial?.nativeElement?.swiper?.autoplay.stop();
     } else {
-      this.swiperElTestimonial?.nativeElement.swiper.autoplay.start();
+      this.swiperElTestimonial?.nativeElement?.swiper?.autoplay.start();
     }
   }
   LerWindowSize(){

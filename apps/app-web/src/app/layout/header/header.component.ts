@@ -152,7 +152,7 @@ export class HeaderComponent implements OnInit {
         }
       })
     ).subscribe(value => {
-      console.log(value);
+
     });
   }
 

@@ -1,6 +1,6 @@
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ErrorHandler, Injectable, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire';
@@ -18,6 +18,8 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { CookieLawModule } from 'angular2-cookie-law';
 
@@ -40,6 +42,7 @@ import { DocumentRef } from './data/service/document.service';
   imports:
   [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    TransferHttpCacheModule,
     BrowserAnimationsModule,
     CoreModule,
     SharedModule,

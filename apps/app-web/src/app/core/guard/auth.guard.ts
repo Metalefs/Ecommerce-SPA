@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const currentUser = this.authenticationService.currentUserValue;
-        console.log("canActivate:", route)
         if (currentUser) {
           if(route.url[0].path == "minha-conta"){
             return true

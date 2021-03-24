@@ -103,7 +103,6 @@ export class EnderecoComponent implements OnInit {
         this.Loading = true;
         this.integracoesService.Ler().subscribe(x => {
           this.checkoutService.goCheckout(orcamento, x).subscribe(result => {
-            console.log(x);
             this.cadastroTemporario();
             this._init_point = result;
             this.Loading = false;
@@ -150,7 +149,6 @@ export class EnderecoComponent implements OnInit {
 
   CarregarDetalhesCEP(){
     this.CEPService.ObterDetalhes(this.Orcamento.Usuario.EnderecoEntrega.CEP.replace('-','')).subscribe(x=>{
-      console.log(x);
       this.Orcamento.Usuario.EnderecoEntrega.Rua = x.logradouro;
       this.Orcamento.Usuario.EnderecoEntrega.Bairro = x.bairro;
       this.Orcamento.Usuario.EnderecoEntrega.Cidade = x.localidade;

@@ -232,7 +232,7 @@ img{
   background: rgba(255, 255, 255, 0.20);
 
   &a{
-    transition:none;
+    transition:1s all ease ;
   }
   position:absolute;
   top: 0;
@@ -245,7 +245,15 @@ img{
   -o-transition: 0.5s;
     transition: 0.5s;
     & ~ button, ~ a{
-        display: none;
+        opacity: 0;
+        pointer-events: none;
+        display: block;
+        position: absolute;
+        margin: 0 auto;
+        font-size: 12px;
+        width: 50%;
+        top: 30%;
+        left: 25%;
     }
 }
 
@@ -291,19 +299,18 @@ img{
  opacity: .5;
 }
 .portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
-  display: block;
-    position: absolute;
-    margin: 0 auto;
-    font-size: 12px;
-    width: 100%;
-    top: 20%;
-    box-shadow: 1px 1px 4px #d1d1d199;
-    border-radius: 0.5rem;
-    transition: all 0.25s;
-    opacity: 0.85;
-    z-index: 10;
+  pointer-events: all;
+
+  box-shadow: 1px 1px 4px #d1d1d199;
+  border-radius: 0.25rem;
+  transition: all ease 1s;
+  transition-delay: 1s;
+  opacity: 0.5;
+  z-index: 10;
   &:hover{
     opacity: 1;
+    transition-duration: .25s;
+    transition-delay: 0s;
   }
 }
 

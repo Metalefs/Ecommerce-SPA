@@ -38,15 +38,12 @@ export class AppComponent {
 
   constructor(
     private store: Store,
-    private router: Router,
     private integracoesService: IntegracoesService,
     private spinner: NgxSpinnerService,
     @Inject(PLATFORM_ID) private platform: Object
 
   ) {
     if(isPlatformBrowser(PLATFORM_ID)){
-
-
       // this.router.events.subscribe(event => {
       //    if(event instanceof NavigationEnd){
       //        gtag('config', 'UA-175817845-1',
@@ -60,8 +57,6 @@ export class AppComponent {
   }
 
   LerServicosAPI(){
-
-
     this.store.dispatch(new LerCarousel()          ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
     this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerItemCarousel()      ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
@@ -79,14 +74,10 @@ export class AppComponent {
   }
 
   ngOnInit(){
-    this.spinner.show();
     AOS.init();
-    this.LerServicosAPI();
-    setTimeout(()=>{
-      this.carregandoOque += " ...carregando";
-
-    },8000)
     if(isPlatformBrowser(PLATFORM_ID)){
+      this.spinner.show();
+      this.LerServicosAPI();
       this.integracoesService.Ler().subscribe(x=>{
         Mercadopago.setPublishableKey(x.public_key);
       })

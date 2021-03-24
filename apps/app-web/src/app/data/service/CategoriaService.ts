@@ -26,7 +26,6 @@ export class CategoriaService {
 
     Editar(item: entities.Categoria): Observable<entities.Categoria> {
       let payload = this.AuthenticationService.tokenize({Categoria:item});
-      console.log(payload);
       return this.http.put<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria,
           payload).pipe(
           retry(3), // retry a failed request up to 3 times

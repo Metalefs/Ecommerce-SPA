@@ -33,7 +33,6 @@ export class ClienteService {
         return this.EditarImagens(item).then(x=> {
           item = x;
           let payload = this.AuthenticationService.tokenize({Cliente:item});
-          console.log(payload);
           return this.http.put<entities.Cliente>(environment.endpoint + RouteDictionary.Cliente,
               payload).pipe(
               retry(3), // retry a failed request up to 3 times
