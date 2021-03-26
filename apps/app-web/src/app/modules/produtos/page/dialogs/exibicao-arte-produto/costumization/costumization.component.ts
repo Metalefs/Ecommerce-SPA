@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { IfStmt } from '@angular/compiler';
-import { Component, EventEmitter, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { fabric } from "fabric";
 import { Produto } from 'libs/data/src/lib/classes';
@@ -28,7 +28,7 @@ export class CostumizationComponent implements OnInit {
   obj:any;
   bold:any;
   italic:any;
-  constructor(private dialog : MatDialog) {}
+  constructor(private dialog : MatDialog,@Inject(PLATFORM_ID) private platform: Object) {}
 
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class CostumizationComponent implements OnInit {
 
     this.fabric.Object.prototype.cornerColor = '#131313';
     this.fabric.Object.prototype.transparentCorners = false;
-    if(isPlatformBrowser(PLATFORM_ID))
+    if(isPlatformBrowser(this.platform))
     this.setup();
     this.importFile();
   }

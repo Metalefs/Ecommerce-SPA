@@ -303,8 +303,8 @@ img{
 
   box-shadow: 1px 1px 4px #d1d1d199;
   border-radius: 0.25rem;
-  transition: all ease 1s;
-  transition-delay: 1s;
+  transition: all ease .5s;
+  transition-delay: .5s;
   opacity: 0.5;
   z-index: 10;
   &:hover{

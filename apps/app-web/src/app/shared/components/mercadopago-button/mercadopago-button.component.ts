@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { DocumentRef } from '../../../data/service/document.service';
 
 @Component({
@@ -10,10 +10,10 @@ import { DocumentRef } from '../../../data/service/document.service';
 export class MercadopagoButtonComponent implements OnInit {
   @Input() init_point;
 
-  constructor(private document:DocumentRef) { }
+  constructor(private document:DocumentRef, @Inject(PLATFORM_ID) private platform: Object,) { }
 
   ngOnInit(): void {
-    if(isPlatformBrowser(PLATFORM_ID))
+    if(isPlatformBrowser(this.platform))
       this.loadScript();
   }
   loadScript() {

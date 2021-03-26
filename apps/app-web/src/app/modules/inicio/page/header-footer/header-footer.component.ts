@@ -22,7 +22,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Produtos",
           icon:"photo_library",
-          color:"#FD6D13",
+          color:"#FF4A4A",
           class:"red",
           link:"/produtos",
           id:"#topo",

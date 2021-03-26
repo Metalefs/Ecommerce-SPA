@@ -1,10 +1,8 @@
-import { Component, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { entities } from '@personalizados-lopes/data';
 import { Select, Store } from '@ngxs/store';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CheckoutComponent } from '../../modules/checkout/page/checkout/checkout.component';
 
 import { Categoria, InformacoesContato, Orcamento, Produto, Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
@@ -12,19 +10,18 @@ import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
 import { CategoriaState, InformacoesContatoState, NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
 import { NavState } from '../../data/models/navstate';
-import { NavLinks, NavLinksRes } from '../../data/models/navlinks';
+import { NavLinksRes } from '../../data/models/navlinks';
 
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Link } from '../../data/models';
 import { CheckoutDisplayComponent } from '../../shared/components/dialogs/checkout-display/checkout-display.component';
 import { LoginComponent } from '../../modules/login/page/login.component';
 import { fade, slideInOut } from '../../animations';
-import { EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
+import { EditarCategoriaFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
 import { CategoriaService } from '../../data/service';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
-import { AutocompleteDropdownComponent } from '../../shared/components/autocomplete-dropdown/autocomplete-dropdown.component';
 import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'personalizados-lopes-header',
@@ -32,7 +29,7 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./header.component.scss'],
   animations: [fade,slideInOut]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   user: entities.Usuario;
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
   @Select(InformacoesContatoState.ObterInformacoesContato) InfoContato$: Observable<InformacoesContato>;
@@ -58,7 +55,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private store: Store,
     public dialog: NgDialogAnimationService,
-    private ServicoCategoria: CategoriaService
+    private ServicoCategoria: CategoriaService,
+    @Inject(PLATFORM_ID) private platform: Object,
     ) {
 
   }
@@ -72,7 +70,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.Carregar();
-    if(isPlatformBrowser(PLATFORM_ID)){
+    if(isPlatformBrowser(this.platform)){
 
       this.router.events.subscribe(val => {
         this.links.forEach(x=>{
@@ -87,6 +85,10 @@ export class HeaderComponent implements OnInit {
     });
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
     this.CarregarCategorias();
+  }
+
+  ngOnDestroy(){
+    this.IsSobreLoadedSub.unsubscribe();
   }
 
   CarregarCategorias(){

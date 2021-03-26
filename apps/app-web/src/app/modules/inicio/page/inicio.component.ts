@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { entities } from '@personalizados-lopes/data';
@@ -23,8 +23,6 @@ export class InicioComponent implements OnInit {
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<entities.Produto[]>;
 
   user:Usuario;
-  @Select(ClienteState.areClientesLoaded) areClientesLoaded$;
-  areClientesLoadedSub: Subscription;
   slidesPerView:number=5;
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   constructor(

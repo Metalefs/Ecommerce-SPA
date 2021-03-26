@@ -11,10 +11,10 @@
     </div>
 
     <mat-card-title>
-      <h4 class="is-size-7 my-3 is-uppercase ">
+      <h5 class="txt-center my-3 is-uppercase ">
         {{Post.Titulo}}
-      </h4>
-      <div class="columns is-vcentered is-mobile">
+      </h5>
+      <div class="columns is-vcentered is-gapless is-mobile">
         <!-- <div class="column">
           <p class="title">
             <span class="pi pi-calendar-plus"></span>
@@ -22,12 +22,10 @@
           </p>
         </div> -->
         <div class="column">
-          <span>
-            <mat-icon>person</mat-icon>
-          </span>
-        </div>
-        <div class="column">
-          <span> {{Post?.Autor?.Nome}}</span>
+          <p>
+
+            <span> <mat-icon>person</mat-icon>{{Post?.Autor?.Nome}}</span>
+          </p>
         </div>
       </div>
       <!-- <div class="my-3">

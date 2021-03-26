@@ -20,16 +20,14 @@ export class ScrolltopComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (isPlatformBrowser(PLATFORM_ID)) {
-      if (this.windowRef.nativeWindow.pageYOffset >= 600) {
-        this.windowScrolled = true;
-      } else if (this.windowScrolled && this.windowRef.nativeWindow.pageYOffset <= 600) {
-        this.windowScrolled = false;
-      }
+    if (this.windowRef.nativeWindow.pageYOffset >= 600) {
+      this.windowScrolled = true;
+    } else if (this.windowScrolled && this.windowRef.nativeWindow.pageYOffset <= 600) {
+      this.windowScrolled = false;
     }
   }
   scrollToTop() {
-    if (isPlatformBrowser(PLATFORM_ID))
+    if (isPlatformBrowser(this.platform))
       (function smoothscroll() {
         var currentScroll =
           document.documentElement.scrollTop || document.body.scrollTop;

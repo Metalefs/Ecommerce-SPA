@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
@@ -18,7 +18,7 @@ import { ImagemService } from 'apps/app-web/src/app/data/service';
   templateUrl: './editar-clientes.component.html',
   styleUrls: ['./editar-clientes.component.scss']
 })
-export class EditarClientesComponent implements OnInit {
+export class EditarClientesComponent implements OnInit, OnDestroy {
 
   @Select(ClienteState.ObterListaClientes) Clientes$: Observable<Cliente[]>;
 
@@ -26,7 +26,6 @@ export class EditarClientesComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private _snackBar: MatSnackBar,
     private store: Store,
     private servicoImagens : ImagemService
     ) { }
@@ -67,6 +66,8 @@ export class EditarClientesComponent implements OnInit {
    this.Atualizar();
   }
 
-
+  ngOnDestroy(){
+    this.areClientesLoadedSub.unsubscribe();
+  }
 
 }

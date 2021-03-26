@@ -9,16 +9,14 @@ import { LerCliente } from './data/store/actions/cliente.actions';
 import { LerInformacoesContato } from './data/store/actions/informacoescontato.actions';
 import { LerOrcamento } from './data/store/actions/orcamento.actions';
 import { LerMensagem } from './data/store/actions/mensagem.actions';
-import { LerProduto } from './data/store/actions/produto.actions';
 import { LerServico } from './data/store/actions/servico.actions';
 import { LerSobre } from './data/store/actions/sobre.actions';
 import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';
-import { Router } from '@angular/router';
-import { NavigationEnd } from '@angular/router';
 import { IntegracoesService } from './data/service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { isPlatformBrowser } from '@angular/common';
+import { NavigationEnd, Router } from '@angular/router';
 declare let gtag: Function;
 declare let Mercadopago: any;
 @Component({
@@ -38,21 +36,22 @@ export class AppComponent {
 
   constructor(
     private store: Store,
+    private router : Router,
     private integracoesService: IntegracoesService,
     private spinner: NgxSpinnerService,
     @Inject(PLATFORM_ID) private platform: Object
 
   ) {
-    if(isPlatformBrowser(PLATFORM_ID)){
-      // this.router.events.subscribe(event => {
-      //    if(event instanceof NavigationEnd){
-      //        gtag('config', 'UA-175817845-1',
-      //           {
-      //             'page_path': event.urlAfterRedirects
-      //           }
-      //         );
-      //     }
-      //  });
+    if(isPlatformBrowser(this.platform)){
+      this.router.events.subscribe(event => {
+         if(event instanceof NavigationEnd){
+             gtag('config', 'UA-175817845-1',
+                {
+                  'page_path': event.urlAfterRedirects
+                }
+              );
+          }
+       });
     }
   }
 
@@ -75,17 +74,17 @@ export class AppComponent {
 
   ngOnInit(){
     AOS.init();
-    if(isPlatformBrowser(PLATFORM_ID)){
+    if(isPlatformBrowser(this.platform)){
       this.spinner.show();
       this.LerServicosAPI();
       this.integracoesService.Ler().subscribe(x=>{
         Mercadopago.setPublishableKey(x.public_key);
       })
 
-      const element = document.createElement('link');
-      element.href = 'lazy-style.css';
-      element.rel = 'stylesheet';
-      document.body.appendChild(element);
+      // const element = document.createElement('link');
+      // element.href = 'lazy-style.css';
+      // element.rel = 'stylesheet';
+      // document.body.appendChild(element);
     }
   }
 

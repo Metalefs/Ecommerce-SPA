@@ -58,8 +58,7 @@ export class ProdutosComponent implements OnInit {
   Produtos:Produto[];
 
   @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<FiltroProdutoStateModel>;
-  @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
-  areProdutosLoadedSub: Subscription;
+
 
   activeSearchFilter = "";
   activeOrderFilter:number = TiposOrdenacao.nome;
@@ -123,7 +122,8 @@ export class ProdutosComponent implements OnInit {
   }
 
   ngOnDestroy(){
-    this.flip()
+    this.flip();
+    this.areCategoriasLoadedSub.unsubscribe();
   }
 
   flip(){

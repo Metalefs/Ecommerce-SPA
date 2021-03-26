@@ -4,6 +4,17 @@
       <div class="columns">
         <div class="column is-8">
           <h1 class="subtitle">Gerenciar Produtos</h1>
+          <div class="control has-icons-right w-full">
+            <input
+              [(ngModel)]="activeSearchFilter"
+              (change)="atualizarFiltroAtivo()"
+              class="border py-2"
+              type="text"
+              placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
+              <span class="icon is-small is-right">
+                <mat-icon>search</mat-icon>
+              </span>
+          </div>
         </div>
         <div class="column is-4">
           <button mat-fab color="primary" (click)="Criar()" class="ab-b-r">
@@ -14,9 +25,121 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content class="dashboard-card-content columns is-multiline">
-    <div *ngFor="let produto of Produtos" class="produto-card column is-3">
-      <personalizados-lopes-edicao-card-produto (Isdeleted)="Atualizar()" [Produto]="produto"></personalizados-lopes-edicao-card-produto>
+    <div class="column is-12-mobile is-hidden-mobile">
+      <div class="flex-c w-full container portfolio pos-sticky top-0">
+        <div class="is-hidden-mobile  w-full">
+          <div class="w-full is-hidden-mobile">
+            <div class="w-full">
+              <p>Listar por</p>
+              <div class="w-full">
+                <span>Ordenação</span>
+               <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Página</mat-label>
+                <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
+                  <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
+                    <div class="box w-full">
+                      <p>{{opt.name}}</p>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </div>
+              <mat-divider></mat-divider>
+               <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Página</mat-label>
+                <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
+                  <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
+                    <div class="box w-full">
+                      <p>{{opt.name}}</p>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+               <div>
+                 <mat-divider></mat-divider>
+                <span>Limite de preco</span>
+                <ngx-slider [(value)]="value"[(highValue)]="maxValue"  [options]="options"></ngx-slider>
+               </div>
+            </div>
+          </div>
+          <mat-list class="w-full">
+            <mat-toolbar>
+              <h2 class="title is-5 texto-categorias">Categorias</h2>
+            </mat-toolbar>
+            <mat-list-item @fadeIn
+              data-aos="fade-down"
+              class="pointer w-full w-full-m cat-item has-background-white hoverable"
+              (click)="SetCategoria(null)"
+              [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active box' : ''">
+              <a mat-strocked-button class="dis-flex flex-sb flex-m">
+                <button button class="border-0">
+                  <mat-icon
+                    [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
+                  </mat-icon>
+
+                </button>
+                <p>{{defaultCategory}}</p>
+              </a>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
+              [style.backgroundColor]="categoria?.Cor"
+
+              data-aos-delay="50"
+              class="pointer w-full w-full-m cat-item has-background-white hoverable"
+              (click)="SetCategoria(categoria)"
+              [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box' : ''">
+              <a mat-strocked-button class="dis-flex flex-sb flex-m">
+                <button class="border-0">
+                  <mat-icon
+                    [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == categoria?.Nome ?  'done' : 'arrow_left'}}
+                  </mat-icon>
+                </button>
+                <p>{{categoria?.Nome}}</p>
+              </a>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+
+          <mat-list class="w-full mt-3">
+            <mat-list-item>
+              <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select matNativeControl [(ngModel)]="activeOrderStatus" (selectionChange)="atualizarFiltroAtivo()">
+                  <mat-option *ngFor="let opt of orderStatus" [value]="opt.id" class="w-full">
+                    <div class="box w-full">
+                      <p>{{opt.name}}</p>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-checkbox matNativeControl [(ngModel)]="Parcelamento" (change)="atualizarFiltroAtivo()" [checked]= "false">
+                Parcelamento
+              </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-checkbox matNativeControl [(ngModel)]="MultiplasCores" (change)="atualizarFiltroAtivo()" [checked]= "false">
+                Multiplas Cores
+              </mat-checkbox>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
     </div>
-    <a *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
+    <div class="column is-9">
+      <div class="columns">
+        <div *ngFor="let produto of Produtos" class="produto-card column is-3">
+          <div  *ngIf = "filtroAtivo(produto)">
+            <personalizados-lopes-edicao-card-produto (Isdeleted)="Atualizar()" [Produto]="produto"></personalizados-lopes-edicao-card-produto>
+
+          </div>
+        </div>
+        <a *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">Exibir mais resultados</a>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>

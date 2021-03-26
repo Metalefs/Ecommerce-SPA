@@ -1,14 +1,10 @@
 import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { entities } from '@personalizados-lopes/data';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { Observable, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ProdutoService } from '../../../data/service';
-import { LerProduto } from '../../../data/store/actions/produto.actions';
-import { ProdutoState } from '../../../data/store/state';
 
 @Component({
   selector: 'personalizados-lopes-produto-swiper',

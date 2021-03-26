@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { ComentarioProduto, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GostarProduto, IncrementarVisualizacoesProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
-import { Observable, pipe, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
@@ -32,6 +32,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -39,7 +40,7 @@ import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service'
   styleUrls: ['./exibicao-produto.component.scss'],
   animations:[fade]
 })
-export class ExibicaoProdutoComponent implements OnInit {
+export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   galleryConfig$: Observable<GalleryConfig>;
   textoAdicionar:string = 'COMPRAR';
   textoAtualizar:string = 'ATUALIZAR CARRINHO';
@@ -66,6 +67,7 @@ export class ExibicaoProdutoComponent implements OnInit {
   ComentariosProduto:ComentarioProduto[];
   Comentarios:Comentario[] = [];
   mobile:boolean;
+  selected = new FormControl(0);
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     breakpointObserver: BreakpointObserver,
@@ -125,6 +127,10 @@ export class ExibicaoProdutoComponent implements OnInit {
       this.scrollService.scrollTop();
   }
 
+  ngOnDestroy(){
+    this.areProdutosLoadedSub?.unsubscribe();
+  }
+
   SelecionarTamanho(tamanho:string){
     this.Produto.Tamanho = this.Produto.Tamanho == tamanho ? null: tamanho
   }
@@ -165,6 +171,9 @@ export class ExibicaoProdutoComponent implements OnInit {
 
   Validar(){
     let Erros:{erro:string}[] = [];
+    if(this.Produto.Quantidade < 1){
+      Erros.push({erro:"Selecione uma quantidade para o item"});
+    }
     if(!this.Produto.Cor){
       Erros.push({erro:"Selecione uma cor para o item"});
     }
@@ -174,25 +183,33 @@ export class ExibicaoProdutoComponent implements OnInit {
     return Erros;
   }
   AbrirModalArte(){
-    let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
-      data:this.Produto,
-      panelClass:['animate__animated','animate__bounceIn', 'border']
-    })
-    dialogref.afterClosed().subscribe(x=>{
-      if(x.Canvas){
-        console.log(x,this.Produto);
-        if(this.Produto.Arte){
-          if(!this.orcamentoId){
-            this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
-              this.orcamentoId = x.codOrcamento;
-            });
-          }else{
-            this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+      if(this.Validar()){
+        let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
+          data:this.Produto,
+          width:'90vw',
+          height:'90vh',
+          panelClass:['animate__animated','animate__bounceIn', 'border']
+
+        })
+        dialogref.afterClosed().subscribe(x=>{
+          if(x.Canvas){
+            console.log(x,this.Produto);
+            if(this.Produto.Arte){
+              if(!this.orcamentoId){
+                this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
+                  this.orcamentoId = x.codOrcamento;
+                });
+              }else{
+                this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+              }
+              this.navegarParaCheckout();
+            }
           }
-          this.navegarParaCheckout();
-        }
+        })
+
       }
-    })
+
+
   }
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{

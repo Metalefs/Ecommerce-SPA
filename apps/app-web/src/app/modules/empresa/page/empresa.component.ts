@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { SobreState } from '../../../data/store/state';
   styleUrls: ['./empresa.component.scss'],
   animations:[cardFlip,fade]
 })
-export class EmpresaComponent implements OnInit {
+export class EmpresaComponent implements OnInit, OnDestroy {
   state = "flipped"
   @Select(SobreState.ObterSobre) Sobre$: Observable<Sobre>;
 
@@ -48,11 +48,10 @@ export class EmpresaComponent implements OnInit {
       // this.flip()
     },0)
   }
-
   ngOnDestroy(){
     this.flip()
+    this.IsSobreLoadedSub.unsubscribe();
   }
-
   flip(){
     if (this.state === "default") {
       this.state = "flipped";

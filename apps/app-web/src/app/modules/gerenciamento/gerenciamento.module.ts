@@ -48,6 +48,7 @@ import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-deta
 import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
 import { CKEditorModule } from 'ckeditor4-angular';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 @NgModule({
   declarations: [
     GerenciamentoComponent,
@@ -92,7 +93,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     MatButtonModule,
     LayoutModule,
     EditorModule,
-    CKEditorModule
+    CKEditorModule,
+    NgxSliderModule
   ],
   exports: [
     GerenciamentoComponent,
@@ -113,7 +115,8 @@ import { CKEditorModule } from 'ckeditor4-angular';
     EditarBlogComponent,
     OrcamentoDetailComponent,
     EditorModule,
-    CKEditorModule
+    CKEditorModule,
+    NgxSliderModule
   ]
 })
 export class GerenciamentoModule { }

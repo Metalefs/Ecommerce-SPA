@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
@@ -12,7 +11,7 @@ import { ProdutoState } from '../../../data/store/state';
   templateUrl: './showcase.component.html',
   styleUrls: ['./showcase.component.scss']
 })
-export class ShowcaseComponent implements OnInit {
+export class ShowcaseComponent implements OnInit, OnDestroy {
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
 
@@ -23,11 +22,8 @@ export class ShowcaseComponent implements OnInit {
   areProdutosLoadedSub: Subscription;
 
   constructor(
-    private dialog: MatDialog,
     private store: Store,
     ) {
-
-
   }
 
   Atualizar(){
@@ -40,8 +36,12 @@ export class ShowcaseComponent implements OnInit {
       console.log(value);
     });
   }
+
   ngOnInit(): void {
     this.Atualizar();
   }
 
+  ngOnDestroy(){
+    this.areProdutosLoadedSub.unsubscribe();
+  }
 }

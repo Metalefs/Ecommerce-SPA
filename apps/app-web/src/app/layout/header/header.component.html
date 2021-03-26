@@ -28,12 +28,12 @@
     </li>
     <li class="level-item px-2 has-text-centered">
       <div>
-        <a class="title is-size-7 " (click)="openCheckout()">
+        <a class="title is-size-7 has-background-white button is-small has-text-black" (click)="openCheckout()">
           <div class="is-hidden-touch">
-            <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
+            <p class="cart-counter" style="bottom:15px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
           </div>
-          <span class="is-hidden-touch"><i class="pi pi-shopping-cart"></i>Carrinho de compras</span></a>
-          <div class="is-hidden-touch ml-4 ">
+          <span class="is-hidden-touch"><i class="pi pi-shopping-cart"></i>Carrinho</span></a>
+          <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
             <div class="columns is-mobile is-vcentered">
 
               <div class="column is-hidden-touch">
@@ -102,7 +102,7 @@
                 {{link.name == "Básicos"? 'Produtos' : link.name}}
               </a>
               <div class="dropdown-content has-background-white box">
-                <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}} of-x-scroll" pageScroll routerLinkActive="Active"
+                <a class="nav-link  is-capitalized {{link.name == 'inicio' ? 'inicio': ''}} of-x-scroll" pageScroll routerLinkActive="Active"
                   href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
                   [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>
               </div>

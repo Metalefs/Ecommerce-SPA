@@ -3,11 +3,11 @@
 <div mat-dialog-content>
   <div class="columns is-multiline is-vcentered">
 
-    <div class="column ">
+    <div class="column is-12">
       <personalizados-lopes-costumization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
-    <div class="column is-3">
+    <div class="column is-12">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
         <mat-card>

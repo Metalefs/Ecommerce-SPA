@@ -147,9 +147,9 @@ a {
 .portfolio-item .slideshow-container .slides:not(.link) {
   cursor: default;
   filter: contrast(1.1) !important;
-  &:hover{
-    background:  #dedede none repeat scroll 0% 0%
-  }
+  // &:hover{
+  //   background:  #dedede none repeat scroll 0% 0%
+  // }
 }
 .slideshow-container .slick-dots li button{
   border: none !important;
@@ -490,7 +490,7 @@ canvas{
   border-radius: 4px;
 }
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
-  background-color: red;
+  background-color: #FF4A4A;
 }
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
   font-family: "Montserrat";

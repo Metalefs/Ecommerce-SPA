@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { EmailNotificacao, InformacoesContato, Sobre } from 'libs/data/src/lib/classes';
@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
 
   Links:Link[] = [
     {name:"Quem Somos", href:"empresa", id:"Sobre"},
@@ -73,6 +73,10 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(){
     this.Carregar();
+  }
+  ngOnDestroy(){
+    this.IsSobreLoadedSub.unsubscribe();
+    this.IsInformacoesContatoLoadedSub.unsubscribe();
   }
   AssinarNewsLetter(){
     if(this.Email != "" && this.email.nativeElement.validity.valid){

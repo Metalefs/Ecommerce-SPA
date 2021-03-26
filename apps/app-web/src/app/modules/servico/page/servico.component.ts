@@ -1,8 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Servico } from 'libs/data/src/lib/classes';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { cardFlip, fade } from '../../../animations';
 import { SobreCard } from '../../../data/models';
 import { DocumentRef } from '../../../data/service/document.service';
@@ -22,18 +22,14 @@ export class ServicoComponent implements OnInit {
   ];
   @Select(ServicoState.ObterServico) Servico$: Observable<Servico[]>;
 
-  @Select(ServicoState.IsServicoLoaded) IsServicoLoaded$;
-
-  IsServicoLoadedSub: Subscription;
-
-  constructor(private document: DocumentRef) {
+  constructor(private document: DocumentRef, @Inject(PLATFORM_ID) private platform: Object) {
 
   }
 
   LerServicosCarregados(){
+    if(isPlatformBrowser(this.platform)){
     let element:HTMLElement = this.document.nativeDocument.createElement("div");
     this.Servico$.subscribe(x=>{
-      console.log(x);
       x.forEach(servico =>{
         element.innerHTML = servico.Descricao;
         element.querySelectorAll( 'oembed[url]' ).forEach( element => {
@@ -62,13 +58,16 @@ export class ServicoComponent implements OnInit {
       })
     })
   }
+  }
 
   ngOnInit(): void {
-    if(isPlatformBrowser(PLATFORM_ID))
     this.LerServicosCarregados();
-    setTimeout(()=>{
-      this.flip()
-    },0)
+    if(isPlatformBrowser(this.platform)){
+
+      setTimeout(()=>{
+        this.flip()
+      },0)
+    }
   }
 
   ngOnDestroy(){

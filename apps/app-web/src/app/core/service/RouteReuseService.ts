@@ -1,10 +1,7 @@
 import {
     RouteReuseStrategy,
     ActivatedRouteSnapshot,
-    DetachedRouteHandle,
-    RouterModule,
-    Routes,
-    UrlSegment
+    DetachedRouteHandle
 } from '@angular/router';
 export class RouteReuseService implements RouteReuseStrategy {
     private handlers: { [key: string]: DetachedRouteHandle } = {};
