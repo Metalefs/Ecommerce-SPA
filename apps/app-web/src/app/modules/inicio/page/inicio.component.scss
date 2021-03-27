@@ -14,7 +14,10 @@
   background-attachment: fixed;
     background-position: right;
 }
-
+.bg-img{
+  background:no-repeat center/100% url(/assets/images/inicio/abstract.png);
+  background-attachment: fixed;
+}
 .shadow{
   box-shadow: 0 10px 60px #00000057;
 }

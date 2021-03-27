@@ -183,7 +183,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     return Erros;
   }
   AbrirModalArte(){
-      if(this.Validar()){
+    this.IsValid = this.Erros.length > 0 ? false : true;
+    if(this.IsValid){
         let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
           data:this.Produto,
           width:'90vw',
@@ -208,8 +209,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         })
 
       }
-
-
   }
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{

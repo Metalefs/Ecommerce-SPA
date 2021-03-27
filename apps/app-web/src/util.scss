@@ -120,7 +120,7 @@ input,select{
   cursor: text;
   /* margin: 0em; */
   /* font: 400 13.3333px Arial; */
-  /* padding: 2px; */
+  padding: 2px;
   border-width: 2px;
   border-style: inset;
   border-image: initial;
@@ -129,7 +129,9 @@ input,select{
   max-width: 100%;
   width: 100%;
 }
-
+input[type=number] {
+  text-align: center;
+}
 .reverse-column{
   flex-direction: column-reverse;
 }

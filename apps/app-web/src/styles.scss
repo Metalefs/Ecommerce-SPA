@@ -57,6 +57,9 @@ body {
     cursor: pointer;
   }
 }
+.ngx-slider .ngx-slider-pointer {
+  background-color: #f90405 !important;
+}
 body, button, input, optgroup, select, textarea {
   font-family: 'Montserrat';
 }
@@ -485,7 +488,7 @@ canvas{
   background: $blue1;
 }
 .mat-form-field-appearance-fill .mat-form-field-flex {
-  background-color: initial !important;
+  background-color: white !important;
   border: 1px solid #9bb6d23b !important;
   border-radius: 4px;
 }
