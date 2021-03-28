@@ -7,22 +7,24 @@ import { WindowRef } from './window.service';
     providedIn: "root",
 })
 export class PageScrollService{
-  constructor(@Inject(PLATFORM_ID) private platform: Object, private windowRef: WindowRef){}
+  constructor(@Inject(PLATFORM_ID) private platform: Object, private windowRef: WindowRef,private document: DocumentRef){}
     scrollTop(){
+      let self = this;
       if (isPlatformBrowser(this.platform)) {
         (function smoothscroll() {
-          var currentScroll = this.document.documentElement.scrollTop || this.document.body.scrollTop;
+          var currentScroll = self.document.nativeDocument.documentElement.scrollTop || self.document.nativeDocument.body.scrollTop;
           if (currentScroll > 0) {
-            this.windowRef.nativeWindow.requestAnimationFrame(smoothscroll);
-            this.windowRef.nativeWindow.scrollTo(0, currentScroll - (currentScroll / 8));
+            self.windowRef.nativeWindow.requestAnimationFrame(smoothscroll);
+            self.windowRef.nativeWindow.scrollTo(0, currentScroll - (currentScroll / 8));
           }
         })();
       }
     }
     scrollDown(){
+      let self = this;
       if (isPlatformBrowser(this.platform)) {
         (function smoothscroll() {
-          this.windowRef.nativeWindow.scrollTo({ left: 0, top: this.document.body.scrollHeight, behavior: "smooth" });
+          self.windowRef.nativeWindow.scrollTo({ left: 0, top: self.document.nativeDocument.body.scrollHeight, behavior: "smooth" });
         })();
       }
     }

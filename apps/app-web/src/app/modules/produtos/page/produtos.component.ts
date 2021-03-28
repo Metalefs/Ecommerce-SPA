@@ -38,9 +38,9 @@ export class ProdutosComponent implements OnInit {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return "<span>Min:</span> R$" + value;
+          return "<span class='is-size-7' >Min: R$" + value +"</span>";
         case LabelType.High:
-          return "<span>Máx:</span> R$" + value;
+          return "<span class='is-size-7' >Máx: R$" + value +"</span>";
         default:
           return "";
       }

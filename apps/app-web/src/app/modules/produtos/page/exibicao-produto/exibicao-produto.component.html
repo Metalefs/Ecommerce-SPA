@@ -219,7 +219,20 @@
                 </div>
                 <mat-divider></mat-divider>
 
+                <div class="mx-0 dis-flex flex-sa flex-m w-full columns is-multiline is-vcentered ">
+                  <div class="column txt-center">
+                    <h4 class="">Formas de pagamento</h4>
+                    <img
+                    loading="lazy"
+                    src="https://imgmp.mlstatic.com/org-img/MLB/MP/BANNERS/tipo2_468X60.jpg?v=1"
+                    alt="Mercado Pago - Meios de pagamento" title="Mercado Pago - Meios de pagamento"
+                    width="468" height="60"
+                    [style.height]="'60px !important'"
+                    [style.width]="'468px !important'"
+                    >
+                  </div>
 
+                </div>
               </div>
 
               <div class="columns w-full is-gapless is-multiline">
@@ -351,25 +364,27 @@
   </a>
 </div>
 
-<div class="bg-transp">
+<div class="bg-transp margin">
 
-  <div class="margin px-6 py-6 mb-3" *ngIf="Produto?._id">
+  <div class=" px-6 py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
 
-  <div class="margin  mb-3" *ngIf="Produto?._id">
+  <mat-divider></mat-divider>
+
+  <div class="  mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
   </div>
 
   <mat-divider></mat-divider>
 
-  <div class="margin">
+  <div class="">
     <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 
   </div>
 
-  <div class="margin ">
+  <div class=" ">
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
   </div>
 

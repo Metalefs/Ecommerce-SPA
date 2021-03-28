@@ -128,7 +128,7 @@
           <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> qtd </th>
           <td @fadeIn mat-cell *matCellDef="let element"  class="is-hidden-touch">
             <div class="control is-small ">
-              <button *ngIf="edit" mat-icon-button margin-bottom: 10px;(click)="DecrescerQuantidade(element)">
+              <button *ngIf="edit" mat-icon-button (click)="DecrescerQuantidade(element)">
                 <mat-icon class="less" >remove</mat-icon>
               </button>
               <input

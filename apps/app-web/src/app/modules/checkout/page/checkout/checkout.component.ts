@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
@@ -12,11 +12,11 @@ import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private scrollService:PageScrollService) { }
+  constructor(private scrollService:PageScrollService, @Inject(PLATFORM_ID) private platform:object) { }
 
   ngOnInit(): void {
-    if(isPlatformBrowser(PLATFORM_ID))
-      this.scrollService.scrollTop();
+    if(isPlatformBrowser(this.platform))
+    this.scrollService.scrollTop();
   }
 
   prepareRoute(outlet: RouterOutlet) {

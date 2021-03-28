@@ -14,7 +14,7 @@
     <li class="level-item px-2 has-text-centered">
       <div class="title is-size-7 has-text-gray">
          <div class="dropdown">
-           <a class="reset-a is-hidden-mobile has-text-gray"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
+           <a class="reset-a is-hidden-touch has-text-gray"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
            <a class="reset-a is-hidden-desktop has-text-gray" [routerLink]="['/minha-conta/pessoal']" pageScroll href="#topo"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
@@ -33,7 +33,7 @@
           <div class="is-hidden-touch">
             <p class="cart-counter" style="bottom:15px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
           </div>
-          <span class=""><i class="pi pi-shopping-cart"></i>Carrinho</span></a>
+          <span class=""><i class="pi pi-shopping-cart"></i></span></a>
           <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
             <div class="columns is-mobile is-vcentered">
 
@@ -47,7 +47,7 @@
           </div>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered mr-6">
+    <li class="level-item px-2 has-text-centered mr-6 is-hidden-touch">
       <div>
         <a class="reset-a is-size-7" [routerLink]="['checkout']"><i class="pi pi-reply"></i> <span class="is-hidden-touch">Finalizar pedido</span></a>
       </div>

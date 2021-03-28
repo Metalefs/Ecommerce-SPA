@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   @Select(ProdutoState.ObterListaProdutos) Produto$: Observable<Produto[]>;
   @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
   route: string;
-  search:boolean=false;
+  search:boolean=true;
   search_desk:boolean=true;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   carrinhoVazio:boolean = true;
@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
       this.router.events.subscribe(val => {
         this.links.forEach(x=>{
-          if(x.href == this.route.replace("/",''))
+          if(x.href == this.router.url.replace("/",''))
             this.SetActiveNav(x);
         })
       });
