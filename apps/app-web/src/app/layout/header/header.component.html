@@ -1,21 +1,20 @@
-<mat-toolbar class="w-full dis-flex flex-sb py-0 flex-c a-i-c z-index-top of-x-scroll">
-  <div class="w-full dis-flex flex-m flex-l px-2" style="height: 50px;">
-    <a @fadeIn href="#" class="logo pb-4 m-l-30">
-      <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
-    </a>
+<mat-toolbar class="w-full dis-flex flex-r flex-m has-background-dark has-text-light py-0 flex-c a-i-c z-index-top " style="overflow-y: visible;">
+  <div class="w-full dis-flex flex-m flex-l px-2" style="height: 50px;overflow-y: visible;">
+    <a @fadeIn href="#" class="logo m-l-30">
 
+    </a>
   </div>
-  <ul class="level list-inline pr-30 dis-flex flex-m has-text-gray">
-    <li class="level-item px-2 has-text-centered">
+  <ul class="level list-inline flex-r has-text-light">
+    <li class="level-item px-2 has-text-centered mb-0">
       <div>
-        <a class="title is-size-7 has-text-gray" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i> <span>{{(InfoContato$|async)?.Telefone}}</span></a>
+        <a class="title is-size-7 has-text-light" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i> <span>{{(InfoContato$|async)?.Telefone}}</span></a>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered">
-      <div class="title is-size-7 has-text-gray">
+    <li class="level-item px-2 has-text-centered mb-0">
+      <div class="title is-size-7 has-text-light">
          <div class="dropdown">
-           <a class="reset-a is-hidden-touch has-text-gray"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
-           <a class="reset-a is-hidden-desktop has-text-gray" [routerLink]="['/minha-conta/pessoal']" pageScroll href="#topo"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
+           <a class="reset-a is-hidden-touch has-text-light"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
+           <a class="reset-a is-hidden-desktop has-text-light" [routerLink]="['/minha-conta/pessoal']" pageScroll href="#topo"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>
@@ -27,13 +26,13 @@
         </div>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered">
+    <li class="level-item px-2 has-text-centered mb-0">
       <div>
-        <a class="title is-size-7 has-background-white button is-small has-text-black" (click)="openCheckout()">
+        <a class="title is-size-7 has-background-white button is-small" (click)="openCheckout()">
           <div class="is-hidden-touch">
             <p class="cart-counter" style="bottom:15px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
           </div>
-          <span class=""><i class="pi pi-shopping-cart"></i></span></a>
+          <span class="has-text-dark"><i class="pi pi-shopping-cart"></i></span></a>
           <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
             <div class="columns is-mobile is-vcentered">
 
@@ -47,7 +46,7 @@
           </div>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered mr-6 is-hidden-touch">
+    <li class="level-item px-2 has-text-centered mr-6">
       <div>
         <a class="reset-a is-size-7" [routerLink]="['checkout']"><i class="pi pi-reply"></i> <span class="is-hidden-touch">Finalizar pedido</span></a>
       </div>
@@ -55,14 +54,20 @@
   </ul>
 </mat-toolbar>
 <div class="w-full py-0 z-index-top pos-sticky top-0">
-<div class="border shadow-light py-2 mat-toolbar"
+
+<div class="py-2 mat-toolbar"
   class="{{(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
   [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
   <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
     <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
-
-      <div class="columns mx-0 my-0 py-2 is-mobile is-gapless">
+      <div class="" style="height: 50px;">
+        <a @fadeIn href="#" class="logo m-l-30">
+          <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
+        </a>
+      </div>
+      <div class="columns mx-0 my-0 border py-2 is-mobile is-gapless">
         <div class="column  is-2">
+
           <button mat-icon-button (click)="search = !search" class="has-background-white mx-1">
             <mat-icon>search</mat-icon>
           </button>

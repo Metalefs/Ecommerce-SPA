@@ -12,10 +12,18 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
+
       matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
 
 
-      <div #imgProduto matRipple class="dis-flex flex-w">
+      <div #imgProduto matRipple class="dis-flex flex-w w-full" >
+        <!-- <a class="prod-status " [href]="'/produtos/'+Produto._id" *ngIf="Produto.Cores?.length > 1" >
+          <span routerLinkActive="router-link-active"
+            class="button is-small is-size-7 bo-0 is-fullwidth is-disabled px-4">
+            Disponível em {{Produto.Cores?.length}} cores
+          </span>
+        </a> -->
+
         <!-- <img
           mat-card-image #imgProduto
           class=""
@@ -48,16 +56,11 @@
             </slideshow>
       </div>
 
-      <a class="prod-status " [href]="'/produtos/'+Produto._id" *ngIf="Produto.Cores?.length > 1" >
-        <span routerLinkActive="router-link-active"
-          class="button is-small is-size-7 bo-0 is-fullwidth is-disabled px-4">
-          Disponível em {{Produto.Cores?.length}} cores
-        </span>
-      </a>
 
-      <mat-card-footer class="px-3 z-index-2">
 
-        <mat-card-title class="w-full my-3 txt-left titulo-produto">
+      <mat-card-footer  class="px-3 z-index-2">
+
+        <mat-card-title matBadgeOverlap="false" [matBadgeHidden]="Produto.Cores?.length <= 1" matBadge="{{Produto.Cores?.length}}" matBadgePosition="before" matBadgeColor="accent" class="w-full my-3 txt-left titulo-produto">
 
           <a matRipple class="reset-a" pageScroll href="#topo" [routerLink]="['/produtos/'+ Produto._id]">
             {{Produto?.Nome}}
@@ -183,13 +186,13 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
+      matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor" style="flex-direction:column">
       <!-- <span class="prod-status is-hidden-desktop">
         <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </span> -->
 
-      <div #imgProduto matRipple class="dis-flex flex-w">
+      <div #imgProduto matRipple class="dis-flex flex-w w-full">
 
           <slideshow mat-card-image
               *ngIf="imageUrls.length"
@@ -230,7 +233,7 @@
 
         <mat-card-header class="w-full txt-center pt-1">
 
-          <mat-card-title class="w-full titulo-produto">
+          <mat-card-title class="w-full titulo-produto ">
             <a matRipple class="reset-a" [routerLink]="['/produtos/'+ Produto._id]">
               {{Produto?.Nome}}
             </a>
@@ -255,7 +258,7 @@
           <!-- <mat-card-subtitle class="txt-center w-full is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
 
           <mat-card-subtitle mat-card-subtitle
-            class="w-full z-index-2 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco">
+            class="w-full pos-relative z-index-2 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco of-y-scroll">
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
               <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
                 Em até {{Produto.Parcelas}}x <span

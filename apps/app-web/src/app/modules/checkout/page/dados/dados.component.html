@@ -87,7 +87,7 @@
               </section>
               <mat-form-field @fadeIn *ngIf="registrarse" class="w-full control has-icons-right" appearance="fill">
                 <mat-label>Insira uma senha para o perfil</mat-label>
-                <input type='password' #senha class="control has-icons-right input" matInput placeholder="********"
+                <input type='password' #senha name="senha" class="control has-icons-right input" matInput placeholder="********"
                   [(ngModel)]="Orcamento.Usuario.Senha">
                 <a (click)="senha.type= senha.type=='text'? 'password':'text'">
                   <mat-icon>{{senha.type=='text'?'visibility_off':'visibility'}}</mat-icon>
