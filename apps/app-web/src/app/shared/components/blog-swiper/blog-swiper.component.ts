@@ -49,7 +49,7 @@ export class BlogSwiperComponent implements OnInit {
             lazy                   : false,
             observer               : true,
             navigation             : true,
-            slidesPerView:2,
+            slidesPerView:1,
             autoplay: {
               delay               : 4000,
               disableOnInteraction: false,

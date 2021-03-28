@@ -44,12 +44,25 @@
                </a>
             </div>
           </div>
-          <div class="tile is-parent">
+          <!-- <div class="tile is-parent">
             <div class="tile is-child box">
               <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
 
             </div>
-          </div>
+          </div> -->
+        </div>
+        <div class="columns is-multiline is-gapless  px-2" *ngIf="Produtos">
+          <ng-container *ngFor="let produto of Produtos" class=" ">
+            <div @fadeIn
+              class="column is-6-tablet my-2"
+              >
+              <personalizados-lopes-card-produto @slideInOut
+                [Produto]="produto"
+                [MostarOpcoes]="true"
+
+              ></personalizados-lopes-card-produto>
+            </div>
+          </ng-container>
         </div>
         <div data-aos="zoom-in-down"  class="hero is-medium">
           <!-- <div class="hero-body pb-2 has-background-white">

@@ -65,8 +65,8 @@
                           <mat-icon class="less">remove</mat-icon>
                         </button>
                         <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
-                          value="{{Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
-                          min="{{Produto?.QuantidadeMinima ||1}}" class="quantidade-produto input"
+                          value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
+                          min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
                           [(ngModel)]="(Produto).Quantidade">
                         <button mat-icon-button (click)="IncrementarQuantidade()">
                           <mat-icon class="more">add</mat-icon>
@@ -245,11 +245,17 @@
                   </button>
                 </div>
                 <div class="column pt-0 mt-0 is-hidden-desktop">
-                  <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
-                  </share-button>
-                  <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
-                  </share-button>
-
+                  <button mat-button [matMenuTriggerFor]="menu"><i class="pi pi-share-alt"></i></button>
+                  <mat-menu #menu="matMenu">
+                    <div mat-menu-item>
+                      <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+                      </share-button>
+                    </div>
+                    <div mat-menu-item>
+                      <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+                      </share-button>
+                    </div>
+                  </mat-menu>
                 </div>
               </div>
 
@@ -277,10 +283,17 @@
           </mat-tab-group>
 
           <div class="column pt-0 mt-0 is-hidden-touch ">
-            <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
-            </share-button>
-            <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
-            </share-button>
+            <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
+            <mat-menu #menu2="matMenu">
+              <div mat-menu-item>
+                <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+                </share-button>
+              </div>
+              <div mat-menu-item>
+                <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+                </share-button>
+              </div>
+            </mat-menu>
           </div>
           <mat-tab-group class="is-hidden-desktop">
             <mat-tab label="Informações">

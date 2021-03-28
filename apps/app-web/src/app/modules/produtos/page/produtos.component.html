@@ -67,15 +67,16 @@
               [style.backgroundColor]="categoria?.Cor"
               class="pointer w-full w-full-m cat-item has-background-white hoverable"
               (click)="SetCategoria(categoria)"
-              [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box' : ''">
-              <a mat-strocked-button class="dis-flex flex-sb flex-m">
+              [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box ' : 'has-text-grey'">
+              <a [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'"
+              mat-strocked-button class="dis-flex flex-sb flex-m ">
                 <button class="border-0">
                   <mat-icon
                     [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
                     {{CategoriaAtiva?.Nome == categoria?.Nome ?  'done' : 'arrow_left'}}
                   </mat-icon>
                 </button>
-                <p>{{categoria?.Nome}}</p>
+                <p class="">{{categoria?.Nome}}</p>
               </a>
               <mat-divider></mat-divider>
             </mat-list-item>
@@ -132,7 +133,7 @@
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
           <!-- <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span> -->
           <span class="subtitle is-size-6"> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> itens encontrados</span>
-          <mat-form-field class="w-full" appearance="fill">
+          <mat-form-field class="w-full" appearance="">
             <mat-label>Página</mat-label>
             <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
               <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
@@ -142,9 +143,10 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <span class="spacer"></span>
           <div class="">
             <!-- <span>Ordenação</span> -->
-           <mat-form-field class="" appearance="fill">
+           <mat-form-field class="" appearance="">
             <mat-label>Ordenar por</mat-label>
             <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
               <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
