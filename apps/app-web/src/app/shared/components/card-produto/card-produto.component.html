@@ -87,7 +87,7 @@
           <mat-card-subtitle class="mat-card-subtitle is-hidden-desktop is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle
-            class="w-full z-index-2 px-3  pb-4 pt-4 is-3 preco  of-y-scroll">
+            class="w-full z-index-2 px-3  pb-4 pt-4 is-3 preco ">
             <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -97,9 +97,7 @@
               </div>
             </ng-template>
             <ng-template #preco_normal>
-              <!-- <div class="txt-left">
-                <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-              </div> -->
+
             </ng-template>
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
               <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
@@ -118,21 +116,20 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions class="pos-relative bottom-0">
-          <!-- <mat-divider class="my-0"></mat-divider> -->
           <div class="px-4 py-2 level flex-sa dis-flex flex-w flex-m">
             <a [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
               <button
-                class="wp-btn button border is-small box mb-2 pb-2">
+                class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
                 <span><i class="pi pi-plus"></i> Abrir</span>
               </button>
             </a>
             <button (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-              class="wp-btn button border is-small box mb-2 pb-2">
+              class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
               <span><i class="pi pi-shopping-cart"></i> Carrinho</span>
             </button>
             <a href="#topo" [routerLink]="['/produtos/'+ Produto._id]" routerLinkActive="router-link-active">
               <button
-                class="wp-btn button border is-small box mb-2 pb-2">
+                class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
                 <span><i class="pi pi-dollar"></i> Comprar</span>
               </button>
             </a>
@@ -193,15 +190,7 @@
       </span> -->
 
       <div #imgProduto matRipple class="dis-flex flex-w">
-        <!-- <img
-          mat-card-image #imgProduto
-          class=""
-          [src]="Produto.Imagem[0]" [style.opacity]="'1'" [style.display]="'block'"
-          alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-        <img
-          mat-card-image #imgProduto2
-          class="hide" [src]="Produto.Imagem[1] || Produto.Imagem[0]"
-          alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}"> -->
+
           <slideshow mat-card-image
               *ngIf="imageUrls.length"
                [imageUrls]="imageUrls"

@@ -38,9 +38,9 @@ export class ProdutosComponent implements OnInit {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return "<span>Minimo:</span> R$" + value;
+          return "<span>Min:</span> R$" + value;
         case LabelType.High:
-          return "<span>Máximo:</span> R$" + value;
+          return "<span>Máx:</span> R$" + value;
         default:
           return "";
       }
@@ -144,6 +144,7 @@ export class ProdutosComponent implements OnInit {
     this.activeRoute.queryParams.filter(params => params.categoria)
     .subscribe(params => {
       this.SetCategoria(new Categoria(params.categoria, ""));
+      this.atualizarFiltroAtivo();
     })
     this.activeRoute.queryParams.filter(params => params.nome)
     .subscribe(params => {
@@ -211,6 +212,7 @@ export class ProdutosComponent implements OnInit {
   changeOptions(ceil:number) {
     const newOptions: Options = Object.assign({}, this.options);
     newOptions.ceil = ceil;
+    this.maxValue = ceil;
     this.options = newOptions;
   }
   filtroAtivo(produto:Produto){

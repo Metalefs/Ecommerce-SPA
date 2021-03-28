@@ -16,7 +16,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     if(isPlatformBrowser(PLATFORM_ID))
-      this.scrollService.scrollDown();
+      this.scrollService.scrollTop();
   }
 
   prepareRoute(outlet: RouterOutlet) {
