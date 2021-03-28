@@ -6,9 +6,8 @@ import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, Ad
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
+import { ResultadoPagamentoMP } from 'libs/data/src/lib/classes/orcamento';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
-
-import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
@@ -20,11 +19,24 @@ export class OrcamentoStateModel{
 
 }
 let enderecoEntrega = new EnderecoEntrega("","","","","","","");
-let DEFAULT = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","","","",enderecoEntrega));
+let resultadoPagamentoMP: ResultadoPagamentoMP = {
+  collection_id:0,
+  collection_status:"", //approved&pending
+  payment_id:0,
+  status:"", //approved|failure|pending
+  external_reference:"",
+  payment_type:"", //credit_card&
+  merchant_order_id:0,
+  preference_id:"",
+  site_id:"", //MLB&
+  processing_mode:"", //aggregator&
+  merchant_account_id:0,
+};
+export let DEFAULT_ORCAMENTO = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","","","",enderecoEntrega),"",resultadoPagamentoMP);
 @State<OrcamentoStateModel>({
   name:"Orcamentos",
   defaults: {
-    Orcamentos: DEFAULT,
+    Orcamentos: DEFAULT_ORCAMENTO,
     ListaOrcamentos: [],
     areOrcamentosLoaded: false
   }
@@ -67,7 +79,7 @@ export class OrcamentoState {
       const state = getState();
       this.usuarioService.AtualizarInformacoes(state.Orcamentos.Usuario).subscribe();
       patchState({
-          Orcamentos: DEFAULT
+          Orcamentos: DEFAULT_ORCAMENTO
       });
     });
   }
@@ -135,7 +147,7 @@ export class OrcamentoState {
   ResetarOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {}: ResetarOrcamento){
     const state = getState();
     let usuario = state.Orcamentos.Usuario;
-    state.Orcamentos = DEFAULT;
+    state.Orcamentos = DEFAULT_ORCAMENTO;
     state.Orcamentos.Usuario = usuario;
     state.Orcamentos.Status = StatusOrcamento.aberto;
     this.atualizarPreco(state);
@@ -191,7 +203,7 @@ export class OrcamentoState {
         const state = getState();
         setState({
           ...state,
-          Orcamentos: DEFAULT,
+          Orcamentos: DEFAULT_ORCAMENTO,
         });
       })
     );

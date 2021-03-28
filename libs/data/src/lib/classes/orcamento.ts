@@ -23,6 +23,8 @@ export class Orcamento extends MongoDocument implements entidadeBase{
       Preco:number,
       Mensagem:string,
       Usuario?:Usuario,
+      Dimensoes?:string,
+      ResultadoPagamentoMP?:ResultadoPagamentoMP
     ){
         super();
         this.Produto = Produto;

@@ -87,6 +87,7 @@
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
     "localstorage-polyfill": "^1.0.1",
+    "mat-table-filter": "^9.1.0",
     "mercadopago": "^1.5.2",
     "moment": "^2.29.0",
     "mongodb": "^3.6.2",

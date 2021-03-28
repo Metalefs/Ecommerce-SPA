@@ -49,6 +49,7 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
 
 import { CKEditorModule } from 'ckeditor4-angular';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatTableFilterModule } from 'mat-table-filter';
 @NgModule({
   declarations: [
     GerenciamentoComponent,
@@ -94,7 +95,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     LayoutModule,
     EditorModule,
     CKEditorModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatTableFilterModule
   ],
   exports: [
     GerenciamentoComponent,
@@ -116,7 +118,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     OrcamentoDetailComponent,
     EditorModule,
     CKEditorModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatTableFilterModule
   ]
 })
 export class GerenciamentoModule { }

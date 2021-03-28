@@ -188,17 +188,17 @@ export class ProdutosComponent implements OnInit {
       }
 
       this.Produtos = x.items;
+      this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o=> o.Preco)) : this.Produtos[0]?.Preco);
       let FiltroProduto:FiltroProduto = {
         Categoria:this.CategoriaAtiva,
         SearchFilter:this.activeSearchFilter,
         OrderFilter:this.activeOrderFilter,
-        Produtos: this.Produtos.filter(x=>this.filtroAtivo(x)),
+        Produtos: this.Produtos.filter(z=>this.filtroAtivo(z)),
       };
 
-      this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o=> o.Preco)) : this.Produtos[0].Preco);
-
-      this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe();
-      await delay(400).then(x=>{this.loading = x;});
+      this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe(y=>{
+        delay(400).then(x=>{this.loading = x;});
+      });
 
       function delay(ms: number): Promise<boolean> {
         return new Promise(resolve => {
@@ -239,11 +239,10 @@ export class ProdutosComponent implements OnInit {
       return produto.Preco >= this.value && produto.Preco <= this.maxValue ;
   }
   matchStatusFilter(produto:Produto){
-    if(this.activeOrderStatus)
-      if(this.activeOrderStatus.id == StatusProduto.padrao)
-        return true;
-      else
-        return produto.Status >= this.activeOrderStatus.id;
+    if(this.activeOrderStatus){
+      // alert(this.activeOrderStatus.id)
+      return produto.Status == this.activeOrderStatus.id || this.activeOrderStatus.id == StatusProduto.padrao;
+    }
     return true;
   }
   matchSearchFilter(produto:Produto){
@@ -275,7 +274,6 @@ export class ProdutosComponent implements OnInit {
     new Categoria(this.defaultCategory,this.defaultCategory)
     :
     this.CategoriaAtiva = categoria;
-    this.ResetPage();
     this.atualizarFiltroAtivo();
   }
   ResetPage(){

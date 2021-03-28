@@ -59,12 +59,11 @@ export class FiltroProdutoState {
   @Action(EditarFiltroProduto)
   EditarFiltroProduto(context: StateContext<FiltroProdutoStateModel>, action: EditarFiltroProduto) {
     const current = context.getState();
-
     context.patchState({
-        Categoria : action.payload.Categoria,
-        SearchFilter : action.payload.SearchFilter,
-        OrderFilter : action.payload.OrderFilter,
-        FiltroProdutos : action.payload.Produtos
+      Categoria : action.payload.Categoria,
+      SearchFilter : action.payload.SearchFilter,
+      OrderFilter : action.payload.OrderFilter,
+      FiltroProdutos : action.payload.Produtos
     });
   }
 

@@ -1,4 +1,4 @@
-<div class="flex-w flex-c">
+<div class="flex-w flex-l mb-3">
   <h1 class="title is-5 is-uppercase">Usuários interessados em receber notícias da empresa.</h1>
   <mat-spinner *ngIf="Loading"></mat-spinner>
 </div>
@@ -6,7 +6,7 @@
 
   <div class="column">
     <p>Configurar mensagem de e-mail</p>
-    <ckeditor [editor]="Editor"></ckeditor>
+    <personalizados-lopes-editor [Conteudo]=" "></personalizados-lopes-editor>
   </div>
   <div class="column">
     <button mat-raised-button (click)="CheckAll()">Todos</button>
