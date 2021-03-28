@@ -1,52 +1,102 @@
-<div class="flex-w flex-c">
-  <h1 class="title is-5 is-uppercase">Pedidos por usuários.</h1>
+<div class="flex-w flex-l">
+  <h1 class="title txt-left is-5 is-uppercase">Pedidos.</h1>
 </div>
 <div class=" w-full">
   <div class="mat-elevation-z8 w-full  of-x-scroll">
-    <mat-form-field class="px-4">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <mat-form-field class="px-4" appearance="fill">
+      <mat-label>Filtro</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Usuario x" #input>
     </mat-form-field>
     <table mat-table [dataSource]="dataSource" class="table w-full is-hoverable is-striped" matSort>
 
       <ng-container matColumnDef="Nome">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Nome Cliente </th>
-        <td mat-cell *matCellDef="let row"> {{row.Usuario.Nome}} </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="email"
+          type="text"
+          readonly
+          [(ngModel)]="row.Usuario.Nome"
+          >
+           </td>
       </ng-container>
 
       <ng-container matColumnDef="Email">
         <th mat-header-cell *matHeaderCellDef > Email Cliente </th>
-        <td mat-cell *matCellDef="let row"> {{row.Usuario.Email}} </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="email"
+          type="text"
+          readonly
+          [(ngModel)]="row.Usuario.Email"
+          >
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="CPF">
         <th mat-header-cell *matHeaderCellDef > CPF Cliente </th>
-        <td mat-cell *matCellDef="let row"> {{row.Usuario.CPF}} </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="text"mask="000.000.000-00"
+          type="text"
+          readonly
+          [(ngModel)]="row.Usuario.CPF"
+          >
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="IDPagamento">
         <th mat-header-cell *matHeaderCellDef > IDPagamento </th>
-        <td mat-cell *matCellDef="let row"> {{row.ResultadoPagamentoMP?.payment_id}} </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="email"
+          type="text"
+          readonly
+          [(ngModel)]="row.ResultadoPagamentoMP.payment_id"
+          >
+         </td>
       </ng-container>
 
       <ng-container matColumnDef="Preco">
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Preco do pedido </th>
-        <td mat-cell *matCellDef="let row"> R${{row.Preco.toFixed(2)}} </td>
+        <td mat-cell *matCellDef="let row">
+           <input type="email"
+          type="text"
+          readonly
+          prefix="R$"
+          mask="0*.00"
+          [(ngModel)]="row.Preco"
+          >
+           </td>
       </ng-container>
 
       <ng-container matColumnDef="Status" >
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Status da sua resposta </th>
-        <td mat-cell *matCellDef="let row"> {{row.Status == 0 ? 'Aberto' : 'Respondido'}} </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="email"
+          type="text"
+          readonly
+          value="{{row.Status == 0 ? 'Aberto' : 'Respondido'}}"
+          >
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="StatusMP" >
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Status do pagamento </th>
-        <td mat-cell *matCellDef="let row"> {{row.ResultadoPagamentoMP?.status}} </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="email"
+          type="text"
+          readonly
+          [(ngModel)]="row.ResultadoPagamentoMP.status"
+          >
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="Data" >
         <th mat-header-cell mat-sort-header *matHeaderCellDef> Data Hora Criacao</th>
-        <td mat-cell *matCellDef="let row"> <div [innerHTML]="toLocaleDateString(row.DataHoraCriacao)"></div> </td>
+        <td mat-cell *matCellDef="let row">
+          <input type="email"
+          type="text"
+          readonly
+          [(ngModel)]="row.DataHoraCriacao"
+          >
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="Actions">

@@ -9,6 +9,11 @@
 @import '~css-star-rating/css/star-rating.min.css';
 @import '~@angular/cdk/overlay-prebuilt.css';
 @import '~swiper/swiper-bundle.min.css';
+@import '~@angular/material/theming';
+$custom-typography: mat-typography-config(
+  $font-family: 'Montserrat'
+);
+@include mat-core($custom-typography);
 
 :root {
   --animate-duration: .5s;
