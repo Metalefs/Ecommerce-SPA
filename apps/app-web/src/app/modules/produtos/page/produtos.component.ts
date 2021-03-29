@@ -116,9 +116,11 @@ export class ProdutosComponent implements OnInit {
     setTimeout(()=>{
       this.flip()
     },0)
-    this.carousel.handleHorizontalSwipe = null;
-    this.carousel.handleTouchstart = null;
-    this.carousel.handleTouchend = null;
+    if(this.carousel){
+      this.carousel.handleHorizontalSwipe = null;
+      this.carousel.handleTouchstart = null;
+      this.carousel.handleTouchend = null;
+    }
   }
 
   ngOnDestroy(){

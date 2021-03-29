@@ -363,8 +363,9 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
   updateViews(){
     if(!localStorage.getItem("vprod"+this.Produto._id)){
-      Object.defineProperty(this.Produto,'Visualizacoes',this.Produto.Visualizacoes?this.Produto.Visualizacoes++:0);
-      this.store.dispatch(new IncrementarVisualizacoesProduto(this.Produto._id)).subscribe();
+      this.store.dispatch(new IncrementarVisualizacoesProduto(this.Produto._id)).subscribe(x=>{
+        Object.defineProperty(this.Produto,'Visualizacoes',this.Produto.Visualizacoes++??1);
+      });
       localStorage.setItem("vprod"+this.Produto._id,"true");
     }
   }
