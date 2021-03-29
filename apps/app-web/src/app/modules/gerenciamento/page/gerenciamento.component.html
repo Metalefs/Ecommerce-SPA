@@ -1,7 +1,7 @@
 <div class="bg-white min-h-50" [class.example-is-mobile]="mobileQuery.matches">
 
   <mat-sidenav-container class="has-background-white-bis vh-full" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
-    <mat-sidenav #snav [opened]="true" [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav #snav [opened]="activenav != 'Dashboard'" [mode]="mobileQuery.matches ? 'over' : 'side'"
       fixedTopGap="56">
       <mat-nav-list>
         <a *ngFor = "let nav of navs"

@@ -50,7 +50,8 @@ export class GerenciamentoComponent implements OnInit {
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
 
     this.navs = [
-      {name: "Produtos", href: "/gerenciamento/app"},
+      {name: "Dashboard", href: "/gerenciamento/app"},
+      {name: "Produtos", href: "produtos"},
       {name: "Pedidos", href: "pedidos"},
       {name: "Usuarios Interessados", href: "emails"},
       {name: "Categorias de produtos", href: "categoria"},

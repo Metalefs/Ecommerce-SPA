@@ -44,14 +44,14 @@
                </a>
             </div>
           </div>
-          <!-- <div class="tile is-parent">
+          <div class="tile is-parent">
             <div class="tile is-child box">
-              <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper>
+              <!-- <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper> -->
 
             </div>
-          </div> -->
+          </div>
         </div>
-        <div class="columns is-multiline is-gapless  px-2" *ngIf="Produtos">
+        <div class="columns is-multiline is-gapless of-y-scroll px-2" *ngIf="Produtos">
           <ng-container *ngFor="let produto of Produtos" class=" ">
             <div @fadeIn
               class="column is-6-tablet my-2"

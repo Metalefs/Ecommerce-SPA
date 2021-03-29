@@ -33,6 +33,7 @@ export class Orcamento extends MongoDocument implements entidadeBase{
         this.Preco = Preco;
         this.Mensagem = Mensagem;
         this.Usuario = Usuario;
+        this.ResultadoPagamentoMP = ResultadoPagamentoMP;
     }
 
     DataHoraCriacao: Date;

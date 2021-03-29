@@ -35,11 +35,7 @@ export class ProdutoService {
     }
     async IncrementarVisualizacoes(id:string){
       return this.Filtrar({ "_id": new ObjectId(id) }).then((x:  Produto)=> {
-        if(!x.Visualizacoes)
-          Object.assign(x, {Visualizacoes: 1});
-        else
-          x.Visualizacoes += 1;
-        console.log("incrementando", x.Visualizacoes)
+        Object.defineProperty(x,'Visualizacoes',x.Visualizacoes?x.Visualizacoes++:0);
         return Repository.Edit(entities.Produto.NomeID, id, {Visualizacoes: x.Visualizacoes}).then(y => {
             return y;
         });

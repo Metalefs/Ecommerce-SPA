@@ -17,6 +17,7 @@ import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamen
 import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
+import { DashboardComponent } from './page/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -27,6 +28,12 @@ export const routes: Routes = [
     children: [
       {
         path: "",
+        // pathMatch: 'full',
+        component: DashboardComponent,
+        data: { animation:'isRight' }
+      },
+      {
+        path: "produtos",
         // pathMatch: 'full',
         component: EditarProdutoComponent,
         data: { animation:'isRight' }

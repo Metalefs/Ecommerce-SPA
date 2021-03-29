@@ -44,7 +44,7 @@ export class InicioComponent implements OnInit {
     this.authService.currentUser.subscribe(x=>{
       this.user = x;
     })
-    this.produtoService.FiltrarProdutos(this.fQuery,1,6).subscribe(x=>{
+    this.produtoService.FiltrarProdutos(this.fQuery,1,5).subscribe(x=>{
       this.Produtos = x.items;
     })
   }
