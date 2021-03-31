@@ -2,13 +2,13 @@
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
 
-  <mat-toolbar color="primary" class="noselect px-3">
+  <mat-toolbar color="primary" class="noselect px-3 pb-4">
     <mat-toolbar-row>
       Produtos Disponíveis <mat-icon>keyboard_arrow_down</mat-icon>
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div class="columns is-multiline px-2 mb-5 pt-2" *ngIf="Produtos">
+  <div class="columns has-background-danger is-multiline px-2 mb-5 pt-2" *ngIf="Produtos">
     <ng-container *ngFor="let produto of Produtos" class=" ">
       <div @fadeIn
         class="column mb-2 is-6-tablet"

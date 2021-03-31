@@ -30,109 +30,109 @@ export const routes: Routes = [
         path: "",
         // pathMatch: 'full',
         component: DashboardComponent,
-        data: { animation:'isRight' }
+        data: { animation:'isRight', }
       },
       {
         path: "produtos",
         // pathMatch: 'full',
         component: EditarProdutoComponent,
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - produtos'}
       },
       {
         path: "pedidos",
         // pathMatch: 'full',
         component: EditarOrcamentoComponent,
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - pedidos'}
       },
       {
         path: "pedidos/:id",
         pathMatch: 'full',
         component: OrcamentoDetailComponent,
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - pedido'}
       },
       {
         path: 'categoria',
         // canActivate: [AuthGuard],
         component: EditarCategoriaComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - categoria' }
       },
       {
         path: 'cliente',
         // canActivate: [AuthGuard],
         component: EditarClientesComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - cliente' }
       },
       {
         path: 'blog',
         // canActivate: [AuthGuard],
         component: EditarBlogComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - blog' }
       },
       {
         path: 'sobre',
         // canActivate: [AuthGuard],
         component: EditarSobreComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - sobre' }
       },
       {
         path: 'informacaocontato',
         // canActivate: [AuthGuard],
         component: EditarInformacoesContatoComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - informacaocontato' }
       },
       {
         path: 'servico',
         // canActivate: [AuthGuard],
         component: EditarServicoComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - servico' }
       },
       {
         path: 'carrosel',
         // canActivate: [AuthGuard],
         component: EditarCarouselComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - carrosel' }
       },
       {
         path: 'mensagem',
         // canActivate: [AuthGuard],
         component: EditarMensagemComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - mensagem' }
       },
       {
         path: 'emails',
         // canActivate: [AuthGuard],
         component: EditarEmailsComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - emails' }
       },
       {
         path: 'imagens',
         // canActivate: [AuthGuard],
         component: EditarImagemComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - imagens' }
       },
       {
         path: 'integracoes',
         // canActivate: [AuthGuard],
         component: EditarIntegracoesComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - integracoes' }
       },
       {
         path: 'tema',
         // canActivate: [AuthGuard],
         component: EditarTemaComponent,
         pathMatch: 'full',
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title:'Gerenciamento - tema' }
       }
     ],
 

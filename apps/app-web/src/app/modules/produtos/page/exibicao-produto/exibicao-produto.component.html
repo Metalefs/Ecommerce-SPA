@@ -47,8 +47,8 @@
                   <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li>
                 </ul>
 
-                <!-- <div class="descricao-produto w-full is-hidden-desktop" style="border-left: 1px solid #0000000a;"
-                  [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div> -->
+                <span class="subtitle is-size-7">({{Produto?.DescricaoRapida}}</span>
+
                 <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
                   <em>
                     *Minimo {{Produto?.QuantidadeMinima}} unidades
@@ -59,7 +59,7 @@
               <div class="columns txt-left is-multiline is-vcentered pr-3">
                 <div class="column pr-0">
                   <div class="w-full pt-3 mb-0">
-                    <p class="is-size-7 pt-2"><span class="is-size-7 pt-2">Selecione a quantidade</span></p>
+                    <p class="is-size-7 pt-2"><span class="is-size-7 has-text-weight-bold pt-2">Selecione a quantidade</span></p>
                     <div class="field pb-0 mb-0">
                       <div class="control border is-large flex-c flex-m ">
                         <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -68,6 +68,7 @@
                         <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
                           value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
                           min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
+                          [ngClass]="{'is-danger':ErroQuantidade()}"
                           [(ngModel)]="(Produto).Quantidade">
                         <button mat-icon-button (click)="IncrementarQuantidade()">
                           <mat-icon class="more">add</mat-icon>
@@ -77,11 +78,11 @@
                     <div class="columns txt-left is-vcentered pt-0 is-multiline">
 
                       <div class="column is-12  mb-5 py-0 pt-1">
-                        <p class="is-size-7 pt-2"><span class="is-size-7 pt-2">Selecione:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
-                        <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" *ngIf="Produto?.Cores">
+                        <p class="is-size-7 has-text-weight-bold pt-2"><span class="is-size-7 pt-2">Selecione:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
+                        <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Cores">
                           <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input class="px-2 py-2 mx-1" (click)="Produto.Cor=cor;"
-                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" type="radio" alt="{{cor.nome}}"
+                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}" type="radio" alt="{{cor.nome}}"
                               id="cor{{i}}" class="mx-1">
                             <label title="{{cor.nome}}" [style.background]="cor.cor"
                               [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
@@ -90,11 +91,13 @@
                           </div>
                         </div>
                       </div>
-                      <div class="column is-12 py-0" *ngIf="Produto?.Tamanhos">
+                      <div class="column is-12 py-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
                         <!-- <p><span>Tamanhos</span></p> -->
                         <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
-                          <mat-label>Tamanho</mat-label>
-                          <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
+                          <mat-label >Tamanho</mat-label>
+                          <mat-select matNativeControl
+
+                          [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
                             <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
                               <div class="cor-produto card box w-full" (click)="Produto.Tamanho = opt">
                                 <p>{{opt}}</p>
@@ -382,25 +385,27 @@
 
 <div class="bg-transp margin txt-center">
 
-  <div class=" px-6 py-6 mb-3" *ngIf="Produto?._id">
+  <div class=" px-4 py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
 
   <mat-divider></mat-divider>
 
-  <div class="  mb-3" *ngIf="Produto?._id">
+  <div class=" px-4  mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
   </div>
 
   <mat-divider></mat-divider>
 
-  <div class="">
+  <div class="px-4 ">
     <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 
   </div>
 
-  <div class=" ">
+  <mat-divider></mat-divider>
+
+  <div class=" px-4 ">
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
   </div>
 

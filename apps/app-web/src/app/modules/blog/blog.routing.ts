@@ -14,7 +14,7 @@ export const routes: Routes = [
         path: "",
         // canActivate: [AuthGuard],
         component: ListagemPostsComponent,
-        data: { animation:'isRight' }
+        data: { animation:'isRight', title: 'Blog' }
       },
     ]
   },
@@ -23,13 +23,13 @@ export const routes: Routes = [
     path: ':id',
     component: BlogComponent,
     pathMatch: 'full',
-    data: { animation:'isRight' },
+    data: { animation:'isRight', title: 'Blog' },
     children: [
       {
         path: "",
         // canActivate: [AuthGuard],
         component: ExibicaoBlogComponent,
-        data: { animation:'isLeft' },
+        data: { animation:'isLeft', title: 'Blog' },
       },
     ]
   }

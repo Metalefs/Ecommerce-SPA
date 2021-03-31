@@ -1,7 +1,7 @@
 import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import AOS from 'aos'
-
+import { Title } from '@angular/platform-browser';
 import { AppDeploymentState } from './data/enums/AppDeploymentState';
 
 import { LerCategoria } from './data/store/actions/categoria.actions';
@@ -16,7 +16,9 @@ import { LerCarousel } from './data/store/actions/carousel.actions';
 import { IntegracoesService } from './data/service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { isPlatformBrowser } from '@angular/common';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs/operators';
+
 declare let gtag: Function;
 declare let Mercadopago: any;
 @Component({
@@ -37,13 +39,17 @@ export class AppComponent {
   constructor(
     private store: Store,
     private router : Router,
+    private activatedRoute : ActivatedRoute,
     private integracoesService: IntegracoesService,
     private spinner: NgxSpinnerService,
-    @Inject(PLATFORM_ID) private platform: Object
+    @Inject(PLATFORM_ID) private platform: Object,
+    private titleService: Title
 
   ) {
+    const appTitle = this.titleService.getTitle();
     if(isPlatformBrowser(this.platform)){
-      this.router.events.subscribe(event => {
+      this.router
+      .events.subscribe(event => {
          if(event instanceof NavigationEnd){
              gtag('config', 'UA-175817845-1',
                 {
@@ -51,6 +57,23 @@ export class AppComponent {
                 }
               );
           }
+       });
+
+       this.router
+       .events.pipe(
+         filter(event => event instanceof NavigationEnd),
+         map(() => {
+          let child = this.activatedRoute.firstChild;
+          while (child.firstChild) {
+            child = child.firstChild;
+          }
+          if (child.snapshot.data['title']) {
+            return child.snapshot.data['title'];
+          }
+           return appTitle;
+         })
+       ).subscribe((ttl: string) => {
+         this.titleService.setTitle(ttl);
        });
     }
   }

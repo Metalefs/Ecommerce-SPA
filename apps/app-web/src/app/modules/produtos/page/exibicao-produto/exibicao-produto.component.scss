@@ -259,6 +259,9 @@ input[type='number'] {
     opacity: 0.5;
   }
 }
+.is-danger{
+  border-color: 1px dotted red !important;
+}
 .share-button-text {
   max-width: 188px;
   overflow-wrap: break-word;

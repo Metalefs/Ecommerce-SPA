@@ -15,19 +15,19 @@ export const routes: Routes = [
         path: "",
         // canActivate: [AuthGuard],
         component: ConfirmacaoComponent,
-        data: { animation:'isLeft' },
+        data: { animation:'isLeft', title: 'Checkout' },
       },
       {
         path: "dados",
         // canActivate: [AuthGuard],
         component: DadosComponent,
-        data: { animation:'isLeft' },
+        data: { animation:'isLeft', title: 'Checkout - Dados pessoais' },
       },
       {
         path: "endereco",
         // canActivate: [AuthGuard],
         component: EnderecoComponent,
-        data: { animation:'isLeft' },
+        data: { animation:'isLeft', title: 'Checkout - Endereço de entrega' },
       },
       {
         path: "success",

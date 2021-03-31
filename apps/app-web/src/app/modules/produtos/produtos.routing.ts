@@ -7,19 +7,19 @@ export const routes: Routes = [
   {
     path: '',
     component: ProdutosComponent,
-    data: { animation:'isRight' }
+    data: { animation:'isRight', title: 'Produtos' }
   },
   {
     path: ':id',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
-    data: { animation:'isLeft' }
+    data: { animation:'isLeft', title: 'Produto -' }
   },
   {
     path: ':id/:orcamentoId',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
-    // data: { animation:'isRight' }
+    data: { title: 'Produto -' }
   }
 ];
 @NgModule({

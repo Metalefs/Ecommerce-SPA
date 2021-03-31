@@ -33,6 +33,7 @@ import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll
 import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
 import { FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -81,7 +82,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private scrollService: PageScrollService,
     private servicoProduto:ProdutoService,
     private windowRef: WindowRef,
-    private document: DocumentRef
+    private document: DocumentRef,
+    private titleService: Title
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -117,13 +119,13 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     if(this.Produto?.Quantidade == 0)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
 
-    if(isPlatformBrowser(PLATFORM_ID))
+    if(isPlatformBrowser(this.platform))
     this.Url = `https://${location.href}`;
 
     if(this.Produto?.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
 
-    if(isPlatformBrowser(PLATFORM_ID))
+    if(isPlatformBrowser(this.platform))
       this.scrollService.scrollTop();
   }
 
@@ -136,7 +138,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
 
   IsValid:boolean=true;
-  Erros:{erro:string}[] = [];
+  Erros:{erro:string,type:number}[] = [];
   AdicionarAoOrcamento(){
     this.Erros = this.Validar();
     this.IsValid = this.Erros.length > 0 ? false : true;
@@ -170,17 +172,26 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
 
   Validar(){
-    let Erros:{erro:string}[] = [];
+    let Erros:{erro:string,type:number}[] = [];
     if(this.Produto.Quantidade < 1){
-      Erros.push({erro:"Selecione uma quantidade para o item"});
+      Erros.push({erro:"Selecione uma quantidade para o item", type:1});
     }
     if(!this.Produto.Cor){
-      Erros.push({erro:"Selecione uma cor para o item"});
+      Erros.push({erro:"Selecione uma cor para o item", type:2});
     }
     if(!this.Produto.Tamanho){
-      Erros.push({erro:"Selecione um tamanho para o item"});
+      Erros.push({erro:"Selecione um tamanho para o item", type:3});
     }
     return Erros;
+  }
+  ErroQuantidade(){
+    return this.Erros.some(x=>x.type == 1);
+  }
+  ErroCor(){
+    return this.Erros.some(x=>x.type == 2);
+  }
+  ErroTamanho(){
+    return this.Erros.some(x=>x.type == 3);
   }
   AbrirModalArte(){
     this.IsValid = this.Erros.length > 0 ? false : true;
@@ -331,7 +342,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         ];
         this.updateViews();
         this.AdicionarDescricao();
-
+        this.titleService.setTitle(`${this.Produto.Nome}`);
         prod[0]?.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });
         });
@@ -350,7 +361,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
           {label:this.Produto?.Nome, styleClass:'desb'}
         ];
         this.AdicionarDescricao();
-
+        this.titleService.setTitle(`${this.Produto.Nome}`);
         this.updateViews();
         this.Produto.Imagem.forEach(img =>{
           galleryRef.addImage({ src:img, thumb: img });

@@ -243,7 +243,7 @@ img{
   top: 0;
   left: 5px;
   height: calc(100% - 10px);
-  width: calc(100% - 10px);
+  width: 55%;
   // opacity: 0;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -254,12 +254,12 @@ img{
         pointer-events: none;
         display: block;
         position: absolute;
-        margin: 0 auto;
         font-size: 12px;
-        width: 50%;
-        top: 40%;
-        left: 25%;
+        width: 55%;
+        top: 45%;
+        left: 2px;
         z-index: 10;
+        border-radius: 50%;
     }
 }
 
