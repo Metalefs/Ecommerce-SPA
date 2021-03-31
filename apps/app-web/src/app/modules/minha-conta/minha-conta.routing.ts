@@ -14,12 +14,12 @@ export const routes: Routes = [
       {
         path: '',
         component: PerfilComponent,
-        data: { animation:'isLeft' }
+        data: { animation:'isLeft', title: 'Perfil' }
       },
       {
         path: 'pedidos',
         component: PedidosComponent,
-        data: { animation:'isLeft' }
+        data: { animation:'isLeft', title: 'Meus pedidos' }
       }
     ]
   }

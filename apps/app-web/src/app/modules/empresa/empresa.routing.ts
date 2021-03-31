@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     component: EmpresaComponent,
-    data: { animation:'isRight' }
+    data: { animation:'isRight', title: 'Sobre nós' }
   }
 ];
 @NgModule({

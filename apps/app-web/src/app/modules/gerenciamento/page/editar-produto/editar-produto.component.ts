@@ -26,7 +26,7 @@ import { fade } from 'apps/app-web/src/app/animations';
   styleUrls: ['./editar-produto.component.scss'],
   animations: [fade]
 })
-export class EditarProdutoComponent implements OnInit, OnDestroy {
+export class EditarProdutoComponent implements OnInit {
   value: number = 1;
   maxValue: number = 100;
   options: Options = {
@@ -80,7 +80,6 @@ export class EditarProdutoComponent implements OnInit, OnDestroy {
   ]
   Parcelamento:boolean;
   MultiplasCores:boolean;
-  areProdutosLoadedSub: Subscription;
   defaultCategory = "Todos os produtos";
   CategoriaAtiva:Categoria;
   constructor(
@@ -98,9 +97,6 @@ export class EditarProdutoComponent implements OnInit, OnDestroy {
     this.Atualizar();
   }
 
-  ngOnDestroy(){
-    this.areProdutosLoadedSub.unsubscribe();
-  }
 
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",

@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { IfStmt } from '@angular/compiler';
-import { Component, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -62,7 +62,9 @@ export class EnderecoComponent implements OnInit {
   user:Usuario;
   _init_point:{};
 
-  constructor(private store:Store,
+  constructor(
+    @Inject(PLATFORM_ID) private platform:object,
+    private store:Store,
     private CEPService:CEPService,
     private EstadoService:EstadoService,
     private snack: MatSnackBar,
@@ -107,8 +109,8 @@ export class EnderecoComponent implements OnInit {
             this._init_point = result;
             this.Loading = false;
             this.Pagar = true;
-            if(isPlatformBrowser(PLATFORM_ID))
-              this.scrollService.scrollDown()
+            if(isPlatformBrowser(this.platform))
+              this.scrollService.scrollTop()
           });
         });
       });

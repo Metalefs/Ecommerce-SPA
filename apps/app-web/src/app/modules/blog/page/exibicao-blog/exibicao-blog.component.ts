@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 import { cardFlip, fade } from 'apps/app-web/src/app/animations';
@@ -21,8 +22,7 @@ export class ExibicaoBlogComponent implements OnInit {
   Viewed:boolean = false;
   loading:boolean = false;
   constructor(private activeRoute:ActivatedRoute,
-    private ComentarioService: ComentarioProdutoService,
-    private router: Router,
+    private titleService: Title,
     private BlogService:BlogPostService) { }
 
   ngOnInit(): void {
@@ -35,6 +35,7 @@ export class ExibicaoBlogComponent implements OnInit {
       )
     ).subscribe(data => {
       this.Post = data.filter(x=>x.Titulo == id)[0];
+      this.titleService.setTitle(this.Post.Titulo);
       this.updateViews();
     });setTimeout(()=>{
       this.flip()

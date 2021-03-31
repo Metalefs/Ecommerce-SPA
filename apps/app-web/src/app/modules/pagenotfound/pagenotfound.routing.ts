@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: '',
     component: PagenotfoundComponent,
     pathMatch: 'full',
-    data: { animation:'isLeft' }
+    data: { animation:'isLeft',title: 'Página não encontrada - 404' }
   }
 ];
 @NgModule({

@@ -237,7 +237,14 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
 .a-i-c{
   align-items: center;
 }
-
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+  }
 /*//////////////////////////////////////////////////////////////////
 [ FONT SIZE ]*/
 .fs-1 {font-size: 1px;}

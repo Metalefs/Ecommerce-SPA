@@ -3,6 +3,7 @@ import { MongoDocument } from './abstract/MongoDocument';
 
 export class Categoria extends MongoDocument implements entidadeBase {
     Nome:string;
+    Caminho:string;
     Processo:string;
     Cor:string;
     static readonly NomeID:string = "Categoria";

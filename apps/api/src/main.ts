@@ -21,7 +21,7 @@ app.use(function(req: any, res: { header: (arg0: string, arg1: string) => void; 
   next();
 });
 
-app.use ("/", [Routers]);
+app.use ("/", Routers);
 app.use ("/usuario", [ControllerUsuario.app]);
 app.post("/seed", function (req,res) {
   let seedingService:SeedingService = new SeedingService();

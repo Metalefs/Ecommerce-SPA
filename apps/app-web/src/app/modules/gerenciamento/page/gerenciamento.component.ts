@@ -18,7 +18,7 @@ import { slider } from '../../../animations';
 export class GerenciamentoComponent implements OnInit {
   user: entities.Usuario;
   activenav:string = "Produtos";
-
+  opened = true;
   navs:Link[];
 
   mobileQuery: MediaQueryList;
@@ -73,5 +73,9 @@ export class GerenciamentoComponent implements OnInit {
     catch(ex){
 
     }
+  }
+  togglenav(nav:any, state:boolean){
+    this.activenav = nav.name;
+    this.opened=false;
   }
 }

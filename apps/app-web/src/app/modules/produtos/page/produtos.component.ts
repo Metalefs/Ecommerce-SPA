@@ -22,6 +22,7 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -97,7 +98,8 @@ export class ProdutosComponent implements OnInit {
     private dialog: NgDialogAnimationService,
     private store: Store,
     private activeRoute: ActivatedRoute,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private titleService:Title
     ) {
 
   }
@@ -109,6 +111,7 @@ export class ProdutosComponent implements OnInit {
       else{
         this.CategoriaAtiva = new Categoria(this.defaultCategory,this.defaultCategory)
       }
+      this.titleService.setTitle(`Produtos - ${this.CategoriaAtiva.Nome}`)
       this.activeOrderFilter = x.OrderFilter;
       this.activeSearchFilter = x.SearchFilter;
     })
@@ -116,9 +119,11 @@ export class ProdutosComponent implements OnInit {
     setTimeout(()=>{
       this.flip()
     },0)
-    this.carousel.handleHorizontalSwipe = null;
-    this.carousel.handleTouchstart = null;
-    this.carousel.handleTouchend = null;
+    if(this.carousel){
+      this.carousel.handleHorizontalSwipe = null;
+      this.carousel.handleTouchstart = null;
+      this.carousel.handleTouchend = null;
+    }
   }
 
   ngOnDestroy(){
@@ -274,6 +279,7 @@ export class ProdutosComponent implements OnInit {
     new Categoria(this.defaultCategory,this.defaultCategory)
     :
     this.CategoriaAtiva = categoria;
+    this.titleService.setTitle(`Produtos - ${this.CategoriaAtiva.Nome}`)
     this.atualizarFiltroAtivo();
   }
   ResetPage(){
