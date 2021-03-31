@@ -38,7 +38,7 @@ export class CostumizationComponent implements OnInit {
     this.fabric.Object.prototype.transparentCorners = false;
     if(isPlatformBrowser(this.platform))
     this.setup();
-    this.importFile();
+    // this.importFile();
   }
 
   setup(){

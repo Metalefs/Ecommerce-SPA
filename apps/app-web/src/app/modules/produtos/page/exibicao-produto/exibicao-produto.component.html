@@ -23,9 +23,9 @@
               </div>
             </div>
 
-            <div class="txt-right">
-              <div class="txt-right" *ngIf="Produto">
-                <div class="txt-right my-1 star-width dis-flex flex-w w-full">
+            <div class="{{mobile ? 'txt-center': 'txt-right'}}">
+              <div class="{{mobile ? 'txt-center': 'txt-right'}}" *ngIf="Produto">
+                <div class="{{mobile ? 'txt-center': 'txt-right'}} my-1 star-width dis-flex flex-w w-full">
                   <span class="spacer"></span>
                   <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
                     labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
