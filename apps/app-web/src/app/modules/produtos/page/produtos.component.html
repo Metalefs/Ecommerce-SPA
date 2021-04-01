@@ -32,13 +32,14 @@
 
 <div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1 pr-0" id="Básicos">
 
-  <div class="columns px-3 px-1c py-4">
+  <div class="columns px-0 px-1c py-4">
     <div class="column is-2 is-hidden-mobile ">
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div class="is-hidden-mobile w-full">
           <div class="w-full is-hidden-mobile">
             <div class="w-full">
                <div class="control">
+                 <label>preço</label>
                 <ngx-slider [(value)]="value" [(highValue)]="maxValue"  [options]="options" (userChange)="atualizarFiltroAtivo()"></ngx-slider>
                </div>
             </div>
@@ -114,14 +115,15 @@
         <div class="w-full">
           <div class="columns is-mobile is-multiline is-vcentered">
             <div class="column is-12-mobile">
-              <div class="control has-icons-right w-full">
+              <div class="control has-icons-left w-full">
                 <input
                   [(ngModel)]="activeSearchFilter"
                   (change)="atualizarFiltroAtivo()"
                   class="border py-2"
                   type="text"
+                  style="text-indent: 50px;"
                   placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
-                  <span class="icon is-small is-right">
+                  <span class="icon is-small is-left">
                     <mat-icon>search</mat-icon>
                   </span>
               </div>
@@ -161,7 +163,7 @@
         <p-skeleton *ngIf="total==0"></p-skeleton>
 
 
-        <div class="columns is-multiline is-gapless portfolio-container dis-flex">
+        <div class="columns is-multiline is-1 portfolio-container dis-flex">
           <mat-divider></mat-divider>
           <div @fadeIn *ngIf="(Filtro$ | async).FiltroProdutos.length == 0" class="m-lr-auto">
             <figure class="no-match-img">

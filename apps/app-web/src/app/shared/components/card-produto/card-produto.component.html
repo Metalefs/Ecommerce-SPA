@@ -13,8 +13,7 @@
       this.imgProduto.classList.add('show');
       "
 
-      matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor">
-
+      matRipple class="portfolio-item zoom of-y-scroll mat-elevation-z3"  [style.backgroundColor]="Produto.Categoria.Cor">
 
       <div
       #imgProduto matRipple class="dis-flex flex-w w-full" >
@@ -185,7 +184,7 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      matRipple class="portfolio-item zoom of-y-scroll" [style.backgroundColor]="Produto.Categoria.Cor" style="flex-direction:column">
+      matRipple class="portfolio-item zoom of-y-scroll mat-elevation-z3" [style.backgroundColor]="Produto.Categoria.Cor" style="flex-direction:column">
       <!-- <span class="prod-status is-hidden-desktop">
         <i class="pi pi-tag"></i>
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
@@ -319,7 +318,7 @@
 </ng-template>
 
 <ng-template #Minimalista>
-  <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom">
+  <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom mat-elevation-z4">
     <a pageScroll href="#PRODUTO" [routerLink]="['/produtos/',Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active">
       <img src="{{Produto?.Imagem[0]}}" alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
       <mat-card-content class="flex-w flex-c">

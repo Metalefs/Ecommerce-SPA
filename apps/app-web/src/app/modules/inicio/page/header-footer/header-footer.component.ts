@@ -30,19 +30,20 @@ export class HeaderFooterComponent implements OnInit {
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         // {
-        //   title:"Galeria",
+        //   title:"",
         //   icon:"group_work",
-        //   color:"#FFB041",
-        //   class:"yellow",
-        //   link:"/showcase",
-        //   id:"#SHOWCASE",
-        //   content:"Dê uma olhada nos ultimos items que personalizamos!",
+        //   color:"#f0f0f0",
+        //   class:"grey",
+        //   link:"/",
+        //   id:"#topo",
+        //   content:``,
+        //   img_src:'/assets/images/figures/undraw_decide_3iwx.svg'
 
         // },
         {
           title:"Orçamento",
           icon:"email",
-          color:"#3AB8FF",
+          color:"#00c3d6",
           class:"blue",
           link:"/orcamento",
           id:"#topo",

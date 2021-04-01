@@ -32,7 +32,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -69,6 +69,14 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   Comentarios:Comentario[] = [];
   mobile:boolean;
   selected = new FormControl(0);
+  infosPagamento:any = [
+    { descricao: "Cartões de Crédito" },
+    { descricao: "Visa - Master - Hipercard" },
+    { descricao: "Diners - Amex - Elo - Hiper" },
+    { descricao: "mercadopago.com.br" },
+  ]
+  produtoForm:FormGroup;
+  CEP:string;
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     breakpointObserver: BreakpointObserver,
@@ -83,7 +91,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private servicoProduto:ProdutoService,
     private windowRef: WindowRef,
     private document: DocumentRef,
-    private titleService: Title
+    private titleService: Title,
+    private fb: FormBuilder
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -100,7 +109,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
           }
           this.mobile=false;
           return {
-            thumbPosition: ThumbnailsPosition.Right,
+            thumbPosition: ThumbnailsPosition.Left,
             thumbWidth: 120,
             thumbHeight: 90
           };
@@ -114,6 +123,12 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       this.AdicionarDescricao();
 
       this.home = {icon: 'pi pi-home', url:"/produtos"};
+      this.produtoForm = this.fb.group({
+        tamanho:[this.Produto?.Tamanho,Validators.required],
+        quantidade:[this.Produto?.Quantidade,Validators.required],
+        cor:[this.Produto?.Quantidade,Validators.required],
+        cep:[this.CEP],
+      })
     });
 
     if(this.Produto?.Quantidade == 0)
@@ -460,6 +475,9 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       return
 
   };
+  CarregarDetalhesCEP(){
+    alert(this.CEP)
+  }
 
   meanRating(){
     if (!this.Produto.Rating)

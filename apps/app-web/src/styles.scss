@@ -38,7 +38,7 @@ body {
   height: auto;
   &::-webkit-scrollbar
   {
-    width: 10px;
+    width: 15px;
     background-color: #F5F5F5;
   }
   &::-webkit-scrollbar-thumb
@@ -49,7 +49,7 @@ body {
                        left top,
                        color-stop(0.44, rgb(122,153,217)),
                        color-stop(0.72, rgb(73,125,189)),
-                       color-stop(0.86, rgb(28,58,148)));
+                       color-stop(0.86, rgb(42, 62, 124)));
   }
   &::-webkit-scrollbar-track
   {
@@ -563,7 +563,7 @@ canvas{
   // border-radius:1rem;
   border-bottom-right-radius:2rem;
   font-family: "Montserrat";
-
+  opacity: .95;
 }
 .table.mat-table{
   border-spacing: 0;
@@ -972,7 +972,7 @@ canvas{
       display: block;
       &:hover {background-color: #ddd;}
       &.nav-link{
-        color:#666;
+        color:#9c9c9c;
         padding: 5px;
       }
     }

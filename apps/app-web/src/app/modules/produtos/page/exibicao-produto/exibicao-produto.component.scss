@@ -65,8 +65,10 @@ input[type='radio'] {
   height: 100px;
 }
 input[type='radio'] + label {
-  width: 25px;
-  height: 25px;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 34px !important;
+  margin: 6px 6px 0px 0px !important;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #dcdcdc;
@@ -259,9 +261,6 @@ input[type='number'] {
     opacity: 0.5;
   }
 }
-.is-danger{
-  border-color: 1px dotted red !important;
-}
 .share-button-text {
   max-width: 188px;
   overflow-wrap: break-word;
@@ -274,20 +273,23 @@ input[type='number'] {
 .titulo-produto {
   font-family: 'Helvetica';
   margin-bottom: 10px;
-  font-size: 33px !important;
+  font-size: 25px !important;
   line-height: 47px;
-  text-transform: uppercase;
-  color: #333;
+  text-transform: capitalize;
+  color: #5f5f5f;
   line-height: 130%;
   font-weight: bold;
 }
 .preco {
   font-size: 24px;
   font-family: 'Helvetica';
-  color: #b92626;
+  // color: #b92626;
 }
 .cor-produto {
-  height: 20px;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 34px !important;
+  margin: 6px 6px 0px 0px !important;
 }
 .descricao-produto {
   font-size: 14px;

@@ -1,12 +1,74 @@
-<div class=" has-background-white-bis bbr mb-3">
+<div class=" has-background-white-bis bbr">
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
-  <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb my-3 py-3"></p-skeleton>
+  <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb mt-3 pt-3"></p-skeleton>
 </div>
-<div class=" px-3 bbr pt-2">
+<div class=" px-3 bbr pt-0">
   <div class="bbr ">
-    <div class=" card pr-3 pl-2 has-background-white-bis bbr mb-3">
-      <div class="columns reverse-col-mobile mt-3 bbr  " id="PRODUTO">
+    <div class=" card pr-3 pl-2 bbr mb-3">
+      <div class="columns mt-3 bbr  " id="PRODUTO">
+        <div class="column is-5 mb-0 top-0 pt-3" >
 
+          <div class="">
+              <!-- <mat-chip-list class="is-left">
+                <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
+              </mat-chip-list> -->
+              <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
+              <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+              <mat-tab-group headerPosition="below" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                <mat-tab [label]="'Galeria'">
+                  <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
+                    [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
+                    [dots]="true"
+                    [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
+                  </gallery>
+                </mat-tab>
+              </mat-tab-group>
+
+              <div class="column pt-0 mt-0 is-hidden-touch ">
+                <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
+                <mat-menu #menu2="matMenu">
+                  <div mat-menu-item>
+                    <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+                    </share-button>
+                  </div>
+                  <div mat-menu-item>
+                    <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+                    </share-button>
+                  </div>
+                </mat-menu>
+              </div>
+              <mat-tab-group class="is-hidden-desktop">
+                <mat-tab label="Informações">
+                  <div class="margin py-3 px-3 border-light">
+                    <div class="w-full columns ">
+                      <h3>Descrição do produto</h3>
+                      <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
+                      <h3>Especificações do produto</h3>
+                      <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+                        [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
+                    </div>
+                  </div>
+
+                </mat-tab>
+                <mat-tab label="Avaliações">
+                  <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+                    <div class="z-index-2 px-2 py-2 my-6">
+                      <div class="mx-2">
+                        <div class="w-full">
+                          <p>Você já tem este produto?</p>
+                          <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+                        </div>
+                        <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+                        <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
+                      </div>
+                    </div>
+                    <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+          </div>
+
+        </div>
         <div class="column is-7 has-background-white bbr">
 
           <div class="mb-0 pb-0">
@@ -23,161 +85,194 @@
               </div>
             </div>
 
-            <div class="{{mobile ? 'txt-center': 'txt-right'}}">
-              <div class="{{mobile ? 'txt-center': 'txt-right'}}" *ngIf="Produto">
-                <div class="{{mobile ? 'txt-center': 'txt-right'}} my-1 star-width dis-flex flex-w w-full">
-                  <span class="spacer"></span>
-                  <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
-                    labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
-                    staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
-                    (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
-                  </star-rating>
-                  <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
+            <div class="{{mobile ? 'txt-center': 'txt-left'}}">
 
-                </div>
-                <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
-                <span class="type-meta">
-                  <i class="pi pi-tag"></i>
-                  <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
-                </span>
+              <div class="columns is-multiline">
+                <div class="column is-7">
+                  <div class="{{mobile ? 'txt-center': 'txt-left'}}" *ngIf="Produto">
+                    <div class="{{mobile ? 'txt-center': 'txt-left'}} my-1 star-width dis-flex flex-w w-full">
 
-                <ul class="list-unstyled">
-                  <li>Modelo: <span>{{Produto?.Modelo || ''}}</span></li>
-                  <li>Marca: <span>{{Produto?.Marca || ''}}</span></li>
-                  <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li>
-                </ul>
+                      <span class="spacer"></span>
+                      <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+                        labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
+                        staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
+                        (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
+                      </star-rating>
+                      <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
 
-                <span class="subtitle is-size-7">({{Produto?.DescricaoRapida}}</span>
-
-                <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
-                  <em>
-                    *Minimo {{Produto?.QuantidadeMinima}} unidades
-                  </em>
-                </span>
-
-              </div>
-              <div class="columns txt-left is-multiline is-vcentered pr-3">
-                <div class="column pr-0">
-                  <div class="w-full pt-3 mb-0">
-                    <p class="is-size-7 pt-2"><span class="is-size-7 has-text-weight-bold pt-2">Selecione a quantidade</span></p>
-                    <div class="field pb-0 mb-0">
-                      <div class="control border is-large flex-c flex-m ">
-                        <button mat-icon-button (click)="DecrescerQuantidade()">
-                          <mat-icon class="less">remove</mat-icon>
-                        </button>
-                        <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
-                          value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
-                          min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
-                          [ngClass]="{'is-danger':ErroQuantidade()}"
-                          [(ngModel)]="(Produto).Quantidade">
-                        <button mat-icon-button (click)="IncrementarQuantidade()">
-                          <mat-icon class="more">add</mat-icon>
-                        </button>
-                      </div>
                     </div>
-                    <div class="columns txt-left is-vcentered pt-0 is-multiline">
+                    <!-- <h1 class="titulo-produto">{{Produto?.Nome}}</h1> -->
+                    <span class="type-meta">
+                      <i class="pi pi-tag"></i>
+                      <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
+                    </span>
 
-                      <div class="column is-12  mb-5 py-0 pt-1">
-                        <p class="is-size-7 has-text-weight-bold pt-2"><span class="is-size-7 pt-2">Selecione:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
-                        <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Cores">
-                          <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
-                            <input class="px-2 py-2 mx-1" (click)="Produto.Cor=cor;"
-                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}" type="radio" alt="{{cor.nome}}"
-                              id="cor{{i}}" class="mx-1">
-                            <label title="{{cor.nome}}" [style.background]="cor.cor"
-                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
-                              for="cor{{i}}"></label>
-                            <span (click)="Produto.Cor=cor;"></span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="column is-12 py-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
-                        <!-- <p><span>Tamanhos</span></p> -->
-                        <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
-                          <mat-label >Tamanho</mat-label>
-                          <mat-select matNativeControl
+                    <ul class="list-unstyled">
+                      <li><em>Modelo: </em> <span>{{Produto?.Modelo || ''}}</span></li>
+                      <li><em>Marca: </em> <span>{{Produto?.Marca || ''}}</span></li>
+                      <!-- <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li> -->
+                    </ul>
 
-                          [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
-                            <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
-                              <div class="cor-produto card box w-full" (click)="Produto.Tamanho = opt">
-                                <p>{{opt}}</p>
-                              </div>
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                      </div>
-                    </div>
+                    <span class="subtitle is-size-7">({{Produto?.DescricaoRapida}})</span>
 
-                  </div>
-                  <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left ">
-                    <div class="columns">
+                    <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
+                      <em>
+                        *Minimo {{Produto?.QuantidadeMinima}} unidades
+                      </em>
+                    </span>
 
-                      <div class="mx-2 py-2 column is-7">
-                        <ng-container *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
-                        </ng-container>
-                        <ng-template #preco_promo>
-                          <div class="txt-left">
-                            <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                            <p class="preco promocao ">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-                          </div>
-                        </ng-template>
-                        <ng-template #preco_normal>
-                          <div class="txt-left">
-                            <p class="preco ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                          </div>
-                        </ng-template>
-                        <div class="my-1" *ngIf="Produto?.Parcelas && Produto?.Parcelas > 0">
-                          <p class="">
-                            Em até {{Produto?.Parcelas}}x <span
-                              class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas).toFixed(2)}}</b></span>
-                            sem juros
-                          </p>
-                        </div>
-                      </div>
-                      <div class="dis-flex flex-w column">
-                        <button @fadeIn *ngIf="Produto" mat-raised-button
-                          [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
-                          class="share-button wp-btn border-light w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
-                          {{textoAdicionar}}
-                          <mat-icon>shopping_bag</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="dis-flex flex-w column">
-                      <button @fadeIn *ngIf="Produto" mat-raised-button
-                        [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
-                        class="share-button border-light w-full has-background-dark flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
-                        Personalizar
-                      </button>
-                      <!-- <button @fadeIn *ngIf="Produto" mat-raised-button
-                        [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AbrirModalArte()"
-                        class="share-button button is-dark border-light flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
-                        Personalizar
-                      </button> -->
-                    </div>
-
-                    <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
-                      <mat-list-item *ngFor="let erro of Erros">
-                        <p class="subtitle is-size-6 border">*{{erro.erro}}</p><hr>
-                      </mat-list-item>
-                    </mat-list>
-                    <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c mx-2">
-                    </p-skeleton>
-                  </div>
-                  <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
-                    <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
                   </div>
                 </div>
-                <div class="column" *ngIf="this.isOrcamento">
-                  <button mat-flat-button title="Criar novo pedido"
-                    [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                    (click)="DuplicarOrcamento()" color="accent"
-                    class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
-                    Novo
-                    <mat-icon>add</mat-icon>
-                  </button>
+                <div class="column">
+                  <div class="is-right notification is-info-light w-full border">
+                    <i class="is-right pi pi-question-circle"></i>
+                    <ul>
+                      <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
+              <form action="" method="post" [formGroup]="produtoForm">
+                <div class="columns txt-left pt-3 is-multiline is-vcentered pr-3">
+
+                  <div class="column is-12 pb-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
+                    <mat-divider></mat-divider>
+                    <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                      <mat-label >Tamanho</mat-label>
+                      <mat-select matNativeControl
+                      [formControlName]="'tamanho'"
+                      [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
+                        <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
+                          <div class="cor-produto w-full" (click)="Produto.Tamanho = opt">
+                            <p>{{opt}}</p>
+                          </div>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="column  is-12">
+                    <div class="w-full mb-0">
+                      <div class="field pb-0 mb-0">
+                        <div class="control border is-large flex-c flex-m">
+                          <p class="is-size-7 pos-absolute left-0 ml-2">Quantidade</p>
+                          <button mat-icon-button (click)="DecrescerQuantidade()">
+                            <mat-icon class="less">remove</mat-icon>
+                          </button>
+                          <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
+                            [formControlName]="'quantidade'"
+                            value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
+                            min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
+                            [ngClass]="{'is-danger':ErroQuantidade()}"
+                            [(ngModel)]="(Produto).Quantidade">
+                          <button mat-icon-button (click)="IncrementarQuantidade()">
+                            <mat-icon class="more">add</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="columns txt-left is-vcentered pt-0 is-multiline">
+
+                        <div class="column is-12 mb-5 pb-0">
+                          <p class="is-size-7 pt-2"><span class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
+                          <div class="columns px-3 mt-3 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
+                            <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
+                              <input class="px-2 py-2 mx-1" (click)="Produto.Cor=cor;"
+                                [formControlName]="'cor'"
+                                [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}" type="radio" alt="{{cor.nome}}"
+                                id="cor{{i}}" class="mx-1">
+                              <label title="{{cor.nome}}" [style.background]="cor.cor"
+                                [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
+                                for="cor{{i}}"></label>
+                              <span (click)="Produto.Cor=cor;"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left ">
+                      <div class="columns pb-0 mb-0 ">
+
+                        <div class="mx-2 py-2 column mb-0 is-7">
+                          <ng-container *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
+                          </ng-container>
+                          <ng-template #preco_promo>
+                            <div class="txt-left">
+                              <p class="preco linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                              <p class="preco promocao ">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+                            </div>
+                          </ng-template>
+                          <ng-template #preco_normal>
+                            <div class="txt-left">
+                              <p class="preco ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                            </div>
+                          </ng-template>
+                          <div class="my-1" *ngIf="Produto?.Parcelas">
+                            <p class="">
+                              Em até {{Produto?.Parcelas == 0 ?'1':Produto?.Parcelas}}x <span
+                                class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas == 0 ?'1':Produto?.Parcelas).toFixed(2)}}</b></span>
+                              sem juros
+                            </p>
+                          </div>
+                          <mat-divider></mat-divider>
+                          <div class="py-3">
+
+                            <p class="subtitle is-7">Calcule frete e prazo</p>
+                            <div>
+                              <mat-form-field class=" control has-icons-right" appearance="fill">
+                                <mat-label>CEP</mat-label>
+                                <input matInput required (change)="CarregarDetalhesCEP()" class="w-full"
+                                  [formControlName]="'cep'"
+                                  placeholder="000000-000" mask="00000-000" name="CEP">
+                                <mat-error *ngIf="produtoForm.hasError('required')">
+                                  Campo obrigatório
+                                </mat-error>
+                                <span class="icon is-right" *ngIf="produtoForm.hasError('required')">
+                                  <mat-icon class="color-light-red">warning</mat-icon>
+                                </span>
+                              </mat-form-field>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="dis-flex flex-w column pb-0 mb-0 ">
+                          <article class="message margin is-grey py-0 my-0" *ngIf="!produtoForm?.valid">
+                            <div class="message-body">
+                              <p class="is-uppercase">Para comprar, Selecione o <strong>Tamanho, Cor</strong> e <strong>Quantidade</strong><mat-icon style="transform: rotate(180deg);">arrow_drop_down_circle</mat-icon></p>
+                            </div>
+                          </article>
+
+                          <button @fadeIn *ngIf="Produto" mat-raised-button
+                            [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+                            class="button is-success share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                            {{textoAdicionar}}
+                            <mat-icon>shopping_bag</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+
+
+                      <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
+                        <mat-list-item *ngFor="let erro of Erros">
+                          <p class="subtitle is-size-6 border">*{{erro.erro}}</p><hr>
+                        </mat-list-item>
+                      </mat-list>
+                      <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c mx-2">
+                      </p-skeleton>
+                    </div>
+                    <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
+                      <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+                    </div>
+                  </div>
+                  <div class="column" *ngIf="this.isOrcamento">
+                    <button mat-flat-button title="Criar novo pedido"
+                      [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                      (click)="DuplicarOrcamento()" color="accent"
+                      class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
+                      Novo
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </form>
               <div class="pt-3 px-2 txt-left of-x-scroll">
                 <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
                   <a>Como essa arte será usada no produto?</a>
@@ -227,22 +322,7 @@
                       </mat-chip-list>
                   </div>
                 </div>
-                <mat-divider></mat-divider>
 
-                <div class="mx-0 dis-flex flex-sa flex-m w-full columns is-multiline is-vcentered ">
-                  <div class="column txt-center">
-                    <h4 class="">Formas de pagamento</h4>
-                    <img
-                    loading="lazy"
-                    src="https://imgmp.mlstatic.com/org-img/MLB/MP/BANNERS/tipo2_468X60.jpg?v=1"
-                    alt="Mercado Pago - Meios de pagamento" title="Mercado Pago - Meios de pagamento"
-                    width="468" height="60"
-                    [style.height]="'60px !important'"
-                    [style.width]="'468px !important'"
-                    >
-                  </div>
-
-                </div>
               </div>
 
               <div class="columns w-full is-gapless is-multiline">
@@ -276,66 +356,6 @@
             <img src="{{Produto?.Imagem[0]}}" alt="">
           </figure>
         </div>
-        <div class="column is-5 mb-0 top-0 pt-3" >
-          <!-- <mat-chip-list class="is-left">
-                <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
-              </mat-chip-list> -->
-          <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
-
-          <mat-tab-group headerPosition="below" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-            <mat-tab [label]="'Galeria'">
-              <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
-                [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
-                [dots]="true"
-                [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
-              </gallery>
-            </mat-tab>
-          </mat-tab-group>
-
-          <div class="column pt-0 mt-0 is-hidden-touch ">
-            <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
-            <mat-menu #menu2="matMenu">
-              <div mat-menu-item>
-                <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
-                </share-button>
-              </div>
-              <div mat-menu-item>
-                <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
-                </share-button>
-              </div>
-            </mat-menu>
-          </div>
-          <mat-tab-group class="is-hidden-desktop">
-            <mat-tab label="Informações">
-              <div class="margin py-3 px-3 border-light">
-                <div class="w-full columns ">
-                  <h3>Descrição do produto</h3>
-                  <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
-                  <h3>Especificações do produto</h3>
-                  <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
-                    [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
-                </div>
-              </div>
-
-            </mat-tab>
-            <mat-tab label="Avaliações">
-              <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-                <div class="z-index-2 px-2 py-2 my-6">
-                  <div class="mx-2">
-                    <div class="w-full">
-                      <p>Você já tem este produto?</p>
-                      <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-                    </div>
-                    <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-                    <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)"></personalizados-lopes-escrever-comentario>
-                  </div>
-                </div>
-                <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
-              </div>
-            </mat-tab>
-          </mat-tab-group>
-        </div>
-
       </div>
       <mat-tab-group class="is-hidden-touch">
         <mat-tab label="Informações" (click)="AdicionarDescricao()">

@@ -23,9 +23,10 @@ import { StockImageComponent } from './page/dialogs/exibicao-arte-produto/costum
 import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/importacao/importacao.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PrimeNgModule } from '../../shared/primeng.module';
+import { PreviewProdutoComponent } from './page/components/preview-produto/preview-produto.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent, PreviewProdutoComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,
