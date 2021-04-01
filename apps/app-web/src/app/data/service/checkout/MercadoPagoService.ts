@@ -10,6 +10,7 @@ import { MercadoPagoCheckout, MercadoPagoSearchPaymentResult, mp_checkout_items,
 
 
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
+import { mp_shipping } from 'libs/data/src/lib/interfaces/mercadoPagoCheckout';
 @Injectable({
     providedIn: 'root'
 })
@@ -46,7 +47,7 @@ export class MercadoPagoCheckoutService {
         items: this.getItems(orcamento),
         payer: this.getPayer(orcamento),
         payment_methods: this.getPaymentMethod(orcamento,integracoes),
-        // shipments:this.getShipments(orcamento),
+        //shipments:this.getShipments(orcamento),
         back_urls: {
           success: "https://www.personalizadoslopes.com.br/checkout/success",
           failure: "https://www.personalizadoslopes.com.br/checkout/failure",
@@ -74,7 +75,9 @@ export class MercadoPagoCheckoutService {
           currency_id: 'BRL',
           unit_price: produto.Produto.PrecoPromocional >0 ?
           parseInt(produto.Produto.PrecoPromocional.toString()) :
-          parseInt(produto.Produto.Preco.toString())
+          parseInt(produto.Produto.Preco.toString()),
+          pictures:[{source:produto.Produto.Imagem[0]}],
+          shipping:this.getShipping(produto.Produto)
         }
       ))
       return items;
@@ -129,7 +132,13 @@ export class MercadoPagoCheckoutService {
       return {
         mode:'me2',
         local_pickup:false,
-        dimensions:orcamento.Dimensoes + ",500",
+        modes: [
+          "custom",
+          "not_specified",
+          "me1",
+          "me2"
+        ],
+        dimensions:orcamento.Dimensoes,
         // default_shipping_method:0,
         // cost:orcamento.Preco,
         // free_shipping:false,
@@ -143,6 +152,18 @@ export class MercadoPagoCheckoutService {
           apartment: orcamento.Usuario.EnderecoEntrega.Complemento,
           country_name: 'Brasil',
         }
+      }
+    }
+    getShipping(produto:Produto):mp_shipping{
+      return {
+        mode:'me2',
+        local_pick_up:false,
+        dimensions: `${produto.Dimensoes.Altura}x${produto.Dimensoes.Largura}x${produto.Dimensoes.Comprimento},${produto.Peso}`,
+        free_shipping:false,
+        free_methods:[],
+        // default_shipping_method:0,
+        // cost:orcamento.Preco,
+
       }
     }
     unicoProduto(orcamento:Orcamento):boolean{

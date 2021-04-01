@@ -62,6 +62,7 @@ export function orderPreco(a,b,desc){
     return 0;
   }
 }
+
 export function removeDuplicates(myArr, prop) {
   return myArr.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;

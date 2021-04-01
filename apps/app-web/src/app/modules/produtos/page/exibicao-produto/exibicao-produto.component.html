@@ -2,7 +2,7 @@
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb mt-3 pt-3"></p-skeleton>
 </div>
-<div class=" px-3 bbr pt-0">
+<div class="margin px-3 bbr pt-0">
   <div class="bbr ">
     <div class=" card pr-3 pl-2 bbr mb-3">
       <div class="columns mt-3 bbr  " id="PRODUTO">
@@ -401,27 +401,27 @@
 
 <div class="bg-transp margin txt-center">
 
-  <div class=" px-4 py-6 mb-3" *ngIf="Produto?._id">
+  <div class="  py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
 
   <mat-divider></mat-divider>
 
-  <div class=" px-4  mb-3" *ngIf="Produto?._id">
+  <div class="   mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
   </div>
 
   <mat-divider></mat-divider>
 
-  <div class="px-4 ">
+  <div class="px-4 py-5">
     <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto"></personalizados-lopes-exibir-lista-comentario-produto>
 
   </div>
 
   <mat-divider></mat-divider>
 
-  <div class=" px-4 ">
+  <div class="  ">
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
   </div>
 

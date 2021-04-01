@@ -78,7 +78,7 @@
           </mat-list-item>
         </mat-list>
       </div>
-      <div class="columns">
+      <div class="columns is-multiline">
         <div *ngFor="let produto of Produtos" class="produto-card column is-3">
           <div  *ngIf = "filtroAtivo(produto)">
             <personalizados-lopes-edicao-card-produto (Isdeleted)="Atualizar()" [Produto]="produto"></personalizados-lopes-edicao-card-produto>
