@@ -24,7 +24,7 @@
                 </mat-tab>
               </mat-tab-group>
 
-              <div class="column pt-0 mt-0 is-hidden-touch ">
+              <div class="column pt-0 mt-0 ">
                 <div class="w-full flex-w">
                   <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
                   <mat-menu #menu2="matMenu">
@@ -54,9 +54,9 @@
                   <div class="margin py-3 px-3 border-light">
                     <div class="w-full columns ">
                       <h3>Descrição do produto</h3>
-                      <div class="descricao-produto column is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
+                      <div class="descricao-produto column is-12-touch is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
                       <h3>Especificações do produto</h3>
-                      <div class="descricao-produto column is-6 w-full" style="border-left: 1px solid #0000000a;"
+                      <div class="descricao-produto column is-12-touch is-6 w-full" style="border-left: 1px solid #0000000a;"
                         [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
                     </div>
                   </div>
@@ -190,10 +190,14 @@
                         <p class="is-size-7"><span class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                         <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
                           <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
-                            <input class="px-2 py-2 mx-1" (click)="Produto.Cor=cor;"
+                            <input class="px-2 py-2 mx-1"
+                              type="radio" alt="{{cor.nome}}"
+                              [value]="Produto.Cor"
+                              id="cor{{i}}"
                               [formControlName]="'cor'"
-                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}" type="radio" alt="{{cor.nome}}"
-                              id="cor{{i}}" class="mx-1">
+                              (click)="setColor(cor)"
+                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}"
+                              >
                             <label title="{{cor.nome}}" [style.background]="cor.cor"
                               [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
                               for="cor{{i}}"></label>
@@ -223,7 +227,7 @@
                           <div class="my-1" *ngIf="Produto?.Parcelas">
                             <p class="">
                               Em até {{Produto?.Parcelas == 0 ?'1':Produto?.Parcelas}}x <span
-                                class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas == 0 ?'1':Produto?.Parcelas).toFixed(2)}}</b></span>
+                                class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas == 0 ? 1:Produto?.Parcelas).toFixed(2)}}</b></span>
                               sem juros
                             </p>
                           </div>
@@ -234,21 +238,26 @@
                             <div class="w-full" >
                               <mat-form-field appearance="fill">
                                 <mat-label>CEP</mat-label>
-                                <input matInput required (change)="CarregarDetalhesCEP()" class="w-full"
+                                <input matInput (change)="CarregarDetalhesCEP()" class="w-full"
                                   [formControlName]="'cep'"
                                   placeholder="000000-000" mask="00000-000" name="CEP">
-                                <mat-error *ngIf="produtoForm.hasError('required')">
-                                  Campo obrigatório
-                                </mat-error>
                               </mat-form-field>
                             </div>
                           </div>
                         </div>
-                        <div class="dis-flex flex-w column pb-0 mb-0 ">
-                          <article class="message margin is-grey py-0 my-0" *ngIf="!produtoForm?.valid">
-                            <div class="message-body">
-                              <p class="is-uppercase">Para comprar, Selecione o <strong>Tamanho, Cor</strong> e <strong>Quantidade</strong><mat-icon style="transform: rotate(180deg);">arrow_drop_down_circle</mat-icon></p>
-                            </div>
+                        <div class="dis-flex flex-w column pb-0 mb-0 " >
+                          <article class="message margin is-grey py-0 my-0" *ngIf="Produto && produtoForm">
+                            <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
+                            <ng-template #erro>
+                              <div class="message-body" @fadeIn>
+                                <p class="is-uppercase">Para comprar, Selecione o <strong>Tamanho, Cor</strong> e <strong>Quantidade</strong><a href="#topo" pageScroll></a><mat-icon style="transform: rotate(180deg);">arrow_drop_down_circle</mat-icon></p>
+                              </div>
+                            </ng-template>
+                            <ng-template #done>
+                              <!-- <div class="message-body" @fadeIn>
+                                <p class="is-uppercase"><mat-icon>done</mat-icon></p>
+                              </div> -->
+                            </ng-template>
                           </article>
 
                           <button @fadeIn *ngIf="Produto" mat-raised-button
@@ -330,21 +339,7 @@
                     <span class="ml-3 nunitoParagraphy16 has-text-white">Comprar pelo whatsapp</span>
                   </button>
                 </div>
-                <div class="column pt-0 mt-0 is-hidden-desktop">
-                  <button mat-button [matMenuTriggerFor]="menu"><i class="pi pi-share-alt"></i></button>
-                  <mat-menu #menu="matMenu">
-                    <div mat-menu-item>
-                      <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
-                      </share-button>
-                    </div>
-                    <div mat-menu-item>
-                      <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
-                      </share-button>
-                    </div>
-                  </mat-menu>
-                </div>
               </div>
-
             </div>
           </div>
 

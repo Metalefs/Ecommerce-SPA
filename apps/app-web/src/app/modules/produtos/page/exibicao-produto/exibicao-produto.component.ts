@@ -32,7 +32,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -76,7 +76,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     { descricao: "mercadopago.com.br" },
   ]
   produtoForm:FormGroup;
-  CEP:string;
+  CEP:string="";
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     breakpointObserver: BreakpointObserver,
@@ -126,9 +126,10 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       this.produtoForm = this.fb.group({
         tamanho:[this.Produto?.Tamanho,Validators.required],
         quantidade:[this.Produto?.Quantidade,Validators.required],
-        cor:[this.Produto?.Quantidade,Validators.required],
+        cor:[this.Produto?.Cor,Validators.required],
         cep:[this.CEP],
       })
+      this.findInvalidControlsRecursive()
     });
 
     if(this.Produto?.Quantidade == 0)
@@ -142,6 +143,34 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
     if(isPlatformBrowser(this.platform))
       this.scrollService.scrollTop();
+
+  }
+  /*
+    Returns an array of invalid control/group names, or a zero-length array if
+    no invalid controls/groups where found
+  */
+  findInvalidControlsRecursive():boolean {
+    var invalidControls:string[] = [];
+    let recursiveFunc = (form:FormGroup|FormArray) => {
+      Object.keys(form?.controls).forEach(field => {
+        const control = form.get(field);
+        if (control.invalid) invalidControls.push(field);
+        if (control instanceof FormGroup) {
+          recursiveFunc(control);
+        } else if (control instanceof FormArray) {
+          recursiveFunc(control);
+        }
+      });
+    }
+    recursiveFunc(this.produtoForm);
+    return invalidControls?.length > 0;
+  }
+
+  setColor(color:any){
+    this.Produto.Cor = color;
+    this.produtoForm.get("cor").setValue(color);
+    this.produtoForm.get('cor').clearValidators();
+    this.produtoForm.get('cor').updateValueAndValidity();
   }
 
   ngOnDestroy(){

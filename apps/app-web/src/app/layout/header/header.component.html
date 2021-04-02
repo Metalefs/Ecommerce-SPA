@@ -13,8 +13,7 @@
     <li class="level-item px-2 has-text-centered mb-0">
       <div class="title is-size-7 ">
          <div class="dropdown">
-           <a class="reset-a is-hidden-touch "><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
-           <a class="reset-a is-hidden-desktop " [routerLink]="['/minha-conta/pessoal']" pageScroll href="#topo"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
+          <a class="reset-a"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>

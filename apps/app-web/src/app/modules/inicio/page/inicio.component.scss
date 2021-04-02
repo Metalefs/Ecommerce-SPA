@@ -36,6 +36,13 @@
     display: block !important;
   }
 }
+@media only screen and (max-width: 1023px) {
+  .bg-img{
+    background:none;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+}
 
 @media only screen and (min-width: 1023px) {
   div.is-6-tablet:nth-child(even){
