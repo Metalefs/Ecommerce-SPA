@@ -505,7 +505,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
   };
   CarregarDetalhesCEP(){
-    alert(this.CEP)
+    // alert(this.CEP)
   }
 
   meanRating(){

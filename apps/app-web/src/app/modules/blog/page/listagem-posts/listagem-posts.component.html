@@ -1,11 +1,19 @@
 <section class="section pt-1">
   <div class="container">
-    <h1>Últimas postagens</h1>
+    <h1>Notícias </h1>
     <mat-spinner *ngIf="loading"></mat-spinner>
     <div class="columns is-multiline ">
-      <div class="column is-4" *ngFor="let post of Blog">
-        <personalizados-lopes-card-blog [Post]="post"></personalizados-lopes-card-blog>
+      <div class="column is-4-desktop is-12-mobile">
+        <personalizados-lopes-sidebar></personalizados-lopes-sidebar>
       </div>
+      <div class="column">
+        <div class="columns is-multiline ">
+          <div class="column is-12" *ngFor="let post of Blog">
+            <personalizados-lopes-card-blog [Post]="post"></personalizados-lopes-card-blog>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
