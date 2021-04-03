@@ -371,7 +371,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.readonlyRating = localStorage.getItem(`rateproduto${id}`) == 'true' ? true: false;
     const galleryRef = this.gallery.ref('myGallery');
     galleryRef.reset();
-
     if(!this.orcamentoId){
       this.isOrcamento = false;
       this.servicoProduto.Filtrar(id).subscribe(prod=>{
@@ -398,7 +397,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         if(index<0)
         this.router.navigate(['/produtos']);
 
-        this.Produto = res.Produto[index].Produto;
+        this.Produto = res.Produto[index]?.Produto;
         this.items = [
           {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
           {label:this.Produto?.Nome, styleClass:'desb'}

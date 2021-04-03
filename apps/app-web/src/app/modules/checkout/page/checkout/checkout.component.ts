@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { CheckoutService } from '../../checkout.service';
@@ -13,7 +13,7 @@ import { CheckoutService } from '../../checkout.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(private scrollService:PageScrollService, @Inject(PLATFORM_ID) private platform:object) { }
+  constructor(private scrollService:PageScrollService, @Inject(PLATFORM_ID) private platform:object, private router: Router) { }
 
   ngOnInit(): void {
     if(isPlatformBrowser(this.platform))
@@ -36,5 +36,8 @@ export class CheckoutComponent implements OnInit {
   }
   IsPagamentoCompleto(){
     return CheckoutService.PagamentoCompleto;
+  }
+  openPage(url:string){
+    this.router.navigate([url]);
   }
 }

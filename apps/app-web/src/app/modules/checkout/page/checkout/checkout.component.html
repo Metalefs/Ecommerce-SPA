@@ -2,13 +2,13 @@
   <div class="checkout-background has-background-blue1-ck pos-fixed bellow-nav"></div>
   <div class="has-background-white px-3 box pt-4 py-3 af cs i2 i3 i4 w-full am de w-half z-index-2">
     <mat-horizontal-stepper [linear]="true" #stepper>
-      <mat-step [completed]="IsDadosCompleto()" [routerLink]="['/checkout']" routerLinkActive="active" label="Carrinho">
+      <mat-step [completed]="IsDadosCompleto()" (click)="openPage('/checkout')" routerLinkActive="active" label="Carrinho">
 
       </mat-step>
-      <mat-step [completed]="IsDadosCompleto()" [routerLink]="['/checkout/dados']" routerLinkActive="active" label="Dados do comprador">
+      <mat-step [completed]="IsDadosCompleto()" (click)="openPage('/checkout/dados')" routerLinkActive="active" label="Dados do comprador">
 
       </mat-step>
-      <mat-step [completed]="IsDadosCompleto()&&IsEnderecoCompleto()" [routerLink]="['/checkout/endereco']" routerLinkActive="active" label="Dados da entrega">
+      <mat-step [completed]="IsDadosCompleto()&&IsEnderecoCompleto()" (click)="openPage('/checkout/endereco')" routerLinkActive="active" label="Dados da entrega">
 
       </mat-step>
       <mat-step [completed]="IsDadosCompleto()&&IsEnderecoCompleto()&&IsPagamentoCompleto()" label="Pagamento">

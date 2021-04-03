@@ -14,7 +14,7 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]"  routerLinkActive="router-link-active"
+      [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
       matRipple class="portfolio-item zoom of-y-scroll "  [style.backgroundColor]="Produto.Categoria.Cor">
 
       <div
@@ -59,7 +59,7 @@
       </div>
 
 
-      <mat-card-footer [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" class="px-3 z-index-2">
+      <mat-card-footer [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" class="px-3 z-index-2">
 
         <mat-card-title class="w-full my-3 txt-left titulo-produto">
           <a  matRipple class="reset-a" pageScroll href="#topo"
@@ -70,19 +70,19 @@
           <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
             [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
         </div>
-          <!-- <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
-          </ng-container>
-          <ng-template #preco_promo>
-            <div class="txt-left">
-              <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-              <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-            </div>
-          </ng-template>
-          <ng-template #preco_normal>
-            <div class="txt-left">
-              <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-            </div>
-          </ng-template> -->
+        <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
+        </ng-container>
+        <ng-template #preco_promo>
+          <div class="txt-left">
+            <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+            <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+          </div>
+        </ng-template>
+        <ng-template #preco_normal>
+          <div class="txt-left">
+            <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+          </div>
+        </ng-template>
 
         </mat-card-title>
 
@@ -136,7 +136,7 @@
               <span><i class="pi pi-shopping-cart"></i> Carrinho</span>
             </button>
           </div> -->
-          <a [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]"  routerLinkActive="router-link-active"
+          <a [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
           <ng-container *ngIf="Produto.Status != statusProduto.esgotado
         then adicionar else esgotado"></ng-container>
@@ -238,7 +238,7 @@
           matBadge="{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}"
           matBadgeColor="accent"
           class="w-full titulo-produto ">
-            <a matRipple class="reset-a" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]">
+            <a matRipple class="reset-a" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]">
               {{Produto?.Nome}}
             </a>
             <!-- <div class="my-3">
@@ -281,7 +281,7 @@
         <mat-card-actions class="pos-absolute bottom-0">
           <!-- <mat-divider class="my-2"></mat-divider> -->
           <div class="px-4 py-2">
-            <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active" pageScroll>
+            <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" routerLinkActive="router-link-active" pageScroll>
               <span
                 class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
                 <span><i class="pi pi-plus"></i> Veja mais</span>
@@ -304,7 +304,7 @@
             href="#topo"
             class="reset-a box m-lr-auto"
             style="top:35%;left: 25%;"
-            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active"
+            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" routerLinkActive="router-link-active"
             mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
           </div>
         </div>
@@ -319,7 +319,7 @@
 
 <ng-template #Minimalista>
   <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom mat-elevation-z4">
-    <a pageScroll href="#PRODUTO" [routerLink]="['/produtos/',Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active">
+    <a pageScroll href="#PRODUTO" [routerLink]="['/produtos/',Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" routerLinkActive="router-link-active">
       <img src="{{Produto?.Imagem[0]}}" alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
       <mat-card-content class="flex-w flex-c">
         <div class="portfolio-overlay w-full">
