@@ -41,15 +41,15 @@ img{
   margin: 0 !important;
   &:hover{
     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
-    background:rgb(229, 229, 229) none repeat scroll 0% 0%;
+    background:rgb(49, 47, 49) none repeat scroll 0% 0%;
     border: 1px solid rgb(215, 215, 215);
     &button{
       display: block;
     }
   }
-  // &:hover > .mat-card-footer .titulo-produto{
-  //   color: white ;
-  // }
+  &:hover > .mat-card-footer .titulo-produto{
+    color: white ;
+  }
   // &:hover > .mat-card-footer .preco{
   //   background-color: white ;
   // }
@@ -107,12 +107,12 @@ img{
 }
 .zoom{
   filter: opacity(1);
-  transition: .1s all ease-in-out;
+  transition: .51s all ease-in-out;
   &:hover{
     opacity: 1;
     filter: opacity(1);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
+    transform: scale(1.02) !important;
+    -webkit-transform: scale(1.02) !important;
     z-index: 2;
   }
 }
@@ -235,7 +235,7 @@ img{
 
 .portfolio-overlay {
   background: rgba(255, 255, 255, 0.20);
-
+  z-index: 10;
   &a{
     transition:1s all ease ;
   }

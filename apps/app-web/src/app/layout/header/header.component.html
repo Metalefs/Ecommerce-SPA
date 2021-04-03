@@ -27,7 +27,7 @@
     </li>
     <li class="level-item px-2 has-text-centered mb-0">
       <div>
-        <a class="subtitle is-size-7 has-background-white button is-small" (click)="openCheckout()">
+        <a class="subtitle is-size-7 has-background-white bo-0 button is-small" (click)="openCheckout()">
           <div class="is-hidden-touch">
             <p class="cart-counter" style="bottom:15px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
           </div>
@@ -60,7 +60,7 @@
   <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
     <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
       <div class="" style="height: 50px;">
-        <a @fadeIn href="#" class="logo m-l-30">
+        <a @fadeIn href="#" class="logo m-l-30 pr-3">
           <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
         </a>
       </div>

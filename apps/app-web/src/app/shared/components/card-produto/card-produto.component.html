@@ -37,7 +37,7 @@
               *ngIf="imageUrls.length"
               [imageUrls]="imageUrls"
               [arrowSize]="(Carrosel$|async)?.arrowSize"
-              [showArrows]="(Carrosel$|async)?.showArrows"
+              [showArrows]="false"
               [disableSwiping]="false"
               [autoPlay]="false"
               [backgroundSize]="'contain'"
@@ -198,7 +198,7 @@
               *ngIf="imageUrls.length"
                [imageUrls]="imageUrls"
                [arrowSize]="(Carrosel$|async)?.arrowSize"
-               [showArrows]="(Carrosel$|async)?.showArrows"
+               [showArrows]="false"
                [disableSwiping]="false"
                [backgroundSize]="'contain'"
                [autoPlay]="false"
@@ -292,23 +292,24 @@
         </mat-card-actions>
 
 
-      </mat-card-footer>
-      <div class="z-index-1">
-        <div class="content a-i-c m-lr-auto w-full">
-          <div class="portfolio-overlay events-none w-full">
-            <div class="overlay-items w-full txt-center">
-              <p>
-                {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
-              </p>
+        <div class="z-index-1">
+          <div class="content a-i-c m-lr-auto w-full">
+            <div class="portfolio-overlay events-none w-full">
+              <div class="overlay-items w-full txt-center">
+                <p>
+                  {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
+                </p>
+              </div>
             </div>
+            <a title="Comprar" matRipple pageScroll
+            href="#topo"
+            class="reset-a box m-lr-auto"
+            style="top:35%;left: 25%;"
+            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active"
+            mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
           </div>
-          <a title="Comprar" matRipple pageScroll
-          href="#topo"
-          class="reset-a box m-lr-auto"
-          [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active"
-          mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
         </div>
-      </div>
+      </mat-card-footer>
     </mat-card>
     <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
       <img src="{{Produto?.Imagem[0]}}" alt="">

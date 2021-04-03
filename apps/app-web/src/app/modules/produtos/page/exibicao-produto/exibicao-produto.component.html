@@ -120,12 +120,12 @@
                     </span>
 
                     <ul class="list-unstyled">
-                      <li><em>Modelo: </em> <span>{{Produto?.Modelo || ''}}</span></li>
-                      <li><em>Marca: </em> <span>{{Produto?.Marca || ''}}</span></li>
+                      <li><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
+                      <li><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></li>
                       <!-- <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li> -->
                     </ul>
 
-                    <span class="subtitle is-size-7">({{Produto?.DescricaoRapida}})</span>
+                    <span class="subtitle is-size-7" *ngIf="Produto?.DescricaoRapida">({{Produto?.DescricaoRapida}})</span>
 
                     <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
                       <em>
@@ -226,8 +226,8 @@
                           </ng-template>
                           <div class="my-1" *ngIf="Produto?.Parcelas">
                             <p class="">
-                              Em até {{Produto?.Parcelas == 0 ?'1':Produto?.Parcelas}}x <span
-                                class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / Produto?.Parcelas == 0 ? 1:Produto?.Parcelas).toFixed(2)}}</b></span>
+                              Em até {{Produto?.Parcelas == 0 ?'1':Produto?.Parcelas}}x de<span
+                                class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco) / (Produto?.Parcelas == 0 ? 1: Produto?.Parcelas)).toFixed(2)}}</b></span>
                               sem juros
                             </p>
                           </div>

@@ -1,8 +1,7 @@
 <nav class="factory-steps has-background-dark fix-bottom-on-mobile">
   <div class="columns is-mobile is-vcentered">
-    <div class="column" *ngFor="let opcao of Opcoes">
+    <a class="column" *ngFor="let opcao of Opcoes">
       <navbaricon class="nav-icon" [EstadoNav]="EstadoNav" [Titulo]="opcao.Titulo" [Link]="opcao.Link" [Icon]="opcao.Icon"></navbaricon>
-      <div class="underbar"></div>
-    </div>
+    </a>
   </div>
   </nav>

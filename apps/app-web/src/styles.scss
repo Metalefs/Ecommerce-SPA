@@ -151,6 +151,13 @@ a {
       animation: showArr 1s ease forwards !important;
     }
   }
+  .arrow-container{
+    .slick-dots{
+      button{
+        box-shadow: none;
+      }
+    }
+  }
 }
 .portfolio-item .slideshow-container .slides:not(.link) {
   cursor: default;
