@@ -64,6 +64,8 @@ img{
   transition: 1s all;
   display: flex;
   filter: grayscale(0) !important;
+  width: 100%;
+  min-width: 161px;
 }
 
 .mat-card-footer{

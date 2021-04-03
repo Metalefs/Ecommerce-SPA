@@ -75,6 +75,8 @@ img{
   object-fit: cover;
   filter: grayscale(0) !important;
   margin-top: -16px;
+  width: 100%;
+  min-width: 161px;
   &.show{
     animation: show 1s ease forwards !important;
     filter: brightness(0.9) !important;
