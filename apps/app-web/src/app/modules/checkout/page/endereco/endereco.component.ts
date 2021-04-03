@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import {CEPService,EstadoService, IntegracoesService, MercadoPagoCheckoutService} from '../../../../data/service';
+import { CheckoutService } from '../../checkout.service';
 
 @Component({
   selector: 'personalizados-lopes-endereco',
@@ -85,6 +86,8 @@ export class EnderecoComponent implements OnInit {
       this.estados = x;
     })
     this.auth.currentUser.subscribe(usr=>{this.user = usr});
+    CheckoutService.DadosCompleto = true;
+    CheckoutService.EnderecoCompleto = true;
     setTimeout(()=>{
       this.flip()
     },0);
@@ -111,6 +114,9 @@ export class EnderecoComponent implements OnInit {
             this.Pagar = true;
             if(isPlatformBrowser(this.platform))
               this.scrollService.scrollTop()
+            CheckoutService.DadosCompleto = true;
+            CheckoutService.EnderecoCompleto = true;
+            CheckoutService.PagamentoCompleto = true;
           });
         });
       });

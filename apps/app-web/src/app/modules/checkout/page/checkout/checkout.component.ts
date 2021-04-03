@@ -3,6 +3,7 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
+import { CheckoutService } from '../../checkout.service';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -26,5 +27,14 @@ export class CheckoutComponent implements OnInit {
     catch(ex){
 
     }
+  }
+  IsDadosCompleto(){
+    return CheckoutService.DadosCompleto;
+  }
+  IsEnderecoCompleto(){
+    return CheckoutService.EnderecoCompleto;
+  }
+  IsPagamentoCompleto(){
+    return CheckoutService.PagamentoCompleto;
   }
 }

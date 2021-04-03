@@ -34,6 +34,7 @@ import { NgDialogAnimationService } from "ng-dialog-animation";
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { PageScrollService } from './data/service/page-scroll.service';
+import { CheckoutService } from './modules/checkout/checkout.service';
 import { WindowRef } from './data/service/window.service';
 import { DocumentRef } from './data/service/document.service';
 
@@ -73,6 +74,7 @@ import { DocumentRef } from './data/service/document.service';
   providers: [
     NgDialogAnimationService,
     Title,
+    CheckoutService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: WindowRef },

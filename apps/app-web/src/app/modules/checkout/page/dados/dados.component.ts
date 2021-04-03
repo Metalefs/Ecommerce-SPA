@@ -10,6 +10,7 @@ import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { cpf } from 'cpf-cnpj-validator';
+import { CheckoutService } from '../../checkout.service';
 
 @Component({
   selector: 'personalizados-lopes-dados',
@@ -62,6 +63,7 @@ export class DadosComponent implements OnInit, OnDestroy {
         }
       })
     })
+    CheckoutService.DadosCompleto = true;
     setTimeout(()=>{
       this.flip()
     },0)
