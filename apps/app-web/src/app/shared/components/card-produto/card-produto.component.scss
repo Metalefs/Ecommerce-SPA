@@ -41,15 +41,15 @@ img{
   margin: 0 !important;
   &:hover{
     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
-    background:#bcbcbc none repeat scroll 0% 0%;
+    background:#ededed none repeat scroll 0% 0%;
     border: 1px solid rgb(215, 215, 215);
     &button{
       display: block;
     }
   }
-  &:hover > .mat-card-footer .titulo-produto{
-    color: white ;
-  }
+  // &:hover > .mat-card-footer .titulo-produto{
+  //   color: white ;
+  // }
   // &:hover > .mat-card-footer .preco{
   //   background-color: white ;
   // }
@@ -309,7 +309,7 @@ img{
 .portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
   pointer-events: all;
 
-  box-shadow: 1px 1px 4px #d1d1d199;
+  box-shadow: 1px 1px 4px #8b888899;
   border-radius: 0.25rem;
   transition: all ease .5s;
   transition-delay: .5s;

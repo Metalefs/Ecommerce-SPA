@@ -2,7 +2,7 @@
 
   <div #Endereco>
     <div class="columns  reverse-col-mobile">
-      <div class="column is-12-mobile">
+      <div class="column is-12-mobile is-6">
         <ng-container *ngIf="Pagar then pagamento else endereco"></ng-container>
 
         <ng-template #pagamento>
@@ -62,8 +62,8 @@
                   </span>
                 </mat-form-field>
 
-                <div class="columns">
-                  <div class="column">
+                <div class="columns is-multiline">
+                  <div class="column is-12-touch">
                     <mat-form-field class="w-full control has-icons-right" appearance="fill">
                       <mat-label>Número</mat-label>
                       <textarea class="control has-icons-right  input" matInput required
@@ -77,7 +77,7 @@
                       </span>
                     </mat-form-field>
                   </div>
-                  <div class="column">
+                  <div class="column is-12-touch">
                     <mat-form-field class="w-full control has-icons-right" appearance="fill">
                       <mat-label>Complemento</mat-label>
                       <textarea class="control has-icons-right  input" matInput
@@ -86,8 +86,8 @@
                   </div>
                 </div>
 
-                <div class="columns">
-                  <div class="column">
+                <div class="columns is-multiline">
+                  <div class="column is-12-touch">
                     <mat-form-field class="w-full control has-icons-right" appearance="fill">
                       <mat-label>Bairro</mat-label>
                       <textarea class="control has-icons-right  input" matInput required
@@ -101,7 +101,7 @@
                       </span>
                     </mat-form-field>
                   </div>
-                  <div class="column">
+                  <div class="column is-12-touch">
                     <mat-form-field class="w-full control has-icons-right" appearance="fill">
                       <mat-label>Cidade</mat-label>
                       <textarea class="control has-icons-right  input" matInput required
@@ -152,7 +152,7 @@
         </ng-template>
 
       </div>
-      <div class="column">
+      <div class="column is-6">
         <personalizados-lopes-confirmacao [edit]="false"></personalizados-lopes-confirmacao>
         <div class=" has-text-left py-4">
           <a pageScroll href="#TOPO" [routerLink]="['/checkout/dados']" class="preco dis-flex flex-m ">

@@ -66,7 +66,7 @@
             </mat-list-item> -->
             <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
               [style.backgroundColor]="categoria?.Cor"
-              class="pointer w-full w-full-m cat-item has-background-white hoverable"
+              class="pointer w-full w-full-m cat-item hoverable"
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box ' : 'has-text-grey'">
               <a [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'"

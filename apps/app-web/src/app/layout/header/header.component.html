@@ -5,7 +5,7 @@
     </a>
   </div>
   <ul class="level list-inline flex-r ">
-    <li class="level-item px-2 has-text-centered mb-0 is-hidden-touch ">
+    <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile ">
       <div>
         <a class="subtitle is-size-7 " href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i> <span>{{(InfoContato$|async)?.Telefone}}</span></a>
       </div>
@@ -13,7 +13,7 @@
     <li class="level-item px-2 has-text-centered mb-0 m-r-45">
       <div class="subtitle is-size-7 ">
          <div class="dropdown">
-          <a class="reset-a"><i class="pi pi-user"></i> <span class="is-hidden-touch">Minha conta</span></a>
+          <a class="reset-a"><i class="pi pi-user"></i> <span class="is-hidden-mobile">Minha conta</span></a>
           <div class="dropdown-content right-0">
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
             <a mat-menu-item *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>
@@ -25,11 +25,11 @@
         </div>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered mb-0 is-hidden-touch ">
+    <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile ">
       <div>
         <a class="subtitle is-size-7 has-background-white bo-0 button is-small" (click)="openCheckout()">
           <div class="is-hidden-touch">
-            <p class="cart-counter" style="bottom:15px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
+            <p class="cart-counter hoverable" style="bottom:8px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
           </div>
           <span class="has-text-dark"><i class="pi pi-shopping-cart"></i></span></a>
           <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
@@ -45,7 +45,7 @@
           </div>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered mr-6 is-hidden-touch ">
+    <li class="level-item px-2 has-text-centered mr-6 is-hidden-mobile ">
       <div>
         <a class="reset-a is-size-7" [routerLink]="['checkout']"><i class="pi pi-reply"></i> <span class="is-hidden-touch">Finalizar pedido</span></a>
       </div>

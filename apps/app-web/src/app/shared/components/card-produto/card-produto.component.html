@@ -15,7 +15,7 @@
       this.imgProduto.classList.add('show');
       "
       [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
-      matRipple class="portfolio-item zoom of-y-scroll "  [style.backgroundColor]="Produto.Categoria.Cor">
+      matRipple class="portfolio-item zoom of-y-scroll clickable"  [style.backgroundColor]="Produto.Categoria.Cor">
 
       <div
       #imgProduto matRipple class="dis-flex flex-w w-full" >

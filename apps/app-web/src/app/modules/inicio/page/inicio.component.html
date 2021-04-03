@@ -33,7 +33,7 @@
                   <div class="columns is-multiline px-2" *ngIf="Produtos">
                     <ng-container *ngFor="let produto of Produtos" class=" ">
                       <div @fadeIn
-                        class="column is-6-tablet"
+                        class="column is-12-tablet of-x-scroll"
                         >
                         <personalizados-lopes-card-produto @slideInOut
                           [Produto]="produto"
