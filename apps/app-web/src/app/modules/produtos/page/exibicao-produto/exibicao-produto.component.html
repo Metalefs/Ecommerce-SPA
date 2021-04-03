@@ -290,6 +290,13 @@
                       Novo
                       <mat-icon>add</mat-icon>
                     </button>
+                    <button mat-flat-button title="Personalizar"
+                      [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                      (click)="AbrirModalArte()" color=""
+                      class="has-background-dark has-text-white">
+                      Personalizar
+                      <mat-icon>edit</mat-icon>
+                    </button>
                   </div>
                 </div>
               </form>

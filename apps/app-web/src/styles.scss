@@ -63,7 +63,10 @@ body {
   }
 }
 .ngx-slider .ngx-slider-pointer {
-  background-color: #f90405 !important;
+  background-color: #ffffff !important;
+  &::after{
+    background-color: #cecece !important
+  }
 }
 body, button, input, optgroup, select, textarea {
   font-family: 'Montserrat';

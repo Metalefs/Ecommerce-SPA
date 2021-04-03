@@ -98,6 +98,12 @@ export class CostumizationComponent implements OnInit {
       }
     }
     this.SaveDesign();
+
+    if(this.Produto.Canvas){
+
+      console.log(this.Produto.Canvas)
+      this.importJson(JSON.parse(this.Produto.Canvas))
+    }
   }
 
   addText() {
@@ -285,19 +291,18 @@ export class CostumizationComponent implements OnInit {
   }
 
 
-  importJson() {
-    console.log('e', this.fileLoaded.target.files[0])
-    var json = this.fileLoaded.target.files[0]
+  importJson(json) {
+
     //uploadJson(fileLoaded)
     var result
     var formatted
     var fr = new FileReader();
     fr.onload = function (e) {
-      console.log("2", e);
+      // console.log("2", e);
       result = JSON.parse(e.target.result.toString());
-      console.log("result", result);
+      // console.log("result", result);
       formatted = JSON.stringify(result, null, 2);
-      console.log("formatted", formatted);
+      // console.log("formatted", formatted);
 
       loadJson(formatted);
     }

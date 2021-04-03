@@ -4,6 +4,8 @@
   <ng-container *ngIf="TrocaImagem then troca else naotroca"> </ng-container>
 
   <ng-template #troca>
+
+    <a>
     <mat-card @fadeIn
     (mouseenter)="
       this.imgProduto.classList.add('hide');
@@ -12,7 +14,7 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-
+      [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]"  routerLinkActive="router-link-active"
       matRipple class="portfolio-item zoom of-y-scroll "  [style.backgroundColor]="Produto.Categoria.Cor">
 
       <div
@@ -57,15 +59,17 @@
       </div>
 
 
-
-      <mat-card-footer  class="px-3 z-index-2">
+      <mat-card-footer [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" class="px-3 z-index-2">
 
         <mat-card-title class="w-full my-3 txt-left titulo-produto">
-
           <a  matRipple class="reset-a" pageScroll href="#topo"
-            [routerLink]="['/produtos/'+ Produto._id]">
-            {{Produto?.Nome}}
-          </a>
+          [routerLink]="['/produtos/'+ Produto._id]">
+          {{Produto?.Nome}}
+        </a>
+        <div class="my-3" *ngIf="Produto.Rating.length>0">
+          <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
+            [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
+        </div>
           <!-- <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
           </ng-container>
           <ng-template #preco_promo>
@@ -83,11 +87,8 @@
         </mat-card-title>
 
 
-        <mat-card-header class="w-full txt-left pt-1 of-y-scroll">
-          <!-- <div class="my-3" *ngIf="Produto.Rating.length>0">
-            <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
-              [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
-          </div> -->
+        <mat-card-header [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" class="w-full txt-left pt-1 of-y-scroll">
+
           <mat-card-subtitle class="mat-card-subtitle is-hidden-desktop is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle
@@ -122,7 +123,7 @@
           </mat-card-subtitle>
         </mat-card-header>
         <mat-card-actions class="pos-relative bottom-0">
-          <div
+          <!-- <div
           class="px-4 py-2 level flex-sa dis-flex flex-w flex-m">
             <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active">
               <button
@@ -134,25 +135,22 @@
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
               <span><i class="pi pi-shopping-cart"></i> Carrinho</span>
             </button>
-          </div>
-        </mat-card-actions>
-        <!-- <a>
-          <button [disabled]="Produto.Status == statusProduto.esgotado" mat-flat-button
-            (click)="AdicionarAoOrcamento(Produto)" color="primary"
-            class="border shadow-light w-full px-2 btn-cart dis-flex flex-sb">
-            <ng-container *ngIf="Produto.Status != statusProduto.esgotado
+          </div> -->
+          <a [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]"  routerLinkActive="router-link-active"
+              class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
+          <ng-container *ngIf="Produto.Status != statusProduto.esgotado
         then adicionar else esgotado"></ng-container>
             <ng-template #adicionar>
-              <mat-icon>add_shopping_cart</mat-icon>
+              <!-- <mat-icon>add_shopping_cart</mat-icon>
               <span class="spacer"></span>
-              <span>Carrinho</span>
+              <span>Carrinho</span> -->
+              Mais
             </ng-template>
             <ng-template #esgotado>
               Esgotado
             </ng-template>
-          </button>
-        </a> -->
-
+          </a>
+        </mat-card-actions>
       </mat-card-footer>
       <div class="z-index-1">
         <div class="content" >
@@ -163,13 +161,14 @@
               </p>
             </div>
           </div>
-          <a title="Comprar" matRipple class="card m-lr-auto"
+          <!-- <a title="Comprar" matRipple class="card m-lr-auto"
           pageScroll
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active"
-          mat-flat-button class=""><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
+          mat-flat-button class=""><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a> -->
         </div>
       </div>
     </mat-card>
+  </a>
     <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
       <img src="{{Produto?.Imagem[0]}}" alt="">
     </figure>

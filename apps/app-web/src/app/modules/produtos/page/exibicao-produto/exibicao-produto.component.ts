@@ -248,15 +248,14 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
         })
         dialogref.afterClosed().subscribe(x=>{
-          if(x.Canvas){
-            console.log(x,this.Produto);
-            if(this.Produto.Arte){
+          if(x.Canvas.objects){
+            if(x.Arte){
               if(!this.orcamentoId){
-                this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
-                  this.orcamentoId = x.codOrcamento;
+                this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
+                  this.orcamentoId = y.codOrcamento;
                 });
               }else{
-                this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+                this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
               }
               this.navegarParaCheckout();
             }

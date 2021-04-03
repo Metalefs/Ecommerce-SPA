@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { SobreCard } from 'apps/app-web/src/app/data/models';
 import { ImagemService } from 'apps/app-web/src/app/data/service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
@@ -11,6 +11,7 @@ import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service'
 })
 export class HeaderFooterComponent implements OnInit {
   Cards:SobreCard[];
+  @Input() specify:string;
   loading:boolean = true;
   constructor(@Inject(PLATFORM_ID) private platform: Object, private imagemService:ImagemService, private document_: DocumentRef) {
 
@@ -18,7 +19,7 @@ export class HeaderFooterComponent implements OnInit {
   ngOnInit(): void {
     this.imagemService.FiltrarPorNome("GIF Produtos").subscribe(x=>{
       this.loading = false;
-      this.Cards = [
+      this.Cards = this.specify == 'prod'?[
         {
           title:"Produtos",
           icon:"photo_library",
@@ -29,17 +30,8 @@ export class HeaderFooterComponent implements OnInit {
           content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
-        // {
-        //   title:"",
-        //   icon:"group_work",
-        //   color:"#f0f0f0",
-        //   class:"grey",
-        //   link:"/",
-        //   id:"#topo",
-        //   content:``,
-        //   img_src:'/assets/images/figures/undraw_decide_3iwx.svg'
-
-        // },
+      ] : this.specify == 'orc' ?
+      [
         {
           title:"Orçamento",
           icon:"email",
@@ -49,7 +41,28 @@ export class HeaderFooterComponent implements OnInit {
           id:"#topo",
           content:`Precisa de um orçamento? alguma dúvida ou sujestão? <a href="/orcamento">Clique aqui !</a>`
         },
-      ]
+      ] :
+      [
+        {
+          title:"Produtos",
+          icon:"photo_library",
+          color:"#FF4A4A",
+          class:"red",
+          link:"/produtos",
+          id:"#topo",
+          content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
+          img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
+        },
+        {
+          title:"Orçamento",
+          icon:"email",
+          color:"#00c3d6",
+          class:"blue",
+          link:"/orcamento",
+          id:"#topo",
+          content:`Precisa de um orçamento? alguma dúvida ou sujestão? <a href="/orcamento">Clique aqui !</a>`
+        },
+      ];
       let elements = [];
 
       let timer=500;
