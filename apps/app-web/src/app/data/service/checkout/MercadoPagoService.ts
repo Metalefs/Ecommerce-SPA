@@ -73,9 +73,9 @@ export class MercadoPagoCheckoutService {
           category_id: produto.Produto.Categoria.Nome,
           quantity: produto.Produto.Quantidade,
           currency_id: 'BRL',
-          unit_price: produto.Produto.PrecoPromocional >0 ?
-          parseInt(produto.Produto.PrecoPromocional.toString()) :
-          parseInt(produto.Produto.Preco.toString()),
+          unit_price: produto.Produto.PrecoPromocional > 0 ?
+            parseFloat(produto.Produto.PrecoPromocional.toFixed(2)) :
+            parseFloat(produto.Produto.Preco.toFixed(2)),
           pictures:[{source:produto.Produto.Imagem[0]}],
           shipping:this.getShipping(produto.Produto)
         }

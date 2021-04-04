@@ -97,12 +97,12 @@
               </div>
             </div>
 
-            <div class="{{mobile ? 'txt-center': 'txt-left'}}" *ngIf="Produto">
+            <div class="{{mobile ? 'txt-left': 'txt-left'}}" *ngIf="Produto">
 
               <div class="columns is-multiline" >
                 <div class="column is-7">
-                  <div class="{{mobile ? 'txt-center': 'txt-left'}}" >
-                    <div class="{{mobile ? 'txt-center': 'txt-left'}} my-1 star-width dis-flex flex-w w-full">
+                  <div class="{{mobile ? 'txt-left': 'txt-left'}}" >
+                    <div class="{{mobile ? 'txt-left': 'txt-left'}} my-1 star-width dis-flex flex-w w-full">
 
                       <span class="spacer"></span>
                       <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
@@ -136,7 +136,7 @@
                   </div>
                 </div>
                 <div class="column">
-                  <div class="is-right notification is-info-light w-full">
+                  <div class="text-center is-right notification is-info-light w-full">
                     <i class="is-right pi pi-question-circle"></i>
                     <ul>
                       <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
@@ -145,9 +145,9 @@
                 </div>
               </div>
               <form action="" method="post" [formGroup]="produtoForm">
-                <div class="columns txt-left is-multiline is-vcentered pr-3">
+                <div class="columns txt-left is-multiline is-vcentered">
 
-                  <div class="column is-12 pb-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
+                  <div class="column is-12-desktop pb-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
                     <mat-divider></mat-divider>
                     <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
                       <mat-label >Tamanho:</mat-label>
@@ -162,28 +162,28 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="column  is-12">
-
-                    <div class="w-full ">
-                      <div class="field  mb-5">
-                        <div class="control border is-large flex-c flex-m">
-                          <p class="is-size-7 pos-absolute left-0 ml-2">Quantidade:</p>
-                          <button mat-icon-button (click)="DecrescerQuantidade()">
-                            <mat-icon class="less">remove</mat-icon>
-                          </button>
-                          <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
-                            [formControlName]="'quantidade'"
-                            value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
-                            min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
-                            [ngClass]="{'is-danger':ErroQuantidade()}"
-                            [(ngModel)]="(Produto).Quantidade">
-                          <button mat-icon-button (click)="IncrementarQuantidade()">
-                            <mat-icon class="more">add</mat-icon>
-                          </button>
-                        </div>
+                  <div class="column is-12-desktop">
+                    <div class="field  mb-5">
+                      <div class="control border is-large flex-c flex-m">
+                        <p class="is-size-7 pos-absolute left-0 ml-2">Quantidade:</p>
+                        <button mat-icon-button (click)="DecrescerQuantidade()">
+                          <mat-icon class="less">remove</mat-icon>
+                        </button>
+                        <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
+                          [formControlName]="'quantidade'"
+                          value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
+                          min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
+                          [ngClass]="{'is-danger':ErroQuantidade()}"
+                          [(ngModel)]="(Produto).Quantidade">
+                        <button mat-icon-button (click)="IncrementarQuantidade()">
+                          <mat-icon class="more">add</mat-icon>
+                        </button>
                       </div>
-
                     </div>
+
+                  </div>
+                  <div class="column is-12 ">
+
                     <div class="columns txt-left is-vcentered pt-0 is-multiline">
 
                       <div class="column is-12 py-1">

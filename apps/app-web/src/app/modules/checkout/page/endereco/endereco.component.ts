@@ -44,15 +44,15 @@ export class EnderecoComponent implements OnInit {
     Validators.required,
   ]);
 
-  bairroFormControl = new FormControl('', [
+  bairroFormControl = new FormControl({value:"", readonly: true},[
     Validators.required
   ]);
 
-  cidadeFormControl = new FormControl('', [
+  cidadeFormControl = new FormControl({value:"", readonly: true},[
     Validators.required
   ]);
 
-  estadoFormControl = new FormControl('', [
+  estadoFormControl = new FormControl({value:"", readonly: true},[
     Validators.required
   ]);
   Finalizado:boolean = false;

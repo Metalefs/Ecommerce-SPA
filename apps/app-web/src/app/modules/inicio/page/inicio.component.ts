@@ -13,13 +13,13 @@ import { trigger } from '@angular/animations';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { TipoOrdenacaoSwiperProduto } from '../../../shared/components/produto-swiper/produto-swiper.component';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
-import { slideInOut } from '../../../animations';
+import { fade, slideInOut } from '../../../animations';
 
 @Component({
   selector: 'personalizados-lopes-inicio',
   templateUrl: './inicio.component.html',
   styleUrls: ['./inicio.component.scss'],
-  animations: [slideInOut]
+  animations: [slideInOut,fade]
 })
 export class InicioComponent implements OnInit {
   @Select(ClienteState.ObterListaClientes) Clientes$: Observable<entities.Cliente[]>;

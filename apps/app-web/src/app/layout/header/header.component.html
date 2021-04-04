@@ -60,18 +60,18 @@
   <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
     <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
       <div class="" style="height: 50px;">
-        <a @fadeIn href="#" class="logo m-l-30 pr-3">
+        <a @fadeIn href="#" class="logo mx-5 pr-3">
           <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
         </a>
       </div>
-      <div class="columns mx-0 my-0 border py-2 is-mobile is-gapless" style="width: 50%;">
+      <div class="columns mx-0 my-0 border py-2 is-mobile is-gapless  is-hidden-mobile" style="width: 50%;">
         <div class="column  is-2">
 
           <button mat-icon-button (click)="search = !search" class="has-background-white mx-1">
             <mat-icon>search</mat-icon>
           </button>
         </div>
-        <div class="column ">
+        <div class="column">
 
           <div @fadeIn class="control has-icons-right w-full" *ngIf="search">
             <form type="get" action="/produtos/?nome={{search_filter}}" class="w-full">
@@ -119,7 +119,7 @@
 
       <div class="my-0 dis-flex flex-r is-hidden-desktop">
 
-        <div class="is-hidden-desktop ml-4 m-r-20">
+        <div class="is-hidden-desktop ml-4 m-r-30">
           <a mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
             class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento pl-6 trans-04 m-b-3 m-t-3">
             <div class="columns line-height-small is-mobile">

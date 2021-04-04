@@ -17,7 +17,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
           .catch(reason => ErrorHandler.AuthorizationException(reason,res));
     }
     catch(ex){
-      ErrorHandler.AuthorizationException(ex,res);
+      ErrorHandler.DefaultException(ex,res);
     }
 }).post(RouteDictionary.Registro, (req,res, next) =>{
   try{

@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                     verticalPosition:"top",
                     duration: 5000
                   })
-                  location.reload(true);
+                  // location.reload(true);
                   break;
               }
               case(409):{

@@ -33,7 +33,7 @@ img{
 .mat-card{
   // min-height: 395px;
   max-height: 550px;
-
+  background:#ffffff none repeat scroll 0% 0%;
   display: flex !important;
   align-items: center;
   // border: 1px solid #e7e7e7;
@@ -72,6 +72,8 @@ img{
   border-bottom-right-radius: .31em;
   min-height: 270px;
   // max-height: 270px !important;
+  // width: 70%;
+  // min-width: 161px;
   object-fit: cover;
   filter: grayscale(0) !important;
   margin-top: -16px;
@@ -166,7 +168,7 @@ img{
   margin: 0 16px;
 }
 .mat-card-header{
-  height: 75px;
+  // height: 75px;
   // overflow: hidden;
   &-text{
     width: 100%;
@@ -183,7 +185,7 @@ img{
     width: 100%;
     font-size: 16px;
 }
-@media (min-width: 00px ) and (max-width: 1023px) {
+@media (min-width: 00px ) and (max-width: 1223px) {
   .preco-produto{
     font-size: 16px;
   }
@@ -222,7 +224,7 @@ img{
   border-radius: 0px;
   display: flex;
   // flex-direction: column;
-  background: #f1f1f1;
+  background: #ffffff;
   height: 100%;
   overflow: hidden;
   &:hover{

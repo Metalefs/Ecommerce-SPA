@@ -18,7 +18,7 @@
       matRipple class="portfolio-item zoom of-y-scroll clickable"  [style.backgroundColor]="Produto.Categoria.Cor">
 
       <div
-      #imgProduto matRipple class="dis-flex flex-w w-full" >
+      #imgProduto matRipple class="dis-flex flex-w  w-full" >
         <!-- <a class="prod-status " [href]="'/produtos/'+Produto._id" *ngIf="Produto.Cores?.length > 1" >
           <span routerLinkActive="router-link-active"
             class="button is-small is-size-7 bo-0 is-fullwidth is-disabled px-4">
@@ -59,18 +59,18 @@
       </div>
 
 
-      <mat-card-footer [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" class="px-3 z-index-2">
-
+      <mat-card-footer [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" class="px-3 z-index-2 w-full">
+        <!-- <div class="my-3" *ngIf="Produto.Rating.length>0">
+          <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
+            [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
+        </div> -->
         <mat-card-title class="w-full my-3 txt-left titulo-produto">
           <a  matRipple class="reset-a" pageScroll href="#topo"
           [routerLink]="['/produtos/'+ Produto._id]">
           {{Produto?.Nome}}
         </a>
-        <div class="my-3" *ngIf="Produto.Rating.length>0">
-          <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
-            [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
-        </div>
-        <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
+        
+        <!-- <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
         </ng-container>
         <ng-template #preco_promo>
           <div class="txt-left">
@@ -82,14 +82,14 @@
           <div class="txt-left">
             <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
           </div>
-        </ng-template>
+        </ng-template> -->
 
         </mat-card-title>
 
 
         <mat-card-header [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" class="w-full txt-left pt-1 of-y-scroll">
 
-          <mat-card-subtitle class="mat-card-subtitle is-hidden-desktop is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
+          <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
           <mat-card-subtitle
 
@@ -104,7 +104,7 @@
               </div>
             </ng-template>
             <ng-template #preco_normal>
-
+              <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
             </ng-template>
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
               <p class=" parcelas" *ngIf="Produto.Parcelas > 1">

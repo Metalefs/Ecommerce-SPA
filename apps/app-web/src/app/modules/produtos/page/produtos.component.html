@@ -110,8 +110,8 @@
         </div>
       </div>
     </div>
-    <div class="column is-9 is-12-mobile produto-column has-background-white px-3 mh-full of-y-scroll-desktop of-y-scroll">
-      <div class="pb-0 mb-0 ">
+    <div class="column is-9 is-12-mobile produto-column px-3 mh-full of-y-scroll-desktop of-y-scroll">
+      <div class="pb-0 mb-0   px-4">
         <div class="w-full">
           <div class="columns is-mobile is-multiline is-vcentered">
             <div class="column is-12-mobile">
@@ -165,7 +165,7 @@
           
           
           <h2 class="subtitle is-3 mb-5 texto-categoria-ativa is-hidden-desktop">{{CategoriaAtiva?.Nome}}</h2>
-          <div class="columns is-multiline is-gapless portfolio-container dis-flex">
+          <div class="columns is-multiline portfolio-container dis-flex">
             <mat-divider></mat-divider>
             <div @fadeIn *ngIf="(Filtro$ | async).FiltroProdutos.length == 0" class="m-lr-auto">
               <figure class="no-match-img">
