@@ -136,19 +136,9 @@
               <span><i class="pi pi-shopping-cart"></i> Carrinho</span>
             </button>
           </div> -->
-          <a [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
+          <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
-          <ng-container *ngIf="Produto.Status != statusProduto.esgotado
-        then adicionar else esgotado"></ng-container>
-            <ng-template #adicionar>
-              <!-- <mat-icon>add_shopping_cart</mat-icon>
-              <span class="spacer"></span>
-              <span>Carrinho</span> -->
-              Mais
-            </ng-template>
-            <ng-template #esgotado>
-              Esgotado
-            </ng-template>
+            Esgotado
           </a>
         </mat-card-actions>
       </mat-card-footer>

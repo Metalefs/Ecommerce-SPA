@@ -188,7 +188,7 @@ img{
     font-size: 16px;
   }
   .mat-card{
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .mat-card-subtitle{
@@ -222,6 +222,7 @@ img{
   border-radius: 0px;
   display: flex;
   // flex-direction: column;
+  background: #f1f1f1;
   height: 100%;
   overflow: hidden;
   &:hover{

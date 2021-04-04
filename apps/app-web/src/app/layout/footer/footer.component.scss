@@ -27,6 +27,8 @@ a{
   &.footer-text.links p{
     text-align: left;
     line-height: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
   }
   &.footer-text.links p:hover{
     color: #FF6F61 !important;
@@ -77,6 +79,7 @@ a{
   // background: #3a3a3a;
   // background: rgba(0, 0, 0, 0.52);
   background: #FF4A4A;
+  // background: rgba(249,28,28,.52);
 }
 .txt-justify.footer-text.has-text-white p{
   color:white

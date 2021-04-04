@@ -1,4 +1,4 @@
-<mat-toolbar class="w-full dis-flex flex-r flex-m py-0 flex-c a-i-c z-index-top " style="overflow-y: visible;height: min-content;">
+<mat-toolbar class="w-full dis-flex flex-r flex-m py-0 flex-c a-i-c z-index-top is-hidden-mobile" style="overflow-y: visible;height: min-content;">
   <div class="w-full dis-flex flex-m flex-l px-2" style="overflow-y: visible;">
     <a @fadeIn href="#" class="logo m-l-30">
 
@@ -10,7 +10,7 @@
         <a class="subtitle is-size-7 " href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i> <span>{{(InfoContato$|async)?.Telefone}}</span></a>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered mb-0 m-r-45">
+    <li class="level-item px-2 has-text-centered mb-0 m-r-45 is-hidden-mobile">
       <div class="subtitle is-size-7 ">
          <div class="dropdown">
           <a class="reset-a"><i class="pi pi-user"></i> <span class="is-hidden-mobile">Minha conta</span></a>

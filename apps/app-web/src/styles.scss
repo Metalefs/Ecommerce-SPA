@@ -226,7 +226,9 @@ a {
     animation: showArr 1s ease forwards !important;
   }
 }
-
+.pi{
+  // color: #fe0000;
+}
 .swiper-button-prev,.swiper-button-next{
   margin: 0 0 5px;
   padding: 2rem;
@@ -462,7 +464,8 @@ canvas{
 }
 
 .background-light-red{
-  background: #fe3131!important ;
+  // background: #fe3131!important ;
+  background: #d66363;
   transition: all 1s;
   &:hover{
     background: $red !important;
