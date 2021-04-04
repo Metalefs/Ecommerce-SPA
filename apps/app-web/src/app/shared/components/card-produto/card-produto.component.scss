@@ -223,7 +223,7 @@ img{
   align-items: stretch;
   border-radius: 0px;
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
   background: #ffffff;
   height: 100%;
   overflow: hidden;
@@ -260,8 +260,8 @@ img{
         display: block;
         position: absolute;
         font-size: 12px;
-        width: 50%;
-        top: 70%;
+        width: 100%;
+        top: 42%;
         left: 2px;
         z-index: 10;
         border-radius: 50%;

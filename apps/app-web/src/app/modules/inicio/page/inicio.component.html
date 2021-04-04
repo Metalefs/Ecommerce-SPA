@@ -24,7 +24,7 @@
               <div class="tile is-parent">
                 <div class="tile is-child box">
                   <!-- <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper> -->
-                  <mat-toolbar color="" class="noselect px-3 pb-4" [routerLink]="'/produtos'">
+                  <mat-toolbar color="accent" class="noselect px-3 pb-4" [routerLink]="'/produtos'">
                     <mat-toolbar-row>
                       Destaques
                     </mat-toolbar-row>
@@ -43,13 +43,19 @@
                       </div>
                     </ng-container>
                   </div>
-                  <div class="navbar noselect px-3 pb-4">
-                    <a href="#topo" pageScroll class="navbar-item" [routerLink]="'/produtos'" >
-                      <p class=" ">VEJA MUITO MAIS, CLIQUE AQUI!
-                        MAIS DE 20 MODELOS!
-                        CONFIGURE TAMANHO, COR E ESTAMPA</p>
-                    </a>
-                  </div>
+                  <nav class="navbar" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                      <a class="navbar-item" href="/">
+                        <img src="assets/images/icons/Logo.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="65" height="28">
+                      </a>
+
+                      <div class="navbar-item">
+                        <a href="#topo" pageScroll class="navbar-item" [routerLink]="'/produtos'">
+                          VEJA MUITO MAIS, CLIQUE AQUI! MAIS DE 20 MODELOS! CONFIGURE TAMANHO, COR E ESTAMPA
+                        </a>
+                      </div>
+                    </div>
+                  </nav>
                 </div>
               </div>
             </div>
