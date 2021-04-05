@@ -30,6 +30,7 @@ export class CardProdutoComponent implements OnInit {
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
+  @Input() flex_direction: string = 'column';
   statusProduto=StatusProduto;
   imageUrls: (string | IImage)[] = [
 

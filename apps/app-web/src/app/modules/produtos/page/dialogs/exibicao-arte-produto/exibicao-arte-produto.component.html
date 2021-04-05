@@ -102,7 +102,7 @@
     [mat-dialog-close]="Produto"
     class="export-btn button is-success pb-2 mx-2 my-2 has-text-white has-text-weight-medium border"
     [disabled]="!Produto.Canvas['objects'].length||[] > 0">
-    {{Produto.Canvas['objects'].length||[] <= 0?"Adicione uma arte":"Concluir"}}
+    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Concluir"}}
   </button>
   <button mat-raised-button color="basic" [mat-dialog-close]="" cdkFocusInitial>
     Cancelar

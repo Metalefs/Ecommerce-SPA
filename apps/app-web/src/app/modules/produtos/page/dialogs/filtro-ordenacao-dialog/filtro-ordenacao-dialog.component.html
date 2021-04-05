@@ -3,7 +3,7 @@
   <mat-list>
     <mat-list-item
       *ngFor="let order of data.ordertypes; let i = index"
-      (click)="atualizarFiltroAtivo(order)"
+      (click)="atualizarOrderFilter(order)"
       class="pointer w-full w-full-m py-2 w-full"
       >
     <button mat-flat-button [ngClass]="order.id == data.activeOrderFilter ? 'active':''">
@@ -11,5 +11,20 @@
     </button>
       <mat-divider></mat-divider>
     </mat-list-item>
+    <mat-list-item>
+      <div class="w-full">
+        <mat-form-field class="" appearance="">
+          <mat-label>Página</mat-label>
+          <mat-select matNativeControl [(ngModel)]="data.activeOrderLimit" (selectionChange)="atualizarOrderLimit(data.activeOrderLimit)">
+            <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
+              <div class="box w-full">
+                <p>{{opt.name}}</p>
+              </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-list-item>
   </mat-list>
 </div>
+

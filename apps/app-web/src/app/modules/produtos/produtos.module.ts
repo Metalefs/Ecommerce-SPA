@@ -46,6 +46,7 @@ import { PreviewProdutoComponent } from './page/components/preview-produto/previ
     ShareButtonsModule,
     ShareModule,
     ShareButtonModule,
+    PrimeNgModule,
   ]
 })
 export class ProdutosModule { }

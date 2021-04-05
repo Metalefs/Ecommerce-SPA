@@ -148,8 +148,7 @@
                 <div class="columns txt-left is-multiline is-vcentered">
 
                   <div class="column is-12-desktop pb-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
-                    <mat-divider></mat-divider>
-                    <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                    <mat-form-field class="w-full shadow-light " *ngIf="Produto?.Cores" appearance="fill">
                       <mat-label >Tamanho:</mat-label>
                       <mat-select matNativeControl
                       [formControlName]="'tamanho'"
@@ -164,7 +163,7 @@
                   </div>
                   <div class="column is-12-desktop">
                     <div class="field ">
-                      <div class="control border is-large flex-c flex-m">
+                      <div class="control shadow-light is-large flex-c flex-m">
                         <p class="is-size-7 pos-absolute left-0 ml-2">Quantidade:</p>
                         <button mat-icon-button (click)="DecrescerQuantidade()">
                           <mat-icon class="less">remove</mat-icon>
@@ -231,7 +230,6 @@
                               sem juros
                             </p>
                           </div>
-                          <mat-divider></mat-divider>
                           <div class="py-3">
 
                             <p class="subtitle is-7">Calcule frete e prazo</p>

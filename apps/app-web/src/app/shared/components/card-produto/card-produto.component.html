@@ -14,18 +14,17 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
-      matRipple class="portfolio-item zoom of-y-scroll clickable"  [style.backgroundColor]="Produto.Categoria.Cor">
+      routerLinkActive="router-link-active"
+      matRipple class="portfolio-item zoom of-y-scroll clickable"
+      [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
 
       <div
       #imgProduto matRipple class="dis-flex flex-w  w-full" >
-        <!-- <a class="prod-status " [href]="'/produtos/'+Produto._id" *ngIf="Produto.Cores?.length > 1" >
-          <span routerLinkActive="router-link-active"
-            class="button is-small is-size-7 bo-0 is-fullwidth is-disabled px-4">
-            Disponível em {{Produto.Cores?.length}} cores
-          </span>
-        </a> -->
-
+       <span class="prod-status ">
+        <i class="pi pi-tag  product-category-icon"></i>
+        <span class="product-category"></span>
+        <span [class]="'has-text-black is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
+      </span>
         <!-- <img
           mat-card-image #imgProduto
           class=""
@@ -59,7 +58,7 @@
       </div>
 
 
-      <mat-card-footer [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]" class="px-3 z-index-2 w-full">
+      <mat-card-footer class="px-3 z-index-2 w-full">
         <!-- <div class="my-3" *ngIf="Produto.Rating.length>0">
           <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
             [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
@@ -87,7 +86,7 @@
         </mat-card-title>
 
 
-        <mat-card-header [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" class="w-full txt-left pt-1 of-y-scroll">
+        <mat-card-header class="w-full txt-left pt-1 of-y-scroll">
 
           <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
 
@@ -173,11 +172,7 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      matRipple class="portfolio-item zoom of-y-scroll " [style.backgroundColor]="Produto.Categoria.Cor" style="flex-direction:column">
-      <!-- <span class="prod-status is-hidden-desktop">
-        <i class="pi pi-tag"></i>
-        {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
-      </span> -->
+      matRipple class="portfolio-item zoom of-y-scroll " [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
 
       <div
 
