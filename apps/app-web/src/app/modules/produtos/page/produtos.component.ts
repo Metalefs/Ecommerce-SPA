@@ -216,8 +216,8 @@ export class ProdutosComponent implements OnInit {
   }
   changeOptions(ceil:number) {
     const newOptions: Options = Object.assign({}, this.options);
-    newOptions.ceil = ceil;
-    this.maxValue = ceil;
+    newOptions.ceil = ceil||0;
+    this.maxValue = ceil||0;
     this.options = newOptions;
   }
   filtroAtivo(produto:Produto){

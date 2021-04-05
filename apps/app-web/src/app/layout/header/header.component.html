@@ -64,23 +64,23 @@
           <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
         </a>
       </div>
+      <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
       <div class="columns mx-0 my-0 border py-2 is-mobile is-gapless  is-hidden-mobile" style="width: 50%;">
         <div class="column  is-2">
 
-          <button mat-icon-button (click)="executar_pesquisa()" class="has-background-white mx-1">
+          <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">
             <mat-icon>search</mat-icon>
           </button>
         </div>
         <div class="column">
 
           <div @fadeIn class="control has-icons-right w-full" *ngIf="search">
-            <form type="get" action="/produtos/?nome={{search_filter}}" class="w-full">
               <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()" class="w-full"
                 (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
-            </form>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </form>
 
       <div class="columns mx-3 my-0 is-hidden-touch link-section is-gapless ">
 

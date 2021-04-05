@@ -124,9 +124,9 @@
 
           <h2 class="subtitle is-3 mb-5 ">{{CategoriaAtiva?.Nome}}</h2>
 
-          <div class="w-full" *ngIf="(Filtro$ | async).FiltroProdutos.length == 0">
+          <div class="w-full mh-full" *ngIf="(Filtro$ | async).FiltroProdutos.length == 0">
 
-            <div @fadeIn class="m-lr-auto">
+            <div @fadeIn class="m-lr-auto mh-full mb-5">
               <figure class="no-match-img">
                 <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img"
                   alt="Não foram encontrados produtos correspondentes à sua pesquisa">

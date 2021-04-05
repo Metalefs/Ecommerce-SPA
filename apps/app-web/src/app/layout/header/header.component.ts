@@ -104,7 +104,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.search = !this.search;
   }
   executar_pesquisa(){
-    this.router.navigate(['/produtos',{queryParams:{nome:this.search_filter}}])
+    this.router.navigate(['/produtos'],{queryParams:{nome:this.search_filter,categoria:'Todos os produtos'}})
   }
   handleSearchValue($event){
     this.search_filter = $event;
