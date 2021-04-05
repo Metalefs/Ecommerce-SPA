@@ -78,6 +78,9 @@ export class EditarProdutoDialogComponent implements OnInit {
     if(!this.Produto.Tamanhos){
       this.Produto.Tamanhos = []
     }
+    if(!this.Produto.Peso){
+      this.Produto.Peso = 0
+    }
     this.galleryConfig$ = breakpointObserver.observe([
       Breakpoints.HandsetPortrait
     ]).pipe(

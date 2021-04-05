@@ -1,16 +1,27 @@
 
 
-.prod-status{
-  position: absolute;
-  max-width: 170px;
-  top: -5px;
-  left: -35;
-  color: #fff;
-  padding: 5px 10px;
-  z-index: 3;
-  border-radius: .51em;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
+.prod{
+  &-status{
+    top: -5px;
+    left: -35;
+    color: #000000;
+    padding: 5px 10px;
+    z-index: 3;
+    border-radius: .51em;
+    background: white;
+    box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
+  }
+  &-cores{
+    position: absolute;
+    max-width: 170px;
+    top: -5px;
+    left: -35;
+    color: #000000;
+    padding: 5px 10px;
+    z-index: 3;
+    border-radius: .51em;
+    background: white;
+  }
 }
 .mat-badge-medium, .mat-badge-content {
   min-width: 32px;
@@ -33,7 +44,7 @@ img{
 .mat-card{
   // min-height: 395px;
   max-height: 550px;
-
+  background:#ffffff none repeat scroll 0% 0%;
   display: flex !important;
   align-items: center;
   // border: 1px solid #e7e7e7;
@@ -41,7 +52,7 @@ img{
   margin: 0 !important;
   &:hover{
     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
-    background:rgb(229, 229, 229) none repeat scroll 0% 0%;
+    background: #f9fbfe none repeat scroll 0% 0%;
     border: 1px solid rgb(215, 215, 215);
     &button{
       display: block;
@@ -72,9 +83,13 @@ img{
   border-bottom-right-radius: .31em;
   min-height: 270px;
   // max-height: 270px !important;
+  // width: 70%;
+  // min-width: 161px;
   object-fit: cover;
   filter: grayscale(0) !important;
   margin-top: -16px;
+  width: 100%;
+  min-width: 161px;
   &.show{
     animation: show 1s ease forwards !important;
     filter: brightness(0.9) !important;
@@ -107,12 +122,12 @@ img{
 }
 .zoom{
   filter: opacity(1);
-  transition: .1s all ease-in-out;
+  transition: .51s all ease-in-out;
   &:hover{
     opacity: 1;
     filter: opacity(1);
-    transform: scale(1.02);
-    -webkit-transform: scale(1.02);
+    transform: scale(1.02) !important;
+    -webkit-transform: scale(1.02) !important;
     z-index: 2;
   }
 }
@@ -164,7 +179,7 @@ img{
   margin: 0 16px;
 }
 .mat-card-header{
-  height: 75px;
+  // height: 75px;
   // overflow: hidden;
   &-text{
     width: 100%;
@@ -181,12 +196,12 @@ img{
     width: 100%;
     font-size: 16px;
 }
-@media (min-width: 00px ) and (max-width: 1023px) {
+@media (min-width: 00px ) and (max-width: 1223px) {
   .preco-produto{
     font-size: 16px;
   }
   .mat-card{
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .mat-card-subtitle{
@@ -202,7 +217,7 @@ img{
     // min-height: auto;
   }
   .mat-card-header{
-    height: 75px;
+    // height: 75px;
     // overflow: hidden;
     &-text{
       width: 100%;
@@ -219,7 +234,7 @@ img{
   align-items: stretch;
   border-radius: 0px;
   display: flex;
-  // flex-direction: column;
+  background: #ffffff;
   height: 100%;
   overflow: hidden;
   &:hover{
@@ -235,7 +250,7 @@ img{
 
 .portfolio-overlay {
   background: rgba(255, 255, 255, 0.20);
-
+  z-index: 10;
   &a{
     transition:1s all ease ;
   }
@@ -243,7 +258,7 @@ img{
   top: 0;
   left: 5px;
   height: calc(100% - 10px);
-  width: 55%;
+  width: 50%;
   // opacity: 0;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -255,8 +270,8 @@ img{
         display: block;
         position: absolute;
         font-size: 12px;
-        width: 55%;
-        top: 45%;
+        width: 50%;
+        top: 42%;
         left: 2px;
         z-index: 10;
         border-radius: 50%;
@@ -264,13 +279,13 @@ img{
 }
 
 .overlay-items {
- height: 100px;
- position: absolute;
- top: 20%;
- z-index: 5;
- left: 0;
- right: 0;
- visibility: hidden;
+  height: 100px;
+  position: absolute;
+  top: 20%;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  visibility: hidden;
 }
 
 .overlay-items p {
@@ -307,7 +322,7 @@ img{
 .portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
   pointer-events: all;
 
-  box-shadow: 1px 1px 4px #d1d1d199;
+  box-shadow: 1px 1px 4px #8b888899;
   border-radius: 0.25rem;
   transition: all ease .5s;
   transition-delay: .5s;

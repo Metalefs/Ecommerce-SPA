@@ -39,9 +39,9 @@ export class ProdutosComponent implements OnInit {
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return "<span class='is-size-7' ><em>Min</em>: R$" + value +"</span>";
+          return "<span class='is-size-7' >R$" + value +"</span>";
         case LabelType.High:
-          return "<span class='is-size-7' ><em>Máx:</em> R$" + value +"</span>";
+          return "<span class='is-size-7' >R$" + value +"</span>";
         default:
           return "";
       }
@@ -93,7 +93,6 @@ export class ProdutosComponent implements OnInit {
   ]
   Parcelamento:boolean;
   MultiplasCores:boolean;
-
   constructor(
     private dialog: NgDialogAnimationService,
     private store: Store,
@@ -166,7 +165,7 @@ export class ProdutosComponent implements OnInit {
     Modelo:"",
     Tags:"",
   }
-  atualizarFiltroAtivo(){
+  atualizarFiltroAtivo(atualizarPreco:boolean = true){
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter||''
     this.fQuery.NomeCategoria  = this.CategoriaAtiva.Nome||"";
@@ -193,6 +192,7 @@ export class ProdutosComponent implements OnInit {
       }
 
       this.Produtos = x.items;
+      if(atualizarPreco)
       this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o=> o.Preco)) : this.Produtos[0]?.Preco);
       let FiltroProduto:FiltroProduto = {
         Categoria:this.CategoriaAtiva,
@@ -216,8 +216,8 @@ export class ProdutosComponent implements OnInit {
   }
   changeOptions(ceil:number) {
     const newOptions: Options = Object.assign({}, this.options);
-    newOptions.ceil = ceil;
-    this.maxValue = ceil;
+    newOptions.ceil = ceil||0;
+    this.maxValue = ceil||0;
     this.options = newOptions;
   }
   filtroAtivo(produto:Produto){
@@ -336,7 +336,8 @@ export class ProdutosComponent implements OnInit {
       width:'512px',
       data:{
         ordertypes:this.ordertypes,
-        activeOrderFilter:this.activeOrderFilter
+        activeOrderFilter:this.activeOrderFilter,
+        activeOrderLimit:this.activeOrderLimit
       } as FiltroOrdenacao,
       height:'100vh',
       animation: {
@@ -352,16 +353,17 @@ export class ProdutosComponent implements OnInit {
 
       panelClass:['','animate__animated','animate__slideInRight']
     });
-    dialogRef.afterClosed().subscribe((result :OrderType) => {
+    dialogRef.afterClosed().subscribe((result :FiltroOrdenacao) => {
       if(result){
-        this.activeOrderFilter = result.id;
+        this.activeOrderFilter = result.activeOrderFilter;
+        this.activeOrderLimit = result.activeOrderLimit;
         this.atualizarFiltroAtivo()
       }
     });
   }
 
   translate(orderId:number){
-    return this.ordertypes.filter(x=>x.id == orderId)[0].name;
+    return this.ordertypes?.filter(x=>x.id == orderId)[0].name;
   }
   Ceil(number){
     return Math.ceil(number);

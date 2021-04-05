@@ -30,15 +30,17 @@ export class CostumizationComponent implements OnInit {
   italic:any;
   constructor(private dialog : MatDialog,@Inject(PLATFORM_ID) private platform: Object) {}
 
-
+  importOpen:boolean=false;
   ngOnInit(): void {
     this.__canvas = new this.fabric.Canvas('c');
 
     this.fabric.Object.prototype.cornerColor = '#131313';
     this.fabric.Object.prototype.transparentCorners = false;
-    if(isPlatformBrowser(this.platform))
-    this.setup();
-    this.importFile();
+    if(isPlatformBrowser(this.platform)){
+      this.setup();
+      if(!this.importOpen)
+      setTimeout(()=>{this.importFile()},2000)
+    }
   }
 
   setup(){
@@ -98,6 +100,12 @@ export class CostumizationComponent implements OnInit {
       }
     }
     this.SaveDesign();
+
+    if(this.Produto.Canvas){
+
+      console.log(this.Produto.Canvas)
+      this.importJson(this.Produto.Canvas)
+    }
   }
 
   addText() {
@@ -128,7 +136,7 @@ export class CostumizationComponent implements OnInit {
     this.SaveDesign();
   }
   importFile() {
-
+    this.importOpen = true;
     this.dialog.open(ImportacaoComponent,{
       data:this.fileLoaded,
 
@@ -140,6 +148,7 @@ export class CostumizationComponent implements OnInit {
         else
           this.uploadImageURL(x)
       }
+      this.importOpen = false;
     })
 
   }
@@ -212,6 +221,7 @@ export class CostumizationComponent implements OnInit {
 
   // use modal images
   addStockImg() {
+    this.importOpen = true;
     let dialogRef = this.dialog.open(StockImageComponent, {
 
       panelClass:['animate__animated','animate__bounceIn', 'border']
@@ -236,6 +246,7 @@ export class CostumizationComponent implements OnInit {
           self.Produto.Arte = imgObj;
         }
         self.Produto.Design = imgObj;
+        this.importOpen = false;
       }
       this.SaveDesign();
     })
@@ -285,24 +296,23 @@ export class CostumizationComponent implements OnInit {
   }
 
 
-  importJson() {
-    console.log('e', this.fileLoaded.target.files[0])
-    var json = this.fileLoaded.target.files[0]
+  importJson(json) {
+
     //uploadJson(fileLoaded)
     var result
     var formatted
     var fr = new FileReader();
     fr.onload = function (e) {
-      console.log("2", e);
+      // console.log("2", e);
       result = JSON.parse(e.target.result.toString());
-      console.log("result", result);
+      // console.log("result", result);
       formatted = JSON.stringify(result, null, 2);
-      console.log("formatted", formatted);
+      // console.log("formatted", formatted);
 
       loadJson(formatted);
     }
 
-    fr.readAsText(json);
+    //fr.readAsText(json);
     function loadJson(formatted) {
       console.log('here');
       this.__canvas.loadFromJSON(formatted, function (obj) {

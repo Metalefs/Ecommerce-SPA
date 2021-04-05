@@ -12,13 +12,13 @@
 }
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
-  background: #ffffff;
+  background: #f9fbfe;
   margin-top: 0px;
 }
 .busca{
   font-family: Trebuchet MS;
   font-size: 14px;
-  color: #000000;
+  color: #1106CC;
   height: 27px;
   padding-left: 3px;
   border: 0;
@@ -65,19 +65,19 @@
   right: 0;
   bottom: 22px;
   text-align: center;
-  color: #000000;
+  color: #1106CC;
   font-size: 10px;
-  background: #f0f0f0;
+  background: #d0ff12;
   border-radius: 90px;
   width: 20px;
-  font-weight: 600;
+  font-weight: 800;
   padding: 5px;
 }
 .mat-mini-fab .mat-button-wrapper{
   padding: 0;
 }
 .nav-link{
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   // padding: 0.5em;
   padding: 32px 30px;
@@ -85,13 +85,13 @@
   min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  border-left: 1px solid #ebebf1;
+  // border-left: 1px solid #ebebf1;
   border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  color: #171818d1;
+  border-top-right-radius: 0;
+  color: #484848;
   // color: white;
-  margin-left: 0;
-  font-family: open sans, sans-serif !important;
+  margin-left: 2px;
+  // font-family: open sans, sans-serif !important;
   font-weight: bold;
 }
 a.nav-link::before{
@@ -145,11 +145,11 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: #ffffff;
+  background: #f9fbfe;
 }
 .produtos-nav{
-  background: #ffffff;
-  background: #ffffff;
+  background: #f9fbfe;
+  background: #f9fbfe;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -165,7 +165,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #ffffff;
+  background: #f9fbfe;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;

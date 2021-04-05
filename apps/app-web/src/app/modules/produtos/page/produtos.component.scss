@@ -16,6 +16,11 @@
     }
   }
 }
+:host ::ng-deep .p-grid.p-nogutter{
+  display: flex;
+
+  flex-wrap: wrap;
+}
 .wp-btn {
   border-radius: 4px;
   box-shadow: none;

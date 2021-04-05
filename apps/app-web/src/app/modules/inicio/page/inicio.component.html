@@ -1,76 +1,66 @@
-<div id="INICIO" class="has-background-light pt-1">
+<div id="INICIO" class="has-background-light">
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
 
-  <mat-toolbar color="primary" class="noselect px-3 pb-4">
-    <mat-toolbar-row>
-      Produtos Disponíveis <mat-icon>keyboard_arrow_down</mat-icon>
-    </mat-toolbar-row>
-  </mat-toolbar>
 
-  <div class="columns has-background-danger is-multiline px-2 mb-5 pt-2" *ngIf="Produtos">
-    <ng-container *ngFor="let produto of Produtos" class=" ">
-      <div @fadeIn
-        class="column mb-2 is-6-tablet"
-        >
-        <personalizados-lopes-card-produto @slideInOut
-          [Produto]="produto"
-          [MostarOpcoes]="true"
 
-        ></personalizados-lopes-card-produto>
-      </div>
-    </ng-container>
-  </div>
-
-  <div class="bg mt-5">
+  <div class="bg ">
 
     <div class="bg-transp">
       <div class="">
 
-        <div class="hero is-white bg-img">
+        <div class="hero is-light bg-img">
           <div class="hero-body pt-4">
-            <div class="px-2 py-5">
-              <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-            </div>
             <p class="hero-title"></p>
+            <div class="tile is-ancestor of-x-scroll">
+              <div class="tile is-4 is-vertical is-parent">
+                <div class="tile is-child box">
+                  <personalizados-lopes-header-footer [specify]="'prod'"></personalizados-lopes-header-footer>
+                </div>
+                <div class="tile is-child box">
+                  <personalizados-lopes-header-footer [specify]="'orc'"></personalizados-lopes-header-footer>
+                </div>
+              </div>
+              <div class="tile is-parent">
+                <div class="tile is-child box">
+                  <p><mark>Destaques</mark></p>
+                  <div class="columns is-multiline px-2" *ngIf="Produtos">
+                    <ng-container *ngFor="let produto of Produtos" class=" ">
+                      <div @fadeIn
+                        class="column is-12-tablet of-x-scroll"
+                        >
+                        <personalizados-lopes-card-produto @slideInOut
+                          [Produto]="produto"
+                          [MostarOpcoes]="true"
+                          [flex_direction]="mobile?'column':'row'"
+
+                        ></personalizados-lopes-card-produto>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <nav class="navbar" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                      <a class="navbar-item" href="/">
+                        <img src="assets/images/icons/Logo.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="65" height="28">
+                      </a>
+                      <div class="navbar-end">
+
+                        <div class="navbar-item">
+                          <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
+                            VEJA MUITO MAIS, CLIQUE AQUI! MAIS DE 20 MODELOS! CONFIGURE TAMANHO, COR E ESTAMPA
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
             <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
               <div data-aos="zoom-down" class="testimonial">
                 <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
               </div>
             </section>
-          </div>
-        </div>
-
-        <div class="tile is-ancestor of-x-scroll">
-          <div class="tile is-4 is-vertical is-parent">
-            <div class="tile is-child box">
-              <a pageScroll
-              href="#topo"
-              [routerLink]="['/produtos/']"
-              routerLinkActive="router-link-active w-full"
-              class="w-full">
-              <button mat-flat-button class="bo-0 py-2 my-3 box w-full" color="accent">
-                Ver produtos
-              </button>
-            </a>
-            </div>
-            <div class="tile is-child box">
-              <a pageScroll
-              href="#topo"
-              [routerLink]="['/showcase/']"
-              routerLinkActive="router-link-active w-full"
-              class="w-full">
-              <button mat-flat-button class="bo-0 py-2 mb-3 box hoverable w-full btn is-blue">
-                Galeria
-              </button>
-               </a>
-            </div>
-          </div>
-          <div class="tile is-parent">
-            <div class="tile is-child box">
-              <!-- <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper> -->
-
-            </div>
           </div>
         </div>
 

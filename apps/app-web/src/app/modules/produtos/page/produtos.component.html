@@ -2,16 +2,18 @@
   <mat-toolbar-row class="py-1">
     <div class="columns is-gapless my-2 is-mobile w-full">
       <div class="column card has-background-white bo-0">
-        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoCategorias()">
+        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
+          (click)="AbrirDialogoCategorias()">
           <p>Categoria</p>
-          <span class="is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
+          <span class="subtitle is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
           <!-- <mat-icon>category</mat-icon> -->
         </div>
       </div>
       <div class="column card has-background-white bo-0">
-        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3" (click)="AbrirDialogoOrdenacao()">
-            <p>Ordenação</p>
-            <span class="is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
+        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
+          (click)="AbrirDialogoOrdenacao()">
+          <p>Ordenação</p>
+          <span class="subtitle is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
         </div>
       </div>
       <mat-divider></mat-divider>
@@ -30,50 +32,40 @@
  [images]="imagens">
 </carousel> -->
 
-<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1 pr-0" id="Básicos">
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1" id="Básicos">
 
-  <div class="columns px-3 px-1c py-4">
-    <div class="column is-2 is-hidden-mobile ">
+  <div class="columns px-1c py-4">
+    <div class="column is-3 is-hidden-mobile ">
       <div class="flex-c w-full container portfolio pos-sticky top-0">
         <div class="is-hidden-mobile w-full">
-          <div class="w-full is-hidden-mobile">
-            <div class="w-full">
-               <div class="control">
-                <ngx-slider [(value)]="value" [(highValue)]="maxValue"  [options]="options" (userChange)="atualizarFiltroAtivo()"></ngx-slider>
-               </div>
-            </div>
-          </div>
+
           <mat-list class="w-full">
+            <h2 class="">Categorias</h2>
             <!-- <mat-toolbar>
-              <h2 class="title is-5 texto-categorias">Categorias</h2>
             </mat-toolbar> -->
-            <!-- <mat-list-item @fadeIn
-              class="pointer w-full w-full-m cat-item has-background-white hoverable"
-              (click)="SetCategoria(null)"
+            <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable" (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active box' : ''">
-              <a mat-strocked-button class="dis-flex flex-sb flex-m">
+              <a mat-strocked-button class="dis-flex flex-sb flex-m"
+                [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? ' ' : 'has-text-grey'">
                 <button button class="border-0">
-                  <mat-icon
-                    [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
-                    {{CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'arrow_left'}}
+                  <mat-icon [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == defaultCategory ? 'done' : 'arrow_left'}}
                   </mat-icon>
 
                 </button>
                 <p>{{defaultCategory}}</p>
               </a>
               <mat-divider></mat-divider>
-            </mat-list-item> -->
+            </mat-list-item>
             <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
-              [style.backgroundColor]="categoria?.Cor"
-              class="pointer w-full w-full-m cat-item has-background-white hoverable"
+              [style.backgroundColor]="categoria?.Cor" class="pointer w-full w-full-m cat-item hoverable"
               (click)="SetCategoria(categoria)"
               [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box ' : 'has-text-grey'">
-              <a [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'"
-              mat-strocked-button class="dis-flex flex-sb flex-m ">
+              <a [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'" mat-strocked-button
+                class="dis-flex flex-sb flex-m ">
                 <button class="border-0">
-                  <mat-icon
-                    [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
-                    {{CategoriaAtiva?.Nome == categoria?.Nome ?  'done' : 'arrow_left'}}
+                  <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == categoria?.Nome ? 'done' : 'arrow_left'}}
                   </mat-icon>
                 </button>
                 <p class="">{{categoria?.Nome}}</p>
@@ -81,123 +73,172 @@
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
-
-          <mat-list class="w-full mt-3">
-            <mat-list-item>
-              <mat-form-field class="w-full" appearance="fill">
-                <mat-label>Status</mat-label>
-                <mat-select matNativeControl [(ngModel)]="activeOrderStatus" (selectionChange)="atualizarFiltroAtivo()">
-                  <mat-option *ngFor="let opt of orderStatus" [value]="opt.id" class="w-full">
-                    <div class="box w-full">
-                      <p>{{opt.name}}</p>
-                    </div>
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-checkbox matNativeControl [(ngModel)]="Parcelamento" (change)="atualizarFiltroAtivo()" [checked]= "false">
-                Parcelamento
-              </mat-checkbox>
-            </mat-list-item>
-            <mat-list-item>
-              <mat-checkbox matNativeControl [(ngModel)]="MultiplasCores" (change)="atualizarFiltroAtivo()" [checked]= "false">
-                Multiplas Cores
-              </mat-checkbox>
-            </mat-list-item>
-          </mat-list>
+          <div class="w-full is-hidden-mobile">
+            <div class="w-full">
+              <div class="control">
+                <h2>Preço</h2>
+                <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
+                  (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
+              </div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select matNativeControl [(ngModel)]="activeOrderStatus" (selectionChange)="atualizarFiltroAtivo()">
+              <mat-option *ngFor="let opt of orderStatus" [value]="opt.id" class="w-full">
+                <div class="box w-full">
+                  <p>{{opt.name}}</p>
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-divider></mat-divider>
+          <mat-checkbox class="w-full" matNativeControl [(ngModel)]="Parcelamento" (change)="atualizarFiltroAtivo()"
+            [checked]="false">
+            Parcelamento
+          </mat-checkbox>
+          <mat-divider></mat-divider>
+          <mat-checkbox class="w-full" matNativeControl [(ngModel)]="MultiplasCores" (change)="atualizarFiltroAtivo()"
+            [checked]="false">
+            Multiplas Cores
+          </mat-checkbox>
         </div>
       </div>
     </div>
-    <div class="column is-10 is-12-mobile produto-column has-background-white px-3 mh-full of-y-scroll-desktop of-y-scroll">
-      <div class="pb-0 mb-0 ">
+    <div class="column is-9 is-12-mobile produto-column px-3 mh-full of-y-scroll-desktop of-y-scroll">
+      <div class="pb-0 mb-0   px-4">
         <div class="w-full">
-          <div class="columns is-mobile is-multiline is-vcentered">
-            <div class="column is-12-mobile">
-              <div class="control has-icons-right w-full">
-                <input
-                  [(ngModel)]="activeSearchFilter"
-                  (change)="atualizarFiltroAtivo()"
-                  class="border py-2"
-                  type="text"
-                  placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
-                  <span class="icon is-small is-right">
-                    <mat-icon>search</mat-icon>
-                  </span>
-              </div>
-            </div>
 
-        </div>
-        <div *ngIf="total!=0" class="w-full dis-flex flex-sb is-hidden-mobile my-2">
-          <!-- <h2 class="subtitle is-3 mb-5 texto-categoria-ativa is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
+          <div *ngIf="total!=0" class="w-full dis-flex flex-sb is-hidden-mobile my-2">
+            <!--
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
-          <!-- <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span> -->
-          <span class="subtitle is-size-6"> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> itens encontrados</span>
-          <mat-form-field class="w-full" appearance="">
-            <mat-label>Página</mat-label>
-            <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
-              <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
-                <div class="box w-full">
-                  <p>{{opt.name}}</p>
+            <!-- <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span> -->
+
+            <span class="subtitle is-size-6 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> itens
+              encontrados</span>
+
+          </div>
+          <p-skeleton *ngIf="total==0"></p-skeleton>
+
+
+          <h2 class="subtitle is-3 mb-5 ">{{CategoriaAtiva?.Nome}}</h2>
+
+          <div class="w-full mh-full" *ngIf="(Filtro$ | async).FiltroProdutos.length == 0">
+
+            <div @fadeIn class="m-lr-auto mh-full mb-5">
+              <figure class="no-match-img">
+                <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img"
+                  alt="Não foram encontrados produtos correspondentes à sua pesquisa">
+              </figure>
+              <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
+              <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a
+                busca</button>
+            </div>
+          </div>
+          <div class="columns is-multiline portfolio-container dis-flex">
+
+            <p-dataView [value]="Produtos" [loading]="loading" [lazy]="true" class="w-full" [layout]="'grid'">
+              <ng-template pTemplate="header">
+                <div class="columns is-vcentered is-mobile">
+                  <div class="column is-4-desktop  is-8-touch">
+                    <div class="control has-icons-left">
+                      <input [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
+                      class="border py-2" type="text" style="text-indent: 50px;"
+                      placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
+                      <span class="icon is-small is-left">
+                        <mat-icon>search</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="column is-2-desktop is-4-touch">
+                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                  </div>
+                  <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Página</mat-label>
+                      <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
+                        <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
+                          <div class="box w-full">
+                            <p>{{opt.name}}</p>
+                          </div>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
+                    <mat-form-field  appearance="fill">
+                      <mat-label>Ordenar por</mat-label>
+                      <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
+                        <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
+                          <div class="box w-full">
+                            <p>{{opt.name}}</p>
+                          </div>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
                 </div>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <span class="spacer"></span>
-          <div class="">
-            <!-- <span>Ordenação</span> -->
-           <mat-form-field class="" appearance="">
-            <mat-label>Ordenar por</mat-label>
-            <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
-              <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
-                <div class="box w-full">
-                  <p>{{opt.name}}</p>
+                <div class="columns is-mobile is-multiline is-vcentered  is-hidden-desktop">
+                  <div class="column  is-2-desktop is-6-mobile">
+                    <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
+                      (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
+                  </div>
                 </div>
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+              </ng-template>
+              <ng-template let-produto pTemplate="listItem">
+                <ng-container class="mx-0 px-0 ">
+                  <div @fadeIn class=" skeleton" *ngIf="loading">
+                    <p-skeleton width="100%" height="100%">
+                    </p-skeleton>
+                  </div>
+                  <div @fadeIn class="column is-12 pt-4" *ngIf="filtroAtivo(produto) && !loading">
+                    <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
+                      [flex_direction]="'row'"></personalizados-lopes-card-produto>
+                  </div>
+                </ng-container>
+              </ng-template>
+              <ng-template let-produto pTemplate="gridItem">
+                <ng-container class="mx-0 px-0 ">
+                  <div @fadeIn class=" skeleton" *ngIf="loading">
+                    <p-skeleton width="100%" height="100%">
+                    </p-skeleton>
+                  </div>
+                  <div @fadeIn class="column is-4 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
+                    <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
+                      [flex_direction]="'column'"></personalizados-lopes-card-produto>
+                  </div>
+                </ng-container>
+              </ng-template>
+            </p-dataView>
+
+            <a [ngClass]="loading_more ? 'button is-loading':''" mat-flat-button
+              class="border py-2 px-3 w-full txt-center " *ngIf="total > Produtos?.length"
+              (click)="CarregarMaisProdutos()">
+              Exibir mais resultados
+            </a>
+
+            <!--
+            <div class="columns is-multiline portfolio-container dis-flex">
+              <ng-container *ngFor="let produto of Produtos" class="mx-0 px-0 ">
+                <div @fadeIn class="column is-4-desktop is-6-tablet is-6-mobile skeleton" *ngIf="loading">
+                  <p-skeleton width="100%" height="100%">
+                  </p-skeleton>
+                </div>
+                <div @fadeIn class="column is-4-desktop is-6-tablet is-6-mobile pt-4"
+                  *ngIf="filtroAtivo(produto) && !loading">
+                  <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true">
+                  </personalizados-lopes-card-produto>
+                </div>
+              </ng-container>
+            </div>
+            <a [ngClass]="loading_more ? 'button is-loading':''" mat-flat-button class="border py-2 px-3 w-full txt-center "
+              *ngIf="total > Produtos?.length" (click)="CarregarMaisProdutos()">
+              Exibir mais resultados
+            </a>
+          -->
           </div>
         </div>
-        <p-skeleton *ngIf="total==0"></p-skeleton>
-
-
-        <div class="columns is-multiline is-gapless portfolio-container dis-flex">
-          <mat-divider></mat-divider>
-          <div @fadeIn *ngIf="(Filtro$ | async).FiltroProdutos.length == 0" class="m-lr-auto">
-            <figure class="no-match-img">
-              <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img" alt="Não foram encontrados produtos correspondentes à sua pesquisa">
-            </figure>
-            <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
-            <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a busca</button>
-          </div>
-          <mat-divider class="pb-2"></mat-divider>
-
-          <ng-container *ngFor="let produto of Produtos" class="mx-0 px-0 ">
-            <div @fadeIn
-            class="column is-4-desktop is-6-tablet is-12-mobile skeleton"
-              *ngIf="loading"
-              >
-              <p-skeleton  width="100%" height="100%">
-              </p-skeleton>
-            </div>
-            <div @fadeIn
-              class="column is-4-desktop is-6-tablet is-12-mobile pt-4"
-              *ngIf = "filtroAtivo(produto) && !loading">
-              <personalizados-lopes-card-produto @slideInOut
-                [Produto]="produto"
-                [MostarOpcoes]="true"
-              ></personalizados-lopes-card-produto>
-            </div>
-          </ng-container>
-        </div>
-        <a [ngClass]="loading_more ? 'button is-loading':''"
-          mat-flat-button
-          class="border py-2 px-3 w-full txt-center "
-          *ngIf="total > Produtos?.length"
-          (click)="CarregarMaisProdutos()">
-          Exibir mais resultados
-        </a>
       </div>
     </div>
   </div>
-</div>

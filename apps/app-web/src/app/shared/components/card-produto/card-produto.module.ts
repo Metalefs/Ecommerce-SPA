@@ -13,6 +13,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 
 
 import { SlideshowModule } from 'ng-simple-slideshow';
+
 @NgModule({
   declarations: [CardProdutoComponent],
   imports: [
@@ -25,11 +26,11 @@ import { SlideshowModule } from 'ng-simple-slideshow';
     SwiperModule,
     StarRatingModule.forRoot(),
     GalleryModule,
-    SlideshowModule
+    SlideshowModule,
   ],
   exports: [
     CardProdutoComponent,
-    SlideshowModule
+    SlideshowModule,
   ]
 })
 export class CardProdutoModule { }

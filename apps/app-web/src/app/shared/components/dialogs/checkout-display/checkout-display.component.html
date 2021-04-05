@@ -188,7 +188,7 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column has-text-right">
-              <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco}}</span></p>
+              <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2)}}</span></p>
             </div>
           </div>
         </mat-toolbar-row>

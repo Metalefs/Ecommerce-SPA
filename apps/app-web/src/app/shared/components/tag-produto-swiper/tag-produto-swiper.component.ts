@@ -18,7 +18,7 @@ export class TagProdutoSwiperComponent implements OnInit {
 
   ProdutosTag:Produto[] = [];
   @Input()TAGS:string[];
-  slidesPerView:number=5;
+  slidesPerView:number=2;
   @ViewChild('swiperEl2') swiperEl2: ElementRef;
 
 
@@ -91,7 +91,7 @@ export class TagProdutoSwiperComponent implements OnInit {
               preloadImages          : true,
               lazy                   : true,
               observer               : true,
-              slidesPerView          : 3,
+              slidesPerView          : this.slidesPerView,
               navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',

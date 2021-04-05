@@ -175,6 +175,7 @@ export class OrcamentoState {
   EditarOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarOrcamentoLocal){
     let state = getState();
     this.atualizarPreco(state);
+    this.atualizarDimensoes(state);
     patchState({
       ...state,
       Orcamentos: payload,
@@ -217,5 +218,20 @@ export class OrcamentoState {
          prod.Produto.Status == StatusProduto.promocao? prod.Produto.PrecoPromocional : prod.Produto.Preco
        * prod.Produto.Quantidade;
     })
+  }
+  atualizarDimensoes(state:OrcamentoStateModel){
+    state.Orcamentos.Dimensoes = "";
+    let peso = 0,
+    altura = 0,
+    comprimento =  Math.max(...state.Orcamentos.Produto.map(o=> o.Produto.Dimensoes.Comprimento)),
+    largura =  Math.max(...state.Orcamentos.Produto.map(o=> o.Produto.Dimensoes.Largura));
+
+    state.Orcamentos.Produto.forEach(prod=>{
+      if(prod.Produto.Peso)
+        peso += prod.Produto.Peso * prod.Produto.Quantidade;
+      if(prod.Produto.Dimensoes.Altura)
+        altura += prod.Produto.Dimensoes.Altura * prod.Produto.Quantidade;
+    })
+    state.Orcamentos.Dimensoes += `${altura}x${largura}x${comprimento},${peso}`;
   }
 }

@@ -99,6 +99,7 @@ export class CriarProdutoDialogComponent implements OnInit {
         [],
         "",
         "",
+        0
         );
 
         if(isPlatformBrowser(this.platformId)){

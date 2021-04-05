@@ -53,7 +53,7 @@
                     </figure>
 
                     <figure *ngIf="element?.Produto.ArteSecundaria" class="image is-64x64 is-sec-image">
-                      <img src="{{element?.Produto.Imagem[0]}}">
+                      <img src="{{element?.Produto.ArteSecundaria}}">
                     </figure>
                   </ng-template>
                   <ng-template #novaArte>
@@ -168,14 +168,16 @@
     </div>
 
     <div *ngIf="edit" class="w-full">
-        <button
-          class="py-3 pb-3  w-full"
-        >
-        <a href="#topo"
-        class="py-3"
-        [routerLink]="['/produtos/']"
-        routerLinkActive="router-link-active">Escolher mais produtos</a>
+      <a
+      href="#topo"
+      class="py-3"
+      [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
+      <button class="py-3 pb-3  w-full">
+       Escolher
+          mais
+         produtos
       </button>
+    </a>
       <button  [routerLink]="['/checkout/dados/']"
         pageScroll
         href="#TOPO"

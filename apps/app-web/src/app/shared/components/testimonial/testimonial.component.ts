@@ -6,12 +6,13 @@ import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { fade } from '../../../animations';
 
 @Component({
   selector: 'app-testimonial',
   templateUrl: './testimonial.component.html',
   styleUrls: ['./testimonial.component.scss'],
-  animations: [sliderAnimations]
+  animations: [sliderAnimations,fade]
 })
 export class TestimonialComponent implements OnInit {
 
@@ -63,9 +64,9 @@ export class TestimonialComponent implements OnInit {
               lazy                   : false,
               observer               : true,
               spaceBetween           : 12,
-              height                 : 410,
+              height                 : 450,
               navigation             : true,
-              slidesPerView:3,
+              slidesPerView:1,
               autoplay: {
                 delay               : 4000,
                 disableOnInteraction: false,

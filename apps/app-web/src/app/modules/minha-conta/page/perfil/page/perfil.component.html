@@ -35,7 +35,8 @@
           matInput
           mask="000.000.000-00"
           type="text"
-          [(ngModel)]="user.CPF"
+          readonly
+          [value]="user.CPF"
           placeholder="CPF"
           title="CPF">
       </mat-form-field>

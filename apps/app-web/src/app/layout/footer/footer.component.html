@@ -1,6 +1,6 @@
-<footer class="footer footer-color flex-w flex-sb py-0 px-0 of-x-scroll">
+<footer data-aos="fade-up" data-aos-offset="200" class="footer footer-color flex-w flex-sb py-0 px-0 of-x-scroll">
 
-  <div class="w-full bg-footer py-0 shadow-light has-background-dark bbr px-2">
+  <!-- <div class="w-full bg-footer py-0 shadow-light has-background-dark bbr px-2">
     <div class="margin w-full dis-flex flex-sa flex-m">
       <div class="columns is-gapless is-multiline is-vcentered">
         <div class="column pb-0 mt-2 w-full dis-flex flex-m  flex-c">
@@ -9,9 +9,9 @@
         <div class="column">
           <div class="dis-flex flex-m">
             <mat-icon class="has-text-light">mail</mat-icon>
-            <!-- <div class="control">
+            <div class="control">
               <input #nome  [(ngModel)]="Nome"   class="input" placeholder="nome">
-            </div> -->
+            </div>
             <div class="control">
               <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="email">
             </div>
@@ -22,17 +22,17 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="hero w-full pt-4 pink shadow-light bbr ">
+  <div class="hero w-full pt-4 pink shadow-light bbr px-4">
     <div class="columns margin ">
 
-      <div class="column">
+      <div class="column is-hidden-mobile">
         <h3 class="footer-title">Sobre</h3>
         <div class="txt-justify footer-text has-text-medium" [innerHTML]="(Sobre$ | async)?.Historia"></div>
       </div>
 
-      <div class="column text-center">
+      <div class="column text-center is-hidden-mobile">
         <h3 class="mb-2 footer-title">Acesso Rápido</h3>
         <a *ngFor="let link of Links"
         class="footer-text links"
@@ -53,36 +53,41 @@
           <br>
           <p class="footer-text"><i class="pi pi-mobile"></i> <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
           <p class="footer-text has-text-bold"><i class="pi pi-mobile"></i> Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
-          <p class="footer-text"><i class="pi pi-envelope"></i><a class="footer-text reset-a" href="mailto:{{(InformacoesContato$ | async)?.Email}}">{{(InformacoesContato$ | async)?.Email}}</a></p>
+          <p class="footer-text dis-flex"><i class="pi pi-envelope"></i><a class="footer-text reset-a" href="mailto:{{(InformacoesContato$ | async)?.Email}}">{{(InformacoesContato$ | async)?.Email}}</a></p>
           <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
 
         </div>
       </div>
     </div>
-  </div>
-  <div class="mx-0 dis-flex flex-sa flex-m w-full columns is-multiline has-background-dark px-6 py-3 is-vcentered ">
-    <div class="column txt-center">
-      <h4 class="">Formas de pagamento</h4>
-      <img
-      loading="lazy"
-      src="https://imgmp.mlstatic.com/org-img/MLB/MP/BANNERS/tipo2_468X60.jpg?v=1"
-      alt="Mercado Pago - Meios de pagamento" title="Mercado Pago - Meios de pagamento"
-      width="468" height="60"
-      [style.height]="'60px !important'"
-      [style.width]="'468px !important'"
-      >
-    </div>
-    <div class="column txt-center">
-      <h4 class="">Site seguro</h4>
-      <img
-      loading="lazy"
-      src="assets/images/icons/SSL_certificate.png"
-      width="150"
-      height="50"
-      [style.height]="'150px !important'"
-      [style.width]="'50px !important'"
-      class="img-badge"
-      >
+    <div class="column social is-hidden-mobile">
+      <div class="footer-widget">
+        <h3 class="mb-2 footer-title">Compras</h3>
+        <div class="columns is-multiline is-vcentered">
+          <div class="column is-12 txt-center  has-background-light">
+            <h4 class="">Site seguro</h4>
+            <img
+            loading="lazy"
+            src="assets/images/icons/SSL_certificate.png"
+            width="150"
+            height="50"
+            [style.height]="'150px !important'"
+            [style.width]="'50px !important'"
+            class="img-badge"
+            >
+          </div>
+          <div class="column is-12 txt-center">
+            <h4 class="has-text-white">Formas de pagamento</h4>
+            <img
+            loading="lazy"
+            src="https://imgmp.mlstatic.com/org-img/MLB/MP/BANNERS/tipo2_468X60.jpg?v=1"
+            alt="Mercado Pago - Meios de pagamento" title="Mercado Pago - Meios de pagamento"
+            width="468" height="60"
+            [style.height]="'60px !important'"
+            [style.width]="'468px !important'"
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -97,13 +102,10 @@
   </div>
 </mat-toolbar-row>
 <div class="w-full px-3 flex-sa has-background-dark py-2"  title="Desenvolvido por Devportable -Jackson Pires">
-  <p>
-    CNPJ {{(Sobre$|async)?.CNPJ}}
-  </p>
-
+  <p [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
 </div>
 
-  <personalizados-lopes-factory-steps class=""></personalizados-lopes-factory-steps>
+  <personalizados-lopes-factory-steps class="is-hidden-desktop"></personalizados-lopes-factory-steps>
 </footer>
 
 

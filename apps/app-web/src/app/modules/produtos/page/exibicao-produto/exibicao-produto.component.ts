@@ -32,7 +32,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
-import { FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -69,6 +69,14 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   Comentarios:Comentario[] = [];
   mobile:boolean;
   selected = new FormControl(0);
+  infosPagamento:any = [
+    { descricao: "Cartões de Crédito" },
+    { descricao: "Visa - Master - Hipercard" },
+    { descricao: "Diners - Amex - Elo - Hiper" },
+    { descricao: "mercadopago.com.br" },
+  ]
+  produtoForm:FormGroup;
+  CEP:string="";
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     breakpointObserver: BreakpointObserver,
@@ -83,7 +91,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private servicoProduto:ProdutoService,
     private windowRef: WindowRef,
     private document: DocumentRef,
-    private titleService: Title
+    private titleService: Title,
+    private fb: FormBuilder
     ) {
 
       this.galleryConfig$ = breakpointObserver.observe([
@@ -100,7 +109,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
           }
           this.mobile=false;
           return {
-            thumbPosition: ThumbnailsPosition.Right,
+            thumbPosition: ThumbnailsPosition.Left,
             thumbWidth: 120,
             thumbHeight: 90
           };
@@ -114,6 +123,13 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       this.AdicionarDescricao();
 
       this.home = {icon: 'pi pi-home', url:"/produtos"};
+      this.produtoForm = this.fb.group({
+        tamanho:[this.Produto?.Tamanho,Validators.required],
+        quantidade:[this.Produto?.Quantidade,Validators.required],
+        cor:[this.Produto?.Cor,Validators.required],
+        cep:[this.CEP],
+      })
+      this.findInvalidControlsRecursive()
     });
 
     if(this.Produto?.Quantidade == 0)
@@ -127,6 +143,34 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
     if(isPlatformBrowser(this.platform))
       this.scrollService.scrollTop();
+
+  }
+  /*
+    Returns an array of invalid control/group names, or a zero-length array if
+    no invalid controls/groups where found
+  */
+  findInvalidControlsRecursive():boolean {
+    var invalidControls:string[] = [];
+    let recursiveFunc = (form:FormGroup|FormArray) => {
+      Object.keys(form?.controls).forEach(field => {
+        const control = form.get(field);
+        if (control.invalid) invalidControls.push(field);
+        if (control instanceof FormGroup) {
+          recursiveFunc(control);
+        } else if (control instanceof FormArray) {
+          recursiveFunc(control);
+        }
+      });
+    }
+    recursiveFunc(this.produtoForm);
+    return invalidControls?.length > 0;
+  }
+
+  setColor(color:any){
+    this.Produto.Cor = color;
+    this.produtoForm.get("cor").setValue(color);
+    this.produtoForm.get('cor').clearValidators();
+    this.produtoForm.get('cor').updateValueAndValidity();
   }
 
   ngOnDestroy(){
@@ -204,15 +248,14 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
         })
         dialogref.afterClosed().subscribe(x=>{
-          if(x.Canvas){
-            console.log(x,this.Produto);
-            if(this.Produto.Arte){
+          if(x.Canvas.objects){
+            if(x.Canvas.objects){
               if(!this.orcamentoId){
-                this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto)).subscribe(x=>{
-                  this.orcamentoId = x.codOrcamento;
+                this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
+                  this.orcamentoId = y.codOrcamento;
                 });
               }else{
-                this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
+                this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
               }
               this.navegarParaCheckout();
             }
@@ -328,7 +371,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.readonlyRating = localStorage.getItem(`rateproduto${id}`) == 'true' ? true: false;
     const galleryRef = this.gallery.ref('myGallery');
     galleryRef.reset();
-
     if(!this.orcamentoId){
       this.isOrcamento = false;
       this.servicoProduto.Filtrar(id).subscribe(prod=>{
@@ -355,7 +397,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         if(index<0)
         this.router.navigate(['/produtos']);
 
-        this.Produto = res.Produto[index].Produto;
+        this.Produto = res.Produto[index]?.Produto;
         this.items = [
           {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
           {label:this.Produto?.Nome, styleClass:'desb'}
@@ -460,6 +502,9 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       return
 
   };
+  CarregarDetalhesCEP(){
+    // alert(this.CEP)
+  }
 
   meanRating(){
     if (!this.Produto.Rating)

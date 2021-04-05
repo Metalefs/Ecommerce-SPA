@@ -87,8 +87,8 @@ export class ConfirmacaoComponent implements OnInit {
     this.store.dispatch(new RemoverProdutoOrcamento(Produto.Produto._id,Produto.codOrcamento)).subscribe(x=>{
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
-        let DistinctProdutos = removeDuplicates(Produtos,"_id");
-        this.dataSource = DistinctProdutos;
+        //let DistinctProdutos = removeDuplicates(Produtos,"_id");
+        this.dataSource = Produtos as any;
       })
     });
   }

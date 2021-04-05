@@ -20,7 +20,7 @@
   </mat-card-header>
   <mat-card-content class="dashboard-card-content">
     <div class="">
-      <div class="columns is-mobile w-full ">
+      <div class="columns is-mobile is-multiline w-full ">
         <mat-form-field class="" appearance="fill">
           <mat-label>Ordenação</mat-label>
           <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
@@ -78,7 +78,7 @@
           </mat-list-item>
         </mat-list>
       </div>
-      <div class="columns">
+      <div class="columns is-multiline">
         <div *ngFor="let produto of Produtos" class="produto-card column is-3">
           <div  *ngIf = "filtroAtivo(produto)">
             <personalizados-lopes-edicao-card-produto (Isdeleted)="Atualizar()" [Produto]="produto"></personalizados-lopes-edicao-card-produto>

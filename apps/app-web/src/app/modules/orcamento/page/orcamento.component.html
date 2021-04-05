@@ -3,6 +3,7 @@
   <div class="hero-body pl-20 pr-20 has-background-white">
     <div class="margin">
 
+      <h2 class="titulo is-uppercase my-2">Quer uma solução personalizada para o seu negócio?</h2>
       <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
 
       <ng-template #Produtos>

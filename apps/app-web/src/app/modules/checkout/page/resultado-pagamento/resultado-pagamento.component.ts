@@ -121,8 +121,10 @@ export class ResultadoPagamentoComponent implements OnInit {
             this.scrollService.scrollDown();
 
           this.Loading = false;
-          this.Orcamento.Status = StatusOrcamento.enviado;
-          this.store.dispatch(new ResetarOrcamento())
+          if(this.status == StatusPagamento.aprovado || this.status == StatusPagamento.pendente){
+            this.Orcamento.Status = StatusOrcamento.enviado;
+            this.store.dispatch(new ResetarOrcamento())
+          }
         },3500)
       });
     }

@@ -4,7 +4,7 @@
   <div class="columns is-multiline is-vcentered">
 
     <div class="column is-12">
-      <personalizados-lopes-costumization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
+      <personalizados-lopes-costumization #customization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
     <div class="column is-12">
@@ -29,7 +29,7 @@
           <em>Sem Arte</em>
           <button mat-flat-button class="button file is-outlined has-name pb-3 px-0">
             <label class="file-label">
-              <input class="file-input" type="file" (change)="upload($event,Produto)">
+              <input class="file-input" type="button" (click)="customization.importFile()">
               <span class="file-cta">
                 <span class="file-icon">
                   <i class="pi pi-cloud-upload"></i>
@@ -98,13 +98,13 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button
+  <button mat-raised-button color=""
     [mat-dialog-close]="Produto"
-    class="export-btn button pb-2 mx-2 my-2 has-text-white has-text-weight-medium border"
-    [disabled]="!Produto.Arte">
-    {{!Produto.Arte?"Adicione uma arte":"Concluir"}}
+    class="export-btn button is-success pb-2 mx-2 my-2 has-text-white has-text-weight-medium border"
+    [disabled]="!Produto.Canvas['objects'].length||[] > 0">
+    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Concluir"}}
   </button>
-  <button mat-raised-button color="basic" [mat-dialog-close]="Produto" cdkFocusInitial>
+  <button mat-raised-button color="basic" [mat-dialog-close]="" cdkFocusInitial>
     Cancelar
   </button>
 </div>
