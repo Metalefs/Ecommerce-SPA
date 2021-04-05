@@ -81,7 +81,7 @@
   text-transform: uppercase;
   // padding: 0.5em;
   padding: 32px 30px;
-  padding-bottom: 37px;
+  padding-bottom: 30px;
   min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
@@ -188,6 +188,7 @@ a.nav-link:hover{
   top: 16px;
   position: relative;
   pointer-events: none;
+  display: none;
 }
 .is-hidden{
   display: none;

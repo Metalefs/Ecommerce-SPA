@@ -66,7 +66,11 @@ export class EditarCategoriaComponent implements OnInit {
     let method = "Editar";
     let name = "Categoria";
     let id = Categoria._id;
-    Object.entries(Categoria).forEach(([key, value]) => {
+    if(!Categoria.Caminho){
+        Object.assign(Categoria, {Caminho: ""});
+    }
+    const{ DataHoraCriacao, DataHoraAlteracao, ...CategoriaRes } = Categoria;
+    Object.entries(CategoriaRes).forEach(([key, value]) => {
       if(key != "_id" && key != "Cor")
       questions.push(
         new TextboxQuestion({
