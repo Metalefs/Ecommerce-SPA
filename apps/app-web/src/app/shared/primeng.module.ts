@@ -7,6 +7,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { DropdownModule } from 'primeng/dropdown';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DataViewModule } from 'primeng/dataview';
+import { MegaMenuModule } from 'primeng/megamenu';
 
 @NgModule({
   declarations: [],
@@ -17,7 +18,8 @@ import { DataViewModule } from 'primeng/dataview';
     SkeletonModule,
     DropdownModule,
     BreadcrumbModule,
-    DataViewModule
+    DataViewModule,
+    MegaMenuModule
   ]
 })
 export class PrimeNgModule {}

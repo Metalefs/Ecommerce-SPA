@@ -23,13 +23,7 @@
               </div>
               <div class="tile is-parent">
                 <div class="tile is-child box">
-                  <!-- <personalizados-lopes-produto-swiper data-aos="zoom-in-down"  class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"></personalizados-lopes-produto-swiper> -->
-                  <mat-toolbar color="accent" class="noselect px-3 pb-4" [routerLink]="'/produtos'">
-                    <mat-toolbar-row>
-                      Destaques
-                    </mat-toolbar-row>
-                  </mat-toolbar>
-
+                  <p><mark>Destaques</mark></p>
                   <div class="columns is-multiline px-2" *ngIf="Produtos">
                     <ng-container *ngFor="let produto of Produtos" class=" ">
                       <div @fadeIn
@@ -38,6 +32,7 @@
                         <personalizados-lopes-card-produto @slideInOut
                           [Produto]="produto"
                           [MostarOpcoes]="true"
+                          [flex_direction]='"row"'
 
                         ></personalizados-lopes-card-produto>
                       </div>

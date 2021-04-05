@@ -5,8 +5,9 @@ import { HeaderComponent } from './header.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { MegaMenuComponent } from './components/mega-menu/mega-menu.component';
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, MegaMenuComponent],
   imports: [
     CommonModule,
     SharedModule,

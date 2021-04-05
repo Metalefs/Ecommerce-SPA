@@ -90,7 +90,6 @@ export class EditarCategoriaComponent implements OnInit {
         })
       )
     })
-    console.log(questions)
     let Data = new DynFormQuestions(questions,method,name);
     const dialogRef = this.dialog.open(DynamicFormComponent, {
       width: '90%',
@@ -104,6 +103,7 @@ export class EditarCategoriaComponent implements OnInit {
         result[0].value,
         result[1].value,
         result[2].value,
+        result[3]?.value||'',
       )
       Categoria._id = id;
       console.log(Categoria);
@@ -135,6 +135,7 @@ export class EditarCategoriaComponent implements OnInit {
       "Nome",
       "Processo",
       "Acoes",
+      "Caminho"
     ];
   }
 

@@ -140,8 +140,8 @@
 
             <p-dataView [value]="Produtos" [loading]="loading" [lazy]="true" class="w-full" [layout]="'grid'">
               <ng-template pTemplate="header">
-                <div class="columns is-vcentered ">
-                  <div class="column is-5 ">
+                <div class="columns is-vcentered is-mobile">
+                  <div class="column is-5-desktop  is-9-touch">
                     <div class="control has-icons-left">
                       <input [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
                       class="border py-2" type="text" style="text-indent: 50px;"
@@ -151,25 +151,23 @@
                       </span>
                     </div>
                   </div>
-                  <div class="column is-2">
+                  <div class="column is-2-desktop is-3-touch">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                   </div>
                   <div class="column is-2-desktop is-6-mobile is-hidden-mobile">
-                    <div class="w-full">
-                      <mat-form-field class="px-1" appearance="fill">
-                        <mat-label>Página</mat-label>
-                        <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
-                          <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
-                            <div class="box w-full">
-                              <p>{{opt.name}}</p>
-                            </div>
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>Página</mat-label>
+                      <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
+                        <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
+                          <div class="box w-full">
+                            <p>{{opt.name}}</p>
+                          </div>
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
                   </div>
                   <div class="column is-2-desktop is-6-mobile is-hidden-mobile">
-                    <mat-form-field class="px-1" appearance="fill">
+                    <mat-form-field  appearance="fill">
                       <mat-label>Ordenar por</mat-label>
                       <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
                         <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">

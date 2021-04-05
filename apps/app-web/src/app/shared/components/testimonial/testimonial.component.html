@@ -24,16 +24,17 @@
               <mat-card>
                 <div mat-card-header class="w-full dis-flex flex-c flex-m txt-center">
                   <p class="card-text text-content txt-center">
-                    <fa-icon class="has-text-dark" [icon]="quoteL"></fa-icon>
+                    <fa-icon class="has-text-info" [icon]="quoteL" [size]="'md'"></fa-icon><br>
                     "{{item?.Comentario}}"
-                    <fa-icon class="has-text-dark" [icon]="quoteR"></fa-icon>
                   </p>
                 </div>
                 <mat-card-footer>
                   <div class="userInfo">
                     <img class='userLogo' loading="lazy" mat-card-avatar [src]='item?.Foto'>
-                    <div class='userName has-text-weight-medium'>{{item?.Nome}}</div>
-                    <div class='userName'>{{item?.Tipo}} {{item?.Origem}}</div>
+                    <div class='userName has-text-weight-medium'>
+                      {{item?.Nome}}
+                      <div class='userName'>{{item?.Tipo}} {{item?.Origem}}</div>
+                    </div>
                   </div>
                 </mat-card-footer>
               </mat-card>

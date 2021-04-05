@@ -7,11 +7,12 @@ export class Categoria extends MongoDocument implements entidadeBase {
     Processo:string;
     Cor:string;
     static readonly NomeID:string = "Categoria";
-    constructor(Nome:string,Processo:string,Cor?: string){
+    constructor(Nome:string,Processo:string,Cor?: string,Caminho?:string){
         super();
         this.Nome = Nome;
         this.Processo = Processo;
         this.Cor = Cor;
+        this.Caminho = Caminho
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;
