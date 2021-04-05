@@ -104,6 +104,7 @@ export class EditarCategoriaComponent implements OnInit {
         result[0].value,
         result[1].value,
         result[2].value,
+        result[3].value,
       )
       Categoria._id = id;
       console.log(Categoria);
