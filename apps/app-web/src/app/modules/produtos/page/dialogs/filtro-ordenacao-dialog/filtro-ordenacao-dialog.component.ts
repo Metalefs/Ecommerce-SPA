@@ -24,7 +24,7 @@ export class FiltroOrdenacaoDialogComponent implements OnInit {
 
   atualizarOrderFilter(order:OrderType){
     this.data.activeOrderFilter = order.id;
-    this.dialogRef.close(order)
+    this.dialogRef.close(this.data)
   }
   atualizarOrderLimit(order:number){
     this.data.activeOrderLimit = order;

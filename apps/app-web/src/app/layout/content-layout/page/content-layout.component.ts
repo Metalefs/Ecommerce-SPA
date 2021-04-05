@@ -18,6 +18,7 @@ import { InformacoesContatoState, MensagemState } from '../../../data/store/stat
 export class ContentLayoutComponent implements OnInit {
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;
   Mensagem:string;
+  Alerta:string = "Covid-19: Atendendo normalmente, na Personalizados Lopes você recebe em casa.";
   constructor(private service: MensagemService) { }
   NavState:SideNavState = {open : false};
 

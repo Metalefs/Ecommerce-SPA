@@ -30,15 +30,17 @@ export class CostumizationComponent implements OnInit {
   italic:any;
   constructor(private dialog : MatDialog,@Inject(PLATFORM_ID) private platform: Object) {}
 
-
+  importOpen:boolean=false;
   ngOnInit(): void {
     this.__canvas = new this.fabric.Canvas('c');
 
     this.fabric.Object.prototype.cornerColor = '#131313';
     this.fabric.Object.prototype.transparentCorners = false;
-    if(isPlatformBrowser(this.platform))
-    this.setup();
-    // this.importFile();
+    if(isPlatformBrowser(this.platform)){
+      this.setup();
+      if(!this.importOpen)
+      setTimeout(()=>{this.importFile()},2000)
+    }
   }
 
   setup(){
@@ -102,7 +104,7 @@ export class CostumizationComponent implements OnInit {
     if(this.Produto.Canvas){
 
       console.log(this.Produto.Canvas)
-      this.importJson(JSON.parse(this.Produto.Canvas))
+      this.importJson(this.Produto.Canvas)
     }
   }
 
@@ -134,7 +136,7 @@ export class CostumizationComponent implements OnInit {
     this.SaveDesign();
   }
   importFile() {
-
+    this.importOpen = true;
     this.dialog.open(ImportacaoComponent,{
       data:this.fileLoaded,
 
@@ -146,6 +148,7 @@ export class CostumizationComponent implements OnInit {
         else
           this.uploadImageURL(x)
       }
+      this.importOpen = false;
     })
 
   }
@@ -218,6 +221,7 @@ export class CostumizationComponent implements OnInit {
 
   // use modal images
   addStockImg() {
+    this.importOpen = true;
     let dialogRef = this.dialog.open(StockImageComponent, {
 
       panelClass:['animate__animated','animate__bounceIn', 'border']
@@ -242,6 +246,7 @@ export class CostumizationComponent implements OnInit {
           self.Produto.Arte = imgObj;
         }
         self.Produto.Design = imgObj;
+        this.importOpen = false;
       }
       this.SaveDesign();
     })
@@ -307,7 +312,7 @@ export class CostumizationComponent implements OnInit {
       loadJson(formatted);
     }
 
-    fr.readAsText(json);
+    //fr.readAsText(json);
     function loadJson(formatted) {
       console.log('here');
       this.__canvas.loadFromJSON(formatted, function (obj) {

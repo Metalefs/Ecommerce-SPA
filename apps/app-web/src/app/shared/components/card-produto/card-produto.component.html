@@ -23,7 +23,7 @@
        <span class="prod-status ">
         <i class="pi pi-tag  product-category-icon"></i>
         <span class="product-category"></span>
-        <span [class]="'has-text-black is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
+        <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
       </span>
         <!-- <img
           mat-card-image #imgProduto
@@ -121,8 +121,8 @@
 
           </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions class="pos-relative bottom-0">
-          <!-- <div
+        <mat-card-actions class="pos-absolute bottom-0">
+          <div
           class="px-4 py-2 level flex-sa dis-flex flex-w flex-m">
             <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active">
               <button
@@ -132,9 +132,9 @@
             </a>
             <button (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
-              <span><i class="pi pi-shopping-cart"></i> Carrinho</span>
+              <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
             </button>
-          </div> -->
+          </div>
           <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]"  routerLinkActive="router-link-active"
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
             Esgotado
@@ -143,14 +143,16 @@
       </mat-card-footer>
       <div class="z-index-1">
         <div class="content" >
-          <div class="portfolio-overlay events-none w-full">
+          <div class="portfolio-overlay events-none w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
             <div class="overlay-items w-full txt-center">
               <p>
                 {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
               </p>
             </div>
           </div>
-          <a title="Comprar" matRipple class="card m-lr-auto"
+          <a title="Comprar" matRipple
+          [style.width]="flex_direction == 'row'?'50%':'100%'"
+          class="card m-lr-auto"
           pageScroll
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active"
           mat-flat-button class=""><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
@@ -206,7 +208,7 @@
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </span> -->
 
-      <a *ngIf="Produto.Cores?.length > 1" class="prod-status " [href]="'/produtos/'+Produto._id">
+      <a *ngIf="Produto.Cores?.length > 1" class="prod-cores " [href]="'/produtos/'+Produto._id">
         <span  routerLinkActive="router-link-active"
           class="button is-size-7 is-small bo-0 is-fullwidth border is-disabled px-4">
           Em {{Produto.Cores?.length}} cores
@@ -278,7 +280,7 @@
 
         <div class="z-index-1">
           <div class="content a-i-c m-lr-auto w-full">
-            <div class="portfolio-overlay events-none w-full" style="top:35%;left: 25%;">
+            <div class="portfolio-overlay events-none w-full" style="top:10px;left: 25%;">
               <div class="overlay-items w-full txt-center">
                 <p>
                   {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}

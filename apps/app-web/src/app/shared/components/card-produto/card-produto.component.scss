@@ -1,16 +1,27 @@
 
 
-.prod-status{
-  position: absolute;
-  max-width: 170px;
-  top: -5px;
-  left: -35;
-  color: #fff;
-  padding: 5px 10px;
-  z-index: 3;
-  border-radius: .51em;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
+.prod{
+  &-status{
+    top: -5px;
+    left: -35;
+    color: #000000;
+    padding: 5px 10px;
+    z-index: 3;
+    border-radius: .51em;
+    background: white;
+    box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
+  }
+  &-cores{
+    position: absolute;
+    max-width: 170px;
+    top: -5px;
+    left: -35;
+    color: #000000;
+    padding: 5px 10px;
+    z-index: 3;
+    border-radius: .51em;
+    background: white;
+  }
 }
 .mat-badge-medium, .mat-badge-content {
   min-width: 32px;
@@ -223,7 +234,6 @@ img{
   align-items: stretch;
   border-radius: 0px;
   display: flex;
-  flex-direction: column;
   background: #ffffff;
   height: 100%;
   overflow: hidden;
@@ -260,7 +270,7 @@ img{
         display: block;
         position: absolute;
         font-size: 12px;
-        width: 100%;
+        width: 50%;
         top: 42%;
         left: 2px;
         z-index: 10;
@@ -269,13 +279,13 @@ img{
 }
 
 .overlay-items {
- height: 100px;
- position: absolute;
- top: 20%;
- z-index: 5;
- left: 0;
- right: 0;
- visibility: hidden;
+  height: 100px;
+  position: absolute;
+  top: 20%;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  visibility: hidden;
 }
 
 .overlay-items p {
