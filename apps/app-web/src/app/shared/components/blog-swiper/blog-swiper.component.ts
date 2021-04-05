@@ -41,7 +41,7 @@ export class BlogSwiperComponent implements OnInit {
         }
         else{
           return {
-            direction              : 'horizontal',
+            direction              : 'vertical',
             keyboard               : true,
             // loop                   : true,
             loopFillGroupWithBlank : false,

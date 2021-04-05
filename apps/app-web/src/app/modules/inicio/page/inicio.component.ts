@@ -1,15 +1,13 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { entities } from '@personalizados-lopes/data';
-import { ClienteState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
+import { ClienteState } from 'apps/app-web/src/app/data/store/state';
 import { BlogPost, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/operators';
-import { BlogPostService, ProdutoService } from '../../../data/service';
+import { ProdutoService } from '../../../data/service';
 import { CanViewPost } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { trigger } from '@angular/animations';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { TipoOrdenacaoSwiperProduto } from '../../../shared/components/produto-swiper/produto-swiper.component';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
@@ -33,7 +31,7 @@ export class InicioComponent implements OnInit {
     private produtoService: ProdutoService,
     breakpointObserver: BreakpointObserver) {
       breakpointObserver.observe([
-        Breakpoints.HandsetPortrait
+        Breakpoints.Handset
       ]).pipe(
         map(res => {
             this.mobile=res.matches;

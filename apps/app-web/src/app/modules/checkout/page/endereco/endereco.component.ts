@@ -32,29 +32,9 @@ export class EnderecoComponent implements OnInit {
   Orcamento: Orcamento;
   registerForm: FormGroup;
   state='flipped';
-  cepFormControl = new FormControl('', [
-    Validators.required
-  ]);
 
-  enderecoFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+  enderecoForm:FormGroup;
 
-  numeroFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  bairroFormControl = new FormControl({value:"", readonly: true},[
-    Validators.required
-  ]);
-
-  cidadeFormControl = new FormControl({value:"", readonly: true},[
-    Validators.required
-  ]);
-
-  estadoFormControl = new FormControl({value:"", readonly: true},[
-    Validators.required
-  ]);
   Finalizado:boolean = false;
   Loading:boolean = false;
 
@@ -73,14 +53,29 @@ export class EnderecoComponent implements OnInit {
     private integracoesService: IntegracoesService,
     private auth:AuthenticationService,
     private router: Router,
-    private scrollService:PageScrollService
-    ) { }
+    private scrollService:PageScrollService,
+    private fb:FormBuilder
+    ) {
+
+    }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
       if(this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
+      this.enderecoForm = this.fb.group({
+        cep: [this.Orcamento.Usuario.EnderecoEntrega.CEP, [Validators.required]],
+        rua: [this.Orcamento.Usuario.EnderecoEntrega.Rua, {disabled:true}, [Validators.required]],
+        numero: [this.Orcamento.Usuario.EnderecoEntrega.Numero, [Validators.required]],
+        complemento: [this.Orcamento.Usuario.EnderecoEntrega.Complemento, []],
+        bairro: [this.Orcamento.Usuario.EnderecoEntrega.Bairro, {disabled:true}, [Validators.required]],
+        cidade: [this.Orcamento.Usuario.EnderecoEntrega.Cidade, {disabled:true}, [Validators.required]],
+        estado: [this.Orcamento.Usuario.EnderecoEntrega.Estado, {disabled:true}, [Validators.required]],
+      })
+      this.enderecoForm.valueChanges.subscribe(data => {
+        this.BindFormToModel();
+      })
     })
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;
@@ -96,6 +91,7 @@ export class EnderecoComponent implements OnInit {
   Pagar:boolean = false;
   goCheckout(){
     this.ErroCadastro = true;
+    this.BindFormToModel();
     this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento)).subscribe(()=>{
       this.CheckoutSeDadosValidos();
     })
@@ -157,23 +153,41 @@ export class EnderecoComponent implements OnInit {
 
   CarregarDetalhesCEP(){
     this.CEPService.ObterDetalhes(this.Orcamento.Usuario.EnderecoEntrega.CEP.replace('-','')).subscribe(x=>{
-      this.Orcamento.Usuario.EnderecoEntrega.Rua = x.logradouro;
-      this.Orcamento.Usuario.EnderecoEntrega.Bairro = x.bairro;
-      this.Orcamento.Usuario.EnderecoEntrega.Cidade = x.localidade;
-      this.Orcamento.Usuario.EnderecoEntrega.Estado = x.uf;
+      this.enderecoForm.get("rua").patchValue(x.logradouro);
+      this.enderecoForm.get("bairro").patchValue(x.bairro);
+      this.enderecoForm.get("cidade").patchValue(x.localidade);
+      this.enderecoForm.get("estado").patchValue(x.uf);
+
+      if(!x.localidade)
+      this.enderecoForm.get("cidade").enable()
+      if(!x.bairro)
+      this.enderecoForm.get("bairro").enable()
+      if(!x.uf)
+      this.enderecoForm.get("estado").enable()
+      if(!x.logradouro)
+      this.enderecoForm.get("rua").enable()
+
+      this.enderecoForm.updateValueAndValidity();
+      this.BindFormToModel()
     });
   }
 
   ValidarDados(){
-    if( this.cepFormControl.valid &&
-      this.enderecoFormControl.valid &&
-      this.numeroFormControl.valid &&
-      this.bairroFormControl.valid &&
-      this.cidadeFormControl.valid &&
-      this.estadoFormControl.valid &&
+    if( this.enderecoForm.valid &&
       this.Orcamento.Usuario.CPF)
       return true;
     return false;
+  }
+
+  BindFormToModel(){
+    let form = this.enderecoForm.getRawValue();
+    this.Orcamento.Usuario.EnderecoEntrega.CEP = form.cep;
+    this.Orcamento.Usuario.EnderecoEntrega.Rua = form.rua;
+    this.Orcamento.Usuario.EnderecoEntrega.Numero = form.numero;
+    this.Orcamento.Usuario.EnderecoEntrega.Complemento = form.complemento;
+    this.Orcamento.Usuario.EnderecoEntrega.Bairro = form.bairro;
+    this.Orcamento.Usuario.EnderecoEntrega.Cidade = form.cidade;
+    this.Orcamento.Usuario.EnderecoEntrega.Estado = form.estado;
   }
 
 

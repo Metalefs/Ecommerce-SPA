@@ -53,9 +53,9 @@
                 <mat-tab label="Informações">
                   <div class="margin py-3 px-3 border-light">
                     <div class="w-full columns ">
-                      <h3>Descrição do produto</h3>
+                      <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3>
                       <div class="descricao-produto column is-12-touch is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
-                      <h3>Especificações do produto</h3>
+                      <h3 class="has-text-weight-bold ltr-sp-2">Especificações do produto</h3>
                       <div class="descricao-produto column is-12-touch is-6 w-full" style="border-left: 1px solid #0000000a;"
                         [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
                     </div>
@@ -110,13 +110,13 @@
                         staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
                         (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
                       </star-rating>
-                      <span class="subtitle is-size-7">({{Produto?.Rating.length}} avaliações)</span>
+                      <span class="subtitle fs-12">({{Produto?.Rating.length}} avaliações)</span>
 
                     </div>
                     <!-- <h1 class="titulo-produto">{{Produto?.Nome}}</h1> -->
                     <span class="type-meta">
                       <i class="pi pi-tag"></i>
-                      <a href="#" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
+                      <a href="#" class="subtitle  fs-14 ltr-sp-1 has-text-warning" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
                     </span>
 
                     <ul class="list-unstyled">
@@ -356,12 +356,14 @@
       <mat-tab-group class="is-hidden-touch">
         <mat-tab label="Informações" (click)="AdicionarDescricao()">
           <div class="has-background-white py-3 px-3 border-light">
-            <div class="w-full columns is-multiline">
-              <h3>Descrição do produto</h3>
-              <div class="descricao-produto column is-12 " style="border-left: 1px solid #0000000a;"
-                [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
-              <div class="descricao-produto column is-12 " [innerHTML]="(el?.innerHTML)"></div>
+            <div class="w-full is-multiline">
+              <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3>
+              <div class="descricao-produto column is-12-touch is-6 w-full" style="border-left: 1px solid #0000000a;"
+              [innerHTML]="(el?.innerHTML)"></div>
             </div>
+            <h3 class="has-text-weight-bold ltr-sp-2">Especificações do produto</h3>
+            <div class="descricao-produto column is-12 " style="border-left: 1px solid #0000000a;"
+              [innerHTML]="Produto?.Especificacoes || 'Este produto está sem especificações'"></div>
           </div>
 
         </mat-tab>
@@ -370,7 +372,7 @@
             <div class="z-index-2 px-2 py-2 my-6">
               <div class="mx-2">
                 <div class="w-full">
-                  <p>Você já tem este produto?</p>
+                  <p class="has-text-weight-bold ltr-sp-2">Você já tem este produto?</p>
                   <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
                 </div>
                 <p><strong>{{Comentarios?.length||0}} comentários</strong></p>

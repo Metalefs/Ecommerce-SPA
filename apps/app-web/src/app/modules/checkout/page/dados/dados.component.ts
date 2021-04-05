@@ -1,6 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
@@ -11,6 +11,7 @@ import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { cpf } from 'cpf-cnpj-validator';
 import { CheckoutService } from '../../checkout.service';
+import { DEFAULT_ORCAMENTO } from 'apps/app-web/src/app/data/store/state/orcamento.state';
 
 @Component({
   selector: 'personalizados-lopes-dados',
@@ -28,27 +29,12 @@ export class DadosComponent implements OnInit, OnDestroy {
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
 
-  nomeFormControl = new FormControl('', [
-    Validators.required
-  ]);
+  dadosForm:FormGroup;
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  phoneFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  cpfFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  usuario:Usuario;
-  constructor(private router:Router, private store: Store, private authService:AuthenticationService) { }
-
-  ngOnInit(): void {
+  usuario:Usuario = DEFAULT_ORCAMENTO.Usuario;
+  constructor(private router:Router, private store: Store, private authService:AuthenticationService, private fb: FormBuilder) {
     this.authService.currentUser.subscribe(x=>{
+      if(x)
       this.usuario = x;
       this.Orcamento$.subscribe(o=>{
         this.Orcamento = o;
@@ -57,13 +43,26 @@ export class DadosComponent implements OnInit, OnDestroy {
           this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
         }
         else{
-          let enderecoEntrega = new EnderecoEntrega("","","","","","","");
-          this.Orcamento.Usuario = new Usuario("","","","","",enderecoEntrega);
+          this.Orcamento.Usuario = this.Orcamento.Usuario.CPF ? this.Orcamento.Usuario: DEFAULT_ORCAMENTO.Usuario;
           this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
         }
       })
-    })
+      this.dadosForm = this.fb.group({
+        nome: [this.usuario.Nome, [Validators.required ]],
+        email:[this.usuario.Email, [Validators.required ,Validators.email ]],
+        phone:[this.usuario.Telefone, [Validators.required, Validators.minLength(11)]],
+        cpf:  [this.usuario.CPF, [Validators.required, Validators.minLength(11)]],
+        Mensagem:   [this.Orcamento.Mensagem, []],
+        password:   [this.usuario.Senha, []],
+        registrarse:[this.registrarse, []],
+      });
+    });
     CheckoutService.DadosCompleto = true;
+   }
+
+  ngOnInit(): void {
+
+
     setTimeout(()=>{
       this.flip()
     },0)
@@ -84,6 +83,12 @@ export class DadosComponent implements OnInit, OnDestroy {
   SubmeterDadosPessoais(){
     this.ErroCadastro = true;
     if(this.ValidarDados()){
+      let usuario = this.dadosForm.getRawValue() as any;
+      this.Orcamento.Usuario.Nome = usuario.nome;
+      this.Orcamento.Usuario.Email = usuario.email;
+      this.Orcamento.Usuario.Telefone = usuario.phone;
+      this.Orcamento.Usuario.CPF = usuario.cpf;
+      this.Orcamento.Usuario.Senha = usuario.password;
       this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento)).subscribe(x=>{
         this.router.navigateByUrl("/checkout/endereco");
       })
@@ -91,15 +96,19 @@ export class DadosComponent implements OnInit, OnDestroy {
   }
 
   ValidarDados(){
+    let usuario = this.dadosForm.getRawValue() as any;
     if(this.registrarse
-      && !this.Orcamento.Usuario.Senha)
+      && !usuario.password)
       return false;
     else
-    if(this.emailFormControl.valid
-      && this.nomeFormControl.valid
-      && this.phoneFormControl.valid
-      && cpf.isValid(this.Orcamento.Usuario.CPF))
+    if(this.dadosForm.valid
+      && cpf.isValid(usuario.cpf))
       return true;
     return false;
+  }
+
+  setRegistrarse(){
+    this.registrarse = !this.registrarse;
+    this.dadosForm.value.registrarse = this.registrarse;
   }
 }

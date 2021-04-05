@@ -233,7 +233,7 @@ button{
 }
 .bg-transp{
   background: rgb(255,255,255);
-background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgba(255,255,255,1) 51%, rgba(0,212,255,0) 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgba(255,255,255,1) 51%, rgba(0,212,255,0) 100%);
 }
 
 .a-i-c{
@@ -449,6 +449,9 @@ background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgb
 .fs-198 {font-size: 198px;}
 .fs-199 {font-size: 199px;}
 .fs-200 {font-size: 200px;}
+
+.ltr-sp-2 {letter-spacing: 2px;}
+.ltr-sp-1 {letter-spacing: 1px;}
 
 /*//////////////////////////////////////////////////////////////////
 [ PADDING ]*/
