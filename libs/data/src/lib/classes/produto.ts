@@ -26,6 +26,7 @@ export class Produto extends MongoDocument implements entidadeBase{
   DescricaoRapida?:string;
   Parcelas?:number;
   Dimensoes?:Dimensoes = {Altura:0,Largura:0, Comprimento:0};
+  Peso?:number = 500;
   Arte?:string | ArrayBuffer;
   ArteSecundaria?:string | ArrayBuffer;
   Rating?:number[] = [];
@@ -63,6 +64,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     Rating?:number[],
     Marca?:string,
     Modelo?:string,
+    Peso?:number,
     Visualizacoes?:number,
     Vendas?:number,
     ){
@@ -93,6 +95,7 @@ export class Produto extends MongoDocument implements entidadeBase{
       this.Dimensoes = Dimensoes;
       this.Marca = Marca;
       this.Modelo = Modelo;
+      this.Peso = Peso;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

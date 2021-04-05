@@ -23,7 +23,7 @@ html, body {
   height: 100%;
   max-width: 100vw !important;
   width: 100%;
-
+  min-width: 100vw;
 }
 body {
   margin: 0;
@@ -38,7 +38,7 @@ body {
   height: auto;
   &::-webkit-scrollbar
   {
-    width: 10px;
+    width: 15px;
     background-color: #F5F5F5;
   }
   &::-webkit-scrollbar-thumb
@@ -49,7 +49,7 @@ body {
                        left top,
                        color-stop(0.44, rgb(122,153,217)),
                        color-stop(0.72, rgb(73,125,189)),
-                       color-stop(0.86, rgb(28,58,148)));
+                       color-stop(0.86, rgb(42, 62, 124)));
   }
   &::-webkit-scrollbar-track
   {
@@ -63,7 +63,10 @@ body {
   }
 }
 .ngx-slider .ngx-slider-pointer {
-  background-color: #f90405 !important;
+  background-color: #ffffff !important;
+  &::after{
+    background-color: #cecece !important
+  }
 }
 body, button, input, optgroup, select, textarea {
   font-family: 'Montserrat';
@@ -151,6 +154,13 @@ a {
       animation: showArr 1s ease forwards !important;
     }
   }
+  .arrow-container{
+    .slick-dots{
+      button{
+        box-shadow: none;
+      }
+    }
+  }
 }
 .portfolio-item .slideshow-container .slides:not(.link) {
   cursor: default;
@@ -216,7 +226,9 @@ a {
     animation: showArr 1s ease forwards !important;
   }
 }
-
+.pi{
+  // color: #fe0000;
+}
 .swiper-button-prev,.swiper-button-next{
   margin: 0 0 5px;
   padding: 2rem;
@@ -452,7 +464,8 @@ canvas{
 }
 
 .background-light-red{
-  background: #fe3131!important ;
+  // background: #fe3131!important ;
+  background: #d66363;
   transition: all 1s;
   &:hover{
     background: $red !important;
@@ -485,8 +498,8 @@ canvas{
 .no-padding .mat-dialog-container{
   padding: 0 !important;
 }
-.mat-toolbar.mat-primary {
-  background: #f9f9f9;
+.mat-toolbar.mat-primary,.mat-toolbar {
+  background: #f9fbfe;
   color: #000000;
 }
 .mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary{
@@ -514,6 +527,9 @@ canvas{
   font-size: 14px;
   font-weight: 500;
 }
+.mat-form-field-subscript-wrapper {
+  margin-top: 0.1666666667em;
+}
 .background-primary-warmer{
   background: $crayola;
 }
@@ -534,14 +550,14 @@ canvas{
   font-weight: inherit;
   line-height: 1.25;
   font-size: 14px;
-  color: #f00;
+  color: #328ad3;
 }
 .card-bg{
   z-index: 0;
   content: "";
   width: 100%;
   height: 224px;
-  border-radius: 1rem;
+  // border-radius: 1rem;
   position: relative;
   bottom: -8px;
 }
@@ -550,7 +566,7 @@ canvas{
   content: "";
   width: 100%;
   height: 107%;
-  border-radius: 1rem;
+  // border-radius: 1rem;
   position: relative;
   bottom: -8px;
   transform: rotate(2deg);
@@ -563,7 +579,7 @@ canvas{
   // border-radius:1rem;
   border-bottom-right-radius:2rem;
   font-family: "Montserrat";
-
+  opacity: .95;
 }
 .table.mat-table{
   border-spacing: 0;
@@ -972,7 +988,7 @@ canvas{
       display: block;
       &:hover {background-color: #ddd;}
       &.nav-link{
-        color:#666;
+        color:#9c9c9c;
         padding: 5px;
       }
     }

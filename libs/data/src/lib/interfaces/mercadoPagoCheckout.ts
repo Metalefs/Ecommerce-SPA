@@ -44,6 +44,11 @@ export interface mp_checkout_items{
   currency_id?:string,
   unit_price: number,
   picture_url?:string;
+  pictures?:mp_picture[];
+  shipping?:mp_shipping;
+}
+export interface mp_picture{
+  source:string;
 }
 export interface mp_checkout_payer{
   // Tipo de entidade do pagador (apenas para transferências bancárias).
@@ -94,6 +99,7 @@ export interface mp_paymentID{
 }
 export interface mp_shipments{
   mode:string;//  Modo de envio.
+  modes:string[];//  Modo de envio.
   // custom   // Custom shipping.
   // me2   // Mercado Envíos.
   // not_specified   // Shipping mode not specified.
@@ -104,6 +110,20 @@ export interface mp_shipments{
   cost?:number; //  Custo do transporte (mode:custom somente).
   free_shipping?:boolean;//  Preferência de frete grátis para mode:custom.
   receiver_address:mp_reciever_address;
+}
+export interface mp_shipping{
+  mode:string;//  Modo de envio.
+  // custom   // Custom shipping.
+  // me2   // Mercado Envíos.
+  // not_specified   // Shipping mode not specified.
+  local_pickup?:boolean;//  Preferência de remoção de pacotes em agência(mode:me2 somente).
+  local_pick_up?:boolean;//  Preferência de remoção de pacotes em agência(mode:me2 somente).
+  dimensions:string; //  Tamanho do pacote em cm x cm x cm, gr (mode:me2 somente)
+  default_shipping_method?:number; //  Escolha um método de envio padrão no _checkout_(mode:me2 somente).
+  free_methods?: mp_paymentID|Array<any> //Oferecer um método de frete grátis (mode:me2 somente).
+  cost?:number; //  Custo do transporte (mode:custom somente).
+  free_shipping?:boolean;//  Preferência de frete grátis para mode:custom.
+  receiver_address?:mp_reciever_address;
 }
 export interface mp_reciever_address{
   zip_code:string; //  Código postal.
