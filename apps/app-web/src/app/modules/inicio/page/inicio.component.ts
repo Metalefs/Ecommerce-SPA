@@ -27,9 +27,19 @@ export class InicioComponent implements OnInit {
   user:Usuario;
   slidesPerView:number=5;
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
+  mobile:boolean;
   constructor(
     private authService: AuthenticationService,
-    private produtoService: ProdutoService ) {
+    private produtoService: ProdutoService,
+    breakpointObserver: BreakpointObserver) {
+      breakpointObserver.observe([
+        Breakpoints.HandsetPortrait
+      ]).pipe(
+        map(res => {
+            this.mobile=res.matches;
+          }
+      )
+      )
     }
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",
@@ -41,6 +51,7 @@ export class InicioComponent implements OnInit {
     Tags:"",
   }
   ngOnInit(): void {
+
     this.authService.currentUser.subscribe(x=>{
       this.user = x;
     })
