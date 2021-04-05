@@ -12,8 +12,9 @@
 }
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
-  background: #f9fbfe;
+  // background: #f8f9fa;
   margin-top: 0px;
+  z-index: 11;
 }
 .busca{
   font-family: Trebuchet MS;
@@ -145,11 +146,10 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: #f9fbfe;
+  background: #ffff;
 }
 .produtos-nav{
-  background: #f9fbfe;
-  background: #f9fbfe;
+  background: #ffffff;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -165,7 +165,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #f9fbfe;
+  background: #ffffff;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -183,12 +183,12 @@ a.nav-link:hover{
 }
 .produtos-nav-under{
   background-color: rgb(225 225 237 / 88%);
-  height: 8px;
+  height: 5px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
-  top: 16px;
+  top: 11px;
   position: relative;
   pointer-events: none;
-  display: none;
+  // display: none;
 }
 .is-hidden{
   display: none;
