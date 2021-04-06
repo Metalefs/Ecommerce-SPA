@@ -71,7 +71,7 @@ export class TagProdutoSwiperComponent implements OnInit {
                   nextEl: '.swiper-button-next',
                   prevEl: '.swiper-button-prev',
                 },
-                slidesPerView:1,
+                slidesPerView:2,
                 autoplay: {
                   delay               : 4000,
                   disableOnInteraction: false,
@@ -86,10 +86,10 @@ export class TagProdutoSwiperComponent implements OnInit {
               height                 : 400,
               keyboard               : true,
               loop                   : true,
-              loopFillGroupWithBlank : true,
+              loopFillGroupWithBlank : false,
               spaceBetween           : 22,
               preloadImages          : true,
-              lazy                   : true,
+              lazy                   : false,
               observer               : true,
               slidesPerView          : this.slidesPerView,
               navigation: {

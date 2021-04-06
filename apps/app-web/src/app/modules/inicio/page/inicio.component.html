@@ -22,26 +22,28 @@
                 </div>
               </div>
               <div class="tile is-parent">
-                <div class="tile is-child box">
-                  <p><mark>Destaques</mark></p>
-                  <div class="columns is-multiline px-2" *ngIf="Produtos">
-                    <ng-container *ngFor="let produto of Produtos" class=" ">
-                      <div @fadeIn
-                        class="column is-12-tablet of-x-scroll"
-                        >
-                        <personalizados-lopes-card-produto @slideInOut
-                          [Produto]="produto"
-                          [MostarOpcoes]="true"
-                          [flex_direction]="mobile?'column':'row'"
+                <div class="tile is-child box of-y-scroll mw-63vw-desk" style="max-height: 65vh;" >
+                  <h2><mark>Destaques</mark></h2>
+                  <div class="" *ngIf="Produtos">
+                    <div class="swiper-container z-index-1 px-1" [swiper]="swiperConfig$ |async">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let produto of Produtos"  >
+                          <personalizados-lopes-card-produto @slideInOut
+                            [Produto]="produto"
+                            [MostarOpcoes]="true"
+                            [flex_direction]="mobile?'column':'row'"
 
-                        ></personalizados-lopes-card-produto>
+                          ></personalizados-lopes-card-produto>
+                        </div>
                       </div>
-                    </ng-container>
+                      <div class="swiper-button-prev z-index-top clickable hoverable"></div>
+                      <div class="swiper-button-next z-index-top clickable hoverable"></div>
+                    </div>
                   </div>
-                  <nav class="navbar" role="navigation" aria-label="main navigation">
+                  <nav class="navbar z-index-1" role="navigation" aria-label="main navigation">
                     <div class="navbar-brand">
                       <a class="navbar-item" href="/">
-                        <img src="assets/images/icons/Logo.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="65" height="28">
+                        <img src="assets/images/icons/Logo.png" alt="" width="65" height="28">
                       </a>
                       <div class="navbar-end">
 

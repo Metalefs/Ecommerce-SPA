@@ -12,6 +12,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { TipoOrdenacaoSwiperProduto } from '../../../shared/components/produto-swiper/produto-swiper.component';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
 import { fade, slideInOut } from '../../../animations';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'personalizados-lopes-inicio',
@@ -26,6 +27,7 @@ export class InicioComponent implements OnInit {
   slidesPerView:number=5;
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   mobile:boolean;
+  swiperConfig$: Observable<SwiperConfigInterface>;
   constructor(
     private authService: AuthenticationService,
     private produtoService: ProdutoService,
@@ -38,6 +40,49 @@ export class InicioComponent implements OnInit {
           }
       )
       )
+      this.swiperConfig$ = breakpointObserver.observe([
+        Breakpoints.HandsetPortrait
+      ]).pipe(
+        map(res => {
+          this.mobile=res.matches;
+          if (res.matches) {
+              return {
+                direction              : 'horizontal',
+                keyboard               : true,
+                // loop                   : true,
+                loopFillGroupWithBlank : false,
+                preloadImages          : true,
+                lazy                   : false,
+                observer               : true,
+                navigation             : true,
+                slidesPerView:1,
+                autoplay: {
+                  delay               : 4000,
+                  disableOnInteraction: false,
+                },
+              }
+          }
+          else{
+            return {
+              direction              : 'horizontal',
+              keyboard               : true,
+              loop                   : true,
+              loopFillGroupWithBlank : false,
+              preloadImages          : true,
+              height:400,
+              width:750,
+              lazy                   : false,
+              observer               : true,
+              navigation             : true,
+              slidesPerView:1,
+              autoplay: {
+                delay               : 4000,
+                disableOnInteraction: false,
+              },
+            }
+          }
+        })
+      );
     }
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",

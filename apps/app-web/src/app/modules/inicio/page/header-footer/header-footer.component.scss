@@ -16,9 +16,9 @@
   border-radius: 0;
   transform: rotate(0deg);
   opacity: 1;
-  &:hover{
-    @include hover;
-  }
+  // &:hover{
+  //   @include hover;
+  // }
 }
 .mat-card.active{
   @include hover;
