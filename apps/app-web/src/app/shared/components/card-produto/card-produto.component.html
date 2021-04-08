@@ -15,7 +15,7 @@
       this.imgProduto.classList.add('show');
       "
       routerLinkActive="router-link-active"
-      matRipple class="portfolio-item zoom of-y-scroll clickable"
+      matRipple class="portfolio-item zoom of-y-scroll clickable border-light"
       [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
 
       <div
@@ -58,7 +58,7 @@
       </div>
 
 
-      <mat-card-footer class="px-3 z-index-2 w-full">
+      <mat-card-footer class="px-3 z-index-2 w-full of-y-scroll ">
         <!-- <div class="my-3" *ngIf="Produto.Rating.length>0">
           <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
             [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>

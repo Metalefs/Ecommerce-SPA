@@ -25,9 +25,9 @@
                 <div class="tile is-child box of-y-scroll mw-63vw-desk" style="max-height: 65vh;" >
                   <h2><mark>Destaques</mark></h2>
                   <div class="" *ngIf="Produtos">
-                    <div class="swiper-container z-index-1 px-1" [swiper]="swiperConfig$ |async">
-                      <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let produto of Produtos"  >
+                    <div class="swiper-container z-index-1 px-1">
+                      <div class="swiper-wrapper columns is-multiline">
+                        <div class="swiper-slide column is-12" *ngFor="let produto of Produtos"  >
                           <personalizados-lopes-card-produto @slideInOut
                             [Produto]="produto"
                             [MostarOpcoes]="true"

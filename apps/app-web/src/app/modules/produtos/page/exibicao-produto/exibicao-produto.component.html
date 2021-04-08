@@ -1,11 +1,11 @@
-<div class=" has-background-white-bis bbr">
+<div class=" has-background-white-bis bbr"  >
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb mt-3 pt-3"></p-skeleton>
 </div>
-<div class="margin px-3 bbr pt-0">
+<div class="margin px-3 bbr pt-0 shadow-light box pt-2">
   <div class="bbr ">
     <div class="pr-3 pl-2 bbr mb-3">
-      <div class="columns mt-3 bbr  " id="PRODUTO">
+      <div class="columns mt-3 bbr  ">
         <div class="column is-5 mb-0 top-0 pt-3" >
 
           <div class="">
@@ -24,7 +24,7 @@
                 </mat-tab>
               </mat-tab-group>
 
-              <div class="column pt-0 mt-0 has-background-white-bis">
+              <div class="column pt-0 mt-0">
                 <div class="w-full flex-w">
                   <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
                   <mat-menu #menu2="matMenu">
@@ -81,7 +81,7 @@
           </div>
 
         </div>
-        <div class="column is-7 has-background-white bbr">
+        <div class="column is-7 has-background-white-bis bbr shadow-light">
 
           <div class="mb-0 pb-0">
 
@@ -116,7 +116,7 @@
                     <!-- <h1 class="titulo-produto">{{Produto?.Nome}}</h1> -->
                     <span class="type-meta">
                       <i class="pi pi-tag"></i>
-                      <a href="#" class="subtitle  fs-14 ltr-sp-1 has-text-warning" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
+                      <a href="#" class="subtitle  fs-12 ltr-sp-1 has-text-warning" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
                     </span>
 
                     <ul class="list-unstyled">
@@ -164,7 +164,7 @@
                   <div class="column is-12-desktop">
                     <div class="field ">
                       <div class="control shadow-light is-large flex-c flex-m">
-                        <p class="is-size-7 pos-absolute left-0 ml-2">Quantidade:</p>
+                        <p class="is-size-7 has-text-grey pos-absolute left-0 ml-2">Quantidade:</p>
                         <button mat-icon-button (click)="DecrescerQuantidade()">
                           <mat-icon class="less">remove</mat-icon>
                         </button>
@@ -406,13 +406,13 @@
   <div class="  py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
-
+<!--
   <mat-divider></mat-divider>
 
   <div class="   mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
-  </div>
+  </div> -->
 
   <mat-divider></mat-divider>
 
@@ -421,11 +421,6 @@
 
   </div>
 
-  <mat-divider></mat-divider>
-
-  <div class="  ">
-    <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
-  </div>
 
   <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="'Redirecionando para checkout'">
   </personalizados-lopes-loading-cube>

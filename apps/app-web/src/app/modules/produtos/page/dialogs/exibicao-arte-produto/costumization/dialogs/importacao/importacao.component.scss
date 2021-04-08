@@ -143,6 +143,10 @@
   user-select: none;
   }
 
+  .disabled{
+    opacity: .5;
+  }
+
   label.largeFile:hover {
   cursor:pointer;
   }

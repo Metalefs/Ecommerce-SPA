@@ -12,7 +12,7 @@
 }
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
-  // background: #f8f9fa;
+  background: #f8f9fa;
   margin-top: 0px;
   z-index: 11;
 }
@@ -120,6 +120,9 @@ a.nav-link:hover{
   &:hover > .mat-icon{
     color:#484848
   }
+  i{
+    color:#fe0000
+  }
   color:#484848
 }
 .inicio{
@@ -129,6 +132,9 @@ a.nav-link:hover{
   // color: white;
   font-weight: 600;
   animation: selected 2s ease-out forwards;
+  i{
+    color:#fe0000
+  }
 }
 @keyframes selected{
   0%{
@@ -139,6 +145,7 @@ a.nav-link:hover{
     background: #f1f1f179;
     // text-decoration: underline;
     // color: white;
+
   }
 }
 .mat-toolbar{
@@ -146,10 +153,10 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: #ffff;
+  background: #f8f9fa;
 }
 .produtos-nav{
-  background: #ffffff;
+  background: #f8f9fa;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -165,7 +172,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #ffffff;
+  background: #f8f9fa;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -188,7 +195,7 @@ a.nav-link:hover{
   top: 11px;
   position: relative;
   pointer-events: none;
-  // display: none;
+  display: none;
 }
 .is-hidden{
   display: none;

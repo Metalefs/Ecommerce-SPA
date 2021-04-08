@@ -287,10 +287,10 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
   redirecionando:boolean = false;
   navegarParaCheckout(){
-    //this.redirecionando = true;
+    this.redirecionando = true;
      setTimeout(()=>{
       this.router.navigateByUrl("/checkout");
-    },300)
+    },700)
   }
   fileNames:string="";
   secondaryfileNames:string="";

@@ -517,7 +517,7 @@ canvas{
   font-family: "Montserrat";
 }
 .mat-list-item {
-  font-family: "Open sans" !important;
+  font-family: "Roboto" !important;
 }
 .mat-tab-group {
   font-family: Montserrat, "Helvetica Neue", sans-serif;
@@ -530,8 +530,18 @@ canvas{
 .mat-form-field-subscript-wrapper {
   margin-top: 0.1666666667em;
 }
+.mat-card-title {
+  font-weight: 600;
+}
 .background-primary-warmer{
   background: $crayola;
+}
+.message.is-danger {
+  background-color: #d60030;
+  .message-body {
+    border-color: #f14668;
+    color: #ffffff;
+  }
 }
 .preco{
   font-size: 22px;

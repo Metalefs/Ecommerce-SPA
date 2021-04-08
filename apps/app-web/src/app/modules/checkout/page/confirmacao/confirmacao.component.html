@@ -28,7 +28,7 @@
 <section @fadeIn class="section py-0 px-0">
   <div *ngIf="edit" class="has-text-left">
     <h2 class="subtitle">Confira o seu pedido</h2>
-    <span class="subtitle">Revise seus produtos e continue para inserir seus dados pessoais.</span>
+    <span class="subtitle is-size-7">Revise seus produtos e continue para inserir seus dados pessoais.</span>
   </div>
   <div class="a-i-c">
 
@@ -161,7 +161,7 @@
           <div class="column"></div>
           <div class="column"></div>
           <div class="column has-text-right">
-            <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}</span></p>
+            <p class="titulo-produto px-3">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}</span></p>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@
       href="#topo"
       class="py-3"
       [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
-      <button class="py-3 pb-3  w-full">
+      <button class="py-3 pb-3 subtitle w-full">
        Escolher
           mais
          produtos

@@ -54,7 +54,7 @@ export class EnderecoComponent implements OnInit {
     private auth:AuthenticationService,
     private router: Router,
     private scrollService:PageScrollService,
-    private fb:FormBuilder
+    private fb:FormBuilder, private pageScroll:PageScrollService
     ) {
 
     }
@@ -80,6 +80,7 @@ export class EnderecoComponent implements OnInit {
     this.EstadoService.Listar().subscribe(x=>{
       this.estados = x;
     })
+    this.pageScroll.scrollTop();
     this.auth.currentUser.subscribe(usr=>{this.user = usr});
     CheckoutService.DadosCompleto = true;
     CheckoutService.EnderecoCompleto = true;

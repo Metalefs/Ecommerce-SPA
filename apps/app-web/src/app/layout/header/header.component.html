@@ -1,4 +1,4 @@
-<mat-toolbar class="w-full dis-flex flex-r has-background-grey has-text-light flex-m py-0 flex-c a-i-c z-index-top is-hidden-"
+<mat-toolbar class="w-full dis-flex flex-r has-background-light has-text-grey flex-m py-0 flex-c a-i-c z-index-top is-hidden-"
   style="overflow-y: visible;height: min-content;">
   <div class="w-full dis-flex flex-m flex-l px-2" style="overflow-y: visible;">
     <div @fadeIn href="#" class="logo m-l-30">
@@ -13,7 +13,7 @@
       </div>
     </li>
     <li class="level-item px-2 has-text-centered mb-0 m-r-45 is-hidden-">
-      <div class="subtitle is-size-7 has-text-light">
+      <div class="subtitle is-size-7 has-text-grey">
         <div class="dropdown">
           <a class="reset-a "><i class="pi pi-user"></i> <span class="is-hidden-mobile">Minha conta</span></a>
           <div class="dropdown-content right-0">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </li>
-    <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile  has-text-light">
+    <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile  has-text-grey">
       <div>
         <a class="subtitle is-size-7 has-background-white bo-0 button is-small" (click)="openCheckout()">
           <div class="is-hidden-touch">
@@ -50,8 +50,8 @@
     </li>
     <li class="level-item px-2 has-text-centered mr-6 is-hidden-mobile ">
       <div>
-        <a class="reset-a is-size-7" [routerLink]="['checkout']"><i class="pi pi-reply"></i> <span
-            class="is-hidden-touch">Finalizar pedido</span></a>
+        <a class="reset-a is-size-7" [routerLink]="['checkout']"><span
+            class="is-hidden-touch">Finalizar pedido</span></a><i class="pi pi-reply"></i>
       </div>
     </li>
   </ul>
