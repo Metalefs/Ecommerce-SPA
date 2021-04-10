@@ -18,15 +18,17 @@
    </mat-chip>
   </mat-chip-list>
 
-  <!-- <button mat-icon-button (click)="Remover(Orcamento)">
-    <mat-icon>remove</mat-icon>
-  </button> -->
+  <!-- 
+    <button mat-icon-button (click)="Remover(Orcamento)">
+      <mat-icon>remove</mat-icon>
+    </button>
+  -->
 
   <h4 class="subtitle flex-m">
     <i>Status do pagamento:  </i>
-    <mat-chip-list>
+    <mat-chip-list class="ml-3">
       <mat-chip>
-        {{Orcamento.ResultadoPagamentoMP?.status}}
+        {{Orcamento.ResultadoPagamentoMP ? (Orcamento.ResultadoPagamentoMP?.status != "null" ? Orcamento.ResultadoPagamentoMP?.status : 'Não realizado') : 'Não realizado'}}
       </mat-chip>
     </mat-chip-list>
   </h4>

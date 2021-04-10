@@ -7,7 +7,6 @@
         <a *ngFor = "let nav of navs"
         (click)="togglenav(nav,false)"
         [ngClass]="activenav == nav.name ? 'nav active-nav' : 'nav'"
-        [ngClass]="nav.name == 'Pedidos' ? 'has-background-warning' : ''"
         mat-list-item
         [routerLink]="[nav.href]"
         routerLinkActive="active">

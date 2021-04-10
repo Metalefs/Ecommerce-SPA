@@ -13,7 +13,7 @@
                 <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
               </mat-chip-list> -->
               <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
-              <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+              <h2 class="titulo-produto">{{Produto?.Nome}}</h2>
               <mat-tab-group headerPosition="below" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab [label]="'Galeria'">
                   <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
@@ -120,8 +120,8 @@
                     </span>
 
                     <ul class="list-unstyled">
-                      <li><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
-                      <li><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></li>
+                      <li ><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
+                      <li ><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></li>
                       <!-- <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li> -->
                     </ul>
 

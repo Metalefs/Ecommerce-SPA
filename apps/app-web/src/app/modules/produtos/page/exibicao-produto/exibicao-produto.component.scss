@@ -61,19 +61,27 @@ gallery {
 }
 input[type='radio'] {
   display: none;
-  width: 100px;
-  height: 100px;
-}
-input[type='radio'] + label {
   width: 36px !important;
   height: 36px !important;
   line-height: 34px !important;
   margin: 6px 6px 0px 0px !important;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 50%;
+  margin-right: 3px;
+}
+input[type='radio'] + label {
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 34px !important;
+  margin: 6px 6px 0px 0px !important;
+  padding: 10px;
+  border-radius: 50%;
   border: 1px solid #dcdcdc;
   margin-right: 3px;
   cursor: pointer;
+  ::before{
+
+  }
 }
 
 .selected {

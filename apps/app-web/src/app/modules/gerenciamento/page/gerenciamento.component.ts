@@ -17,7 +17,7 @@ import { slider } from '../../../animations';
 })
 export class GerenciamentoComponent implements OnInit {
   user: entities.Usuario;
-  activenav:string = "Produtos";
+  activenav:string = "Dashboard";
   opened = true;
   navs:Link[];
 

@@ -14,16 +14,16 @@
             <p class="hero-title"></p>
             <div class="tile is-ancestor of-x-scroll">
               <div class="tile is-4 is-vertical is-parent">
-                <div class="tile is-child box">
+                <div class="tile is-child box" style="background: transparent;">
                   <personalizados-lopes-header-footer [specify]="'prod'"></personalizados-lopes-header-footer>
                 </div>
-                <div class="tile is-child box">
+                <div class="tile is-child box" style="background: transparent;">
                   <personalizados-lopes-header-footer [specify]="'orc'"></personalizados-lopes-header-footer>
                 </div>
               </div>
               <div class="tile is-parent">
                 <div class="tile is-child box of-y-scroll mw-63vw-desk" style="max-height: 65vh;" >
-                  <h2><mark>Destaques</mark></h2>
+                  <h2>Produtos em <mark>Destaque</mark></h2>
                   <div class="" *ngIf="Produtos">
                     <div class="swiper-container z-index-1 px-1">
                       <div class="swiper-wrapper columns is-multiline">

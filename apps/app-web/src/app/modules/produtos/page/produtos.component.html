@@ -40,7 +40,7 @@
         <div class="is-hidden-mobile w-full">
 
           <mat-list class="w-full">
-            <h2 class="">Categorias</h2>
+            <h3 class="has-text-grey">Categorias</h3>
             <!-- <mat-toolbar>
             </mat-toolbar> -->
             <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable" (click)="SetCategoria(null)"
@@ -213,8 +213,8 @@
               </ng-template>
             </p-dataView>
 
-            <a [ngClass]="loading_more ? 'button is-loading':''" mat-flat-button
-              class="border-light py-2 px-3 w-full txt-center shadow-light" *ngIf="total > Produtos?.length"
+            <a [ngClass]="loading_more ? 'button is-loading':''" mat-stroked-button
+              class="py-2 px-3 w-full txt-center border-light" *ngIf="total > Produtos?.length"
               (click)="CarregarMaisProdutos()">
               Exibir mais resultados
             </a>

@@ -31,21 +31,13 @@ export class InicioComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private produtoService: ProdutoService,
-    breakpointObserver: BreakpointObserver) {
-      breakpointObserver.observe([
-        Breakpoints.Handset
-      ]).pipe(
-        map(res => {
-            this.mobile=res.matches;
-          }
-      )
-      )
+    private breakpointObserver: BreakpointObserver) {
       this.swiperConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
         map(res => {
-          this.mobile=res.matches;
           if (res.matches) {
+            alert("mobile")
               return {
                 direction              : 'horizontal',
                 keyboard               : true,
@@ -63,6 +55,7 @@ export class InicioComponent implements OnInit {
               }
           }
           else{
+            alert("not mobile")
             return {
               direction              : 'horizontal',
               keyboard               : true,
