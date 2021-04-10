@@ -6,38 +6,48 @@
 
   <div class="flex-w flex-c w-full">
     <button mat-mini-fab (click)="Criar()"><mat-icon>add</mat-icon></button>
-    <table *ngIf="ImagemTable?.dataSource" mat-table [dataSource]="ImagemTable?.dataSource[0]" class="w-full mat-elevation-z8">
 
-      <ng-container matColumnDef="Src">
-          <th mat-header-cell *matHeaderCellDef> Src </th>
-          <td mat-cell *matCellDef="let element">
-            <figure class="image is-128x128">
-              <img src="{{element?.Src}}" alt="">
-            </figure>
-          </td>
-      </ng-container>
 
-      <ng-container matColumnDef="Nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let element"> {{element?.Nome}} </td>
-      </ng-container>
+    <ng-container *ngIf="!Loading">
 
-      <ng-container matColumnDef="Tipo">
-        <th mat-header-cell *matHeaderCellDef> Tipo </th>
-        <td mat-cell *matCellDef="let element"> {{element?.Tipo}} </td>
-      </ng-container>
+      <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)" class="w-full">
+        <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.name">
+          <table *ngIf="tab.table" mat-table [dataSource]="tab.table.dataSource" class="w-full mat-elevation-z8">
 
-      <ng-container matColumnDef="Acoes">
-          <th mat-header-cell *matHeaderCellDef> Ações </th>
-          <td mat-cell *matCellDef="let element">
-              <button mat-mini-fab (click)="Editar(element)"><mat-icon>edit</mat-icon></button>
-              <button mat-mini-fab (click)="Remover(element)"><mat-icon>remove</mat-icon></button>
-          </td>
-      </ng-container>
+            <ng-container matColumnDef="Src">
+                <th mat-header-cell *matHeaderCellDef> Src </th>
+                <td mat-cell *matCellDef="let element">
+                  <figure class="image is-128x128">
+                    <img src="{{element?.Src}}" alt="">
+                  </figure>
+                </td>
+            </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="ImagemTable?.displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: ImagemTable?.displayedColumns;"></tr>
-    </table>
+            <ng-container matColumnDef="Nome">
+              <th mat-header-cell *matHeaderCellDef> Nome </th>
+              <td mat-cell *matCellDef="let element"> {{element?.Nome}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Tipo">
+              <th mat-header-cell *matHeaderCellDef> Tipo </th>
+              <td mat-cell *matCellDef="let element"> {{element?.Tipo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Acoes">
+                <th mat-header-cell *matHeaderCellDef> Ações </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-mini-fab (click)="Editar(element)"><mat-icon>edit</mat-icon></button>
+                    <button mat-mini-fab (click)="Remover(element)"><mat-icon>remove</mat-icon></button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="tab.table.displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: tab.table.displayedColumns"></tr>
+          </table>
+        </mat-tab>
+      </mat-tab-group>
+    </ng-container>
+
   </div>
 
 </div>

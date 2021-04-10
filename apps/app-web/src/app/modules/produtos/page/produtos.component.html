@@ -32,7 +32,7 @@
  [images]="imagens">
 </carousel> -->
 
-<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1" id="Básicos">
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1 margin" id="Básicos">
 
   <div class="columns px-1c py-4">
     <div class="column is-3 is-hidden-mobile ">
@@ -40,7 +40,9 @@
         <div class="is-hidden-mobile w-full">
 
           <mat-list class="w-full">
-            <h3 class="has-text-grey">Categorias</h3>
+
+          <h2 class="subtitle is-3 mb-5 is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
+
             <!-- <mat-toolbar>
             </mat-toolbar> -->
             <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable" (click)="SetCategoria(null)"
@@ -115,31 +117,27 @@
           <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
             <!-- <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span> -->
 
-            <span class="subtitle is-size-6 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> itens
-              encontrados</span>
 
           </div>
           <p-skeleton *ngIf="total==0"></p-skeleton>
-
-
-          <h2 class="subtitle is-3 mb-5 is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
 
           <div class="w-full mh-full" *ngIf="(Filtro$ | async).FiltroProdutos.length == 0">
 
             <div @fadeIn class="m-lr-auto mh-full mb-5">
               <figure class="no-match-img">
                 <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img"
-                  alt="Não foram encontrados produtos correspondentes à sua pesquisa">
+                alt="Não foram encontrados produtos correspondentes à sua pesquisa">
               </figure>
               <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
               <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a
                 busca</button>
+              </div>
             </div>
-          </div>
-          <div class="columns is-multiline portfolio-container dis-flex">
+            <div class="columns is-multiline portfolio-container dis-flex">
 
-            <p-dataView [value]="Produtos" [loading]="loading" [lazy]="true" class="w-full" [layout]="'grid'">
-              <ng-template pTemplate="header">
+              <p-dataView [value]="Produtos" [loading]="loading" [lazy]="true" class="w-full" [layout]="'grid'">
+                <ng-template pTemplate="header">
+                <span class="subtitle is-size-6 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
                 <div class="columns is-vcentered is-mobile">
                   <div class="column is-4-desktop  is-8-touch">
                     <div class="control has-icons-left">
@@ -205,7 +203,7 @@
                     <p-skeleton width="100%" height="100%">
                     </p-skeleton>
                   </div>
-                  <div class="column is-3 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
+                  <div class="column is-4 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
                     <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
                       [flex_direction]="'column'"></personalizados-lopes-card-produto>
                   </div>

@@ -10,6 +10,7 @@ import { FileQuestion } from 'apps/app-web/src/app/shared/components/dynamic-for
 import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
 import { Imagem } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'personalizados-lopes-editar-imagem',
@@ -17,8 +18,12 @@ import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
   styleUrls: ['./editar-imagem.component.scss']
 })
 export class EditarImagemComponent implements OnInit {
+  tabs : Array<{name:string,table:MaterialTable}>;
+  selected = new FormControl(0);
 
-  ImagemTable:MaterialTable;
+  EmpresaTable:MaterialTable;
+  ProdutoTable:MaterialTable;
+  ClienteTable:MaterialTable;
   Imagems:any;
   Loading:boolean = true;
 
@@ -30,20 +35,41 @@ export class EditarImagemComponent implements OnInit {
   AtualizarTabela(){
     this.service.Ler().subscribe((x : entities.Imagem[])=>{
       this.Imagems = x;
-      this.ImagemTable.dataSource = new Array(x);
+      this.ProdutoTable.dataSource = new Array(x.filter(x=>x.Tipo == "Produto"));
+      this.EmpresaTable.dataSource = new Array(x.filter(x=>x.Tipo == "Empresa"));
+      this.ClienteTable.dataSource = new Array(x.filter(x=>x.Tipo == "Cliente"));
+      this.tabs = [
+        {name:'Empresa',  table:this.EmpresaTable},
+        {name:'Produtos', table:this.ProdutoTable},
+        {name:'Clientes', table:this.ClienteTable}
+      ];
+      this.ProdutoTable.displayedColumns = [
+        "Src",
+        "Nome",
+        "Tipo",
+        "Acoes",
+      ];
+      this.EmpresaTable.displayedColumns = [
+        "Src",
+        "Nome",
+        "Tipo",
+        "Acoes",
+      ];
+      this.ClienteTable.displayedColumns = [
+        "Src",
+        "Nome",
+        "Tipo",
+        "Acoes",
+      ];
       this.Loading = false;
     })
   }
 
   ngOnInit(): void {
-    this.ImagemTable = new MaterialTable();
+    this.ProdutoTable = new MaterialTable();
+    this.EmpresaTable = new MaterialTable();
+    this.ClienteTable = new MaterialTable();
     this.AtualizarTabela();
-    this.ImagemTable.displayedColumns = [
-      "Src",
-      "Nome",
-      "Tipo",
-      "Acoes",
-    ];
   }
 
   Criar(): void {

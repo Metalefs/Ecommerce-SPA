@@ -6,14 +6,14 @@ import { entities } from '@personalizados-lopes/data';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { Router, RouterOutlet } from '@angular/router';
 import { Link } from '../../../data/models';
-import { slider } from '../../../animations';
+import { fade, slider } from '../../../animations';
 
 @Component({
   selector: 'personalizados-lopes-gerenciamento',
   templateUrl: './gerenciamento.component.html',
   styleUrls: ['./gerenciamento.component.scss'],
 
-  animations: [slider]
+  animations: [slider,fade]
 })
 export class GerenciamentoComponent implements OnInit {
   user: entities.Usuario;

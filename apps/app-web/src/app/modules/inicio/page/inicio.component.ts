@@ -37,7 +37,6 @@ export class InicioComponent implements OnInit {
       ]).pipe(
         map(res => {
           if (res.matches) {
-            alert("mobile")
               return {
                 direction              : 'horizontal',
                 keyboard               : true,
@@ -55,7 +54,6 @@ export class InicioComponent implements OnInit {
               }
           }
           else{
-            alert("not mobile")
             return {
               direction              : 'horizontal',
               keyboard               : true,
@@ -63,7 +61,7 @@ export class InicioComponent implements OnInit {
               loopFillGroupWithBlank : false,
               preloadImages          : true,
               height:400,
-              width:750,
+              width:820,
               lazy                   : false,
               observer               : true,
               navigation             : true,

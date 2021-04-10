@@ -9,9 +9,41 @@
   min-height:93vh;
   // background: rgb(234, 234, 244);
   // overflow-x: hidden;
-  background: white;
+  // background: white;
 }
+.split-home {
+  $squared-size: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Nunito", sans-serif;
+  .main-content{
+     min-height: 76vh;
+  }
+  &:before,
+  &:after {
+      background-color: #fe0000;
+      border-radius: 1rem;
+      content: "";
+      height: $squared-size;
+      position: absolute;
+      transform: rotateZ(45deg);
+      width: $squared-size;
+      z-index: -1;
+  }
 
+  &:before {
+      left: -320px;
+      top: 1120px;
+  }
+
+  &:after {
+      right: -320px;
+      top: 370px;
+  }
+}
 /* --------------------------------------------------
 ---------- Hamburger and Navigation Starts ----------
 ----------------------------------------------------*/
