@@ -63,9 +63,8 @@ export class ServicoState {
   }
 
   @Action(EditarServico)
-  Editar({getState,setState}: StateContext<ServicoStateModel>, {payload, id} : EditarServico){
-    return this.ServicoService.Editar(payload).pipe(
-      tap(result => {
+  async Editar({getState,setState}: StateContext<ServicoStateModel>, {payload, id} : EditarServico){
+    return (await (await this.ServicoService.Editar(payload)).subscribe(result => {
         const state = getState();
         const ListaServicos = [...state.Servico];
         const index = ListaServicos.findIndex(item => item._id === id);
@@ -78,5 +77,4 @@ export class ServicoState {
       })
     );
   }
-
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, Subject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
@@ -111,15 +111,16 @@ export class ImagemService {
   }
 
   Incluir(item: entities.Imagem, upload?:boolean): Observable<any> {
+    let subject = new Subject<any>();
     if(upload){
       if(item.FileList){
         this.storeImage(PathDictionary.generico,item.FileList).then(async x=>{
           item.Src = await this.getRef((await x).metadata.fullPath, item.Nome, item.Tipo);
+        }).then(x=>{
+          subject.next(item);
+          return subject.asObservable();
         })
       }
-      new Promise((resolve,reject) => {
-        resolve(item);
-      })
     }
     else{
       return this.http.post<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem, {item}).pipe(

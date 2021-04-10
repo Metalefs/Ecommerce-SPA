@@ -41,7 +41,7 @@ export class EmpresaComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.Atualizar();
     this.imagemService.FiltrarPorNome("empresa").subscribe(x=>{
-      this.url = x.filter(x=>x.Nome == "empresa")[0].Src;
+      this.url = x.filter(x=>x.Nome == "Empresa")[0].Src;
       this.url2 = x.filter(x=>x.Nome == "Fundo")[0].Src;
     })
     setTimeout(()=>{

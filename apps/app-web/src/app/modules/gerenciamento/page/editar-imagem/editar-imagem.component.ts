@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { entities } from '@personalizados-lopes/data';
 import { ImagemService } from 'apps/app-web/src/app/data/service';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
@@ -11,6 +11,9 @@ import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-
 import { Imagem } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import {FormControl} from '@angular/forms';
+import { MatTableFilter } from 'mat-table-filter';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'personalizados-lopes-editar-imagem',
@@ -18,15 +21,23 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./editar-imagem.component.scss']
 })
 export class EditarImagemComponent implements OnInit {
-  tabs : Array<{name:string,table:MaterialTable}>;
+  tabs : Array<{name:string,table: MatTableDataSource<Imagem>}>;
   selected = new FormControl(0);
-
-  EmpresaTable:MaterialTable;
-  ProdutoTable:MaterialTable;
-  ClienteTable:MaterialTable;
+  displayedColumns:string[] = [
+    "Src",
+    "Nome",
+    "Tipo",
+    "Acoes",
+  ];
+  EmpresaTable: MatTableDataSource<Imagem>;
+  ProdutoTable: MatTableDataSource<Imagem>;
+  ClienteTable: MatTableDataSource<Imagem>;
   Imagems:any;
   Loading:boolean = true;
-
+  filterEntity: Imagem;
+  filterType: MatTableFilter;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
   constructor(
     private service:ImagemService,
     private dialog: MatDialog,
@@ -35,43 +46,40 @@ export class EditarImagemComponent implements OnInit {
   AtualizarTabela(){
     this.service.Ler().subscribe((x : entities.Imagem[])=>{
       this.Imagems = x;
-      this.ProdutoTable.dataSource = new Array(x.filter(x=>x.Tipo == "Produto"));
-      this.EmpresaTable.dataSource = new Array(x.filter(x=>x.Tipo == "Empresa"));
-      this.ClienteTable.dataSource = new Array(x.filter(x=>x.Tipo == "Cliente"));
+      this.ProdutoTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Produto"));
+      this.EmpresaTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Empresa"));
+      this.ClienteTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Cliente"));
       this.tabs = [
         {name:'Empresa',  table:this.EmpresaTable},
         {name:'Produtos', table:this.ProdutoTable},
         {name:'Clientes', table:this.ClienteTable}
       ];
-      this.ProdutoTable.displayedColumns = [
-        "Src",
-        "Nome",
-        "Tipo",
-        "Acoes",
-      ];
-      this.EmpresaTable.displayedColumns = [
-        "Src",
-        "Nome",
-        "Tipo",
-        "Acoes",
-      ];
-      this.ClienteTable.displayedColumns = [
-        "Src",
-        "Nome",
-        "Tipo",
-        "Acoes",
-      ];
+      this.ProdutoTable.paginator = this.paginator;
+      this.EmpresaTable.paginator = this.paginator;
+      this.ClienteTable.paginator = this.paginator;
+
+      this.ProdutoTable.sort = this.sort;
+      this.EmpresaTable.sort = this.sort;
+      this.ClienteTable.sort = this.sort;
       this.Loading = false;
     })
   }
 
   ngOnInit(): void {
-    this.ProdutoTable = new MaterialTable();
-    this.EmpresaTable = new MaterialTable();
-    this.ClienteTable = new MaterialTable();
+    this.filterEntity = new Imagem('','','');
+    this.filterType = MatTableFilter.ANYWHERE;
     this.AtualizarTabela();
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.ProdutoTable.filter = filterValue.trim().toLowerCase();
+    this.EmpresaTable.filter = filterValue.trim().toLowerCase();
+    this.ClienteTable.filter = filterValue.trim().toLowerCase();
 
+    if (this.ProdutoTable.paginator) {
+      this.ProdutoTable.paginator.firstPage();
+    }
+  }
   Criar(): void {
     let questions: QuestionBase<string>[] = [];
     let method = "Criar";

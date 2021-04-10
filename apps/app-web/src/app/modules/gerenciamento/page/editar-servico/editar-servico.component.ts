@@ -45,8 +45,10 @@ export class EditarServicoComponent implements OnInit {
     let method = "Editar";
     let name = "Serviço";
     let id = Servico._id;
+    if(!Servico.FileList)
+    Object.assign(Servico, {FileList: null});
     Object.entries(Servico).forEach(([key, value]) => {
-      if(key != "_id" && key !="Imagem")
+      if(key != "_id" && key !="FileList")
       questions.push(
         new EmailMessageQuestion({
           key: key,
@@ -57,7 +59,7 @@ export class EditarServicoComponent implements OnInit {
           order: 1
         })
       )
-      else if(key== "Imagem")
+      else if(key === ("FileList" as string))
       questions.push(
         new FileQuestion({
           key: key,
@@ -83,7 +85,8 @@ export class EditarServicoComponent implements OnInit {
         result[0].value,
         result[1].value,
         new entities.Categoria(result[2].value,result[2].value),
-        result[3].value,
+        "",
+        result[3].value as unknown as FileList,
       )
       Servico._id = id;
       this.store.dispatch(new EditarServico(Servico, Servico._id)).subscribe(x=> {
