@@ -24,24 +24,8 @@
                 </div>
               </div>
               <div class="tile is-parent is-hidden-touch">
-                <div class="tile is-child of-y-scroll mw-63vw-desk" style="max-height: 65vh;" >
-                  <h2>Produtos em Destaque</h2>
-                  <div class="" *ngIf="Produtos">
-                    <div class="swiper-container z-index-1 px-1">
-                      <div class="swiper-wrapper columns is-multiline">
-                        <div class="swiper-slide column is-12" *ngFor="let produto of Produtos"  >
-                          <personalizados-lopes-card-produto @slideInOut
-                            [Produto]="produto"
-                            [MostarOpcoes]="true"
-                            [flex_direction]="!mobile?'column':'row'"
-
-                          ></personalizados-lopes-card-produto>
-                        </div>
-                      </div>
-                      <div class="swiper-button-prev z-index-top clickable hoverable"></div>
-                      <div class="swiper-button-next z-index-top clickable hoverable"></div>
-                    </div>
-                  </div>
+                <div class="tile is-child of-y-scroll mw-63vw-desk" >
+                  <personalizados-lopes-produto-swiper [slidesPerView]='1'></personalizados-lopes-produto-swiper>
                   <nav class="navbar z-index-1" role="navigation" aria-label="main navigation">
                     <div class="navbar-brand">
                       <a class="navbar-item" href="/">

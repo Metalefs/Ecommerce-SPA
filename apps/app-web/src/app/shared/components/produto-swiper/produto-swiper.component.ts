@@ -13,7 +13,7 @@ import { ProdutoService } from '../../../data/service';
 })
 export class ProdutoSwiperComponent implements OnInit {
   Produtos:Produto[];
-  slidesPerView:number=5;
+  @Input()slidesPerView:number=5;
   @ViewChild('swiperEl') swiperEl: ElementRef;
   @Input() TipoOrdenacao:TipoOrdenacaoSwiperProduto = TipoOrdenacaoSwiperProduto.Inclusao;
   tipoOrdenacaoSwiperProduto = TipoOrdenacaoSwiperProduto;
@@ -119,7 +119,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     preloadImages          : true,
                     lazy                   : true,
                     observer               : true,
-                    slidesPerView          : 5,
+                    slidesPerView          : this.slidesPerView,
                     navigation: {
                       nextEl: '.swiper-button-next',
                       prevEl: '.swiper-button-prev',

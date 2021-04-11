@@ -129,6 +129,7 @@ input,select{
   border: 0 !important;
   max-width: 100%;
   width: 100%;
+  font-weight: 400 !important;
 }
 input[type=number] {
   text-align: center;
@@ -148,6 +149,8 @@ input[type=number] {
   // text-transform: uppercase;
   font-size: 15px!important;
   // line-height: 1.7rem;
+  font-weight: 600;
+  color: #495057;
 }
 
 input{

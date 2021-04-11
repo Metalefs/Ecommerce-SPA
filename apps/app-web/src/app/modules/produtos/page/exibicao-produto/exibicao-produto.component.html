@@ -189,18 +189,22 @@
                       <div class="column is-12 py-1">
                         <p class="is-size-7"><span class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                         <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
-                          <div id="column pt-1 is-3" *ngFor="let cor of Produto?.Cores; let i =index">
+                          <div mat-fab color=""  (click)="setColor(cor)" id="column is-3 shadow-light" *ngFor="let cor of Produto?.Cores; let i =index">
                             <input class="px-2 py-2 mx-1"
                               type="radio" alt="{{cor.nome}}"
                               [value]="Produto.Cor"
                               id="cor{{i}}"
                               [formControlName]="'cor'"
-                              (click)="setColor(cor)"
                               [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}"
                               >
-                            <label title="{{cor.nome}}" [style.background]="cor.cor"
+                            <div title="{{cor.nome}}"
+                              class="ColorlabelBackground shadow-light border-light"
                               [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
+                             >
+                              <label title="{{cor.nome}}" [style.background]="cor.cor"
+                              class="border-light"
                               for="cor{{i}}"></label>
+                            </div>
                             <span (click)="Produto.Cor=cor;"></span>
                           </div>
                         </div>

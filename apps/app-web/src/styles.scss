@@ -584,7 +584,7 @@ canvas{
   background: wheat;
 }
 .mat-card{
-  animation: bounce 1s ease forwards;
+  animation: bounce .8s ease forwards;
   background:#ffffff;
   // border-radius:1rem;
   border-bottom-right-radius:2rem;
@@ -766,7 +766,7 @@ canvas{
 	margin-bottom:30px;
 }
 .section-block.summary {
-    background-color: #2F80ED;
+    background-color: #ff4081;
 }
 .section-block.summary h1 {
     color: #fff;
@@ -777,7 +777,7 @@ canvas{
 	background-color:transparent
 }
 .section-block.signup {
-	background-color: #2F80ED;
+	background-color: #ff4081;
 }
 .section-block h1 {
 	margin-top:0;
@@ -843,7 +843,7 @@ canvas{
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
 	color: #FFF;
-	background-color: #2F80ED;
+	background-color: #ff4081;
 	border: 0;
 	border-radius: 4px;
 	font-weight:700;
@@ -884,7 +884,7 @@ canvas{
 	border:0;
 }
 .btn.btn-launch {
-	background-color: #2F80ED;
+	background-color: #ff4081;
 	color: #FFF;
 	font-size: 17px;
 	font-weight: 600;
@@ -895,14 +895,14 @@ canvas{
 	box-shadow:none;
 }
 .btn.btn-reward {
-	background-color: #2F80ED;
+	background-color: #ff4081;
     color: #FFF;
     font-size: 14px;
     font-weight: 600;
     padding: 5px 15px;
 }
 .btn.btn-signup {
-	background-color: #2F80ED;
+	background-color: #ff4081;
 	color: #fff;
 	height: 40px;
 	width: 43px;

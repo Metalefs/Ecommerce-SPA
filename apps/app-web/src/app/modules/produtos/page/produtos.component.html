@@ -135,7 +135,7 @@
             </div>
             <div class="columns is-multiline portfolio-container dis-flex">
 
-              <p-dataView [value]="Produtos" [loading]="loading" [lazy]="true" class="w-full" [layout]="'grid'">
+              <p-dataView [value]="Produtos" [lazy]="true" class="w-full" [layout]="'grid'">
                 <ng-template pTemplate="header">
                 <span class="subtitle is-size-6 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
                 <div class="columns is-vcentered is-mobile mb-0">
@@ -186,9 +186,11 @@
               </ng-template>
               <ng-template let-produto pTemplate="listItem">
                 <ng-container class="mx-0 px-0 ">
-                  <div class=" skeleton" *ngIf="loading">
-                    <p-skeleton width="100%" height="100%">
-                    </p-skeleton>
+                  <div class="column is-12 pt-4"  *ngIf="loading">
+                    <div class="w-full mh-full skeleton">
+                      <p-skeleton width="100%" height="100%">
+                      </p-skeleton>
+                    </div>
                   </div>
                   <div class="column is-12 pt-4" *ngIf="filtroAtivo(produto) && !loading">
                     <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
@@ -198,9 +200,11 @@
               </ng-template>
               <ng-template let-produto pTemplate="gridItem">
                 <ng-container class="mx-0 px-0 ">
-                  <div class=" skeleton" *ngIf="loading">
-                    <p-skeleton width="100%" height="100%">
-                    </p-skeleton>
+                  <div class="column is-4 pt-4 is-6-mobile"*ngIf="loading" >
+                    <div class="w-full mh-full skeleton" >
+                      <p-skeleton width="100%" height="100%">
+                      </p-skeleton>
+                    </div>
                   </div>
                   <div class="column is-4 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
                     <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
