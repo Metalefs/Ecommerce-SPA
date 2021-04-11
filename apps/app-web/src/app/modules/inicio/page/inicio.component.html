@@ -8,7 +8,9 @@
 
     <div class="bg-transp">
       <div class="">
-
+        <div class="is-hidden-desktop">
+          <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
+        </div>
         <div class="hero is-light bg-img">
           <div class="hero-body pt-4">
             <p class="hero-title"></p>
@@ -21,7 +23,7 @@
                   <personalizados-lopes-header-footer [specify]="'orc'"></personalizados-lopes-header-footer>
                 </div>
               </div>
-              <div class="tile is-parent">
+              <div class="tile is-parent is-hidden-touch">
                 <div class="tile is-child of-y-scroll mw-63vw-desk" style="max-height: 65vh;" >
                   <h2>Produtos em Destaque</h2>
                   <div class="" *ngIf="Produtos">

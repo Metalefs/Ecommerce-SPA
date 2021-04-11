@@ -9,14 +9,20 @@
       <mat-icon [ngClass]="data.CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">{{data.CategoriaAtiva?.Nome == defaultCategory ?  'done' : 'chevron_right'}}</mat-icon>
       <mat-divider></mat-divider>
     </mat-list-item> -->
-    <mat-list-item *ngFor="let categoria of (data.Categorias)"
-      [style.backgroundColor]="categoria?.Cor"
-      class="pointer w-full w-full-m"
-      (click)="SetCategoria(categoria)"
-      [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">
-      <button mat-flat-button [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ? 'active' : ''">{{categoria.Nome}}</button>
-      <mat-icon [ngClass]="data.CategoriaAtiva?.Nome == categoria.Nome ?'has-text-success' :''">{{data.CategoriaAtiva?.Nome == categoria.Nome ?  'done' : 'chevron_right'}}</mat-icon>
-      <mat-divider></mat-divider>
-    </mat-list-item>
+    <mat-list-item *ngFor="let categoria of data.Categorias;let i = index"
+    [style.backgroundColor]="categoria?.Cor" class="pointer w-full w-full-m cat-item hoverable has-background-white-bis"
+    (click)="SetCategoria(categoria)"
+    [ngClass]="data.CategoriaAtiva?.Nome == categoria?.Nome ? 'active box ' : 'has-text-grey'">
+    <a [ngClass]="data.CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'" mat-strocked-button
+      class="dis-flex flex-sb flex-m ">
+      <button class="border-0">
+        <mat-icon [ngClass]="data.CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
+          {{data.CategoriaAtiva?.Nome == categoria?.Nome ? 'done' : 'arrow_left'}}
+        </mat-icon>
+      </button>
+      <p class="">{{categoria?.Nome}}</p>
+    </a>
+    <mat-divider></mat-divider>
+  </mat-list-item>
   </mat-list>
 </div>

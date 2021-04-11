@@ -53,7 +53,7 @@
   </ul>
 </mat-toolbar>
 <div class="w-full py-0 z-index-top pos-sticky top-0">
-  <div class="py-2 mat-toolbar"
+  <div class="py-4 mat-toolbar"
     class="{{(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
     [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
     <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
@@ -119,19 +119,14 @@
 
         <div class="my-0 dis-flex flex-r is-hidden-desktop">
 
-          <div class="is-hidden-desktop ml-4 m-r-30">
-            <a mat-ripple (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
-              class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento pl-6 trans-04 m-b-3 m-t-3">
-              <div class="columns line-height-small is-mobile">
-
-              </div>
-              <div class="columns">
-                <div class="column">
-                  <mat-icon class="material-icons-outlined has-text-dark">shopping_bag</mat-icon>
-                  <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
-                </div>
-              </div>
-            </a>
+          <div class="is-hidden-desktop ml-4 m-r-25">
+            <button mat-ripple mat-fab color="accent" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+              class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 m-b-3 m-t-3">
+              <!-- <div class="columns line-height-small is-mobile">
+              </div> -->
+              <mat-icon class=" has-text-white">shopping_bag</mat-icon>
+              <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
+            </button>
           </div>
 
           <!-- <div class="is-hidden-touch ml-4 ">

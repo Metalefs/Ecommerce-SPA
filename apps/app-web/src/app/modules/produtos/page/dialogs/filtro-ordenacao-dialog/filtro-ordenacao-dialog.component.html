@@ -4,22 +4,24 @@
     <mat-list-item
       *ngFor="let order of data.ordertypes; let i = index"
       (click)="atualizarOrderFilter(order)"
-      class="pointer w-full w-full-m py-2 w-full"
+      class="pointer w-full w-full-m cat-item hoverable has-background-white-bis"
       >
-    <button mat-flat-button [ngClass]="order.id == data.activeOrderFilter ? 'active':''">
-      {{order.name}}
-    </button>
+      <button class="border-0"  mat-strocked-button [ngClass]="order.id == data.activeOrderFilter ? 'active':''">
+        {{order.name}}
+      </button>
       <mat-divider></mat-divider>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item class="mt-6 pointer w-full w-full-m cat-item hoverable has-background-white-bis">
       <div class="w-full">
         <mat-form-field class="" appearance="">
           <mat-label>Página</mat-label>
           <mat-select matNativeControl [(ngModel)]="data.activeOrderLimit" (selectionChange)="atualizarOrderLimit(data.activeOrderLimit)">
             <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
-              <div class="box w-full">
-                <p>{{opt.name}}</p>
-              </div>
+              <button class="border-0">
+                <div class=" w-full">
+                  <p>{{opt.name}}</p>
+                </div>
+            </button>
             </mat-option>
           </mat-select>
         </mat-form-field>
