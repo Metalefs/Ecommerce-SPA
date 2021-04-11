@@ -138,7 +138,7 @@
               <p-dataView [value]="Produtos" [loading]="loading" [lazy]="true" class="w-full" [layout]="'grid'">
                 <ng-template pTemplate="header">
                 <span class="subtitle is-size-6 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
-                <div class="columns is-vcentered is-mobile">
+                <div class="columns is-vcentered is-mobile mb-0">
                   <div class="column is-4-desktop  is-8-touch">
                     <div class="control has-icons-left">
                       <input [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
@@ -212,9 +212,9 @@
             </p-dataView>
 
             <a [ngClass]="loading_more ? 'button is-loading':''" mat-stroked-button
-              class="py-2 px-3 w-full txt-center border-light" *ngIf="total > Produtos?.length"
+              class="py-2 px-3 w-full button is-success txt-center border-light" *ngIf="total > Produtos?.length"
               (click)="CarregarMaisProdutos()">
-              Exibir mais resultados
+              Ver mais resultados
             </a>
 
           </div>

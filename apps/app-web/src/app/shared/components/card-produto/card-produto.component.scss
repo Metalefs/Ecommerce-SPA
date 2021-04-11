@@ -252,7 +252,7 @@ img{
   background: rgba(255, 255, 255, 0.20);
   z-index: 10;
   &a{
-    transition:1s all ease ;
+    transition:.5s all ease ;
   }
   position:absolute;
   top: 0;
@@ -303,12 +303,9 @@ img{
  -webkit-transform: translateY(20px);
  -moz-transform: translateY(20px);
  transform: translateY(20px);
- -webkit-transition: 0.3s;
- -moz-transition: 0.3s;
- transition: 0.3s;
- -webkit-transition-delay: 0.3s;
- -moz-transition-delay: 0.3s;
- transition-delay: 0.2s;
+ -webkit-transition: 0.1s;
+ -moz-transition: 0.1s;
+ transition: 0.1s;
 }
 
 .portfolio-item:focus, .portfolio-item:hover {
@@ -324,8 +321,8 @@ img{
 
   box-shadow: 1px 1px 4px #8b888899;
   border-radius: 0.25rem;
-  transition: all ease .5s;
-  transition-delay: .5s;
+  transition: all ease .2s;
+  transition-delay: .2s;
   opacity: 0.5;
   z-index: 10;
   &:hover{

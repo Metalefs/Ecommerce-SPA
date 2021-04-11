@@ -53,7 +53,7 @@ a{
   @extend .base;
   line-height: 33px;
   display: flex;
-  font-size: 20px;
+  font-size:14px;
   font-weight: 600;
   align-items: center;
   letter-spacing: 0.08em !important;
@@ -69,19 +69,19 @@ a{
 }
 .footer-text{
   @extend .base;
-  // font-size: 16px;
+  font-size: 12px;
   & :hover{
     color: #3a3a3a;
   }
 }
 .footer-color{
   // background: #f1f1f1;
-  // background: #ff4081;
   // background: #4b4b4b;
   // background: #323232;
   // background: #3a3a3a;
   // background: rgba(0, 0, 0, 0.52);
-  background: #FF4A4A;
+  background: #ff4081;
+  // background: #FF4A4A;
   // background: rgba(249,28,28,.52);
 }
 .txt-justify.footer-text.has-text-white p{

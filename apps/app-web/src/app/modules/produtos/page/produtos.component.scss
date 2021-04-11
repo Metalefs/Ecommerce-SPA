@@ -21,6 +21,9 @@
 
   flex-wrap: wrap;
 }
+:host ::ng-deep .p-dataview-header{
+  padding-bottom: 0;
+}
 .wp-btn {
   border-radius: 4px;
   box-shadow: none;

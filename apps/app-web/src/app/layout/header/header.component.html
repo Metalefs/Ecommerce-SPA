@@ -47,7 +47,7 @@
     <li class="level-item px-2 has-text-centered mr-6">
       <div>
         <a class="reset-a is-size-7" [routerLink]="['checkout']"><span
-            class="is-hidden-touch">Finalizar pedido</span></a><i class="pi pi-reply"></i>
+            class="is-hidden-touch">Finalizar pedido</span></a><i class="pi pi-check"></i>
       </div>
     </li>
   </ul>
@@ -65,7 +65,7 @@
         </div>
         <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
           <div class="columns py-2 is-mobile is-gapless  is-hidden-mobile" style="width: 50%;border-radius: 1rem;">
-            <div class="column  is-2">
+            <div class="column mr-4 is-2">
 
               <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">
                 <mat-icon>search</mat-icon>

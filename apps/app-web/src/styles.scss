@@ -16,7 +16,7 @@ $custom-typography: mat-typography-config(
 @include mat-core($custom-typography);
 
 :root {
-  --animate-duration: .5s;
+  --animate-duration: .25s;
 }
 
 html, body {
@@ -38,7 +38,7 @@ body {
   height: auto;
   &::-webkit-scrollbar
   {
-    width: 15px;
+    width: 10px;
     background-color: #F5F5F5;
   }
   &::-webkit-scrollbar-thumb

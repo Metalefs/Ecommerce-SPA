@@ -1,19 +1,18 @@
 <div class=" has-background-white-bis bbr"  >
   <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
-  <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb mt-3 pt-3"></p-skeleton>
+  <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
-<div class="margin px-3 bbr pt-0 shadow-light box pt-2">
+<div class="margin px-3 bbr pt-0 shadow-light box">
   <div class="bbr ">
     <div class="pr-3 pl-2 bbr mb-3">
       <div class="columns mt-3 bbr  ">
-        <div class="column is-5 mb-0 top-0 pt-3" >
+        <div class="column is-5 mb-0 top-0" >
 
           <div class="">
               <!-- <mat-chip-list class="is-left">
                 <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
               </mat-chip-list> -->
               <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
-              <h2 class="titulo-produto">{{Produto?.Nome}}</h2>
               <mat-tab-group headerPosition="below" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab [label]="'Galeria'">
                   <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
@@ -21,6 +20,11 @@
                     [dots]="true"
                     [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
                   </gallery>
+                  <span class="type-meta">
+                    <i class="pi pi-tag"></i>
+                    <a href="#" class="subtitle  fs-12 ltr-sp-1 has-text-info" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
+                  </span>
+
                 </mat-tab>
               </mat-tab-group>
 
@@ -47,6 +51,7 @@
                   <mat-chip-list  *ngIf="Liked" aria-label="Thanks">
                     <mat-chip color="primary" selected>Você curtiu este produto</mat-chip>
                   </mat-chip-list>
+
                 </div>
               </div>
               <mat-tab-group class="is-hidden-desktop px-3">
@@ -113,11 +118,7 @@
                       <span class="subtitle fs-12">({{Produto?.Rating.length}} avaliações)</span>
 
                     </div>
-                    <!-- <h1 class="titulo-produto">{{Produto?.Nome}}</h1> -->
-                    <span class="type-meta">
-                      <i class="pi pi-tag"></i>
-                      <a href="#" class="subtitle  fs-12 ltr-sp-1 has-text-warning" *ngFor="let tag of Produto?.Tags">{{tag}}, </a>
-                    </span>
+                    <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
 
                     <ul class="list-unstyled">
                       <li ><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
@@ -125,7 +126,7 @@
                       <!-- <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li> -->
                     </ul>
 
-                    <span class="subtitle is-size-7" *ngIf="Produto?.DescricaoRapida">({{Produto?.DescricaoRapida}})</span>
+                    <span class="subtitle is-size-7" *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
 
                     <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
                       <em>

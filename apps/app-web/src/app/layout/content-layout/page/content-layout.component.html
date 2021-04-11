@@ -22,9 +22,9 @@
     <section class="split-home">
       <personalizados-lopes-header></personalizados-lopes-header>
       <div class="main-content ">
-        <article class="message is-danger-light py-0 my-0" @slideInOut *ngIf="Alerta">
+        <article class="message is-warning py-0 my-0" @slideInOut *ngIf="Alerta">
           <div class="message-body py-4">
-            <a href="javascript:void(0)" class="pos-absolute right-0 is-right mr-3" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a>
+            <a href="javascript:void(0)" class="pos-absolute right-0 is-right mr-4" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a>
             <p class="subtitle is-size-7">{{Alerta}}</p>
           </div>
         </article>
