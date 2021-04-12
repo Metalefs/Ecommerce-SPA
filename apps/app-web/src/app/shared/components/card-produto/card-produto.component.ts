@@ -68,6 +68,10 @@ export class CardProdutoComponent implements OnInit {
       disableOnInteraction : false,
     },
   };
+
+  encodeURI(value:string){
+    return encodeURIComponent(value);
+  }
   AdicionarAoOrcamento(produto:Produto){
     this.Orcamento$.subscribe(x=>{
 
