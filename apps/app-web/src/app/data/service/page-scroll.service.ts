@@ -7,7 +7,7 @@ import { WindowRef } from './window.service';
     providedIn: "root",
 })
 export class PageScrollService{
-  constructor(@Inject(PLATFORM_ID) private platform: Object, private windowRef: WindowRef,private document: DocumentRef){}
+  constructor(@Inject(PLATFORM_ID) private platform: Object, private windowRef: WindowRef, private document: DocumentRef){}
     scrollTop(){
       let self = this;
       if (isPlatformBrowser(this.platform)) {

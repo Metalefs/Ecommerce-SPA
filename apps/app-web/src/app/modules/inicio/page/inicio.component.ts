@@ -61,11 +61,10 @@ export class InicioComponent implements OnInit {
               loopFillGroupWithBlank : false,
               preloadImages          : true,
               height:400,
-              width:820,
               lazy                   : false,
               observer               : true,
               navigation             : true,
-              slidesPerView:1,
+              slidesPerView:2,
               autoplay: {
                 delay               : 4000,
                 disableOnInteraction: false,

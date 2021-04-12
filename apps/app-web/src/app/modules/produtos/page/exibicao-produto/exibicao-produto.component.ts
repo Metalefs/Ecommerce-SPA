@@ -109,7 +109,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
           }
           this.mobile=false;
           return {
-            thumbPosition: ThumbnailsPosition.Left,
+            thumbPosition: ThumbnailsPosition.Bottom,
             thumbWidth: 120,
             thumbHeight: 90
           };

@@ -3,46 +3,36 @@
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
 
 
+  <div class="">
+    <div class="" style="background: transparent;">
+      <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
+    </div>
+  </div>
 
   <div class="bg ">
 
     <div class="bg-transp">
       <div class="">
-        <div class="is-hidden-desktop">
-          <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
-        </div>
         <div class="hero is-light bg-img">
           <div class="hero-body pt-4">
             <p class="hero-title"></p>
-            <div class="tile is-ancestor of-x-scroll">
-              <div class="tile is-4 is-vertical is-parent">
-                <div class="tile is-child" style="background: transparent;">
-                  <personalizados-lopes-header-footer [specify]="'prod'"></personalizados-lopes-header-footer>
-                </div>
-                <div class="tile is-child" style="background: transparent;">
-                  <personalizados-lopes-header-footer [specify]="'orc'"></personalizados-lopes-header-footer>
-                </div>
-              </div>
-              <div class="tile is-parent is-hidden-touch">
-                <div class="tile is-child of-y-scroll mw-63vw-desk" >
-                  <personalizados-lopes-produto-swiper [slidesPerView]='1'></personalizados-lopes-produto-swiper>
-                  <nav class="navbar z-index-1" role="navigation" aria-label="main navigation">
-                    <div class="navbar-brand">
-                      <a class="navbar-item" href="/">
-                        <img src="assets/images/icons/Logo.png" alt="" width="65" height="28">
-                      </a>
-                      <div class="navbar-end">
+            <div class="shadow-light of-y-scroll w-full" >
+              <personalizados-lopes-produto-swiper [slidesPerView]='2'></personalizados-lopes-produto-swiper>
+              <nav class="navbar z-index-1" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                  <a class="navbar-item" href="/">
+                    <img src="assets/images/icons/Logo.png" alt="" width="65" height="28">
+                  </a>
+                  <div class="navbar-end">
 
-                        <div class="navbar-item">
-                          <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
-                            VEJA MUITO MAIS, CLIQUE AQUI! MAIS DE 20 MODELOS! CONFIGURE TAMANHO, COR E ESTAMPA
-                          </a>
-                        </div>
-                      </div>
+                    <div class="navbar-item">
+                      <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
+                        VEJA MUITO MAIS, CLIQUE AQUI! MAIS DE 20 MODELOS! CONFIGURE TAMANHO, COR E ESTAMPA
+                      </a>
                     </div>
-                  </nav>
+                  </div>
                 </div>
-              </div>
+              </nav>
             </div>
             <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
               <div data-aos="zoom-down" class="testimonial">
