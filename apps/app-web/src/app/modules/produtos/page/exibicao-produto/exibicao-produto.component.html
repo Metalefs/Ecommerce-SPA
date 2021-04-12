@@ -1,17 +1,14 @@
-<div class=" has-background-white-bis bbr"  >
-  <p-breadcrumb [styleClass]=" ''" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
+<div class=" has-background-dark bbr"  >
+  <p-breadcrumb [styleClass]=" 'has-background-info-light has-text-white'" *ngIf="this.Produto" [model]="items" [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
-<div class="margin px-3 bbr pt-0 shadow-light box">
+<div class="px-3 bbr pt-0 shadow-light box">
   <div class="bbr ">
-    <div class="pr-3 pl-2 bbr mb-3">
-      <div class="columns mt-3 bbr  ">
-        <div class="column is-5 mb-0 top-0" >
+    <div class="pr-3 pl-2 bbr mb-3 has-background-white" >
+      <div class="columns is-multiline is-4 mt-0 bbr  ">
+        <div class="column is-6 py-0 mt-0 top-0" >
 
-          <div class="">
-              <!-- <mat-chip-list class="is-left">
-                <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{translateStatusProduto(Produto?.Status)}}</mat-chip>
-              </mat-chip-list> -->
+          <div class="pt-0 mt-0">
               <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
               <mat-tab-group headerPosition="below" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab [label]="'Galeria'">
@@ -57,7 +54,7 @@
               <mat-tab-group class="is-hidden-desktop px-3">
                 <mat-tab label="Informações">
                   <div class="margin py-3 px-3 border-light">
-                    <div class="w-full columns ">
+                    <div class="w-full columns is-multiline">
                       <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3>
                       <div class="descricao-produto column is-12-touch is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
                       <h3 class="has-text-weight-bold ltr-sp-2">Especificações do produto</h3>
@@ -86,7 +83,7 @@
           </div>
 
         </div>
-        <div class="column is-7 has-background-white-bis bbr shadow-light">
+        <div class="column is-6 has-background-white bbr shadow-light">
 
           <div class="mb-0 pb-0">
 
@@ -103,128 +100,42 @@
             </div>
 
             <div class="{{mobile ? 'txt-left': 'txt-left'}}" *ngIf="Produto">
+              <div class="columns is-multiline ">
+                <div class="column is-6-desktop is-12-tablet is-12-mobile">
+                  <div class="columns  is-multiline is-gapless" >
+                    <div class="column is-12">
+                      <div class="{{mobile ? 'txt-left': 'txt-left'}}" >
 
-              <div class="columns is-multiline" >
-                <div class="column is-7">
-                  <div class="{{mobile ? 'txt-left': 'txt-left'}}" >
-                    <div class="{{mobile ? 'txt-left': 'txt-left'}} my-1 star-width dis-flex flex-w w-full">
+                        <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
 
-                      <span class="spacer"></span>
-                      <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
-                        labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium" [rating]="meanRating()"
-                        staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
-                        (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
-                      </star-rating>
-                      <span class="subtitle fs-12">({{Produto?.Rating.length}} avaliações)</span>
+                        <ul class="list-unstyled">
+                          <li ><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
+                          <li ><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></li>
+                        </ul>
+                        <mat-divider></mat-divider>
+                        <div class="{{mobile ? 'txt-left': 'txt-left'}} my-1 star-width dis-flex flex-w w-full">
 
-                    </div>
-                    <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+                          <span class="spacer"></span>
+                          <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+                            labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="small" [rating]="meanRating()"
+                            staticColor="ok" (starClickChange)="onClick($event)" (ratingChange)="onRatingChange($event)"
+                            (hoverRatingChange)="onHoverRatingChange($event)" [hoverEnabled]="true" [starType]="'svg'">
+                          </star-rating>
+                          <span class="subtitle fs-12">em {{Produto?.Rating.length}} avaliaç{{Produto?.Rating.length==1?'ão':'ões'}}</span>
 
-                    <ul class="list-unstyled">
-                      <li ><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
-                      <li ><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></li>
-                      <!-- <li>Disponibilidade: <span>{{translateStatusProduto(Produto?.Status)}} - Sob orçamento</span></li> -->
-                    </ul>
-
-                    <span class="subtitle is-size-7" *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
-
-                    <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
-                      <em>
-                        *Minimo {{Produto?.QuantidadeMinima}} unidades
-                      </em>
-                    </span>
-
-                  </div>
-                </div>
-                <div class="column">
-                  <div class="text-center is-right notification is-info-light w-full">
-                    <i class="is-right pi pi-question-circle"></i>
-                    <ul>
-                      <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <form action="" method="post" [formGroup]="produtoForm">
-                <div class="columns txt-left is-multiline is-vcentered">
-
-                  <div class="column is-12-desktop pb-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
-                    <mat-form-field class="w-full " *ngIf="Produto?.Cores" appearance="fill">
-                      <mat-label >Tamanho:</mat-label>
-                      <mat-select matNativeControl
-                      [formControlName]="'tamanho'"
-                      [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
-                        <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
-                          <div class="cor-produto w-full" (click)="Produto.Tamanho = opt">
-                            <p>{{opt}}</p>
-                          </div>
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="column is-12-desktop">
-                    <div class="field ">
-                      <div class="control shadow-light is-large flex-c flex-m">
-                        <p class="is-size-7 has-text-grey pos-absolute left-0 ml-2">Quantidade:</p>
-                        <button mat-icon-button (click)="DecrescerQuantidade()">
-                          <mat-icon class="less">remove</mat-icon>
-                        </button>
-                        <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
-                          [formControlName]="'quantidade'"
-                          value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
-                          min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
-                          [ngClass]="{'is-danger':ErroQuantidade()}"
-                          [(ngModel)]="(Produto).Quantidade">
-                        <button mat-icon-button (click)="IncrementarQuantidade()">
-                          <mat-icon class="more">add</mat-icon>
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="column is-12 ">
-
-                    <div class="columns txt-left is-vcentered pt-0 is-multiline">
-
-                      <div class="column is-12 py-1">
-                        <p class="is-size-7"><span class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
-                        <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
-                          <div mat-fab color=""  (click)="setColor(cor)" id="column is-3 shadow-light" *ngFor="let cor of Produto?.Cores; let i =index">
-                            <input class="px-2 py-2 mx-1"
-                              type="radio" alt="{{cor.nome}}"
-                              [value]="Produto.Cor"
-                              id="cor{{i}}"
-                              [formControlName]="'cor'"
-                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}"
-                              >
-                            <div title="{{cor.nome}}"
-                              class="ColorlabelBackground shadow-light border-light"
-                              [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
-                             >
-                              <label title="{{cor.nome}}" [style.background]="cor.cor"
-                              class="border-light"
-                              for="cor{{i}}"></label>
-                            </div>
-                            <span (click)="Produto.Cor=cor;"></span>
-                          </div>
                         </div>
-                      </div>
-
-                    </div>
-                    <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left pt-4">
-                      <div class="columns pb-0 mb-0 ">
-
-                        <div class="mx-2 py-2 column mb-0 is-6">
+                        <span class="subtitle is-size-7" *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
+                        <div class="py-2">
                           <ng-container *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
                           </ng-container>
                           <ng-template #preco_promo>
-                            <div class="txt-left">
+                            <div class="">
                               <p class="preco linethr"><strong>R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</strong></p>
                               <p class="preco promocao "><strong>R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</strong></p>
                             </div>
                           </ng-template>
                           <ng-template #preco_normal>
-                            <div class="txt-left">
+                            <div class="">
                               <p class="preco "><strong>R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</strong></p>
                             </div>
                           </ng-template>
@@ -235,10 +146,121 @@
                               sem juros
                             </p>
                           </div>
+
+                        </div>
+                        <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
+                          <em>
+                            *Minimo {{Produto?.QuantidadeMinima}} unidades
+                          </em>
+                        </span>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="column is-6-desktop is-12-tablet is-12-mobile border-light box">
+                  <div class="column">
+                    <div class="text-center is-right notification is-info-light w-full">
+                      <i class="is-right pi pi-question-circle"></i>
+                      <ul>
+                        <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <form action="" method="post" [formGroup]="produtoForm">
+                    <div class="columns txt-left is-multiline is-vcentered">
+                      <div class="column is-12">
+                        <div class="field ">
+                          <div class="control is-large flex-c flex-m">
+                            <button mat-icon-button (click)="DecrescerQuantidade()">
+                              <mat-icon class="less">remove</mat-icon>
+                            </button>
+                            <input *ngIf="Produto" placeholder="{{Produto?.QuantidadeMinima}}"
+                              [formControlName]="'quantidade'"
+                              value="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" type="number" (change)="VerificarQuantidade($event)"
+                              min="{{Produto?.QuantidadeMinima <= 1 ? 1 : Produto?.QuantidadeMinima}}" class="quantidade-produto input"
+                              [ngClass]="{'is-danger':ErroQuantidade()}"
+                              [(ngModel)]="(Produto).Quantidade">
+                            <button mat-icon-button (click)="IncrementarQuantidade()">
+                              <mat-icon class="more">add</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="column is-12-desktop pb-0" [ngClass]="{'is-danger':ErroTamanho()}" *ngIf="Produto?.Tamanhos">
+                        <mat-form-field class="w-full " *ngIf="Produto?.Cores" appearance="fill">
+                          <mat-label >Tamanho:</mat-label>
+                          <mat-select matNativeControl
+                          [formControlName]="'tamanho'"
+                          [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
+                            <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
+                              <div class="cor-produto w-full" (click)="Produto.Tamanho = opt">
+                                <p>{{opt}}</p>
+                              </div>
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="column is-12 ">
+
+                        <div class="columns txt-left is-vcentered pt-0 is-multiline">
+
+                          <div class="column is-12 py-1">
+                            <p class="is-size-7"><span class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
+                            <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb" [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
+                              <div mat-fab color=""  (click)="setColor(cor)" id="column is-3 shadow-light" *ngFor="let cor of Produto?.Cores; let i =index">
+                                <input class="px-2 py-2 mx-1"
+                                  type="radio" alt="{{cor.nome}}"
+                                  [value]="Produto.Cor"
+                                  id="cor{{i}}"
+                                  [formControlName]="'cor'"
+                                  [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}"
+                                  >
+                                <div title="{{cor.nome}}"
+                                  class="ColorlabelBackground shadow-light border-light"
+                                  [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;"
+                                 >
+                                  <label title="{{cor.nome}}" [style.background]="cor.cor"
+                                  class="border-light"
+                                  for="cor{{i}}"></label>
+                                </div>
+                                <span (click)="Produto.Cor=cor;"></span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left pt-4">
+                          <div class="columns pb-0 mb-0 ">
+                            <div class="dis-flex flex-w column pb-0 mb-0 " >
+                              <article class="message margin is-grey py-0 my-0" *ngIf="Produto && produtoForm">
+                                <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
+                                <ng-template #erro>
+                                  <div class="message-body" @fadeIn>
+                                    <p class="is-uppercase">Para comprar, Selecione o <strong>Tamanho, Cor</strong> e <strong>Quantidade</strong><a href="#topo" pageScroll></a><mat-icon style="transform: rotate(180deg);">arrow_drop_down_circle</mat-icon></p>
+                                  </div>
+                                </ng-template>
+                                <ng-template #done>
+                                  <!-- <div class="message-body" @fadeIn>
+                                    <p class="is-uppercase"><mat-icon>done</mat-icon></p>
+                                  </div> -->
+                                </ng-template>
+                              </article>
+
+                              <button @fadeIn *ngIf="Produto" mat-raised-button
+                                [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+                                class="button is-success share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                                {{textoAdicionar}}
+                                <mat-icon>shopping_bag</mat-icon>
+                              </button>
+                            </div>
+                          </div>
                           <div class="py-3">
 
                             <p class="subtitle is-7">Calcule frete e prazo</p>
-                            <div class="w-full" >
+                            <div class="" >
                               <mat-form-field appearance="fill">
                                 <mat-label>CEP</mat-label>
                                 <input matInput (change)="CarregarDetalhesCEP()" class="w-full"
@@ -247,109 +269,86 @@
                               </mat-form-field>
                             </div>
                           </div>
-                        </div>
-                        <div class="dis-flex flex-w column pb-0 mb-0 " >
-                          <article class="message margin is-grey py-0 my-0" *ngIf="Produto && produtoForm">
-                            <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
-                            <ng-template #erro>
-                              <div class="message-body" @fadeIn>
-                                <p class="is-uppercase">Para comprar, Selecione o <strong>Tamanho, Cor</strong> e <strong>Quantidade</strong><a href="#topo" pageScroll></a><mat-icon style="transform: rotate(180deg);">arrow_drop_down_circle</mat-icon></p>
-                              </div>
-                            </ng-template>
-                            <ng-template #done>
-                              <!-- <div class="message-body" @fadeIn>
-                                <p class="is-uppercase"><mat-icon>done</mat-icon></p>
-                              </div> -->
-                            </ng-template>
-                          </article>
 
-                          <button @fadeIn *ngIf="Produto" mat-raised-button
-                            [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
-                            class="button is-success share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
-                            {{textoAdicionar}}
-                            <mat-icon>shopping_bag</mat-icon>
-                          </button>
+                          <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
+                            <mat-list-item *ngFor="let erro of Erros">
+                              <p class="subtitle is-size-6 border">*{{erro.erro}}</p><hr>
+                            </mat-list-item>
+                          </mat-list>
+                          <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c mx-2">
+                          </p-skeleton>
+                        </div>
+                        <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
+                          <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
                         </div>
                       </div>
-
-
-                      <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
-                        <mat-list-item *ngFor="let erro of Erros">
-                          <p class="subtitle is-size-6 border">*{{erro.erro}}</p><hr>
-                        </mat-list-item>
-                      </mat-list>
-                      <p-skeleton @fadeIn *ngIf="!Produto" height="32" width="100%" class=" w-full flex-m flex-c mx-2">
-                      </p-skeleton>
+                      <div class="column" *ngIf="this.isOrcamento">
+                        <button mat-flat-button title="Criar novo pedido"
+                          [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                          (click)="DuplicarOrcamento()" color="accent"
+                          class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
+                          Novo
+                          <mat-icon>add</mat-icon>
+                        </button>
+                        <button mat-flat-button title="Personalizar"
+                          [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                          (click)="AbrirModalArte()" color=""
+                          class="has-background-dark has-text-white">
+                          Personalizar
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                      </div>
                     </div>
-                    <div *ngIf="Produto?.Status == statusProduto.esgotado" class="box pt-5 w-full">
-                      <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
+                  </form>
+                  <div class="pt-3 px-2 txt-left of-x-scroll">
+                    <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
+                      <a>Como essa arte será usada no produto?</a>
+                      <div class="column">
+                        <mat-card>
+                          <mat-card-header>
+                            <mat-card-subtitle>Frente</mat-card-subtitle>
+                          </mat-card-header>
+                          <figure class="image is-128x128">
+                            <img mat-mat-card-image [src]="this.Produto?.Arte" height="200">
+                          </figure>
+                          <mat-card-actions>
+                            <a mat-icon-button (click)="Produto.Arte = null">
+                              <mat-icon>clear</mat-icon>
+                            </a>
+                          </mat-card-actions>
+                        </mat-card>
+                      </div>
+                      <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column">
+                        <mat-card>
+                          <mat-card-header>
+                            <mat-card-subtitle>Secundaria</mat-card-subtitle>
+                          </mat-card-header>
+                          <figure class="image is-128x128">
+                            <img mat-mat-card-image [src]="this.Produto?.ArteSecundaria" height="200">
+                          </figure>
+                          <mat-card-actions>
+                            <a mat-icon-button (click)="Produto.ArteSecundaria = null">
+                              <mat-icon>clear</mat-icon>
+                            </a>
+                          </mat-card-actions>
+                        </mat-card>
+                      </div>
                     </div>
+
                   </div>
-                  <div class="column" *ngIf="this.isOrcamento">
-                    <button mat-flat-button title="Criar novo pedido"
-                      [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                      (click)="DuplicarOrcamento()" color="accent"
-                      class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
-                      Novo
-                      <mat-icon>add</mat-icon>
-                    </button>
-                    <button mat-flat-button title="Personalizar"
-                      [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                      (click)="AbrirModalArte()" color=""
-                      class="has-background-dark has-text-white">
-                      Personalizar
-                      <mat-icon>edit</mat-icon>
-                    </button>
+                  <div class="columns w-full is-gapless is-multiline">
+                    <div class="column w-full is-12-mobile">
+                      <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                        title="Entrar em contato pelo whatsapp"
+                        class="button w-full is-success wp-btn border-light flex-m flex-c has-text-white has-text-weight-medium">
+                        <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
+                        <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </form>
-              <div class="pt-3 px-2 txt-left of-x-scroll">
-                <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
-                  <a>Como essa arte será usada no produto?</a>
-                  <div class="column">
-                    <mat-card>
-                      <mat-card-header>
-                        <mat-card-subtitle>Frente</mat-card-subtitle>
-                      </mat-card-header>
-                      <figure class="image is-128x128">
-                        <img mat-mat-card-image [src]="this.Produto?.Arte" height="200">
-                      </figure>
-                      <mat-card-actions>
-                        <a mat-icon-button (click)="Produto.Arte = null">
-                          <mat-icon>clear</mat-icon>
-                        </a>
-                      </mat-card-actions>
-                    </mat-card>
-                  </div>
-                  <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column">
-                    <mat-card>
-                      <mat-card-header>
-                        <mat-card-subtitle>Secundaria</mat-card-subtitle>
-                      </mat-card-header>
-                      <figure class="image is-128x128">
-                        <img mat-mat-card-image [src]="this.Produto?.ArteSecundaria" height="200">
-                      </figure>
-                      <mat-card-actions>
-                        <a mat-icon-button (click)="Produto.ArteSecundaria = null">
-                          <mat-icon>clear</mat-icon>
-                        </a>
-                      </mat-card-actions>
-                    </mat-card>
-                  </div>
-                </div>
-
               </div>
 
-              <div class="columns w-full is-gapless is-multiline">
-                <div class="column w-full is-12-mobile">
-                  <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                    title="Entrar em contato pelo whatsapp"
-                    class="button w-full is-success wp-btn border-light flex-m flex-c has-text-white has-text-weight-medium">
-                    <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
-                    <span class="ml-3 nunitoParagraphy16 has-text-white">Comprar pelo whatsapp</span>
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -393,6 +392,7 @@
 
 </div>
 
+
 <div class="w-full flex-w flex-sa px-6 my-2">
   <a [routerLink]="'/produtos'" class="has-text-grey">
     <button mat-icon-button>
@@ -405,8 +405,7 @@
     </button>
   </a>
 </div>
-
-<div class="bg-transp margin txt-center">
+<div class="has-background-white-bis px-4 txt-center">
 
   <div class="  py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>

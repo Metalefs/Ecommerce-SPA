@@ -544,14 +544,14 @@ canvas{
   }
 }
 .preco{
-  font-size: 22px;
+  font-size: 1.2em;
   color:rgb(105, 109, 140);
   font-weight: 500;
 
 }
 .preco strong{
   // color:#fe0000;
-  font-size: 35px;
+  font-size: 1.2em;
 }
 .parcelas{
   // display: flex;
@@ -996,7 +996,10 @@ canvas{
       padding: 12px 16px;
       text-decoration: none;
       display: block;
-      &:hover {background-color: #ddd;}
+      &:hover {
+        color: #fe0000;
+        background-color: #ddd;
+      }
       &.nav-link{
         color:#9c9c9c;
         padding: 5px;

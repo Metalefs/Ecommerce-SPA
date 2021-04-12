@@ -7,12 +7,11 @@ import { cardFlip, fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { EditarOrcamento, EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
-import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
+import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { cpf } from 'cpf-cnpj-validator';
 import { CheckoutService } from '../../checkout.service';
 import { DEFAULT_ORCAMENTO } from 'apps/app-web/src/app/data/store/state/orcamento.state';
-import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 
 @Component({
   selector: 'personalizados-lopes-dados',

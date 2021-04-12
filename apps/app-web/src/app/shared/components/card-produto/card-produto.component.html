@@ -126,12 +126,12 @@
           class="px-4 py-2 level flex-sa dis-flex flex-w flex-m">
             <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active">
               <button
-                class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
+                class="wp-btn button shadow-light is-small box mb-2 pb-2" style="text-decoration: none;">
                 <span><i class="pi pi-dollar"></i> Comprar</span>
               </button>
             </a>
             <button (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-              class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
+              class="wp-btn button shadow-light is-small box mb-2 pb-2" style="text-decoration: none;">
               <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
             </button>
           </div>
@@ -152,10 +152,9 @@
           </div>
           <a title="Comprar" matRipple
           [style.width]="flex_direction == 'row'?'50%':'100%'"
-          class="card m-lr-auto"
           pageScroll
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome]" routerLinkActive="router-link-active"
-          mat-flat-button class=""><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
+          mat-flat-button class="m-lr-auto shadow-light"><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
         </div>
       </div>
     </mat-card>
