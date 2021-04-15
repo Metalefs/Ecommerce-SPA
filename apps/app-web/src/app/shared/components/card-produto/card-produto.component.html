@@ -207,11 +207,13 @@
         {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
       </span> -->
 
-      <a *ngIf="Produto.Cores?.length > 1" class="prod-cores " [href]="'/produtos/'+Produto._id">
-        <span  routerLinkActive="router-link-active"
-          class="button is-size-7 is-small bo-0 is-fullwidth border is-disabled px-4">
-          Em {{Produto.Cores?.length}} cores
-        </span>
+
+      <a matRipple class="dis-flex flex-w  w-full"  [href]="'/produtos/'+Produto._id">
+       <span class="prod-status ">
+        <i class="pi pi-tag  product-category-icon"></i>
+        <span class="product-category"></span>
+        <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()"> Em {{Produto.Cores?.length}} cores</span>
+      </span>
       </a>
 
       <mat-card-footer class="px-2 z-index-2">
@@ -219,10 +221,7 @@
         <mat-card-header
         class="w-full txt-center pt-1">
 
-          <mat-card-title matBadgePosition="before"
-          matBadgeOverlap="true"
-          matBadge="{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}"
-          matBadgeColor="accent"
+          <mat-card-title
           class="w-full titulo-produto ">
             <a matRipple class="reset-a" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]">
               {{Produto?.Nome}}

@@ -32,7 +32,7 @@
  [images]="imagens">
 </carousel> -->
 
-<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1 margin" id="Básicos">
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1" id="Básicos">
 
   <div class="columns px-1c py-4">
     <div class="column is-3 is-hidden-mobile ">
@@ -133,9 +133,9 @@
                 busca</button>
               </div>
             </div>
-            <div class="columns is-multiline portfolio-container dis-flex">
+            <div class="columns is-multiline dis-flex">
 
-              <p-dataView [value]="Produtos" [lazy]="true" class="w-full" [layout]="'grid'">
+              <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'">
                 <ng-template pTemplate="header">
                 <span class="subtitle is-size-6 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b> resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
                 <div class="columns is-vcentered is-mobile mb-0">

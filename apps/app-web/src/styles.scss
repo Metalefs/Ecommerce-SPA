@@ -223,6 +223,9 @@ a {
   color: #a4a4a4;
   font-size: 12px;
 }
+.p-dataview .p-dataview-content {
+  background: transparent;
+}
 .swiper-container{
   &:hover > .swiper-button-prev{
     animation: showArr 1s ease forwards !important;
@@ -484,7 +487,7 @@ canvas{
   background-repeat: repeat-x;
   border-color: #00c3d6 #2196f3 #3697bb;
   color: white;
-  z-index: 11;
+  z-index: 9;
 }
 /**/
 .mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element{

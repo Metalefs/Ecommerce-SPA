@@ -13,6 +13,7 @@
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
   background: #f8f9fa;
+  background: #fefefe;
   margin-top: 0px;
   z-index: 11;
 }
@@ -90,6 +91,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
   color: #484848;
+  font-weight: 600;
   // color: white;
   margin-left: 2px;
 }
@@ -151,10 +153,10 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: #f8f9fa;
+  background: #fefefe;
 }
 .produtos-nav{
-  background: #f8f9fa;
+  background: #fefefe;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -170,7 +172,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #f8f9fa;
+  background: #fefefe;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;

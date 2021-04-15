@@ -1,8 +1,6 @@
 <ng-container [ngSwitch]="DeployState">
-  <div>
-    <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
-  </div>
-  <!-- <personalizados-lopes-under-construction *ngSwitchCase="AppDeploymentState.Development"></personalizados-lopes-under-construction> -->
+  <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
+
   <cookie-law #cookieLaw position="bottom"
   name="ng4topCookieLaw" expiration="1"
   class="px-3 mx-3 my-3 flex-m has-text-centered bg-transp z-index-top shadow-light pt-0 txt-center w-half a-i-c m-lr-auto">
