@@ -156,18 +156,18 @@
 
                       </div>
                     </div>
-
-                  </div>
-                </div>
-                <div class="column is-6-desktop is-12-tablet is-12-mobile border-light box">
-                  <div class="column">
-                    <div class="text-center is-right notification is-info-light w-full">
-                      <i class="is-right pi pi-question-circle"></i>
-                      <ul>
-                        <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
-                      </ul>
+                    <div class="column">
+                      <div class="text-center is-right notification is-info-light w-full">
+                        <i class="is-right pi pi-question-circle"></i>
+                        <ul>
+                          <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
+                </div>
+                <div class="column is-6-desktop is-12-tablet is-12-mobile card">
+
                   <form action="" method="post" [formGroup]="produtoForm">
                     <div class="columns txt-left is-multiline is-vcentered">
                       <div class="column is-12">
@@ -235,6 +235,15 @@
                         <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left pt-4">
                           <div class="columns pb-0 mb-0 ">
                             <div class="dis-flex flex-w column pb-0 mb-0 " >
+
+
+                              <button @fadeIn *ngIf="Produto" mat-raised-button
+                                [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
+                                class="button is-success share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                                {{textoAdicionar}}
+                                <mat-icon>shopping_bag</mat-icon>
+                              </button>
+
                               <article class="message margin is-grey py-0 my-0" *ngIf="Produto && produtoForm">
                                 <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
                                 <ng-template #erro>
@@ -248,13 +257,6 @@
                                   </div> -->
                                 </ng-template>
                               </article>
-
-                              <button @fadeIn *ngIf="Produto" mat-raised-button
-                                [disabled]="Produto?.Status == statusProduto.esgotado" (click)="AdicionarAoOrcamento()"
-                                class="button is-success share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
-                                {{textoAdicionar}}
-                                <mat-icon>shopping_bag</mat-icon>
-                              </button>
                             </div>
                           </div>
                           <div class="py-3">

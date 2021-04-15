@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { NavLink } from 'apps/app-web/src/app/data/models/navlinks';
 import { MegaMenuItem } from 'primeng/api';
 
 @Component({
@@ -8,9 +9,11 @@ import { MegaMenuItem } from 'primeng/api';
 })
 export class MegaMenuComponent implements OnInit {
 
+  @Input() Categorias: NavLink;
   items: MegaMenuItem[];
 
   ngOnInit() {
+   
       this.items = this.items = [
         {
             label: 'TV', icon: 'fa fa-fw fa-check',

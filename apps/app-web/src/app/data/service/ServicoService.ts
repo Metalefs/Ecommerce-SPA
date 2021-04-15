@@ -9,7 +9,7 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { ErrorHandler } from '../../core/error.handler';
 import { Servico } from 'libs/data/src/lib/classes';
-import { ImagemService } from '.';
+import { ImagemService } from './ImagemService';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
 

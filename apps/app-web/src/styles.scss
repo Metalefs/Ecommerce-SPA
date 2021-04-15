@@ -200,8 +200,13 @@ a {
   /* position: relative; */
   /* white-space: pre-wrap; */
 }
+.p-component{
+  font-family: "Montserrat";
+}
+.p-dataview .p-dataview-header {
+  background: #ffffff;
+}
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
-
   font-size: 13px;
   font-family: "Montserrat";
   // color: #23a1d1;
@@ -307,12 +312,7 @@ img{
 .clickable{
   cursor: pointer;
 }
-.border-light{
-  border:1px solid $neutral-lightest
-}
-.border-dark{
-  border:3px solid #000000bf
-}
+
 .logo{
   width: 80px;
   // left: 20px;
@@ -638,6 +638,12 @@ canvas{
 }
 .border{
   border: 1px solid #72727242 !important;
+}
+.border-light{
+  border:1px solid $neutral-lightest
+}
+.border-dark{
+  border:3px solid #000000bf
 }
 .subtitle{
   font-size:14px;

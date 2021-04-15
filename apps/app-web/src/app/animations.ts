@@ -29,9 +29,9 @@ export const slider =
     transition('isRight => flip', cardFlipQ() ),
     transition('isLeft => flip', cardFlipQ() ),
 
-    transition('isLeft => checkout', slideTo('top') ),
-    transition('flip => checkout', slideTo('top') ),
-    transition('isRight => checkout', slideTo('top') ),
+    transition('isLeft => checkout', cardFlipQ() ),
+    transition('flip => checkout', cardFlipQ() ),
+    transition('isRight => checkout',cardFlipQ() ),
 
     transition('checkout => isLeft', slideTo('right') ),
     transition('checkout => isRight', slideTo('left') ),
