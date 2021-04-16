@@ -133,7 +133,7 @@
                 busca</button>
               </div>
             </div>
-            <div class="columns is-multiline dis-flex">
+            <div class="columns is-1 is-multiline dis-flex">
 
               <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'">
                 <ng-template pTemplate="header">
@@ -153,7 +153,7 @@
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                   </div>
                   <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="">
                       <mat-label>Página</mat-label>
                       <mat-select matNativeControl [(ngModel)]="activeOrderLimit" (selectionChange)="atualizarFiltroAtivo()">
                         <mat-option *ngFor="let opt of orderLimit" [value]="opt.id" class="w-full">
@@ -165,7 +165,7 @@
                     </mat-form-field>
                   </div>
                   <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
-                    <mat-form-field  appearance="fill">
+                    <mat-form-field  appearance="">
                       <mat-label>Ordenar por</mat-label>
                       <mat-select matNativeControl [(ngModel)]="activeOrderFilter" (selectionChange)="atualizarFiltroAtivo()">
                         <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
@@ -177,8 +177,8 @@
                     </mat-form-field>
                   </div>
                 </div>
-                <div class="columns is-mobile is-multiline is-vcentered  is-hidden-desktop">
-                  <div class="column  is-2-desktop is-6-mobile">
+                <div class="columns is-mobile is-multiline is-vcentered is-hidden-desktop mb-3">
+                  <div class="column is-2-desktop is-6-mobile is-hidden-mobile">
                     <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
                       (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
                   </div>
@@ -200,13 +200,13 @@
               </ng-template>
               <ng-template let-produto pTemplate="gridItem">
                 <ng-container class="mx-0 px-0 ">
-                  <div class="column is-3 pt-4 is-6-mobile"*ngIf="loading" >
+                  <div class="column is-6 pt-4 is-6-mobile"*ngIf="loading" >
                     <div class="w-full mh-full skeleton" >
                       <p-skeleton width="100%" height="100%">
                       </p-skeleton>
                     </div>
                   </div>
-                  <div class="column is-3 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
+                  <div class="column is-6 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
                     <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
                       [flex_direction]="'column'"></personalizados-lopes-card-produto>
                   </div>
@@ -215,7 +215,7 @@
             </p-dataView>
 
             <a [ngClass]="loading_more ? 'button is-loading':''" mat-stroked-button
-              class="py-2 px-3 w-full button is-success txt-center border-light" *ngIf="total > Produtos?.length"
+              class="py-2 px-3 w-full button wp-btn txt-center border-light" *ngIf="total > Produtos?.length"
               (click)="CarregarMaisProdutos()">
               Ver mais resultados
             </a>

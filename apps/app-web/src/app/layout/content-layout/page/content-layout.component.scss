@@ -3,10 +3,16 @@
 .wrapper{
   height: 100vh;
   transition: all .5s;
+
+}
+.main-content{
+  border-radius: 10px;
+  overflow: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  &:before,
+  overflow-x: hidden;
+
   &:after {
       background-color: #ff408073;
       border-radius: 1rem;
@@ -21,16 +27,12 @@
   &:before {
     left: -320px;
     top: 927px;
-}
+  }
 
   &:after {
       right: -320px;
       top: 370px;
   }
-}
-.main-content{
-  border-radius: 10px;
-  overflow: auto;
 }
 .split-home {
   height: 100vh;

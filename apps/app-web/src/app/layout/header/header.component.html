@@ -88,7 +88,7 @@
             <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
             <ng-template #normal>
               <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
-                class="nav-link shadow-light hoverable {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
+                class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
                 routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
                 <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
                 <i *ngIf="link.Picon" [class]="link.Picon"></i>
@@ -100,7 +100,7 @@
               <div class="dropdown">
                 <a (click)="SetActiveNav(link)" [routerLink]="link.href" pageScroll routerLinkActive="Active"
                   [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
-                  class="nav-link shadow-light hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
+                  class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
                   <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
                   <i *ngIf="link.Picon" [class]="link.Picon"></i>
                   {{link.name == "Básicos"? 'Produtos' : link.name}}
