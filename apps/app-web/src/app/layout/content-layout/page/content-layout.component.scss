@@ -1,13 +1,8 @@
 
   $squared-size: 600px;
 .wrapper{
-  height: 100vh;
+  min-height: 100vh;
   transition: all .5s;
-
-}
-.main-content{
-  border-radius: 10px;
-  overflow: auto;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -34,21 +29,19 @@
       top: 370px;
   }
 }
-.split-home {
-  height: 100vh;
-  transition: all .5s;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+.main-content{
+  border-radius: 10px;
 
-  min-height: 136vh;
+}
+.split-home {
+  transition: all .5s;
+
+  // min-height: 136vh;
   // overflow: hidden;
   font-family: "Nunito", sans-serif;
   .main-content{
      min-height: 100vh;
   }
-
-
 }
 /* --------------------------------------------------
 ---------- Hamburger and Navigation Starts ----------

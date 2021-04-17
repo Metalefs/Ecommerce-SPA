@@ -667,7 +667,7 @@ canvas{
 .header{
   font-family: Open Sans !important;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 1em;
   line-height: 47px;
   display: flex;
@@ -679,13 +679,13 @@ canvas{
 .header-card{
   // font-family: Open Sans;
   font-style: normal;
-  font-size: medium;
+  font-size: bold;
   line-height: 27px;
   display: flex;
   align-items: center;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color:#383838;
+  color:#000000;
   text-decoration: underline;
 }
 .empresa-card{
@@ -700,7 +700,7 @@ canvas{
   background-size: cover !important;
   background-repeat: no-repeat !important;
   width: 100%;
-  background-color: #5b5b5d;
+  background-color: #000000;
 }
 .spacer {
   flex: 1 1 auto;

@@ -35,7 +35,7 @@
               </nav>
             </div>
             <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
-              <div data-aos="zoom-down" class="testimonial">
+              <div class="testimonial">
                 <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
               </div>
             </section>

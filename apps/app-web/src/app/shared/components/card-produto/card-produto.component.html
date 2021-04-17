@@ -15,7 +15,7 @@
       this.imgProduto.classList.add('show');
       "
       routerLinkActive="router-link-active"
-      matRipple class="portfolio-item zoom of-y-scroll clickable shadow-light"
+      matRipple class="portfolio-item zoom of-y-scroll card clickable"
       [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
 
       <div
@@ -173,7 +173,7 @@
       this.imgProduto.classList.remove('hide');
       this.imgProduto.classList.add('show');
       "
-      matRipple class="portfolio-item of-y-scroll z-index-top" [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
+      matRipple class="portfolio-item of-y-scroll z-index-top card" [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
 
       <div
 
@@ -270,6 +270,12 @@
               <span
                 class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
                 <span><i class="pi pi-plus"></i> Veja mais</span>
+              </span>
+            </a>
+            <a href="javascript:void(0)" (click)='AdicionarAoOrcamento()'>
+              <span
+                class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
+                <span><i class="pi pi-cart"></i> Carrinho</span>
               </span>
             </a>
           </div>
