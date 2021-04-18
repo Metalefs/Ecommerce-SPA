@@ -1,6 +1,6 @@
-<div class="a-i-c flex-sb columns is-multiline is-6">
-  <figure class="image is-square pos-absolute"><img src="/assets/images/figures/undraw_decide_3iwx.svg" alt=""></figure>
-  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column is-4 card">
+<figure class="image is-square pos-absolute"><img src="/assets/images/figures/undraw_decide_3iwx.svg" alt=""></figure>
+<div class=" columns is-multiline is-6">
+  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column card">
     <div class="cardbg">
       <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
       <div [id]="card.class" class=" {{card?.class}}">

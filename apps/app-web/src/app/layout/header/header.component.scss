@@ -1,10 +1,11 @@
 
 @import '../../../variables';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-$navbg : #f8f9fa;
-.has-background-dark {
-  background-color: #757575 !important;
-}
+$navbg : #6c63ff;
+$navcolor : white;
+// .has-background-dark {
+//   background-color: #757575 !important;
+// }
 .container{
   max-width: 1290px;
 }
@@ -90,10 +91,10 @@ $navbg : #f8f9fa;
   min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  // border-left: 1px solid #ebebf1;
+  border-left: 1px solid #9898f1;
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
-  color: #000000;
+  color: $navcolor;
   // font-weight: bolder;
   // color: white;
   margin-left: 2px;

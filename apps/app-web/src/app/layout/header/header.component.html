@@ -47,7 +47,7 @@
     <li class="level-item px-2 has-text-centered mr-6">
       <div>
         <a class="reset-a is-size-7" [routerLink]="['checkout']"><span
-            class="is-hidden-touch">Finalizar pedido</span></a><i class="pi pi-check"></i>
+            class="is-hidden-touch">Finalizar pedido</span><i class="pi pi-check"></i></a>
       </div>
     </li>
   </ul>
@@ -60,8 +60,8 @@
     <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
       <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
         <div class="flex-m a-i-c" style="height: 50px; ">
-          <a @fadeIn href="#" class="logo mx-5 pr-3 flex-m a-i-c">
-            <img loading="lazy" class="logo " src="assets/images/icons/logo.jpg" alt="LOGO">
+          <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
+            <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
           </a>
         </div>
         <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
@@ -89,7 +89,7 @@
             <ng-container *ngIf="link.options then dropdown else normal"></ng-container>
             <ng-template #normal>
               <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
-                class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
+                class="nav-link  {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
                 routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
                 <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
                 <i *ngIf="link.Picon" [class]="link.Picon"></i>
@@ -101,7 +101,7 @@
               <div class="dropdown">
                 <a (click)="SetActiveNav(link)" [routerLink]="link.href" pageScroll routerLinkActive="Active"
                   [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
-                  class="nav-link hoverable {{link.name == 'inicio' ? 'inicio': ''}}">
+                  class="nav-link  {{link.name == 'inicio' ? 'inicio': ''}}">
                   <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
                   <i *ngIf="link.Picon" [class]="link.Picon"></i>
                   {{link.name == "Básicos"? 'Produtos' : link.name}}

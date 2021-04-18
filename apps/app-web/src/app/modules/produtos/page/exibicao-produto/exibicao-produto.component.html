@@ -6,7 +6,18 @@
 <div class="bbr pt-0 margin shadow-light box">
   <div class="">
     <div class="bbr mb-3">
-      <div class="columns is-multiline is-4">
+      <div class="pb-0" *ngIf="!Produto">
+        <div class="p-grid p-formgrid">
+          <div class="p-field p-col-12 p-md-6">
+            <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton width="10rem" height="4rem"></p-skeleton>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-multiline is-4" *ngIf="Produto">
         <div class="column is-8 top-0">
           <div class="columns">
             <div class="column is-6">
@@ -33,7 +44,7 @@
                     </gallery>
                     <span class="type-meta">
                       <i class="pi pi-tag"></i>
-                      <a href="#" class="subtitle  fs-12 ltr-sp-1 has-text-info-light" *ngFor="let tag of Produto?.Tags">{{tag}},
+                      <a href="#" class="subtitle  fs-12 ltr-sp-1 has-text-info" *ngFor="let tag of Produto?.Tags">{{tag}},
                       </a>
                     </span>
                   </mat-tab>
@@ -156,18 +167,6 @@
         <div class="column is-4 has-background-white bbr">
 
           <div class="mb-0 pb-0 px-3 py-3">
-
-            <div class="pb-0" *ngIf="!Produto">
-              <div class="p-grid p-formgrid">
-                <div class="p-field p-col-12 p-md-6">
-                  <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
-                  <p-skeleton width="10rem" styleClass="mb-2 pb-2"></p-skeleton>
-                  <p-skeleton width="5rem" styleClass="mb-2 pb-2"></p-skeleton>
-                  <p-skeleton height="2rem" styleClass="mb-2 pb-2"></p-skeleton>
-                  <p-skeleton width="10rem" height="4rem"></p-skeleton>
-                </div>
-              </div>
-            </div>
 
             <div class="{{mobile ? 'txt-left': 'txt-left'}}" *ngIf="Produto">
               <div class="columns is-multiline ">
