@@ -1,7 +1,10 @@
 
 @import '../../../variables';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
+$navbg : #f8f9fa;
+.has-background-dark {
+  background-color: #757575 !important;
+}
 .container{
   max-width: 1290px;
 }
@@ -13,7 +16,7 @@
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
   background: #f8f9fa;
-  background: #fefefe;
+  background: $navbg;
   margin-top: 0px;
   z-index: 11;
 }
@@ -91,7 +94,7 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
   color: #000000;
-  font-weight: bolder;
+  // font-weight: bolder;
   // color: white;
   margin-left: 2px;
 }
@@ -153,10 +156,10 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: #fefefe;
+  background: $navbg;
 }
 .produtos-nav{
-  background: #fefefe;
+  background: $navbg;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -172,7 +175,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: #fefefe;
+  background: $navbg;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;

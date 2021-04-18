@@ -12,7 +12,7 @@
 a span{
   text-transform: capitalize;
   font-weight: 400;
-  font-family: Montserrat;
+  font-family: $default_font;
 }
 .mat-list-text a span {
   line-height: 2em;
@@ -85,7 +85,7 @@ a:before {
 
 }
 .mat-subheader{
-  font-family: Montserrat;
+  font-family: $default_font;
   font-weight: 300;
   color:#353232;
 }

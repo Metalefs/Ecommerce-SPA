@@ -11,7 +11,7 @@
 @import '~swiper/swiper-bundle.min.css';
 @import '~@angular/material/theming';
 $custom-typography: mat-typography-config(
-  $font-family: 'Montserrat'
+  $font-family: $default_font
 );
 @include mat-core($custom-typography);
 
@@ -69,7 +69,7 @@ body {
   }
 }
 body, button, input, optgroup, select, textarea {
-  font-family: 'Montserrat';
+  font-family: $default_font;
 }
 .button.is-small {
   // border-radius: 0!important ;
@@ -175,8 +175,6 @@ a {
 .arrow-container.prev,.arrow-container.next{
 }
 .arrow-container{
-  // height: 50px;
-  // background:$orange;
   transition: all 1s ease;
 }
 .p-autocomplete-panel {
@@ -201,14 +199,16 @@ a {
   /* white-space: pre-wrap; */
 }
 .p-component{
-  font-family: "Montserrat";
+  font-family: $default_font;
 }
 .p-dataview .p-dataview-header {
-  background: #ffffff;
+  background:transparent;
+  border:none;
+  padding:none;
 }
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
   font-size: 13px;
-  font-family: "Montserrat";
+  font-family: $default_font;
   // color: #23a1d1;
   font-weight: 400;
 }
@@ -497,7 +497,7 @@ canvas{
   color:$crayola;
 }
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
-  font: 500 20px/32px Montserrat, "Helvetica Neue", sans-serif;
+  font: 500 20px/32px $default_font, "Helvetica Neue", sans-serif;
 }
 .no-padding .mat-dialog-container{
   padding: 0 !important;
@@ -518,16 +518,16 @@ canvas{
   background-color: #FF4A4A;
 }
 .mat-toolbar, .mat-toolbar h1, .mat-toolbar h2, .mat-toolbar h3, .mat-toolbar h4, .mat-toolbar h5, .mat-toolbar h6{
-  font-family: "Montserrat";
+  font-family: $default_font;
 }
 .mat-list-item {
   font-family: "Roboto" !important;
 }
 .mat-tab-group {
-  font-family: Montserrat, "Helvetica Neue", sans-serif;
+  font-family: $default_font, "Helvetica Neue", sans-serif;
 }
 .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
-  font-family: Montserrat, "Helvetica Neue", sans-serif;
+  font-family: $default_font, "Helvetica Neue", sans-serif;
   font-size: 14px;
   font-weight: 500;
 }
@@ -592,7 +592,7 @@ canvas{
   background:#ffffff;
   // border-radius:1rem;
   border-bottom-right-radius:2rem;
-  font-family: "Montserrat";
+  font-family: $default_font;
   opacity: .95;
 }
 .table.mat-table{
@@ -601,7 +601,7 @@ canvas{
   transition: 1s all ease;
 }
 .card-text{
-  font-family: "Montserrat";
+  font-family: $default_font;
 
   font-style: normal;
   line-height: 122.19%;
@@ -963,7 +963,7 @@ canvas{
 .dropdown {
   position: relative;
   display: inline-block;
-  z-index: 12;
+  z-index: 12;border-radius:0;
   &-mobile{
     display: block;
   }
@@ -975,7 +975,7 @@ canvas{
   }
 
   &-content {
-    position: absolute;
+    position: absolute;border-radius:0;
     width: 100%;
     z-index: -1;
     opacity: 0;

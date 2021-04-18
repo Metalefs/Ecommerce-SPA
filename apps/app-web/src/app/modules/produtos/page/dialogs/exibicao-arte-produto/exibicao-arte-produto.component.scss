@@ -1,4 +1,4 @@
-
+@import '../../../../../../variables';
 .share-button{
   border-radius: 4px;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
@@ -28,7 +28,7 @@
     left: 28%;
     position: absolute;
     padding: 1rem;
-    font-family: 'Montserrat';
+    font-family: $default_font;
     color: white;
     box-shadow: 0px 0px 2px #acacac9e;
     font-size: medium;

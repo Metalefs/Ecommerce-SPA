@@ -47,7 +47,7 @@ environment.production ? [
   {
     name: "Institucional", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
     options:[
-      {nome:"Inicio",link:`/inicio`,queryParams:{}},
+      // {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Sobre",link:`/empresa`,queryParams:{}},
       {nome:"Serviços",link:`/servicos`,queryParams:{}},
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
@@ -57,15 +57,15 @@ environment.production ? [
   {name: "Orcamento",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
-  {
-    name: "Institucional", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
-    options:[
-      {nome:"Inicio",link:`/inicio`,queryParams:{}},
-      {nome:"Sobre",link:`/empresa`,queryParams:{}},
-      {nome:"Serviços",link:`/servicos`,queryParams:{}},
-      {nome:"Galeria",link:`/showcase`,queryParams:{}},
-    ]
-  },
+  // {
+  //   name: "Institucional", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
+  //   options:[
+  //     // {nome:"Inicio",link:`/inicio`,queryParams:{}},
+  //     {nome:"Sobre",link:`/empresa`,queryParams:{}},
+  //     {nome:"Serviços",link:`/servicos`,queryParams:{}},
+  //     {nome:"Galeria",link:`/showcase`,queryParams:{}},
+  //   ]
+  // },
   {name: "Básicos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},

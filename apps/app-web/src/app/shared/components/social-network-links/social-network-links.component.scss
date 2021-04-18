@@ -1,8 +1,8 @@
 @import '../../../../variables';
 
 .size4 {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
 }
 @media (min-width: 1024px){
   .size4 {
@@ -16,20 +16,21 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-top: -8px;
 }
 
  .social a {
   display: inline-block;
   margin: 10px 5px 0 0;
-  width: 35px;
-  height: 35px;
-  padding: 5px 0;
+  width: 30px;
+  height: 30px;
+  // padding: 5px 0;
   text-align: center;
   font-size: 18px;
   background: #ffffff;
   border-radius: 4px;
   & > img{
-    margin-top:-4px;
     filter: none !important;
   }
 }

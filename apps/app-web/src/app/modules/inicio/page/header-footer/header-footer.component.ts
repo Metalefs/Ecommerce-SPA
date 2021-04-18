@@ -54,6 +54,15 @@ export class HeaderFooterComponent implements OnInit {
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         {
+          title:"Galeria",
+          icon:"image",
+          color:"#FFB041",
+          class:"yellow",
+          link:"/showcase",
+          id:"#topo",
+          content:`Veja nossos últimos trabalhos`
+        },
+        {
           title:"Orçamento",
           icon:"email",
           color:"#00c3d6",
