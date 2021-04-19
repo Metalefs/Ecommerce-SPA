@@ -136,7 +136,7 @@
 
             <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'">
               <ng-template pTemplate="header">
-                <div class="w-full flex-r dis-flex flex-w is-vcentered is-mobile mb-0">
+                <div class="w-full columns flex-r dis-flex flex-w is-vcentered is-mobile mb-0">
                   <!-- <div class="column is-4-desktop  is-8-touch">
                     <div class="control has-icons-left">
                       <input [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
@@ -160,7 +160,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div> -->
-                  <div class="is-3-desktop is-6-mobile is-hidden-mobile">
+                  <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
                     <mat-form-field appearance="fill">
                       <mat-label>Ordenar por</mat-label>
                       <mat-select matNativeControl [(ngModel)]="activeOrderFilter"
@@ -173,7 +173,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="is-2-desktop is-4-touch">
+                  <div class="column is-2-desktop is-4-touch">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                   </div>
                 </div>

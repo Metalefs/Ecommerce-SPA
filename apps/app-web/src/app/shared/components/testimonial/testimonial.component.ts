@@ -66,7 +66,7 @@ export class TestimonialComponent implements OnInit {
               spaceBetween           : 12,
               height                 : 450,
               navigation             : true,
-              slidesPerView:1,
+              slidesPerView: 3,
               autoplay: {
                 delay               : 4000,
                 disableOnInteraction: false,

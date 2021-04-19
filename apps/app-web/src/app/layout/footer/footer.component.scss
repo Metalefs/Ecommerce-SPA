@@ -14,12 +14,13 @@
   }
 }
 .base{
-  /* identical to box height */
-  // color:#3a3a3a;
+
+  font-family: 'Arial' !important;
   color:white;
 }
 span{
-  font-family: Open Sans;
+
+  font-family: 'Arial' !important;
   color: white;
   text-transform: lowercase;
 }
@@ -35,7 +36,7 @@ a{
   }
   &.footer-text.links p:hover{
     color: #ff5252 !important;
-    padding-left: 10px;
+    // padding-left: 10px;
     transition: 1s all;
   }
   &.footer-text.links p::before {
@@ -167,7 +168,7 @@ h4{
 }
 
 .footer .footer-widget ul li a:hover {
-  padding-left: 10px;
+  // padding-left: 10px;
   color: #c5c3c3;
 }
 .footer .footer-widget ul li a::before {

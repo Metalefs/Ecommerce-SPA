@@ -1,8 +1,10 @@
 
 @import '../../../variables';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-$navbg : #6c63ff;
-$navcolor : white;
+$navbg : #fefefe;
+$navcolor : black;
+$naviconcolor : rgb(247, 4, 4);
+$navlinkbordercolor : rgba(0, 0, 0, 0.185);
 // .has-background-dark {
 //   background-color: #757575 !important;
 // }
@@ -91,12 +93,13 @@ $navcolor : white;
   min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  border-left: 1px solid #9898f1;
+  border-left: 1px solid $navlinkbordercolor;
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
   color: $navcolor;
   // font-weight: bolder;
   // color: white;
+  font-family: 'Arial';
   margin-left: 2px;
 }
 a.nav-link::before{
@@ -125,7 +128,7 @@ a.nav-link:hover{
     color:#484848
   }
   i{
-    color:#fe0000
+    color: $naviconcolor
   }
   color:#484848
 }
@@ -137,7 +140,7 @@ a.nav-link:hover{
   font-weight: 600;
   animation: selected 2s ease-out forwards;
   i{
-    color:#fe0000
+    color:$naviconcolor
   }
 }
 @keyframes selected{
@@ -194,13 +197,13 @@ a.nav-link:hover{
 }
 .produtos-nav-under{
   background-color: rgb(225 225 237 / 88%);
-  background-color: #00c3d6;
+  background-color: #6d6f6f4a;
   height: 5px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
-  top: 11px;
+  top: 16px;
   position: relative;
   pointer-events: none;
-  display: none;
+  // display: none;
 }
 .is-hidden{
   display: none;

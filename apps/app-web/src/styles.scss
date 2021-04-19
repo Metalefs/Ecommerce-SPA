@@ -202,8 +202,8 @@ a {
   font-family: $default_font;
 }
 .p-dataview .p-dataview-header {
-  background:transparent;
-  border:none;
+  // background:transparent;
+  // border:none;
   padding:none;
 }
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
@@ -223,9 +223,9 @@ a {
   color: #a4a4a4;
   font-size: 12px;
 }
-.p-dataview .p-dataview-content {
-  background: transparent;
-}
+// .p-dataview .p-dataview-content {
+//   background: transparent;
+// }
 .swiper-container{
   &:hover > .swiper-button-prev{
     animation: showArr 1s ease forwards !important;
@@ -326,7 +326,7 @@ img{
   // position: absolute;
 }
 .logo img{
-  filter:none !important;
+  filter:invert(1);
   max-height: 190px;
 }
 
@@ -1005,6 +1005,7 @@ canvas{
       padding: 12px 16px;
       text-decoration: none;
       display: block;
+      border:none;
       &:hover {
         color: #fe0000;
         background-color: #ddd;
@@ -1012,6 +1013,7 @@ canvas{
       &.nav-link{
         color:#9c9c9c;
         padding: 5px;
+        border:none;
       }
     }
   }
