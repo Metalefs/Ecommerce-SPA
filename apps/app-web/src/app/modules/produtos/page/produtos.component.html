@@ -118,26 +118,13 @@
 
 
           </div>
-          <p-skeleton *ngIf="total==0"></p-skeleton>
 
-          <div class="w-full mh-full" *ngIf="(Filtro$ | async).FiltroProdutos.length == 0">
-
-            <div @fadeIn class="m-lr-auto mh-full mb-5">
-              <figure class="no-match-img">
-                <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img"
-                  alt="Não foram encontrados produtos correspondentes à sua pesquisa">
-              </figure>
-              <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
-              <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a
-                busca</button>
-            </div>
-          </div>
           <div class="columns is-1 is-multiline dis-flex">
 
-            <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'">
+            <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'" [emptyMessage]="'Nenhum item encontrado'">
               <ng-template pTemplate="header">
                 <div class="w-full columns flex-r dis-flex flex-w is-vcentered is-mobile mb-0">
-                  <!-- <div class="column is-4-desktop  is-8-touch">
+                  <div class="column is-4-desktop  is-8-touch">
                     <div class="control has-icons-left">
                       <input [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
                       class="border py-2" type="text" style="text-indent: 35px;"
@@ -146,7 +133,7 @@
                         <mat-icon>search</mat-icon>
                       </span>
                     </div>
-                  </div>-->
+                  </div>
 
                   <!-- <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
                     <mat-form-field appearance="">
@@ -162,7 +149,7 @@
                   </div> -->
                   <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
                     <mat-form-field appearance="fill">
-                      <mat-label>Ordenar por</mat-label>
+                      <!-- <mat-label>Ordenar por</mat-label> -->
                       <mat-select matNativeControl [(ngModel)]="activeOrderFilter"
                         (selectionChange)="atualizarFiltroAtivo()">
                         <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
@@ -175,10 +162,10 @@
                   </div>
                   <div class="column is-2-desktop is-4-touch">
                     <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                    <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
+                      resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
                   </div>
                 </div>
-                <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
-                  resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
 
                 <div class="columns is-mobile is-multiline is-vcentered is-hidden-desktop mb-3">
                   <div class="column is-2-desktop is-6-mobile is-hidden-mobile">
@@ -216,7 +203,20 @@
                 </ng-container>
               </ng-template>
             </p-dataView>
+            <p-skeleton *ngIf="total==0"></p-skeleton>
 
+            <div class="w-full mh-full dis-flex flex-m m-lr-auto" *ngIf="(Filtro$ | async).FiltroProdutos.length == 0">
+
+              <div @fadeIn class=" mh-full mb-5">
+                <figure class="no-match-img">
+                  <img src="/assets/images/figures/undraw_empty_xct9.svg" class="no-match-img"
+                    alt="Não foram encontrados produtos correspondentes à sua pesquisa">
+                </figure>
+                <p>Não foram encontrados produtos correspondentes à sua pesquisa</p>
+                <button md-mat-stroked-button color="primary" (click)="redefinirBusca()">Clique para redefinir a
+                  busca</button>
+              </div>
+            </div>
             <a [ngClass]="loading_more ? 'button is-loading':''" mat-stroked-button
               class="py-2 px-3 w-full button wp-btn txt-center border-light" *ngIf="total > Produtos?.length"
               (click)="CarregarMaisProdutos()">

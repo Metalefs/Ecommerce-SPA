@@ -25,6 +25,8 @@ export class FooterComponent implements OnInit, OnDestroy {
     {name:"Inicio",     href:"inicio",  id:"INICIO"},
     {name:"Blog",       href:"blog",  id:"Blog"},
     {name:"Galeria",    href:"showcase",  id:"showcase"},
+    {name:"Meus pedidos",    href:"/minha-conta/pessoal/pedidos",  id:"topo"},
+    {name:"Meu Perfil",    href:"/minha-conta/pessoal/",  id:"topo"},
   ];
   links = NavLinks;
   Ano:number = new Date().getFullYear();

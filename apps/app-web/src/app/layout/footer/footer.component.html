@@ -27,7 +27,7 @@
 
     <div class="hero w-full shadow-light ">
       <div class="hero-body columns pl-5 pr-3 is-vcentered">
-        <div class="column social pt-4 mh-full">
+        <div class="column social pt-4 ">
           <div class="footer-widget">
             <h3 class="mb-2 footer-title">Contate-nos</h3>
             <div class="contact-info">
@@ -43,7 +43,7 @@
           </div>
         </div>
 
-        <div class="column text-center is-hidden-mobile has-background-dark pt-4 mh-full">
+        <div class="column text-center  has-background-dark pt-4 ">
           <h3 class="mb-2 footer-title">Acesso Rápido</h3>
           <a *ngFor="let link of Links"
           class="footer-text links"
@@ -55,7 +55,7 @@
         </a>
       </div>
 
-      <div class="column pt-4 is-hidden-mobile mh-full has-background-dark">
+      <div class="column pt-4 is-hidden-mobile has-background-dark">
         <h3 class="footer-title">Sobre</h3>
         <div class="txt-justify footer-text has-text-medium" [innerHTML]="(Sobre$ | async)?.Historia"></div>
       </div>
