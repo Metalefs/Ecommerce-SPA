@@ -123,20 +123,20 @@
         </mat-card-header>
         <mat-card-actions class="pos-relative bottom-0">
           <div
-          class="px-4 py-2 columns flex-sa dis-flex flex-w flex-m">
+          class="py-2 columns flex-sa dis-flex flex-w flex-m">
             <a href="#topo"
             class="level-item button txt-center is-info column is-6 is-small shadow-light column"
             style="height: 100%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
             <span>
-              <!-- <i class="pi pi-dollar"></i>  -->
+              <i class="pi pi-dollar"></i>
               Comprar</span>
             </a>
-            <button (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-            class="button is-info column txt-center is-6 level-item is-small shadow-light column"
-             style="height: 100%;">
+            <a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
+            class="button  level-item is-info column txt-center is-6 is-small shadow-light column"
+             style="height: 100%; text-decoration: none;">
               <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
-            </button>
+            </a>
           </div>
           <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
