@@ -13,10 +13,10 @@ export class MegaMenuComponent implements OnInit {
   items: MegaMenuItem[];
 
   ngOnInit() {
-   
+
       this.items = this.items = [
         {
-            label: 'TV', icon: 'fa fa-fw fa-check',
+            label: 'Últimos produtos', icon: 'fa fa-fw fa-check',
             items: [
                 [
                     {
@@ -41,7 +41,7 @@ export class MegaMenuComponent implements OnInit {
             ]
         },
         {
-            label: 'Sports', icon: 'fa fa-fw fa-soccer-ball-o',
+            label: 'Para festas', icon: 'fa fa-fw fa-soccer-ball-o',
             items: [
                 [
                     {
@@ -77,7 +77,7 @@ export class MegaMenuComponent implements OnInit {
             ]
         },
         {
-            label: 'Entertainment', icon: 'fa fa-fw fa-child',
+            label: 'Para empresas', icon: 'fa fa-fw fa-child',
             items: [
                 [
                     {
@@ -102,7 +102,7 @@ export class MegaMenuComponent implements OnInit {
             ]
         },
         {
-            label: 'Technology', icon: 'fa fa-fw fa-gears',
+            label: 'Acessórios', icon: 'fa fa-fw fa-gears',
             items: [
                 [
                     {

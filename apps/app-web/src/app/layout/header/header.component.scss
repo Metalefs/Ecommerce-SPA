@@ -4,7 +4,7 @@
 $navbg : #fefefe;
 $navcolor : black;
 $naviconcolor : rgb(247, 4, 4);
-$navlinkbordercolor : rgba(0, 0, 0, 0.185);
+$navlinkbordercolor : #efefef62;
 // .has-background-dark {
 //   background-color: #757575 !important;
 // }
@@ -85,8 +85,8 @@ $navlinkbordercolor : rgba(0, 0, 0, 0.185);
   padding: 0;
 }
 .nav-link{
-  font-size: 11px;
-  text-transform: uppercase;
+  font-size: 1rem;
+  // text-transform: uppercase;
   // padding: 0.5em;
   padding: 32px 30px;
   padding-bottom: 30px;
@@ -99,7 +99,7 @@ $navlinkbordercolor : rgba(0, 0, 0, 0.185);
   color: $navcolor;
   // font-weight: bolder;
   // color: white;
-  font-family: 'Arial';
+  font-family: 'Montserrat';
   margin-left: 2px;
 }
 a.nav-link::before{

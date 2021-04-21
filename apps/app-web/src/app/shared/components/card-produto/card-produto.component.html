@@ -63,7 +63,7 @@
           <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
             [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
         </div> -->
-        <mat-card-title class="w-full my-3 txt-left titulo-produto">
+        <mat-card-title class="w-full txt-left titulo-produto">
           <a  matRipple class="reset-a" pageScroll href="#topo"
           [routerLink]="['/produtos/'+ Produto._id]">
           {{Produto?.Nome}}
@@ -88,7 +88,7 @@
 
         <mat-card-header class="w-full txt-left pt-1 of-y-scroll">
 
-          <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle>
+          <!-- <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
 
           <mat-card-subtitle
 
@@ -123,15 +123,18 @@
         </mat-card-header>
         <mat-card-actions class="pos-relative bottom-0">
           <div
-          class="px-4 py-2 level flex-sa dis-flex flex-w flex-m">
-            <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-              <button
-                class="wp-btn button shadow-light is-small box mb-2 pb-2" style="text-decoration: none;">
-                <span><i class="pi pi-dollar"></i> Comprar</span>
-              </button>
+          class="px-4 py-2 columns flex-sa dis-flex flex-w flex-m">
+            <a href="#topo"
+            class="level-item button txt-center is-info column is-6 is-small shadow-light column"
+            style="height: 100%;"
+            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
+            <span>
+              <!-- <i class="pi pi-dollar"></i>  -->
+              Comprar</span>
             </a>
             <button (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-              class="wp-btn button shadow-light is-small box mb-2 pb-2" style="text-decoration: none;">
+            class="button is-info column txt-center is-6 level-item is-small shadow-light column"
+             style="height: 100%;">
               <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
             </button>
           </div>
@@ -150,11 +153,11 @@
               </p>
             </div>
           </div>
-          <a title="Comprar" matRipple
+          <!-- <a title="Comprar" matRipple
           [style.width]="flex_direction == 'row'?'50%':'100%'"
           pageScroll
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-          mat-flat-button class="m-lr-auto shadow-light"><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
+          mat-flat-button class="m-lr-auto shadow-light button is-success"><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a> -->
         </div>
       </div>
     </mat-card>
@@ -263,7 +266,7 @@
             </div>
           </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions class="pos-relative bottom-0">
+        <mat-card-actions class="pos-absolute bottom-0">
           <!-- <mat-divider class="my-2"></mat-divider> -->
           <div class="px-4 py-2">
             <!-- <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active" pageScroll>
@@ -275,7 +278,7 @@
             <a href="javascript:void(0)" (click)='AdicionarAoOrcamento()'>
               <span
                 class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
-                <span><i class="pi pi-cart"></i> Carrinho</span>
+                <span><i class="pi pi-shopping-cart"></i> </span>
               </span>
             </a>
           </div>
@@ -293,7 +296,7 @@
             </div>
             <a title="Comprar" matRipple pageScroll
             href="#topo"
-            class="reset-a box m-lr-auto"
+            class="reset-a button is-success m-lr-auto"
             style="top:35%;left: 25%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
             mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>

@@ -11,7 +11,7 @@
 
 .mat-card{
   transition: all .25s ease-out;
-  // max-width: 400px;
+  max-width: 400px;
   min-height: 210px;
   max-height: 210px;
   box-shadow: none;
@@ -133,10 +133,10 @@ p{
   }
 }
 .blue{
-  background:#00c3d6 ;
+  background:#4d5899 ;
   p{
     background: none;
-    color: #00c3d6 !important;
+    color: #4d5899 !important;
   }
   &.active{
     @include hover;

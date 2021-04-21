@@ -7,15 +7,11 @@
       <div class="">
         <div class="hero is-light">
           <div class="hero-body pt-4">
-            <div class="mb-4">
-              <div class="margin" style="background: transparent;">
-                <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-              </div>
-            </div>
+
+            <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
             <p class="hero-title"> </p>
-            <personalizados-lopes-produto-swiper [slidesPerView]="3"></personalizados-lopes-produto-swiper>
-            <div class="shadow-light of-y-scroll w-full is-hidden-desktop" >
-              <personalizados-lopes-produto-swiper [slidesPerView]='2'></personalizados-lopes-produto-swiper>
+            <div class="shadow-light of-y-scroll w-full" >
+              <personalizados-lopes-produto-swiper [slidesPerView]='5'></personalizados-lopes-produto-swiper>
               <nav class="shadow-light z-index-1" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                   <a class="navbar-item" href="/">
@@ -31,12 +27,12 @@
                   </div>
                 </div>
               </nav>
+              <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
+                <div class="testimonial">
+                  <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+                </div>
+              </section>
             </div>
-            <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
-              <div class="testimonial">
-                <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-              </div>
-            </section>
           </div>
         </div>
 

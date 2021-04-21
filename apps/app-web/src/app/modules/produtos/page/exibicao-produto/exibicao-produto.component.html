@@ -147,8 +147,8 @@
 
                   </div>
                   <mat-divider></mat-divider>
-                  <div class="descricao-produto column is-12-touch is-6 w-full" [innerHTML]="(Produto?.Especificacoes)"></div>
-                  <span class="subtitle is-size-7"
+                  <div class="descricao-produto pl-0 ml-0 column is-12-touch is-6 w-full" [innerHTML]="(Produto?.Especificacoes)"></div>
+                  <span class="subtitle is-size-7 pl-0 ml-0 column is-12-touch is-6 w-full"
                     *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
 
                   <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
@@ -169,7 +169,7 @@
           <div class="mb-0 pb-0 px-3 py-3">
 
             <div class="{{mobile ? 'txt-left': 'txt-left'}}" *ngIf="Produto">
-              <div class="columns is-multiline ">
+              <div class="columns is-multiline border-light">
 
                 <div class="column is-12-desktop is-12-tablet is-12-mobile">
 
@@ -197,12 +197,11 @@
                       </div>
                       <div class="column is-12-desktop pb-0" [ngClass]="{'is-danger':ErroTamanho()}"
                         *ngIf="Produto?.Tamanhos">
-                        <mat-form-field class="w-full " *ngIf="Produto?.Cores" appearance="fill">
-                          <mat-label>Tamanho:</mat-label>
+                        <mat-form-field class="w-full " appearance="fill">                          <mat-label>Tamanho:</mat-label>
                           <mat-select matNativeControl [formControlName]="'tamanho'" [(ngModel)]="Produto.Tamanho"
                             [value]="Produto?.Tamanho">
                             <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
-                              <div class="cor-produto w-full" (click)="Produto.Tamanho = opt">
+                              <div class="w-full" (click)="Produto.Tamanho = opt">
                                 <p>{{opt}}</p>
                               </div>
                             </mat-option>
@@ -214,13 +213,14 @@
 
                         <div class="columns txt-left is-vcentered pt-0 is-multiline">
 
-                          <div class="column is-12 py-1">
+                          <div class="column is-12 py-1" *ngIf="Produto?.Tamanho" >
                             <p class="is-size-7"><span
                                 class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome}}</strong></p>
                             <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb"
                               [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
                               <div mat-fab color="" (click)="setColor(cor)" id="column is-3 shadow-light"
-                                *ngFor="let cor of Produto?.Cores; let i =index">
+                                *ngFor="let cor of Produto?.Cores; let i =index" style="border: 2px solid;
+                                border-radius: 50%;">
                                 <input class="px-2 py-2 mx-1" type="radio" alt="{{cor.nome}}" [value]="Produto.Cor"
                                   id="cor{{i}}" [formControlName]="'cor'"
                                   [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}">
@@ -342,17 +342,13 @@
                     </div>
 
                   </div>
-                  <div class="columns w-full is-gapless is-multiline">
-                    <div class="column w-full is-12-mobile">
-                      <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                        title="Entrar em contato pelo whatsapp"
-                        class="button w-full is-success wp-btn border-light flex-m flex-c has-text-white has-text-weight-medium">
-                        <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
-                        <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
-                      </button>
-                    </div>
-                  </div>
                   <div class="text-center is-right notification is-white shadow-light w-full">
+                    <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                      title="Entrar em contato pelo whatsapp"
+                      class="button is-success wp-btn border-light flex-m flex-c has-text-white has-text-weight-medium">
+                      <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
+                      <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
+                    </button>
                     <i class="is-right pi pi-question-circle"></i>
                     <ul>
                       <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>

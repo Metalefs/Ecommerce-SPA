@@ -14,8 +14,8 @@
 .titleContent{
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-content: center;
+  justify-content: flex-start;
+  align-content: flex-start;
   font-family: 'Open Sans';
   padding: 4rem;
   padding-top: 40px;
@@ -25,6 +25,7 @@
   font-weight: 500;
   line-height: 31px;
   letter-spacing: 0.04em;
+  float: left;
 }
 .title{
   width: 100%;

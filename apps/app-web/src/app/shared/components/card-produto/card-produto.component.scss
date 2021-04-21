@@ -47,6 +47,7 @@ img{
   display: flex !important;
   align-items: center;
   // border: 1px solid #e7e7e7;
+  height: 100%;
   padding: 0 !important;
   margin: 0 !important;
   &:hover{
@@ -262,23 +263,25 @@ img{
   -o-transition: 0.5s;
     transition: 0.5s;
     & ~ button, ~ a{
-        opacity: 0;
-        pointer-events: none;
-        display: block;
-        position: absolute;
-        font-size: 12px;
-        width: 50%;
-        top: 38%;
-        left: 2px;
-        z-index: 10;
-        border-radius: 50%;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      position: absolute;
+      font-size: 12px;
+      justify-content: center;
+      align-items: center;
+      width: 45%;
+      top: 38%;
+      left: 2px;
+      z-index: 10;
+      border-radius: 50%;
     }
 }
 
 .overlay-items {
   height: 100px;
   position: absolute;
-  top: 20%;
+  top: 10%;
   z-index: 5;
   left: 0;
   right: 0;

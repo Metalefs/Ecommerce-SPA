@@ -101,7 +101,8 @@ return [
     style({
       transform: 'none',
       position:'absolute',
-      top:0
+      width:'100%',
+      top:140
     })
   ], optional),
   query(':enter', [

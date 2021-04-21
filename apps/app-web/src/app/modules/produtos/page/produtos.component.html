@@ -123,16 +123,13 @@
 
             <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'" [emptyMessage]="'Nenhum item encontrado'">
               <ng-template pTemplate="header">
-                <div class="w-full columns flex-r dis-flex flex-w is-vcentered is-mobile mb-0">
-                  <div class="column is-4-desktop  is-8-touch">
-                    <div class="control has-icons-left">
-                      <input [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
-                      class="border py-2" type="text" style="text-indent: 35px;"
-                      placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
-                      <span class="icon is-small is-left">
-                        <mat-icon>search</mat-icon>
-                      </span>
-                    </div>
+                <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
+                  <div class="column is-7-desktop w-full is-8-touch">
+                    <span class="p-input-icon-left w-full ">
+                      <i class="pi pi-search"></i>
+                      <input type="text" class="border py-2" type="text"
+                      placeholder="Filtrar em {{CategoriaAtiva?.Nome}}"pInputText [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"placeholder="Search">
+                    </span>
                   </div>
 
                   <!-- <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
@@ -149,7 +146,7 @@
                   </div> -->
                   <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
                     <mat-form-field appearance="fill">
-                      <!-- <mat-label>Ordenar por</mat-label> -->
+                      <mat-label>Ordenar por</mat-label>
                       <mat-select matNativeControl [(ngModel)]="activeOrderFilter"
                         (selectionChange)="atualizarFiltroAtivo()">
                         <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
@@ -190,13 +187,13 @@
               </ng-template>
               <ng-template let-produto pTemplate="gridItem">
                 <ng-container class="mx-0 px-0 ">
-                  <div class="column is-4 pt-4 is-6-mobile" *ngIf="loading">
+                  <div class="column is-3 pt-4 is-6-mobile" *ngIf="loading">
                     <div class="w-full mh-full skeleton">
                       <p-skeleton width="100%" height="100%">
                       </p-skeleton>
                     </div>
                   </div>
-                  <div class="column is-4 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
+                  <div class="column is-3 is-6-mobile" *ngIf="filtroAtivo(produto) && !loading">
                     <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true"
                       [flex_direction]="'column'"></personalizados-lopes-card-produto>
                   </div>

@@ -35,7 +35,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Orçamento",
           icon:"email",
-          color:"#00c3d6",
+          color:"#4d5899",
           class:"blue",
           link:"/orcamento",
           id:"#topo",
