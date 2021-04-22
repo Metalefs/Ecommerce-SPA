@@ -116,8 +116,8 @@
                   <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
 
                   <ul class="list-unstyled">
-                    <li><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></li>
-                    <li><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></li>
+                    <li><p><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></p></li>
+                    <li><p><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></p></li>
                   </ul>
                   <div class="py-2">
                     <ng-container
@@ -164,7 +164,7 @@
           </div>
 
         </div>
-        <div class="column is-4 has-background-white bbr">
+        <div class="column is-4 has-background-white bbr" style="border-left: 10px solid whitesmoke;">
 
           <div class="mb-0 pb-0 px-3 py-3">
 
@@ -342,15 +342,15 @@
                     </div>
 
                   </div>
-                  <div class="text-center is-right notification is-white shadow-light w-full">
+                  <div class="text-center is-right  w-full">
                     <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
                       title="Entrar em contato pelo whatsapp"
                       class="button is-success wp-btn border-light flex-m flex-c has-text-white has-text-weight-medium">
                       <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
                       <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
                     </button>
-                    <i class="is-right pi pi-question-circle"></i>
-                    <ul>
+                    <ul class="notification is-white shadow-light w-full">
+                      <li class="w-full"><i class="is-right pi pi-question-circle"></i></li>
                       <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
                     </ul>
                   </div>

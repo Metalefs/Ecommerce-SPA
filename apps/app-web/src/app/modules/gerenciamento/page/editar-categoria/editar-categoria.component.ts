@@ -9,7 +9,6 @@ import { ColorQuestion } from '../../../../shared/components/dynamic-form/questi
 import { QuestionBase, DynFormQuestions } from '../../../../shared/components/dynamic-form/question-base';
 
 import { entities } from '@personalizados-lopes/data';
-import { CategoriaService } from '../../../../data/service/';
 
 import { CriarCategoriaDialogComponent } from './DialogComponents/criar-dialog/criar-dialog.component';
 import { fade } from 'apps/app-web/src/app/animations';
@@ -69,6 +68,9 @@ export class EditarCategoriaComponent implements OnInit {
     if(!Categoria.Caminho){
         Object.assign(Categoria, {Caminho: ""});
     }
+    if(!Categoria.Nicho){
+        Object.assign(Categoria, {Nicho: ""});
+    }
     const{ DataHoraCriacao, DataHoraAlteracao, ...CategoriaRes } = Categoria;
     Object.entries(CategoriaRes).forEach(([key, value]) => {
       if(key != "_id" && key != "Cor")
@@ -108,6 +110,7 @@ export class EditarCategoriaComponent implements OnInit {
         result[1].value,
         result[2].value,
         result[3].value,
+        result[4].value,
       )
       Categoria._id = id;
       console.log(Categoria);
@@ -139,7 +142,8 @@ export class EditarCategoriaComponent implements OnInit {
       "Nome",
       "Processo",
       "Acoes",
-      "Caminho"
+      "Caminho",
+      "Nicho"
     ];
   }
 

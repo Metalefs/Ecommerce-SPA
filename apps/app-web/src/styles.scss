@@ -210,6 +210,17 @@ a {
 // .p-dataview-content{
 //   background:transparent !important;
 // }
+li .p-menuitem-link span.p-menuitem-text {
+  color: #495057;
+  font-size: small;
+}
+.p-megamenu div {
+  overflow-x: scroll;
+}
+.p-megamenu-grid{
+  max-width: 100vw;
+  overflow-y: scroll;
+}
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
   font-size: 13px;
   font-family: $default_font;

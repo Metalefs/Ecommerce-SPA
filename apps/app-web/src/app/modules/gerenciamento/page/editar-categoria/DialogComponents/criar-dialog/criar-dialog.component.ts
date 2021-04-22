@@ -14,6 +14,7 @@ export class CriarCategoriaDialogComponent implements OnInit {
     "",
     "",
     "",
+    "",
     );
   constructor(public dialogRef: MatDialogRef<CriarCategoriaDialogComponent>,
     ) {

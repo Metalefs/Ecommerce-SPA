@@ -62,7 +62,7 @@ export class ProdutosComponent implements OnInit {
 
 
   activeSearchFilter = "";
-  activeOrderFilter:number = TiposOrdenacao.nome;
+  activeOrderFilter:number = TiposOrdenacao.nomeDesc;
   @ViewChild('carousel', { static: true }) carousel
 
   page:number = 1;

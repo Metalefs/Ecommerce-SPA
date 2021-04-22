@@ -3,6 +3,7 @@ import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
+import { escapeRegex } from '../_handlers/regexescape';
 
 const CategoriaRouter = express();
 
@@ -10,7 +11,14 @@ const CategoriaRouter = express();
 CategoriaRouter.get(RouteDictionary.Categoria, (req: any, res) => {
     try {
         let CategoriaService:Services.CategoriaService = new Services.CategoriaService();
-
+        let Nicho;
+        if(req.query.nicho){
+          Nicho = new RegExp(decodeURI(escapeRegex(req.query.nicho)), 'gi');
+          CategoriaService.Filtrar({Nicho:Nicho}).then(x=>{
+            res.send(x);
+        });
+        }
+        else
         CategoriaService.Ler().then(x=>{
             res.send(x);
         });

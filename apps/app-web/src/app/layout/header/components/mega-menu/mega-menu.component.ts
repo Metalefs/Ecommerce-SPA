@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavLink } from 'apps/app-web/src/app/data/models/navlinks';
-import { MegaMenuItem } from 'primeng/api';
+import { CategoriaService, ProdutoService } from 'apps/app-web/src/app/data/service';
+import { Categoria, Produto } from 'libs/data/src/lib/classes';
+import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
+import { MegaMenuItem, MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'personalizados-lopes-mega-menu',
@@ -9,111 +12,69 @@ import { MegaMenuItem } from 'primeng/api';
 })
 export class MegaMenuComponent implements OnInit {
 
-  @Input() Categorias: NavLink;
+  @Input() Categorias: Categoria[];
+  festas: Array<Categoria>;
+  acessorios: Array<Categoria>;
+  empresas: Array<Categoria>;
   items: MegaMenuItem[];
 
+  constructor(private catService: CategoriaService, private prodService: ProdutoService) { }
+  fQuery: FiltrarProdutoSearchQuery = {
+    Nome: "",
+    NomeCategoria: "",
+    Preco: "",
+    Status: "",
+    Marca: "",
+    Modelo: "",
+    Tags: ""
+  }
   ngOnInit() {
 
-    this.items = this.items = [
-      {
-        label: 'Últimos produtos', icon: 'fa fa-fw fa-check',
-        items: [
-          [
-            {
-              label: 'TV 1',
-              items: [
-                { label: 'TV 1.1' },
-                { label: 'TV 1.2' }
-              ]
-            },
-          ],
-          [
-            {
-              label: 'TV 3',
-              items: [{ label: 'TV 3.1' }, { label: 'TV 3.2' }]
-            },
-          ]
-        ]
-      },
-      {
-        label: 'Para festas', icon: 'fa fa-fw fa-soccer-ball-o',
-        items: [
-          [
-            {
-              label: 'Sports 1',
-              items: [
-                { label: 'Sports 1.1' },
-                { label: 'Sports 1.2' }
-              ]
-            },
-          ],
-          [
-            {
-              label: 'Sports 3',
-              items: [
-                { label: 'Sports 3.1' },
-                { label: 'Sports 3.2' }
-              ]
-            },
-          ],
-          [
-            {
-              label: 'Sports 5',
-              items: [
-                { label: 'Sports 5.1' },
-                { label: 'Sports 5.2' }
-              ]
-            },
-          ]
-        ]
-      },
-      {
-        label: 'Para empresas', icon: 'fa fa-fw fa-child',
-        items: [
-          [
-            {
-              label: 'Entertainment 1',
-              items: [
-                { label: 'Entertainment 1.1' },
-                { label: 'Entertainment 1.2' }
-              ]
-            },
-          ],
-          [
-            {
-              label: 'Entertainment 3',
-              items: [
-                { label: 'Entertainment 3.1' },
-                { label: 'Entertainment 3.2' }
-              ]
-            },
-          ]
-        ]
-      },
-      {
-        label: 'Acessórios', icon: 'fa fa-fw fa-gears',
-        items: [
-          [
-            {
-              label: 'Technology 1',
-              items: [
-                { label: 'Technology 1.1' },
-                { label: 'Technology 1.2' }
-              ]
-            },
-          ],
-          [
-            {
-              label: 'Technology 4',
-              items: [
-                { label: 'Technology 4.1' },
-                { label: 'Technology 4.2' }
-              ]
-            }
-          ]
-        ]
-      }
-    ];
+    this.items = [{}];
+
+    this.CarregarMenus("Festas",'Para festas');
+    this.CarregarMenus("Empresas",'Para empresas');
+    this.CarregarMenus("Acessório",'Acessórios');
   }
 
+  CarregarMenus(nicho:string, label:string){
+    this.festas = this.Categorias.filter((categoria) => categoria?.Nicho?.includes(nicho));
+    let items:MegaMenuItem = {
+      label:"",
+      items:[]
+    };
+    let festaProds: Array<Produto> = [];
+    this.festas.forEach(festa => {
+      let newItem:MenuItem[] = [{
+        label: festa.Nome,
+        items: []
+      }];
+      this.prodService.FiltrarProdutos({
+        Nome: "",
+        NomeCategoria: festa.Nome,
+        Preco: "",
+        Status: "",
+        Marca: "",
+        Modelo: "",
+        Tags: ""
+      }, 1, 15).subscribe(prods => {
+        prods.items.forEach(prod => {
+          if(festaProds?.filter(x=>x._id != prod._id)){
+            festaProds.push(prod);
+            newItem[0].items.push({
+              label: prod.Nome
+            });
+          }
+        })
+        items.items.push(
+          newItem
+        )
+      })
+    })
+    this.items.push({
+      label: label, icon: 'pi pi-caret-down',
+      items:
+        items.items
+    })
+  }
 }

@@ -36,6 +36,11 @@
             <td @fadeIn mat-cell *matCellDef="let element"> {{element.Caminho||''}} </td>
           </ng-container>
 
+          <ng-container matColumnDef="Nicho">
+            <th mat-header-cell *matHeaderCellDef> Nicho </th>
+            <td @fadeIn mat-cell *matCellDef="let element"> {{element.Nicho||''}} </td>
+          </ng-container>
+
           <ng-container matColumnDef="Acoes">
             <th mat-header-cell *matHeaderCellDef> Ações </th>
             <td mat-cell *matCellDef="let element">

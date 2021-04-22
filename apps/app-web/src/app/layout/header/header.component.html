@@ -64,7 +64,7 @@
             <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
           </a>
         </div>
-        <div class="column">
+        <div class="column is-hidden-touch">
           <button [matMenuTriggerFor]="appMenu2" class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
             title="Perfil">
             <mat-icon>person_outline</mat-icon>
@@ -177,4 +177,4 @@
 
   </div>
 </div>
-<personalizados-lopes-mega-menu></personalizados-lopes-mega-menu>
+<personalizados-lopes-mega-menu [Categorias]="(Categoria$|async)"></personalizados-lopes-mega-menu>

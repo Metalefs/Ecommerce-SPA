@@ -23,6 +23,12 @@ export class CategoriaService {
           catchError(this.ErrorHandler.handleError) // then handle the error
       );
     }
+    Filtrar(query:string): Observable<entities.Categoria[]> {
+      return this.http.get<entities.Categoria[]>(environment.endpoint + RouteDictionary.Categoria + `?${query}`).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
+    }
 
     Editar(item: entities.Categoria): Observable<entities.Categoria> {
       let payload = this.AuthenticationService.tokenize({Categoria:item});
