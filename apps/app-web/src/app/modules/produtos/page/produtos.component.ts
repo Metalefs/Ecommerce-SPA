@@ -152,8 +152,11 @@ export class ProdutosComponent implements OnInit {
     })
     this.activeRoute.queryParams.filter(params => params.nome)
     .subscribe(params => {
-      this.activeSearchFilter = params.nome;
-      this.atualizarFiltroAtivo();
+      if(params.nome){
+        this.activeSearchFilter = params.nome;
+        this.activeOrderLimit = 50;
+        this.atualizarFiltroAtivo();
+      }
     })
   }
   fQuery:FiltrarProdutoSearchQuery={

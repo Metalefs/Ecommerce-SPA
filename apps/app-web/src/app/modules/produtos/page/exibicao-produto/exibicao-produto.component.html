@@ -3,7 +3,7 @@
     [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
-<div class="bbr pt-0 margin shadow-light box">
+<div class="bbr  margin shadow-light box">
   <div class="">
     <div class="bbr mb-3">
       <div class="pb-0" *ngIf="!Produto">
@@ -289,8 +289,8 @@
                           </personalizados-lopes-botao-esgotado>
                         </div>
                       </div>
-                      <div class="column" *ngIf="this.isOrcamento">
-                        <button mat-flat-button title="Criar novo pedido"
+                      <div class="column" >
+                        <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
                           [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                           (click)="DuplicarOrcamento()" color="accent"
                           class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
