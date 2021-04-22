@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div class="column text-center has-background-dark">
+          <div class="column text-center">
             <h3 class="mb-2 footer-title">Acesso Rápido</h3>
             <a *ngFor="let link of Links"
             class="footer-text links"
@@ -55,12 +55,12 @@
           </a>
           </div>
 
-          <div class="column is-hidden-mobile has-background-dark">
+          <div class="column is-hidden-mobile">
             <h3 class="footer-title">Sobre</h3>
             <div class="txt-justify footer-text has-text-medium" [innerHTML]="(Sobre$ | async)?.Historia"></div>
           </div>
 
-          <div class="column is-hidden-mobile has-background-dark">
+          <div class="column is-hidden-mobile">
             <div class="footer-widget">
               <h3 class="mb-2 footer-title">Compras</h3>
               <div class="columns is-multiline is-vcentered">
