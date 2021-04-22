@@ -32,7 +32,17 @@
           <p>Minha conta</p>
         </button>
       </div>
-
+      <mat-menu mat-menu #appMenu2="matMenu">
+        <ng-template matMenuContent let-name="name">
+          <button mat-menu-item *ngIf="usuario" href="#topo" (pageScrollFinish)="ToggleNav(0)" routerLinkActive="Active"
+            pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
+          <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
+          <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin" href="#topo"
+            (pageScrollFinish)="ToggleNav(0)" routerLinkActive="Active" pageScroll
+            [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
+          <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
+        </ng-template>
+      </mat-menu>
       <div class="column">
         <button [routerLink]="['/minha-conta/pessoal/pedidos']" (pageScrollFinish)="ToggleNav(0)"
           routerLinkActive="Active" pageScroll class="w-full bo-0 card box has-text-centered border-light" mat-flat-button>
@@ -44,17 +54,7 @@
 
   </div>
 
-  <mat-menu mat-menu #appMenu2="matMenu">
-    <ng-template matMenuContent let-name="name">
-      <button mat-menu-item *ngIf="usuario" href="#topo" (pageScrollFinish)="ToggleNav(0)" routerLinkActive="Active"
-        pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
-      <button mat-menu-item *ngIf="!usuario" (click)="Login()">Entrar</button>
-      <button mat-menu-item *ngIf="usuario&&usuario?.Tipo == TipoUsuario.admin" href="#topo"
-        (pageScrollFinish)="ToggleNav(0)" routerLinkActive="Active" pageScroll
-        [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
-      <button mat-menu-item *ngIf="usuario" (click)="Logout()">Sair</button>
-    </ng-template>
-  </mat-menu>
+
 
   <ul class="navigation">
     <!-- Produtos -->

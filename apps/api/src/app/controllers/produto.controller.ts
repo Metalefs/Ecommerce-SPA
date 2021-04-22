@@ -52,7 +52,6 @@ ProdutoRouter.get(RouteDictionary.Produto, (req: any, res) => {
     sQuery.Nome = new RegExp(decodeURI(escapeRegex(req.query.nome)), 'gi');
   }
   if(req.query.categoria){
-    console.log(decodeURI(req.query.categoria))
     if(!decodeURI(req.query.categoria).includes("Todos"))
       sQuery.NomeCategoria = new RegExp(decodeURI(escapeRegex(req.query.categoria)), 'gi');
     else
