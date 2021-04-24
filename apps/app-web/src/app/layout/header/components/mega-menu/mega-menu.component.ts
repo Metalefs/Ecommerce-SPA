@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavLink } from 'apps/app-web/src/app/data/models/navlinks';
 import { CategoriaService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
@@ -18,7 +19,7 @@ export class MegaMenuComponent implements OnInit {
   empresas: Array<Categoria>;
   items: MegaMenuItem[];
 
-  constructor(private catService: CategoriaService, private prodService: ProdutoService) { }
+  constructor(private router: Router, private prodService: ProdutoService) { }
   fQuery: FiltrarProdutoSearchQuery = {
     Nome: "",
     NomeCategoria: "",
@@ -38,6 +39,8 @@ export class MegaMenuComponent implements OnInit {
   }
 
   CarregarMenus(nicho:string, label:string){
+
+
     this.festas = this.Categorias.filter((categoria) => categoria?.Nicho?.includes(nicho));
     let items:MegaMenuItem = {
       label:"",
@@ -62,7 +65,8 @@ export class MegaMenuComponent implements OnInit {
           if(festaProds?.filter(x=>x._id != prod._id)){
             festaProds.push(prod);
             newItem[0].items.push({
-              label: prod.Nome
+              label: prod.Nome,
+              command: ()=>{this.abrirProduto(prod._id)}
             });
           }
         })
@@ -76,5 +80,9 @@ export class MegaMenuComponent implements OnInit {
       items:
         items.items
     })
+  }
+
+  abrirProduto(prodId:string){
+    this.router.navigate(['/produtos/'+prodId]);
   }
 }

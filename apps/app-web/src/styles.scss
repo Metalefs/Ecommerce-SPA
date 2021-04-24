@@ -200,7 +200,7 @@ a {
   /* white-space: pre-wrap; */
 }
 .p-component{
-  font-family: $default_font;
+  // font-family: $default_font;
 }
 .p-dataview .p-dataview-header {
   // background:transparent;
@@ -348,7 +348,7 @@ img{
   // position: absolute;
 }
 .logo img{
-  filter:invert(1);
+  filter:none !important;
   max-height: 190px;
 }
 
@@ -506,7 +506,7 @@ canvas{
 .wp-btn{
   background-color: #2196f3;
   background-image: linear-gradient(to bottom,#00c3d6,#2196f3);
-  background-repeat: repeat-x;
+  // background-repeat: repeat-x;
   border-color: #00c3d6 #2196f3 #6c63ff;
   color: white;
   z-index: 9;
@@ -518,6 +518,7 @@ canvas{
 /**/
 .mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element{
   caret-color: initial;
+  font: 500 20px/32px $default_font, "Helvetica Neue", sans-serif;
 }
 .mat-form-field.mat-form-field-invalid .mat-form-field-label{
   color:$crayola;

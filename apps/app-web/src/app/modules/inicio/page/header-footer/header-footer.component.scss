@@ -11,9 +11,9 @@
 
 .mat-card{
   transition: all .25s ease-out;
-  max-width: 400px;
-  min-height: 210px;
-  max-height: 210px;
+  // max-width: 400px;
+  min-height: 110px;
+  max-height: 110px;
   box-shadow: none;
   border-radius: 0;
   transform: rotate(0deg);
@@ -22,7 +22,7 @@
   //   @include hover;
   // }
   img{
-    max-height: 180px !important
+    max-height: 100px !important
   }
 }
 .mat-card.active{
@@ -47,7 +47,7 @@ a{
 }
 p{
 
-  font-family: 'Arial' !important;
+  // font-family: 'Arial' !important;
   // font-size: medium;
   letter-spacing: initial;
 }
@@ -60,17 +60,7 @@ p{
   @extend .flex-c;
 
 }
-.mat-card-avatar{
-  cursor: default;
-  padding:3rem;
-  border-top-left-radius: 0px;
-  transition: border-radius 1s ease;
-  border-radius: 0;
-  @extend .flex-c;
-  & :hover{
-    // box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
-  }
-}
+
 .mat-icon{
   font-size: xx-large;
   height: initial;
@@ -99,7 +89,30 @@ p{
       @include hover;
     }
   }
+  height: 115px;
   transition: all 1s;
+}
+.mat-card.yellow,.mat-card.red,.mat-card.blue{
+  &:hover{
+    @include hover;
+    & mat-card > article > mat-card-header > div.mat-card-avatar{
+      @include hover;
+    }
+  }
+  height: 115px;
+  transition: all 1s;
+}
+.mat-card-avatar{
+  cursor: default;
+  padding: 2rem;
+  border-top-left-radius: 0px;
+  transition: border-radius 1s ease;
+  border-radius: 0;
+  max-height: 50px;
+  @extend .flex-c;
+  & :hover{
+    // box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  }
 }
 @media screen and (max-width:720px){
   .yellow,.red,.blue{

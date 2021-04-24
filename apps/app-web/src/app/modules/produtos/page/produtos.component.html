@@ -43,8 +43,15 @@
 
             <h2 class="subtitle is-3 mb-5 is-hidden-mobile">{{CategoriaAtiva?.Nome}}</h2>
 
-            <!-- <mat-toolbar>
-            </mat-toolbar> -->
+            <mat-toolbar>
+              <div class="column is-12 w-full">
+                <span class="p-input-icon-left w-full ">
+                  <i class="pi pi-search"></i>
+                  <input type="text" class="border py-2" type="text"
+                  placeholder="Filtrar em {{CategoriaAtiva?.Nome}}"pInputText [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"placeholder="Search">
+                </span>
+              </div>
+            </mat-toolbar>
             <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable" (click)="SetCategoria(null)"
               [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active box' : ''">
               <a mat-strocked-button class="dis-flex flex-sb flex-m"
@@ -124,13 +131,7 @@
             <p-dataView [value]="Produtos" [lazy]="true" class="w-full " [layout]="'grid'" [emptyMessage]="'Nenhum item encontrado'">
               <ng-template pTemplate="header">
                 <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
-                  <div class="column is-7-desktop w-full is-8-touch">
-                    <span class="p-input-icon-left w-full ">
-                      <i class="pi pi-search"></i>
-                      <input type="text" class="border py-2" type="text"
-                      placeholder="Filtrar em {{CategoriaAtiva?.Nome}}"pInputText [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"placeholder="Search">
-                    </span>
-                  </div>
+
 
                   <!-- <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
                     <mat-form-field appearance="">
@@ -144,23 +145,27 @@
                       </mat-select>
                     </mat-form-field>
                   </div> -->
-                  <div class="column is-3-desktop is-6-mobile is-hidden-mobile">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Ordenar por</mat-label>
-                      <mat-select matNativeControl [(ngModel)]="activeOrderFilter"
-                        (selectionChange)="atualizarFiltroAtivo()">
-                        <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
-                          <div class="box w-full">
-                            <p>{{opt.name}}</p>
-                          </div>
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div class="column is-2-desktop is-4-touch">
-                    <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-                    <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
-                      resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
+                  <div class="column is-12">
+                    <div class="dis-flex w-full flex-r">
+                      <div class="mx-3">
+                        <mat-form-field appearance="fill">
+                          <mat-label>Ordenar por</mat-label>
+                          <mat-select matNativeControl [(ngModel)]="activeOrderFilter"
+                            (selectionChange)="atualizarFiltroAtivo()">
+                            <mat-option *ngFor="let opt of ordertypes" [value]="opt.id" class="w-full">
+                              <div class="box w-full">
+                                <p>{{opt.name}}</p>
+                              </div>
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                        <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
+                          resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -215,7 +220,7 @@
               </div>
             </div>
             <a [ngClass]="loading_more ? 'button is-loading':''" mat-stroked-button
-              class="py-2 px-3 w-full button wp-btn txt-center border-light" *ngIf="total > Produtos?.length"
+              class="is-dark px-3 w-full button txt-center border-light" *ngIf="total > Produtos?.length"
               (click)="CarregarMaisProdutos()">
               Ver mais resultados
             </a>
