@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavLink } from 'apps/app-web/src/app/data/models/navlinks';
-import { CategoriaService, ProdutoService } from 'apps/app-web/src/app/data/service';
+import { ProdutoService } from 'apps/app-web/src/app/data/service';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { MegaMenuItem, MenuItem } from 'primeng/api';

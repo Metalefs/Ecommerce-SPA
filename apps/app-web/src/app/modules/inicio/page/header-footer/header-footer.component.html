@@ -4,7 +4,7 @@
     <div class="cardbg">
       <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
       <div [id]="card.class" class=" {{card?.class}}">
-        <mat-card class="" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
+        <mat-card class="of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
           <article class="media">
             <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="">
               <img loading="lazy" height="200" *ngIf="card.img_src" src="{{card.img_src}}" class="">
