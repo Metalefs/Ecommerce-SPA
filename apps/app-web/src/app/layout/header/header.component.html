@@ -82,14 +82,14 @@
           </ng-template>
         </mat-menu>
         <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
-          <div class="shadow-light columns py-2 is-mobile is-gapless " style="width: 80%;border-radius: 1rem;">
-            <div class="column is-2">
+          <div class="shadow-light columns py-2 is-mobile is-gapless " style="width: 100%;border-radius: 1rem;">
+            <div class="column is-1">
 
               <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">
                 <mat-icon>search</mat-icon>
               </button>
             </div>
-            <div class="column">
+            <div class="column mr-3">
 
               <div @fadeIn class=" has-icons-right" *ngIf="search">
                 <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()"
@@ -157,7 +157,7 @@
                   <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
                 </button>
               </div>
-              <div class="column is-hidden-touch">
+              <div class="column is-hidden-touch mr-3">
                 <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
                   R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
                 </p>

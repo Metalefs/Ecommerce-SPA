@@ -30,7 +30,7 @@
                 Alterar Nome
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>{{(Sobre$ | async)?.Nome}}</p>
+            <div [innerHTML]="(Sobre$ | async)?.Nome"></div>
           </mat-expansion-panel>
         </mat-accordion>
 
@@ -44,7 +44,7 @@
                 Alterar Descricao
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>{{(Sobre$ | async)?.Descricao}}</p>
+            <div [innerHTML]="(Sobre$ | async)?.Descricao"></div>
           </mat-expansion-panel>
         </mat-accordion>
 
@@ -58,7 +58,7 @@
                 Alterar Historia
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>{{(Sobre$ | async)?.Historia}}</p>
+            <div [innerHTML]="(Sobre$ | async)?.Historia"></div>
           </mat-expansion-panel>
         </mat-accordion>
 
@@ -72,7 +72,7 @@
                 Alterar Fabricacao
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>{{(Sobre$ | async)?.Fabricacao}}</p>
+            <div [innerHTML]="(Sobre$ | async)?.Fabricacao"></div>
           </mat-expansion-panel>
         </mat-accordion>
 

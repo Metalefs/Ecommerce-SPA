@@ -13,27 +13,27 @@
 
   <ng-container matColumnDef="EmailRecebimentoOrcamento">
       <th mat-header-cell *matHeaderCellDef> Email Recebimento Orcamento </th>
-      <td mat-cell *matCellDef="let element"> {{element?.EmailRecebimentoOrcamento}} </td>
+      <td mat-cell *matCellDef="let element"> <div [innerHTML]="element?.EmailRecebimentoOrcamento"></div> </td>
   </ng-container>
 
   <ng-container matColumnDef="EmailRecebimentoContato">
       <th mat-header-cell *matHeaderCellDef> Email Recebimento Contato </th>
-      <td mat-cell *matCellDef="let element"> {{element?.EmailRecebimentoContato}} </td>
+      <td mat-cell *matCellDef="let element"> <div [innerHTML]="element?.EmailRecebimentoContato"></div> </td>
   </ng-container>
 
   <ng-container matColumnDef="EmailCadadastroUsuario">
       <th mat-header-cell *matHeaderCellDef> Email Registro Usuário </th>
-      <td mat-cell *matCellDef="let element"> {{element?.EmailCadadastroUsuario}} </td>
+      <td mat-cell *matCellDef="let element"> <div [innerHTML]="element?.EmailCadadastroUsuario"></div> </td>
   </ng-container>
 
   <ng-container matColumnDef="EmailProdutoReestocado">
       <th mat-header-cell *matHeaderCellDef> Email Produto Reestocado </th>
-      <td mat-cell *matCellDef="let element"> {{element?.EmailProdutoReestocado}} </td>
+      <td mat-cell *matCellDef="let element"> <div [innerHTML]="element?.EmailProdutoReestocado"></div> </td>
   </ng-container>
 
   <ng-container matColumnDef="EmailRecuperacaoSenha">
       <th mat-header-cell *matHeaderCellDef> Email Recuperação Senha </th>
-      <td mat-cell *matCellDef="let element"> {{element?.EmailRecuperacaoSenha}} </td>
+      <td mat-cell *matCellDef="let element"> <div [innerHTML]="element?.EmailRecuperacaoSenha"></div> </td>
   </ng-container>
 
   <ng-container matColumnDef="Acoes">

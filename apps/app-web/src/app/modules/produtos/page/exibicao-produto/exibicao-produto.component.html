@@ -83,7 +83,7 @@
                     <div class="margin py-3 px-3 border-light">
                       <div class="w-full columns is-multiline">
                         <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3>
-                        <div class="descricao-produto column is-12-touch is-6 w-full" [innerHTML]="(el?.innerHTML)"></div>
+                        <div class="descricao-produto column is-12-touch is-12 w-full" [innerHTML]="(el?.innerHTML)"></div>
                       </div>
                     </div>
 
@@ -147,8 +147,8 @@
 
                   </div>
                   <mat-divider></mat-divider>
-                  <div class="descricao-produto pl-0 ml-0 column is-12-touch is-6 w-full" [innerHTML]="(Produto?.Especificacoes)"></div>
-                  <span class="subtitle is-size-7 pl-0 ml-0 column is-12-touch is-6 w-full"
+                  <div class="descricao-produto pl-0 ml-0 column is-12-touch is-12 w-full" [innerHTML]="(Produto?.Especificacoes)"></div>
+                  <span class="subtitle is-size-7 pl-0 ml-0 column is-12-touch is-12 w-full"
                     *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
 
                   <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
@@ -294,15 +294,16 @@
                           [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                           (click)="DuplicarOrcamento()" color="accent"
                           class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
-                          Novo
                           <mat-icon>add</mat-icon>
+                          Novo
                         </button>
                         <button mat-flat-button title="Personalizar"
                           [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                           (click)="AbrirModalArte()" color="" class="has-background-dark has-text-white">
-                          Personalizar
                           <mat-icon>edit</mat-icon>
+                          Personalizar
                         </button>
+
                       </div>
                     </div>
                   </form>
@@ -340,20 +341,19 @@
                         </mat-card>
                       </div>
                     </div>
-
                   </div>
-                  <div class="text-center is-right  w-full">
-                    <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                      title="Entrar em contato pelo whatsapp"
-                      class="button is-success w-full wp-btn border-light flex-m flex-c has-text-white has-text-weight-medium">
-                      <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
-                      <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
-                    </button>
+                  <div class="text-center is-right w-full">
                     <ul class="notification is-white shadow-light w-full">
                       <li class="w-full"><i class="is-right pi pi-question-circle"></i></li>
                       <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
                     </ul>
                   </div>
+                  <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                    title="Entrar em contato pelo whatsapp"
+                    class="button is-success w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
+                    <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
+                    <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
+                  </button>
                 </div>
               </div>
 
@@ -370,7 +370,7 @@
           <div class="has-background-white py-3 px-3 border-light">
             <div class="w-full is-multiline">
               <!-- <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3> -->
-              <div class="descricao-produto column is-12-touch is-6 w-full" style="border-left: 1px solid #0000000a;"
+              <div class="descricao-produto column is-12-touch is-12 w-full" style="border-left: 1px solid #0000000a;"
                 [innerHTML]="(el?.innerHTML)"></div>
             </div>
           </div>

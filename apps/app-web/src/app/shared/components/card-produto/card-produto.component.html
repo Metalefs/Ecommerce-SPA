@@ -124,7 +124,7 @@
       <mat-card-actions class="pos-relative bottom-0">
         <div
         class="columns">
-          <a href="#topo"
+          <!-- <a href="#topo"
           class="column is-6 w-full level-item button is-success is-small shadow-light"
           style="height: 100%;"
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
@@ -136,7 +136,7 @@
           class="column is-6 w-full level-item button is-info is-small shadow-light"
           style="height: 100%; text-decoration: none;">
             <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
-          </a>
+          </a> -->
         </div>
         <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
             class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">

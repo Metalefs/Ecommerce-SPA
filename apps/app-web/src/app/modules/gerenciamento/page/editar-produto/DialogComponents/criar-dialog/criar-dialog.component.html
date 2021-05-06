@@ -67,10 +67,10 @@
 
     </div>
 
-    <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky">
+    <div class="column px-3 has-background-white z-index-2 pos-sticky">
 
       <div class="columns is-multiline mb-0 pb-0">
-        <div class="column is-6 has-background-light">
+        <div class="column has-background-light">
           <mat-form-field class="w-full">
             <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
           </mat-form-field>
@@ -79,13 +79,11 @@
             <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
           </mat-form-field>
           <mat-divider></mat-divider>
-          <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
           <div class="descricao-produto w-full py-4">
             <mat-form-field class="w-full">
               <textarea matInput type="text" [(ngModel)]="Produto.DescricaoRapida"
                 placeholder="Descricao Rapida"></textarea>
             </mat-form-field>
-            <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
           </div>
           <mat-divider></mat-divider>
           <mat-form-field class="w-full">
@@ -235,31 +233,7 @@
 
           </div>
         </div>
-        <div class="column is-6">
-          <div class="columns is-multiline">
-            <div class="column is-12-mobile">
-              <div *ngIf="Produto?.Status != enumStatusProduto.esgotado" class="txt-center ">
-                <button mat-raised-button
-                  [disabled]="Produto?.Status == enumStatusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                  class="share-button w-full flex-m flex-c pb-2 mx-2 background-light-red has-text-white has-text-weight-medium">
-                  Comprar
-                  <!-- <mat-icon>shopping_bag</mat-icon> -->
-                </button>
-                <mat-list>
-                  <mat-list-item *ngIf="! Produto?.Tamanho">
-                    <p class="subtitle is-size-6 has-text-grey-light">Selecione o tamanho*</p>
-                  </mat-list-item>
-                  <mat-list-item *ngIf="! Produto?.Cor">
-                    <p class="subtitle is-size-6 has-text-grey-light">Selecione a cor*</p>
-                  </mat-list-item>
-                </mat-list>
-              </div>
-              <div *ngIf="Produto?.Status == enumStatusProduto.esgotado" class="box pt-5 w-full">
-                <personalizados-lopes-botao-esgotado [Produto]="Produto"></personalizados-lopes-botao-esgotado>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
       <h1>Dimensões</h1>
       <div class="columns">
@@ -304,7 +278,7 @@
     </mat-chip-list>
   </mat-form-field>
 
-  <div class="w-full columns is-mobile">
+  <div class="w-full columns is-mobile card">
     <div class="column is-12">
       <mat-card>
         <mat-card-header>

@@ -141,9 +141,9 @@ export class EditarCategoriaComponent implements OnInit {
     this.CategoriaTable.displayedColumns = [
       "Nome",
       "Processo",
-      "Acoes",
       "Caminho",
-      "Nicho"
+      "Nicho",
+      "Acoes",
     ];
   }
 

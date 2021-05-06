@@ -29,12 +29,16 @@ export const slider =
     transition('isRight => flip', cardFlipQ() ),
     transition('isLeft => flip', cardFlipQ() ),
 
+    transition('isRight => isUp', slideTo('top') ),
+    transition('isLeft => isUp', slideTo('top') ),
+
     transition('isLeft => checkout', cardFlipQ() ),
     transition('flip => checkout', cardFlipQ() ),
     transition('isRight => checkout',cardFlipQ() ),
 
     transition('checkout => isLeft', slideTo('right') ),
     transition('checkout => isRight', slideTo('left') ),
+    transition('checkout => isUp', slideTo('bottom') ),
   ]);
 
 function slideTo(direction) {
