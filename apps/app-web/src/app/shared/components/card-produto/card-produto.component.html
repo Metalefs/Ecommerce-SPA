@@ -143,7 +143,12 @@
           Esgotado
         </a>
       </mat-card-actions>
-
+      <a href="javascript:void(0)" class="pos-absolute right-0 top-0" (click)='AdicionarAoOrcamento()'>
+        <span
+          class=" border is-small is-fullwidth box px-4 mb-2 pb-2">
+          <span><i class="pi pi-shopping-cart"></i> </span>
+        </span>
+      </a>
       <div class="z-index-1">
         <div class="content" >
           <div class="portfolio-overlay events-none w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">

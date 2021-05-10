@@ -107,4 +107,5 @@ export class CheckoutDisplayComponent implements OnInit {
     return 0;
   }
 
+
 }

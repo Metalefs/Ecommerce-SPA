@@ -15,6 +15,15 @@
 
       </mat-step>
     </mat-horizontal-stepper>
+    <ng-container *ngIf="!checkoutService.getValid()">
+
+      <mat-list class="px-2 mx-2 box border">
+        <mat-list-item *ngFor="let erro of checkoutService.getErros()">
+          <p class="subtitle is-size-6 has-text-danger">*{{erro}}</p>
+          <hr>
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
     <router-outlet @fadeIn #outlet2></router-outlet>
     <mat-toolbar class="dis-flex flex-sb py-6">
       <a class="is-size-7	">aviso legal</a>

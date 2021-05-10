@@ -133,7 +133,7 @@
                     Desculpe, não foi possível enviar o seu pedido. Por favor, verifique os campos obrigatórios.
                   </div>
 
-                <button *ngIf="!_init_point" class="button is-success w-full" (click)="goCheckout()">Finalizar</button>
+                <button *ngIf="!_init_point" class="button is-success w-full" [disabled]="!checkoutService.getValid()" (click)="goCheckout()">Finalizar</button>
                 <div *ngIf="Loading" class="w-full">
                   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
                 </div>

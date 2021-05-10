@@ -32,7 +32,7 @@ export class DadosComponent implements OnInit, OnDestroy {
   dadosForm:FormGroup;
 
   usuario:Usuario = DEFAULT_ORCAMENTO.Usuario;
-  constructor(private router:Router, private store: Store, private authService:AuthenticationService, private fb: FormBuilder) {
+  constructor(public checkoutService: CheckoutService, private router:Router, private store: Store, private authService:AuthenticationService, private fb: FormBuilder) {
     this.authService.currentUser.subscribe(x=>{
       if(x)
       this.usuario = x;

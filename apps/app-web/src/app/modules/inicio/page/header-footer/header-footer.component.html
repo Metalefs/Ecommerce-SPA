@@ -1,9 +1,9 @@
 <figure class="image is-square pos-absolute"><img src="/assets/images/figures/undraw_decide_3iwx.svg" alt=""></figure>
 <div class="columns is-multiline is-6 px-0 mx-0 w-full">
   <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column">
-    <div class="cardbg">
+    <div class="cardbg shadow-light">
       <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
-      <div [id]="card.class" class=" {{card?.class}}">
+      <div >
         <mat-card class="of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
           <article class="media">
             <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="">

@@ -53,12 +53,12 @@
   </ul>
   <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
 </mat-toolbar>
-<div class="w-full z-index-top pos-sticky top-0">
+<div class="w-full z-index-top top-0">
   <div class=""
     class="{{(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
     [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
-    <mat-toolbar class="px-0 mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
-      <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
+    <mat-toolbar class="px-0 mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
+      <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" >
         <div class="flex-m a-i-c" style="height: 50px; ">
           <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
             <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
@@ -96,7 +96,7 @@
           <button [matMenuTriggerFor]="appMenu2" class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
             title="Perfil">
             <mat-icon>person_outline</mat-icon>
-            <p class="subtitle is-size-7">{{user?.Nome}}</p>
+            <!-- <p class="subtitle is-size-7">{{user?.Nome}}</p> -->
           </button>
         </div>
         <div class="columns mx-3 my-0 is-hidden-touch link-section is-gapless ">
@@ -108,8 +108,8 @@
               <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
                 class="nav-link  {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
                 routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
-                <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
-                <i *ngIf="link.Picon" [class]="link.Picon"></i>
+                <mat-icon *ngIf="link.Micon && (NavState$ |async)?.activeNav == link.name">{{link.Micon}}</mat-icon>
+                <i *ngIf="link.Picon && (NavState$ |async)?.activeNav == link.name" [class]="link.Picon"></i>
                 {{link.name == "Básicos"? 'Produtos' : link.name}}
               </a>
             </ng-template>
@@ -119,8 +119,8 @@
                 <a (click)="SetActiveNav(link)" [routerLink]="link.href" pageScroll routerLinkActive="Active"
                   [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
                   class="nav-link  {{link.name == 'inicio' ? 'inicio': ''}}">
-                  <mat-icon *ngIf="link.Micon">{{link.Micon}}</mat-icon>
-                  <i *ngIf="link.Picon" [class]="link.Picon"></i>
+                  <mat-icon *ngIf="link.Micon && (NavState$ |async)?.activeNav == link.name">{{link.Micon}}</mat-icon>
+                  <i *ngIf="link.Picon && (NavState$ |async)?.activeNav == link.name" [class]="link.Picon"></i>
                   {{link.name == "Básicos"? 'Produtos' : link.name}}
                 </a>
                 <div class="dropdown-content has-background-white box">
@@ -171,9 +171,9 @@
       </div>
     </mat-toolbar>
 
-    <mat-toolbar-row
+    <!-- <mat-toolbar-row
       [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'produtos-nav-under'">
-    </mat-toolbar-row>
+    </mat-toolbar-row> -->
 
   </div>
 </div>

@@ -49,7 +49,8 @@ export class EnderecoComponent implements OnInit {
     private CEPService:CEPService,
     private EstadoService:EstadoService,
     private snack: MatSnackBar,
-    private checkoutService: MercadoPagoCheckoutService,
+    public MpcheckoutService: MercadoPagoCheckoutService,
+    public checkoutService: CheckoutService,
     private integracoesService: IntegracoesService,
     private auth:AuthenticationService,
     private router: Router,
@@ -104,7 +105,7 @@ export class EnderecoComponent implements OnInit {
       this.Orcamento$.subscribe(orcamento => {
         this.Loading = true;
         this.integracoesService.Ler().subscribe(x => {
-          this.checkoutService.goCheckout(orcamento, x).subscribe(result => {
+          this.MpcheckoutService.goCheckout(orcamento, x).subscribe(result => {
             this.cadastroTemporario();
             this._init_point = result;
             this.Loading = false;

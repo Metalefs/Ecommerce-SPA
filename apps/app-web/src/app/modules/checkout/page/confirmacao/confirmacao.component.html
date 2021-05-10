@@ -61,7 +61,7 @@
                       <em>Sem Arte</em>
                       <button mat-flat-button class="button  has-name pb-3 px-0">
                         <label class="file-label">
-                          <input class="file-input" type="file" (change)="upload($event,element.Produto)">
+                          <input class="file-input" type="file" (change)="upload($event,element)">
                           <span class="file-cta">
                             <span class="file-icon">
                               <i class="pi pi-cloud-upload"></i>
@@ -178,7 +178,9 @@
          produtos
       </button>
     </a>
-    <button  [routerLink]="['/checkout/dados/']"
+    <button
+        [routerLink]="['/checkout/dados/']"
+        [disabled]="!checkoutService.getValid()"
         pageScroll
         href="#TOPO"
         routerLinkActive="router-link-active"

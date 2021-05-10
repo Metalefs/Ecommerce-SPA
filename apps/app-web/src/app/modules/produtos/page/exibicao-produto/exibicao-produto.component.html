@@ -288,6 +288,15 @@
                           <personalizados-lopes-botao-esgotado [Produto]="Produto">
                           </personalizados-lopes-botao-esgotado>
                         </div>
+                        <div class="column" >
+                          <button mat-flat-button title="Personalizar"
+                            [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                            (click)="AbrirModalArte()" class=" mx-2" color="warn" class=" has-text-white">
+                            <mat-icon>photo</mat-icon>
+                            Arte do produto
+                          </button>
+
+                        </div>
                       </div>
                       <div class="column" >
                         <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
@@ -297,14 +306,9 @@
                           <mat-icon>add</mat-icon>
                           Novo
                         </button>
-                        <button mat-flat-button title="Personalizar"
-                          [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                          (click)="AbrirModalArte()" color="" class="has-background-dark has-text-white">
-                          <mat-icon>edit</mat-icon>
-                          Personalizar
-                        </button>
 
                       </div>
+
                     </div>
                   </form>
                   <div class="pt-3 px-2 txt-left of-x-scroll">

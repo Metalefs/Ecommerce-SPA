@@ -13,6 +13,7 @@ import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
+import { CheckoutService } from '../../checkout.service';
 @Component({
   selector: 'personalizados-lopes-confirmacao',
   templateUrl: './confirmacao.component.html',
@@ -26,7 +27,7 @@ export class ConfirmacaoComponent implements OnInit {
   ErroCadastro:boolean = false;
   Total:number = 0;
   @Input() edit = true;
-  constructor(private store:Store,private snack: MatSnackBar) { }
+  constructor(public checkoutService: CheckoutService, private store:Store,private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
@@ -47,13 +48,14 @@ export class ConfirmacaoComponent implements OnInit {
       }
     })
   }
-  upload($event,produto){
-    if(produto){
+  upload($event,element){
+    if(element){
       let fileNames='';
       getPreviewURL($event,fileNames,(res,name)=>{
-        produto.Arte = res;
+        element.Produto.Arte = res;
         fileNames = name;
       })
+      this.EditarOrcamento(element);
     }
   }
   IncrementarQuantidade(element){
@@ -71,7 +73,11 @@ export class ConfirmacaoComponent implements OnInit {
   }
 
   EditarOrcamento(element:CodProduto){
-    this.store.dispatch(new EditarProdutoOrcamentoLocal(element.Produto,element.Produto._id,element.codOrcamento));
+    this.store.dispatch(new EditarProdutoOrcamentoLocal(element.Produto,element.Produto._id,element.codOrcamento)).subscribe(store =>{
+      this.Orcamento$.subscribe(orc=>{
+        this.checkoutService.Validate(orc);
+      })
+    });
   }
 
   VerificarQuantidade($event,element){

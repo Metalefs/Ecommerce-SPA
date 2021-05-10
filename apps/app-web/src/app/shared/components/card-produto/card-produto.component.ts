@@ -81,14 +81,15 @@ export class CardProdutoComponent implements OnInit {
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;
+
       }
       else{
         this.Produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
 
         this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
         this.isOrcamento = true;
-        this.openCheckout();
       }
+      this.openCheckout();
 
     });
   }

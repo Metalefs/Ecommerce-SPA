@@ -106,7 +106,7 @@
               </div>
               <p class="has-text-left w-full">*Por favor, Insira o número completo do seu telefone</p>
 
-              <button class="button is-success w-full mt-6" (click)="SubmeterDadosPessoais()">Continuar</button>
+              <button class="button is-success w-full mt-6" [disabled]="!checkoutService.getValid()" (click)="SubmeterDadosPessoais()">Continuar</button>
             </div>
           </div>
 

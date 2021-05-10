@@ -35,7 +35,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Orçamento",
           icon:"email",
-          color:"#4d5899",
+          color:"transparent",
           class:"blue",
           link:"/orcamento",
           id:"#topo",
@@ -46,7 +46,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Produtos",
           icon:"photo_library",
-          color:"#FF4A4A",
+          color:"transparent",
           class:"red",
           link:"/produtos",
           id:"#topo",
@@ -56,7 +56,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Galeria",
           icon:"image",
-          color:"#FFB041",
+          color:"transparent",
           class:"yellow",
           link:"/showcase",
           id:"#topo",

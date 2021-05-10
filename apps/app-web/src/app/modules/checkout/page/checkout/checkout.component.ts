@@ -1,8 +1,13 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { Select } from '@ngxs/store';
 import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
 import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
+import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
+import { order } from 'apps/app-web/src/app/helper/ObjHelper';
+import { Orcamento } from 'libs/data/src/lib/classes';
+import { Observable } from 'rxjs';
 import { CheckoutService } from '../../checkout.service';
 
 @Component({
@@ -12,12 +17,14 @@ import { CheckoutService } from '../../checkout.service';
   animations:[sliderSide,fade]
 })
 export class CheckoutComponent implements OnInit {
-
-  constructor(private scrollService:PageScrollService, @Inject(PLATFORM_ID) private platform:object, private router: Router) { }
-
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
+  constructor(public checkoutService: CheckoutService, private scrollService:PageScrollService, @Inject(PLATFORM_ID) private platform:object, private router: Router) { }
+  valid:boolean = false;
+  erros:string[] = [];
   ngOnInit(): void {
     if(isPlatformBrowser(this.platform))
-    this.scrollService.scrollTop();
+      this.scrollService.scrollTop();
+    this.Validate();
   }
 
   prepareRoute(outlet: RouterOutlet) {
@@ -27,6 +34,9 @@ export class CheckoutComponent implements OnInit {
     catch(ex){
 
     }
+  }
+  Validate(){
+    this.Orcamento$.subscribe(orc=>{this.checkoutService.Validate(orc)});
   }
   IsDadosCompleto(){
     return CheckoutService.DadosCompleto;
