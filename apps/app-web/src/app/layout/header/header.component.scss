@@ -71,7 +71,7 @@ $navlinkbordercolor : #efefef62;
   margin-left: auto;
   margin-right: auto;
   right: 0;
-  bottom: 42px;
+  bottom: 35px;
   text-align: center;
   color: #1106CC;
   font-size: 10px;
@@ -202,7 +202,7 @@ a.nav-link:hover{
 }
 .produtos-nav-under{
   background-color: rgb(225 225 237 / 88%);
-  background-color: #6d6f6f4a;
+  // background-color: #6d6f6f4a;
   height: 5px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
   // top: 16px;
@@ -224,6 +224,7 @@ a.nav-link:hover{
   // }
   .logo{
     margin-left: 0;
+    max-height: 67px;
   }
 
 }

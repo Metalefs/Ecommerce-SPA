@@ -53,11 +53,11 @@
   </ul>
   <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
 </mat-toolbar>
-<div class="w-full py-0 z-index-top pos-sticky top-0">
-  <div class="mat-toolbar"
+<div class="w-full z-index-top pos-sticky top-0">
+  <div class=""
     class="{{(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'contato' ? 'orcamento-nav': ''}}"
     [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav': ''">
-    <mat-toolbar class="mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
+    <mat-toolbar class="px-0 mat-toolbar z-index-top dis-flex flex-c-m  w-full flex-sb a-i-c ">
       <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2" style="height: 60px;">
         <div class="flex-m a-i-c" style="height: 50px; ">
           <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
@@ -77,7 +77,7 @@
         </mat-menu>
         <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
           <div class="shadow-light columns py-2 is-mobile is-gapless " style="width: 100%;border-radius: 1rem;">
-            <div class="column is-1">
+            <div class="column is-3">
 
               <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">
                 <mat-icon>search</mat-icon>
@@ -96,7 +96,7 @@
           <button [matMenuTriggerFor]="appMenu2" class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
             title="Perfil">
             <mat-icon>person_outline</mat-icon>
-            <p class="subtitle is-size-7">{{user? user.Nome : 'Minha conta'}}</p>
+            <p class="subtitle is-size-7">{{user?.Nome}}</p>
           </button>
         </div>
         <div class="columns mx-3 my-0 is-hidden-touch link-section is-gapless ">
@@ -137,12 +137,12 @@
 
         <div class="my-0 dis-flex flex-r">
 
-          <div class="is-hidden-desktop ml-4 m-r-25">
-            <button mat-ripple mat-fab color="accent" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
-              class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 m-b-3 m-t-3">
+          <div class="is-hidden-desktop m-r-25">
+            <button mat-ripple mat-fab color="" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
+              class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3">
               <!-- <div class="columns line-height-small is-mobile">
               </div> -->
-              <mat-icon class=" has-text-white">shopping_bag</mat-icon>
+              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
               <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
             </button>
           </div>
