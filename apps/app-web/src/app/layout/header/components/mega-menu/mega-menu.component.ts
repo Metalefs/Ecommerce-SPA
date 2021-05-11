@@ -32,8 +32,8 @@ export class MegaMenuComponent implements OnInit {
 
     this.items = [{}];
 
-    this.CarregarMenus("Festas",'Para festas');
-    this.CarregarMenus("Empresas",'Para empresas');
+    this.CarregarMenus("Festas",'Festas');
+    this.CarregarMenus("Empresas",'Empresas');
     this.CarregarMenus("Acessório",'Acessórios');
   }
 

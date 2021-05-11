@@ -20,19 +20,18 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
+<div class="hero is-medium is-bold is-primary">
 
-<!-- <carousel
-  #carousel
- class="z-index-1 is-hidden-touch"
- fade
- [autoplay]="true"
- adaptiveHeight
- [arrows]="false"
- [cellsToShow]="1"
- [images]="imagens">
-</carousel> -->
+  <div class="hero-body">
+    <div class="container">
+        <h1 class="title is-2">Produtos</h1>
+        <p class="subtitle is-3">Conheça nossa variedade de produtos </p>
 
-<div [@cardFlip]="state" class="section margin mb-0 px-1c pb-0 pt-1" id="Básicos">
+    </div>
+  </div>
+</div>
+
+<div [@cardFlip]="state" class="section mb-0 px-1c pb-0 pt-1" id="Básicos">
 
   <div class="columns px-1c py-4">
     <div class="column is-3 is-hidden-mobile ">
@@ -80,15 +79,17 @@
                 </button>
                 <p class="">{{categoria?.Nome}}</p>
               </a>
-              <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
+          <hr>
           <div class="w-full is-hidden-mobile">
             <div class="w-full">
-              <div class="control">
-                <h2>Preço</h2>
-                <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
-                  (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
+              <div class="field">
+                <label class="label">Faixa de preço</label>
+                <div class="control">
+                  <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
+                    (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
+                </div>
               </div>
             </div>
           </div>
@@ -103,14 +104,20 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-checkbox class="w-full" matNativeControl [(ngModel)]="Parcelamento" (change)="atualizarFiltroAtivo()"
-            [checked]="false">
-            Parcelamento
-          </mat-checkbox>
-          <mat-checkbox class="w-full" matNativeControl [(ngModel)]="MultiplasCores" (change)="atualizarFiltroAtivo()"
-            [checked]="false">
-            Multiplas Cores
-          </mat-checkbox>
+          <mat-list class="column">
+            <mat-list-item>
+              <mat-checkbox matNativeControl [(ngModel)]="Parcelamento" (change)="atualizarFiltroAtivo()"
+                [checked]="false">
+                <label for="" class="label">Parcelamento</label>
+              </mat-checkbox>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-checkbox matNativeControl [(ngModel)]="MultiplasCores" (change)="atualizarFiltroAtivo()"
+                [checked]="false">
+                <label for="" class="label">Multiplas Cores</label>
+              </mat-checkbox>
+            </mat-list-item>
+          </mat-list>
         </div>
       </div>
     </div>

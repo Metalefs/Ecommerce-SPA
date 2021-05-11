@@ -309,7 +309,7 @@ img{
 
 .portfolio-item:hover .portfolio-overlay {
  transform: scale(1);
- opacity: .5;
+ opacity: 1;
 }
 .portfolio-item:hover .portfolio-overlay ~button,.portfolio-item:hover .portfolio-overlay ~a{
   pointer-events: all;

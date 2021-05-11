@@ -64,7 +64,7 @@
           </a>
         </div>
 
-        <mat-menu mat-menu #appMenu2="matMenu">
+        <!-- <mat-menu mat-menu #appMenu2="matMenu">
           <ng-template matMenuContent let-name="name">
             <button mat-menu-item *ngIf="user" href="#topo" routerLinkActive="Active"
               pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
@@ -73,7 +73,8 @@
               [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
             <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
           </ng-template>
-        </mat-menu>
+        </mat-menu> -->
+
         <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
           <div class="shadow-light columns py-2 is-mobile is-gapless " style="width: 100%;border-radius: 1rem;">
             <div class="column is-3">
@@ -92,11 +93,25 @@
           </div>
         </form>
         <div class="column is-hidden-touch">
-          <button [matMenuTriggerFor]="appMenu2" class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
+
+
+        <div class="dropdown">
+          <a class="nav-link">
+            <button class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
             title="Perfil">
             <mat-icon>person_outline</mat-icon>
             <!-- <p class="subtitle is-size-7">{{user?.Nome}}</p> -->
           </button>
+          </a>
+          <div class="dropdown-content has-background-white box">
+            <button mat-menu-item *ngIf="user" href="#topo" routerLinkActive="Active"
+              pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
+            <button mat-menu-item *ngIf="!user" (click)="openLogin()">Entrar</button>
+            <button mat-menu-item *ngIf="user&&user?.Tipo == TipoUsuario.admin" href="#topo" routerLinkActive="Active" pageScroll
+              [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
+            <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
+          </div>
+        </div>
         </div>
         <div class="columns mx-3 my-0 is-hidden-touch link-section is-gapless ">
 

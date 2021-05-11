@@ -230,10 +230,11 @@ li .p-menuitem-link span.p-menuitem-text {
 }
 .p-megamenu{
   border: none;
+  background: #ffffff;
 }
-.p-breadcrumb ul li .p-menuitem-link .p-menuitem-text {
+.p-breadcrumb ul li .p-menuitem-link .p-menuitem-text,.p-component {
   // font-size: 13px;
-  // font-family: $default_font;
+  font-family: $default_font;
   // color: #23a1d1;
   // font-weight: 400;
   @extend .hoverable;

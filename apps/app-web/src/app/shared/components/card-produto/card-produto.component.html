@@ -238,24 +238,15 @@
               <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
                 [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
             </div> -->
-            <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
-            </ng-container>
-            <ng-template #preco_promo>
-              <div class="txt-center">
-                <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-              </div>
-            </ng-template>
-            <ng-template #preco_normal>
-              <div class="txt-center">
-                <p class="preco-produto ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-              </div>
-            </ng-template>
+
           </mat-card-title>
           <!-- <mat-card-subtitle class="txt-center w-full is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
 
-          <mat-card-subtitle mat-card-subtitle
-            class="w-full pos-relative z-index-1 txt-center px-3 left-0 bottom-0 pb-4 pt-4 is-3 preco of-y-scroll">
+        </mat-card-header>
+
+        <mat-card-actions class="w-full pos-relative z-index-1 txt-center left-0 bottom-0 is-3 preco of-y-scroll">
+          <!-- <mat-divider class="my-2"></mat-divider> -->
+          <div class="px-4 py-2">
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
               <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
                 Em até {{Produto.Parcelas}}x <span
@@ -269,17 +260,19 @@
                 sem juros
               </p>
             </div>
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions class="pos-relative bottom-0">
-          <!-- <mat-divider class="my-2"></mat-divider> -->
-          <div class="px-4 py-2">
-            <!-- <a href="#topo" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active" pageScroll>
-              <span
-                class="wp-btn button border is-small is-fullwidth box px-4 mb-2 pb-2">
-                <span><i class="pi pi-plus"></i> Veja mais</span>
-              </span>
-            </a> -->
+            <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
+            </ng-container>
+            <ng-template #preco_promo>
+              <div class="txt-center">
+                <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+                <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
+              </div>
+            </ng-template>
+            <ng-template #preco_normal>
+              <div class="txt-center">
+                <p class="preco-produto ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
+              </div>
+            </ng-template>
           </div>
         </mat-card-actions>
         <a href="javascript:void(0)" class="pos-absolute top-0" (click)='AdicionarAoOrcamento()'>
@@ -298,6 +291,7 @@
                   {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
                 </p>
               </div>
+
             </div>
             <a title="Comprar" matRipple pageScroll
             href="#topo"
