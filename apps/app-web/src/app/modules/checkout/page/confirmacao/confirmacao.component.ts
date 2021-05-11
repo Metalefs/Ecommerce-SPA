@@ -54,8 +54,8 @@ export class ConfirmacaoComponent implements OnInit {
       getPreviewURL($event,fileNames,(res,name)=>{
         element.Produto.Arte = res;
         fileNames = name;
+        this.EditarOrcamento(element);
       })
-      this.EditarOrcamento(element);
     }
   }
   IncrementarQuantidade(element){
@@ -68,6 +68,12 @@ export class ConfirmacaoComponent implements OnInit {
     if(element){
       if(element.Produto.Quantidade > element.Produto.QuantidadeMinima || element.Quantidade > 1)
       element.Produto.Quantidade--;
+      this.EditarOrcamento(element);
+    }
+  }
+  SetarTamanho(element,tamanho){
+    if(element){
+      element.Produto.Tamanho = tamanho;
       this.EditarOrcamento(element);
     }
   }

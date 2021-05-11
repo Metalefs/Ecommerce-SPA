@@ -17,13 +17,13 @@ export class CheckoutService {
 
     Orcamento.Produto.forEach(prd=>{
       if(!prd.Produto.Cor)
-      CheckoutService.erros.push(prd.Produto.Nome + " não possui cor selecionada");
+      CheckoutService.erros.push(`"${prd.Produto.Nome}" não possui cor selecionada. *`);
       if(!prd.Produto.Quantidade || prd.Produto.Quantidade <= 0)
-      CheckoutService.erros.push(prd.Produto.Nome + " não possui quantidade selecionada");
+      CheckoutService.erros.push(`"${prd.Produto.Nome}" não possui quantidade selecionada. *`);
       if(!prd.Produto.Tamanho)
-      CheckoutService.erros.push(prd.Produto.Nome + " não possui tamanho selecionado");
+      CheckoutService.erros.push(`"${prd.Produto.Nome}" não possui tamanho selecionado. *`);
       if(!prd.Produto.Arte)
-      CheckoutService.erros.push(prd.Produto.Nome + " não possui arte selecionada");
+      CheckoutService.erros.push(`"${prd.Produto.Nome}" não possui arte selecionada. *`);
     })
 
     CheckoutService.valid = CheckoutService.erros.length == 0;

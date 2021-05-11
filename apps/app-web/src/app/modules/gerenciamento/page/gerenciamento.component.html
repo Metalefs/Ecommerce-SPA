@@ -1,24 +1,6 @@
 <div class="bg-white min-h-50" [class.example-is-mobile]="mobileQuery.matches">
 
   <mat-sidenav-container class="has-background-white-bis vh-full" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
-    <mat-sidenav #snav [opened]="opened" [mode]="mobileQuery.matches ? 'over' : 'side'"
-      fixedTopGap="56">
-      <mat-nav-list>
-        <a *ngFor = "let nav of navs"
-        (click)="togglenav(nav,false)"
-        [ngClass]="activenav == nav.name ? 'nav active-nav' : 'nav'"
-        mat-list-item
-        [routerLink]="[nav.href]"
-        routerLinkActive="active">
-          <mat-icon>
-            {{activenav == nav.name ? 'done' : ''}}
-          </mat-icon>
-          {{nav.name}}
-          <mat-divider></mat-divider>
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-
     <mat-sidenav-content
 
       class="has-background-white-bis pos-relative min-h-50">
@@ -36,5 +18,22 @@
       </div>
 
     </mat-sidenav-content>
+    <mat-sidenav #snav [opened]="opened" [mode]="mobileQuery.matches ? 'over' : 'side'"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <a *ngFor = "let nav of navs"
+        (click)="togglenav(nav,false)"
+        [ngClass]="activenav == nav.name ? 'nav active-nav' : 'nav'"
+        mat-list-item
+        [routerLink]="[nav.href]"
+        routerLinkActive="active">
+          <mat-icon>
+            {{activenav == nav.name ? 'done' : ''}}
+          </mat-icon>
+          {{nav.name}}
+          <mat-divider></mat-divider>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
   </mat-sidenav-container>
 </div>

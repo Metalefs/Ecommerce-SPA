@@ -9,6 +9,7 @@ import { DocumentRef } from '../../../data/service/document.service';
 })
 export class MercadopagoButtonComponent implements OnInit {
   @Input() init_point;
+  @Input() disabled:boolean;
 
   constructor(private document:DocumentRef, @Inject(PLATFORM_ID) private platform: Object,) { }
 

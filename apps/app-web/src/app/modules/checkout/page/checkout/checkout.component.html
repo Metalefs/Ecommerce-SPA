@@ -19,7 +19,7 @@
 
       <mat-list class="px-2 mx-2 box border">
         <mat-list-item *ngFor="let erro of checkoutService.getErros()">
-          <p class="subtitle is-size-6 has-text-danger">*{{erro}}</p>
+          <p class="subtitle is-size-6 has-text-danger">{{erro}}</p>
           <hr>
         </mat-list-item>
       </mat-list>

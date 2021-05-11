@@ -19,7 +19,7 @@
             <div class="a-i-c pt-3">
 
               <div *ngIf="_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
-                <personalizados-lopes-mercadopago-button [init_point]="_init_point">
+                <personalizados-lopes-mercadopago-button [init_point]="_init_point" [disabled]="!checkoutService.getValid()">
                 </personalizados-lopes-mercadopago-button>
               </div>
             </div>

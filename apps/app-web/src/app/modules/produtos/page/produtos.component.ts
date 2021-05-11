@@ -276,6 +276,7 @@ export class ProdutosComponent implements OnInit {
     this.activeOrderStatus = this.orderStatus[0];
     this.Parcelamento = false;
     this.MultiplasCores = false;
+    this.changeOptions(0)
   }
   SetCategoria(categoria:Categoria){
     this.CategoriaAtiva = categoria == null ?
