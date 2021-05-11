@@ -6,14 +6,14 @@
         <div class="margin w-full dis-flex flex-sa flex-m">
           <div class="columns is-gapless is-multiline is-vcentered">
             <div class="column pb-0 mt-2 w-full dis-flex flex-m  flex-c">
-              <p class="has-text-white">ASSINE NOSSA NEWSLETTER</p>
+              <label for="nome" class="label has-text-white">ASSINE NOSSA NEWSLETTER</label>
             </div>
             <div class="column">
               <div class="dis-flex flex-m">
-                <mat-icon class="has-text-light">mail</mat-icon>
                 <div class="control">
-                  <input #nome  [(ngModel)]="Nome"   class="input" placeholder="nome">
+                  <input #nome id="nome" [(ngModel)]="Nome"   class="input" placeholder="nome">
                 </div>
+                <mat-icon class="has-text-light">mail</mat-icon>
                 <div class="control">
                   <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="email">
                 </div>

@@ -23,13 +23,13 @@
 <ng-template #pedido>
 
   <section @fadeIn class="section py-0 px-0">
-    <div *ngIf="edit" class="has-text-left">
-      <h2 class="subtitle">Confira o seu pedido</h2>
-      <span class="subtitle is-size-7">Revise seus produtos e continue para inserir seus dados pessoais.</span>
+    <div *ngIf="edit" class="has-text-left block">
+      <h2 class="title is-4">Confira o seu pedido</h2>
+      <p class="label subtitle is-size-7">Revise seus produtos e continue para inserir seus dados pessoais.</p>
     </div>
     <div class="a-i-c">
 
-      <div class="box border w-full px-2 table-container">
+      <div class="box border w-full px-2 of-x-scroll">
 
         <table mat-table [dataSource]="dataSource" class="w-full">
 
@@ -67,10 +67,10 @@
                       </div>
                     </ng-template>
                   </figure>
-                  <div class="is-hidden-desktop">
+                  <div class="is-hidden-desktop ml-3">
                     <a href="#topo" [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
                       routerLinkActive="router-link-active"
-                      class="px-3 titulo-produto ">{{element?.Produto.Nome}}
+                      class="titulo-produto ">{{element?.Produto.Nome}}
                       <p class="titulo-produto">{{element?.Produto.Cor?.nome}}</p>
                       <ng-container *ngIf="element?.Produto?.Tamanho">
                         <p class="subtitle">{{element?.Produto?.Tamanho}}</p>
