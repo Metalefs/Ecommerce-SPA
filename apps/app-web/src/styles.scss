@@ -156,6 +156,7 @@ a {
     }
   }
 }
+
 .portfolio-item .slideshow-container a{
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
@@ -234,8 +235,16 @@ a {
 //   background:transparent !important;
 // }
 li .p-menuitem-link span.p-menuitem-text {
-  color: #495057;
-  font-size: small;
+  font-size: 0.8rem;
+  min-height: 15px;
+  transition: 0.25s all ease-in-out;
+  border-left: 1px solid #efefef62;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 0;
+  color: black !important;
+  font-weight: 500;
+  margin-left: 2px;
+  font-family: $default_font;
 }
 // .p-megamenu div {
 //   overflow-x: scroll;

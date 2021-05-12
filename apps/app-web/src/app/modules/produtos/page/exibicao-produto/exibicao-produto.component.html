@@ -3,12 +3,33 @@
     [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
-<section class="hero has-background is-medium  is-primary">
-  <img @fadeIn class="hero-background is-transparent" [src]="Produto?.Imagem[1] || ''" alt="Imagem do produto">
+<section class="hero has-background is-medium  is-primary"
+  (mouseover)="
+      this.imgProduto.classList.remove('show-img');
+      this.imgProduto.classList.add('hide-img');
+      this.imgProduto2.classList.add('show-img');
+      this.imgProduto2.classList.remove('hide-img');
+      "
+  (mouseout)="
+    this.imgProduto2.classList.remove('show-img');
+    this.imgProduto2.classList.add('hide-img');
+    this.imgProduto.classList.add('show-img');
+    this.imgProduto.classList.remove('hide-img');
+  "
+>
+  <!-- <img data-aos="zoom-in" *ngIf="Produto?.Imagem[1]" class="hero-background is-transparent" [src]="Produto?.Imagem[1] || ''" alt="Imagem do produto"> -->
+  <img data-aos="zoom-in"  #imgProduto
+          class="show-img hero-background is-transparent"
+          [src]="Produto?.Imagem[1]" [style.opacity]="'1'"
+          alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+  <img data-aos="zoom-in" #imgProduto2
+    class="hero-background is-transparent hide-img" [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
+    alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+
     <div class="hero-body ">
         <div class="container">
           <div class="columns">
-            <div class="column">
+            <div class="column has-background-light-bis" style="    text-shadow: 0 0 black;">
               <h1 class="title is-2">{{Produto?.Nome}}</h1>
               <p class="subtitle is-3">{{Produto?.Subtitulo}}</p>
             </div>
@@ -304,9 +325,8 @@
 
                           <button @fadeIn mat-flat-button title="Personalizar"
                           [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                          (click)="AbrirModalArte()" class="" color="warn" class=" has-text-white">
-                          <mat-icon>photo</mat-icon>
-                          Selecionar Arte do produto
+                          (click)="AbrirModalArte()" class="" color="warn" class="has-text-white has-text-weight-bold">
+                            <mat-icon>photo</mat-icon>Selecionar Arte do produto
                           </button>
                         </div>
 

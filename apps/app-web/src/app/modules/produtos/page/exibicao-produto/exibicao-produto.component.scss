@@ -7,7 +7,48 @@ gallery {
   background-color: #000000bf !important;
 }
 
+img{
+  transition: opacity 1s ease;
+  &.show-img{
+    // animation: show 1s ease forwards !important;
+    visibility: show !important;
+    opacity: 1 !important;
+  }
+  &.hide-img{
+    // animation: hide 1s ease forwards !important;
+    visibility: hidden;
+    opacity: 0 !important;
+  }
+}
 
+@keyframes show{
+  0%{
+    visibility: hidden;
+    opacity: 0;
+    // display: none;
+  }
+  100%{
+    visibility: show !important;
+    opacity: 1 !important;
+    // display: initial !important;
+    position: absolute !important;
+  }
+}
+@keyframes hide{
+  0%{
+    visibility: show;
+    opacity: 1;
+    // display: initial;
+    // position: relative;
+  }
+  100%{
+    display: none  !important;
+    opacity: 0 !important;
+    // position: absolute;
+    visibility: hidden !important;
+    position: absolute !important;
+  }
+}
 .breadcrumb>li+li::before {
   content: '';
   padding: 0;
