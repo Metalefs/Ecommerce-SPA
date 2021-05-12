@@ -112,7 +112,7 @@
                 sem juros
               </p>
               <p class=" parcelas" *ngIf="Produto.Parcelas == 1">
-                Á vista por <span
+                Á vista por <br><span
                   class="parcelas"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
@@ -162,7 +162,7 @@
           [style.width]="flex_direction == 'row'?'50%':'100%'"
           pageScroll
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-          mat-flat-button class="m-lr-auto shadow-light "><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
+          mat-flat-button class="m-lr-auto border-light "><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
         </div>
       </div>
     </mat-card>

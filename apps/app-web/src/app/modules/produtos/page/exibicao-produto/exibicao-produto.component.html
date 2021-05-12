@@ -3,12 +3,16 @@
     [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
-<section class="hero  is-medium  is-bold is-primary">
+<section class="hero has-background is-medium  is-primary">
+  <img @fadeIn class="hero-background is-transparent" [src]="Produto?.Imagem[1] || ''" alt="Imagem do produto">
     <div class="hero-body ">
         <div class="container">
-            <h1 class="title is-2">{{Produto?.Nome}}</h1>
-            <p class="subtitle is-3">{{Produto?.Subtitulo}}</p>
-
+          <div class="columns">
+            <div class="column">
+              <h1 class="title is-2">{{Produto?.Nome}}</h1>
+              <p class="subtitle is-3">{{Produto?.Subtitulo}}</p>
+            </div>
+          </div>
         </div>
     </div>
 </section>
@@ -47,7 +51,7 @@
                 <mat-tab-group headerPosition="below" [selectedIndex]="selected.value"
                   (selectedIndexChange)="selected.setValue($event)">
                   <mat-tab>
-                    <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
+                    <gallery data-aos="zoom-in" gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
                       [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
                       [dots]="true" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
                     </gallery>
@@ -438,7 +442,7 @@
   </div>
 
 
-  <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="'Fazendo Checkout'">
+  <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
   </personalizados-lopes-loading-cube>
 
 

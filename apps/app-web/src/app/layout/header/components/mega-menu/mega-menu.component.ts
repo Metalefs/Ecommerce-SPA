@@ -75,7 +75,7 @@ export class MegaMenuComponent implements OnInit {
       })
     })
     this.items.push({
-      label: label, icon: 'pi pi-caret-down',
+      label: label, icon: '',
       items:
         items.items
     })

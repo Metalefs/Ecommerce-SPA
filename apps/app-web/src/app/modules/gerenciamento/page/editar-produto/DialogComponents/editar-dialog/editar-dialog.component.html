@@ -74,48 +74,74 @@
 
     </div>
 
-    <div class="column is-8 px-3 has-background-white z-index-2 pos-sticky">
+    <div class="column px-3 has-background-white z-index-2 pos-sticky">
 
       <div class="columns is-multiline mb-0 pb-0">
-        <div class="column is-4">
-          <mat-form-field class="w-full">
-            <input matInput type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
-          </mat-form-field>
+        <div class="column has-background-light">
+          <mat-form-field class="field w-full">
+            <div class="control">
 
-          <mat-form-field class="w-full">
-            <input matInput type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
+            </div>
+            <input  matInput class="input" type="text" [(ngModel)]="Produto.Nome" placeholder="Nome" title="Nome">
           </mat-form-field>
+          <mat-divider></mat-divider>
+          <mat-form-field class="field w-full">
+            <div class="control">
 
-          <h1 class="titulo-produto">{{Produto?.Nome}}</h1>
+            </div>
+            <input  matInput class="input" type="text" [(ngModel)]="Produto.Subtitulo" placeholder="Subtitulo">
+          </mat-form-field>
+          <mat-divider></mat-divider>
           <div class="descricao-produto w-full py-4">
-            <mat-form-field class="w-full">
-              <textarea matInput type="text" [(ngModel)]="Produto.DescricaoRapida"
+            <mat-form-field class="field w-full">
+              <div class="control">
+
+              </div>
+              <textarea  matInput class="input" type="text" [(ngModel)]="Produto.DescricaoRapida"
                 placeholder="Descricao Rapida"></textarea>
             </mat-form-field>
-            <p class="preto6">{{Produto?.DescricaoRapida || ''}}</p>
           </div>
+          <mat-divider></mat-divider>
+          <mat-form-field class="field w-full">
+            <div class="control">
+              <input  matInput class="input" type="text" [(ngModel)]="Produto.Marca" placeholder="Marca">
 
-          <mat-form-field class="w-full">
-            <input matInput type="text" [(ngModel)]="Produto.Marca" placeholder="Marca">
+            </div>
           </mat-form-field>
-          <mat-form-field class="w-full">
-            <input matInput type="text" [(ngModel)]="Produto.Modelo" placeholder="Modelo">
-          </mat-form-field>
+          <mat-divider></mat-divider>
+          <mat-form-field class="field w-full">
+            <div class="control">
 
+              <input  matInput class="input" type="text" [(ngModel)]="Produto.Modelo" placeholder="Modelo">
+            </div>
+          </mat-form-field>
+          <mat-divider></mat-divider>
           <div class="my-1">
-            <mat-form-field class="">
-              <input matInput type="number" min="1" [(ngModel)]="Produto.Preco" [value]="Produto.Preco"
-                placeholder="Preco">
+            <mat-form-field class="field ">
+              <div class="control">
+
+                <input  matInput class="input" type="number" min="1" [(ngModel)]="Produto.Preco" [value]="Produto.Preco"
+                  placeholder="Preco">
+              </div>
             </mat-form-field>
-            <mat-form-field class="">
-              <input matInput type="number" min="1" [(ngModel)]="Produto.Parcelas" [value]="Produto.Parcelas"
-                placeholder="Parcelas">
-            </mat-form-field>
-            <mat-form-field class="">
+            <mat-divider></mat-divider>
+
+            <mat-form-field class="field ">
               <mat-label>Preco Promocional</mat-label>
-              <input matInput type="number" min="1" [(ngModel)]="Produto.PrecoPromocional"
-                [value]="Produto.PrecoPromocional">
+              <div class="control">
+
+                <input matInput class="input" type="number" min="1" [(ngModel)]="Produto.PrecoPromocional"
+                  [value]="Produto.PrecoPromocional">
+              </div>
             </mat-form-field>
+            <mat-form-field class="field ">
+              <div class="control">
+
+                <input  matInput class="input" type="number" min="1" [(ngModel)]="Produto.Parcelas" [value]="Produto.Parcelas"
+                  placeholder="Parcelas">
+              </div>
+            </mat-form-field>
+            <mat-divider></mat-divider>
             <ng-container *ngIf="Produto.Status == enumStatusProduto.promocao then preco_promo else preco_normal">
             </ng-container>
             <ng-template #preco_promo>
@@ -150,21 +176,26 @@
               </button>
             </div>
           </div>
-          <mat-form-field class="">
+          <mat-divider></mat-divider>
+          <mat-form-field class="field">
             <mat-label>Quantidade Minima</mat-label>
-            <input matInput type="number" min="1" [(ngModel)]="Produto.QuantidadeMinima"
-              [value]="Produto.QuantidadeMinima">
+            <div class="control">
+
+              <input matInput class="input" type="number" min="1" value="1" [(ngModel)]="Produto.QuantidadeMinima"
+                [value]="Produto.QuantidadeMinima">
+            </div>
           </mat-form-field>
           <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima > 1">
             <em>
               *Minimo {{Produto?.QuantidadeMinima}} unidades
             </em>
           </span>
+          <mat-divider></mat-divider>
           <div class="w-full py-3 mb-0">
 
             <div class="columns is-mobile mb-0">
-              <div class="column pb-0">
-                <mat-form-field class="w-full">
+              <div class="column is-6 pb-0">
+                <mat-form-field class="field w-full">
                   <mat-chip-list #chipList aria-label="Color selection">
                     <mat-chip *ngFor="let cor of Produto.Cores" [selectable]="selectable" [removable]="removable"
                       (removed)="removeCor(cor)">
@@ -185,8 +216,9 @@
                     </mat-option>
                   </mat-autocomplete>
                 </mat-form-field>
+                <mat-divider></mat-divider>
                 <p><em>Cores</em></p>
-                <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
+                <mat-form-field class="field w-full" *ngIf="Produto?.Cores" appearance="fill">
                   <mat-label>Selecione uma cor</mat-label>
                   <mat-select matNativeControl [(ngModel)]="Produto.Cor" [value]="Produto?.Cor">
                     <mat-option *ngFor="let opt of Produto?.Cores" [value]="opt" class="w-full">
@@ -198,8 +230,9 @@
                   </mat-select>
                 </mat-form-field>
               </div>
+              <mat-divider></mat-divider>
               <div class="column is-6 pb-0" *ngIf="Produto?.Tamanhos">
-                <mat-form-field class="w-full">
+                <mat-form-field class="field w-full">
                   <mat-chip-list #chipList2 aria-label="Size selection">
                     <mat-chip *ngFor="let tamanho of Produto.Tamanhos" [selectable]="selectable" [removable]="removable"
                       (removed)="removeTamanho(tamanho)">
@@ -219,8 +252,8 @@
                   </mat-autocomplete>
                 </mat-form-field>
                 <p><em>Tamanhos</em></p>
-                <mat-form-field class="w-full" *ngIf="Produto?.Cores" appearance="fill">
-                  <mat-label>Selecione um tamanho</mat-label>
+                <mat-form-field class="field w-full" *ngIf="Produto?.Cores" appearance="fill">
+                  <mat-label class="label">Selecione um tamanho</mat-label>
                   <mat-select matNativeControl [(ngModel)]="Produto.Tamanho" [value]="Produto?.Tamanho">
                     <mat-option *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="w-full">
                       <div class="cor-produto card box w-full" (click)="Produto.Tamanho = opt">
@@ -233,33 +266,43 @@
             </div>
 
           </div>
-
         </div>
 
       </div>
-
       <h1>Dimensões</h1>
       <div class="columns">
-        <mat-form-field class="column">
-          <mat-label>Altura</mat-label>
-          <input matInput type="number" min="1" placeholder="Altura em cm" [(ngModel)]="Produto.Dimensoes.Altura"
-            [value]="Produto.QuantidadeMinima">
+        <mat-form-field class="field column">
+          <mat-label class="label">Altura</mat-label>
+          <div class="control">
+
+            <input matInput class="input" type="number" min="1" placeholder="Altura em cm" [(ngModel)]="Produto.Dimensoes.Altura"
+              [value]="Produto.QuantidadeMinima">
+          </div>
         </mat-form-field>
-        <mat-form-field class="column">
-          <mat-label>Largura</mat-label>
-          <input matInput type="number" min="1" placeholder="Largura em cm" [(ngModel)]="Produto.Dimensoes.Largura"
-            [value]="Produto.QuantidadeMinima">
+        <mat-form-field class="field column">
+          <mat-label class="label">Largura</mat-label>
+          <div class="control">
+
+            <input matInput class="input" type="number" min="1" placeholder="Largura em cm" [(ngModel)]="Produto.Dimensoes.Largura"
+              [value]="Produto.QuantidadeMinima">
+          </div>
         </mat-form-field>
-        <mat-form-field class="column">
-          <mat-label>Comprimento</mat-label>
-          <input matInput type="number" min="1" placeholder="Comprimento em cm" [(ngModel)]="Produto.Dimensoes.Comprimento"
-            [value]="Produto.QuantidadeMinima">
+        <mat-form-field class="field column">
+          <mat-label class="label">Comprimento</mat-label>
+          <div class="control">
+
+            <input matInput class="input" type="number" min="1" placeholder="Comprimento em cm"
+              [(ngModel)]="Produto.Dimensoes.Comprimento" [value]="Produto.QuantidadeMinima">
+          </div>
         </mat-form-field>
       </div>
-      <mat-form-field class="column">
-        <mat-label>Peso</mat-label>
-        <input matInput type="number" min="1" placeholder="Peso em gramas"
-          [(ngModel)]="Produto.Peso" [value]="Produto.Peso">
+      <mat-form-field class="field column">
+        <mat-label class="label">Peso</mat-label>
+        <div class="control">
+
+          <input matInput class="input" type="number" min="1" placeholder="Peso em gramas"
+            [(ngModel)]="Produto.Peso" [value]="Produto.Peso">
+        </div>
       </mat-form-field>
       <figure class="image is-64x64 img-orcamento">
         <img src="{{Produto?.Imagem[0]}}" alt="">

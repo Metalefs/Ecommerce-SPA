@@ -21,10 +21,10 @@
     </div>
     <ng-container *ngIf="!checkoutService.getValid()">
 
-      <mat-list class="px-2 mx-2 box border">
-        <mat-list-item *ngFor="let erro of checkoutService.getErros()">
+      <mat-list class="px-2 mx-2 box border" @fadeIn>
+        <mat-list-item class="pb-2" @fadeIn *ngFor="let erro of checkoutService.getErros()">
           <p class="subtitle is-size-6 has-text-danger">{{erro}}</p>
-          <hr>
+          <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>
     </ng-container>

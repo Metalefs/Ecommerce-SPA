@@ -1,27 +1,31 @@
-<div class="container">
-  <h1 class="title">Gerenciar Produtos</h1>
-  <mat-form-field class="" appearance="fill">
-    <mat-label>Categoria</mat-label>
-    <mat-select matNativeControl [(ngModel)]="CategoriaAtiva" (selectionChange)="atualizarFiltroAtivo()">
-      <mat-option *ngFor="let categoria of (Categorias$ | async)" [value]="categoria" class="w-full">
-        <div class="box w-full">
-          <p>{{categoria.Nome}}</p>
-        </div>
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <div class="control has-icons-right w-full">
-    <input [(ngModel)]="activeSearchFilter" (change)="atualizarFiltroAtivo()" class="border py-2" type="text"
-      placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
-    <span class="icon is-small is-right">
-      <mat-icon>search</mat-icon>
-    </span>
-  </div>
-  <div class="column is-4">
+<div class="section container">
+  <div class="block">
+    <h1 class="title">Gerenciar Produtos</h1>
     <button mat-fab color="primary" (click)="Criar()" class="ab-b-r">
       <mat-icon>add</mat-icon>
     </button>
   </div>
+
+  <div class="dis-flex">
+    <mat-form-field class="" appearance="fill">
+      <mat-label>Categoria</mat-label>
+      <mat-select matNativeControl [(ngModel)]="CategoriaAtiva" (selectionChange)="atualizarFiltroAtivo()">
+        <mat-option *ngFor="let categoria of (Categorias$ | async)" [value]="categoria" class="w-full">
+          <div class="box w-full">
+            <p>{{categoria.Nome}}</p>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="control has-icons-right w-full">
+      <input [(ngModel)]="activeSearchFilter" (change)="atualizarFiltroAtivo()" class="border py-2" type="text"
+        placeholder="Filtrar em {{CategoriaAtiva?.Nome}}">
+      <span class="icon is-small is-right">
+        <mat-icon>search</mat-icon>
+      </span>
+    </div>
+  </div>
+
   <mat-card>
     <mat-card-header class="w-full">
     </mat-card-header>

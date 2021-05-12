@@ -6,6 +6,8 @@ gallery {
 :host ::ng-deep #lightbox-lightbox > gallery {
   background-color: #000000bf !important;
 }
+
+
 .breadcrumb>li+li::before {
   content: '';
   padding: 0;
