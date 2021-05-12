@@ -43,6 +43,16 @@ export class HeaderFooterComponent implements OnInit {
         },
       ] :
       [
+
+        {
+          title:"Galeria",
+          icon:"image",
+          color:"#4d589",
+          class:"yellow",
+          link:"/showcase",
+          id:"#topo",
+          content:`Veja nossos últimos trabalhos`
+        },
         {
           title:"Produtos",
           icon:"photo_library",
@@ -52,15 +62,6 @@ export class HeaderFooterComponent implements OnInit {
           id:"#topo",
           content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
-        },
-        {
-          title:"Galeria",
-          icon:"image",
-          color:"#4d589",
-          class:"yellow",
-          link:"/showcase",
-          id:"#topo",
-          content:`Veja nossos últimos trabalhos`
         },
         {
           title:"Orçamento",

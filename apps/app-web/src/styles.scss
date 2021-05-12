@@ -223,9 +223,7 @@ a {
 #topo > div.ng-tns-c322-1.ng-trigger.ng-trigger-routeAnimations > section > personalizados-lopes-header > personalizados-lopes-mega-menu > p-megamenu > div > ul > li:nth-child(1) > a{
   display: none;
 }
-.swiper-container{
-  overflow: visible;
-}
+
 .p-dataview .p-dataview-header {
   // background:transparent;
   // border:none;
@@ -675,6 +673,11 @@ canvas{
   align-items: center;
   text-align: justify;
   letter-spacing: 0.04em;
+}
+@media only screen and (min-width:768px) {
+  .swiper-container{
+    overflow: visible;
+  }
 }
 @media (max-width:768px){
 

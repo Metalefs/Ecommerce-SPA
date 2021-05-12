@@ -66,7 +66,7 @@ export class TagProdutoSwiperComponent implements OnInit {
                 preloadImages          : true,
                 lazy                   : true,
                 observer               : true,
-                spaceBetween           : 2,
+                spaceBetween           : 1,
                 navigation: {
                   nextEl: '.swiper-button-next',
                   prevEl: '.swiper-button-prev',
