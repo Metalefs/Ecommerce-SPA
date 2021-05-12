@@ -9,7 +9,7 @@ import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
-import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
@@ -100,9 +100,15 @@ export class ConfirmacaoComponent implements OnInit {
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
         //let DistinctProdutos = removeDuplicates(Produtos,"_id");
+        this.checkoutService.Validate(x);
         this.dataSource = Produtos as any;
       })
     });
+  }
+
+  setColor(cor:Cor, element){
+    element.Produto.Cor = cor;
+    this.EditarOrcamento(element);
   }
 
   CalcularPreco(produto:CodProduto){

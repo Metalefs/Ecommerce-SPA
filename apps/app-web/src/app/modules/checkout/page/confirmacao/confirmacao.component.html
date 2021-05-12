@@ -90,7 +90,14 @@
                         </mat-select>
                       </mat-form-field>
                     </ng-container>
-
+                    <ng-container *ngIf="!element?.Produto?.Cor">
+                      <personalizados-lopes-cor-produto-selector [Produto]="element?.Produto" (onSetColor)="setColor($event,element)"></personalizados-lopes-cor-produto-selector>
+                    </ng-container>
+                    <div>
+                      <button *ngIf="edit" class="mt-3 clickable hoverable" (click)="removerProduto(element)">
+                        <i class="pi pi-times has-text-danger "></i> remover
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div class="column is-hidden-touch">
@@ -115,12 +122,14 @@
                       </mat-select>
                     </mat-form-field>
                   </ng-container>
-                <div>
-                  <button *ngIf="edit" (click)="removerProduto(element)">
-                    remover
-                  </button>
-                </div>
+                  <ng-container *ngIf="!element?.Produto?.Cor">
+                    <personalizados-lopes-cor-produto-selector [Produto]="element?.Produto" (onSetColor)="setColor($event,element)"></personalizados-lopes-cor-produto-selector>
 
+
+                  </ng-container>
+                  <button *ngIf="edit" class="mt-3 clickable hoverable" (click)="removerProduto(element)">
+                    <i class="pi pi-times has-text-danger "></i> remover
+                  </button>
                 </div>
               </div>
               <div class="columns is-mobile is-hidden-desktop mb-2">
@@ -189,9 +198,10 @@
       <div *ngIf="edit" class="w-full">
         <a href="#topo" class="py-3" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
           <button class="py-3 pb-3 subtitle w-full">
-            Escolher
+            <span
+            class="nunitoParagraphy16"> Escolher
             mais
-            produtos
+            produtos</span>
           </button>
         </a>
         <button [routerLink]="['/checkout/dados/']" [disabled]="!checkoutService.getValid()" pageScroll href="#TOPO"

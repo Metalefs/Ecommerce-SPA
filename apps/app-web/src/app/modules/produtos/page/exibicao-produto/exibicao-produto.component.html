@@ -223,24 +223,7 @@
                         <div class="columns txt-left is-vcentered pt-0 is-multiline">
 
                           <div class="column is-12 py-1" *ngIf="Produto?.Tamanho" >
-                            <p class="is-size-7"><span
-                                class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome || ' Selecione uma cor'}}</strong></p>
-                            <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb"
-                              [ngClass]="{'is-danger':ErroCor()}" *ngIf="Produto?.Cores">
-                              <div mat-fab color="" (click)="setColor(cor)" id="column is-3 shadow-light"
-                                *ngFor="let cor of Produto?.Cores; let i =index" style="border: 2px solid;
-                                border-radius: 50%;">
-                                <input class="px-2 py-2 mx-1" type="radio" alt="{{cor.nome}}" [value]="Produto.Cor"
-                                  id="cor{{i}}" [formControlName]="'cor'"
-                                  [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor()}">
-                                <div title="{{cor.nome}}" class="ColorlabelBackground shadow-light border"
-                                  [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="Produto.Cor=cor;">
-                                  <label title="{{cor.nome}}" [style.background]="cor.cor" class="border"
-                                    for="cor{{i}}"></label>
-                                </div>
-                                <span (click)="Produto.Cor=cor;"></span>
-                              </div>
-                            </div>
+                            <personalizados-lopes-cor-produto-selector [Produto]="Produto" (onSetColor)="setColor($event)"></personalizados-lopes-cor-produto-selector>
                           </div>
 
                         </div>
@@ -279,6 +262,20 @@
                                   {{textoAdicionar}}
                                   <mat-icon>shopping_bag</mat-icon>
                                 </button>
+
+                                <div class="columns pb-0 mb-0  px-2">
+
+                                  <div class="column pb-0 mb-0" >
+                                    <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
+                                      [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                                      (click)="DuplicarOrcamento()" color="accent"
+                                      class="background-light-red has-text-white has-text-weight-medium bo-cir">
+                                      <mat-icon>add</mat-icon>
+                                      Novo
+                                    </button>
+
+                                  </div>
+                                </div>
                               </ng-template>
                             </div>
                           </div>
@@ -297,26 +294,20 @@
                           <personalizados-lopes-botao-esgotado [Produto]="Produto">
                           </personalizados-lopes-botao-esgotado>
                         </div>
-                        <div class="column" >
-                          <button mat-flat-button title="Personalizar"
-                            [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                            (click)="AbrirModalArte()" class=" mx-2" color="warn" class=" has-text-white">
-                            <mat-icon>photo</mat-icon>
-                            Arte do produto
-                          </button>
-
-                        </div>
                       </div>
-                      <div class="column" >
-                        <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
+                      <div class="columns pb-0 mb-0  px-2">
+                        <div class="column pb-0 mb-0 ">
+
+                          <button @fadeIn mat-flat-button title="Personalizar"
                           [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                          (click)="DuplicarOrcamento()" color="accent"
-                          class="background-light-red mx-2 has-text-white has-text-weight-medium bo-cir">
-                          <mat-icon>add</mat-icon>
-                          Novo
-                        </button>
+                          (click)="AbrirModalArte()" class="" color="warn" class=" has-text-white">
+                          <mat-icon>photo</mat-icon>
+                          Selecionar Arte do produto
+                          </button>
+                        </div>
 
                       </div>
+
 
                     </div>
                   </form>

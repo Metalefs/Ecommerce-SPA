@@ -1,0 +1,38 @@
+
+input[type='radio'] {
+  display: none;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50%
+}
+.ColorlabelBackground{
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  padding: 1px;
+  border: 2px solid #e7e7e7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  label {
+    width: 95% !important;
+    height: 95% !important;
+    border-radius: 50%;
+    cursor: pointer;
+    ::before{
+
+    }
+  }
+}
+.selected {
+  border-radius: 50px;
+  background: #e0e0e0;
+  box-shadow: inset 20px 20px 60px #bebebe,
+              inset -20px -20px 60px #ffffff;
+}
+.input[type='radio'] + label span {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

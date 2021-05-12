@@ -78,6 +78,7 @@ img{
   text-align: center;
   margin-bottom: 0;
 }
+
 .mat-card-image,img{
   background: rgb(255, 255, 255);
   position: relative;
@@ -106,7 +107,9 @@ img{
 
   }
 }
-
+.mat-card-image{
+  margin:0 -16px 16px -16px;
+}
 .w-full-i{
   width: 400px;
   margin: 0;

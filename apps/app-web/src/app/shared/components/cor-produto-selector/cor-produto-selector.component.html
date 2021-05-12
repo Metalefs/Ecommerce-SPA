@@ -1,0 +1,22 @@
+<div>
+  <p class="is-size-7">
+    <span
+      class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome || ' Selecione uma cor'}}</strong>
+    </p>
+  <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb"
+    [ngClass]="{'is-danger':ErroCor}" *ngIf="Produto?.Cores">
+    <div mat-fab color="" (click)="setColor(cor)" id="column is-3 shadow-light"
+      *ngFor="let cor of Produto?.Cores; let i =index" style="border: 2px solid;
+      border-radius: 50%;">
+      <input class="px-2 py-2 mx-1" type="radio" alt="{{cor.nome}}" [value]="Produto.Cor"
+        id="cor{{i}}" [formControlName]="'cor'"
+        [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor}">
+      <div title="{{cor.nome}}" class="ColorlabelBackground shadow-light border"
+        [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="setColor(cor)">
+        <label title="{{cor.nome}}" [style.background]="cor.cor" class="border"
+          for="cor{{i}}"></label>
+      </div>
+      <span (click)="setColor(cor)"></span>
+    </div>
+  </div>
+</div>

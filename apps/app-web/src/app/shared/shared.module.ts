@@ -49,6 +49,7 @@ import { TagProdutoSwiperComponent } from './components/tag-produto-swiper/tag-p
 import { BlogSwiperComponent } from './components/blog-swiper/blog-swiper.component';
 import { EditorModule } from './components/editor/editor/editor.module';
 import { AutocompleteDropdownModule } from './components/autocomplete-dropdown/autocomplete-dropdown.module';
+import { CorProdutoSelectorComponent } from './components/cor-produto-selector/cor-produto-selector.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -82,7 +83,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      ExibirListaComentarioProdutoComponent,
      ProdutoSwiperComponent,
      TagProdutoSwiperComponent,
-     BlogSwiperComponent
+     BlogSwiperComponent,
+     CorProdutoSelectorComponent
     ],
   imports: [
     CommonModule,
@@ -149,7 +151,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     TagProdutoSwiperComponent,
     BlogSwiperComponent,
     EditorModule,
-    AutocompleteDropdownModule
+    AutocompleteDropdownModule,
+    CorProdutoSelectorComponent
   ],
   providers:[
     {
