@@ -158,11 +158,11 @@
               </p>
             </div>
           </div>
-          <a title="Comprar" matRipple
+          <!-- <a title="Comprar" matRipple
           [style.width]="flex_direction == 'row'?'50%':'100%'"
           pageScroll
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-          mat-flat-button class="m-lr-auto border-light "><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a>
+          mat-flat-button class="m-lr-auto border-light "><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a> -->
         </div>
       </div>
     </mat-card>
@@ -216,13 +216,6 @@
       </span> -->
 
 
-      <a matRipple class="dis-flex flex-w  w-full"  [href]="'/produtos/'+Produto._id">
-       <span class="prod-status ">
-        <i class="pi pi-tag  product-category-icon"></i>
-        <span class="product-category"></span>
-        <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()"> Em {{Produto.Cores?.length}} cores</span>
-      </span>
-      </a>
 
       <mat-card-footer class="px-2 z-index-2">
 
@@ -246,6 +239,13 @@
 
         <mat-card-actions class="w-full pos-relative z-index-1 txt-center left-0 bottom-0 is-3 preco of-y-scroll">
           <!-- <mat-divider class="my-2"></mat-divider> -->
+          <a matRipple class="dis-flex flex-w  w-full"  [href]="'/produtos/'+Produto._id">
+          <span class="prod-status ">
+           <i class="pi pi-tag  product-category-icon"></i>
+           <span class="product-category"></span>
+           <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()"> Em {{Produto.Cores?.length}} cores</span>
+         </span>
+         </a>
           <div class="px-4 py-2">
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
               <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
@@ -285,7 +285,8 @@
 
         <div class="z-index-1">
           <div class="content a-i-c m-lr-auto w-full">
-            <div class="portfolio-overlay events-none w-full" style="top:10px;left: 25%;">
+            <div class="portfolio-overlay events-none w-full" style="top:10px;left: 25%;"
+            [style.width]="flex_direction == 'row'?'50%':'100%'">
               <div class="overlay-items w-full txt-center">
                 <p>
                   {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}

@@ -18,7 +18,7 @@ export class TagProdutoSwiperComponent implements OnInit {
 
   ProdutosTag:Produto[] = [];
   @Input()TAGS:string[];
-  slidesPerView:number=2;
+  slidesPerView:number=3;
   @ViewChild('swiperEl2') swiperEl2: ElementRef;
 
 

@@ -12,59 +12,59 @@ export class StockImageComponent implements OnInit {
     {
       img: "https://unsplash.it/400/500?random",
       name: "Item 1",
-      price: "R$4.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://unsplash.it/500/500?random",
       name: "Item 2",
-      price: "R$4.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://unsplash.it/500/400?random",
       name: "Item 3",
-      price: "R$4.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://unsplash.it/500/300?random",
       name: "Item 4",
-      price: "R$3.00"
+      price: "GRÁTIS"
     }];
   girlSrc = [
     {
       img: "https://drawinghowtos.com/wp-content/uploads/2019/11/unicorn-colored.png",
       name: "Unicornio",
-      price: "R$5.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://i.pinimg.com/originals/69/64/94/69649494d972df188fbbd2f15988419c.png",
       name: "Borboleta",
-      price: "R$2.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://dbdzm869oupei.cloudfront.net/img/sticker/preview/12597.png",
       name: "Flor de cerejeira",
-      price: "RS5.00"
+      price: "GRÁTIS"
     }];
   illuSrc = [
     {
       img: "https://isometric.online/wp-content/uploads/2020/05/people_svg.svg",
       name: "People",
-      price: "R$5.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://isometric.online/wp-content/uploads/2020/04/fitness_svg.svg",
       name: "Fitness",
-      price: "R$5.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://isometric.online/wp-content/uploads/2020/04/instagram_svg.svg",
       name: "Instagram",
-      price: "R$4.00"
+      price: "GRÁTIS"
     },
     {
       img: "https://isometric.online/wp-content/uploads/2020/04/tv_svg.svg",
       name: "Televisão",
-      price: "R$3.00"
+      price: "GRÁTIS"
     }];
 
   list:any=[];

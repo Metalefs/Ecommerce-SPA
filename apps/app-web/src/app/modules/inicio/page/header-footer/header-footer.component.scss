@@ -1,28 +1,22 @@
 @mixin hover{
   filter:drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   transform: rotate(1deg);
-
 }
 @mixin unhover{
   box-shadow: none;
   transform: rotate(0deg);
   filter:grayscale(1)
 }
-
 .mat-card{
   transition: all .25s ease-out;
   // max-width: 400px;
-  min-height: 125px;
-  max-height: 125px;
+  min-height: 210px;
   box-shadow: none;
   border-radius: 0;
   transform: rotate(0deg);
   opacity: 1;
-  // &:hover{
-  //   @include hover;
-  // }
-  img{
-    max-height: 100px !important
+  &:hover{
+    @include hover;
   }
 }
 .mat-card.active{
@@ -46,8 +40,7 @@ a{
   opacity: .9;
 }
 p{
-
-  // font-family: 'Arial' !important;
+  // font-family: 'Open Sans';
   // font-size: medium;
   letter-spacing: initial;
 }
@@ -58,16 +51,24 @@ p{
 }
 .mat-card-header-text,.mat-card-header .mat-card-title{
   @extend .flex-c;
-
 }
-
+.mat-card-avatar{
+  cursor: default;
+  padding:3rem;
+  border-top-left-radius: 0px;
+  transition: border-radius 1s ease;
+  // border-radius: 0;
+  @extend .flex-c;
+  & :hover{
+    // box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+  }
+}
 .mat-icon{
   font-size: xx-large;
   height: initial;
   width: initial;
   color: white;
 }
-
 .red .card-bg .mat-card{
   transition: .25s hoverAnim ease forwards;
 }
@@ -77,7 +78,6 @@ p{
   & :hover{
     filter:drop-shadow(0px 4px 4px rgba(252, 186, 43, 0.5));
   }
-
 }
 .blue .card-bg .mat-card{
   transition: .5s hoverAnim ease forwards;
@@ -89,30 +89,7 @@ p{
       @include hover;
     }
   }
-  height: 115px;
   transition: all 1s;
-}
-.mat-card.yellow,.mat-card.red,.mat-card.blue{
-  &:hover{
-    @include hover;
-    & mat-card > article > mat-card-header > div.mat-card-avatar{
-      @include hover;
-    }
-  }
-  height: 115px;
-  transition: all 1s;
-}
-.mat-card-avatar{
-  cursor: default;
-  padding: 2rem;
-  border-top-left-radius: 0px;
-  transition: border-radius 1s ease;
-  border-radius: 0;
-  max-height: 50px;
-  @extend .flex-c;
-  & :hover{
-    // box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
-  }
 }
 @media screen and (max-width:720px){
   .yellow,.red,.blue{
@@ -122,7 +99,7 @@ p{
         @include hover;
       }
     }
-    transition: all .2s;
+    transition: all 1s;
   }
 }
 .grey{
@@ -146,10 +123,12 @@ p{
   }
 }
 .blue{
-  background:#4d5899 ;
+  background:#3AB8FF ;
+  background:#00c3d6 ;
   p{
     background: none;
-    color: #4d5899 !important;
+    color: #3AB8FF !important;
+    color: #00c3d6 !important;
   }
   &.active{
     @include hover;

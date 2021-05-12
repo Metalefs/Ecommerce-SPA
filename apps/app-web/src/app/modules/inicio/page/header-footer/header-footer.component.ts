@@ -18,7 +18,7 @@ export class HeaderFooterComponent implements OnInit {
   }
   ngOnInit(): void {
     this.imagemService.FiltrarPorNome("GIF Produtos").subscribe(x=>{
-      this.loading = false;
+
       this.Cards = this.specify == 'prod'?[
         {
           title:"Produtos",
@@ -35,7 +35,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Orçamento",
           icon:"email",
-          color:"transparent",
+          color:"#4d5899",
           class:"blue",
           link:"/orcamento",
           id:"#topo",
@@ -46,7 +46,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Produtos",
           icon:"photo_library",
-          color:"transparent",
+          color:"#FF4A4",
           class:"red",
           link:"/produtos",
           id:"#topo",
@@ -56,7 +56,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Galeria",
           icon:"image",
-          color:"transparent",
+          color:"#4d589",
           class:"yellow",
           link:"/showcase",
           id:"#topo",
@@ -75,7 +75,7 @@ export class HeaderFooterComponent implements OnInit {
       let elements = [];
 
       let timer=500;
-      if(isPlatformBrowser(PLATFORM_ID)) {
+      if(isPlatformBrowser(this.platform)) {
         setTimeout(()=>{
           elements.push(this.document_.nativeDocument.getElementById("yellow"));
           elements.push(this.document_.nativeDocument.getElementById("red"));
@@ -95,8 +95,10 @@ export class HeaderFooterComponent implements OnInit {
             }
 
           })
+
         },500);
 
+        this.loading = false;
       }
       function toggleActive(el){
         setTimeout(()=>{

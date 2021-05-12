@@ -20,7 +20,7 @@
   <!-- <img data-aos="zoom-in" *ngIf="Produto?.Imagem[1]" class="hero-background is-transparent" [src]="Produto?.Imagem[1] || ''" alt="Imagem do produto"> -->
   <img data-aos="zoom-in"  #imgProduto
           class="show-img hero-background is-transparent"
-          [src]="Produto?.Imagem[1]" [style.opacity]="'1'"
+          [src]="Produto?.Imagem[1]|| Produto?.Imagem[0]" [style.opacity]="'1'"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
   <img data-aos="zoom-in" #imgProduto2
     class="hero-background is-transparent hide-img" [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
@@ -283,7 +283,7 @@
                                 <button @fadeIn *ngIf="Produto" mat-raised-button
                                   [disabled]="Produto?.Status == statusProduto.esgotado"
                                   (click)="AdicionarAoOrcamento()"
-                                  class="button is-success share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                                  class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
                                   {{textoAdicionar}}
                                   <mat-icon>shopping_bag</mat-icon>
                                 </button>
@@ -304,7 +304,11 @@
                               </ng-template>
                             </div>
                           </div>
-
+                          <button @fadeIn mat-flat-button title="Personalizar"
+                          [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                          (click)="AbrirModalArte()" class="" color="warn" class="px-2 mx-2 has-text-white has-text-weight-bold">
+                            <mat-icon>photo</mat-icon>Selecionar Arte do produto
+                          </button>
                           <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
                             <mat-list-item *ngFor="let erro of Erros">
                               <p class="subtitle is-size-6 border">*{{erro.erro}}</p>
@@ -320,18 +324,6 @@
                           </personalizados-lopes-botao-esgotado>
                         </div>
                       </div>
-                      <div class="columns pb-0 mb-0  px-2">
-                        <div class="column pb-0 mb-0 ">
-
-                          <button @fadeIn mat-flat-button title="Personalizar"
-                          [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                          (click)="AbrirModalArte()" class="" color="warn" class="has-text-white has-text-weight-bold">
-                            <mat-icon>photo</mat-icon>Selecionar Arte do produto
-                          </button>
-                        </div>
-
-                      </div>
-
 
                     </div>
                   </form>
@@ -445,13 +437,13 @@
   <div class="box py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
-  <!--
+
   <mat-divider></mat-divider>
 
   <div class="   mb-3" *ngIf="Produto?._id">
-    <personalizados-lopes-produto-swiper class="z-index-1" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
+    <personalizados-lopes-produto-swiper class="z-index-1" [slidesPerView]="2" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
-  </div> -->
+  </div>
 
   <mat-divider></mat-divider>
 
@@ -461,6 +453,9 @@
 
   </div>
 
+  <mat-divider></mat-divider>
+
+  <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
 
   <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
   </personalizados-lopes-loading-cube>
