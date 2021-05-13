@@ -149,8 +149,8 @@ input[type=number] {
   // text-transform: uppercase;
   font-size: 15px!important;
   line-height: 1.7rem;
-  font-weight: 600;
-  color: #495057;
+  // font-weight: 600;
+  // color: #495057;
 }
 
 input{
@@ -232,6 +232,10 @@ button{
 .bbr{
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 2rem;
+}
+.btr{
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 2rem;
 }
 .bg-transp{
   background: rgb(255,255,255);

@@ -169,10 +169,10 @@
 
                   <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
                   <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
+                  <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
+                    R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
+                  </p>
                 </button>
-                <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
-                  R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
-                </p>
               </div>
               <div class="column is-hidden-touch mr-3">
               </div>

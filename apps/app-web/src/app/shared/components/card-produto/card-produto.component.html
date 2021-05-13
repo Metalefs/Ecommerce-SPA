@@ -120,35 +120,31 @@
 
           </mat-card-subtitle>
         </mat-card-header>
-      </mat-card-footer>
-      <mat-card-actions class="pos-relative bottom-0">
-        <div
-        class="columns">
-          <!-- <a href="#topo"
-          class="column is-6 w-full level-item button is-success is-small shadow-light"
-          style="height: 100%;"
-          [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-          <span>
-            <i class="pi pi-dollar"></i>
-            Comprar</span>
+        <mat-card-actions class="pos-relative bottom-0 ">
+          <div
+          class="columns ">
+            <a href="#topo"
+            class="column is-12 w-full level-item button is-success is-small shadow-light"
+            style="height: 100%;"
+            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
+            <span>
+              <i class="pi pi-wallet"></i>
+              Comprar</span>
+            </a>
+   <!--<a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
+            class="column is-6 w-full level-item button is-info is-small shadow-light"
+            style="height: 100%; text-decoration: none;">
+              <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
+            </a> -->
+          </div>
+          <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
+              class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
+            Esgotado
           </a>
-          <a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-          class="column is-6 w-full level-item button is-info is-small shadow-light"
-          style="height: 100%; text-decoration: none;">
-            <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
-          </a> -->
-        </div>
-        <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
-            class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
-          Esgotado
-        </a>
-      </mat-card-actions>
-      <a href="javascript:void(0)" class="pos-absolute right-0 top-0" (click)='AdicionarAoOrcamento()'>
-        <span
-          class=" border is-small is-fullwidth box px-4 mb-2 pb-2">
-          <span><i class="pi pi-shopping-cart"></i> </span>
-        </span>
-      </a>
+        </mat-card-actions>
+      </mat-card-footer>
+
+
       <div class="z-index-1">
         <div class="content" >
           <div class="portfolio-overlay events-none w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
@@ -158,6 +154,15 @@
               </p>
             </div>
           </div>
+          <a href="javascript:void(0)" matRipple
+          class=" z-index-2 m-lr-auto "
+          [style.width]="flex_direction == 'row'?'50%':'100%'"
+          (click)='AdicionarAoOrcamento()'>
+            <span
+              class="border-light box bo-0 is-small  px-4 mb-2 pb-2">
+              <span><i class="pi pi-shopping-cart"></i> </span>
+            </span>
+          </a>
           <!-- <a title="Comprar" matRipple
           [style.width]="flex_direction == 'row'?'50%':'100%'"
           pageScroll

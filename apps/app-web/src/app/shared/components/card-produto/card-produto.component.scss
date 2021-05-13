@@ -71,8 +71,8 @@ img{
 }
 .titulo-produto {
   font-size: 15px!important;
-  font-weight: 600;
-  color: #495057;
+  // font-weight: 600;
+  // color: #495057;
 }
 .mat-card-header .mat-card-title{
   text-align: center;
@@ -269,8 +269,8 @@ img{
       justify-content: center;
       align-items: center;
       width: 45%;
-      top: 38%;
-      left: 2px;
+      top: 25%;
+      left: 0px;
       z-index: 10;
       border-radius: 50%;
     }
@@ -279,7 +279,7 @@ img{
 .overlay-items {
   height: 100px;
   position: absolute;
-  top: 10%;
+  top: 40%;
   z-index: 5;
   left: 0;
   right: 0;

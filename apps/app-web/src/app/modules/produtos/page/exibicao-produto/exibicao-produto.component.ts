@@ -34,6 +34,7 @@ import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -84,7 +85,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private activeRoute:ActivatedRoute,
     private router: Router,
     private store: Store,
-    public dialog: MatDialog,
+    public dialog: NgDialogAnimationService,
     private ComentarioProdutoService: ComentarioProdutoService,
     private snack: MatSnackBar,
     private scrollService: PageScrollService,
@@ -319,9 +320,17 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       restoreFocus: false,
       width:'512px',
       height:'100vh',
-      position:{
-        right:'0'
+      animation: {
+        to: "left",
+        incomingOptions: {
+          keyframeAnimationOptions: { easing: "ease", duration: 300 }
+        },
+        outgoingOptions: {
+          keyframeAnimationOptions: { easing: "ease", duration: 300 }
+        }
       },
+      position: { rowStart: "0" },
+
       panelClass:['no-padding']
     });
   }

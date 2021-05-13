@@ -3,6 +3,7 @@
     [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
+<a #scroller pageScroll [pageScrollSpeed]="1" class="is-hidden" href="#product-display"></a>
 <section class="hero has-background is-medium  is-primary"
   (mouseover)="
       this.imgProduto.classList.remove('show-img');
@@ -37,9 +38,9 @@
         </div>
     </div>
 </section>
-<div class="bbr  margin shadow-light box">
+<div class="bbr  margin shadow-light box" >
   <div class="">
-    <div class="bbr mb-3">
+    <div class="bbr mb-3" id="product-display">
       <div class="pb-0" *ngIf="!Produto">
         <div class="p-grid p-formgrid">
           <div class="p-field p-col-12 p-md-6">
@@ -52,7 +53,7 @@
         </div>
       </div>
       <div class="columns is-multiline is-4" *ngIf="Produto">
-        <div class="column is-8 top-0">
+        <div class="column is-8 top-0" >
           <div class="columns">
             <div class="column is-6">
               <div class="">
@@ -455,7 +456,10 @@
 
   <mat-divider></mat-divider>
 
-  <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
+  <div class="margin">
+
+    <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
+  </div>
 
   <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
   </personalizados-lopes-loading-cube>
