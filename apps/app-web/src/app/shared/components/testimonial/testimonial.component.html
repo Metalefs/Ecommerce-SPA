@@ -1,18 +1,15 @@
 <div class="my-3">
-  <div class="hero is-medium">
-    <div class="hero-body">
-      <div class="container">
-      <div
-        class="hr hr-custom hr-center hr-icon-no avia-builder-el-8 el_after_av_one_third  el_before_av_textblock ">
-        <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
-          <span class="hr-inner-style"></span>
-        </span>
-      </div>
-      <div class="titleContent py-3 w-full">
-        <h1 class='testimonial-title has-text-info'>
-          Depoimen<wbr>tos
-        </h1>
-      </div>
+  <div class="container">
+    <div class="hr hr-custom hr-center hr-icon-no avia-builder-el-8 el_after_av_one_third  el_before_av_textblock ">
+      <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
+        <span class="hr-inner-style"></span>
+      </span>
+    </div>
+    <div class="titleContent py-3 w-full">
+      <h1 class='testimonial-title has-text-info'>
+        Depoimen<wbr>tos
+      </h1>
+    </div>
     <div class="swiper-container" #swiperElTestimonial (mouseenter)="onSwiperHover( true )"
       (mouseleave)="onSwiperHover( false )" [swiper]="swiperConfig$ |async">
 
@@ -20,29 +17,26 @@
       <div class="swiper-button-next z-index-top clickable hoverable"></div>
 
 
-          <div class="swiper-wrapper pt-3">
-            <div class="swiper-slide" *ngFor='let item of sliderData'>
-              <mat-card>
-                <div mat-card-header class="w-full dis-flex flex-c flex-m txt-center">
-                  <p class="card-text text-content txt-center">
-                    <fa-icon class="has-text-danger" [icon]="quoteL" [size]="'md'"></fa-icon><br>
-                    {{item?.Comentario}}
-                  </p>
-                </div>
-                <mat-card-footer>
-                  <div class="userInfo">
-                    <img class='userLogo' loading="lazy" mat-card-avatar [src]='item?.Foto'>
-                    <div class='userName has-text-weight-medium'>
-                      {{item?.Nome}}
-                      <div class='userName'>{{item?.Tipo}} {{item?.Origem}}</div>
-                    </div>
-                  </div>
-                </mat-card-footer>
-              </mat-card>
+      <div class="swiper-wrapper pt-3">
+        <div class="swiper-slide" *ngFor='let item of sliderData'>
+          <mat-card>
+            <div mat-card-header class="w-full dis-flex flex-c flex-m txt-center">
+              <p class="card-text text-content txt-center">
+                <fa-icon class="has-text-danger" [icon]="quoteL" [size]="'md'"></fa-icon><br>
+                {{item?.Comentario}}
+              </p>
             </div>
-          </div>
+            <mat-card-footer>
+              <div class="userInfo">
+                <img class='userLogo' loading="lazy" mat-card-avatar [src]='item?.Foto'>
+                <div class='userName has-text-weight-medium'>
+                  {{item?.Nome}}
+                  <div class='userName'>{{item?.Tipo}} {{item?.Origem}}</div>
+                </div>
+              </div>
+            </mat-card-footer>
+          </mat-card>
         </div>
       </div>
-
     </div>
-</div>
+  </div>

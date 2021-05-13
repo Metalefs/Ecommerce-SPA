@@ -1,23 +1,21 @@
 <div id="INICIO" class="has-background-light">
 
 
-  <div class="bg-img">
+  <div class="bg">
 
     <div class="bg-transp">
       <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
       <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       <div class="">
         <hr>
-        <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
-          <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-        </section>
+
         <div class="hero pt-0 ">
           <div class="hero-body pt-0 ">
 
             <p class="hero-title"> </p>
             <div class="of-y-scroll w-full" >
               <div class="my-4"></div>
-              <personalizados-lopes-produto-swiper [display]="'row'" [slidesPerView]='2'></personalizados-lopes-produto-swiper>
+              <personalizados-lopes-produto-swiper [slidesPerView]='2'></personalizados-lopes-produto-swiper>
               <nav class="z-index-1" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                   <a class="navbar-item" href="/">
@@ -36,7 +34,9 @@
             </div>
           </div>
           <div class="hero-foot">
-
+            <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
+              <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+            </section>
 
           </div>
         </div>

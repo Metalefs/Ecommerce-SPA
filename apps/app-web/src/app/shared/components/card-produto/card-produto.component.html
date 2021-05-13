@@ -120,7 +120,7 @@
 
           </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions class="pos-relative bottom-0 ">
+        <mat-card-actions class=" pos-absolute bottom-0 right-0 pr-6 ">
           <div
           class="columns ">
             <a href="#topo"
@@ -129,7 +129,8 @@
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
             <span>
               <i class="pi pi-wallet"></i>
-              Comprar</span>
+              <!-- Comprar -->
+            </span>
             </a>
    <!--<a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
             class="column is-6 w-full level-item button is-info is-small shadow-light"

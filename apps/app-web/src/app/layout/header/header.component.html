@@ -1,63 +1,63 @@
 <mat-toolbar class="w-full dis-flex flex-r has-background-dark has-text-dark flex-m  flex-c a-i-c z-index-top is-hidden-"
-  style="overflow-y: visible; z-index: 20;">
-  <div class="w-full"></div>
-  <ul class="level list-inline flex-r ">
-    <li class="level-item px-2 has-text-centered mb-0 is-hidden- ">
-      <div>
-        <a class="subtitle is-size-7 has-text-light " href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
-          <span>{{(InfoContato$|async)?.Telefone}}</span></a>
-      </div>
-    </li>
-    <!-- <li class="level-item px-2 has-text-centered mb-0 m-r-45 is-hidden-">
-      <div class="subtitle is-size-7 has-text-light">
-        <div class="dropdown">
-          <a class="reset-a "><i class="pi pi-user"></i> <span class="">Minha conta</span></a>
-          <div class="dropdown-content text-left">
-            <a class="nav-link" *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
-            <a class="nav-link" *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>
-            <a class="nav-link" *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
-            <a class="nav-link" *ngIf="user && user?.Tipo == TipoUsuario.admin"
-              [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
-            <a class="nav-link" *ngIf="user" (click)="Logout()">Sair</a>
-          </div>
+  style="overflow-y: visible; height:min-content;z-index: 20;">
+  <div class="w-full "></div>
+    <ul class="level list-inline flex-r ">
+      <li class="level-item px-2 has-text-centered mb-0 is-hidden- ">
+        <div>
+          <a class="subtitle is-size-7 has-text-light " href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
+            <span>{{(InfoContato$|async)?.Telefone}}</span></a>
         </div>
-      </div>
-    </li> -->
-    <!-- <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile  has-text-light">
-      <div>
-        <a class="subtitle is-size-7 has-background-white bo-0 button is-small" (click)="openCheckout()">
-          <div class="is-hidden-touch">
-            <p class="cart-counter hoverable" style="bottom:8px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
-          </div>
-          <span class="has-text-dark"><i class="pi pi-shopping-cart"></i></span>
-        </a>
-        <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
-          <div class="columns is-mobile is-vcentered">
-
-            <div class="column is-hidden-touch">
-              <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
-                R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
-              </p>
+      </li>
+      <!-- <li class="level-item px-2 has-text-centered mb-0 m-r-45 is-hidden-">
+        <div class="subtitle is-size-7 has-text-light">
+          <div class="dropdown">
+            <a class="reset-a "><i class="pi pi-user"></i> <span class="">Minha conta</span></a>
+            <div class="dropdown-content text-left">
+              <a class="nav-link" *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
+              <a class="nav-link" *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>
+              <a class="nav-link" *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
+              <a class="nav-link" *ngIf="user && user?.Tipo == TipoUsuario.admin"
+                [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
+              <a class="nav-link" *ngIf="user" (click)="Logout()">Sair</a>
             </div>
           </div>
-
         </div>
-      </div>
-    </li> -->
-    <li class="level-item px-2 has-text-light has-text-centered mr-6">
-      <div>
-        <a class="reset-a is-size-7" [routerLink]="['checkout']"><span
-            class="is-hidden-touch">Finalizar pedido</span><i class="pi pi-check"></i></a>
-      </div>
-    </li>
-  </ul>
-  <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
+      </li> -->
+      <!-- <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile  has-text-light">
+        <div>
+          <a class="subtitle is-size-7 has-background-white bo-0 button is-small" (click)="openCheckout()">
+            <div class="is-hidden-touch">
+              <p class="cart-counter hoverable" style="bottom:8px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
+            </div>
+            <span class="has-text-dark"><i class="pi pi-shopping-cart"></i></span>
+          </a>
+          <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
+            <div class="columns is-mobile is-vcentered">
+
+              <div class="column is-hidden-touch">
+                <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
+                  R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </li> -->
+      <li class="level-item px-2 has-text-light has-text-centered mr-6">
+        <div>
+          <a class="reset-a is-size-7" [routerLink]="['checkout']"><span
+              class="is-hidden-touch">Finalizar pedido</span><i class="pi pi-check"></i></a>
+        </div>
+      </li>
+    </ul>
+    <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
 </mat-toolbar>
-<div class="w-full pos-sticky top-0 z-index-top">
+<div class="w-full pos-sticky top-0 z-index-top ">
   <div class=""
     >
     <mat-toolbar class="px-0 mat-toolbar z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
-      <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2 pr-3" >
+      <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2 pr-3 margin" >
         <div class="flex-m a-i-c" style="height: 50px; ">
           <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
             <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
