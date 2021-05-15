@@ -1,4 +1,4 @@
-<div class="hero pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':'bg-transp'">
+<div class="hero pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':''">
   <div class="px-0 py-2 hero-body" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' ':''">
     <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
     <ng-template #nodata>
@@ -16,7 +16,7 @@
 
       <div class="w-full">
         <div #swiperEl (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
-          class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
+          class="swiper-container bg-transp w-full z-index-1" [swiper]="swiperConfig$ |async">
           <div class="swiper-button-prev z-index-top clickable hoverable"></div>
           <div class="swiper-button-next z-index-top clickable hoverable"></div>
           <div class="w-full hoverable ">

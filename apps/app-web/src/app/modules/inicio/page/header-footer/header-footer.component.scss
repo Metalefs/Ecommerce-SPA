@@ -10,7 +10,6 @@
 .mat-card{
   transition: all .25s ease-out;
   // max-width: 400px;
-  min-height: 180px;
   box-shadow: none;
   border-radius: 0;
   transform: rotate(0deg);
@@ -100,6 +99,12 @@ p{
       }
     }
     transition: all 1s;
+  }
+}
+@media screen and (min-width:720px){
+  .mat-card{
+
+    min-height: 180px;
   }
 }
 .grey{

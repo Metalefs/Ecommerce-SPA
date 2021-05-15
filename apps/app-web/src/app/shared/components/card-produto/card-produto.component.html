@@ -281,17 +281,22 @@
             </ng-template>
           </div>
         </mat-card-actions>
-        <a href="javascript:void(0)" class="pos-absolute top-0" (click)='AdicionarAoOrcamento()'>
+        <a href="javascript:void(0)" class="pos-absolute top-0" >
           <span
             class=" border is-small is-fullwidth box px-4 mb-2 pb-2">
-            <span><i class="pi pi-shopping-cart"></i> </span>
+            <span> <a title="Comprar" matRipple pageScroll
+              href="#topo"
+              class="reset-a button shadow-light hoverable is-success m-lr-auto"
+              style="top:35%;left: 25%;"
+              [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
+              mat-flat-button class=""><i class="pi pi-shopping-cart"></i></a> </span>
           </span>
         </a>
 
 
         <div class="z-index-1">
           <div class="content a-i-c m-lr-auto w-full">
-            <div class="portfolio-overlay events-none w-full" style="top:10px;left: 25%;"
+            <div class="portfolio-overlay events-none w-full" style="top:10px;"
             [style.width]="flex_direction == 'row'?'50%':'100%'">
               <div class="overlay-items w-full txt-center">
                 <p>
@@ -302,10 +307,10 @@
             </div>
             <a title="Comprar" matRipple pageScroll
             href="#topo"
-            class="reset-a button is-success m-lr-auto"
+            class="reset-a button shadow-light hoverable is-success m-lr-auto"
             style="top:35%;left: 25%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-            mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
+            mat-flat-button class=""><i class="pi pi-shopping-cart"></i></a>
           </div>
         </div>
       </mat-card-footer>

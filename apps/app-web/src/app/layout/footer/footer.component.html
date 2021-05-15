@@ -26,12 +26,12 @@
         </div>
       </div>
       <div class="hero-body">
-        <div class="columns">
-          <div class="column social">
+        <div class="columns is-multiline">
+          <div class="column is-3 social">
             <div class="footer-widget">
               <h3 class="mb-2 footer-title">Contate-nos</h3>
               <div class="contact-info">
-                <p class="footer-text">{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
+                <p class="footer-text"><i class="pi pi-map-marker"></i>{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
                 <p class="footer-text"><i class="pi pi-map-marker"></i>{{(InformacoesContato$ | async)?.Endereco}}</p>
                 <br>
                 <p class="footer-text"><i class="pi pi-mobile"></i> <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div class="column text-center">
+          <div class="column is-3 text-center">
             <h3 class="mb-2 footer-title">Acesso Rápido</h3>
             <a *ngFor="let link of Links"
             class="footer-text links"
@@ -55,16 +55,16 @@
           </a>
           </div>
 
-          <div class="column is-hidden-mobile">
+          <div class="column is-4 is-hidden-mobile">
             <h3 class="footer-title">Sobre</h3>
-            <div class="txt-justify footer-text has-text-medium" [innerHTML]="(Sobre$ | async)?.Historia"></div>
+            <div class="txt-justify footer-text has-text-medium" style="font-size: 12px!important;" [innerHTML]="(Sobre$ | async)?.Historia"></div>
           </div>
 
-          <div class="column is-hidden-mobile">
+          <div class="column is-2 is-hidden-mobile">
             <div class="footer-widget">
               <h3 class="mb-2 footer-title">Compras</h3>
               <div class="columns is-multiline is-vcentered">
-                <!-- <div class="column is-12 txt-center  has-background-dark">
+                <div class="column is-12 txt-center">
                   <h4 class="has-text-white">Site seguro</h4>
                   <img
                   loading="lazy"
@@ -75,7 +75,7 @@
                   [style.width]="'50px !important'"
                   class="img-badge"
                   >
-                </div> -->
+                </div>
                 <div class="column is-12 txt-center">
                   <h4 class="has-text-white">Formas de pagamento</h4>
                   <img
@@ -92,11 +92,11 @@
           </div>
         </div>
       </div>
-      <div class="hero-foot shadow-light">
-        <mat-toolbar-row class="w-full has-background-dark btr shadow-light" style="white-space: break-spaces; ">
+      <div class="hero-foot footer-color shadow-light btr ">
+        <mat-toolbar-row class="w-full footer-color btr shadow-light" style="white-space: break-spaces; ">
           <div class="w-full margin">
             <div class="w-full flex-sa txt-center">
-              <p class="has-text-grey-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</p>
+              <p class="has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</p>
 
             </div>
           </div>

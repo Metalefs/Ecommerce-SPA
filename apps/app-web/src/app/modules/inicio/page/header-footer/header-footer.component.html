@@ -1,5 +1,5 @@
 <figure class="image is-square pos-absolute"><img src="/assets/images/figures/undraw_decide_3iwx.svg" alt=""></figure>
-<div *ngIf="loading" class="a-i-c columns px-3 is-multiline bg flex-sa mlr-auto">
+<div *ngIf="loading" class="a-i-c mx-0 columns is-multiline bg flex-sa mlr-auto">
   <div class="column card-bg is-4 my-1" *ngFor="let card of [].constructor(3);">
     <mat-card>
 
@@ -7,7 +7,7 @@
     </mat-card>
   </div>
 </div>
-<div class="columns is-multiline w-full">
+<div class="columns is-multiline w-full mx-0">
   <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column pb-1">
     <div class="card-bg shadow-light {{card?.class}}">
       <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->

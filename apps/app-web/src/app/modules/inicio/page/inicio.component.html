@@ -3,14 +3,13 @@
 
   <div class="bg">
 
-    <div class="bg-transp">
+    <div class="">
       <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
       <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       <div class="">
-        <hr>
 
-        <div class="hero pt-0 ">
-          <div class="hero-body pt-0 ">
+        <div class="hero">
+          <div class="hero-body ">
 
             <p class="hero-title"> </p>
             <div class="of-y-scroll w-full" >
@@ -25,7 +24,7 @@
 
                     <div class="navbar-item">
                       <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
-                        <p> MAIS DE 10 CATEGORIAS! CONFIGURE TAMANHO, COR E ESTAMPA </p>
+                        <p class="is-size-6 box shadow-light is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
                       </a>
                     </div>
                   </div>
@@ -37,7 +36,6 @@
             <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
               <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
             </section>
-
           </div>
         </div>
 

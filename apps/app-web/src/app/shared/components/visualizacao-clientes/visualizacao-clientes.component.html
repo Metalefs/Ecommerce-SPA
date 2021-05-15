@@ -3,12 +3,9 @@
   <div class="w-full">
     <div #swiperEl3
       class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
-      <div class="w-full hoverable">
-        <h2>Produtos Relacionados</h2>
-        <p>Abaixo, algumas de nossas sugestões</p>
-      </div>
+
       <div class="swiper-wrapper">
-        <div class="swiper-slide testimonialContent noselect" *ngFor="let cliente of Clientes;" >
+        <div class="swiper-slide testimonialContent noselect" *ngFor="let cliente of (Clientes|async);" >
           <personalizados-lopes-card-cliente
              [Cliente]="cliente"></personalizados-lopes-card-cliente>
         </div>

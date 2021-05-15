@@ -4,7 +4,7 @@
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
 </div>
 <a #scroller pageScroll [pageScrollSpeed]="1" class="is-hidden" href="#product-display"></a>
-<section class="hero has-background is-medium  is-primary"
+<section class="hero has-background-black-ter  has-background is-medium is-info btr"
   (mouseover)="
       this.imgProduto.classList.remove('show-img');
       this.imgProduto.classList.add('hide-img');
@@ -18,29 +18,33 @@
     this.imgProduto.classList.remove('hide-img');
   "
 >
-  <!-- <img data-aos="zoom-in" *ngIf="Produto?.Imagem[1]" class="hero-background is-transparent" [src]="Produto?.Imagem[1] || ''" alt="Imagem do produto"> -->
   <img data-aos="zoom-in"  #imgProduto
-          class="show-img hero-background is-transparent"
+          class="hero-background is-transparent"
           [src]="Produto?.Imagem[1]|| Produto?.Imagem[0]" [style.opacity]="'1'"
           alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
   <img data-aos="zoom-in" #imgProduto2
     class="hero-background is-transparent hide-img" [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
     alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
 
-    <div class="hero-body ">
+    <div class="hero-body">
         <div class="container">
           <div class="columns">
-            <div class="column has-background-light-bis" style="    text-shadow: 0 0 black;">
-              <h1 class="title is-2">{{Produto?.Nome}}</h1>
-              <p class="subtitle is-3">{{Produto?.Subtitulo}}</p>
+            <div class="column is-8 has-background-light-ter">
+              <div class="box bg-transp">
+                <h1 class="title is-2 has-text-info">{{Produto?.Nome}}</h1>
+                <p class="subtitle is-3">{{Produto?.Subtitulo}}</p>
+              </div>
             </div>
           </div>
         </div>
     </div>
+    <div class="hero-foot px-3 py-3 "id="product-display">
+      <button mat-mini-fab color="accent" class="shadow-light"><a href="#product-display"  pageScroll><i class="pi pi-arrow-down"></i></a></button>
+    </div>
 </section>
-<div class="bbr  margin shadow-light box" >
+<div class="bbr my-4 py-4 margin shadow-light box" >
   <div class="">
-    <div class="bbr mb-3" id="product-display">
+    <div class="bbr mb-3" >
       <div class="pb-0" *ngIf="!Produto">
         <div class="p-grid p-formgrid">
           <div class="p-field p-col-12 p-md-6">
@@ -52,8 +56,8 @@
           </div>
         </div>
       </div>
-      <div class="columns is-multiline is-4" *ngIf="Produto">
-        <div class="column is-8 top-0" >
+      <div class="columns is-multiline is-4 py-4" *ngIf="Produto">
+        <div class="column is-8 " >
           <div class="columns">
             <div class="column is-6">
               <div class="">
@@ -79,8 +83,12 @@
                     </gallery>
                     <span class="type-meta">
                       <i class="pi pi-tag"></i>
-                      <a href="#" class="subtitle  fs-12 has-text-info" *ngFor="let tag of Produto?.Tags">{{tag}},
-                      </a>
+                      <mat-chip-list aria-label="Tags">
+                        <mat-chip color="accent" [routerLink]="" selected *ngFor="let tag of Produto?.Tags">
+                          <p>{{tag}}</p>
+                        </mat-chip>
+                      </mat-chip-list>
+
                     </span>
                   </mat-tab>
                 </mat-tab-group>
@@ -115,7 +123,7 @@
                 </div>
                 <mat-tab-group class="is-hidden-desktop px-3">
                   <mat-tab label="Informações">
-                    <div class="margin py-3 px-3 border-light">
+                    <div class="margin py-3 px-3 shadow-light">
                       <div class="w-full columns is-multiline">
                         <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3>
                         <div class="descricao-produto column is-12-touch is-12 w-full" [innerHTML]="(el?.innerHTML)"></div>
@@ -433,7 +441,7 @@
     </button>
   </a>
 </div>
-<div class="px-4 txt-center">
+<div class="px-4  py-4 txt-center">
 
   <div class="box py-6 mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>

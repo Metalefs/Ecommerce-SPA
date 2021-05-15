@@ -85,7 +85,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     preloadImages          : true,
                     lazy                   : true,
                     observer               : true,
-                    spaceBetween           : 2,
+                    spaceBetween           : 1,
                     slidesPerView          : this.slidesPerView,
                     roundLengths           : true,
                     parallax:true,
