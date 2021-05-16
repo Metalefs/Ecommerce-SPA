@@ -57,7 +57,7 @@
   <div class=""
     >
     <mat-toolbar class="px-0 mat-toolbar z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
-      <div class="w-full dis-flex flex-c flex-m flex-sa py-2 px-2 pr-3 margin" >
+      <div class="w-full dis-flex flex-c flex-m flex-sa  px-2 pr-3 margin" >
         <div class="flex-m a-i-c" style="height: 50px; ">
           <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
             <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
@@ -76,7 +76,7 @@
         </mat-menu> -->
 
         <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
-          <div class="shadow-light columns py-2 is-mobile is-gapless " style="width: 100%;border-radius: 1rem;">
+          <div class="shadow-light columns  is-mobile is-gapless " style="width: 100%;border-radius: 1rem;">
             <div class="column is-3">
 
               <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">

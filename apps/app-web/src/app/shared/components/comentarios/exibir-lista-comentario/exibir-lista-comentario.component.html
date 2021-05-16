@@ -1,6 +1,6 @@
 
 <div *ngIf="!EhResposta">
-  <h2>Comentários</h2>
+  <h2 class="title is-size-6">Comentários</h2>
   <p *ngIf="Post.Comentarios?.length == 0">Não existem comentários ainda, seja o primeiro!</p>
   <div *ngFor="let comentario of Post.Comentarios">
     <div>

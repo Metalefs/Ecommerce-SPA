@@ -231,7 +231,7 @@ img{
   border-radius: 0px;
   display: flex;
   background: #ffffff;
-  height: 100%;
+  height: 90%;
   overflow: hidden;
   &:hover{
     .slideshow-container .slides:not(.link) {
@@ -254,6 +254,7 @@ img{
   top: 0;
   left: 5px;
   height: calc(100% - 10px);
+  height: 60%;
   width: 50%;
   // opacity: 0;
   -webkit-transition: 0.5s;
@@ -262,14 +263,14 @@ img{
     transition: 0.5s;
     & ~ button, ~ a{
       opacity: 0;
-      pointer-events: none;
+      // pointer-events: none;
       display: flex;
       position: absolute;
       font-size: 12px;
       justify-content: center;
       align-items: center;
       width: 45%;
-      top: 25%;
+      top: 35%;
       left: 0px;
       z-index: 10;
       border-radius: 50%;
@@ -279,9 +280,9 @@ img{
 .overlay-items {
   height: 100px;
   position: absolute;
-  top: 40%;
+  top: 25%;
   z-index: 5;
-  left: 0;
+  left: -5px;
   right: 0;
   visibility: hidden;
 }
@@ -295,7 +296,7 @@ img{
  color: #FFF;
  padding: 5px 5px;
  height: min-content;
- top: -150px;
+ top: -250px;
  background: #16161642;
  display: inline-block;
  -webkit-transform: translateY(20px);

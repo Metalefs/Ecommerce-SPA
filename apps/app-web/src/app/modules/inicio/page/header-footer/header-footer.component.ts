@@ -27,7 +27,7 @@ export class HeaderFooterComponent implements OnInit {
           class:"red",
           link:"/produtos",
           id:"#topo",
-          content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
+          content:`Para personalizar.`,
           img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
       ] : this.specify == 'orc' ?
@@ -39,7 +39,7 @@ export class HeaderFooterComponent implements OnInit {
           class:"blue",
           link:"/orcamento",
           id:"#topo",
-          content:`Precisa de um orçamento? alguma dúvida ou sujestão? <a href="/orcamento">Clique aqui !</a>`
+          content:`<a href="/orcamento">Clique aqui !</a>`
         },
       ] :
       [
@@ -51,7 +51,7 @@ export class HeaderFooterComponent implements OnInit {
           class:"yellow",
           link:"/showcase",
           id:"#topo",
-          content:`Veja nossos últimos trabalhos`
+          content:`Ùltimos trabalhos`
         },
         {
           title:"Produtos",
@@ -60,8 +60,8 @@ export class HeaderFooterComponent implements OnInit {
           class:"red",
           link:"/produtos",
           id:"#topo",
-          content:`Confira nossas canecas, camisetas, almofadas e outros para personalizar.`,
-          img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
+          content:`Para personalizar`,
+          // img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         {
           title:"Orçamento",
@@ -70,7 +70,7 @@ export class HeaderFooterComponent implements OnInit {
           class:"blue",
           link:"/orcamento",
           id:"#topo",
-          content:`Precisa de um orçamento? alguma dúvida ou sujestão? <a href="/orcamento">Clique aqui !</a>`
+          content:`<a href="/orcamento">Entre em Contato !</a>`
         },
       ];
       let elements = [];

@@ -15,7 +15,7 @@
       this.imgProduto.classList.add('show');
       "
       routerLinkActive="router-link-active"
-      matRipple class="portfolio-item zoom of-y-scroll card clickable mat-elevation-z4"
+      matRipple class="portfolio-item zoom of-y-scroll card clickable"
       [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
 
       <div
@@ -62,7 +62,7 @@
           <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
             [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
         </div> -->
-        <mat-card-title class="w-full txt-left titulo-produto">
+        <mat-card-title class="w-full txt-center titulo-produto">
           <a  matRipple class="reset-a" pageScroll href="#topo"
           [routerLink]="['/produtos/'+ Produto._id]">
           {{Produto?.Nome}}
@@ -123,15 +123,15 @@
         <mat-card-actions class=" pos-absolute bottom-0 right-0 pr-6 ">
           <div
           class="columns ">
-            <a href="#topo"
+            <!-- <a href="#topo"
             class="column is-12 w-full level-item button is-success is-small shadow-light"
             style="height: 100%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
             <span>
               <i class="pi pi-wallet"></i>
-              <!-- Comprar -->
+               Comprar
             </span>
-            </a>
+            </a> -->
    <!--<a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
             class="column is-6 w-full level-item button is-info is-small shadow-light"
             style="height: 100%; text-decoration: none;">
@@ -148,22 +148,29 @@
 
       <div class="z-index-1">
         <div class="content" >
-          <div class="portfolio-overlay events-none w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
+          <div class="portfolio-overlay  w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
             <div class="overlay-items w-full txt-center">
               <p>
                 {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
               </p>
+              <div class="columns is-mobile">
+                <div class="column is-6">
+                  <a href="javascript:void(0)" mat-fab color="accent"
+                    class=" z-index-2"
+                    (click)='AdicionarAoOrcamento()'>
+                    <mat-icon class="has-text-white">shopping_cart</mat-icon>
+                  </a>
+                </div>
+                <div class="column is-6">
+                  <a href="#topo" mat-fab color="primary"
+                    class="z-index-2 "
+                    [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
+                    <mat-icon class="has-text-white">paid</mat-icon>
+                  </a>
+                </div>
             </div>
           </div>
-          <a href="javascript:void(0)" matRipple
-          class=" z-index-2 m-lr-auto "
-          [style.width]="flex_direction == 'row'?'50%':'100%'"
-          (click)='AdicionarAoOrcamento()'>
-            <span
-              class="border-light box bo-0 is-small  px-4 mb-2 pb-2">
-              <span><i class="pi pi-shopping-cart"></i> </span>
-            </span>
-          </a>
+          </div>
           <!-- <a title="Comprar" matRipple
           [style.width]="flex_direction == 'row'?'50%':'100%'"
           pageScroll
@@ -281,15 +288,10 @@
             </ng-template>
           </div>
         </mat-card-actions>
-        <a href="javascript:void(0)" class="pos-absolute top-0" >
+        <a href="javascript:void(0)" class="pos-absolute top-0 left-0" (click)='AdicionarAoOrcamento()'>
           <span
             class=" border is-small is-fullwidth box px-4 mb-2 pb-2">
-            <span> <a title="Comprar" matRipple pageScroll
-              href="#topo"
-              class="reset-a button shadow-light hoverable is-success m-lr-auto"
-              style="top:35%;left: 25%;"
-              [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-              mat-flat-button class=""><i class="pi pi-shopping-cart"></i></a> </span>
+            <span><i class="pi pi-shopping-cart"></i> </span>
           </span>
         </a>
 
@@ -308,9 +310,9 @@
             <a title="Comprar" matRipple pageScroll
             href="#topo"
             class="reset-a button shadow-light hoverable is-success m-lr-auto"
-            style="top:35%;left: 25%;"
+            style="top:42%;left: 25%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-            mat-flat-button class=""><i class="pi pi-shopping-cart"></i></a>
+            mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
           </div>
         </div>
       </mat-card-footer>

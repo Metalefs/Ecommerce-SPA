@@ -16,24 +16,14 @@
               <div class="my-4"></div>
               <personalizados-lopes-produto-swiper [slidesPerView]='2'></personalizados-lopes-produto-swiper>
               <nav class="z-index-1" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                  <a class="navbar-item" href="/">
-                    <img src="assets/images/icons/Logo.png" alt="" width="65" height="28">
-                  </a>
-                  <div class="navbar-end">
-
-                    <div class="navbar-item">
-                      <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
-                        <p class="is-size-6 box shadow-light is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
+                  <p class="is-size-6 shadow-light is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
+                </a>
               </nav>
             </div>
           </div>
           <div class="hero-foot">
-            <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
+            <section class="py-0" *ngIf="(Clientes$|async)?.length>0">
               <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
             </section>
           </div>

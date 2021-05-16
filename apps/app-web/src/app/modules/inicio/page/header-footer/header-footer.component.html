@@ -7,24 +7,22 @@
     </mat-card>
   </div>
 </div>
-<div class="columns is-multiline w-full mx-0">
-  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column pb-1">
+<div class="columns is-mobile w-full mx-0">
+  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column mx-0 is-4 pb-1">
     <div class="card-bg shadow-light {{card?.class}}">
       <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
       <div [id]="card.class" class=" {{card?.class}}">
         <mat-card class="of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
           <article class="media">
-            <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="">
-              <img loading="lazy" height="200" *ngIf="card.img_src" src="{{card.img_src}}" class="">
-            </a>
-            <mat-card-header class="ml-4">
-              <div *ngIf="!card.img_src" mat-card-avatar class="{{card?.class}}">
+            <div class="media-content">
+              <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="w-full ">
+                <img loading="lazy" mat-card-image height="200" *ngIf="card.img_src" src="{{card.img_src}}" class="">
+              </a>
+              <div *ngIf="!card.img_src" mat-card-avatar class="w-full {{card?.class}}">
                 <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
                   <mat-icon>{{card.icon}}</mat-icon>
                 </a>
               </div>
-            </mat-card-header>
-            <div class="media-content">
               <div class="content">
                 <mat-card-title>
                   <a [routerLink]="card.link" href="{{card.id}}" pageScroll>

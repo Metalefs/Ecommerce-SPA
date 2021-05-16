@@ -10,6 +10,7 @@
 .mat-card{
   transition: all .25s ease-out;
   // max-width: 400px;
+  height: min-content;
   box-shadow: none;
   border-radius: 0;
   transform: rotate(0deg);
@@ -53,7 +54,7 @@ p{
 }
 .mat-card-avatar{
   cursor: default;
-  padding:3rem;
+  // padding:3rem;
   border-top-left-radius: 0px;
   transition: border-radius 1s ease;
   // border-radius: 0;
@@ -63,7 +64,7 @@ p{
   }
 }
 .mat-icon{
-  font-size: xx-large;
+  // font-size: xx-large;
   height: initial;
   width: initial;
   color: white;
