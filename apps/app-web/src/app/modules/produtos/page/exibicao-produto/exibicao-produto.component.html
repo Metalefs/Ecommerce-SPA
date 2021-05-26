@@ -13,8 +13,8 @@
       this.imgProduto.classList.add('show-img');
       this.imgProduto.classList.remove('hide-img');
     ">
-    <div class="columns is-vcentered">
-      <div class="column is-12-mobile is-4-desktop">
+    <div class="columns is-vcentered is-mobile">
+      <div class="column is-3-mobile is-4-desktop">
         <figure class="image is-128x128 mb-0 pb-0">
           <img data-aos="zoom-in" #imgProduto class="background is-transparent"
             [src]="Produto?.Imagem[1]|| Produto?.Imagem[0]" [style.opacity]="'1'"
@@ -25,7 +25,7 @@
         </figure>
       </div>
       <div class="column mb-0 pb-0">
-        <nav class="level">
+        <nav class="level dis-flex flex-sa">
           <div class="level-item has-text-centered">
             <div>
               <p class="heading has-text-light">Avaliações</p>
@@ -64,11 +64,11 @@
 <!-- -->
 <section class="hero is-medium is-white btr">
 
-  <div class="hero-body pt-4 pb-1">
-      <div class="bbr my-4 py-4 margin shadow-light box" >
+  <div class="hero-body pt-1 pb-1">
+      <div class="bbr shadow-light box" >
         <div class="">
-          <div class="bbr mb-3" >
-            <div class="pb-0" *ngIf="!Produto">
+          <div class="bbr" >
+            <div *ngIf="!Produto">
               <div class="p-grid p-formgrid">
                 <div class="p-field p-col-12 p-md-6">
                   <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
@@ -80,8 +80,8 @@
               </div>
             </div>
             <div class="columns is-multiline is-4 py-4 px-1" *ngIf="Produto">
-              <div class="column is-8 px-1" >
-                <div class="columns px-1">
+              <div class="column is-8 " >
+                <div class="columns ">
 
                   <div class="column is-6">
                     <div class="">
@@ -98,7 +98,7 @@
                           avaliaç{{Produto?.Rating.length==1?'ão':'ões'}}</span>
 
                       </div>
-                      <mat-tab-group headerPosition="below" [selectedIndex]="selected.value"
+                      <mat-tab-group [selectedIndex]="selected.value"
                         (selectedIndexChange)="selected.setValue($event)">
                         <mat-tab>
                           <gallery data-aos="zoom-in" gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
@@ -117,62 +117,6 @@
                         </mat-tab>
                       </mat-tab-group>
 
-                      <div class="column is-6">
-                        <div class="w-full flex-w">
-                          <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
-                          <mat-menu #menu2="matMenu">
-                            <div mat-menu-item>
-                              <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
-                              </share-button>
-                            </div>
-                            <div mat-menu-item>
-                              <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
-                              </share-button>
-                            </div>
-                          </mat-menu>
-
-                          <button class="w-full dis-flex flex-w flex-m" title="Gostei" matBadge="{{Produto?.Likes}}"
-                            matBadgeColor="accent" (click)="Like()" mat-icon-button [ngClass]="Liked? 'liked': ''"
-                            [ngClass]="loading ? 'button is-loading':''">
-                            <p>
-                              <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
-                                {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
-                            </p>
-                          </button>
-                          <mat-chip-list *ngIf="Liked" aria-label="Thanks">
-                            <mat-chip color="primary" selected>Você curtiu este produto</mat-chip>
-                          </mat-chip-list>
-
-                        </div>
-                      </div>
-                      <mat-tab-group class="is-hidden-desktop">
-                        <mat-tab label="Informações">
-                          <div class="margin py-3 px-3 shadow-light">
-                            <div class="w-full columns is-multiline">
-                              <h3 class="has-text-weight-bold">Descrição do produto</h3>
-                              <div class="descricao-produto column is-12-touch is-12 w-full" [innerHTML]="(el?.innerHTML)"></div>
-                            </div>
-                          </div>
-
-                        </mat-tab>
-                        <mat-tab label="Avaliações">
-                          <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-                            <div class="z-index-2 px-2 py-2 my-6">
-                              <div class="mx-2">
-                                <div class="w-full">
-                                  <p>Você já tem este produto?</p>
-                                  <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-                                </div>
-                                <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-                                <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)">
-                                </personalizados-lopes-escrever-comentario>
-                              </div>
-                            </div>
-                            <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto">
-                            </personalizados-lopes-exibir-lista-comentario-produto>
-                          </div>
-                        </mat-tab>
-                      </mat-tab-group>
                     </div>
 
                   </div>
@@ -186,7 +130,7 @@
                           <li><p><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></p></li>
                           <li><p><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></p></li>
                         </ul>
-                        <div class="py-2">
+                        <div class="">
                           <ng-container
                             *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
                           </ng-container>
@@ -202,7 +146,7 @@
                               <p class="preco "><strong>R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</strong></p>
                             </div>
                           </ng-template>
-                          <div class="my-1" *ngIf="Produto?.Parcelas">
+                          <div class="" *ngIf="Produto?.Parcelas">
                             <p class="">
                               Em até {{Produto?.Parcelas == 0 ?'1':Produto?.Parcelas}}x de <span
                                 class="preco-produto"><b>R${{((Produto?.Status == statusProduto.promocao ?
@@ -232,7 +176,7 @@
                 </div>
 
               </div>
-              <div class="column is-4 has-background-white bbr" style="border-left: 10px solid whitesmoke;">
+              <div class="column is-4 has-background-white bbr shadow-light" >
 
                 <div class="mb-0 pb-0 px-3 py-3">
 
@@ -312,6 +256,12 @@
                                             <mat-icon style="transform: rotate(180deg);">arrow_drop_down_circle</mat-icon>
                                           </p>
                                         </div>
+                                        <button @fadeIn *ngIf="Produto" mat-raised-button
+                                        disabled
+                                        class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                                        {{textoAdicionar}}
+                                        <mat-icon>shopping_bag</mat-icon>
+                                      </button>
                                       </article>
                                     </ng-template>
                                     <ng-template #done>
@@ -420,6 +370,62 @@
                 </figure>
               </div>
             </div>
+            <div class="column is-6">
+              <div class="w-full flex-w">
+                <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
+                <mat-menu #menu2="matMenu">
+                  <div mat-menu-item>
+                    <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+                    </share-button>
+                  </div>
+                  <div mat-menu-item>
+                    <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+                    </share-button>
+                  </div>
+                </mat-menu>
+
+                <button class="w-full dis-flex flex-w flex-m" title="Gostei" matBadge="{{Produto?.Likes}}"
+                  matBadgeColor="accent" (click)="Like()" mat-icon-button [ngClass]="Liked? 'liked': ''"
+                  [ngClass]="loading ? 'button is-loading':''">
+                  <p>
+                    <mat-icon [ngClass]="Liked? 'liked': ''" class="heartbutton color-light-red">
+                      {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
+                  </p>
+                </button>
+                <mat-chip-list *ngIf="Liked" aria-label="Thanks">
+                  <mat-chip color="primary" selected>Você curtiu este produto</mat-chip>
+                </mat-chip-list>
+
+              </div>
+            </div>
+            <mat-tab-group class="is-hidden-desktop">
+              <mat-tab label="">
+                <div class="margin py-3 px-3 shadow-light">
+                  <div class="w-full columns is-multiline">
+                    <h3 class="has-text-weight-bold">Descrição do produto</h3>
+                    <div class="descricao-produto column is-12-touch is-12 w-full" [innerHTML]="(el?.innerHTML)"></div>
+                  </div>
+                </div>
+
+              </mat-tab>
+              <mat-tab label="Avaliações">
+                <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+                  <div class="z-index-2 px-2 py-2 my-6">
+                    <div class="mx-2">
+                      <div class="w-full">
+                        <p>Você já tem este produto?</p>
+                        <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+                      </div>
+                      <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+                      <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)">
+                      </personalizados-lopes-escrever-comentario>
+                    </div>
+                  </div>
+                  <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto">
+                  </personalizados-lopes-exibir-lista-comentario-produto>
+                </div>
+              </mat-tab>
+            </mat-tab-group>
             <mat-tab-group class="is-hidden-touch">
               <mat-tab label="Informações" (click)="AdicionarDescricao()">
                 <div class="has-background-white py-3 px-3 border-light">

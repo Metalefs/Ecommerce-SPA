@@ -1,4 +1,4 @@
-<mat-toolbar class="w-full dis-flex has-text-dark border-light flex-sb a-i-c z-index-top is-hidden-mobile"
+<mat-toolbar class="w-full dis-flex has-text-dark border flex-sb a-i-c z-index-top is-hidden-mobile"
   style="overflow-y: visible; z-index: 20;">
     <ul class="level list-inline ">
       <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile ">
@@ -28,14 +28,14 @@
           </a>
         </div>
 
-        <form type="get" class="is-hidden-mobile" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" >
+        <form type="get" class="bbr btr has-background-white-bis shadow-light" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" >
           <div class="py-2">
             <div class="mr-3 dis-flex">
               <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">
                 <mat-icon>search</mat-icon>
               </button>
 
-              <div @fadeIn class=" has-icons-right" *ngIf="search">
+              <div @fadeIn class="" *ngIf="search">
                 <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()"
                   (SearchValueChanged)="handleSearchValue($event)"></personalizados-lopes-autocomplete-dropdown>
               </div>
