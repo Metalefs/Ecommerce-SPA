@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   Links:Link[] = [
     {name:"Quem Somos", href:"empresa", id:"Sobre"},
-    {name:"Produtos",   href:"produtos", id:"Básicos"},
+    {name:"Produtos",   href:"produtos", id:"Todos"},
     {name:"Orçamento",    href:"orcamento", id:"Contato"},
     {name:"Inicio",     href:"inicio",  id:"INICIO"},
     {name:"Blog",       href:"blog",  id:"Blog"},

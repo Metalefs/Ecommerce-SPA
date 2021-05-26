@@ -23,11 +23,11 @@
 <div class="hero is-medium is-white btr">
 
   <div class="hero-body pt-6">
-    <div class="container">
+    <div class="">
       <!-- <h1 class="title is-2">Conheça nossa variedade de produtos</h1> -->
       <!-- <p class="title is-size-6 ">Conheça nossa variedade de produtos </p> -->
 
-      <div [@cardFlip]="state" class="section mb-0 pb-0 pt-1 " id="Básicos">
+      <div [@cardFlip]="state" class="section mb-0 pb-0 pt-1 " id="Todos">
 
         <div class="columns ">
           <div class="column is-3 is-hidden-mobile ">
@@ -50,7 +50,8 @@
                   </mat-toolbar>
                   <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
                     resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
-                  <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable" (click)="SetCategoria(null)"
+                  <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable"
+                    (click)="SetCategoria(null)"
                     [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active box' : ''">
                     <a mat-strocked-button class="dis-flex flex-sb flex-m"
                       [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? ' ' : 'has-text-grey'">
@@ -66,7 +67,7 @@
                   </mat-list-item>
                   <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
                     [style.backgroundColor]="categoria?.Cor"
-                    class="pointer w-full w-full-m cat-item hoverable has-background-white-bis"
+                    class="pointer w-full w-full-m cat-item has-background-white-bis"
                     (click)="SetCategoria(categoria)"
                     [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active box ' : 'has-text-grey'">
                     <a [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'" mat-strocked-button
@@ -225,10 +226,12 @@
                         busca</button>
                     </div>
                   </div>
-                  <a [ngClass]="loading_more ? 'button is-loading':''" mat-stroked-button
-                    class="is-dark px-3 w-full button txt-center border-light" *ngIf="total > Produtos?.length"
+                </div>
+                <div class="w-full dis-flex flex-c-m">
+                  <a [ngClass]="loading_more ? 'button is-loading':''" mat-fab title="Carregar mais produtos"
+                    class="px-3 w-full button wp-btn txt-center border-light" *ngIf="total > Produtos?.length"
                     (click)="CarregarMaisProdutos()">
-                    Ver mais resultados
+                    <mat-icon>add</mat-icon>
                   </a>
                 </div>
               </div>

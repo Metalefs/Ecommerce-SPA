@@ -1,13 +1,13 @@
 <h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Qual arte será usada?</h1>
 
-<div mat-dialog-content>
+<div mat-dialog-content class="margin w-half">
   <div class="columns is-multiline is-vcentered">
 
-    <div class="column is-12">
+    <div class="column is-6">
       <personalizados-lopes-costumization #customization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
-    <div class="column is-12">
+    <div class="column is-6">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
         <mat-card>

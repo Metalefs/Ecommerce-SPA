@@ -74,7 +74,7 @@
 
             <a [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''" matLine (click)="SetActiveNav(link)"
               (pageScrollFinish)="ToggleNav(0)" [routerLink]="link.href" routerLinkActive="Active" pageScroll
-              href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
+              href="#{{link.name == 'Todos' ? 'topo' : link.name}}">
               <mat-icon *ngIf="link.icon" mat-list-icon>{{link.icon}}</mat-icon>
               <span>{{link.name}}</span>
             </a>
@@ -85,7 +85,7 @@
               <mat-list-item matRipple *ngFor="let link of linksProdutos">
               <div class="dropdown-content-mobile has-background-white box of-y-scroll">
                 <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"(pageScrollFinish)="ToggleNav(0)"  pageScroll routerLinkActive="Active"
-                  href="#{{link.name == 'Básicos' ? 'topo' : link.name}}" [routerLink]="opt.link"
+                  href="#{{link.name == 'Todos' ? 'topo' : link.name}}" [routerLink]="opt.link"
                   [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>
               </div>
               </mat-list-item>

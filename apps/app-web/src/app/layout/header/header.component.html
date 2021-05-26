@@ -51,10 +51,10 @@
             <ng-template #normal>
               <a (click)="SetActiveNav(link)" [ngClass]="(NavState$ |async)?.activeNav == link.name ? 'active-nav': ''"
                 class="nav-link  {{link.name == 'inicio' ? 'inicio': ''}}" pageScroll [routerLink]="link.href"
-                routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}">
+                routerLinkActive="Active" href="#{{link.name == 'Todos' ? 'topo' : link.name}}">
                 <mat-icon *ngIf="link.Micon && (NavState$ |async)?.activeNav == link.name">{{link.Micon}}</mat-icon>
                 <i *ngIf="link.Picon && (NavState$ |async)?.activeNav == link.name" [class]="link.Picon"></i>
-                {{link.name == "Básicos"? 'Produtos' : link.name}}
+                {{link.name == "Todos"? 'Produtos' : link.name}}
               </a>
             </ng-template>
 
@@ -65,11 +65,11 @@
                   class="nav-link  {{link.name == 'inicio' ? 'inicio': ''}}">
                   <mat-icon *ngIf="link.Micon && (NavState$ |async)?.activeNav == link.name">{{link.Micon}}</mat-icon>
                   <i *ngIf="link.Picon && (NavState$ |async)?.activeNav == link.name" [class]="link.Picon"></i>
-                  {{link.name == "Básicos"? 'Produtos' : link.name}}
+                  {{link.name == "Todos"? 'Produtos' : link.name}}
                 </a>
                 <div class="dropdown-content has-background-white box">
                   <a class="nav-link  is-capitalized {{link.name == 'inicio' ? 'inicio': ''}} of-x-scroll" pageScroll
-                    routerLinkActive="Active" href="#{{link.name == 'Básicos' ? 'topo' : link.name}}"
+                    routerLinkActive="Active" href="#{{link.name == 'Todos' ? 'topo' : link.name}}"
                     [routerLink]="opt.link" [queryParams]="opt.queryParams"
                     *ngFor="let opt of link.options">{{opt.nome}}</a>
                 </div>
@@ -119,7 +119,7 @@
                   <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
                 </button>
               </div>
-              <div class="column is-hidden-touch mr-3">
+              <div class="column is-hidden-touch mr-3 clickable">
                 <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
                   R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
                 </p>
@@ -134,7 +134,7 @@
     </mat-toolbar>
 
     <mat-toolbar-row
-      [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'básicos' ? 'produtos-nav-under': 'produtos-nav-under'">
+      [ngClass]="(NavState$ |async)?.activeNav.toLocaleLowerCase() == 'Todos' ? 'produtos-nav-under': 'produtos-nav-under'">
     </mat-toolbar-row>
 
   </div>

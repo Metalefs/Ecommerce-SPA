@@ -5,9 +5,8 @@
     </p>
   <div class="columns px-3 mt-2 is-multiline dis-flex flex-sb"
     [ngClass]="{'is-danger':ErroCor}" *ngIf="Produto?.Cores">
-    <div mat-fab color="" (click)="setColor(cor)" id="column is-3 shadow-light"
-      *ngFor="let cor of Produto?.Cores; let i =index" style="border: 2px solid;
-      border-radius: 50%;">
+    <div mat-fab color="" (click)="setColor(cor)" id="column bo-cir border is-3 shadow-light"
+      *ngFor="let cor of Produto?.Cores; let i =index">
       <input class="px-2 py-2 mx-1" type="radio" alt="{{cor.nome}}" [value]="Produto.Cor"
         id="cor{{i}}" [formControlName]="'cor'"
         [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor}">

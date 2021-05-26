@@ -28,7 +28,7 @@ environment.production ? [
   {name: "Inicio",     href:"/",  icon:'',group:GrupoNavLink.institucional},
   {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
-  {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
+  {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
@@ -36,7 +36,7 @@ environment.production ? [
   {name: "Inicio",     href:"/",  icon:'',group:GrupoNavLink.institucional},
   {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
-  {name: "Básicos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
+  {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ];
@@ -53,7 +53,7 @@ environment.production ? [
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Básicos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Todos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
@@ -66,7 +66,7 @@ environment.production ? [
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Básicos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Todos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ];

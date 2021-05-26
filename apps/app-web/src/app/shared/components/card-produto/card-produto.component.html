@@ -105,38 +105,38 @@
               <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
             </ng-template>
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
-              <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
+              <p class=" parcelas" *ngIf="Produto.Parcelas">
                 Em até {{Produto.Parcelas}}x <span
                   class="parcelas">
                   <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
                 sem juros
               </p>
-              <p class=" parcelas" *ngIf="Produto.Parcelas == 1">
+              <p class=" parcelas" *ngIf="Produto.Parcelas == 1 || Produto.Parcelas == 0">
                 Á vista por <br><span
-                  class="parcelas"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
+                  class="parcelas"><b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / 1).toFixed(2)}}</b></span>
                 sem juros
               </p>
             </div>
 
           </mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions class=" pos-absolute bottom-0 right-0 pr-6 ">
+        <mat-card-actions class=" ">
           <div
           class="columns ">
-            <!-- <a href="#topo"
-            class="column is-12 w-full level-item button is-success is-small shadow-light"
+            <a href="#topo"
+            class="column is-6 w-full level-item button is-success is-small shadow-light"
             style="height: 100%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
             <span>
               <i class="pi pi-wallet"></i>
                Comprar
             </span>
-            </a> -->
-   <!--<a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
+            </a>
+            <a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
             class="column is-6 w-full level-item button is-info is-small shadow-light"
             style="height: 100%; text-decoration: none;">
               <span><i class="pi pi-shopping-cart"></i> Adicionar</span>
-            </a> -->
+            </a>
           </div>
           <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
               class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
@@ -148,34 +148,21 @@
 
       <div class="z-index-1">
         <div class="content" >
-          <div class="portfolio-overlay events-none w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
-            <div class="overlay-items w-full txt-center">
-              <p>
-                {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
-              </p>
-            </div>
+          <div class="portfolio-overlay events-none w-full" style="top:10px;"
+            [style.width]="flex_direction == 'row'?'50%':'100%'">
+              <div class="overlay-items w-full txt-center">
+                <p>
+                  {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
+                </p>
+              </div>
+
           </div>
-          <div class="columns is-mobile">
-            <div class="column is-6">
-              <a href="javascript:void(0)" mat-mini-fab color="accent"
-                class=" z-index-2"
-                (click)='AdicionarAoOrcamento()'>
-                <mat-icon class="has-text-white">shopping_cart</mat-icon>
-              </a>
-            </div>
-            <div class="column is-6">
-              <a href="#topo" mat-mini-fab color="primary"
-                class="z-index-2 "
-                [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-                <mat-icon class="has-text-white">paid</mat-icon>
-              </a>
-            </div>
-        </div>
-          <!-- <a title="Comprar" matRipple
-          [style.width]="flex_direction == 'row'?'50%':'100%'"
-          pageScroll
+          <a title="Comprar" matRipple pageScroll
+          href="#topo"
+          class="reset-a button shadow-light hoverable is-success m-lr-auto"
+          style="top:27%;left: 28%;"
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-          mat-flat-button class="m-lr-auto border-light "><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>Comprar</a> -->
+          mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
         </div>
       </div>
     </mat-card>
@@ -310,7 +297,7 @@
             <a title="Comprar" matRipple pageScroll
             href="#topo"
             class="reset-a button shadow-light hoverable is-success m-lr-auto"
-            style="top:42%;left: 25%;"
+            style="top:27%;left: 25%;"
             [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
             mat-flat-button class=""><mat-icon color='accent'>shopping_bag</mat-icon></a>
           </div>
