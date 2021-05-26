@@ -19,16 +19,16 @@
               <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
                 <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
               </section>
-              <nav class="z-index-1" role="navigation" aria-label="main navigation">
+              <mat-toolbar class="z-index-1  shadow-light" role="navigation" aria-label="main navigation">
                 <div class="level">
                   <div class="level-item level-right">
 
-                    <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
-                      <p class="is-size-6 box shadow-light is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
+                    <a href="#topo" pageScroll class="" [routerLink]="'/produtos'">
+                      <p class="is-size-6  is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
                     </a>
                   </div>
                 </div>
-              </nav>
+              </mat-toolbar>
             </div>
           </div>
           <div class="hero-foot">

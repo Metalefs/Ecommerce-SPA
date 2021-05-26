@@ -3,15 +3,15 @@
     <ul class="level list-inline ">
       <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile ">
         <div>
-          <a class="subtitle is-size-7 has-text-weight-bold" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
+          <a class="subtitle is-size-7 has-text-weight-medium" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
             <span>{{(InfoContato$|async)?.Telefone}}</span></a>
         </div>
       </li>
 
       <li class="level-item px-2  has-text-centered mr-6">
         <div>
-          <a class="reset-a is-size-7 has-text-weight-bold" [routerLink]="['checkout']"><span
-              class="is-hidden-touch has-text-weight-bold">Finalizar pedido  </span><i class="pi pi-check"></i></a>
+          <a class="reset-a is-size-7 has-text-weight-medium" [routerLink]="['checkout']"><span
+              class="is-hidden-touch has-text-weight-medium">Finalizar pedido  </span><i class="pi pi-check"></i></a>
         </div>
       </li>
     </ul>
