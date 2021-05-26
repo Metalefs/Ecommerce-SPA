@@ -31,7 +31,7 @@ export class OrcamentoComponent implements OnInit {
           this.snack.open("Orçamento enviado! Responderemos dentro de 24 horas", "Fechar",{duration:3000});
         });
       }else{
-        alert("Insira os dados para entrar em contato.")
+        alert("Preencha os dados para entrar em contato.")
       }
     })
   }

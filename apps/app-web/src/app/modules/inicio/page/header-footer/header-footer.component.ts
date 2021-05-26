@@ -45,13 +45,16 @@ export class HeaderFooterComponent implements OnInit {
       [
 
         {
-          title:"Galeria",
+          title:"Nossa produção",
           icon:"image",
           color:"#4d589",
           class:"yellow",
           link:"/showcase",
           id:"#topo",
-          content:`Ùltimos trabalhos`
+          content:`Confira nossas canecas,
+          camisetas, almofadas e mais !!
+          Clique para ver nossos últimos
+          produtos.`
         },
         {
           title:"Produtos",
@@ -60,7 +63,10 @@ export class HeaderFooterComponent implements OnInit {
           class:"red",
           link:"/produtos",
           id:"#topo",
-          content:`Para personalizar`,
+          content:`Recebemos pedidos
+          personalizados para a arte do
+          seu produto. Criação ou
+          aprimoramento.`,
           // img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         {
@@ -70,7 +76,8 @@ export class HeaderFooterComponent implements OnInit {
           class:"blue",
           link:"/orcamento",
           id:"#topo",
-          content:`<a href="/orcamento">Entre em Contato !</a>`
+          content:`Faça seu orçamento enviando o
+          seu pedido direto para a loja.<a href="/orcamento">Entre em Contato !</a>`
         },
       ];
       let elements = [];

@@ -1,8 +1,8 @@
-<div class="bg has-background-light bbr">
-  <p-breadcrumb [styleClass]=" 'has-background-light has-text-white'" *ngIf="this.Produto" [model]="items"
+<div class=" has-background-light bbr">
+  <p-breadcrumb [styleClass]=" ' has-background-light has-text-white'" *ngIf="this.Produto" [model]="items"
     [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
-  <div class="has-background is-medium is-white btr w-full has-background-light"
+  <div class="has-background bg is-medium is-white btr w-full has-background-light"
     (mouseover)="
     this.imgProduto.classList.remove('show-img');
     this.imgProduto.classList.add('hide-img');
@@ -29,7 +29,7 @@
 <!-- -->
 <section class="hero is-medium is-white btr">
 
-  <div class="hero-body">
+  <div class="hero-body pb-1">
       <div class="bbr my-4 py-4 margin shadow-light box" >
         <div class="">
           <div class="bbr mb-3" >
@@ -73,7 +73,7 @@
                             <i class="pi pi-tag"></i>
                             <mat-chip-list aria-label="Tags">
                               <mat-chip color="accent" [routerLink]="" selected *ngFor="let tag of Produto?.Tags">
-                                <p>{{tag}}</p>
+                                <p class="has-text-dark">{{tag}}</p>
                               </mat-chip>
                             </mat-chip-list>
 
@@ -304,7 +304,7 @@
                                 <button @fadeIn mat-flat-button title="Personalizar"
                                 [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                                 (click)="AbrirModalArte()" class="" color="warn" class="px-2 mx-2 has-text-white has-text-weight-bold">
-                                  <mat-icon>photo</mat-icon>Selecionar Arte do produto
+                                  <mat-icon>photo</mat-icon>Selecionar Arte
                                 </button>
                                 <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
                                   <mat-list-item *ngFor="let erro of Erros">
@@ -367,7 +367,7 @@
                         </div>
                         <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
                           title="Entrar em contato pelo whatsapp"
-                          class="button is-success w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
+                          class="button w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
                           <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
                           <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
                         </button>
@@ -417,19 +417,19 @@
       </div>
     </div>
     <div class="hero-foot px-3 py-3 "id="product-display">
-      <button mat-mini-fab color="accent" class="shadow-light"><a href="#product-display"  pageScroll><i class="pi pi-arrow-down"></i></a></button>
+      <button mat-mini-fab color="accent" class="shadow-light bo-0 has-text-weight-bold has-text-info"><a href="#product-display"  pageScroll><i class="pi pi-arrow-down"></i></a></button>
     </div>
 </section>
 
 
 
-<div class="w-full flex-w flex-sa px-6 my-2">
-  <a [routerLink]="'/produtos'" class="has-text-grey">
+<div class="w-full  bg flex-w flex-sa px-6 my-2">
+  <a [routerLink]="'/produtos'" class="has-text-light">
     <button mat-icon-button>
       <mat-icon>chevron_left</mat-icon>
     </button>
   </a>
-  <a [routerLink]="'/showcase'" class="has-text-grey">
+  <a [routerLink]="'/showcase'" class="has-text-light">
     <button mat-icon-button>
       <mat-icon>collections</mat-icon>
     </button>
@@ -441,12 +441,12 @@
     <personalizados-lopes-tag-produto-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-tag-produto-swiper>
   </div>
 
-  <mat-divider></mat-divider>
+  <!-- <mat-divider></mat-divider>
 
   <div class="   mb-3" *ngIf="Produto?._id">
     <personalizados-lopes-produto-swiper class="z-index-1" [slidesPerView]="2" [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes">
     </personalizados-lopes-produto-swiper>
-  </div>
+  </div> -->
 
   <mat-divider></mat-divider>
 
@@ -457,10 +457,10 @@
     <mat-divider></mat-divider>
   </div> -->
 
-  <div class="margin">
+  <!-- <div class="margin">
 
     <personalizados-lopes-blog-swiper [TAGS]="Produto?.Tags"></personalizados-lopes-blog-swiper>
-  </div>
+  </div> -->
 
   <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
   </personalizados-lopes-loading-cube>

@@ -1,89 +1,39 @@
-<mat-toolbar class="w-full dis-flex flex-r has-background-dark has-text-dark flex-m  flex-c a-i-c z-index-top is-hidden"
-  style="overflow-y: visible; height:min-content;z-index: 20;">
-  <div class="w-full "></div>
-    <ul class="level list-inline flex-r ">
-      <li class="level-item px-2 has-text-centered mb-0 is-hidden- ">
+<mat-toolbar class="w-full dis-flex has-text-dark border-light flex-sb a-i-c z-index-top is-hidden-mobile"
+  style="overflow-y: visible; z-index: 20;">
+    <ul class="level list-inline ">
+      <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile ">
         <div>
-          <a class="subtitle is-size-7 has-text-light " href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
+          <a class="subtitle is-size-7 has-text-weight-bold" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
             <span>{{(InfoContato$|async)?.Telefone}}</span></a>
         </div>
       </li>
-      <!-- <li class="level-item px-2 has-text-centered mb-0 m-r-45 is-hidden-">
-        <div class="subtitle is-size-7 has-text-light">
-          <div class="dropdown">
-            <a class="reset-a "><i class="pi pi-user"></i> <span class="">Minha conta</span></a>
-            <div class="dropdown-content text-left">
-              <a class="nav-link" *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Login</a>
-              <a class="nav-link" *ngIf="!user" (click)="openLogin()"><i class="pi pi-id-card px-2"></i>Cadastre-se</a>
-              <a class="nav-link" *ngIf="user" [routerLink]="['/minha-conta/pessoal']">Meu Perfil</a>
-              <a class="nav-link" *ngIf="user && user?.Tipo == TipoUsuario.admin"
-                [routerLink]="['/gerenciamento/app']">Gerenciamento</a>
-              <a class="nav-link" *ngIf="user" (click)="Logout()">Sair</a>
-            </div>
-          </div>
-        </div>
-      </li> -->
-      <!-- <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile  has-text-light">
-        <div>
-          <a class="subtitle is-size-7 has-background-white bo-0 button is-small" (click)="openCheckout()">
-            <div class="is-hidden-touch">
-              <p class="cart-counter hoverable" style="bottom:8px">{{(Orcamento$|async)?.Produto.length || 0}}</p>
-            </div>
-            <span class="has-text-dark"><i class="pi pi-shopping-cart"></i></span>
-          </a>
-          <div class="is-hidden-touch ml-4 pos-absolute top-0 mt-6">
-            <div class="columns is-mobile is-vcentered">
 
-              <div class="column is-hidden-touch">
-                <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
-                  R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </li> -->
-      <li class="level-item px-2 has-text-light has-text-centered mr-6">
+      <li class="level-item px-2  has-text-centered mr-6">
         <div>
-          <a class="reset-a is-size-7" [routerLink]="['checkout']"><span
-              class="is-hidden-touch">Finalizar pedido</span><i class="pi pi-check"></i></a>
+          <a class="reset-a is-size-7 has-text-weight-bold" [routerLink]="['checkout']"><span
+              class="is-hidden-touch has-text-weight-bold">Finalizar pedido  </span><i class="pi pi-check"></i></a>
         </div>
       </li>
     </ul>
-    <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
+    <mat-divider></mat-divider>
 </mat-toolbar>
 <div class="w-full pos-sticky top-0 z-index-top ">
   <div class=""
     >
-    <mat-toolbar class="px-0 mat-toolbar z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
-      <div class="w-full dis-flex flex-c flex-m flex-sa  px-2 pr-3 margin" >
-        <div class="flex-m a-i-c" style="height: 50px; ">
+    <mat-toolbar class="px-0 mat-toolbar py-2 z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
+      <div class="w-full dis-flex flex-c flex-m flex-sa px-2 pr-3 " >
+        <div class="flex-m a-i-c">
           <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
-            <img loading="lazy" class="logo " src="assets/images/icons/Logo.png" alt="LOGO">
+            <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
           </a>
         </div>
 
-        <!-- <mat-menu mat-menu #appMenu2="matMenu">
-          <ng-template matMenuContent let-name="name">
-            <button mat-menu-item *ngIf="user" href="#topo" routerLinkActive="Active"
-              pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
-            <button mat-menu-item *ngIf="!user" (click)="openLogin()">Entrar</button>
-            <button mat-menu-item *ngIf="user&&user?.Tipo == TipoUsuario.admin" href="#topo" routerLinkActive="Active" pageScroll
-              [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
-            <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
-          </ng-template>
-        </mat-menu> -->
-
-        <form type="get" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" class="w-full">
-          <div class="shadow-light columns  is-mobile is-gapless " style="width: 100%;border-radius: 1rem;">
-            <div class="column is-3">
-
+        <form type="get" class="is-hidden-mobile" action="/produtos/?nome={{search_filter}}?categoria=Todos os produtos" >
+          <div class="py-2">
+            <div class="mr-3 dis-flex">
               <button mat-icon-button type="submit" (click)="executar_pesquisa()" class="has-background-white mx-1">
                 <mat-icon>search</mat-icon>
               </button>
-            </div>
-            <div class="column mr-3">
 
               <div @fadeIn class=" has-icons-right" *ngIf="search">
                 <personalizados-lopes-autocomplete-dropdown (VerTodosResultados)="executar_pesquisa()"
@@ -92,28 +42,8 @@
             </div>
           </div>
         </form>
-        <div class="column is-hidden-touch">
 
-
-        <div class="dropdown">
-          <a class="nav-link">
-            <button class="w-full bo-0 card box has-text-centered border-light" mat-flat-button
-            title="Perfil">
-            <mat-icon>person_outline</mat-icon>
-            <!-- <p class="subtitle is-size-7">{{user?.Nome}}</p> -->
-          </button>
-          </a>
-          <div class="dropdown-content has-background-white box">
-            <button mat-menu-item *ngIf="user" href="#topo" routerLinkActive="Active"
-              pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
-            <button mat-menu-item *ngIf="!user" (click)="openLogin()">Entrar</button>
-            <button mat-menu-item *ngIf="user&&user?.Tipo == TipoUsuario.admin" href="#topo" routerLinkActive="Active" pageScroll
-              [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
-            <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
-          </div>
-        </div>
-        </div>
-        <div class="columns mx-3 my-0 is-hidden-touch link-section is-gapless ">
+        <div class="columns is-vcentered mx-3 my-0 is-hidden-touch link-section is-gapless ">
 
           <div *ngFor="let link of links" class="column">
 
@@ -147,8 +77,26 @@
             </ng-template>
 
           </div>
+          <div class="column ">
+            <div class="dropdown">
+              <a class="nav-link">
+                <button class="w-full has-text-centered border-light py-4"
+                title="Perfil">
+                <mat-icon>person_outline</mat-icon>
+                <p class="subtitle is-size-7">{{user?.Nome || 'Meu perfil'}}</p>
+              </button>
+              </a>
+              <div class="dropdown-content has-background-white box">
+                <button mat-menu-item *ngIf="user" href="#topo" routerLinkActive="Active"
+                  pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>
+                <button class="" mat-menu-item *ngIf="!user" (click)="openLogin()">Entrar</button>
+                <button mat-menu-item *ngIf="user&&user?.Tipo == TipoUsuario.admin" href="#topo" routerLinkActive="Active" pageScroll
+                  [routerLink]="['/gerenciamento/app']">Gerenciamento</button>
+                <button mat-menu-item *ngIf="user" (click)="Logout()">Sair</button>
+              </div>
+            </div>
+          </div>
         </div>
-
         <div class="my-0 dis-flex flex-r">
 
           <div class="is-hidden-desktop m-r-25">
@@ -169,12 +117,12 @@
 
                   <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
                   <p class="cart-counter">{{(Orcamento$|async)?.Produto.length || 0}}</p>
-                  <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
-                    R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
-                  </p>
                 </button>
               </div>
               <div class="column is-hidden-touch mr-3">
+                <p class="preco" (click)="openCheckout()" *ngIf="(Orcamento$|async)?.Preco">
+                  R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}
+                </p>
               </div>
 
             </div>

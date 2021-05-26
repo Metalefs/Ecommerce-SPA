@@ -1,10 +1,13 @@
 <div id="INICIO" class="has-background-light">
 
+  <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
+  <div class="box">
+
+  </div>
 
   <div class="bg">
 
     <div class="">
-      <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
       <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       <div class="">
 
@@ -13,45 +16,27 @@
 
             <p class="hero-title"> </p>
             <div class="of-y-scroll w-full" >
-              <div class="my-4"></div>
-              <personalizados-lopes-produto-swiper [slidesPerView]='2'></personalizados-lopes-produto-swiper>
+              <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
+                <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+              </section>
               <nav class="z-index-1" role="navigation" aria-label="main navigation">
-                <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
-                  <p class="is-size-6 shadow-light is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
-                </a>
+                <div class="level">
+                  <div class="level-item level-right">
+
+                    <a href="#topo" pageScroll class="navbar-link" [routerLink]="'/produtos'">
+                      <p class="is-size-6 box shadow-light is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
+                    </a>
+                  </div>
+                </div>
               </nav>
             </div>
           </div>
           <div class="hero-foot">
-            <section class="py-0" *ngIf="(Clientes$|async)?.length>0">
-              <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-            </section>
+
           </div>
         </div>
 
-        <div data-aos="zoom-in-down"  class="hero is-medium">
-          <!-- <div class="hero-body pb-2 has-background-white">
-            <div class="hr hr-custom hr-center hr-icon-no  avia-builder-el-8  el_after_av_one_third  el_before_av_textblock ">
-              <span class="hr-inner inner-border-av-border-fat" style=" width:100px; border-color:#762625;">
-                <span class="hr-inner-style"></span>
-              </span>
-            </div>
-            <div class="hero-title titleContent txt-center">
-              <mat-toolbar class="hoverable">
-                <h2>BLOG</h2>
-                <span class="hr-inner-style"></span>
-              </mat-toolbar>
-            </div>
-            <div>
-            <personalizados-lopes-blog-swiper></personalizados-lopes-blog-swiper>
-            </div>
-          </div> -->
-          <!-- <div class="px-3 has-background-white">
-            <section class="section w-full px-3" id="headerGfooter">
-              <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-            </section>
-          </div> -->
-        </div>
+
       </div>
     </div>
 

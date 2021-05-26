@@ -1,10 +1,7 @@
 
 @import '../../../variables';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-$navbg : #fefefe;
-$navcolor : black;
-$naviconcolor : rgb(247, 4, 4);
-$navlinkbordercolor : #e6dbdb41;
+
 // .has-background-dark {
 //   background-color: #757575 !important;
 // }
@@ -19,7 +16,7 @@ $navlinkbordercolor : #e6dbdb41;
 .mat-toolbar {
   background: rgba($color: white, $alpha: 0.99);
   background: #f8f9fa;
-  background: $navbg;
+  background: $background-light;
   margin-top: 0px;
   z-index: 11;
 }
@@ -90,10 +87,9 @@ $navlinkbordercolor : #e6dbdb41;
   padding: 0;
 }
 .nav-link{
-  font-size: .8rem;
-  // text-transform: uppercase;
+  font-size: $navlinksize;
   // padding: 0.5em;
-  padding: 51px 30px;
+  padding: 26px 13px;
   padding-bottom: 30px;
   min-height: 15px;
   line-height: 30px;
@@ -102,10 +98,7 @@ $navlinkbordercolor : #e6dbdb41;
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
   color: $navcolor;
-  font-weight: 500;
-  // color: white;
-  // font-family: 'Montserrat';
-  margin-left: 2px;
+  font-weight: $navlinkweight;
 }
 a.nav-link::before{
   content: "";
@@ -135,7 +128,7 @@ a.nav-link:hover{
   i{
     color: $naviconcolor
   }
-  color:#484848
+  color: $naviconcolor
 }
 .inicio{
   border-left: none;
@@ -165,10 +158,10 @@ a.nav-link:hover{
 }
 .sticky-nav{
   // background: #fff;
-  background: $navbg;
+  background: $background-light;
 }
 .produtos-nav{
-  background: $navbg;
+  background: $background-light;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;
@@ -184,7 +177,7 @@ a.nav-link:hover{
   }
 }
 .orcamento-nav{
-  background: $navbg;
+  background: $background-light;
   background-size: 400% 400%;
   -webkit-animation: AnimationName 1s ease forwards;
   -moz-animation: AnimationName 1s ease forwards;

@@ -48,6 +48,8 @@
                       </span>
                     </div>
                   </mat-toolbar>
+                  <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
+                    resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
                   <mat-list-item @fadeIn class="pointer w-full w-full-m cat-item hoverable" (click)="SetCategoria(null)"
                     [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active box' : ''">
                     <a mat-strocked-button class="dis-flex flex-sb flex-m"
@@ -153,6 +155,11 @@
                         <div class="column is-12">
                           <div class="dis-flex w-full flex-r">
                             <div class="mr-3 pt-1">
+                              <div>
+                                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+
+                              </div>
+                            </div>
                               <mat-form-field appearance="">
                                 <mat-label>Ordenar por</mat-label>
                                 <mat-select matNativeControl [(ngModel)]="activeOrderFilter"
@@ -165,12 +172,6 @@
                                 </mat-select>
                               </mat-form-field>
                             </div>
-                            <div>
-                              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-                              <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
-                                resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
-                            </div>
-                          </div>
                         </div>
                       </div>
 
@@ -197,13 +198,13 @@
                     </ng-template>
                     <ng-template let-produto pTemplate="gridItem">
                       <ng-container class="mx-0 px-0 ">
-                        <div class="column is-4 pt-4 is-12-mobile" *ngIf="loading">
+                        <div class="column is-3 pt-4 is-12-mobile" *ngIf="loading">
                           <div class="w-full mh-full skeleton">
                             <p-skeleton width="100%" height="100%">
                             </p-skeleton>
                           </div>
                         </div>
-                        <div class="column is-4 is-12-mobile" *ngIf="filtroAtivo(produto) && !loading">
+                        <div class="column is-3 is-12-mobile" *ngIf="filtroAtivo(produto) && !loading">
                           <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true">
                           </personalizados-lopes-card-produto>
                         </div>

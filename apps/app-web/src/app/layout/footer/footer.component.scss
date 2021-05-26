@@ -14,14 +14,10 @@
   }
 }
 .base{
-
-  // font-family: 'Arial' !important;
-  color:white;
+  color: $footercolor;
 }
 span{
-
-  // font-family: 'Arial' !important;
-  color: white;
+  color:  $footercolor;
   text-transform: lowercase;
 }
 a{
@@ -36,8 +32,8 @@ a{
   }
   &.footer-text.links p:hover{
     color: #ff5252 !important;
-    // padding-left: 10px;
-    transition: 1s all;
+    padding-left: 5px;
+    transition: .31s all;
   }
   &.footer-text.links p::before {
     content: "\e91b";
@@ -62,31 +58,24 @@ a{
   letter-spacing: 1px;
   padding-bottom: 10px;
   margin-bottom: 25px;
-  border-bottom: 3px double #ffffff;
+  border-bottom: 3px double #5f5858af;
   border-left: none;
   border-right: none;
   margin-bottom: 15px;
-  color: #fff;
+  color: $footercolor;
 }
 .footer-text{
   @extend .base;
-  font-size: 12px !important;
+  font-size: 14px !important;
   & :hover{
     color: #3a3a3a;
   }
 }
 .footer-color{
-  // background: #f1f1f1;
-  // background: #4b4b4b;
-  // background: #323232;
-  // background: #3a3a3a;
-  // background: rgba(0, 0, 0, 0.52);
-  // background: #ff4081;
-  background: #FF4A4A;
-  // background: rgba(249,28,28,.52);
+  background: $background-light;
 }
 .txt-justify.footer-text.has-text-white p{
-  color:white
+  color: $footercolor
 }
 
 .footer::before{
@@ -161,8 +150,8 @@ h4{
 }
 
 .footer .footer-widget ul li a{
-  color: #ffffff;
-  white-space: nowrap;
+  color: $footercolor;
+   $footercolor-space: nowrap;
   display: block;
   line-height: 23px;
 }
@@ -181,11 +170,11 @@ h4{
 
 .footer .contact-info p {
   margin-bottom: 10px;
-  color: #ffffff;
+  color: $footercolor
 }
 .footer > div.w-full.pink.shadow-light > div > div.column.text-center > a > p,
 .footer .contact-info p i {
-  color: #ffffff;
+  color: $footercolor;
   margin-right: 5px;
 }
 
@@ -247,35 +236,4 @@ h4{
     // color: #666;
     text-transform: lowercase;
   }
-  // .footer::before{
-  //   left: 0;
-  // }
-  // .footer > div.w-full.pink.shadow-light > div > div.column.text-center > a > p,
-  // .footer .contact-info p i {
-  //   color: #999;
-  // }
-  // .txt-justify.footer-text.has-text-white p{
-  //   color: #999 !important;
-  // }
-  // .footer{
-  //   background: #f1f1f1;
-  // }
-  // .footer .contact-info p {
-  //   color: #999;
-  // }
-  // .footer .contact-info p i {
-  //   color: #999;
-  // }
-  // .footer .footer-widget .title {
-  //   color: #999;
-  // }
-  // .footer .footer-widget p {
-  //   color: #999;
-  // }
-  // .footer .footer-widget ul li a {
-  //   color: #999;
-  // }
-  // .footer .footer-widget ul li a p {
-  //   color: #999;
-  // }
 }

@@ -24,6 +24,7 @@ html, body {
   max-width: 100vw !important;
   width: 100%;
   min-width: 100vw;
+  background-color: #fafaff;
 }
 body {
   margin: 0;
@@ -132,13 +133,13 @@ a {
   position: relative;
   // color: $gray-web;
   text-decoration: none;
-  transition: all .9s ease;
+  transition: all .25s ease;
   &:hover{
-    transition: all .9s ease;
+    transition: all .25s ease;
     color: #999;
     text-decoration: none;
     -webkit-transform: scaleX(1.1);
-    transform: rotate(5deg);
+    transform: rotate(1deg);
   }
 }
 .has-background {
@@ -310,7 +311,7 @@ li .p-menuitem-link span.p-menuitem-text {
   border-radius: 20px;
   text-align: center;
   transition: all 0.5s ease-in-out;
-  border-radius: 1px;
+  border-radius: 50%;
   animation: hideArr 1s ease forwards !important;
   &::after{
     font-size: 30px !important;
@@ -376,13 +377,19 @@ img{
 }
 
 .logo{
-  // width: 80px;
-  // left: 20px;
-  // height: 40px;
-  position: relative;
-  top: 0;
-  max-height: 190px;
-  // position: absolute;
+  width: 100%;
+  height: 100%;
+  width: 120px;
+  height: 40px;
+  text-indent: -5000em;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  margin: 1px 15px;
+  background: url(./assets/images/icons/Logo.png) 0 center/85px 62px no-repeat;
+  margin-right: 27px;
+  margin-top: 8px;
+  background-size: contain;
 }
 .logo img{
   filter:none !important;
@@ -542,7 +549,9 @@ canvas{
 }
 .wp-btn{
   background-color: #2196f3;
-  background-image: linear-gradient(to bottom,#00c3d6,#2196f3);
+  // background-image: linear-gradient(to bottom,#00c3d6,#2196f3);
+  background-image: linear-gradient(to bottom, #5eef91, #56c700);
+
   // background-repeat: repeat-x;
   border-color: #00c3d6 #2196f3 #6c63ff;
   color: white;

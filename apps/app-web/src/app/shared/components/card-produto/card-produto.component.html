@@ -148,29 +148,29 @@
 
       <div class="z-index-1">
         <div class="content" >
-          <div class="portfolio-overlay  w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
+          <div class="portfolio-overlay events-none w-full" [style.width]="flex_direction == 'row'?'50%':'100%'">
             <div class="overlay-items w-full txt-center">
               <p>
                 {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
               </p>
-              <div class="columns is-mobile">
-                <div class="column is-6">
-                  <a href="javascript:void(0)" mat-fab color="accent"
-                    class=" z-index-2"
-                    (click)='AdicionarAoOrcamento()'>
-                    <mat-icon class="has-text-white">shopping_cart</mat-icon>
-                  </a>
-                </div>
-                <div class="column is-6">
-                  <a href="#topo" mat-fab color="primary"
-                    class="z-index-2 "
-                    [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-                    <mat-icon class="has-text-white">paid</mat-icon>
-                  </a>
-                </div>
             </div>
           </div>
-          </div>
+          <div class="columns is-mobile">
+            <div class="column is-6">
+              <a href="javascript:void(0)" mat-mini-fab color="accent"
+                class=" z-index-2"
+                (click)='AdicionarAoOrcamento()'>
+                <mat-icon class="has-text-white">shopping_cart</mat-icon>
+              </a>
+            </div>
+            <div class="column is-6">
+              <a href="#topo" mat-mini-fab color="primary"
+                class="z-index-2 "
+                [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
+                <mat-icon class="has-text-white">paid</mat-icon>
+              </a>
+            </div>
+        </div>
           <!-- <a title="Comprar" matRipple
           [style.width]="flex_direction == 'row'?'50%':'100%'"
           pageScroll

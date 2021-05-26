@@ -7,7 +7,7 @@
     </mat-card>
   </div>
 </div>
-<div class="columns is-mobile w-full mx-0">
+<div class="columns is-multiline w-full mx-0">
   <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column mx-0 is-4 pb-1">
     <div class="card-bg shadow-light {{card?.class}}">
       <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->

@@ -20,16 +20,43 @@
       </div>
     </div>
     <ng-container *ngIf="!checkoutService.getValid()">
-
-      <mat-list class="px-2 mx-2 box border" @fadeIn>
-        <mat-list-item class="pb-2" @fadeIn *ngFor="let erro of checkoutService.getErros()">
-          <p class="subtitle is-size-6 has-text-danger">{{erro}}</p>
-          <mat-divider></mat-divider>
-        </mat-list-item>
-      </mat-list>
+      <div class="columns"  @fadeIn>
+        <div class="column is-3">
+          <figure class="image has-ratio"  @fadeIn>
+            <img src="/assets/images/figures/undraw_cancel_u1it.svg">
+          </figure>
+        </div>
+        <div class="column">
+          <mat-list class="px-2 mx-2 border" @fadeIn>
+            <mat-list-item class="pb-2 box" @fadeIn *ngFor="let erro of checkoutService.getErros()">
+              <mat-icon>error</mat-icon><p class="subtitle is-size-6 has-text-danger">{{erro}}</p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
     </ng-container>
+
     <router-outlet @fadeIn #outlet2></router-outlet>
+
     <mat-toolbar class="dis-flex flex-sb py-6">
+      <ng-container *ngIf="checkoutService.getValid()">
+        <div class="columns"  @fadeIn>
+          <div class="column is-3">
+            <figure class="image has-ratio"  @fadeIn>
+              <img src="/assets/images/figures/undraw_Confirmed_re_sef7.svg">
+            </figure>
+          </div>
+          <div class="column">
+            <mat-list class="px-2 mx-2 border" @fadeIn>
+              <mat-list-item class="pb-2 box" @fadeIn >
+                <mat-icon>check</mat-icon><p class="subtitle is-size-6 has-text-success">Seu pedido está valido!</p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+      </ng-container>
       <a class="is-size-7	">aviso legal</a>
       <span class="spacer"></span>
       <!-- <figure class="image px-4 ">
