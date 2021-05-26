@@ -1,4 +1,4 @@
-<section class="section mh-full pos-relative pb-6 pt-3 au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
+<section class="section pos-relative py-6 au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
   <div class="checkout-background has-background-blue1-ck pos-fixed bellow-nav"></div>
   <div class="btr bbr has-background-white px-3 box pt-4 py-3 af cs i2 i3 i4 w-full am de w-half z-index-2 of-x-scroll section">
     <div class="">
@@ -20,16 +20,16 @@
       </div>
     </div>
     <ng-container *ngIf="!checkoutService.getValid()">
-      <div class="columns"  @fadeIn>
+      <div class="columns is-vcentered"  @fadeIn>
         <div class="column is-3">
           <figure class="image has-ratio"  @fadeIn>
             <img src="/assets/images/figures/undraw_cancel_u1it.svg">
           </figure>
         </div>
         <div class="column">
-          <mat-list class="px-2 mx-2 border" @fadeIn>
+          <mat-list class="px-2 mx-2 " @fadeIn>
             <mat-list-item class="pb-2 box" @fadeIn *ngFor="let erro of checkoutService.getErros()">
-              <mat-icon>error</mat-icon><p class="subtitle is-size-6 has-text-danger">{{erro}}</p>
+              <p class="subtitle is-size-6 has-text-danger"><mat-icon>error</mat-icon> {{erro}}</p>
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
@@ -40,23 +40,7 @@
     <router-outlet @fadeIn #outlet2></router-outlet>
 
     <mat-toolbar class="dis-flex flex-sb py-6">
-      <ng-container *ngIf="checkoutService.getValid()">
-        <div class="columns"  @fadeIn>
-          <div class="column is-3">
-            <figure class="image has-ratio"  @fadeIn>
-              <img src="/assets/images/figures/undraw_Confirmed_re_sef7.svg">
-            </figure>
-          </div>
-          <div class="column">
-            <mat-list class="px-2 mx-2 border" @fadeIn>
-              <mat-list-item class="pb-2 box" @fadeIn >
-                <mat-icon>check</mat-icon><p class="subtitle is-size-6 has-text-success">Seu pedido está valido!</p>
-                <mat-divider></mat-divider>
-              </mat-list-item>
-            </mat-list>
-          </div>
-        </div>
-      </ng-container>
+
       <a class="is-size-7	">aviso legal</a>
       <span class="spacer"></span>
       <!-- <figure class="image px-4 ">
@@ -69,5 +53,21 @@
     </mat-toolbar>
   </div>
 
-
+  <ng-container *ngIf="checkoutService.getValid()">
+    <div class="columns  pos-sticky top-0 z-index-1 bellow-nav"  @fadeIn>
+      <div class="column is-3">
+        <figure class="image has-ratio"  @fadeIn>
+          <img src="/assets/images/figures/undraw_Confirmed_re_sef7.svg">
+        </figure>
+      </div>
+      <div class="column">
+        <mat-list class="px-2 mx-2 " @fadeIn>
+          <mat-list-item class="pb-2 box" @fadeIn >
+            <p class="subtitle is-size-6 has-text-success"><mat-icon>check</mat-icon> Seu pedido está valido!</p>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+  </ng-container>
 </section>

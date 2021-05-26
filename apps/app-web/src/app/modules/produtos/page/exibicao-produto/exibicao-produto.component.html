@@ -2,28 +2,63 @@
   <p-breadcrumb [styleClass]=" ' has-background-light has-text-white'" *ngIf="this.Produto" [model]="items"
     [home]="home"></p-breadcrumb>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
-  <div class="has-background bg is-medium is-white btr w-full has-background-light"
-    (mouseover)="
-    this.imgProduto.classList.remove('show-img');
-    this.imgProduto.classList.add('hide-img');
-    this.imgProduto2.classList.add('show-img');
-    this.imgProduto2.classList.remove('hide-img');
-    "
-    (mouseout)="
-    this.imgProduto2.classList.remove('show-img');
-    this.imgProduto2.classList.add('hide-img');
-    this.imgProduto.classList.add('show-img');
-    this.imgProduto.classList.remove('hide-img');
-  ">
-  <figure class="image is-128x128">
-    <img data-aos="zoom-in"  #imgProduto
-            class="background is-transparent"
+  <div class="has-background bg is-medium is-white btr w-full has-background-light" (mouseover)="
+      this.imgProduto.classList.remove('show-img');
+      this.imgProduto.classList.add('hide-img');
+      this.imgProduto2.classList.add('show-img');
+      this.imgProduto2.classList.remove('hide-img');
+      " (mouseout)="
+      this.imgProduto2.classList.remove('show-img');
+      this.imgProduto2.classList.add('hide-img');
+      this.imgProduto.classList.add('show-img');
+      this.imgProduto.classList.remove('hide-img');
+    ">
+    <div class="columns is-vcentered">
+      <div class="column dis-flex flex-c-m mb-0 pb-0 is-12-mobile is-4-desktop">
+        <figure class="image is-128x128 mb-0 pb-0">
+          <img data-aos="zoom-in" #imgProduto class="background is-transparent"
             [src]="Produto?.Imagem[1]|| Produto?.Imagem[0]" [style.opacity]="'1'"
             alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-    <img data-aos="zoom-in" #imgProduto2
-      class="background is-transparent hide-img" [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
-      alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-  </figure>
+          <img data-aos="zoom-in" #imgProduto2 class="background is-transparent hide-img"
+            [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
+            alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+        </figure>
+      </div>
+      <div class="column mb-0 pb-0">
+        <nav class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading has-text-light">Avaliações</p>
+              <p class="title has-text-white">{{Produto.Rating.length}}</p>
+            </div>
+          </div>
+          <!-- <div class="level-item has-text-centered">
+            <div>
+              <p class="heading has-text-light">Disponiveis</p>
+              <p class="title has-text-white">N/A</p>
+            </div>
+          </div> -->
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading has-text-light">Compras</p>
+              <p class="title has-text-white">{{Produto?.Vendas}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading has-text-light">Visualizações</p>
+              <p class="title has-text-white">{{Produto?.Visualizacoes}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading has-text-light">Likes</p>
+              <p class="title has-text-white">{{Produto?.Likes}}</p>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
   </div>
 </div>
 <!-- -->
@@ -73,7 +108,7 @@
                             <i class="pi pi-tag"></i>
                             <mat-chip-list aria-label="Tags">
                               <mat-chip color="accent" [routerLink]="" selected *ngFor="let tag of Produto?.Tags">
-                                <p class="has-text-dark">{{tag}}</p>
+                                <p class="has-text-light">{{tag}}</p>
                               </mat-chip>
                             </mat-chip-list>
 
@@ -366,7 +401,7 @@
                           </ul>
                         </div>
                         <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                          title="Entrar em contato pelo whatsapp"
+                          title="Entrar em contato por whatsapp"
                           class="button w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
                           <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
                           <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
