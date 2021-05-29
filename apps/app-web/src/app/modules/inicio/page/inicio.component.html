@@ -4,35 +4,39 @@
   <div class="box">
 
   </div>
+  <div class="hero is-medium ">
+    <div class="hero-body py-0">
+        <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
+    </div>
+  </div>
 
   <div class="bg">
 
     <div class="">
-      <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       <div class="">
-
-        <div class="hero">
-          <div class="hero-body ">
+        <div class="hero ">
+          <div class="hero-body pb-0">
 
             <p class="hero-title"> </p>
+            <personalizados-lopes-produto-swiper ></personalizados-lopes-produto-swiper>
             <div class="of-y-scroll w-full" >
               <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
                 <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
               </section>
-              <mat-toolbar class="z-index-1  shadow-light" role="navigation" aria-label="main navigation">
-                <div class="level">
-                  <div class="level-item level-right">
 
-                    <a href="#topo" pageScroll class="" [routerLink]="'/produtos'">
-                      <p class="is-size-6  is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
-                    </a>
-                  </div>
-                </div>
-              </mat-toolbar>
             </div>
           </div>
-          <div class="hero-foot">
+          <div class="hero-foot px-2 ">
+            <mat-toolbar class="z-index-1 shadow-light" role="navigation" aria-label="main navigation">
+              <div class="level">
+                <div class="level-item level-right">
 
+                  <a href="#topo" pageScroll class="" [routerLink]="'/produtos'">
+                    <p class="is-size-6  is-lowecase"> Mais de 10 categorias. Configure o tamanho, a cor e a estampa. </p>
+                  </a>
+                </div>
+              </div>
+            </mat-toolbar>
           </div>
         </div>
 

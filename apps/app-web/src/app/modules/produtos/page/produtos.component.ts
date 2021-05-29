@@ -66,7 +66,7 @@ export class ProdutosComponent implements OnInit {
   @ViewChild('carousel', { static: true }) carousel
 
   page:number = 1;
-  activeOrderLimit:number = 10;
+  activeOrderLimit:number = 20;
   total:number = 0;
 
   loading:boolean = false;

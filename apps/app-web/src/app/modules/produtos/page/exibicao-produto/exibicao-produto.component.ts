@@ -369,7 +369,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.InformacoesContato$.subscribe(x=>{
       let Whatsapp = x.Whatsapp;
       let Mensagem = `Olá, gostaria de ter mais informações sobre *${this.Produto.Nome}* ${this.Url}`;
-      if(isPlatformBrowser(PLATFORM_ID))
+      if(isPlatformBrowser(this.platform))
         this.windowRef.nativeWindow.open( `https://wa.me/${Whatsapp}?text=${Mensagem}`, "_blank");
     })
   }

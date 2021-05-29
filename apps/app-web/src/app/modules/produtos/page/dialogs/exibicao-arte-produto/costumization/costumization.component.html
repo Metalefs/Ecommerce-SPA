@@ -2,9 +2,9 @@
   <div class="container-app columns margin w-half is-vcentered txt-center is-multiline py-4 w-full mx-0">
 
     <div data-aos="zoom-in" class="controls border-dark is-4 pos-absolute left-0 z-index-top">
-      <a id="add" class="button" (click)="addText()">Texto</a>
-      <a class="button" (click)="addStockImg()">Design</a>
-      <a class="button" (click)="importFile()">Importar</a>
+      <a id="add" class="button" (click)="addText()">Inserir texto</a>
+      <a class="button" (click)="addStockImg()">Inserir um Design</a>
+      <a class="button" (click)="importFile()">Importar uma foto</a>
     </div>
     <div data-aos="zoom-in" class="column is-12-desktop is-12-touch box bg-img1 size1 overlay1">
       <figure data-aos="zoom-in">
@@ -12,7 +12,7 @@
       </figure>
       <canvas id="c" height="500" style="border:3px solid #131313"></canvas>
     </div>
-    <div class="column is-12 is-12-touch">
+    <div class="column is-12 is-12-touch is-sr-only">
       <div class="item-selected dis-flex box w-full">
         <p>Escolher Fontes e Cores</p>
         <div id='i-text' class="item-panel">

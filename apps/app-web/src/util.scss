@@ -98,8 +98,8 @@ button {
   cursor: pointer;
   // font-size:16px;
   color:#3a3a3a;
-  border: 1px solid #EEEEEF;
-  // border-bottom-right-radius: 15px !important;
+  // border: 1px solid #EEEEEF;
+  border-bottom-right-radius: 15px !important;
   // box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
 }
 button:focus {outline: none;}
@@ -234,13 +234,11 @@ button{
   // font: 400 13.3333px Arial;
   padding: 1px 6p
 }
-// .button:not(.wp-btn){
-//   // background: black;
-//   // color:white;
-//   :hover{
-//     color:grey
-//   }
-// }
+.button:not(.wp-btn){
+  overflow-wrap: anywhere !important;
+  word-wrap: break-word;
+  white-space: normal;
+}
 .bbr{
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 2rem;
@@ -253,7 +251,9 @@ button{
   background: rgb(30 35 66 / 7%);
   // background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgba(255,255,255,1) 51%, rgba(0,212,255,0) 100%);
 }
-
+.is-invisible{
+  visibility: hidden;
+}
 .a-i-c{
   align-items: center;
 }

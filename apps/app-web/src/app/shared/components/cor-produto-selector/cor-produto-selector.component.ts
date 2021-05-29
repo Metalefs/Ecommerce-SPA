@@ -10,6 +10,7 @@ import { Cor } from 'libs/data/src/lib/classes/produto';
 export class CorProdutoSelectorComponent implements OnInit {
   @Input() Produto: Produto;
   @Input() ErroCor: boolean;
+  hovercolor:any;
   @Output() onSetColor: EventEmitter<Cor> = new EventEmitter<Cor>();
   constructor() { }
 

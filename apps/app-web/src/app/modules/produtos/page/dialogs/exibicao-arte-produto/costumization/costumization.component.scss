@@ -41,6 +41,7 @@ padding: 0;
   border-radius: 0px;
   cursor: pointer;
   user-select: none;
+  overflow-wrap: anywhere;
   &:hover {
     color: white;
     background-color: #131313
@@ -146,4 +147,7 @@ cursor: pointer;
   &.visible {
     visibility: visible
   }
+}
+.container-app{
+  max-width: 780px;
 }

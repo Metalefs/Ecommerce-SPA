@@ -1,13 +1,13 @@
-<h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Qual arte será usada?</h1>
+<h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Escolha de design</h1>
 
 <div mat-dialog-content class="margin w-half">
   <div class="columns is-multiline is-vcentered">
 
-    <div class="column is-6">
+    <div class="column is-12">
       <personalizados-lopes-costumization #customization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
-    <div class="column is-6">
+    <div class="column is-12">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
         <mat-card>
@@ -37,6 +37,30 @@
               </span>
             </label>
           </button>
+          <div class="column">
+            <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
+              Tem arte traseira
+            </mat-checkbox>
+          </div>
+          <div class="column px-2">
+            <button @fadeIn *ngIf="arte_traseira && !Produto.ArteSecundaria" mat-flat-button
+              class="button file has-name pb-3" title="Enviar arte para usar no produto">
+              <label class="file-label">
+                <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="pi pi-cloud-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Enviar arte secundaria <span class="mr-1"> </span>
+                  </span>
+                  <span class="file-name">
+                    {{' '+ secondaryfileNames}}
+                  </span>
+                </span>
+              </label>
+            </button>
+          </div>
         </div>
       </ng-template>
     </div>
@@ -57,37 +81,12 @@
     </div>
   </div>
 
-  <div class="column">
-    <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
-      Tem arte traseira
-    </mat-checkbox>
-  </div>
-  <div class="column px-2">
-    <button @fadeIn *ngIf="arte_traseira && !Produto.ArteSecundaria" mat-flat-button
-      class="button file is-info has-name pb-3" title="Enviar arte para usar no produto">
-      <label class="file-label">
-        <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
-        <span class="file-cta">
-          <span class="file-icon">
-            <i class="pi pi-cloud-upload"></i>
-          </span>
-          <span class="file-label">
-            Enviar arte secundaria <span class="mr-1"> </span>
-          </span>
-          <span class="file-name">
-            {{' '+ secondaryfileNames}}
-          </span>
-        </span>
-      </label>
-    </button>
-  </div>
-
   <div class="">
     <h4 class="has-text-danger py-3"><em>Atenção às regras de personalização!</em></h4>
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card class="box border shadow-light hoverable" style="min-height: 200px;">
+        <mat-card color="primary" class="box shadow-light hoverable" style="min-height: 200px;">
           <mat-card-content>
             <span class="">{{rule}}</span>
           </mat-card-content>

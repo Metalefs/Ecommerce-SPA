@@ -1,19 +1,19 @@
 <div class=" has-background-light bbr">
-  <p-breadcrumb [styleClass]=" ' has-background-light has-text-white'" *ngIf="this.Produto" [model]="items"
-    [home]="home"></p-breadcrumb>
-  <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
   <div class="has-background bg is-medium is-white btr w-full has-background-light" (mouseover)="
-      this.imgProduto.classList.remove('show-img');
-      this.imgProduto.classList.add('hide-img');
-      this.imgProduto2.classList.add('show-img');
-      this.imgProduto2.classList.remove('hide-img');
-      " (mouseout)="
-      this.imgProduto2.classList.remove('show-img');
-      this.imgProduto2.classList.add('hide-img');
-      this.imgProduto.classList.add('show-img');
-      this.imgProduto.classList.remove('hide-img');
-    ">
-    <div class="columns is-vcentered is-mobile">
+  this.imgProduto.classList.remove('show-img');
+  this.imgProduto.classList.add('hide-img');
+  this.imgProduto2.classList.add('show-img');
+  this.imgProduto2.classList.remove('hide-img');
+  " (mouseout)="
+  this.imgProduto2.classList.remove('show-img');
+  this.imgProduto2.classList.add('hide-img');
+  this.imgProduto.classList.add('show-img');
+  this.imgProduto.classList.remove('hide-img');
+  ">
+    <p-breadcrumb [styleClass]=" ' has-background-light has-text-white'" *ngIf="this.Produto" [model]="items"
+      [home]="home"></p-breadcrumb>
+    <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
+    <div class="columns bg-transp is-vcentered is-mobile">
       <div class="column is-3-mobile is-4-desktop">
         <figure class="image is-128x128 mb-0 pb-0">
           <img data-aos="zoom-in" #imgProduto class="background is-transparent"
@@ -65,7 +65,7 @@
 <section class="hero is-medium is-white btr">
 
   <div class="hero-body pt-1 pb-1">
-      <div class="bbr shadow-light box" >
+      <div class="bbr " >
         <div class="">
           <div class="bbr" >
             <div *ngIf="!Produto">
@@ -157,7 +157,8 @@
                           </div>
 
                         </div>
-                        <mat-divider></mat-divider>
+
+                        <mat-divider class="my-6 "></mat-divider>
 
                         <span class="is-hidden-touch subtitle is-size-7 pl-0 ml-0 column is-12-touch is-12 w-full"
                           *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
@@ -168,6 +169,16 @@
                           </em>
                         </span>
 
+                        <div class="block ">
+                          <div>
+                            <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="true" [text]="'Compartilhar este produto'">
+                            </share-button>
+                          </div>
+                          <div>
+                            <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar este produto'">
+                            </share-button>
+                          </div>
+                        </div>
 
                       </div>
                     </div>
@@ -181,7 +192,7 @@
                 <div class="mb-0 pb-0 px-3 py-3">
 
                   <div class="{{mobile ? 'txt-left': 'txt-left'}}" *ngIf="Produto">
-                    <div class="columns is-multiline border-light">
+                    <div class="columns is-multiline">
 
                       <div class="column is-12-desktop is-12-tablet is-12-mobile">
 
@@ -258,7 +269,7 @@
                                         </div>
                                         <button @fadeIn *ngIf="Produto" mat-raised-button
                                         disabled
-                                        class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                                        class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c has-text-white has-text-weight-bold">
                                         {{textoAdicionar}}
                                         <mat-icon>shopping_bag</mat-icon>
                                       </button>
@@ -428,10 +439,10 @@
             </mat-tab-group>
             <mat-tab-group class="is-hidden-touch">
               <mat-tab label="Informações" (click)="AdicionarDescricao()">
-                <div class="has-background-white py-3 px-3 border-light">
+                <div class="has-background-white py-3 px-3">
                   <div class="w-full is-multiline">
                     <!-- <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3> -->
-                    <div class="descricao-produto column is-12-touch is-12 w-full" style="border-left: 1px solid #0000000a;"
+                    <div class="descricao-produto column is-12-touch is-12 w-full"
                       [innerHTML]="(el?.innerHTML)"></div>
 
                     <div class="descricao-produto column is-12-touch is-12 w-full" >
@@ -466,7 +477,7 @@
       </div>
     </div>
     <div class="hero-foot px-3 py-3 "id="product-display">
-      <button mat-mini-fab color="accent" class="shadow-light bo-0 has-text-weight-bold has-text-info"><a href="#product-display"  pageScroll><i class="pi pi-arrow-down"></i></a></button>
+      <button mat-mini-fab color="accent" class="shadow-light bo-0 has-text-weight-bold has-text-warning"><a href="#product-display"  pageScroll><i class="pi pi-arrow-down"></i></a></button>
     </div>
 </section>
 

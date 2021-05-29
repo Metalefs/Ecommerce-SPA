@@ -1,20 +1,20 @@
 <mat-toolbar class="w-full dis-flex has-text-dark border flex-sb a-i-c z-index-top is-hidden-mobile"
   style="overflow-y: visible; z-index: 20;">
-    <ul class="level list-inline ">
-      <li class="level-item px-2 has-text-centered mb-0 is-hidden-mobile ">
+    <div class=" flex-sb ">
+      <div class="px-2 has-text-centered mb-0 is-hidden-mobile ">
         <div>
           <a class="subtitle is-size-7 has-text-weight-medium" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
             <span>{{(InfoContato$|async)?.Telefone}}</span></a>
         </div>
-      </li>
+      </div>
 
-      <li class="level-item px-2  has-text-centered mr-6">
+      <div class="level-item px-2  has-text-centered mr-6">
         <div>
           <a class="reset-a is-size-7 has-text-weight-medium" [routerLink]="['checkout']"><span
-              class="is-hidden-touch has-text-weight-medium">Finalizar pedido  </span><i class="pi pi-check"></i></a>
+              class="is-hidden-touch has-text-weight-medium">Finalizar pedido  </span></a>
         </div>
-      </li>
-    </ul>
+      </div>
+    </div>
     <mat-divider></mat-divider>
 </mat-toolbar>
 <div class="w-full pos-sticky top-0 z-index-top ">
@@ -79,7 +79,7 @@
           </div>
           <div class="column ">
             <div class="dropdown">
-              <a class="nav-link">
+              <a class="nav-link" style="border: none !important;">
                 <button class="w-full has-text-centered border-light py-4"
                 title="Perfil">
                 <mat-icon>person_outline</mat-icon>
