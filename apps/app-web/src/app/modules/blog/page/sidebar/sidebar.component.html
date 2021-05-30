@@ -19,7 +19,7 @@
     <mat-toolbar color="" class="w-full of-x-scroll">
       <mat-toolbar-row class="py-6">
         <mat-list  *ngFor="let post of Blog">
-          <a mat-list-item *ngIf="CanView(post)" [routerLink]="'/blog/'+post.Titulo" class="logo" >
+          <a mat-list-item *ngIf="CanView(post)" [routerLink]="'/blog/'+post.Titulo" class="" >
             {{post.Titulo}}
             <mat-divider></mat-divider>
           </a>

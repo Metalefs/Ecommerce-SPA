@@ -120,27 +120,27 @@
 
           </mat-card-subtitle>
         </mat-card-header>
+        <mat-card-actions class="w-full flex-c">
+          <div
+          class="hoverable w-full">
+            <a href="#topo"
+            class="fw-600 level-item button is-warning is-small shadow-light"
+            style="height: 100%;"
+            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
+              <span class="flex-w flex-c-m fw-600"><span class="fw-500 mr-1 pi pi-wallet"></span> Visualizar</span>
+            </a>
+            <a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
+            class=" level-item button is-light is-small shadow-light"
+            style="height: 100%; text-decoration: none;">
+              <span class="flex-w flex-c-m"><span class="mr-1 pi pi-shopping-cart"></span> Carrinho</span>
+            </a>
+          </div>
+          <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
+              class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
+            Esgotado
+          </a>
+        </mat-card-actions>
       </mat-card-footer>
-      <mat-card-actions class="w-full flex-c">
-        <div
-        class="hoverable w-full">
-          <a href="#topo"
-          class="fw-600 level-item button is-warning is-small shadow-light"
-          style="height: 100%;"
-          [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-            <span class="flex-w flex-c-m fw-600"><span class="fw-500 mr-1 pi pi-wallet"></span> Comprar</span>
-          </a>
-          <a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-          class=" level-item button is-light is-small shadow-light"
-          style="height: 100%; text-decoration: none;">
-            <span class="flex-w flex-c-m"><span class="mr-1 pi pi-shopping-cart"></span> Adicionar</span>
-          </a>
-        </div>
-        <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
-            class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
-          Esgotado
-        </a>
-      </mat-card-actions>
 
 
       <div class="z-index-1">
