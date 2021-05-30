@@ -60,17 +60,17 @@ img{
     }
   }
   &:hover > .mat-card-footer .titulo-produto{
-    color: white ;
+    color: rgb(45 90 210) ;
   }
-  &:hover > .mat-card-footer .parcelas{
-    color: black ;
-  }
+  // &:hover > .mat-card-footer .parcelas{
+  //   color: black ;
+  // }
   // &:hover > .mat-card-footer .preco{
   //   background-color: white ;
   // }
-  &:hover > .mat-card-footer .preco-produto{
-    color: white ;
-  }
+  // &:hover > .mat-card-footer .preco-produto{
+  //   color: white ;
+  // }
 }
 .titulo-produto {
   font-size: 15px!important;

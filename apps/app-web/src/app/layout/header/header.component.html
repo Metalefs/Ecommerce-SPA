@@ -3,15 +3,15 @@
     <div class=" flex-sb ">
       <div class="px-2 has-text-centered mb-0 is-hidden-mobile ">
         <div>
-          <a class="subtitle is-size-7 has-text-weight-medium" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
+          <a class="subtitle is-size-7 fw-200" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
             <span>{{(InfoContato$|async)?.Telefone}}</span></a>
         </div>
       </div>
 
-      <div class="level-item px-2  has-text-centered mr-6">
+      <div class="level-item px-2 has-text-centered mr-6">
         <div>
-          <a class="reset-a is-size-7 has-text-weight-medium" [routerLink]="['checkout']"><span
-              class="is-hidden-touch has-text-weight-medium">Finalizar pedido  </span></a>
+          <a class="reset-a is-size-7 fw-200" [routerLink]="['checkout']"><span
+              class="is-hidden-touch fw-200">Finalizar pedido  </span></a>
         </div>
       </div>
     </div>
@@ -20,10 +20,10 @@
 <div class="w-full pos-sticky top-0 z-index-top ">
   <div class=""
     >
-    <mat-toolbar class="px-0 mat-toolbar py-2 z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
-      <div class="w-full dis-flex flex-c flex-m flex-sa px-2 pr-3 " >
+    <mat-toolbar class="mat-toolbar py-2 z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
+      <div class="w-full dis-flex flex-c flex-m flex-sb " >
         <div class="flex-m a-i-c">
-          <a @fadeIn href="#" class="logo mx-5  flex-m a-i-c">
+          <a @fadeIn href="#" class="logo ml-5  flex-m a-i-c">
             <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
           </a>
         </div>
@@ -97,9 +97,10 @@
             </div>
           </div>
         </div>
+
         <div class="my-0 dis-flex flex-r">
 
-          <div class="is-hidden-desktop m-r-25">
+          <div class="is-hidden-desktop ">
             <button mat-ripple mat-fab color="" (click)="openCheckout()" title="Checkout" aria-label="Botão abrir Orçamento"
               class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3">
               <!-- <div class="columns line-height-small is-mobile">
