@@ -235,9 +235,9 @@
 
                             <div class="column is-12 ">
 
-                              <div class="columns txt-left is-vcentered pt-0 is-multiline">
+                              <div class="columns txt-left is-vcentered pt-0 is-multiline" *ngIf="Produto?.Tamanho">
 
-                                <div class="column is-12 py-1" *ngIf="Produto?.Tamanho" >
+                                <div class="column is-12 py-1"  >
                                   <personalizados-lopes-cor-produto-selector [Produto]="Produto" (onSetColor)="setColor($event)"></personalizados-lopes-cor-produto-selector>
                                 </div>
 
@@ -300,11 +300,11 @@
                                     </ng-template>
                                   </div>
                                 </div>
-                                <button @fadeIn mat-flat-button title="Personalizar"
+                                <!-- <button @fadeIn mat-flat-button title="Personalizar"
                                 [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
                                 (click)="AbrirModalArte()" class="" color="warn" class="px-2 mx-2 has-text-white has-text-weight-bold">
                                   <mat-icon>photo</mat-icon>Selecionar Arte
-                                </button>
+                                </button> -->
                                 <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
                                   <mat-list-item *ngFor="let erro of Erros">
                                     <p class="subtitle is-size-6 border">*{{erro.erro}}</p>

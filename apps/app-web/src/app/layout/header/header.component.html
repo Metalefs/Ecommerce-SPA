@@ -1,14 +1,14 @@
 <mat-toolbar class="w-full dis-flex has-text-dark border flex-sb a-i-c z-index-top is-hidden-mobile"
   style="overflow-y: visible; z-index: 20;">
     <div class=" flex-sb ">
-      <div class="px-2 has-text-centered mb-0 is-hidden-mobile ">
+      <div class="hoverable px-2 has-text-centered mb-0 is-hidden-mobile ">
         <div>
           <a class="subtitle is-size-7 fw-200" href="tel:{{(InfoContato$|async)?.Telefone}}"><i class="pi pi-mobile"></i>
             <span>{{(InfoContato$|async)?.Telefone}}</span></a>
         </div>
       </div>
 
-      <div class="level-item px-2 has-text-centered mr-6">
+      <div class="hoverable level-item px-2 has-text-centered mr-6">
         <div>
           <a class="reset-a is-size-7 fw-200" [routerLink]="['checkout']"><span
               class="is-hidden-touch fw-200">Finalizar pedido  </span></a>
