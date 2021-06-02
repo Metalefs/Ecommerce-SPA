@@ -34,9 +34,14 @@ export class ProdutoService {
       });
     }
     async IncrementarVisualizacoes(id:string){
-      return this.Filtrar({ "_id": new ObjectId(id) }).then((x:  Produto)=> {
-        Object.defineProperty(x,'Visualizacoes',x.Visualizacoes?x.Visualizacoes++:0);
-        return Repository.Edit(entities.Produto.NomeID, id, {Visualizacoes: x.Visualizacoes}).then(y => {
+      return this.Filtrar({ "_id": new ObjectId(id) }).then((Produto:  Produto)=> {
+        console.log(Produto.Visualizacoes??'N/A')
+        if(!Produto.Vendas)
+          Object.assign(Produto, {Visualizacoes: 1});
+        else
+          Produto.Visualizacoes += 1;
+        console.log(Produto.Visualizacoes)
+        return Repository.Edit(entities.Produto.NomeID, id, {Visualizacoes:Produto.Visualizacoes}).then(y => {
             return y;
         });
       });

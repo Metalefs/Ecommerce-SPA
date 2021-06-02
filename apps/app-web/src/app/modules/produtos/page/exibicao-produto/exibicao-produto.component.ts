@@ -428,9 +428,11 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   updateViews(){
     if(!localStorage.getItem("vprod"+this.Produto._id)){
       this.store.dispatch(new IncrementarVisualizacoesProduto(this.Produto._id)).subscribe(x=>{
+        alert(this.Produto.Visualizacoes)
         Object.defineProperty(this.Produto,'Visualizacoes',this.Produto.Visualizacoes++??1);
+        alert(this.Produto.Visualizacoes)
+        localStorage.setItem("vprod"+this.Produto._id,"true");
       });
-      localStorage.setItem("vprod"+this.Produto._id,"true");
     }
   }
   LerComentariosProduto(idProduto:string){

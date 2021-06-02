@@ -3455,3 +3455,104 @@ button{
   }
 
 
+  /*==================================================================
+      TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
+  ==================================================================*/
+
+  /*==================================================================
+  [ Color ]*/
+  .cl0 {color: #fff;}
+
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ S-Text 0 - 15 ]*/
+
+  .s1-txt1 {
+    font-family: Poppins-Regular;
+    font-size: 12px;
+    color: #e5e5e5;
+    line-height: 1.333333;
+  }
+
+  .s1-txt2 {
+    font-family: Poppins-Regular;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+  }
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ M-Text 16 - 25 ]*/
+  .m1-txt1 {
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #57b846;
+    line-height: 1.333333;
+  }
+
+  .m1-txt2 {
+    font-family: Poppins-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.333333;
+  }
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ L-Text >= 26 ]*/
+  .l1-txt1 {
+    font-family: Poppins-Regular;
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.333333;
+  }
+
+  .l1-txt2 {
+    font-family: Poppins-Bold;
+    font-size: 36px;
+    color: #fff;
+    line-height: 1.333333;
+  }
+
+  .l1-txt3 {
+    font-family: Poppins-Bold;
+    font-size: 40px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  /*==================================================================
+     SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
+  ==================================================================*/
+  /*//////////////////////////////////////////////////////////////////*/
+
+
+  .size2 {
+    width: 130px;
+    height: 130px;
+  }
+
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ Border ]*/
+  .bor1 {
+    background: rgb(105 109 140 / 7%);
+    // border-radius: 50%;
+    transition:all 1s;
+  }
+
+  .bor2{
+    background: rgba(255,255,255,0.3);
+    border-radius: 5%;
+    transition:all 1s;
+}
+    .flex-col-c-m:hover{
+        background: transparent;
+        cursor: default;
+    }
+/**/

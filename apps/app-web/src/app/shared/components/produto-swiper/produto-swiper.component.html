@@ -1,5 +1,5 @@
-<div class="hero pb-2" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':''">
-  <div class="px-0 py-2 hero-body" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' ':''">
+<div class="hero pb-2 of-x-scroll" [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' has-background-white':''">
+  <div class="px-0 py-2 hero-body " [ngClass]="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas?' ':''">
     <ng-container *ngIf="(Produtos)?.length >0 then data else nodata"></ng-container>
     <ng-template #nodata>
       <div class="w-full">

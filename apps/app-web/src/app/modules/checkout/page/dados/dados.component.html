@@ -2,7 +2,7 @@
   <p>Comprando {{(Orcamento$|async)?.Produto?.length}} item(s) no valor de
     R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}} reais</p>
     <form action="" method="post" [formGroup]="dadosForm">
-  <div class="columns is-multiline reverse-col-mobile">
+  <div class="columns is-multiline">
 
       <div class="column is-12-mobile is-6">
 

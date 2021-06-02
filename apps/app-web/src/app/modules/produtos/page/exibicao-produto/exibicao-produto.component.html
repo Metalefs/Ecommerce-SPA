@@ -24,12 +24,12 @@
             alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
         </figure>
       </div>
-      <div class="column mb-0 pb-0">
-        <nav class="level dis-flex flex-sa">
-          <div class="level-item has-text-centered">
+      <div class="column mb-0 pb-0 of-x-scroll">
+        <nav class="level dis-flex flex-sa of-x-scroll">
+          <div class="level-item has-text-centered size2 bor1">
             <div>
               <p class="heading has-text-light">Avaliações</p>
-              <p class="title has-text-white">{{Produto.Rating.length}}</p>
+              <p class="title has-text-white">{{Produto?.Rating.length}}</p>
             </div>
           </div>
           <!-- <div class="level-item has-text-centered">
@@ -38,19 +38,19 @@
               <p class="title has-text-white">N/A</p>
             </div>
           </div> -->
-          <div class="level-item has-text-centered">
+          <div class="level-item has-text-centered size2 bor1">
             <div>
               <p class="heading has-text-light">Compras</p>
               <p class="title has-text-white">{{Produto?.Vendas}}</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">
+          <div class="level-item has-text-centered size2 bor1">
             <div>
               <p class="heading has-text-light">Visualizações</p>
               <p class="title has-text-white">{{Produto?.Visualizacoes}}</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">
+          <div class="level-item has-text-centered size2 bor1">
             <div>
               <p class="heading has-text-light">Likes</p>
               <p class="title has-text-white">{{Produto?.Likes}}</p>
@@ -79,7 +79,7 @@
                 </div>
               </div>
             </div>
-            <div class="columns is-multiline is-4 py-4 px-1" *ngIf="Produto">
+            <div class="columns is-multiline is-4 pt-3 px-1" *ngIf="Produto">
               <div class="column is-8 " >
                 <div class="columns ">
 
@@ -143,7 +143,7 @@
                           </ng-template>
                           <ng-template #preco_normal>
                             <div class="">
-                              <p class="preco "><strong>R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</strong></p>
+                              <p class="preco py-2"><strong>R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</strong></p>
                             </div>
                           </ng-template>
                           <div class="" *ngIf="Produto?.Parcelas">
@@ -158,7 +158,7 @@
 
                         </div>
 
-                        <mat-divider class="my-6 "></mat-divider>
+                        <mat-divider class="my-4"></mat-divider>
 
                         <span class="is-hidden-touch subtitle is-size-7 pl-0 ml-0 column is-12-touch is-12 w-full"
                           *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
@@ -179,7 +179,12 @@
                             </share-button>
                           </div>
                         </div>
-
+                        <div class="text-center is-right w-full">
+                          <ul class="notification is-white shadow-light has-text-grey-light w-full">
+                            <li class="w-full"><i class="is-right pi pi-question-circle"></i></li>
+                            <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -218,7 +223,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="column is-12-desktop pb-0" [ngClass]="{'is-danger':ErroTamanho()}"
+                            <div class="column is-12-desktop py-0" [ngClass]="{'is-danger':ErroTamanho()}"
                               *ngIf="Produto?.Tamanhos">
                               <mat-form-field class="w-full " appearance="fill">
                                 <mat-label class="label">Tamanho:</mat-label>
@@ -243,7 +248,7 @@
 
                               </div>
                               <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left pt-4">
-                                <div class="py-3">
+                                <div class="">
 
                                   <p class="subtitle is-7">Calcule frete e prazo</p>
                                   <div class="">
@@ -256,10 +261,10 @@
                                 </div>
 
                                 <div class="columns pb-0 mb-0 ">
-                                  <div class="dis-flex flex-w column pb-0 mb-0 ">
+                                  <div class="dis-flex flex-w column pb-0 mb-0 bbr">
                                     <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
                                     <ng-template #erro>
-                                      <article class="message margin is-white shadow-light py-0 my-0"
+                                      <article class="message margin is-white shadow-light py-0 my-0 bbr"
                                         *ngIf="Produto && produtoForm">
                                         <div class="message-body" @fadeIn>
                                           <p class="">Para comprar, Selecione o <strong>Tamanho, Cor</strong> e
@@ -279,7 +284,7 @@
                                       <button @fadeIn *ngIf="Produto" mat-raised-button
                                         [disabled]="Produto?.Status == statusProduto.esgotado"
                                         (click)="AdicionarAoOrcamento()"
-                                        class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c px-2 mx-2 has-text-white has-text-weight-bold">
+                                        class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c has-text-white has-text-weight-bold">
                                         {{textoAdicionar}}
                                         <mat-icon>shopping_bag</mat-icon>
                                       </button>
@@ -358,12 +363,7 @@
                             </div>
                           </div>
                         </div>
-                        <div class="text-center is-right w-full">
-                          <ul class="notification is-white shadow-light has-text-grey-light w-full">
-                            <li class="w-full"><i class="is-right pi pi-question-circle"></i></li>
-                            <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
-                          </ul>
-                        </div>
+
                         <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
                           title="Entrar em contato por whatsapp"
                           class="button w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
@@ -381,7 +381,7 @@
                 </figure>
               </div>
             </div>
-            <div class="column is-6">
+            <div class="column is-6 pb-0">
               <div class="w-full flex-w">
                 <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
                 <mat-menu #menu2="matMenu">
@@ -403,11 +403,10 @@
                       {{Liked? 'favorite': 'favorite_border'}}</mat-icon>
                   </p>
                 </button>
-                <mat-chip-list *ngIf="Liked" aria-label="Thanks">
-                  <mat-chip color="primary" selected>Você curtiu este produto</mat-chip>
-                </mat-chip-list>
-
               </div>
+              <mat-chip-list *ngIf="Liked" aria-label="Thanks">
+                <mat-chip color="primary" selected>Você curtiu este produto</mat-chip>
+              </mat-chip-list>
             </div>
             <mat-tab-group class="is-hidden-desktop">
               <mat-tab label="">

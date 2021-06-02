@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { cpf } from 'cpf-cnpj-validator';
 import { CheckoutService } from '../../checkout.service';
 import { DEFAULT_ORCAMENTO } from 'apps/app-web/src/app/data/store/state/orcamento.state';
+import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
 
 @Component({
   selector: 'personalizados-lopes-dados',
@@ -32,7 +33,7 @@ export class DadosComponent implements OnInit, OnDestroy {
   dadosForm:FormGroup;
 
   usuario:Usuario = DEFAULT_ORCAMENTO.Usuario;
-  constructor(public checkoutService: CheckoutService, private router:Router, private store: Store, private authService:AuthenticationService, private fb: FormBuilder) {
+  constructor(private scrollService:PageScrollService, public checkoutService: CheckoutService, private router:Router, private store: Store, private authService:AuthenticationService, private fb: FormBuilder) {
     this.authService.currentUser.subscribe(x=>{
       if(x)
       this.usuario = x;
@@ -78,6 +79,7 @@ export class DadosComponent implements OnInit, OnDestroy {
     } else {
       this.state = "default";
     }
+    this.scrollService.scrollTop();
   }
 
   SubmeterDadosPessoais(){

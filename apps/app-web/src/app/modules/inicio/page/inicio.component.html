@@ -1,7 +1,7 @@
 <div id="INICIO" class="has-background-light">
 
   <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
-  <div class="box">
+  <div class="box has-background-white-bis ">
 
   </div>
   <div class="hero is-medium ">
@@ -19,6 +19,11 @@
 
             <p class="hero-title"> </p>
             <personalizados-lopes-produto-swiper ></personalizados-lopes-produto-swiper>
+            <a href="#topo" pageScroll class="" [routerLink]="'/produtos'">
+              <div class="z-index-1 shadow-light w-full" role="navigation" aria-label="main navigation">
+                <p class="subtitle is-size-6 "> Mais de 10 categorias. <br>Configure o tamanho, a cor e a estampa. </p>
+              </div>
+            </a>
             <div class="of-y-scroll w-full" >
               <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
                 <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
@@ -26,17 +31,7 @@
 
             </div>
           </div>
-          <div class="hero-foot px-2 ">
-            <mat-toolbar class="z-index-1 shadow-light" role="navigation" aria-label="main navigation">
-              <div class="level">
-                <div class="level-item level-right">
-
-                  <a href="#topo" pageScroll class="" [routerLink]="'/produtos'">
-                    <p class="is-size-6  is-lowecase"> Mais de 10 categorias. <br>Configure o tamanho, a cor e a estampa. </p>
-                  </a>
-                </div>
-              </div>
-            </mat-toolbar>
+          <div class="hero-foot  py-3 text-center">
           </div>
         </div>
 

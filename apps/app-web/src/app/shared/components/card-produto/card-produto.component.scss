@@ -52,7 +52,7 @@ img{
   margin: 0 !important;
   &:hover{
     box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
-    background: #15100721 none repeat scroll 0% 0%;
+    background: #ffffffc9 none repeat scroll 0% 0%;
     // background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     border: 1px solid rgb(215, 215, 215);
     &button{
@@ -60,7 +60,8 @@ img{
     }
   }
   &:hover > .mat-card-footer .titulo-produto{
-    color:#3273dc;
+    // color:#3273dc;
+    font-size: 16px !important;
   }
   // &:hover > .mat-card-footer .parcelas{
   //   color: black ;
@@ -124,7 +125,7 @@ img{
 }
 .zoom{
   filter: opacity(1);
-  transition: .51s all ease-in-out;
+  transition: .2s all ease;
   &:hover{
     opacity: 1;
     filter: opacity(1);

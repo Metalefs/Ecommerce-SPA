@@ -1,5 +1,5 @@
 import 'rxjs/add/operator/filter';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
@@ -23,6 +23,7 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Title } from '@angular/platform-browser';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -93,14 +94,22 @@ export class ProdutosComponent implements OnInit {
   ]
   Parcelamento:boolean;
   MultiplasCores:boolean;
+
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   constructor(
     private dialog: NgDialogAnimationService,
     private store: Store,
     private activeRoute: ActivatedRoute,
     private produtoService: ProdutoService,
-    private titleService:Title
+    private titleService:Title,
+    private cdr: ChangeDetectorRef,
+    media: MediaMatcher,
     ) {
-
+      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this._mobileQueryListener = () => cdr.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
