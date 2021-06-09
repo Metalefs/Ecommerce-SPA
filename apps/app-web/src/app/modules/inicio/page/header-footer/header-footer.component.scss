@@ -122,7 +122,6 @@ p{
   background:#FF4A4A !important;
   a{
     background: none;
-    color: #FF4A4A !important;
   }
   &.active{
     @include hover;
@@ -130,11 +129,8 @@ p{
 }
 .blue{
   background:#3AB8FF ;
-  background:#00c3d6 ;
   p{
     background: none;
-    color: #3AB8FF !important;
-    color: #00c3d6 !important;
   }
   &.active{
     @include hover;

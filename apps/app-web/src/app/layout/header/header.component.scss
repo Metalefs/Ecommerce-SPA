@@ -99,6 +99,7 @@
   border-top-right-radius: 0;
   color: $navcolor;
   font-weight: $navlinkweight;
+  text-transform: uppercase;
 }
 a.nav-link::before{
   content: "";

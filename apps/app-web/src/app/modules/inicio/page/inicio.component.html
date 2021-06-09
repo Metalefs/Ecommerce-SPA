@@ -1,41 +1,25 @@
-<div id="INICIO" class="has-background-light">
+<div id="INICIO" class="has-background-white ">
 
-  <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
-  <div class="box has-background-white-bis ">
-
+  <div class="mat-elevation-z4">
+    <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   </div>
-  <div class="hero is-medium ">
-    <div class="hero-body py-0">
-        <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-    </div>
+
+  <div class="block">
+    <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
   </div>
 
   <div class="bg">
 
-    <div class="">
-      <div class="">
-        <div class="hero ">
-          <div class="hero-body pb-0">
-
-            <p class="hero-title"> </p>
-            <personalizados-lopes-produto-swiper ></personalizados-lopes-produto-swiper>
-            <a href="#topo" pageScroll class="" [routerLink]="'/produtos'">
-              <div class="z-index-1 shadow-light w-full" role="navigation" aria-label="main navigation">
-                <p class="subtitle is-size-6 "> Mais de 10 categorias. <br>Configure o tamanho, a cor e a estampa. </p>
-              </div>
-            </a>
-            <div class="of-y-scroll w-full" >
-              <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
-                <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
-              </section>
-
-            </div>
-          </div>
-          <div class="hero-foot  py-3 text-center">
-          </div>
+    <div class="mat-elevation-z4">
+      <div class="hero">
+        <div class="hero-body">
+          <section class="py-3" *ngIf="(Clientes$|async)?.length>0">
+            <app-testimonial [sliderData]="(Clientes$|async)"></app-testimonial>
+          </section>
         </div>
-
-
+        <div class="hero-foot of-y-scroll py-3">
+          <personalizados-lopes-produto-swiper [slidesPerView]="3"></personalizados-lopes-produto-swiper>
+        </div>
       </div>
     </div>
 

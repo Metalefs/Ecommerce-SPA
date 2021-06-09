@@ -52,9 +52,7 @@ export class HeaderFooterComponent implements OnInit {
           link:"/showcase",
           id:"#topo",
           content:`Confira nossas canecas,
-          camisetas, almofadas e mais !!
-          Clique para ver nossos últimos
-          produtos.`
+          camisetas, almofadas e mais !!`
         },
         {
           title:"Produtos",
@@ -65,8 +63,7 @@ export class HeaderFooterComponent implements OnInit {
           id:"#topo",
           content:`Recebemos pedidos
           personalizados para a arte do
-          seu produto. Criação ou
-          aprimoramento.`,
+          seu produto.`,
           // img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
         {

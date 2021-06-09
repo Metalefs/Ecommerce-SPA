@@ -65,7 +65,7 @@
       line-height: 33px;
   }
 }
-@mixin NunitoParagraphy14($font-size :14px, $weight:normal, $color:$black2){
+@mixin NunitoParagraphy14($font-size :16px, $weight:normal, $color:$black2){
   /* Nunito Paragraphy 14px */
   font-family: Nunito;
   font-style: normal;
@@ -90,7 +90,7 @@
   font-family: Nunito !important;
   font-style: normal;
   font-weight: #{$weight};
-  font-size: 14px;
+  font-size: 16px;
   line-height: 22px;
   color: $light-white;
 }

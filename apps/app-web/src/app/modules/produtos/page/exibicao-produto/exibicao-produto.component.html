@@ -163,12 +163,6 @@
                         <span class="is-hidden-touch subtitle is-size-7 pl-0 ml-0 column is-12-touch is-12 w-full"
                           *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
 
-                        <span class="has-text-grey-light" *ngIf="Produto?.QuantidadeMinima">
-                          <em>
-                            *Minimo {{Produto?.QuantidadeMinima}} unidades
-                          </em>
-                        </span>
-
                         <div class="block ">
                           <div>
                             <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="true" [text]="'Compartilhar este produto'">
@@ -221,6 +215,12 @@
                                     <mat-icon class="more">add</mat-icon>
                                   </button>
                                 </div>
+
+                                <span class="has-text-grey-light subtitle is-size-7" *ngIf="Produto?.QuantidadeMinima">
+                                  <em>
+                                    *Minimo {{Produto?.QuantidadeMinima}} unidades
+                                  </em>
+                                </span>
                               </div>
                             </div>
                             <div class="column is-12-desktop py-0" [ngClass]="{'is-danger':ErroTamanho()}"

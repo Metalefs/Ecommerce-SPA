@@ -1,11 +1,12 @@
 @import './../../../../variables';
 #Sobre{
+  background-image: url(/assets/images/empresa/empresa.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 .mat-card{
   padding:2rem;
-  min-height: 90vh;
+  // min-height: 90vh;
 }
 .box {
   border-radius: 0;

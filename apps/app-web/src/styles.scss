@@ -33,7 +33,7 @@ body {
   font:500 20px/32px BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif, "Helvetica Neue", sans-serif;
   font-weight: 400;
   color: #666;
-  font-size: 12px;
+  font-size: 16px;
   line-height: 22px;
   width: 100%;
   height: auto;
@@ -470,7 +470,6 @@ img{
   flex: 2;
   flex-direction: column;
   .warning {
-    font-size: 14px;
     color: #131313
   }
   }
@@ -601,7 +600,6 @@ canvas{
 }
 .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
   font-family: $default_font, "Helvetica Neue", sans-serif;
-  font-size: 14px;
   font-weight: 500;
 }
 .mat-form-field-subscript-wrapper {
@@ -727,7 +725,7 @@ canvas{
   border:3px solid #000000bf
 }
 .subtitle{
-  font-size:14px;
+  font-size:15px;
 }
 .titulo{
   font-family: Open Sans !important;
@@ -853,7 +851,7 @@ canvas{
 	margin-bottom:30px;
 }
 .section-block.summary {
-    background-color: #ff4081;
+    background-color: #fe0000;
 }
 .section-block.summary h1 {
     color: #fff;
@@ -984,7 +982,7 @@ canvas{
 .btn.btn-reward {
 	background-color: #ff4081;
     color: #FFF;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     padding: 5px 15px;
 }

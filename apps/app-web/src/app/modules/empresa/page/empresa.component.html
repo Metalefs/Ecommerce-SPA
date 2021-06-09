@@ -1,12 +1,10 @@
 <section  id="Sobre" class="mt-3 has-background-white-bis">
-  <figure class="image is-square is-hidden-desktop pos-sticky top-0">
+  <!-- <figure class="image is-square is-hidden-desktop pos-sticky top-0">
     <img class="imagem-empresa"  [src]='url'>
-  </figure>
+  </figure> -->
   <div class="columns py-0 my-0">
-      <div class="column card py-0 px-0">
-        <figure class="image is-square">
-          <img class="imagem-empresa"  [src]='url'>
-        </figure>
+      <div class="column  py-0 px-0">
+
       </div>
       <div data-aos="slide-right" class="column py-0 px-0 card">
         <mat-card data-aos-offset="200" class="w-full box is-pulled-right empresa-card">
@@ -37,14 +35,9 @@
     </div>
     <div data-aos="slide-right"  class="column py-0 px-0">
       <div class="w-full">
-        <figure class="image ">
-          <video #video [muted]="true" onloadstart="this.volume=0.03" autoplay loop class="w-full" >
-            <source src="assets/videos/longdrink.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </figure>
+
       </div>
-      <button class="mute-btn" mat-icon-button (click)="video.muted = !video.muted"><mat-icon>{{video.muted? 'volume_up': 'volume_off'}}</mat-icon></button>
+
     </div>
 
     </div>
