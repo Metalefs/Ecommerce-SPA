@@ -127,7 +127,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
       this.home = {icon: 'pi pi-home', url:"/produtos"};
       this.produtoForm = this.fb.group({
-        tamanho:[this.Produto?.Tamanho,Validators.required],
+        tamanho:[this.Produto?.Tamanho],
         quantidade:[this.Produto?.Quantidade,Validators.required],
         cor:[this.Produto?.Cor,Validators.required],
         cep:[this.CEP],
@@ -290,10 +290,11 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
   redirecionando:boolean = false;
   navegarParaCheckout(){
-    this.redirecionando = true;
+    // this.redirecionando = true;
      setTimeout(()=>{
       this.router.navigateByUrl("/checkout");
-    },700)
+    },
+    0)
   }
   fileNames:string="";
   secondaryfileNames:string="";

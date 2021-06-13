@@ -26,17 +26,6 @@
       </ng-template>
       <ng-template #novaArte>
         <div class="px-2 txt-center">
-          <em>Sem Arte</em>
-          <button mat-flat-button class="button file is-outlined has-name pb-3 px-0">
-            <label class="file-label">
-              <input class="file-input" type="button" (click)="customization.importFile()">
-              <span class="file-cta">
-                <span class="file-icon">
-                  <i class="pi pi-cloud-upload"></i>
-                </span>
-              </span>
-            </label>
-          </button>
           <div class="column">
             <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
               Tem arte traseira

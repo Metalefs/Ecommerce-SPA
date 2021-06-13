@@ -14,16 +14,16 @@
       <div [id]="card.class" class=" {{card?.class}}">
         <mat-card class="of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
           <article class="media">
-            <div class="media-content">
-              <a [routerLink]="card.link" href="{{card.id}}" pageScroll class="w-full ">
-                <img loading="lazy" mat-card-image height="200" *ngIf="card.img_src" src="{{card.img_src}}" class="">
+            <div class="media-content dis-flex flex-sb">
+              <a *ngIf="card.img_src" [routerLink]="card.link" href="{{card.id}}" pageScroll class="w-full ">
+                <img loading="lazy" mat-card-image height="200"  src="{{card.img_src}}" class="">
               </a>
               <div *ngIf="!card.img_src" mat-card-avatar class="w-full {{card?.class}}">
                 <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
                   <mat-icon>{{card.icon}}</mat-icon>
                 </a>
               </div>
-              <div class="content">
+              <div class="content mx-2">
                 <mat-card-title>
                   <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
                     <p class="is-size-5 ">{{card.title}}</p>
@@ -35,11 +35,6 @@
                   </p>
                 </mat-card-content>
               </div>
-              <nav class="level is-mobile">
-                <div class="level-left">
-
-                </div>
-              </nav>
             </div>
           </article>
 

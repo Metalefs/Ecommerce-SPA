@@ -13,10 +13,11 @@
   margin-left: -5px;
   list-style: none;
 }
-.mat-toolbar {
+.mat-toolbar:nth-child(2) {
   background: rgba($color: white, $alpha: 0.99);
   background: #f1f2faeb;
   background: $background-light;
+  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 20%);
   margin-top: 0px;
   z-index: 11;
 }
