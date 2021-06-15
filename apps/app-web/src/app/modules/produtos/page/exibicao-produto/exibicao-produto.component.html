@@ -1,70 +1,15 @@
 <div class=" has-background-light bbr">
-  <div class="has-background bg is-medium is-white btr w-full has-background-light" (mouseover)="
-  this.imgProduto.classList.remove('show-img');
-  this.imgProduto.classList.add('hide-img');
-  this.imgProduto2.classList.add('show-img');
-  this.imgProduto2.classList.remove('hide-img');
-  " (mouseout)="
-  this.imgProduto2.classList.remove('show-img');
-  this.imgProduto2.classList.add('hide-img');
-  this.imgProduto.classList.add('show-img');
-  this.imgProduto.classList.remove('hide-img');
-  ">
+  <div class="has-background bg is-medium is-white btr w-full has-background-light">
+
     <p-breadcrumb [styleClass]=" ' has-background-light has-text-white'" *ngIf="this.Produto" [model]="items"
-      [home]="home"></p-breadcrumb>
+    [home]="home"></p-breadcrumb>
     <p-skeleton *ngIf="!Produto" styleClass="skeleton p-breadcrumb breadcrumb pt-3"></p-skeleton>
-    <div class="columns bg-transp is-vcentered is-mobile">
-      <div class="column is-3-mobile is-4-desktop">
-        <figure class="image is-128x128 mb-0 pb-0">
-          <img data-aos="zoom-in" #imgProduto class="background is-transparent"
-            [src]="Produto?.Imagem[1]|| Produto?.Imagem[0]" [style.opacity]="'1'"
-            alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-          <img data-aos="zoom-in" #imgProduto2 class="background is-transparent hide-img"
-            [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
-            alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-        </figure>
-      </div>
-      <div class="column mb-0 pb-0 of-x-scroll">
-        <nav class="level dis-flex flex-sa of-x-scroll">
-          <div class="level-item has-text-centered size2 bor1">
-            <div>
-              <p class="heading has-text-light">Avaliações</p>
-              <p class="title has-text-white">{{Produto?.Rating.length}}</p>
-            </div>
-          </div>
-          <!-- <div class="level-item has-text-centered">
-            <div>
-              <p class="heading has-text-light">Disponiveis</p>
-              <p class="title has-text-white">N/A</p>
-            </div>
-          </div> -->
-          <div class="level-item has-text-centered size2 bor1">
-            <div>
-              <p class="heading has-text-light">Compras</p>
-              <p class="title has-text-white">{{Produto?.Vendas}}</p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered size2 bor1">
-            <div>
-              <p class="heading has-text-light">Visualizações</p>
-              <p class="title has-text-white">{{Produto?.Visualizacoes}}</p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered size2 bor1">
-            <div>
-              <p class="heading has-text-light">Likes</p>
-              <p class="title has-text-white">{{Produto?.Likes}}</p>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
   </div>
 </div>
 <!-- -->
 <section class="hero is-medium is-white btr">
 
-  <div class="hero-body pt-1">
+  <div class="hero-body">
       <div class="bbr " >
         <div class="">
           <div class="bbr" >
@@ -158,7 +103,7 @@
                           <li><p><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></p></li>
                           <li><p><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></p></li>
                         </ul>
-                        <div class="">
+                        <div class="my-2">
                           <ng-container
                             *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
                           </ng-container>
@@ -276,7 +221,7 @@
 
                               </div>
                               <div *ngIf="Produto?.Status != statusProduto.esgotado" class="txt-left pt-4">
-                                <div class="">
+                                <!-- <div class="">
 
                                   <p class="subtitle is-7">Calcule frete e prazo</p>
                                   <div class="">
@@ -286,7 +231,7 @@
                                         [formControlName]="'cep'" placeholder="000000-000" mask="00000-000" name="CEP">
                                     </mat-form-field>
                                   </div>
-                                </div>
+                                </div> -->
 
                                 <div class="columns pb-0 mb-0 ">
                                   <div class="dis-flex flex-w column pb-0 mb-0 bbr">
@@ -317,7 +262,7 @@
                                         <mat-icon>shopping_bag</mat-icon>
                                       </button>
 
-                                      <div class="columns pb-0 mb-0  px-2">
+                                      <div class="columns pb-0 mb-0 ">
 
                                         <div class="column pb-0 mb-0" >
                                           <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
@@ -483,7 +428,67 @@
     </div>
 </section>
 
+<div class=" has-background-light bbr">
+  <div class="has-background bg is-medium is-white btr w-full has-background-light" (mouseover)="
+    this.imgProduto.classList.remove('show-img');
+    this.imgProduto.classList.add('hide-img');
+    this.imgProduto2.classList.add('show-img');
+    this.imgProduto2.classList.remove('hide-img');
+    " (mouseout)="
+    this.imgProduto2.classList.remove('show-img');
+    this.imgProduto2.classList.add('hide-img');
+    this.imgProduto.classList.add('show-img');
+    this.imgProduto.classList.remove('hide-img');
+  ">
 
+    <div class="columns bg-transp is-vcentered is-mobile">
+      <div class="column is-3-mobile is-4-desktop">
+        <figure class="image is-128x128 mb-0 pb-0">
+          <img data-aos="zoom-in" #imgProduto class="background is-transparent"
+            [src]="Produto?.Imagem[1]|| Produto?.Imagem[0]" [style.opacity]="'1'"
+            alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+          <img data-aos="zoom-in" #imgProduto2 class="background is-transparent hide-img"
+            [src]="Produto?.Imagem[2] || Produto?.Imagem[0]"
+            alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+        </figure>
+      </div>
+      <div class="column mb-0 pb-0 of-x-scroll">
+        <nav class="level dis-flex flex-sa of-x-scroll">
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Avaliações</p>
+              <p class="title has-text-white">{{Produto?.Rating.length}}</p>
+            </div>
+          </div>
+          <!-- <div class="level-item has-text-centered">
+            <div>
+              <p class="heading has-text-light">Disponiveis</p>
+              <p class="title has-text-white">N/A</p>
+            </div>
+          </div> -->
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Compras</p>
+              <p class="title has-text-white">{{Produto?.Vendas}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Visualizações</p>
+              <p class="title has-text-white">{{Produto?.Visualizacoes}}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Likes</p>
+              <p class="title has-text-white">{{Produto?.Likes}}</p>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="w-full  bg flex-w flex-sa px-6 my-2">
   <a [routerLink]="'/produtos'" class="has-text-light">

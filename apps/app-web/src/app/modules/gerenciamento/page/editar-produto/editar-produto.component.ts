@@ -145,27 +145,30 @@ export class EditarProdutoComponent implements OnInit {
     this.options = newOptions;
   }
   filtroAtivo(produto:Produto){
-    if(this.matchSearchFilter(produto) &&
-        this.matchPriceFilter(produto) &&
-        this.matchStatusFilter(produto) &&
-        this.matchParcelamentoFilter(produto) &&
-        this.matchMultiplasCoresFilter(produto))
-    return this.CategoriaAtiva?.Nome == this.defaultCategory
-            ||  this.CategoriaAtiva?.Nome == produto.Categoria.Nome;
+    if(produto){
+      if(this.matchSearchFilter(produto) &&
+          this.matchPriceFilter(produto) &&
+          this.matchStatusFilter(produto) &&
+          this.matchParcelamentoFilter(produto) &&
+          this.matchMultiplasCoresFilter(produto))
+          return this.CategoriaAtiva?.Nome == this.defaultCategory
+                  ||  this.CategoriaAtiva?.Nome == produto?.Categoria?.Nome || null;
+    }
+    return false;
   }
   matchParcelamentoFilter(produto:Produto){
     if(this.Parcelamento)
-      return produto.Parcelas > 0;
+      return produto?.Parcelas > 0;
     return true;
   }
   matchMultiplasCoresFilter(produto:Produto){
     if(this.MultiplasCores)
-      return produto.Cores.length > 1;
+      return produto?.Cores.length > 1;
     return true;
   }
   matchPriceFilter(produto:Produto){
     if(this.value)
-      return produto.Preco >= this.value && produto.Preco <= this.maxValue ;
+      return produto?.Preco >= this.value && produto.Preco <= this.maxValue ;
   }
   matchStatusFilter(produto:Produto){
     if(this.activeOrderStatus)

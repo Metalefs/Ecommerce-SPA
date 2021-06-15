@@ -20,7 +20,7 @@
 <div class="w-full pos-sticky top-0 z-index-top ">
   <div class=""
     >
-    <mat-toolbar class="mat-toolbar py-2 z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="height: initial; z-index: 20;">
+    <mat-toolbar class="mat-toolbar py-0 z-index-top dis-flex flex-c-m w-full flex-sb a-i-c "  style="z-index: 20;">
       <div class="w-full dis-flex flex-c flex-m flex-sb " >
         <div class="flex-m a-i-c">
           <a @fadeIn href="#" class="logo ml-5  flex-m a-i-c">
@@ -79,13 +79,13 @@
           </div>
           <div class="column ">
             <div class="dropdown">
-              <a class="reset-a nav-link" style="border: none !important;">
+              <p class="nav-link" style="border: none !important;">
                 <button class="w-full has-text-centered py-4"
-                title="Perfil">
-                <mat-icon>person_outline</mat-icon>
-                <p class=" is-size-7">{{user?.Nome || 'Meu perfil'}}</p>
-              </button>
-              </a>
+                  title="Perfil">
+                  <mat-icon>person_outline</mat-icon>
+                  {{user?.Nome || 'Meu perfil'}}
+                </button>
+              </p>
               <div class="dropdown-content has-background-white box">
                 <button mat-menu-item *ngIf="user" href="#topo" routerLinkActive="Active"
                   pageScroll [routerLink]="['/minha-conta/pessoal']">Meus dados</button>

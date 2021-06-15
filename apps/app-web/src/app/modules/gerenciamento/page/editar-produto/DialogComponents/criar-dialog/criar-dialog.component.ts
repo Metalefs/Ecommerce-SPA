@@ -126,8 +126,8 @@ export class CriarProdutoDialogComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((Categoria : entities.Categoria) => {
       if(Categoria != undefined)
-      this.store.dispatch(new AdicionarCategoria(Categoria)).subscribe(x=> {
-        this.snack.open("Categoria "+Categoria.Nome+" criada com sucesso", "Fechar", {
+        this.store.dispatch(new AdicionarCategoria(Categoria)).subscribe(x=> {
+          this.snack.open("Categoria "+Categoria.Nome+" criada com sucesso", "Fechar", {
         });
         this.CarregarCategorias();
       });

@@ -12,7 +12,7 @@
       <mat-select matNativeControl [(ngModel)]="CategoriaAtiva" (selectionChange)="atualizarFiltroAtivo()">
         <mat-option *ngFor="let categoria of (Categorias$ | async)" [value]="categoria" class="w-full">
           <div class="box w-full">
-            <p>{{categoria.Nome}}</p>
+            <p>{{categoria?.Nome}}</p>
           </div>
         </mat-option>
       </mat-select>
@@ -26,11 +26,11 @@
     </div>
   </div>
 
-  <mat-card>
+  <mat-card *ngIf="Produtos?.length">
     <mat-card-header class="w-full">
     </mat-card-header>
     <mat-card-content class="dashboard-card-content">
-      <div class="">
+      <div class="" >
 
         <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"></ngx-slider>
         <div class="columns is-mobile is-multiline w-full ">

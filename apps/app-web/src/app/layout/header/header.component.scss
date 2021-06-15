@@ -13,11 +13,11 @@
   margin-left: -5px;
   list-style: none;
 }
-.mat-toolbar:nth-child(2) {
+.mat-toolbar:nth-child(1) {
   background: rgba($color: white, $alpha: 0.99);
   background: #f1f2faeb;
   background: $background-light;
-  box-shadow: 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%), 0 2px 4px -1px rgb(0 0 0 / 20%);
+  box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
   margin-top: 0px;
   z-index: 11;
 }
@@ -90,9 +90,9 @@
 .nav-link{
   font-size: $navlinksize;
   // padding: 0.5em;
-  padding: 26px;
-  padding-bottom: 30px;
-  min-height: 15px;
+  padding: 20px 26px;
+  // padding-bottom: 30px;
+  // min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
   border-left: 1px solid $navlinkbordercolor;
@@ -199,11 +199,11 @@ a.nav-link:hover{
   background-color: rgb(225 225 237 / 88%);
   // background-color: #6d6f6f4a;
   height: 5px;
+  top: 1px;
   box-shadow: 0px 2px 4px rgba(133, 133, 133, 0.12);
-  // top: 16px;
   position: relative;
   pointer-events: none;
-  // display: none;
+  display: none;
 }
 .is-hidden{
   display: none;
