@@ -68,7 +68,7 @@
     height: 90px;
   }
   .nav-trigger{
-    top: 18px;
+    top: 5px;
   }
 }
 .is-active.nav-trigger {
@@ -245,7 +245,7 @@
 
   #nav-menu {
     position: fixed;
-    right: 0;
+    left: 0;
     top: 0;
     z-index: 110;
     max-width: 95%;
@@ -255,11 +255,11 @@
     -webkit-transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-      -webkit-transform: translateX(100vw);
-      -moz-transform: translateX(100vw);
-      -ms-transform: translateX(100vw);
-      -o-transform: translateX(100vw);
-      transform: translateX(100vw);
+      -webkit-transform: translateX(-100vw);
+      -moz-transform: translateX(-100vw);
+      -ms-transform: translateX(-100vw);
+      -o-transform: translateX(-100vw);
+      transform: translateX(-100vw);
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
       transition: all .3s;

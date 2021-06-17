@@ -170,12 +170,7 @@
                     </div>
                   </div>
 
-                  <div class="columns is-mobile is-multiline is-vcentered is-hidden-desktop mb-3">
-                    <div class="column is-2-desktop is-6-mobile">
-                      <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
-                        (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
-                    </div>
-                  </div>
+
                 </ng-template>
                 <ng-template let-produto pTemplate="listItem">
                   <ng-container class="mx-0 px-0 ">
@@ -224,7 +219,10 @@
             </div>
             <div class="w-full dis-flex flex-c-m">
               <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
-
+              <div class="w-full is-hidden-desktop mb-3">
+                <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
+                  (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>
+              </div>
               <a [ngClass]="loading_more ? 'button is-loading':''" mat-fab title="Carregar mais produtos"
                 class="px-3 w-full button wp-btn txt-center border-light" *ngIf="total > Produtos?.length"
                 (click)="CarregarMaisProdutos()">
