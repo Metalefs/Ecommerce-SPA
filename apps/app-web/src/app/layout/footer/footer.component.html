@@ -92,23 +92,24 @@
           </div>
         </div>
       </div>
-      <div class="hero-foot shadow-light btr ">
-        <mat-toolbar-row class="w-full btr shadow-light" style="white-space: break-spaces; ">
-          <div class="w-full margin">
-            <div class="w-full flex-sa txt-center">
-              <p class="has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</p>
-
-            </div>
-          </div>
-        </mat-toolbar-row>
-        <div class="w-full px-3 flex-sa has-text-light py-2"  title="Desenvolvido por Devportable -Jackson Pires">
-          <p [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
-        </div>
+      <div class="hero-foot shadow-light  " >
 
           <!-- <personalizados-lopes-factory-steps class="is-hidden-desktop"></personalizados-lopes-factory-steps> -->
         </div>
       </div>
-  </div>
+    </div>
+    <mat-toolbar-row class="w-full shadow-light has-background-white" title="Desenvolvido por Devportable -Jackson Pires" style="white-space: break-spaces; ">
+      <div class="w-full margin">
+        <div class="w-full flex-sb">
+          <b [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ"> </b>
+          <ul class="dis-flex flex-r has-text-weight-bold">
+            <li><a pageScroll href="#topo" [routerLink]="['empresa']" class="has-text-black">SOBRE  |</a></li>
+            <li><a pageScroll href="#topo" [routerLink]="['orcamento']" class="has-text-black">   FALE CONOSCO</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </mat-toolbar-row>
 </footer>
 
 

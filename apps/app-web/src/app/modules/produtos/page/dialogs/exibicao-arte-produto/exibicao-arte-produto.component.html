@@ -1,5 +1,7 @@
 <h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Escolha de design</h1>
-
+<button mat-button color="basic" class="close" [mat-dialog-close]="" cdkFocusInitial>
+  <mat-icon>close</mat-icon>
+</button>
 <div mat-dialog-content class="margin w-half">
   <div class="columns is-multiline is-vcentered">
 
@@ -88,13 +90,11 @@
 <div mat-dialog-actions>
   <button mat-raised-button color=""
     [mat-dialog-close]="Produto"
-    class="border"
+    class="button w-full"
     #toCheckout
     [disabled]="!Produto.Canvas['objects'].length||[] > 0"
     [ngClass]="{'wp-btn is-success':!toCheckout.disabled}">
     {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Concluir"}}
   </button>
-  <button mat-raised-button color="basic" [mat-dialog-close]="" cdkFocusInitial>
-    Cancelar
-  </button>
+
 </div>

@@ -1,7 +1,7 @@
 <div id="Contato" class="hero">
 
   <iframe data-aos="zoom-up" class="w-full vh-25 mb-0 pb-0" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-  <div class="hero-body pl-20 pr-20 has-background-white">
+  <div class="hero-body pt-0 pl-20 pr-20 has-background-white">
     <div class="margin">
 
       <h2 class="titulo is-uppercase my-2">Quer uma solução personalizada para o seu negócio?</h2>
@@ -23,12 +23,11 @@
       </ng-template>
 
       <ng-template #Padrao>
-        <div class="columns " data-aos="flip-left">
+        <div class="columns is-vcentered" data-aos="flip-left">
           <div class="column  bg-contato">
             <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
           </div>
           <div class="column">
-            <h2 class="titulo is-uppercase my-5">Entre em Contato</h2>
             <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
             <div class="w-full flex-w flex-m">
               <button mat-flat-button (click)="EnviarOrcamento()" class="w-full wp-btn has-text-white submit">Enviar</button>

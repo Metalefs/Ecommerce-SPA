@@ -71,6 +71,7 @@
   background: rgb(234, 234, 244);
   box-shadow: inset 20px 20px 60px #d9d9d9,
   inset -20px -20px 60px #ffffff;
+
 }
 .mat-chip.active::after{
   background: rgb(234, 234, 244);
@@ -88,7 +89,12 @@
   // background:rgb(234, 234, 244);
   z-index: 100;
 }
+.mat-list-item{
+  &.active{
 
+    text-decoration: underline;
+  }
+}
 .texto-categorias{
   letter-spacing: .5px;
   font-family: 'Open sans';
@@ -96,7 +102,6 @@
 .texto-categoria-ativa{
   font-weight: 600;
   text-align: center;
-
   &::before{
     width: 300px;
     height: 100%;

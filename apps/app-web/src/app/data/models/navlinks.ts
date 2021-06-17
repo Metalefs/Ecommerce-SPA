@@ -26,7 +26,7 @@ export interface NavLinkOptions{
 export let NavLinks:NavLink[] =
 environment.production ? [
   {name: "Inicio",     href:"/",  icon:'',group:GrupoNavLink.institucional},
-  {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
+  {name: "Empresa",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
@@ -34,7 +34,7 @@ environment.production ? [
 ] : [
   {name: "Institucional", href:"", icon:'',group:GrupoNavLink.none},
   {name: "Inicio",     href:"/",  icon:'',group:GrupoNavLink.institucional},
-  {name: "Sobre",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
+  {name: "Empresa",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
@@ -48,7 +48,7 @@ environment.production ? [
     name: "Institucional", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
-      {nome:"Sobre",link:`/empresa`,queryParams:{}},
+      {nome:"Empresa",link:`/empresa`,queryParams:{}},
       {nome:"Serviços",link:`/servicos`,queryParams:{}},
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
@@ -61,7 +61,7 @@ environment.production ? [
     name: "Institucional", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
-      {nome:"Sobre",link:`/empresa`,queryParams:{}},
+      {nome:"Empresa",link:`/empresa`,queryParams:{}},
       {nome:"Serviços",link:`/servicos`,queryParams:{}},
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
