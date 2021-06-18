@@ -67,7 +67,7 @@ import { DocumentRef } from './data/service/document.service';
     NgxsStoragePluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot({
-      disabled:environment.production
+      disabled:true
     }),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

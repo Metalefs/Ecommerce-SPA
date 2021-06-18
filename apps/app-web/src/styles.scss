@@ -615,11 +615,22 @@ canvas{
   font-size: 1.2em;
   color:rgb(105, 109, 140);
   font-weight: 500;
-
 }
 .preco strong{
   // color:#fe0000;
   font-size: 1.2em;
+}
+.descricao-produto {
+  font-size: 16px;
+  line-height: 24px !important;
+  figure > .image img{
+    max-width: 50% !important;
+    float: right !important;
+  }
+  .image img{
+    max-width: 50% !important;
+    float: right !important;
+  }
 }
 .parcelas{
   // display: flex;

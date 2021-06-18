@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { GostarProduto, IncrementarVisualizacoesProduto, LerProduto, RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
@@ -122,58 +122,41 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.activeRoute.params.subscribe(routeParams => {
-      this.LerProdutosCarregados();
-      this.AdicionarDescricao();
-
       this.home = {icon: 'pi pi-home', url:"/produtos"};
-      this.produtoForm = this.fb.group({
-        tamanho:[this.Produto?.Tamanho],
-        quantidade:[this.Produto?.Quantidade,Validators.required],
-        cor:[this.Produto?.Cor,Validators.required],
-        cep:[this.CEP],
-      })
-      this.findInvalidControlsRecursive()
+      if(isPlatformBrowser(this.platform))
+      this.Url = `https://${location.href}`;
+
+      this.ObterProduto(routeParams.id??"", routeParams.orcamentoId??"").subscribe(produto =>{
+        this.Produto = produto;
+        this.LoadProduto(produto);
+        this.findInvalidControlsRecursive();
+      });
+
+      if(isPlatformBrowser(this.platform))
+      this.scrollService.scrollTop();
     });
+  }
+  LoadProduto(produto:Produto){
+    this.updatePageTitle(produto);
+    this.addImages(produto);
+    this.AdicionarDescricao(produto);
+    this.updateViews(produto);
+    this.LerComentariosProduto(produto._id);
 
-    if(this.Produto?.Quantidade == 0)
-      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+    this.produtoForm = this.fb.group({
+      tamanho:[produto?.Tamanho],
+      quantidade:[produto?.Quantidade,Validators.required],
+      cor:[produto?.Cor,Validators.required],
+      cep:[this.CEP],
+    })
 
-    if(isPlatformBrowser(this.platform))
-    this.Url = `https://${location.href}`;
+    if(produto?.Quantidade == 0)
+      produto.Quantidade = produto.QuantidadeMinima;
 
-    if(this.Produto?.Status == StatusProduto.esgotado)
+    if(produto?.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
 
-    if(isPlatformBrowser(this.platform))
-      this.scrollService.scrollTop();
-
-  }
-  /*
-    Returns an array of invalid control/group names, or a zero-length array if
-    no invalid controls/groups where found
-  */
-  findInvalidControlsRecursive():boolean {
-    var invalidControls:string[] = [];
-    let recursiveFunc = (form:FormGroup|FormArray) => {
-      Object.keys(form?.controls).forEach(field => {
-        const control = form.get(field);
-        if (control.invalid) invalidControls.push(field);
-        if (control instanceof FormGroup) {
-          recursiveFunc(control);
-        } else if (control instanceof FormArray) {
-          recursiveFunc(control);
-        }
-      });
-    }
-    recursiveFunc(this.produtoForm);
-    return invalidControls?.length > 0;
-  }
-
-  setColor(color:any){
-    this.Produto.Cor = color;
-    this.produtoForm.get("cor").setValue(color);
-    this.produtoForm.get('cor').clearValidators();
-    this.produtoForm.get('cor').updateValueAndValidity();
+    this.Produto = produto;
   }
 
   ngOnDestroy(){
@@ -184,11 +167,19 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.Produto.Tamanho = this.Produto.Tamanho == tamanho ? null: tamanho
   }
 
+  setColor(color:any){
+    this.Produto.Cor = color;
+    this.produtoForm.get("cor").setValue(color);
+    this.produtoForm.get('cor').clearValidators();
+    this.produtoForm.get('cor').updateValueAndValidity();
+  }
+
   IsValid:boolean=true;
   Erros:{erro:string,type:number}[] = [];
   AdicionarAoOrcamento(){
     this.Erros = this.Validar();
     this.IsValid = this.Erros.length > 0 ? false : true;
+
     if(!this.IsValid)
     return;
 
@@ -214,63 +205,39 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       }
       this.textoAdicionar = this.textoAtualizar;
       this.isOrcamento = true;
-
     });
   }
 
-  Validar(){
-    let Erros:{erro:string,type:number}[] = [];
-    if(this.Produto.Quantidade < 1){
-      Erros.push({erro:"Selecione uma quantidade para o item", type:1});
-    }
-    if(!this.Produto.Cor){
-      Erros.push({erro:"Selecione uma cor para o item", type:2});
-    }
-    if(!this.Produto.Tamanho){
-      Erros.push({erro:"Selecione um tamanho para o item", type:3});
-    }
-    return Erros;
-  }
-  ErroQuantidade(){
-    return this.Erros.some(x=>x.type == 1);
-  }
-  ErroCor(){
-    return this.Erros.some(x=>x.type == 2);
-  }
-  ErroTamanho(){
-    return this.Erros.some(x=>x.type == 3);
-  }
   AbrirModalArte(){
     this.IsValid = this.Erros.length > 0 ? false : true;
     if(this.IsValid){
-        let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
-          data:this.Produto,
-          width:'90vw',
-          height:'90vh',
-          panelClass:['animate__animated','animate__bounceIn', 'border']
+      let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
+        data:this.Produto,
+        width:'90vw',
+        height:'90vh',
+        panelClass:['animate__animated','animate__bounceIn', 'border']
 
-        })
-        dialogref.afterClosed().subscribe(x=>{
+      })
+      dialogref.afterClosed().subscribe(x=>{
+        if(x.Canvas.objects){
           if(x.Canvas.objects){
-            if(x.Canvas.objects){
-              if(!this.orcamentoId){
-                this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
-                  this.orcamentoId = y.codOrcamento;
-                });
-              }else{
-                this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
-              }
-              this.navegarParaCheckout();
+            if(!this.orcamentoId){
+              this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
+                this.orcamentoId = y.codOrcamento;
+              });
+            }else{
+              this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
             }
+            this.navegarParaCheckout();
           }
-        })
-
-      }
+        }
+      })
+    }
   }
+
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
-
       if(ProdutosOrcamento?.length == 0){
         return
       }
@@ -281,13 +248,13 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
           this.navegarParaCheckout();
         });
       }
-
     });
   }
 
   editarCategoriaFiltroProduto(){
     this.store.dispatch(new EditarCategoriaFiltroProduto(this.Produto.Categoria)).subscribe();
   }
+
   redirecionando:boolean = false;
   navegarParaCheckout(){
     // this.redirecionando = true;
@@ -296,15 +263,18 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     },
     0)
   }
+
   fileNames:string="";
   secondaryfileNames:string="";
 
   upload($event){
     getPreviewURL($event,this.fileNames,(res,name)=>{this.Produto.Arte = res;this.fileNames = name})
   }
+
   uploadSecundario($event){
     getPreviewURL($event,this.secondaryfileNames,(res,name)=>{this.Produto.ArteSecundaria = res;this.secondaryfileNames = name})
   }
+
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
@@ -375,67 +345,64 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     })
   }
   orcamentoId:string;
-  LerProdutosCarregados(){
-    let id = this.activeRoute.snapshot.params['id'];
-    this.orcamentoId = this.activeRoute.snapshot.params['orcamentoId'];
-
+  ObterProduto(id, orcamentoId){
+    this.orcamentoId = orcamentoId;
+    let produto = new Subject<any>();
     this.Liked = localStorage.getItem(`heartproduto${id}`) == 'true' ? true: false;
     this.readonlyRating = localStorage.getItem(`rateproduto${id}`) == 'true' ? true: false;
-    const galleryRef = this.gallery.ref('myGallery');
-    galleryRef.reset();
-    if(!this.orcamentoId){
+    if(!this.orcamentoId)
+    {
       this.isOrcamento = false;
       this.servicoProduto.Filtrar(id).subscribe(prod=>{
         if(!prod)
-          this.router.navigate(['/produtos']);
-
-        this.Produto = prod[0];
+        this.router.navigate(['/produtos']);
+        produto.next(prod[0]);
         this.items = [
-          {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
-          {label:this.Produto?.Nome, styleClass:'desb'}
+          {label:prod[0]?.NomeCategoria, url:"/produtos/?categoria=" + prod[0]?.NomeCategoria},
+          {label:prod[0]?.Nome, styleClass:'desb'}
         ];
-        this.updateViews();
-        this.AdicionarDescricao();
-        this.titleService.setTitle(`${this.Produto.Nome}`);
-        prod[0]?.Imagem.forEach(img =>{
-          galleryRef.addImage({ src:img, thumb: img });
-        });
       })
     }
-    else{
+    else
+    {
       this.isOrcamento = true;
       this.Orcamento$.subscribe( res => {
-        const index = res.Produto.findIndex(item => item.codOrcamento === this.orcamentoId);
+        const index = res.Produto.findIndex(item => item.codOrcamento === orcamentoId);
         if(index<0)
         this.router.navigate(['/produtos']);
-
-        this.Produto = res.Produto[index]?.Produto;
+        let aux = res.Produto[index].Produto;
+        produto.next(aux);
+        this.LoadProduto(aux);
         this.items = [
-          {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria="+this.Produto?.NomeCategoria},
-          {label:this.Produto?.Nome, styleClass:'desb'}
+          {label:aux.NomeCategoria, url:"/produtos/?categoria="+aux.NomeCategoria},
+          {label:aux.Nome, styleClass:'desb'}
         ];
-        this.AdicionarDescricao();
-        this.titleService.setTitle(`${this.Produto.Nome}`);
-        this.updateViews();
-        this.Produto.Imagem.forEach(img =>{
-          galleryRef.addImage({ src:img, thumb: img });
-        });
       });
     }
-
-    this.LerComentariosProduto(id);
-
+    return produto.asObservable();
   }
-  updateViews(){
-    if(!localStorage.getItem("vprod"+this.Produto._id)){
-      this.store.dispatch(new IncrementarVisualizacoesProduto(this.Produto._id)).subscribe(x=>{
-        alert(this.Produto.Visualizacoes)
-        Object.defineProperty(this.Produto,'Visualizacoes',this.Produto.Visualizacoes++??1);
-        alert(this.Produto.Visualizacoes)
-        localStorage.setItem("vprod"+this.Produto._id,"true");
+
+  addImages(produto:Produto){
+    const galleryRef = this.gallery.ref('myGallery');
+    galleryRef.reset();
+    produto?.Imagem.forEach(img =>{
+      galleryRef.addImage({ src:img, thumb: img });
+    });
+  }
+
+  updatePageTitle(produto:Produto){
+    this.titleService.setTitle(`${produto?.Nome}`);
+  }
+
+  updateViews(produto:Produto){
+    if(!localStorage.getItem("vprod"+produto?._id)){
+      this.store.dispatch(new IncrementarVisualizacoesProduto(produto?._id)).subscribe(x=>{
+        Object.defineProperty(produto,'Visualizacoes',produto.Visualizacoes++??1);
+        localStorage.setItem("vprod"+produto?._id,"true");
       });
     }
   }
+
   LerComentariosProduto(idProduto:string){
     this.ComentarioProdutoService.getAll().snapshotChanges().pipe(
       map(changes =>
@@ -445,7 +412,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       )
     ).subscribe(data => {
       this.Comentarios = [];
-      this.ComentariosProduto = data.filter(x=>x.IdProduto == this.Produto?._id);
+      this.ComentariosProduto = data.filter(x=>x.IdProduto == idProduto);
       this.ComentariosProduto.forEach(x=>{
         x.Comentario.key = x.key;
         this.Comentarios.push(x.Comentario)
@@ -455,12 +422,11 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
   }
 
-  AdicionarDescricao(){
+  AdicionarDescricao(produto:Produto){
     let element:HTMLElement = this.document.nativeDocument.createElement("div");
 
-    if(this.Produto){
-
-      element.innerHTML = this.Produto?.Descricao;
+    if(produto){
+      element.innerHTML = produto?.Descricao;
       element.querySelectorAll( 'oembed[url]' ).forEach( element => {
         // Create the <a href="..." class="embedly-card"></a> element that Embedly uses
         // to discover the media.
@@ -478,6 +444,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);
   }
+
   RecarregarProdutos(){
     this.areProdutosLoadedSub = this.areProdutosLoaded$.pipe(
       tap((areProdutosLoaded) => {
@@ -488,6 +455,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       console.log(value);
     });
   }
+
   onClickResult: ClickEvent;
   onHoverRatingChangeResult: HoverRatingChangeEvent;
   onRatingChangeResult: RatingChangeEvent;
@@ -516,8 +484,9 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       return
 
   };
+
   CarregarDetalhesCEP(){
-    // alert(this.CEP)
+    //alert(this.CEP)
   }
 
   meanRating(){
@@ -550,6 +519,53 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     }else{
       this.snack.open('Por favor, avalie o produto primeiro',"fechar",{duration:3000});
     }
+  }
+
+  Validar(){
+    let Erros:{erro:string,type:number}[] = [];
+    if(this.Produto.Quantidade < 1){
+      Erros.push({erro:"Selecione uma quantidade para o item", type:1});
+    }
+    if(!this.Produto.Cor){
+      Erros.push({erro:"Selecione uma cor para o item", type:2});
+    }
+    if(!this.Produto.Tamanho){
+      Erros.push({erro:"Selecione um tamanho para o item", type:3});
+    }
+    return Erros;
+  }
+  ErroQuantidade(){
+    return this.Erros.some(x=>x.type == 1);
+  }
+  ErroCor(){
+    return this.Erros.some(x=>x.type == 2);
+  }
+  ErroTamanho(){
+    return this.Erros.some(x=>x.type == 3);
+  }
+  /*
+    Returns an array of invalid control/group names, or a zero-length array if
+    no invalid controls/groups where found
+  */
+  findInvalidControlsRecursive():boolean {
+    var invalidControls:string[] = [];
+    if(this.Produto && this.produtoForm){
+
+      let recursiveFunc = (form:FormGroup|FormArray) => {
+        Object.keys(form?.controls).forEach(field => {
+          const control = form.get(field);
+          if (control.invalid) invalidControls.push(field);
+          if (control instanceof FormGroup) {
+            recursiveFunc(control);
+          } else if (control instanceof FormArray) {
+            recursiveFunc(control);
+          }
+        });
+      }
+      recursiveFunc(this.produtoForm);
+      return invalidControls?.length > 0;
+    }
+    return false;
   }
 
 }

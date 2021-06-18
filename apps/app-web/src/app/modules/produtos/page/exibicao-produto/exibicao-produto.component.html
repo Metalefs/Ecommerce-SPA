@@ -9,7 +9,7 @@
 <!-- -->
 <section class="hero is-medium is-white btr">
 
-  <div class="hero-body pt-2 pb-2">
+  <div class="hero-body pt-3 pb-2">
       <div class="bbr " >
         <div class="">
           <div class="bbr" >
@@ -45,7 +45,7 @@
 
                     </mat-tab>
                   </mat-tab-group> -->
-                  <gallery data-aos="zoom-in" gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
+                  <gallery gallerize id="myGallery" [ngClass]="mobile?'':''" *ngIf="galleryConfig$ | async; let config"
                   [counter]="false" [nav]="false" [loadingStrategy]="'lazy'" [thumbWidth]="config.thumbWidth"
                   [dots]="true" [thumbHeight]="config.thumbHeight" [thumbPosition]="config.thumbPosition">
                 </gallery>
@@ -90,7 +90,7 @@
                 <span class="is-hidden-touch subtitle is-size-7 pl-0 ml-0 column is-12-touch is-12 w-full"
                 *ngIf="Produto?.DescricaoRapida">{{Produto?.DescricaoRapida}}</span>
               </div>
-              <div class="column is-6 has-background-white bbr shadow-light" >
+              <div class="column is-6 has-background-white bbr shadow-light" style="margin-bottom:-26px">
 
                 <div class="">
                   <div class="{{mobile ? 'txt-left': 'txt-left'}}">
@@ -153,10 +153,10 @@
 
                       <div class="column is-12-desktop is-12-tablet is-12-mobile">
 
-                        <form action="" method="post" [formGroup]="produtoForm">
+                        <form *ngIf="produtoForm" action="" method="post" [formGroup]="produtoForm">
                           <div class="column is-12">
                             <div class="field ">
-                              <div class="control is-large flex-c-m">
+                              <div class="control is-large flex-l flex-m">
                                 <label class="label" for="quantidade">Quantidade</label>
                                 <div>
                                   <button mat-icon-button (click)="DecrescerQuantidade()">
@@ -345,44 +345,15 @@
               </div>
             </div>
 
-
-
           </div>
         </div>
 
       </div>
     </div>
     <div class="hero-foot px-3 py-3 "id="product-display">
-      <mat-tab-group class="is-hidden-desktop">
-        <mat-tab label="">
-          <div class="margin py-3 px-3 shadow-light">
-            <div class="w-full columns is-multiline">
-              <h3 class="has-text-weight-bold">Descrição do produto</h3>
-              <div class="descricao-produto column is-12-touch is-12 w-full" [innerHTML]="(el?.innerHTML)"></div>
-            </div>
-          </div>
 
-        </mat-tab>
-        <mat-tab label="Avaliações">
-          <div class="margin px-6 py-1 mb-6" *ngIf="Produto">
-            <div class="z-index-2 px-2 py-2 my-6">
-              <div class="mx-2">
-                <div class="w-full">
-                  <p>Você já tem este produto?</p>
-                  <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
-                </div>
-                <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
-                <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)">
-                </personalizados-lopes-escrever-comentario>
-              </div>
-            </div>
-            <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto">
-            </personalizados-lopes-exibir-lista-comentario-produto>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-      <mat-tab-group class="is-hidden-touch">
-        <mat-tab label="Informações" (click)="AdicionarDescricao()">
+      <mat-tab-group class="">
+        <mat-tab label="Informações" (click)="AdicionarDescricao(this.Produto)">
           <div class="has-background-white py-3 px-3">
             <div class="w-full is-multiline">
               <!-- <h3 class="has-text-weight-bold ltr-sp-2">Descrição do produto</h3> -->

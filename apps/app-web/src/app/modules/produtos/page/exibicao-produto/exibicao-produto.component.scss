@@ -312,6 +312,14 @@ input[type='number'] {
 .descricao-produto {
   font-size: 16px;
   line-height: 24px !important;
+  figure > .image img{
+    max-width: 50% !important;
+    float: right !important;
+  }
+  .image img{
+    max-width: 50% !important;
+    float: right !important;
+  }
 }
 .mh-70 {
   min-height: 70%;

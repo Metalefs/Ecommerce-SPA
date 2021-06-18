@@ -32,6 +32,15 @@ export const slider =
     transition('isRight => isUp', slideTo('top') ),
     transition('isLeft => isUp', slideTo('top') ),
 
+    transition('isRight => isDown', slideTo('bottom') ),
+    transition('isLeft => isDown', slideTo('bottom') ),
+
+    transition('isUp => isUp', slideTo('top') ),
+    transition('isUp => isDown', slideTo('bottom') ),
+
+    transition('bottom => bottom', slideTo('bottom') ),
+    transition('isDown => isUp', slideTo('top') ),
+
     transition('isLeft => checkout', cardFlipQ() ),
     transition('flip => checkout', cardFlipQ() ),
     transition('isRight => checkout',cardFlipQ() ),
@@ -58,10 +67,10 @@ function slideTo(direction) {
     ],optional),
     group([
       query(':leave', [
-        animate('300ms ease', style({ [direction]: '100%'}))
+        animate('700ms ease', style({ [direction]: '100%'}))
       ], optional),
       query(':enter', [
-        animate('300ms ease', style({ [direction]: '0%'}))
+        animate('700ms ease', style({ [direction]: '0%'}))
       ],optional)
     ]),
     // Normalize the page style... Might not be necessary
