@@ -14,7 +14,7 @@ export class Servico extends MongoDocument implements entidadeBase{
         Descricao:string,
         Categoria:Categoria,
         Imagem:string,
-        FileList:FileList
+        FileList?:FileList
     ){
         super();
         this.Nome = Nome;
