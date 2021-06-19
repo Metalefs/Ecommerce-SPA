@@ -4,7 +4,7 @@
       <div class="column card has-background-white bo-0">
         <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
           (click)="AbrirDialogoCategorias()">
-          <p class="title is-size-5">Categoria</p>
+          <p class=" is-size-5">Categoria</p>
           <span class="subtitle is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
           <!-- <mat-icon>category</mat-icon> -->
         </div>
@@ -12,7 +12,7 @@
       <div class="column card has-background-white bo-0">
         <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
           (click)="AbrirDialogoOrdenacao()">
-          <p class="title is-size-5">Ordenação</p>
+          <p class=" is-size-5">Ordenação</p>
           <span class="subtitle is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
         </div>
       </div>
@@ -131,6 +131,7 @@
                 pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'list' : 'grid'"
                 [emptyMessage]="'Nenhum item encontrado'">
                 <ng-template pTemplate="header">
+                  <p-dataViewLayoutOptions class=" is-hidden-touch"></p-dataViewLayoutOptions>
                   <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
 
                         <div class="column is-hidden-tablet is-12-mobile">
@@ -218,7 +219,7 @@
               </div>
             </div>
             <div class="w-full dis-flex flex-c-m">
-              <!-- <p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
+
               <div class="w-full is-hidden-desktop mb-3">
                 <ngx-slider [(value)]="value" [(highValue)]="maxValue" [options]="options"
                   (userChange)="atualizarFiltroAtivo(false)"></ngx-slider>

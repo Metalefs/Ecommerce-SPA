@@ -181,26 +181,26 @@
                                 </em>
                               </span>
                             </div>
-                            <div class="column is-12-desktop py-0" [ngClass]="{'is-danger':ErroTamanho()}"
-                              *ngIf="Produto?.Tamanhos">
-                              <!--<mat-form-field class="w-full " appearance="fill"> -->
-                                <mat-label class="label is-small is-size-7">Tamanho: {{Produto?.Tamanho || ""}}</mat-label>
-                                <!--<mat-select matNativeControl [formControlName]="'tamanho'" [(ngModel)]="Produto.Tamanho"
-                                  [value]="Produto?.Tamanho"> -->
-                                  <div *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="shadow-light button is-small" (click)="Produto.Tamanho = opt">
-                                    <div class="" (click)="Produto.Tamanho = opt">
-                                      <p>{{opt}}</p>
+
+
+                            <div class="column is-12">
+
+                              <div class="columns txt-left is-vcentered pt-0 is-multiline" >
+                                <div class="column is-6-desktop py-0" [ngClass]="{'is-danger':ErroTamanho()}"
+                                *ngIf="Produto?.Tamanhos">
+                                <!--<mat-form-field class="w-full " appearance="fill"> -->
+                                  <mat-label class="label is-small is-size-7">Tamanho: {{Produto?.Tamanho || ""}}</mat-label>
+                                  <!--<mat-select matNativeControl [formControlName]="'tamanho'" [(ngModel)]="Produto.Tamanho"
+                                    [value]="Produto?.Tamanho"> -->
+                                    <div *ngFor="let opt of Produto?.Tamanhos" [value]="opt" class="shadow-light button is-small" (click)="Produto.Tamanho = opt">
+                                      <div class="" (click)="Produto.Tamanho = opt">
+                                        <p>{{opt}}</p>
+                                      </div>
                                     </div>
-                                  </div>
-                                <!-- </mat-select>
-                              </mat-form-field> -->
-                            </div>
-
-                            <div class="column is-12 ">
-
-                              <div class="columns txt-left is-vcentered pt-0 is-multiline" *ngIf="Produto?.Tamanho">
-
-                                <div class="column is-12 py-1"  >
+                                  <!-- </mat-select>
+                                </mat-form-field> -->
+                              </div>
+                                <div class="column is-6 py-1"  *ngIf="Produto?.Tamanho">
                                   <personalizados-lopes-cor-produto-selector [Produto]="Produto" (onSetColor)="setColor($event)"></personalizados-lopes-cor-produto-selector>
                                 </div>
 
@@ -285,6 +285,12 @@
                             </div>
 
                           </div>
+                          <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
+                            title="Entrar em contato por whatsapp"
+                            class="button w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
+                            <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
+                            <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
+                          </button>
                         </form>
                         <div class="pt-3 px-2 txt-left of-x-scroll">
                           <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
@@ -322,12 +328,6 @@
                           </div>
                         </div>
 
-                        <button mat-raised-button (click)="EntrarEmContato()" routerLinkActive="router-link-active"
-                          title="Entrar em contato por whatsapp"
-                          class="button w-full wp-btn border-light my-2 flex-m flex-c has-text-white has-text-weight-medium">
-                          <fa-icon class="color-wp" [icon]="iconeWhatsapp" [size]="'lg'"></fa-icon>
-                          <span class="ml-3 nunitoParagraphy16 has-text-white">Fazer pedido pelo whatsapp</span>
-                        </button>
                       </div>
                     </div>
                     <!-- <div class="text-center is-right w-full">

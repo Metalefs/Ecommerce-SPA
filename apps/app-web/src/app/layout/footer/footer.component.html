@@ -98,16 +98,14 @@
         </div>
       </div>
     </div>
-    <div class="w-full shadow-light has-background-white" title="Desenvolvido por Devportable -Jackson Pires" style="white-space: break-spaces; ">
-      <div class="w-full dis-flex flex-sb ">
-        <b class="container" [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ"> </b>
-        <ul class="px-3 has-text-weight-bold">
-          <li><a pageScroll href="#topo" [routerLink]="['empresa']" class="has-text-black">SOBRE</a></li>
-          <li><a pageScroll href="#topo" [routerLink]="['orcamento']" class="has-text-black">FALE CONOSCO</a></li>
-        </ul>
-      </div>
+    <mat-toolbar class="w-full shadow-light has-background-white" title="Desenvolvido por Devportable -Jackson Pires" style="white-space: break-spaces; ">
+      <p class="descricao-produto" [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ"> </p>
+      <!-- <ul class="px-3 has-text-weight-bold">
+        <li><a pageScroll href="#topo" [routerLink]="['empresa']" class="has-text-black">SOBRE</a></li>
+        <li><a pageScroll href="#topo" [routerLink]="['orcamento']" class="has-text-black">FALE CONOSCO</a></li>
+      </ul> -->
 
-    </div>
+    </mat-toolbar>
 </footer>
 
 

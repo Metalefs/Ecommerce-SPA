@@ -65,11 +65,10 @@
   display: block !important;
 }
 .cart-counter{
-  position: absolute;
+  position: relative;
   margin-left: auto;
   margin-right: auto;
-  right: 0;
-  bottom: 35px;
+
   text-align: center;
   color: #1106CC;
   font-size: 10px;
@@ -221,6 +220,7 @@ a.nav-link:hover{
     margin-left: 0;
     max-height: 67px;
   }
+
 
 }
 @media (min-width:1023px){
