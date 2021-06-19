@@ -46,12 +46,6 @@ a span{
   color: $red2;
 
 }
-.mat-list-item a.active-nav .mat-icon.inst{
-  -webkit-transition: all 0.2s ease-in-out 0s;
-  transition: all 0.2s ease-in-out 0s;
-  color:$red2;
-  background:$red2;
-}
 a {
   position: relative;
   color: #484848;
@@ -100,10 +94,6 @@ a:before {
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 0;
 }
-.mat-icon.inst{
-  // background:$gray-web;
-}
-
 .nav-link{
   font-size: 12px;
   text-transform: capitalize;

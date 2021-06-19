@@ -57,6 +57,8 @@ export class NavbarComponent implements OnInit {
     this.dialog.open(LoginComponent, {
       restoreFocus: false,
       width:'512px',
+      panelClass:['no-padding','animate__animated','animate__bounceIn']
+
     });
   }
 

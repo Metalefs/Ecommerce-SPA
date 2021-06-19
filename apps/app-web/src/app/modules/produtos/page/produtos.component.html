@@ -25,7 +25,7 @@
   <div [@cardFlip]="state" class="px-0 py-0 mb-0 pb-0 pt-0 " id="Todos">
 
     <div class="columns px-0 ">
-      <div class="column is-3 is-hidden-mobile pr-0">
+      <div class="column is-2 is-hidden-mobile pr-0">
         <div class="flex-c w-full portfolio pos-sticky pt-0">
           <div class="is-hidden-mobile w-full">
             <mat-list class="w-full pt-0">
@@ -113,7 +113,7 @@
           </div>
         </div>
       </div>
-      <div class="column is-9 is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll">
+      <div class="column pl-0 pt-0 is-10 is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll">
         <div class="pb-0 mb-0">
           <div class="w-full">
 
@@ -125,7 +125,7 @@
 
             </div>
 
-            <div class="columns is-1 is-multiline dis-flex">
+            <div class="is-multiline dis-flex">
 
               <p-dataView [value]="Produtos" [lazy]="false" [paginator]="true" [rows]="12" totalRecords="{{total}}"
                 pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'list' : 'grid'"
