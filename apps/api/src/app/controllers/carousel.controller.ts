@@ -9,26 +9,29 @@ let CarouselService: Services.CarouselService = new Services.CarouselService();
 
 CarouselRouter.get(RouteDictionary.Carousel, async (req: any, res) => {
   try {
-    res.send(await CarouselService.Ler())
+    res.send(await CarouselService.LerPrimeiro())
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Carousel, async (req: any, res) => {
+})
+.post(RouteDictionary.Carousel, async (req: any, res) => {
   try {
     res.send(await CarouselService.Inserir(await UsuarioLogado(req, res), req.body.item.Carousel));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Carousel, async (req: any, res) => {
+})
+.put(RouteDictionary.Carousel, async (req: any, res) => {
   try {
     res.send(await CarouselService.Alterar(await UsuarioLogado(req, res), req.body.item.Carousel));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Carousel, async (req: any, res) => {
+})
+.delete(RouteDictionary.Carousel, async (req: any, res) => {
   try {
     res.send(await CarouselService.Deletar(await UsuarioLogado(req, res), req.query.id));
   }

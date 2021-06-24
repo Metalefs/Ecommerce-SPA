@@ -16,21 +16,24 @@ ClienteRouter.get(RouteDictionary.Cliente, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Cliente, async (req: any, res) => {
+})
+.post(RouteDictionary.Cliente, async (req: any, res) => {
   try {
     res.send(await ClienteService.Inserir(await UsuarioLogado(req,res), req.body.item.Cliente));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Cliente, async (req: any, res) => {
+})
+.put(RouteDictionary.Cliente, async (req: any, res) => {
   try {
     res.send(await ClienteService.Alterar(await UsuarioLogado(req,res), req.body.item.Cliente));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Cliente, async (req: any, res) => {
+})
+.delete(RouteDictionary.Cliente, async (req: any, res) => {
   try {
     res.send(await ClienteService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }

@@ -10,26 +10,29 @@ let SobreService: Services.SobreService = new Services.SobreService();
 
 SobreRouter.get(RouteDictionary.Sobre, async (req: any, res) => {
   try {
-    res.send(await SobreService.Ler());
+    res.send(await SobreService.LerPrimeiro());
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Sobre, async (req: any, res) => {
+})
+.post(RouteDictionary.Sobre, async (req: any, res) => {
   try {
     res.send(await SobreService.Inserir(await UsuarioLogado(req, res), req.body.item.Sobre));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Sobre, async (req: any, res) => {
+})
+.put(RouteDictionary.Sobre, async (req: any, res) => {
   try {
     res.send(await SobreService.Alterar(await UsuarioLogado(req, res), req.body.item.Sobre));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Sobre, async (req: any, res) => {
+})
+.delete(RouteDictionary.Sobre, async (req: any, res) => {
   try {
     res.send(await SobreService.Deletar(await UsuarioLogado(req, res), req.query.id));
   }

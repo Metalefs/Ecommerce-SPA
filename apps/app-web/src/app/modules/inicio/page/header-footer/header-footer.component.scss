@@ -12,7 +12,7 @@
   // max-width: 400px;
   height: min-content;
   box-shadow: none;
-  border-radius: 0;
+  border-radius: 30px;
   transform: rotate(0deg);
   opacity: 1;
   &:hover{
@@ -83,7 +83,10 @@ p{
   transition: .5s hoverAnim ease forwards;
 }
 .yellow,.red,.blue{
+  border-radius: 30px;
+  opacity: .95;
   &:hover{
+    opacity: 1;
     @include hover;
     & mat-card > article > mat-card-header > div.mat-card-avatar{
       @include hover;
@@ -104,8 +107,7 @@ p{
 }
 @media screen and (min-width:720px){
   .mat-card{
-
-    min-height: 180px;
+    min-height: 122px;
   }
 }
 .grey{

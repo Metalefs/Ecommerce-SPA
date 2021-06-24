@@ -11,26 +11,29 @@ let InformacoesContatoService: Services.InformacoesContatoService = new Services
 
 InformacoesContatoRouter.get(RouteDictionary.InformacoesContato, async (req: any, res) => {
   try {
-    res.send(await InformacoesContatoService.Ler());
+    res.send(await InformacoesContatoService.LerPrimeiro());
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.InformacoesContato, async (req: any, res) => {
+})
+.post(RouteDictionary.InformacoesContato, async (req: any, res) => {
   try {
     res.send(await InformacoesContatoService.Inserir(await UsuarioLogado(req, res), req.body.item.InformacoesContato));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.InformacoesContato, async (req: any, res) => {
+})
+.put(RouteDictionary.InformacoesContato, async (req: any, res) => {
   try {
     res.send(await InformacoesContatoService.Alterar(await UsuarioLogado(req, res), req.body.item.InformacoesContato));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.InformacoesContato, async (req: any, res) => {
+})
+.delete(RouteDictionary.InformacoesContato, async (req: any, res) => {
   try {
     res.send(await InformacoesContatoService.Deletar(await UsuarioLogado(req, res), req.query.id));
   }

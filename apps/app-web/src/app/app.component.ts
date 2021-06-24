@@ -18,6 +18,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { LerProduto } from './data/store/actions/produto.actions';
 
 declare let gtag: Function;
 declare let Mercadopago: any;
@@ -80,6 +81,7 @@ export class AppComponent {
 
   LerServicosAPI(){
     this.store.dispatch(new LerCarousel()          ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
+    this.store.dispatch(new LerProduto()           ).subscribe(x=>this.carregandoOque = 'Obtendo produtos');
     this.store.dispatch(new LerOrcamento()         ).subscribe(x=>this.carregandoOque = '');
     this.store.dispatch(new LerItemCarousel()      ).subscribe(x=>this.carregandoOque = 'Obtendo imagens');
     this.store.dispatch(new LerInformacoesContato()).subscribe(x=>this.carregandoOque = '');

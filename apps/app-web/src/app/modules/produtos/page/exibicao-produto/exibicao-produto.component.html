@@ -230,16 +230,13 @@
                                     {{textoAdicionar}}
                                   </button>
 
-                                  <div class="column pb-0 mb-0" >
-                                    <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
-                                      [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
-                                      (click)="DuplicarOrcamento()" color="accent"
-                                      class="background-light-red has-text-white has-text-weight-medium bo-cir">
-                                      <mat-icon>add</mat-icon>
-                                      Novo
-                                    </button>
-
-                                  </div>
+                                  <button *ngIf="this.isOrcamento" mat-flat-button title="Criar novo pedido"
+                                    [disabled]="Produto?.Status == statusProduto.esgotado || !Produto?.Cor ||  !Produto?.Tamanho"
+                                    (click)="DuplicarOrcamento()" color="accent"
+                                    class="background-light-red has-text-white has-text-weight-medium bo-cir">
+                                    <mat-icon>add</mat-icon>
+                                    Novo
+                                  </button>
                                 </ng-template>
                               </div>
                             </div>

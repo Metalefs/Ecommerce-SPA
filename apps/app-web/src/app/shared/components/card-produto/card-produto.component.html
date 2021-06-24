@@ -138,10 +138,11 @@
 
 
       <div class="z-index-1">
-        <div class="content" >
+        <div class="content m-lr-auto flex-c-m dis-flex"
+        [style.width]="flex_direction == 'row'?'45%':'100%'"
+        [style.left]="flex_direction == 'row'?'':'8%'">
           <div class="portfolio-overlay events-none w-full" style="top:10px;"
-            [style.width]="flex_direction == 'row'?'45%':'100%'"
-            [style.left]="flex_direction == 'row'?'8%':''"
+
             >
               <div class="overlay-items w-full txt-center">
                 <p>
@@ -152,9 +153,9 @@
           </div>
           <a title="Comprar" matRipple pageScroll
           href="#topo"
-          class="reset-a button shadow-light hoverable is-success m-lr-auto"
+          class="reset-a button shadow-light hoverable is-success m-lr-auto px-4"
           [style.top]="flex_direction == 'row'?'45%':'37%'"
-          [style.left]="flex_direction == 'row'?'7%':'28%'"
+          [style.width]="flex_direction == 'row'?'45%':'45%'"
           [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
           mat-flat-button class="mat-accent"><i class="pi pi-wallet"></i></a>
         </div>

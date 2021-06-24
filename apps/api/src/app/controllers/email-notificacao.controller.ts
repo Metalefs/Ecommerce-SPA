@@ -16,21 +16,24 @@ EmailNotificacaoRouter.get(RouteDictionary.EmailNotificacao, async(req: any, res
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.EmailNotificacao, async(req: any, res) => {
+})
+.post(RouteDictionary.EmailNotificacao, async(req: any, res) => {
   try {
     res.send(await EmailNotificacaoService.Inserir(req.body.item));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.EmailNotificacao, async (req: any, res) => {
+})
+.put(RouteDictionary.EmailNotificacao, async (req: any, res) => {
   try {
     res.send(await EmailNotificacaoService.Alterar(await UsuarioLogado(req,res), req.body.item.EmailNotificacao));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.EmailNotificacao, async (req: any, res) => {
+})
+.delete(RouteDictionary.EmailNotificacao, async (req: any, res) => {
   try {
     res.send(await EmailNotificacaoService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }

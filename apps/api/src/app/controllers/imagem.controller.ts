@@ -23,21 +23,24 @@ ImagemRouter.get(RouteDictionary.Imagem, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Imagem, async (req: any, res) => {
+})
+.post(RouteDictionary.Imagem, async (req: any, res) => {
   try {
     res.send(await ImagemService.InserirSemUsuario(req.body.item));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Imagem, async (req: any, res) => {
+})
+.put(RouteDictionary.Imagem, async (req: any, res) => {
   try {
     res.send(await ImagemService.Alterar(await UsuarioLogado(req,res), req.body.item.Imagem));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Imagem, async (req: any, res) => {
+})
+.delete(RouteDictionary.Imagem, async (req: any, res) => {
   try {
     res.send(await ImagemService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }

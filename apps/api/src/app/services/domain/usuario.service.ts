@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 import { Repository } from '../../repositories/repository';
 import { entities } from 'libs/data/src';
-import { EmailService } from '../handlers/email.service';
+import { EmailService } from '../external/email.service';
 
-import { generateSinglePassword } from '../handlers/password.service';
+import { generateSinglePassword } from '../external/password.service';
 import { Usuario } from 'libs/data/src/lib/classes';
 import { TrocaSenha } from 'libs/data/src/lib/interfaces';
 

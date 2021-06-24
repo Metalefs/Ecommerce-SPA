@@ -12,9 +12,8 @@ let CategoriaService: Services.CategoriaService = new Services.CategoriaService(
 
 CategoriaRouter.get(RouteDictionary.Categoria, async (req: any, res) => {
   try {
-    let Nicho;
     if (req.query.nicho) {
-      Nicho = new RegExp(decodeURI(escapeRegex(req.query.nicho)), 'gi');
+      let Nicho = new RegExp(decodeURI(escapeRegex(req.query.nicho)), 'gi');
       res.send(await CategoriaService.Filtrar({ Nicho: Nicho }));
     }
     else
@@ -23,21 +22,24 @@ CategoriaRouter.get(RouteDictionary.Categoria, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Categoria, async (req: any, res) => {
+})
+.post(RouteDictionary.Categoria, async (req: any, res) => {
   try {
     res.send(await CategoriaService.Inserir(await UsuarioLogado(req, res), req.body.item.Categoria));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Categoria, async (req: any, res) => {
+})
+.put(RouteDictionary.Categoria, async (req: any, res) => {
   try {
     res.send(await CategoriaService.Alterar(await UsuarioLogado(req, res), req.body.item.Categoria));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Categoria, async (req: any, res) => {
+})
+.delete(RouteDictionary.Categoria, async (req: any, res) => {
   try {
     res.send(await CategoriaService.Deletar(await UsuarioLogado(req, res), req.query.id));
   }

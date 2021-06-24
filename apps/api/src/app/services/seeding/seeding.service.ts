@@ -1,23 +1,48 @@
-import { entities, enums } from '@personalizados-lopes/data';
+import { Seeder } from "../../repositories/seeding/";
 
-import { Repository } from '../../repositories/repository';
+import { MongoClientService } from "../../client/MongoClient.service";
 
 export class SeedingService {
 
-    async Seed(Usuario:entities.Usuario){
-        //if (Usuario.Tipo == enums.TipoUsuario.admin) {
-            return Repository.SeedCollections();
-        //}
+  _mongoClientService = new MongoClientService();
+  async SeedCollections() {
+    let collectionsToSeed = Seeder.SeedCollections();
+    try {
+      collectionsToSeed.forEach((collection: any) => {
+        console.log(collection.name);
+        if (collection.array) {
+          // if (Usuario.Tipo == enums.TipoUsuario.admin)
+            this._mongoClientService.InsertMany(collection.name, collection.value)
+        }
+        else {
+            this._mongoClientService.Insert(collection.name, collection.value)
+        }
+      })
     }
-    async SeedCarousel(Usuario:entities.Usuario){
-        //if (Usuario.Tipo == enums.TipoUsuario.admin) {
-            return Repository.SeedCarousel();
-        //}
+    catch (err) {
+      console.log(err);
     }
-    async SeedIntegracoes(Usuario:entities.Usuario){
-        //if (Usuario.Tipo == enums.TipoUsuario.admin) {
-            return Repository.SeedIntegracoes();
-        //}
+  }
+
+  async SeedCarousel() {
+    let collectionsToSeed = Seeder.SeedCarousel();
+    try {
+      // if (Usuario.Tipo == enums.TipoUsuario.admin)
+        this._mongoClientService.Insert(collectionsToSeed.name, collectionsToSeed.value)
     }
-    //29.281.832/0001-05
+    catch (err) {
+      console.log(err);
+    }
+  }
+  async SeedIntegracoes() {
+    // if (Usuario.Tipo == enums.TipoUsuario.admin)
+      let collectionsToSeed = Seeder.SeedIntegracoes();
+    try {
+        this._mongoClientService.Insert(collectionsToSeed.name, collectionsToSeed.value)
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
 }

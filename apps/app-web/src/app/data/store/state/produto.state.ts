@@ -126,10 +126,10 @@ export class ProdutoState {
     return this.ProdutoService.IncrementarVisualizacoes(id).pipe(
       tap(result => {
         const state = getState();
-        const ListaProdutos = [...state.Produtos];
+        const ListaProdutos = state.Produtos;
         const index = ListaProdutos.findIndex(item => item._id === id);
+        if(ListaProdutos[index])
         ListaProdutos[index].Visualizacoes = result.Visualizacoes;
-
         setState({
           ...state,
           Produtos: ListaProdutos,

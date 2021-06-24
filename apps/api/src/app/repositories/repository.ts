@@ -1,185 +1,51 @@
-const MongoClient = require('mongodb').MongoClient;
-const MDBurl = process.env.MONGODB_URI || 'mongodb+srv://Metalefs:i4e7l4@cluster0.7u463.azure.mongodb.net/PersonalizadosLopes?retryWrites=true&w=majority';
-const MongoDBName = "PersonalizadosLopes";
-const Options = {
-  useNewUrlParser: true,
-  poolSize: 10,
-  useUnifiedTopology: true
-}
-
-var ObjectId = require('mongodb').ObjectID;
-import { Seeder } from "./seeding/";
 import { AppLogger } from "../../app-logger";
 let logger = new AppLogger();
 
+import { MongoClientService } from "../client/MongoClient.service";
+
 export module Repository {
 
-  /*Seeding Mongo DB */
-
-  export async function SeedCollections() {
-    let collectionsToSeed = Seeder.SeedCollections();
+  let _mongoClientService = new MongoClientService();
+  export async function InsertMany(collection: any, value: any) { // upserts many
     try {
-      collectionsToSeed.forEach((collection: any) => {
-        console.log(collection.name);
-        if (collection.array) {
-          InsertMany(collection.name, collection.value)
-        }
-        else {
-          Insert(collection.name, collection.value)
-        }
-      })
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-
-  export async function SeedCarousel() {
-    let collectionsToSeed = Seeder.SeedCarousel();
-    try {
-      Insert(collectionsToSeed.name, collectionsToSeed.value)
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  export async function SeedIntegracoes() {
-    let collectionsToSeed = Seeder.SeedIntegracoes();
-    try {
-      Insert(collectionsToSeed.name, collectionsToSeed.value)
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-
-  /*----------------------------*/
-
-  export function InsertMany(collection: any, value: any) { // upserts many
-    try {
-
-      MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-        if (err) {
-          logger.log(err)
-          throw err;
-        }
-        let dbo = db.db(MongoDBName);
-        dbo.collection(collection).insertMany(value, function (err: any, res: any) {
-          if (err) {
-            logger.log(err)
-            throw err;
-          }
-          console.log("Inserido " + res.insertedCount + " " + collection + " :  | " + new Date());
-          db.close();
-        });
-      });
+     return await _mongoClientService.InsertMany(collection,value);
     }
     catch (ex) {
+      logger.log(ex);
       throw ex;
     }
   }
 
   export async function Insert(collection: any, value: any) { // upserts one
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          let dbo = db.db(MongoDBName);
-          value.DataHoraCriacao = new Date();
-          dbo.collection(collection).insertOne(value, async function (err: any, res: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            console.log("Inserido " + res.insertedCount + " " + collection + " : | " + new Date());
-            resolve(await FindOne(collection, { _id: value._id }));
-            db.close();
-          });
-        });
-      });
-
+      return await _mongoClientService.Insert(collection,value);
     }
     catch (ex) {
       throw ex;
     }
   }
 
-  export function List(collection: string) { // reads without caching
+  export async function List(collection: string) { // reads without caching
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          dbo.collection(collection).find({}).toArray(function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            db.close();
-            resolve(result);
-          });
-        });
-      });
+      return await _mongoClientService.List(collection);
     }
     catch (ex) {
       throw ex;
     }
   }
 
-  export function Count(collection: string) { // count documents in collection
+  export async function Count(collection: string) { // count documents in collection
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          dbo.collection(collection).countDocuments({}, function (error: any, numOfDocs: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            db.close();
-            resolve(numOfDocs);
-          });
-        });
-      });
+      return await _mongoClientService.Count(collection);
     }
     catch (ex) {
       throw ex;
     }
   }
 
-  export function CountFilter(collection: string, query: any) { // count documents in collection
+  export async function CountFilter(collection: string, query: any) { // count documents in collection
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          dbo.collection(collection).countDocuments(query, function (error: any, numOfDocs: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            db.close();
-            resolve(numOfDocs);
-          });
-        });
-      });
+     return await _mongoClientService.CountFilter(collection, query);
     }
     catch (ex) {
       throw ex;
@@ -188,23 +54,7 @@ export module Repository {
 
   export async function FindOne(collection: string, query: any) { // finds by query
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          dbo.collection(collection).find(query).toArray(function (err: string, result: unknown) {
-            if (err) {
-              reject(err);
-            }
-            db.close();
-            console.log("Mongo FindOne", query, result[0]);
-            resolve(result[0])
-          });
-        });
-      });
+      return await _mongoClientService.FindOne(collection, query);
     }
     catch (ex) {
       return { erro: ex };
@@ -213,24 +63,7 @@ export module Repository {
 
   export async function Filter(collection: string, query: any) { // filters by query
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          return dbo.collection(collection).find(query).toArray(function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            db.close();
-            resolve(result)
-          });
-        });
-      });
+      return await _mongoClientService.Filter(collection, query);
     }
     catch (ex) {
       throw ex;
@@ -238,50 +71,16 @@ export module Repository {
   }
   export async function Paginate(collection: string, query: any, limit: number, skip: number) { // filters by query
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          return dbo.collection(collection).find(query).limit(limit).skip(limit * (skip - 1)).toArray(function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            db.close();
-            resolve(result)
-          });
-        });
-      });
+      return await _mongoClientService.Paginate(collection, query, limit, skip);
     }
     catch (ex) {
       throw ex;
     }
   }
 
-  export async function Aggregate(collection: string, query: any, search: any) { // filters by query
+  export async function Aggregate(collection: string, query: any, search: any) { // aggregation by query
     try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => object; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          var dbo = db.db(MongoDBName);
-          return dbo.collection(collection).find(query, search).toArray(function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            db.close();
-            resolve(result)
-          });
-        });
-      });
+      return await _mongoClientService.Aggregate(collection, query, search);
     }
     catch (ex) {
       throw ex;
@@ -290,109 +89,16 @@ export module Repository {
 
   export async function Edit(collection: any, id: string, query: any) { // edits one document by id
     try {
-
-      delete query._id;
-      delete query.DataHoraCriacao;
-      query.DataHoraAlteracao = new Date();
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          let dbo = db.db(MongoDBName);
-          dbo.collection(collection).updateOne({ "_id": new ObjectId(id) }, { $set: query }, async function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            console.log("Editado", result.n)
-            db.close();
-            resolve(await FindOne(collection, { "_id": new ObjectId(id) }).catch(x => reject(x)));
-          });
-        });
-      });
+      return await _mongoClientService.Edit(collection, id, query);
     }
     catch (ex) {
       return { erro: ex };
     }
   }
 
-  export function EditByAttribute(collection: any, attr: object, query: any) { // edits documents by one attribute
+  export async function EditByAttribute(collection: any, attr: object, query: any) { // edits documents by one attribute
     try {
-
-
-      MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-        if (err) {
-          logger.log(err)
-          throw err;
-        }
-        let dbo = db.db(MongoDBName);
-        console.log(collection, query, attr);
-        dbo.collection(collection).updateOne(attr, { $set: query }, function (err: any, result: any) {
-          if (err) {
-            logger.log(err)
-            throw err;
-          }
-          console.log("Editado", result, query)
-          db.close();
-        });
-      });
-
-    }
-    catch (ex) {
-      throw ex;
-    }
-  }
-
-  export async function UpdateUserToken(collection: any, id: string, token: any) { // updates one user token
-    try {
-
-
-      MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-        if (err) {
-          logger.log(err)
-          throw err;
-        }
-        let dbo = db.db(MongoDBName);
-        dbo.collection(collection).updateOne({ _id: id }, { $set: { token: token, DataHoraAlteracao: new Date() } }, function (err: any, result: any) {
-          if (err) {
-            logger.log(err)
-            throw err;
-          }
-          console.log("UpdateUserToken ", result.documents)
-          db.close();
-
-        });
-      });
-
-    }
-    catch (ex) {
-      throw ex;
-    }
-  }
-
-  export function UpdateUserPassword(collection: any, id: string, Senha: any) { // updates one user token
-    try {
-
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-          if (err) {
-            logger.log(err)
-            throw err;
-          }
-          let dbo = db.db(MongoDBName);
-          dbo.collection(collection).updateOne({ _id: id }, { $set: { Senha: Senha, DataHoraAlteracao: new Date() } }, async function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              throw err;
-            }
-            console.log("UpdateUserPassword ", result.documents)
-            db.close();
-            resolve(await FindOne(collection, { "_id": new ObjectId(id) }).catch(x => reject(x)));
-          });
-        });
-      });
+      return await _mongoClientService.EditByAttribute(collection, attr, query);
     }
     catch (ex) {
       throw ex;
@@ -401,25 +107,27 @@ export module Repository {
 
   export async function Remove(collection: any, id: any) { // removes one from collection
     try {
+      return await _mongoClientService.Remove(collection, id);
+    }
+    catch (ex) {
+      throw ex;
+    }
+  }
 
-      return new Promise((resolve, reject) => {
-        MongoClient.connect(MDBurl, Options, function (err: any, db: { db: (arg0: string) => any; close: () => void; }) {
-          if (err) {
-            logger.log(err)
-            reject(err);
-          }
-          let dbo = db.db(MongoDBName);
-          dbo.collection(collection).deleteOne({ "_id": new ObjectId(id) }, function (err: any, result: any) {
-            if (err) {
-              logger.log(err)
-              reject(err);
-            }
-            resolve(result);
-            console.log("Removed", collection, id)
-            db.close();
-          });
-        });
-      });
+
+
+  export async function UpdateUserToken(collection: any, id: string, token: any) { // updates one user token
+    try {
+      return await _mongoClientService.UpdateUserToken(collection, id, token);
+    }
+    catch (ex) {
+      throw ex;
+    }
+  }
+
+  export async function UpdateUserPassword(collection: any, id: string, Senha: any) { // updates one user token
+    try {
+      return await _mongoClientService.UpdateUserPassword(collection, id, Senha);
     }
     catch (ex) {
       throw ex;

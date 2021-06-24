@@ -16,21 +16,24 @@ ItemCarouselRouter.get(RouteDictionary.ItemCarousel, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.ItemCarousel, async (req: any, res) => {
+})
+.post(RouteDictionary.ItemCarousel, async (req: any, res) => {
   try {
     res.send(await ItemCarouselService.Inserir(await UsuarioLogado(req,res), req.body.item.ItemCarousel));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.ItemCarousel, async (req: any, res) => {
+})
+.put(RouteDictionary.ItemCarousel, async (req: any, res) => {
   try {
     res.send(await ItemCarouselService.Alterar(await UsuarioLogado(req,res), req.body.item.ItemCarousel));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.ItemCarousel, async (req: any, res) => {
+})
+.delete(RouteDictionary.ItemCarousel, async (req: any, res) => {
   try {
     res.send(await ItemCarouselService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }

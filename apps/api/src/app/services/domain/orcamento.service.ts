@@ -1,14 +1,12 @@
-import { entities, enums } from '@personalizados-lopes/data';
+import { entities } from '@personalizados-lopes/data';
 import { MensagemService } from './mensagem.service';
 import { SobreService } from './sobre.service';
 import { InformacoesContatoService } from './informacoescontato.service';
 
 import { Repository } from '../../repositories/repository';
-import { EmailService } from '../handlers/email.service';
-import { Usuario } from 'libs/data/src/lib/classes';
+import { EmailService } from '../external/email.service';
+import { InformacoesContato, Sobre, Usuario } from 'libs/data/src/lib/classes';
 import { BaseService } from '../baseService';
-
-var ObjectId = require('mongodb').ObjectID;
 
 export class OrcamentoService extends BaseService {
 
@@ -33,8 +31,8 @@ export class OrcamentoService extends BaseService {
       let ServicoInfoContato = new InformacoesContatoService();
       let ServicoSobre = new SobreService();
       let emailService = new EmailService();
-      const InfoContato = await ServicoInfoContato.Ler();
-      const Sobre = await ServicoSobre.Ler();
+      const InfoContato = await ServicoInfoContato.Ler() as InformacoesContato;
+      const Sobre = await ServicoSobre.Ler() as Sobre;
       const msg = await ServicoMensagens.Ler();
       let mensagem_orcamento = ServicoMensagens.SubstituirChavesMensagemOrcamento(msg[0].EmailRecebimentoOrcamento,Orcamento);
       await emailService.SendHtmlMessage(

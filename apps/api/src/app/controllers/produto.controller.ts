@@ -20,7 +20,8 @@ ProdutoRouter.get(RouteDictionary.Produto, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).get(RouteDictionary.Produto + ":id", async (req: any, res) => {
+})
+.get(RouteDictionary.Produto + ":id", async (req: any, res) => {
   try {
     if (req.params.id) {
       res.send(await ProdutoService.Filtrar({ "_id": new ObjectId(req.params.id) }));
@@ -33,8 +34,71 @@ ProdutoRouter.get(RouteDictionary.Produto, async (req: any, res) => {
     ErrorHandler.DefaultException(err, res)
   }
 })
-  .get(RouteDictionary.FiltrarProduto + ":page", (req: any, res) => {
-    const limit = parseInt(req.query.limit) || 12; // results per page
+.get(RouteDictionary.FiltrarProduto + ":page", FiltrarProdutos)
+.post(RouteDictionary.Produto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.Inserir(await UsuarioLogado(req, res), req.body.item.Produto));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+})
+.post(RouteDictionary.GostarProduto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.Gostar(req.body.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+})
+.post(RouteDictionary.RateProduto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.Rate(req.body.id, req.body.rating));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+})
+.post(RouteDictionary.IncrementarVendaProduto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.IncrementarVenda(req.body.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+})
+.post(RouteDictionary.IncrementarVisualizacoesProduto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.IncrementarVisualizacoes(req.body.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+})
+.put(RouteDictionary.Produto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.Alterar(await UsuarioLogado(req, res), req.body.item.Produto));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+})
+.delete(RouteDictionary.Produto, async (req: any, res) => {
+  try {
+    res.send(await ProdutoService.Deletar(await UsuarioLogado(req, res), req.query.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+});
+export {
+  ProdutoRouter
+}
+
+
+
+function FiltrarProdutos(req, res){
+  const limit = parseInt(req.query.limit) || 12; // results per page
     const page = req.params.page || 1; // Page
     let sQuery: FiltrarProdutoSearchQuery = {}
 
@@ -67,63 +131,5 @@ ProdutoRouter.get(RouteDictionary.Produto, async (req: any, res) => {
       sQuery
       , limit, page).then(x => {
         res.send(x);
-      });
-  })
-  .
-  post(RouteDictionary.Produto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.Inserir(await UsuarioLogado(req, res), req.body.item.Produto));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  }).post(RouteDictionary.GostarProduto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.Gostar(req.body.id));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  })
-  .post(RouteDictionary.RateProduto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.Rate(req.body.id, req.body.rating));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  })
-  .post(RouteDictionary.IncrementarVendaProduto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.IncrementarVenda(req.body.id));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  })
-  .post(RouteDictionary.IncrementarVisualizacoesProduto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.IncrementarVisualizacoes(req.body.id));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  })
-  .put(RouteDictionary.Produto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.Alterar(await UsuarioLogado(req, res), req.body.item.Produto));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  }).delete(RouteDictionary.Produto, async (req: any, res) => {
-    try {
-      res.send(await ProdutoService.Deletar(await UsuarioLogado(req, res), req.query.id));
-    }
-    catch (err) {
-      ErrorHandler.DefaultException(err, res)
-    }
-  });
-export {
-  ProdutoRouter
+    });
 }

@@ -15,21 +15,24 @@ ServicoRouter.get(RouteDictionary.Servico, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Servico, async (req: any, res) => {
+})
+.post(RouteDictionary.Servico, async (req: any, res) => {
   try {
     res.send(await ServicoService.Inserir(await UsuarioLogado(req, res), req.body.item.Servico));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Servico, async (req: any, res) => {
+})
+.put(RouteDictionary.Servico, async (req: any, res) => {
   try {
     res.send(await ServicoService.Alterar(await UsuarioLogado(req, res), req.body.item.Servico));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Servico, async (req: any, res) => {
+})
+.delete(RouteDictionary.Servico, async (req: any, res) => {
   try {
     res.send(ServicoService.Deletar(await UsuarioLogado(req, res), req.query.id));
   }

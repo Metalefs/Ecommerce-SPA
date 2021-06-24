@@ -16,21 +16,24 @@ MensagemRouter.get(RouteDictionary.Mensagem, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Mensagem, async (req: any, res) => {
+})
+.post(RouteDictionary.Mensagem, async (req: any, res) => {
   try {
     res.send(await MensagemService.Inserir(await UsuarioLogado(req,res), req.body.item.Mensagem));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Mensagem, async (req: any, res) => {
+})
+.put(RouteDictionary.Mensagem, async (req: any, res) => {
   try {
     res.send(await MensagemService.Alterar(await UsuarioLogado(req,res), req.body.item.Mensagem));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Mensagem, async (req: any, res) => {
+})
+.delete(RouteDictionary.Mensagem, async (req: any, res) => {
   try {
     res.send(await MensagemService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }

@@ -15,21 +15,24 @@ IntegracoesRouter.get(RouteDictionary.Integracoes, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Integracoes, async (req: any, res) => {
+})
+.post(RouteDictionary.Integracoes, async (req: any, res) => {
   try {
     res.send(await IntegracoesService.Inserir(await UsuarioLogado(req,res), req.body.item.Integracoes));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Integracoes, async (req: any, res) => {
+})
+.put(RouteDictionary.Integracoes, async (req: any, res) => {
   try {
     res.send(await IntegracoesService.Alterar(await UsuarioLogado(req,res), req.body.item.Integracoes));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Integracoes, async (req: any, res) => {
+})
+.delete(RouteDictionary.Integracoes, async (req: any, res) => {
   try {
     res.send(await IntegracoesService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }

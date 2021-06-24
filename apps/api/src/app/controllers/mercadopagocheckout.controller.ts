@@ -26,7 +26,8 @@ MercadoPagoController
     catch (err) {
       ErrorHandler.DefaultException(err, res)
     }
-}).post(RouteDictionary.Refund, (req: any, res) => {
+})
+.post(RouteDictionary.Refund, (req: any, res) => {
   try {
     mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
       console.log(payment);
@@ -44,6 +45,7 @@ MercadoPagoController
           break;
         }
       }
+
     });
   }
   catch (err) {

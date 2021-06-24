@@ -3,7 +3,7 @@ import { EmailNotificacao, Produto } from 'libs/data/src/lib/classes';
 import { Repository } from '../../repositories/repository';
 
 import { BaseService } from '../baseService';
-import { EmailService } from '../handlers/email.service';
+import { EmailService } from '../external/email.service';
 
 export class EmailNotificacaoService extends BaseService {
 

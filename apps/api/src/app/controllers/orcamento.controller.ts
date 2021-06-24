@@ -16,28 +16,32 @@ OrcamentoRouter.get(RouteDictionary.Orcamento, async (req: any, res) => {
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).get(RouteDictionary.Pedidos, async (req: any, res) => {
+})
+.get(RouteDictionary.Pedidos, async (req: any, res) => {
   try {
     res.send(await OrcamentoService.FiltrarOrcamentosPorUsuario(await UsuarioLogado(req, res)));
   }
   catch (err) {
   ErrorHandler.DefaultException(err, res)
 }
-}).post(RouteDictionary.Orcamento, async (req: any, res) => {
+})
+.post(RouteDictionary.Orcamento, async (req: any, res) => {
   try {
     res.send(await OrcamentoService.Inserir(null, req.body.payload.item.Orcamento));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Orcamento, async (req: any, res) => {
+})
+.put(RouteDictionary.Orcamento, async (req: any, res) => {
   try {
     res.send(await OrcamentoService.Alterar(await UsuarioLogado(req, res), req.body.item.Orcamento));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Orcamento, async (req: any, res) => {
+})
+.delete(RouteDictionary.Orcamento, async (req: any, res) => {
   try {
     res.send(await OrcamentoService.Deletar(await UsuarioLogado(req, res), req.query.id));
   }

@@ -128,7 +128,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
       this.ObterProduto(routeParams.id??"", routeParams.orcamentoId??"").subscribe(produto =>{
         this.Produto = produto;
-        this.LoadProduto(produto);
+        this.LoadProduto(this.Produto);
         this.findInvalidControlsRecursive();
       });
 
@@ -405,12 +405,13 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
 
   updateViews(produto:Produto){
-    if(!localStorage.getItem("vprod"+produto?._id)){
-      this.store.dispatch(new IncrementarVisualizacoesProduto(produto?._id)).subscribe(x=>{
-        Object.defineProperty(produto,'Visualizacoes',produto.Visualizacoes++??1);
-        localStorage.setItem("vprod"+produto?._id,"true");
-      });
-    }
+    if(produto?._id)
+      if(!localStorage.getItem("vprod-"+produto._id)){
+        this.store.dispatch(new IncrementarVisualizacoesProduto(produto._id)).subscribe(x=>{
+          produto.Visualizacoes ++;
+          localStorage.setItem("vprod-"+produto._id, "true");
+        });
+      }
   }
 
   LerComentariosProduto(idProduto:string){

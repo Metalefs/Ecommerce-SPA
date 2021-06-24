@@ -8,38 +8,33 @@ const TemaRouter = express();
 
 let TemaService: Services.TemaService = new Services.TemaService();
 
-TemaRouter.get(RouteDictionary.Tema, (req: any, res) => {
+TemaRouter.get(RouteDictionary.Tema, async (req: any, res) => {
   try {
-    TemaService.Ler().then(x => {
-      res.send(x);
-    });
+    res.send(await TemaService.Ler());
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).post(RouteDictionary.Tema, async (req: any, res) => {
+})
+.post(RouteDictionary.Tema, async (req: any, res) => {
   try {
-    TemaService.Inserir(await UsuarioLogado(req,res), req.body.item.Tema).then(x => {
-      res.send(x);
-    });
+    res.send(await TemaService.Inserir(await UsuarioLogado(req,res), req.body.item.Tema));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).put(RouteDictionary.Tema, async (req: any, res) => {
+})
+.put(RouteDictionary.Tema, async (req: any, res) => {
   try {
-    TemaService.Alterar(await UsuarioLogado(req,res), req.body.item.Produtos).then(x => {
-      res.send(x);
-    });
+    res.send(await TemaService.Alterar(await UsuarioLogado(req,res), req.body.item.Produtos));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
-}).delete(RouteDictionary.Tema, async (req: any, res) => {
+})
+.delete(RouteDictionary.Tema, async (req: any, res) => {
   try {
-    TemaService.Deletar(await UsuarioLogado(req,res), req.query.id).then(x => {
-      res.send(x);
-    });
+    res.send(await TemaService.Deletar(await UsuarioLogado(req,res), req.query.id));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
