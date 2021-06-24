@@ -3,67 +3,41 @@ import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
+import { UsuarioLogado } from '../_handlers/Authentication';
 
 const MensagemRouter = express();
 
+let MensagemService: Services.MensagemService = new Services.MensagemService();
 
-MensagemRouter.get(RouteDictionary.Mensagem, (req: any, res) => {
-    try {
-        let MensagemService:Services.MensagemService = new Services.MensagemService();
-
-        MensagemService.Ler().then(x=>{
-            res.send(x);
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).post(RouteDictionary.Mensagem, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            let MensagemService:Services.MensagemService = new Services.MensagemService();
-
-            MensagemService.Inserir(user,req.body.item.Mensagem).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).put(RouteDictionary.Mensagem, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            let MensagemService:Services.MensagemService = new Services.MensagemService();
-
-            MensagemService.Alterar(user,req.body.item.Mensagem).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).delete(RouteDictionary.Mensagem, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.query.token).then(user => {
-
-            let MensagemService:Services.MensagemService = new Services.MensagemService();
-
-            MensagemService.Deletar(user,req.query.id).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
+MensagemRouter.get(RouteDictionary.Mensagem, async (req: any, res) => {
+  try {
+    res.send(await MensagemService.Ler());
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).post(RouteDictionary.Mensagem, async (req: any, res) => {
+  try {
+    res.send(await MensagemService.Inserir(await UsuarioLogado(req,res), req.body.item.Mensagem));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).put(RouteDictionary.Mensagem, async (req: any, res) => {
+  try {
+    res.send(await MensagemService.Alterar(await UsuarioLogado(req,res), req.body.item.Mensagem));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).delete(RouteDictionary.Mensagem, async (req: any, res) => {
+  try {
+    res.send(await MensagemService.Deletar(await UsuarioLogado(req,res), req.query.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
 });
 export {
-    MensagemRouter
+  MensagemRouter
 }

@@ -17,6 +17,7 @@ import { EnderecoEntrega } from './enderecoEntrega';
 import { Integracoes } from './integracoes';
 import { BlogPost } from './blogPost';
 import { ComentarioProduto } from './comentarioProduto';
+import { Estampa } from './estampa';
 
 export {
     Categoria,
@@ -37,5 +38,6 @@ export {
     EnderecoEntrega,
     Integracoes,
     BlogPost,
-    ComentarioProduto
+    ComentarioProduto,
+    Estampa
 }

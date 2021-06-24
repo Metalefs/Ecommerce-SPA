@@ -4,69 +4,40 @@ import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
 import { exception } from 'console';
+import { UsuarioLogado } from '../_handlers/Authentication';
 const InformacoesContatoRouter = express();
 
-InformacoesContatoRouter.get(RouteDictionary.InformacoesContato, (req: any, res) => {
-    try {
-        let InformacoesContatoService:Services.InformacoesContatoService = new Services.InformacoesContatoService();
+let InformacoesContatoService: Services.InformacoesContatoService = new Services.InformacoesContatoService();
 
-        InformacoesContatoService.Ler().then(x=>{
-            res.send(x);
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).post(RouteDictionary.InformacoesContato, (req: any, res) => {
-    try {
-
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            console.log(user);
-            let InformacoesContatoService:Services.InformacoesContatoService = new Services.InformacoesContatoService();
-
-            InformacoesContatoService.Inserir(user,req.body.item.InformacoesContato).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).put(RouteDictionary.InformacoesContato, (req: any, res) => {
-    try {
-        console.log(req.body);
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            console.log(user);
-            let InformacoesContatoService:Services.InformacoesContatoService = new Services.InformacoesContatoService();
-            InformacoesContatoService.Alterar(user,req.body.item.InformacoesContato).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).delete(RouteDictionary.InformacoesContato, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.query.token).then(user => {
-
-            console.log(user);
-            let InformacoesContatoService:Services.InformacoesContatoService = new Services.InformacoesContatoService();
-
-            InformacoesContatoService.Deletar(user,req.query.id).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
+InformacoesContatoRouter.get(RouteDictionary.InformacoesContato, async (req: any, res) => {
+  try {
+    res.send(await InformacoesContatoService.Ler());
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).post(RouteDictionary.InformacoesContato, async (req: any, res) => {
+  try {
+    res.send(await InformacoesContatoService.Inserir(await UsuarioLogado(req, res), req.body.item.InformacoesContato));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).put(RouteDictionary.InformacoesContato, async (req: any, res) => {
+  try {
+    res.send(await InformacoesContatoService.Alterar(await UsuarioLogado(req, res), req.body.item.InformacoesContato));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).delete(RouteDictionary.InformacoesContato, async (req: any, res) => {
+  try {
+    res.send(await InformacoesContatoService.Deletar(await UsuarioLogado(req, res), req.query.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
 });
 export {
-    InformacoesContatoRouter
+  InformacoesContatoRouter
 }

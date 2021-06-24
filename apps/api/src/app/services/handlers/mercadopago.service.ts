@@ -1,10 +1,8 @@
-import { entities } from '@personalizados-lopes/data';
-import { Integracoes, Usuario } from 'libs/data/src/lib/classes';
+import { Usuario } from 'libs/data/src/lib/classes';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
-import { MercadoPagoPayment, MercadoPagoRefund, MercadoPagoSearchPaymentResult } from 'libs/data/src/lib/interfaces';
+import { MercadoPagoPayment, MercadoPagoRefund } from 'libs/data/src/lib/interfaces';
 import { ActualSearchPaymentResponse } from 'libs/data/src/lib/interfaces/mercadoPagoSearchPaymentResult';
-import { Repository } from '../repositories/repository';
-import { IntegracoesService } from './integracoes.service';
+import { IntegracoesService } from '../domain/integracoes.service';
 
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");

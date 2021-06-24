@@ -4,6 +4,7 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output, PLATFORM_ID, Vi
 import { MatDialog } from '@angular/material/dialog';
 import { fabric } from "fabric";
 import { Produto } from 'libs/data/src/lib/classes';
+import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { ImportacaoComponent } from './dialogs/importacao/importacao.component';
 import { StockImageComponent } from './dialogs/stock-image/stock-image.component';
 
@@ -28,7 +29,7 @@ export class CostumizationComponent implements OnInit {
   obj:any;
   bold:any;
   italic:any;
-  constructor(private dialog : MatDialog,@Inject(PLATFORM_ID) private platform: Object) {}
+  constructor(public dialog: NgDialogAnimationService,@Inject(PLATFORM_ID) private platform: Object) {}
 
   importOpen:boolean=false;
   ngOnInit(): void {
@@ -139,8 +140,7 @@ export class CostumizationComponent implements OnInit {
     this.importOpen = true;
     this.dialog.open(ImportacaoComponent,{
       data:this.fileLoaded,
-
-      panelClass:['animate__animated','animate__bounceIn', 'border']
+      panelClass:['animate__animated','animate__bounceIn', 'border'],
     }).afterClosed().subscribe(x=>{
       if(x){
         if(x == 'design')
