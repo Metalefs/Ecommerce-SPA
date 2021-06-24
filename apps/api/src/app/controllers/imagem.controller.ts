@@ -3,91 +3,47 @@ import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
+import { UsuarioLogado } from '../_handlers/Authentication';
 
 const ImagemRouter = express();
+let ImagemService: Services.ImagemService = new Services.ImagemService();
 
-
-ImagemRouter.get(RouteDictionary.Imagem, (req: any, res) => {
-    try {
-        let ImagemService:Services.ImagemService = new Services.ImagemService();
-
-        if(req.query.src){
-          ImagemService.Filtrar({Src: req.query.src}).then(x=>{
-            res.send(x);
-          }).catch((ex)=>{
-            ErrorHandler.DefaultException(ex,res);
-          });
-        }
-        if(req.query.nome){
-          ImagemService.Filtrar({Nome: req.query.nome}).then(x=>{
-            res.send(x);
-          }).catch((ex)=>{
-            ErrorHandler.DefaultException(ex,res);
-          });
-        }
-        else{
-          ImagemService.Ler().then(x=>{
-              res.send(x);
-          }).catch((ex)=>{
-            ErrorHandler.DefaultException(ex,res);
-          });
-        }
+ImagemRouter.get(RouteDictionary.Imagem, async (req: any, res) => {
+  try {
+    if (req.query.src) {
+      res.send(await ImagemService.Filtrar({ Src: req.query.src }));
     }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
+    if (req.query.nome) {
+      res.send(await ImagemService.Filtrar({ Nome: req.query.nome }));
     }
-}).post(RouteDictionary.Imagem, (req: any, res) => {
-    try {
-          let ImagemService:Services.ImagemService = new Services.ImagemService();
-
-          ImagemService.Inserir(req.body.item).then(x=>{
-              res.send(x);
-          }).catch((ex)=>{
-            ErrorHandler.AuthorizationException(ex,res);
-          });
+    else {
+      res.send(await ImagemService.Ler());
     }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).put(RouteDictionary.Imagem, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            let ImagemService:Services.ImagemService = new Services.ImagemService();
-
-            ImagemService.Alterar(user,req.body.item.Imagem).then(x=>{
-                res.send(x);
-            }).catch((ex)=>{
-              ErrorHandler.AuthorizationException(ex,res);
-            });
-
-        }).catch((ex)=>{
-          ErrorHandler.AuthorizationException(ex,res);
-        });;
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).delete(RouteDictionary.Imagem, (req: any, res) => {
-    try {
-        console.log(req.query)
-        Services.UsuarioService.getByToken(req.query.token[1]).then(user => {
-
-            let ImagemService:Services.ImagemService = new Services.ImagemService();
-
-            ImagemService.Deletar(user,req.query.id).then(x=>{
-                res.send(x);
-            }).catch((ex)=>{
-              ErrorHandler.AuthorizationException(ex,res);
-            });;
-
-        }).catch((ex)=>{
-          ErrorHandler.AuthorizationException(ex,res);
-        });;
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).post(RouteDictionary.Imagem, async (req: any, res) => {
+  try {
+    res.send(await ImagemService.InserirSemUsuario(req.body.item));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).put(RouteDictionary.Imagem, async (req: any, res) => {
+  try {
+    res.send(await ImagemService.Alterar(await UsuarioLogado(req,res), req.body.item.Imagem));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).delete(RouteDictionary.Imagem, async (req: any, res) => {
+  try {
+    res.send(await ImagemService.Deletar(await UsuarioLogado(req,res), req.query.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
 });
 export {
   ImagemRouter

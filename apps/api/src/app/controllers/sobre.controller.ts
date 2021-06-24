@@ -3,65 +3,40 @@ import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
+import { UsuarioLogado } from '../_handlers/Authentication';
 const SobreRouter = express();
 
-SobreRouter.get(RouteDictionary.Sobre, (req: any, res) => {
-    try {
-        let SobreService:Services.SobreService = new Services.SobreService();
+let SobreService: Services.SobreService = new Services.SobreService();
 
-        SobreService.Ler().then(x=>{
-            res.send(x);
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).post(RouteDictionary.Sobre, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            let SobreService:Services.SobreService = new Services.SobreService();
-
-            SobreService.Inserir(user,req.body.item.Sobre).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).put(RouteDictionary.Sobre, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            let SobreService:Services.SobreService = new Services.SobreService();
-
-            SobreService.Alterar(user,req.body.item.Sobre).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).delete(RouteDictionary.Sobre, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.query.token).then(user => {
-
-            let SobreService:Services.SobreService = new Services.SobreService();
-
-            SobreService.Deletar(user,req.query.id).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
+SobreRouter.get(RouteDictionary.Sobre, async (req: any, res) => {
+  try {
+    res.send(await SobreService.Ler());
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).post(RouteDictionary.Sobre, async (req: any, res) => {
+  try {
+    res.send(await SobreService.Inserir(await UsuarioLogado(req, res), req.body.item.Sobre));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).put(RouteDictionary.Sobre, async (req: any, res) => {
+  try {
+    res.send(await SobreService.Alterar(await UsuarioLogado(req, res), req.body.item.Sobre));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).delete(RouteDictionary.Sobre, async (req: any, res) => {
+  try {
+    res.send(await SobreService.Deletar(await UsuarioLogado(req, res), req.query.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
 });
 export {
-    SobreRouter
+  SobreRouter
 }

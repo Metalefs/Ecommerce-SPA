@@ -1,9 +1,8 @@
-import { email } from '../../config';
+import { email } from '../../../config';
 import { entities } from '@personalizados-lopes/data';
-import { InformacoesContatoService } from './informacoescontato.service';
-import { MensagemService } from './mensagem.service';
-import { info } from 'console';
-import { SobreService } from './sobre.service';
+import { InformacoesContatoService } from '../domain/informacoescontato.service';
+import { MensagemService } from '../domain/mensagem.service';
+import { SobreService } from '../domain/sobre.service';
 import { Produto } from 'libs/data/src/lib/classes';
 
 const nodemailer = require("nodemailer");

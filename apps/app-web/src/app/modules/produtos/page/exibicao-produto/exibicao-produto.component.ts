@@ -213,10 +213,20 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     if(this.IsValid){
       let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
         data:this.Produto,
-        width:'90vw',
-        height:'90vh',
-        panelClass:['animate__animated','animate__bounceIn', 'border']
-
+        panelClass:['animate__animated','animate__bounceIn', 'border'],
+        restoreFocus: false,
+        width:'50vw',
+        height:'100vh',
+        animation: {
+          to: "left",
+          incomingOptions: {
+            keyframeAnimationOptions: { easing: "ease", duration: 300 }
+          },
+          outgoingOptions: {
+            keyframeAnimationOptions: { easing: "ease", duration: 300 }
+          }
+        },
+        position: { rowStart: "0" },
       })
       dialogref.afterClosed().subscribe(x=>{
         if(x.Canvas.objects){

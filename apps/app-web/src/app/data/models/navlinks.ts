@@ -25,16 +25,17 @@ export interface NavLinkOptions{
 
 export let NavLinks:NavLink[] =
 environment.production ? [
-  {name: "Inicio",     href:"/",  icon:'',group:GrupoNavLink.institucional},
-  {name: "Empresa",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
+  {name: "Institucional", href:"", icon:'about',group:GrupoNavLink.none},
+  {name: "Inicio",     href:"/",  icon:'home',group:GrupoNavLink.institucional},
+  {name: "Empresa",     href:"empresa",  icon:'business',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
-  {name: "Institucional", href:"", icon:'',group:GrupoNavLink.none},
-  {name: "Inicio",     href:"/",  icon:'',group:GrupoNavLink.institucional},
-  {name: "Empresa",     href:"empresa",  icon:'',group:GrupoNavLink.institucional},
+  {name: "Institucional", href:"", icon:'about',group:GrupoNavLink.none},
+  {name: "Inicio",     href:"/",  icon:'home',group:GrupoNavLink.institucional},
+  {name: "Empresa",     href:"empresa",  icon:'business',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
   {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},

@@ -3,70 +3,40 @@ import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
-import { exception } from 'console';
+import { UsuarioLogado } from '../_handlers/Authentication';
 const IntegracoesRouter = express();
 
-IntegracoesRouter.get(RouteDictionary.Integracoes, (req: any, res) => {
-    try {
-        let IntegracoesService:Services.IntegracoesService = new Services.IntegracoesService();
+let IntegracoesService: Services.IntegracoesService = new Services.IntegracoesService();
 
-        IntegracoesService.Ler().then(x=>{
-            res.send(x);
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).post(RouteDictionary.Integracoes, (req: any, res) => {
-    try {
-
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            console.log(user);
-            let IntegracoesService:Services.IntegracoesService = new Services.IntegracoesService();
-
-            IntegracoesService.Inserir(user,req.body.item.Integracoes).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).put(RouteDictionary.Integracoes, (req: any, res) => {
-    try {
-        console.log(req.body);
-        Services.UsuarioService.getByToken(req.body.token).then(user => {
-
-            console.log(user);
-            let IntegracoesService:Services.IntegracoesService = new Services.IntegracoesService();
-            IntegracoesService.Alterar(user,req.body.item.Integracoes).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
-}).delete(RouteDictionary.Integracoes, (req: any, res) => {
-    try {
-        Services.UsuarioService.getByToken(req.query.token).then(user => {
-
-            console.log(user);
-            let IntegracoesService:Services.IntegracoesService = new Services.IntegracoesService();
-
-            IntegracoesService.Deletar(user,req.query.id).then(x=>{
-                res.send(x);
-            });
-
-        });
-    }
-    catch (err) {
-        ErrorHandler.DefaultException(err, res)
-    }
+IntegracoesRouter.get(RouteDictionary.Integracoes, async (req: any, res) => {
+  try {
+    res.send(await IntegracoesService.Ler());
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).post(RouteDictionary.Integracoes, async (req: any, res) => {
+  try {
+    res.send(await IntegracoesService.Inserir(await UsuarioLogado(req,res), req.body.item.Integracoes));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).put(RouteDictionary.Integracoes, async (req: any, res) => {
+  try {
+    res.send(await IntegracoesService.Alterar(await UsuarioLogado(req,res), req.body.item.Integracoes));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
+}).delete(RouteDictionary.Integracoes, async (req: any, res) => {
+  try {
+    res.send(await IntegracoesService.Deletar(await UsuarioLogado(req,res), req.query.id));
+  }
+  catch (err) {
+    ErrorHandler.DefaultException(err, res)
+  }
 });
 export {
-    IntegracoesRouter
+  IntegracoesRouter
 }

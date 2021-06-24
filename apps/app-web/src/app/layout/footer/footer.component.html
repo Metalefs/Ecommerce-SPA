@@ -1,4 +1,4 @@
-<footer class="footer  flex-w flex-sb py-0 px-0 of-x-scroll">
+<footer class="footer footer-color flex-w flex-sb py-0 px-0 of-x-scroll">
   <div class="margin a-i-c flex-w flex-sb py-0 px-0 of-x-scroll">
 
     <div class="hero w-full is-small shadow-light ">
@@ -6,7 +6,7 @@
         <div class="margin w-full dis-flex flex-sa flex-m">
           <div class="columns is-gapless is-multiline is-vcentered">
             <div class="column pb-0 mt-2 w-full dis-flex flex-m  flex-c">
-              <label for="nome" class="label">ASSINE NOSSA NEWSLETTER</label>
+              <label for="nome" class="">ASSINE NOSSA NEWSLETTER</label>
             </div>
             <div class="column">
               <div class="dis-flex flex-m">
@@ -26,8 +26,8 @@
         </div>
       </div>
       <div class="hero-body">
-        <div class="columns is-multiline">
-          <div class="column is-3 social">
+        <div class="columns px-3 is-multiline">
+          <div class="column social">
             <div class="footer-widget">
               <h3 class="mb-2 footer-title">Contate-nos</h3>
               <div class="contact-info">
@@ -43,7 +43,7 @@
             </div>
           </div>
 
-          <div class="column is-3 text-center is-hidden-mobile">
+          <!-- <div class="column is-3 text-center is-hidden-mobile">
             <h3 class="mb-2 footer-title">Acesso Rápido</h3>
             <a *ngFor="let link of Links"
             class="footer-text links"
@@ -53,9 +53,9 @@
             routerLinkActive="active">
             <p class="has-text-medium">{{link.name}}</p>
           </a>
-          </div>
+          </div> -->
 
-          <div class="column is-4 is-hidden-mobile">
+          <div class="column is-hidden-mobile">
             <h3 class="footer-title">Sobre</h3>
             <div class="txt-justify footer-text has-text-medium" [innerHTML]="(Sobre$ | async)?.Historia"></div>
           </div>
@@ -73,7 +73,7 @@
                     height="50"
                     [style.height]="'150px !important'"
                     [style.width]="'50px !important'"
-                    class="img-badge has-background-light"
+                    class="img-badge "
                     >
                 </div>
                 <div class="column is-12 txt-center">
@@ -98,14 +98,14 @@
         </div>
       </div>
     </div>
-    <mat-toolbar class="w-full shadow-light has-background-white" title="Desenvolvido por Devportable -Jackson Pires" style="white-space: break-spaces; ">
-      <p class="descricao-produto" [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ"> </p>
+    <footer class="w-full shadow-light has-background-white" title="Desenvolvido por Devportable -Jackson Pires" style="white-space: break-spaces; ">
+      <H4>CNPJ {{(Sobre$|async)?.CNPJ}} </H4>
       <!-- <ul class="px-3 has-text-weight-bold">
         <li><a pageScroll href="#topo" [routerLink]="['empresa']" class="has-text-black">SOBRE</a></li>
         <li><a pageScroll href="#topo" [routerLink]="['orcamento']" class="has-text-black">FALE CONOSCO</a></li>
       </ul> -->
 
-    </mat-toolbar>
+    </footer>
 </footer>
 
 

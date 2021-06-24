@@ -4,38 +4,30 @@ import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
 import { MercadoPagoService } from '../services';
+import { UsuarioLogado } from '../_handlers/Authentication';
 
 const MercadoPagoController = express();
 
+let mercadoPagoService = new MercadoPagoService();
+
 MercadoPagoController
-.get(RouteDictionary.ListPayments, (req: any, res) => {
+.get(RouteDictionary.ListPayments, async (req: any, res) => {
   try {
-    Services.UsuarioService.getByToken(req.query.token).then(user => {
-      let mercadoPagoService = new MercadoPagoService();
-      mercadoPagoService.getAllPayments(user).then(x=>{
-        res.send(x);
-      });
-    }).catch(ex=>{
-      ErrorHandler.DefaultException(ex, res);
-    });
+    res.send(await mercadoPagoService.getAllPayments(await UsuarioLogado(req,res)));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
 })
-.post(RouteDictionary.Checkout, (req: any, res) => {
+.post(RouteDictionary.Checkout, async (req: any, res) => {
     try {
-      let mercadoPagoService = new MercadoPagoService();
-      mercadoPagoService.checkout(req.body.preference).then(x=>{
-        res.send(x);
-      });
+      res.send(await mercadoPagoService.checkout(req.body.preference));
     }
     catch (err) {
       ErrorHandler.DefaultException(err, res)
     }
 }).post(RouteDictionary.Refund, (req: any, res) => {
   try {
-    let mercadoPagoService = new MercadoPagoService();
     mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
       console.log(payment);
       switch(payment.status){
@@ -52,7 +44,6 @@ MercadoPagoController
           break;
         }
       }
-
     });
   }
   catch (err) {

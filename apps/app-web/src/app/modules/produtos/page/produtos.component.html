@@ -22,10 +22,10 @@
 </mat-toolbar>
 <div class="has-background-white" style="border: 1px solid #e9ecef; border-width: 1px 0 1px 0;">
 
-  <div [@cardFlip]="state" class="px-0 py-0 mb-0 pb-0 pt-0 " id="Todos">
+  <div [@cardFlip]="state" class="py-0 mb-0 pb-0 pt-0 pr-3" id="Todos">
 
-    <div class="columns px-0 ">
-      <div class="column is-3 is-hidden-mobile pr-0">
+    <div class="columns">
+      <div class="column is-2 is-hidden-mobile">
         <div class="flex-c w-full portfolio pos-sticky pt-0">
           <div class="is-hidden-mobile w-full">
             <mat-list class="w-full pt-0">
@@ -36,7 +36,7 @@
                 <div class="column is-12 w-full">
                   <span class="p-input-icon-left w-full ">
                     <i class="pi pi-search"></i>
-                    <input type="text" class="border py-2" type="text" placeholder="Filtrar em {{CategoriaAtiva?.Nome}}"
+                    <input type="text" class="border py-2" type="text" placeholder="{{CategoriaAtiva?.Nome}}"
                       pInputText [(ngModel)]="activeSearchFilter" matInput (change)="atualizarFiltroAtivo()"
                       placeholder="Search">
                   </span>
@@ -113,25 +113,24 @@
           </div>
         </div>
       </div>
-      <div class="column is-9 is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll">
+      <div class="column pl-0 is-10 is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll">
         <div class="pb-0 mb-0">
           <div class="w-full">
 
-            <div *ngIf="total!=0" class="w-full dis-flex flex-sb is-hidden-mobile my-2">
-              <!--
-                <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p> -->
-              <!-- <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span> -->
+            <!-- <div *ngIf="total!=0" class="w-full dis-flex flex-sb is-hidden-mobile my-2">
+
+              <p>Exibindo {{Produtos?.length}} de {{total}} {{total==1?' resultado':' produtos encontrados'}}</p>
+              <span class="subtitle is-size-7">Página {{page}} de {{Ceil((total/activeOrderLimit))}}</span>
 
 
-            </div>
+            </div> -->
 
-            <div class="columns is-1 is-multiline dis-flex">
+            <div class="is-multiline dis-flex">
 
               <p-dataView [value]="Produtos" [lazy]="false" [paginator]="true" [rows]="12" totalRecords="{{total}}"
                 pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'list' : 'grid'"
                 [emptyMessage]="'Nenhum item encontrado'">
                 <ng-template pTemplate="header">
-                  <p-dataViewLayoutOptions class=" is-hidden-touch"></p-dataViewLayoutOptions>
                   <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
 
                         <div class="column is-hidden-tablet is-12-mobile">
@@ -155,7 +154,9 @@
                           </mat-form-field>
                         </div> -->
                     <div class="column is-12-desktop is-4-mobile">
+
                       <div class="dis-flex w-full flex-r">
+                        <p-dataViewLayoutOptions class="column is-hidden-touch"></p-dataViewLayoutOptions>
                         <mat-form-field appearance="" class="is-hidden-touch">
                           <mat-label>Ordenar por</mat-label>
                           <mat-select matNativeControl [(ngModel)]="activeOrderFilter"

@@ -4,7 +4,7 @@
   &-status{
     position: absolute;
     top: 13px;
-    left: -35;
+    right: -5px;
     color: #000000;
     padding: 5px 10px;
     z-index: 3;
@@ -233,7 +233,7 @@ img{
 .portfolio-item {
   margin: 0px;
   display: block;
-  border-radius: 30px;
+  // border-radius: 30px;
   display: flex;
   background: #ffffff;
   height: 90%;
@@ -325,7 +325,7 @@ img{
   border-radius: 0.25rem;
   transition: all ease .2s;
   transition-delay: .2s;
-  opacity: 1;
+  opacity: .5;
   z-index: 2;
   &:hover{
     opacity: 1;
@@ -381,19 +381,17 @@ img{
 }
 
 :host ::ng-deep slideshow{
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   &.mat-card-image{
-    border-radius: 30px;
+    // border-radius: 30px;
   }
 }
 
 .btn-vejamais{
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 1);
   border-radius: 5px;
 
 }
 .mat-accent{
-  background: rgb(231, 5, 81);    background: #788dc4;
-  opacity: 0.5 !important;
-  opacity: .5;
+  background: rgb(231, 5, 81);//    background: #788dc4;
 }
