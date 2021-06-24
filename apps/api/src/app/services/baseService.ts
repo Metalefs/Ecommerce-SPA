@@ -13,9 +13,14 @@ export class BaseService {
 
   async Ler(){
       return  Repository.List(this.entity).then(x => {
-          return x[0];
+          return x;
       });
   }
+  async LerPrimeiro(){
+    return  Repository.List(this.entity).then(x => {
+        return x[0];
+    });
+}
   async Filtrar(filter:{}){
       return Repository.Filter(this.entity, filter).then(x => {
           return x;
