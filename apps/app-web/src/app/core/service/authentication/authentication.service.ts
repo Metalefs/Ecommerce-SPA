@@ -157,6 +157,6 @@ export class AuthenticationService {
   }
 
   tokenize(item: object) {
-    return { item, token: this.currentUserSubject?.value?.token };
+    return { item, token: "deprecated" };
   }
 }
