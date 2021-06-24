@@ -1,11 +1,11 @@
-import {crypt_config} from '../../config';
+import {crypt_config} from '../../../config';
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-import { Repository } from '../repositories/repository';
+import { Repository } from '../../repositories/repository';
 import { entities } from 'libs/data/src';
-import { EmailService } from './email.service';
+import { EmailService } from '../handlers/email.service';
 
-import { generateSinglePassword } from './password.service';
+import { generateSinglePassword } from '../handlers/password.service';
 import { Usuario } from 'libs/data/src/lib/classes';
 import { TrocaSenha } from 'libs/data/src/lib/interfaces';
 
