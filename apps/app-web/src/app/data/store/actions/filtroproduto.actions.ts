@@ -1,5 +1,5 @@
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
-import { FiltroProduto } from '../../models/filtroProduto';
+import { FiltroProduto } from '../../../shared/models/interfaces/filtroProduto';
 
 export class LerFiltroProduto {
 

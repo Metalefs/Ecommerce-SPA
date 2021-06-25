@@ -1,0 +1,65 @@
+<div class="column is-6 pb-0" *ngIf="Produto?.Tamanhos">
+  <div>
+    <mat-form-field class="field w-full">
+      <mat-chip-list #chipList2 aria-label="Size selection">
+        <mat-chip
+          *ngFor="let tamanho of Produto.Tamanhos"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="removeTamanho(tamanho)"
+        >
+          {{ tamanho }}
+          <mat-icon matChipRemove *ngIf="removable">
+            cancelar
+          </mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Novo tamanho..."
+          #colorInput
+          [formControl]="sizeCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList2"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="addTamanho($event)"
+        />
+      </mat-chip-list>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="selectedTamanho($event)"
+      >
+        <mat-option *ngFor="let size of filteredSizes | async" [value]="size">
+          {{ size }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <p><em>Tamanhos</em></p>
+    <mat-form-field
+      class="field w-full"
+      *ngIf="Produto?.Cores"
+      appearance="fill"
+    >
+      <mat-label class="label">Selecione um tamanho</mat-label>
+      <mat-select
+        matNativeControl
+        [(ngModel)]="Produto.Tamanho"
+        [value]="Produto?.Tamanho"
+      >
+        <mat-option
+          *ngFor="let opt of Produto?.Tamanhos"
+          [value]="opt"
+          class="w-full"
+        >
+          <div
+            class="cor-produto card box w-full"
+            (click)="Produto.Tamanho = opt"
+          >
+            <p>{{ opt }}</p>
+          </div>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>

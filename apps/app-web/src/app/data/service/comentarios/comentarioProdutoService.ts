@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import { ComentarioProduto } from 'libs/data/src/lib/classes';
+import { AngularFireDatabase} from '@angular/fire/database';
 import { FireBaseService } from '../base/firebase.service';
 
 @Injectable({

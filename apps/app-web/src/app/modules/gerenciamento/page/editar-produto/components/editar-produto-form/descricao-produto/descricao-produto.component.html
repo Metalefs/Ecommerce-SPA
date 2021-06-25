@@ -1,0 +1,19 @@
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Descrição</mat-card-title>
+      <mat-card-content>
+        Explore a ferramenta
+        <p>
+          Aqui é possível inserir conteúdos externos como fotos e videos,
+          postagens de redes sociais e criação de tabelas de caracteristicas
+        </p>
+      </mat-card-content>
+    </mat-card-header>
+  </mat-card>
+
+  <personalizados-lopes-editor
+    (Changed)="Produto.Descricao = $event"
+    [Conteudo]="Produto.Descricao"
+  ></personalizados-lopes-editor>
+</div>

@@ -8,7 +8,6 @@ import { TextboxQuestion } from '../../../../shared/components/dynamic-form/ques
 import { QuestionBase, DynFormQuestions } from '../../../../shared/components/dynamic-form/question-base';
 
 import { entities } from '@personalizados-lopes/data';
-import { ServicoService } from '../../../../data/service/';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServicoState } from 'apps/app-web/src/app/data/store/state';
 import { Select, Store } from '@ngxs/store';

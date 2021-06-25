@@ -3,8 +3,8 @@ import { EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BlogPostService } from 'apps/app-web/src/app/data/service';
 import { EditarPostComponent } from '../dialogs/editar-post/editar-post.component';
+import { BlogPostService } from '../../../../blog/blog.service';
 @Component({
   selector: 'personalizados-lopes-edicao-card-blog',
   templateUrl: './edicao-card-blog.component.html',

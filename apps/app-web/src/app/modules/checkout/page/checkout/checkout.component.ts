@@ -3,7 +3,7 @@ import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { fade, slider, sliderSide } from 'apps/app-web/src/app/animations';
-import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
+import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { order } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento } from 'libs/data/src/lib/classes';

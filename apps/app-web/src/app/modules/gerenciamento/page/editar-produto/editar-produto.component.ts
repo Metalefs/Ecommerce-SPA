@@ -1,24 +1,33 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { entities } from '@personalizados-lopes/data';
 import { Select, Store } from '@ngxs/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { CriarProdutoDialogComponent } from './DialogComponents/criar-dialog/criar-dialog.component';
-import { Categoria, Produto } from 'libs/data/src/lib/classes';
+import { BlogPost, Categoria, Produto } from 'libs/data/src/lib/classes';
 import { ProdutoState } from 'apps/app-web/src/app/data/store/state/produto.state';
 import { AdicionarProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
-import { ProdutoService } from 'apps/app-web/src/app/data/service';
+import { EditarProdutoService } from './editar-produto.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
-import { order, orderPreco } from 'apps/app-web/src/app/helper/ObjHelper';
+import { order, orderPreco, translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { TiposOrdenacao } from '../../../produtos/page/produtos.component';
-import { OrderStatus, OrderType } from 'apps/app-web/src/app/data/models/order-type';
-import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { OrderStatus, OrderType } from 'apps/app-web/src/app/shared/models/interfaces/';
+import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { CategoriaState } from 'apps/app-web/src/app/data/store/state';
 import { fade } from 'apps/app-web/src/app/animations';
+import { FormControl } from '@angular/forms';
+import { CriarCategoriaDialogComponent } from '../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
+import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { GalleryConfig } from 'ng-gallery';
+import { CriarPostComponent } from '../editar-blog/dialogs/criar-post/criar-post.component';
+import { CriarClienteDialogComponent } from '../editar-clientes/DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
+import { AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
+import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 
 @Component({
   selector: 'personalizados-lopes-editar-produto',
@@ -27,6 +36,29 @@ import { fade } from 'apps/app-web/src/app/animations';
   animations: [fade]
 })
 export class EditarProdutoComponent implements OnInit {
+  galleryConfig$: Observable<GalleryConfig>;
+  enumStatusProduto = StatusProduto;
+  fileNames:string="nenhum arquivo selecionado.";
+  Produto:Produto;
+  visible = true;
+  selectable = true;
+  removable = true;
+  public Editor;
+  colorCtrl = new FormControl();
+  filteredColors: Observable<Cor[]>;
+  allColors: Cor[] = [
+    {nome: 'Branco', cor:'white'},
+    {nome: 'Preto', cor:'black'},
+    {nome: 'Azul Marinho', cor:'tealblue'},
+  ];
+
+  tagCtrl = new FormControl();
+  sizeCtrl = new FormControl();
+  filteredSizes: Observable<string[]>;
+  allSizes: string[] = ['P','M','G','GG','XGG'];
+
+  Categorias: entities.Categoria[];
+
   value: number = 1;
   maxValue: number = 100;
   options: Options = {
@@ -43,6 +75,7 @@ export class EditarProdutoComponent implements OnInit {
       }
     }
   };
+
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   @Select(CategoriaState.ObterListaCategorias) Categorias$: Observable<Categoria[]>;
   Produtos:Produto[];
@@ -78,16 +111,18 @@ export class EditarProdutoComponent implements OnInit {
     {name:'Em promoção', id: StatusProduto.promocao},
     {name:'Esgotados', id: StatusProduto.esgotado},
   ]
+
   Parcelamento:boolean;
   MultiplasCores:boolean;
   defaultCategory = "Todos os produtos";
   CategoriaAtiva:Categoria;
+
   constructor(
-    private store: Store,
-    private pService: ProdutoService,
-    private dialog: MatDialog,
-    private _snackBar: MatSnackBar,
-    private produtoService: ProdutoService
+    protected store: Store,
+    protected dialog: MatDialog,
+    protected _snackBar: MatSnackBar,
+    protected produtoService: EditarProdutoService,
+    protected authService: AuthenticationService
     ) {
 
       this.Atualizar();
@@ -96,7 +131,6 @@ export class EditarProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.Atualizar();
   }
-
 
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",
@@ -107,6 +141,7 @@ export class EditarProdutoComponent implements OnInit {
     Modelo:"",
     Tags:""
   }
+
   atualizarFiltroAtivo(){
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter||''
@@ -132,18 +167,17 @@ export class EditarProdutoComponent implements OnInit {
          x.items = x.items.sort((a, b) => this.orderPreco(a,b,true));
         break;
       }
-
       this.Produtos = x.items;
-
       this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o=> o.Preco)) : this.Produtos[0].Preco);
-
     })
   }
+
   changeOptions(ceil:number) {
     const newOptions: Options = Object.assign({}, this.options);
     newOptions.ceil = ceil;
     this.options = newOptions;
   }
+
   filtroAtivo(produto:Produto){
     if(produto){
       if(this.matchSearchFilter(produto) &&
@@ -156,6 +190,7 @@ export class EditarProdutoComponent implements OnInit {
     }
     return false;
   }
+
   matchParcelamentoFilter(produto:Produto){
     if(this.Parcelamento)
       return produto?.Parcelas > 0;
@@ -184,15 +219,16 @@ export class EditarProdutoComponent implements OnInit {
      produto.Nome.toLocaleLowerCase().includes(this.activeSearchFilter.toLocaleLowerCase())
      :
      true;
-
     return true;
   }
+
   order(a,b,desc){
     return order(a,b,desc)
   }
   orderPreco(a,b,desc){
     return orderPreco(a,b,desc)
   }
+
   SetCategoria(categoria:Categoria){
     this.CategoriaAtiva = categoria == null ?
     new Categoria(this.defaultCategory,this.defaultCategory)
@@ -201,30 +237,33 @@ export class EditarProdutoComponent implements OnInit {
     this.ResetPage();
     this.atualizarFiltroAtivo();
   }
+
   ResetPage(){
     this.page = 1;
   }
+
   Atualizar(){
-    this.pService.FiltrarProdutos(this.fQuery,1,50).subscribe(x=>{
+    this.produtoService.FiltrarProdutos(this.fQuery,1,50).subscribe(x=>{
       this.Produtos = x.items;
       this.total = x.total;
     })
   }
+
   CarregarMaisProdutos(){
     this.pagina++;
-    this.pService.FiltrarProdutos(this.fQuery,this.pagina,this.items).subscribe(x=>{
+    this.produtoService.FiltrarProdutos(this.fQuery,this.pagina,this.items).subscribe(x=>{
       this.total = x.total;
       x.items.forEach(item=>this.Produtos.push(item))
       console.log(x);
     })
   }
+
   Criar(): void {
     const dialogRef = this.dialog.open(CriarProdutoDialogComponent, {
       width: "100%",
       height: "100%",
       data: ""
     });
-
     dialogRef.afterClosed().subscribe((Produto : entities.Produto) => {
       if(Produto != undefined){
         this.store.dispatch(new AdicionarProduto(Produto)).subscribe(x=>{
@@ -236,4 +275,142 @@ export class EditarProdutoComponent implements OnInit {
     });
   }
 
+  CriarCategoria(): void {
+    const dialogRef = this.dialog.open(CriarCategoriaDialogComponent, {
+      width: '90%',
+      data: ""
+    });
+    dialogRef.afterClosed().subscribe((Categoria : entities.Categoria) => {
+      if(Categoria != undefined)
+      this.store.dispatch(new AdicionarCategoria(Categoria)).subscribe(x=> {
+        this._snackBar.open("Categoria "+Categoria.Nome+" criada com sucesso", "Fechar", {
+
+        });
+        this.CarregarCategorias();
+      });
+    });
+  }
+
+  CriarPostagem(): void {
+    const dialogRef = this.dialog.open(CriarPostComponent, {
+      width: '90%',
+      data: ""
+    });
+    dialogRef.afterClosed().subscribe((post: BlogPost) => {
+      if (post != undefined) {
+        this.authService.currentUser.subscribe(usr => {
+          post.Autor.Nome = usr.Nome;
+          post.Autor.Email = usr.Email;
+          post.DataHoraAlteracao = new Date();
+          post.DataHoraCriacao = new Date();
+          this.produtoService.CriarPostagem(post).then(() => {
+            this._snackBar.open("Adicionando postagem", "Fechar", {
+
+            });
+          });
+        })
+      }
+    });
+  }
+
+  CriarDepoimento(): void {
+    const dialogRef = this.dialog.open(CriarClienteDialogComponent, {
+      width: '90%',
+      data: ""
+    });
+    dialogRef.afterClosed().subscribe((Cliente: entities.Cliente) => {
+      if (Cliente != undefined) {
+        this.produtoService.SalvarImagemCliente(Cliente.Foto).then(async task => {
+          Cliente.Foto = await this.produtoService.ObterCaminhoImagem((await task).metadata.fullPath, Cliente.Nome, "Cliente");
+          this.store.dispatch(new AdicionarCliente(Cliente)).subscribe();
+        })
+      }
+    });
+  }
+
+  CarregarCategorias(){
+    this.produtoService.CarregarCategorias().subscribe(x=>{this.Categorias = x;});
+  }
+
+  upload($event){
+    this.Produto.FileList = $event.target.files;
+    this.fileNames = '';
+    for(let i =0; i < this.Produto.FileList.length; i++){
+      this.fileNames+=this.Produto.FileList[i].name+',';
+      console.log(this.Produto.FileList[i].name)
+    }
+    console.log(this.fileNames)
+  }
+
+  addCor(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim())
+      this.Produto.Cores.push(
+        {
+          nome:value.split(';')[0].trim(),
+          cor:value.split(';')[1].trim()
+        }
+      );
+
+    if (input)
+      input.value = '';
+    this.colorCtrl.setValue(null);
+  }
+  addTamanho(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim())
+      this.Produto.Tamanhos.push(value.trim());
+    if (input)
+      input.value = '';
+
+    this.sizeCtrl.setValue(null);
+  }
+  addTag(event: MatChipInputEvent): void{
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim())
+      this.Produto.Tags.push(value.trim());
+    if (input)
+      input.value = '';
+    this.tagCtrl.setValue(null);
+  }
+  removeTag(tag: string){
+    const index = this.Produto.Tags.indexOf(tag);
+    if (index >= 0) {
+      this.Produto.Tags.splice(index, 1);
+    }
+  }
+  removeCor(color: Cor): void {
+    const index = this.Produto.Cores.indexOf(color);
+    if (index >= 0) {
+      this.Produto.Cores.splice(index, 1);
+    }
+  }
+  removeTamanho(tamanho: string): void {
+    const index = this.Produto.Tamanhos.indexOf(tamanho);
+    if (index >= 0) {
+      this.Produto.Tamanhos.splice(index, 1);
+    }
+  }
+
+  SelecionarCategoria($event){
+    this.Produto.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
+  }
+
+  IncrementarQuantidade(){
+    this.Produto.Quantidade++;
+  }
+  DecrescerQuantidade(){
+    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
+    this.Produto.Quantidade--;
+  }
+  VerificarQuantidade($event){
+    if($event.target.value < this.Produto.QuantidadeMinima)
+      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+  }
+  translateStatusProduto(status){
+    return translateEnum(StatusProduto,status);
+  }
 }

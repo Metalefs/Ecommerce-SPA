@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
-import { ClienteService, ImagemService } from 'apps/app-web/src/app/data/service';
 import { EditarCliente, RemoverCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
 import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/components/dynamic-form/question-base';
@@ -14,6 +12,7 @@ import { Cliente } from 'libs/data/src/lib/classes';
 
 import { fade } from '../.././../../../../animations';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
+import { ImagemService } from 'apps/app-web/src/app/shared/services';
 
 @Component({
   selector: 'personalizados-lopes-edicao-card-cliente',
@@ -27,14 +26,11 @@ export class EdicaoCardClienteComponent implements OnInit {
 
   @Input() Cliente:entities.Cliente;
   constructor(
-    private service: ClienteService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private store: Store,
     private servicoImagens:ImagemService
     ) {
-
-    this.service = service;
 
   }
 

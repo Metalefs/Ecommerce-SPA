@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { cpf } from 'cpf-cnpj-validator';
 import { CheckoutService } from '../../checkout.service';
 import { DEFAULT_ORCAMENTO } from 'apps/app-web/src/app/data/store/state/orcamento.state';
-import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
+import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
 
 @Component({
   selector: 'personalizados-lopes-dados',

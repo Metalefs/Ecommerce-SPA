@@ -8,7 +8,7 @@ import { TextboxQuestion } from '../../../../shared/components/dynamic-form/ques
 import { QuestionBase, DynFormQuestions } from '../../../../shared/components/dynamic-form/question-base';
 
 import { entities } from '@personalizados-lopes/data';
-import { TemaService } from '../../../../data/service/';
+import { TemaService } from '../../../../shared/services/';
 import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'personalizados-lopes-editar-tema',

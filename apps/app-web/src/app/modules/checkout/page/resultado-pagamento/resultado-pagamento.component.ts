@@ -1,6 +1,6 @@
 import { Component, OnInit, PLATFORM_ID } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
@@ -8,12 +8,11 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
 import { AdicionarOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
-import { MercadoPagoCheckoutService, IntegracoesService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
-import { EditarProduto, IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
-import { duration } from 'moment';
+import { IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { isPlatformBrowser } from '@angular/common';
-import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
+import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
+import { CheckoutService } from '../../checkout.service';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -33,8 +32,7 @@ export class ResultadoPagamentoComponent implements OnInit {
   _init_point:{};
   constructor(private activeRoute:ActivatedRoute,
     private snack: MatSnackBar,
-    private checkoutService: MercadoPagoCheckoutService,
-    private integracoesService: IntegracoesService,
+    private checkoutService: CheckoutService,
     private scrollService:PageScrollService,
     private store:Store) { }
 
@@ -59,7 +57,6 @@ export class ResultadoPagamentoComponent implements OnInit {
   }
 
   LerParametros(){
-
     this.activeRoute.queryParams.subscribe(params => {
       this.PreencherDadosPagamentoNoOrcamento(params);
 
@@ -112,8 +109,7 @@ export class ResultadoPagamentoComponent implements OnInit {
   SalvarOrcamento(){
     if(this.OrcamentoValido()){
       if(this.Orcamento.Preco >0)
-      this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
-
+      this.store.dispatch(new AdicionarOrcamento()).subscribe(()=>{
         setTimeout(()=>{
           this.Finalizado = true;
           localStorage.setItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento,"true");
@@ -151,22 +147,20 @@ export class ResultadoPagamentoComponent implements OnInit {
   goCheckout(){
     this.Orcamento$.subscribe(orcamento => {
       this.Loading = true;
-      this.integracoesService.Ler().subscribe(x=>{
-        if(orcamento.Usuario.Email)
-        this.checkoutService.goCheckout(orcamento,x).subscribe(result => {
+
+      if(orcamento.Usuario.Email)
+        this.checkoutService.goCheckout(orcamento).then(result => {
           this._init_point = result;
           this.Loading = false;
           if(isPlatformBrowser(PLATFORM_ID))
             this.scrollService.scrollDown();
         })
-        else{
-          this.snack.open("Carrinho inválido, tente finalizar o pedido no carrinho novamente para concluir o pagamento.","fechar",{
-            verticalPosition:'top',
-            duration:5000
-          });
-
-        }
-      })
+      else{
+        this.snack.open("Carrinho inválido, tente finalizar o pedido no carrinho novamente para concluir o pagamento.","fechar",{
+          verticalPosition:'top',
+          duration:5000
+        });
+      }
     })
   }
 }

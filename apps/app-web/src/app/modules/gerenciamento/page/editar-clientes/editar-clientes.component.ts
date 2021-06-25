@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -11,7 +10,7 @@ import { Cliente } from 'libs/data/src/lib/classes';
 import { CriarClienteDialogComponent } from './DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
 
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
-import { ImagemService } from 'apps/app-web/src/app/data/service';
+import { ImagemService } from 'apps/app-web/src/app/shared/services';
 
 @Component({
   selector: 'personalizados-lopes-editar-clientes',

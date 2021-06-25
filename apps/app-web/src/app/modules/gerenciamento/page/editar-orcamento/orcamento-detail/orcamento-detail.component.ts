@@ -2,7 +2,6 @@ import { Component, OnInit, PLATFORM_ID } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { MercadoPagoCheckoutService } from 'apps/app-web/src/app/data/service';
 import { EditarOrcamento, RemoverOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
@@ -10,6 +9,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { fabric } from "fabric";
 import { isPlatformBrowser } from '@angular/common';
+import { MercadoPagoCheckoutService } from 'apps/app-web/src/app/shared/services';
 @Component({
   selector: 'personalizados-lopes-orcamento-detail',
   templateUrl: './orcamento-detail.component.html',

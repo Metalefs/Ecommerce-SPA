@@ -1,0 +1,397 @@
+<div>
+
+  <personalizados-lopes-categoria-produto
+    [Produto]="Produto"
+    [Categorias]="Categorias"
+    (onCriarCategoria)="CriarCategoria($event)"
+    (onSelecionarCategoria)="SelecionarCategoria($event)"
+  ></personalizados-lopes-categoria-produto>
+
+  <div class="columns box has-background-white" id="PRODUTO">
+
+    <div class="column is-4 mb-0 pos-sticky top-0 pt-3">
+      <mat-chip-list class="is-left">
+        <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{
+          translateStatusProduto(Produto.Status)
+        }}</mat-chip>
+      </mat-chip-list>
+
+      <personalizados-lopes-status-produto [Produto]="Produto"></personalizados-lopes-status-produto>
+
+      <gallery
+        gallerize
+        id="myGallery"
+        class=""
+        *ngIf="galleryConfig$ | async; let config"
+        [counter]="false"
+        [nav]="false"
+        [thumbWidth]="config.thumbWidth"
+        [thumbHeight]="config.thumbHeight"
+        [thumbPosition]="config.thumbPosition"
+      >
+      </gallery>
+
+      <div class="file has-name pb-3">
+        <label class="file-label">
+          <input
+            class="file-input"
+            multiple
+            type="file"
+            (change)="upload($event)"
+          />
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="pi pi-cloud-upload"></i>
+            </span>
+            <span class="file-label">
+              Escolha as imagens…
+            </span>
+            <span class="file-name">
+              {{ fileNames }}
+            </span>
+          </span>
+        </label>
+      </div>
+
+      <a
+        href="#desc"
+        pageScroll
+        pageScrollDuration="5000"
+        class="pos-sticky bellow-nav border my-3"
+        mat-flat-button
+        *ngIf="Produto.Descricao?.length > 0"
+      >
+        Mais informações
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </a>
+    </div>
+
+    <div class="column px-3 has-background-white z-index-2 pos-sticky">
+      <div class="columns is-multiline mb-0 pb-0">
+        <div class="column has-background-light">
+
+          <mat-form-field class="field w-full">
+            <div class="control"></div>
+            <input
+              matInput
+              class="input"
+              type="text"
+              [(ngModel)]="Produto.Nome"
+              placeholder="Nome"
+              title="Nome"
+            />
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <mat-form-field class="field w-full">
+            <div class="control"></div>
+            <input
+              matInput
+              class="input"
+              type="text"
+              [(ngModel)]="Produto.Subtitulo"
+              placeholder="Subtitulo"
+            />
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <div class="descricao-produto w-full py-4">
+            <mat-form-field class="field w-full">
+              <div class="control"></div>
+              <textarea
+                matInput
+                class="input"
+                type="text"
+                [(ngModel)]="Produto.DescricaoRapida"
+                placeholder="Descricao Rapida"
+              ></textarea>
+            </mat-form-field>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <mat-form-field class="field w-full">
+            <div class="control">
+              <input
+                matInput
+                class="input"
+                type="text"
+                [(ngModel)]="Produto.Marca"
+                placeholder="Marca"
+              />
+            </div>
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <mat-form-field class="field w-full">
+            <div class="control">
+              <input
+                matInput
+                class="input"
+                type="text"
+                [(ngModel)]="Produto.Modelo"
+                placeholder="Modelo"
+              />
+            </div>
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <div class="my-1">
+
+            <mat-form-field class="field">
+              <div class="control">
+                <input
+                  matInput
+                  class="input"
+                  type="number"
+                  min="1"
+                  [(ngModel)]="Produto.Preco"
+                  [value]="Produto.Preco"
+                  placeholder="Preco"
+                />
+              </div>
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+
+            <mat-form-field class="field">
+              <mat-label>Preco Promocional</mat-label>
+              <div class="control">
+                <input
+                  matInput
+                  class="input"
+                  type="number"
+                  min="1"
+                  [(ngModel)]="Produto.PrecoPromocional"
+                  [value]="Produto.PrecoPromocional"
+                />
+              </div>
+            </mat-form-field>
+
+            <mat-form-field class="field">
+              <div class="control">
+                <input
+                  matInput
+                  class="input"
+                  type="number"
+                  min="1"
+                  [(ngModel)]="Produto.Parcelas"
+                  [value]="Produto.Parcelas"
+                  placeholder="Parcelas"
+                />
+              </div>
+            </mat-form-field>
+
+            <mat-divider></mat-divider>
+
+            <ng-container
+              *ngIf="
+                Produto.Status == enumStatusProduto.promocao;
+                then preco_promo;
+                else preco_normal
+              "
+            >
+            </ng-container>
+            <ng-template #preco_promo>
+              <div class="txt-left">
+                <p class="preco linethr">
+                  R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
+                </p>
+                <p class="preco promocao preto6">
+                  R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
+                </p>
+              </div>
+            </ng-template>
+            <ng-template #preco_normal>
+              <div class="txt-left">
+                <p class="preco preto6">
+                  R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
+                </p>
+              </div>
+            </ng-template>
+            <div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+              <p class="preto6">
+                Em até {{ Produto.Parcelas }}x
+                <span class="preco-produto"
+                  ><b
+                    >R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b
+                  ></span
+                >
+                sem juros
+              </p>
+            </div>
+          </div>
+
+          <p *ngIf="Produto?.QuantidadeMinima > 1"><em>Quantidade</em></p>
+          <div class="field w-full">
+            <div class="control border is-large flex-c flex-m w-full">
+              <button mat-icon-button (click)="DecrescerQuantidade()">
+                <mat-icon class="less">remove</mat-icon>
+              </button>
+              <input
+                placeholder="{{ Produto?.QuantidadeMinima }}"
+                value="{{ Produto?.QuantidadeMinima }}"
+                type="number"
+                (change)="VerificarQuantidade($event)"
+                min="{{ Produto?.QuantidadeMinima }}"
+                class="quantidade-produto input"
+                [(ngModel)]="Produto.Quantidade"
+              />
+              <button mat-icon-button (click)="IncrementarQuantidade()">
+                <mat-icon class="more">add</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <mat-form-field class="field">
+            <mat-label>Quantidade Minima</mat-label>
+            <div class="control">
+              <input
+                matInput
+                class="input"
+                type="number"
+                min="1"
+                value="1"
+                [(ngModel)]="Produto.QuantidadeMinima"
+                [value]="Produto.QuantidadeMinima"
+              />
+            </div>
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <div class="w-full py-3 mb-0">
+            <div class="columns is-mobile mb-0">
+              <div class="column is-6 pb-0">
+                <mat-form-field class="field w-full">
+                  <mat-chip-list #chipList aria-label="Color selection">
+                    <mat-chip
+                      *ngFor="let cor of Produto.Cores"
+                      [selectable]="selectable"
+                      [removable]="removable"
+                      (removed)="removeCor(cor)"
+                    >
+                      {{ cor.nome }}
+                      <mat-icon matChipRemove *ngIf="removable">
+                        cancelar
+                      </mat-icon>
+                    </mat-chip>
+                    <input
+                      placeholder="Nova cor... Separe o nome do valor com ponto e vírgula = branco;#fffff insira com ENTER ou TAB"
+                      #colorInput
+                      [formControl]="colorCtrl"
+                      [matAutocomplete]="auto"
+                      [matChipInputFor]="chipList"
+                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                      (matChipInputTokenEnd)="addCor($event)"
+                    />
+                  </mat-chip-list>
+                  <mat-autocomplete
+                    #auto="matAutocomplete"
+                    (optionSelected)="selectedCor($event)"
+                  >
+                    <mat-option
+                      *ngFor="let cor of filteredColors | async"
+                      [value]="cor.nome"
+                    >
+                      {{ cor.nome }}
+                      <div
+                        [style.backgroundColor]="cor.cor"
+                        style="width: 20px; height: 20px;"
+                      ></div>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+                <p><em>Cores</em></p>
+                <mat-form-field
+                  class="field w-full"
+                  *ngIf="Produto?.Cores"
+                  appearance="fill"
+                >
+                  <mat-label>Selecione uma cor</mat-label>
+                  <mat-select
+                    matNativeControl
+                    [(ngModel)]="Produto.Cor"
+                    [value]="Produto?.Cor"
+                  >
+                    <mat-option
+                      *ngFor="let opt of Produto?.Cores"
+                      [value]="opt"
+                      class="w-full"
+                    >
+                      <div
+                        class="cor-produto card box w-full"
+                        [style.backgroundColor]="opt.cor"
+                        (click)="Produto.Cor = opt"
+                      >
+                        <p>{{ opt.nome }}</p>
+                      </div>
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+                <mat-divider></mat-divider>
+
+
+                <!-- Tamanho -->
+                <personalizados-lopes-tamanho-produto [Produto]="Produto"></personalizados-lopes-tamanho-produto>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <personalizados-lopes-dimensoes-produto [Produto]="Produto"></personalizados-lopes-dimensoes-produto>
+
+    </div>
+  </div>
+
+  <personalizados-lopes-criacao-tags
+    [Produto]="Produto"
+    [tagCtrl]="tagCtrl"
+    (onAddTag)="addTag($event)"
+    (onRemoveTag)="removeTag($event)"
+  ></personalizados-lopes-criacao-tags>
+
+  <div class="w-full columns is-mobile">
+    <div class="column is-12">
+      <personalizados-lopes-descricao-produto
+        [Produto]="Produto"
+      ></personalizados-lopes-descricao-produto>
+
+      <div class="column">
+        <personalizados-lopes-especificacao-produto
+          [Produto]="Produto"
+        ></personalizados-lopes-especificacao-produto>
+      </div>
+    </div>
+  </div>
+
+  <personalizados-lopes-dicas-cadastro></personalizados-lopes-dicas-cadastro>
+
+  <mat-checkbox
+    matNativeControl
+    [(ngModel)]="Produto.Destaque"
+    [checked]="Produto.Destaque"
+  >
+    Destaque
+  </mat-checkbox>
+</div>
+
+<div>
+  <button mat-raised-button color="basic" (click)="Enviar()">
+    Enviar
+  </button>
+  <button mat-raised-button color="basic" (click)="NoClick()" cdkFocusInitial>
+    Cancelar
+  </button>
+</div>

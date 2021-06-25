@@ -1,12 +1,10 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
-import { ProdutoService } from '../../service';
 
-import { LerFiltroProduto, EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto, AdicionarListaProdutosFiltroProduto, EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../actions/filtroproduto.actions';
-import { tap } from 'rxjs/operators';
+import { EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto, AdicionarListaProdutosFiltroProduto, EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../actions/filtroproduto.actions';
+
 import { Injectable } from '@angular/core';
 import { Categoria } from 'libs/data/src/lib/classes';
-import { OrderType } from '../../models/order-type';
 let defaultCategory = "Todos os produtos";
 export class FiltroProdutoStateModel{
   FiltroProdutos: entities.Produto[];

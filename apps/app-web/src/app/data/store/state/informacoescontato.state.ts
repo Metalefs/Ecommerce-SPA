@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { tap } from 'rxjs/operators';
-import { InformacoesContatoService } from '../../service';
+import { InformacoesContatoService } from '../../../shared/services';
 import { LerInformacoesContato, EditarInformacoesContato } from '../actions/informacoescontato.actions'
 
 export class InformacoesContatoStateModel{

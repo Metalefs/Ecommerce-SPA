@@ -8,6 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
 
+import { CKEditorModule } from 'ckeditor4-angular';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { MatTableFilterModule } from 'mat-table-filter';
+
 import { SharedModule } from '../../shared/shared.module';
 
 import { GerenciamentoComponent } from './page/gerenciamento.component';
@@ -47,9 +51,9 @@ import { EditarIntegracaoDialogComponent } from './page/editar-integracoes/dialo
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
-import { CKEditorModule } from 'ckeditor4-angular';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { MatTableFilterModule } from 'mat-table-filter';
+import { EditarEstampaComponent } from './page/editar-estampa/editar-estampa.component';
+import { EditarProdutoFormModule } from './page/editar-produto/components/editar-produto-form/editar-produto-form.module';
+
 @NgModule({
   declarations: [
     GerenciamentoComponent,
@@ -82,21 +86,23 @@ import { MatTableFilterModule } from 'mat-table-filter';
     CriarPostComponent,
     EditarIntegracaoDialogComponent,
     OrcamentoDetailComponent,
+    EditarEstampaComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
-    GerenciamentoPageRoutes,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule,
-    EditorModule,
     CKEditorModule,
     NgxSliderModule,
-    MatTableFilterModule
+    LayoutModule,
+    EditorModule,
+    MatTableFilterModule,
+    EditarProdutoFormModule,
+    GerenciamentoPageRoutes,
   ],
   exports: [
     GerenciamentoComponent,

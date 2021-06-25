@@ -5,12 +5,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 
-import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
-
-import { CategoriaService, ImagemService, ProdutoService } from 'apps/app-web/src/app/data/service';
+import { ProdutoService } from 'apps/app-web/src/app/data/service';
 import { EditarProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { EditarProdutoDialogComponent } from '../../../editar-produto/DialogComponents/editar-dialog/editar-dialog.component';
-import { isEmpty } from '../../../../../../helper/ObjHelper';
 import { fade } from '../.././../../../../animations';
 
 @Component({
@@ -26,8 +23,7 @@ export class EdicaoCardProdutoComponent implements OnInit {
   constructor(private service: ProdutoService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private store: Store,
-    private servicoCategoria: CategoriaService,) {
+    private store: Store) {
 
     this.service = service;
 

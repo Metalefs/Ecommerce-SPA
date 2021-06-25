@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { entities } from '@personalizados-lopes/data';
-import { EmailNotificacaoService } from 'apps/app-web/src/app/data/service';
+import { MatSnackBar } from '@angular/material/snack-bar';;
+import { EmailNotificacaoService } from 'apps/app-web/src/app/shared/services';
 import { EmailNotificacao, Produto, Sobre } from 'libs/data/src/lib/classes';
 
 @Component({

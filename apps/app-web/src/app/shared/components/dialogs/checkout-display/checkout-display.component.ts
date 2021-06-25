@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { ResetarOrcamento, EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
-import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
-import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { Orcamento } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
@@ -33,11 +31,8 @@ export class CheckoutDisplayComponent implements OnInit {
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
-
       this.ProdutoTable = new MaterialTable();
       let Produtos =  x.Produto;
-      // let DistinctProdutos = removeDuplicates(Produtos,"_id");
-      // this.ProdutoTable.dataSource = DistinctProdutos;
       this.ProdutoTable.dataSource = Produtos;
       console.log(Produtos);
       this.ProdutoTable.displayedColumns = [
@@ -87,7 +82,6 @@ export class CheckoutDisplayComponent implements OnInit {
     this.store.dispatch(new RemoverProdutoOrcamento(Produto.Produto._id,Produto.codOrcamento)).subscribe(x=>{
       this.Orcamento$.subscribe(x=>{
         let Produtos =  x.Produto;
-        // let DistinctProdutos = removeDuplicates(Produtos,"_id");
         this.ProdutoTable.dataSource = Produtos;
       })
     });

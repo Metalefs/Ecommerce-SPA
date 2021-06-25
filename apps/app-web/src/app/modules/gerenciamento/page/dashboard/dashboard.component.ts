@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { entities } from '@personalizados-lopes/data';
-import { ProdutoService, CategoriaService } from '../../../../data/service/';
+import { ProdutoService } from '../../../../data/service/';
+import { CategoriaService } from '../../../../shared/services/';
 @Component({
   selector: 'personalizados-lopes-dashboard',
   templateUrl: './dashboard.component.html',

@@ -1,0 +1,17 @@
+<div>
+  <mat-form-field class="w-full" appearance="fill">
+    <mat-label>Status</mat-label>
+    <mat-select
+      matNativeControl
+      [(ngModel)]="Produto.Status"
+      [value]="Produto.Status"
+    >
+      <mat-option
+        *ngFor="let opt of statusProduto; let i = index"
+        [value]="i"
+      >
+        {{ opt }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

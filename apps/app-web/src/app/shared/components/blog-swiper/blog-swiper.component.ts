@@ -4,8 +4,6 @@ import { BlogPost } from 'libs/data/src/lib/classes';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { BlogPostService } from '../../../data/service';
-import { removeDuplicates } from '../../../helper/ObjHelper';
 
 @Component({
   selector: 'personalizados-lopes-blog-swiper',
@@ -13,9 +11,9 @@ import { removeDuplicates } from '../../../helper/ObjHelper';
   styleUrls: ['./blog-swiper.component.scss']
 })
 export class BlogSwiperComponent implements OnInit {
-  Blog:BlogPost[] = [];
+  @Input()Blog:BlogPost[] = [];
   @Input()TAGS:string[];
-  constructor(private BlogService:BlogPostService,
+  constructor(
     breakpointObserver: BreakpointObserver,
     ) {
     this.swiperConfig$ = breakpointObserver.observe([
@@ -64,32 +62,7 @@ export class BlogSwiperComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.BlogService.getAll().snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
-        )
-      )
-    ).subscribe((data :BlogPost[]) => {
-      if(this.TAGS)
-        this.TAGS.forEach((tag)=>
-        {
-          data.filter((post)=>
-          {
-            return post.Tags.forEach((posttag) => {
-              if(posttag.includes(tag)){
-                this.Blog.push(post);
-                return true;
-              }
-              return false;
-            })
-          })
-          this.Blog = removeDuplicates(this.Blog,"Titulo")
-        });
-      else{
-        this.Blog = data;
-      }
-    });
+
   }
 
 }

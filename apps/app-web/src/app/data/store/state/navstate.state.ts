@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { NavState } from '../../models/navstate';
+import { NavState } from '../../../shared/models/interfaces';
 
 import { LerNavState, EditarNavState } from '../actions/navstate.actions'
 

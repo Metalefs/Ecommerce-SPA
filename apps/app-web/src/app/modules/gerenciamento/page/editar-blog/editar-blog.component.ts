@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
-import { BlogPostService } from 'apps/app-web/src/app/data/service';
 import { BlogPost } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/internal/operators/map';
-import { CriarProdutoDialogComponent } from '../editar-produto/DialogComponents/criar-dialog/criar-dialog.component';
+import { BlogPostService } from '../../../blog/blog.service';
 import { CriarPostComponent } from './dialogs/criar-post/criar-post.component';
 
 @Component({

@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
-import { ItemCarouselService } from '../../service';
+import { ItemCarouselService } from '../../../shared/services';
 
 import { LerItemCarousel, EditarItemCarousel, AdicionarItemCarousel, RemoverItemCarousel } from '../actions/item-carousel.actions'
 import { tap } from 'rxjs/operators';

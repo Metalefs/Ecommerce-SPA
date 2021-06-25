@@ -1,0 +1,61 @@
+<div>
+  <h1>Dimensões</h1>
+  <div class="columns">
+    <mat-form-field class="field column">
+      <mat-label class="label">Altura</mat-label>
+      <div class="control">
+        <input
+          matInput
+          class="input"
+          type="number"
+          min="1"
+          placeholder="Altura em cm"
+          [(ngModel)]="Produto.Dimensoes.Altura"
+          [value]="Produto.QuantidadeMinima"
+        />
+      </div>
+    </mat-form-field>
+    <mat-form-field class="field column">
+      <mat-label class="label">Largura</mat-label>
+      <div class="control">
+        <input
+          matInput
+          class="input"
+          type="number"
+          min="1"
+          placeholder="Largura em cm"
+          [(ngModel)]="Produto.Dimensoes.Largura"
+          [value]="Produto.QuantidadeMinima"
+        />
+      </div>
+    </mat-form-field>
+    <mat-form-field class="field column">
+      <mat-label class="label">Comprimento</mat-label>
+      <div class="control">
+        <input
+          matInput
+          class="input"
+          type="number"
+          min="1"
+          placeholder="Comprimento em cm"
+          [(ngModel)]="Produto.Dimensoes.Comprimento"
+          [value]="Produto.QuantidadeMinima"
+        />
+      </div>
+    </mat-form-field>
+  </div>
+  <mat-form-field class="field column">
+    <mat-label class="label">Peso</mat-label>
+    <div class="control">
+      <input
+        matInput
+        class="input"
+        type="number"
+        min="1"
+        placeholder="Peso em gramas"
+        [(ngModel)]="Produto.Peso"
+        [value]="Produto.Peso"
+      />
+    </div>
+  </mat-form-field>
+</div>

@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Integracoes, Orcamento } from 'libs/data/src/lib/classes';
+import { MercadoPagoCheckoutService } from '../../shared/services/checkout/MercadoPagoService';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class CheckoutService {
   public static PagamentoCompleto:boolean;
   public static valid:boolean;
   public static erros:string[] = [];
-  constructor() { }
+  constructor(private MercadoPago:MercadoPagoCheckoutService) { }
   Validate(Orcamento){
     CheckoutService.valid = false;
     CheckoutService.erros = [];
@@ -27,7 +29,10 @@ export class CheckoutService {
     })
 
     CheckoutService.valid = CheckoutService.erros.length == 0;
+  }
 
+  goCheckout(orcamento:Orcamento){
+    return this.MercadoPago.goCheckout(orcamento);
   }
 
   getValid(){

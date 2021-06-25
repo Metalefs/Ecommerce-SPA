@@ -29,9 +29,9 @@ import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/e
 import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/components/produto-swiper/produto-swiper.component';
 import { MenuItem } from 'primeng/api';
 import { isPlatformBrowser } from '@angular/common';
-import { PageScrollService } from 'apps/app-web/src/app/data/service/page-scroll.service';
-import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
-import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
+import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
+import { WindowRef } from 'apps/app-web/src/app/shared/services/window.service';
+import { DocumentRef } from 'apps/app-web/src/app/shared/services/document.service';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
