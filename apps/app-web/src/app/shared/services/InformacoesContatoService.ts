@@ -33,7 +33,7 @@ export class InformacoesContatoService {
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato + `?id=${id}&token=${token.token}`).pipe(
+      return this.http.delete<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato + `?id=${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

@@ -109,7 +109,7 @@ export class ProdutoService {
             }catch(EX){ console.log(EX); continue;}
           }
           let token = this.AuthenticationService.tokenize({id});
-          resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produto + `?id=${id}&token=${token.token}`).pipe(
+          resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produto + `?id=${id}`).pipe(
               retry(3),
               catchError(this.ErrorHandler.handleError)
           ));

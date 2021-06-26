@@ -85,5 +85,5 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
   }
 })
 export {
-    app
+  app
 }

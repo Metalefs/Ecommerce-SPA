@@ -67,7 +67,7 @@ export class ServicoService {
 
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Servico>(environment.endpoint + RouteDictionary.Servico + `?id=${id}&token=${token.token}`).pipe(
+      return this.http.delete<entities.Servico>(environment.endpoint + RouteDictionary.Servico + `?id=${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

@@ -35,7 +35,7 @@ export class EmailNotificacaoService {
 
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.EmailNotificacao>(environment.endpoint + RouteDictionary.EmailNotificacao  + `?id=${id}&token=${token.token}`).pipe(
+      return this.http.delete<entities.EmailNotificacao>(environment.endpoint + RouteDictionary.EmailNotificacao  + `?id=${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

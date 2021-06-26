@@ -100,7 +100,7 @@ export class ImagemService {
     let token;
     this.Filtrar(src).subscribe((x: Imagem[]) => {
       token = this.AuthenticationService.tokenize({ id: x[0]._id });
-      this.http.delete<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem + `?id=${token.id}&token=${token.token}`).pipe(
+      this.http.delete<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem + `?id=${token.id}`).pipe(
         retry(3),
         catchError(this.ErrorHandler.handleError)
       ).subscribe();

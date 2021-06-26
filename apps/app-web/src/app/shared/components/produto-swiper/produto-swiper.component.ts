@@ -152,8 +152,6 @@ export class ProdutoSwiperComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(()=>{this.swiperEl?.nativeElement?.swiper?.autoplay.start();},2000)
-
-
   }
 
 }

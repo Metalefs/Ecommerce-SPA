@@ -48,7 +48,7 @@ export class ItemCarouselService {
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `?id=${id}&token=${token.token}`).pipe(
+      return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `?id=${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

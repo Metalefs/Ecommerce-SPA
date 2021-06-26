@@ -37,7 +37,15 @@ ProdutoRouter.get(RouteDictionary.Produto, async (req: any, res) => {
 .get(RouteDictionary.FiltrarProduto + ":page", FiltrarProdutos)
 .post(RouteDictionary.Produto, async (req: any, res) => {
   try {
-    res.send(await ProdutoService.Inserir(await UsuarioLogado(req, res), req.body.item.Produto));
+    let usuario
+    try{
+      usuario = await UsuarioLogado(req, res);
+    }
+    catch(ex){
+      ErrorHandler.AuthorizationException(ex, res);
+      return;
+    }
+    res.send(await ProdutoService.Inserir(usuario, req.body.item.Produto));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
@@ -76,26 +84,40 @@ ProdutoRouter.get(RouteDictionary.Produto, async (req: any, res) => {
   }
 })
 .put(RouteDictionary.Produto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.Alterar(await UsuarioLogado(req, res), req.body.item.Produto));
+  try{
+    let usuario;
+    try{
+      usuario = await UsuarioLogado(req, res);
+    }
+    catch(ex){
+      ErrorHandler.AuthorizationException(ex, res);
+      return;
+    }
+    res.send(await ProdutoService.Alterar(usuario, req.body.item.Produto));
   }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
+  catch(ex){
+    ErrorHandler.DefaultException(ex, res)
   }
 })
 .delete(RouteDictionary.Produto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.Deletar(await UsuarioLogado(req, res), req.query.id));
+  try{
+    let usuario;
+    try{
+      usuario = await UsuarioLogado(req, res);
+    }
+    catch(ex){
+      ErrorHandler.AuthorizationException(ex, res);
+      return;
+    }
+    res.send(await ProdutoService.Deletar(usuario, req.query.id));
   }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
+  catch(ex){
+    ErrorHandler.DefaultException(ex, res);
   }
 });
 export {
   ProdutoRouter
 }
-
-
 
 function FiltrarProdutos(req, res){
   const limit = parseInt(req.query.limit) || 12; // results per page
