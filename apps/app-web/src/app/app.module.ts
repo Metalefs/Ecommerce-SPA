@@ -26,17 +26,18 @@ import { CookieLawModule } from 'angular2-cookie-law';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { States } from './data/store/state';
-import { CEPService, EmailNotificacaoService, EstadoService, ImagemService, ItemCarouselService, OrcamentoService, ProdutoService, Services, SobreService } from './data/service';
+import { OrcamentoService, ProdutoService, Services, SobreService } from './data/service';
+import { CEPService, EmailNotificacaoService, EstadoService, ImagemService, ItemCarouselService } from './shared/services'
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NgDialogAnimationService } from "ng-dialog-animation";
 import { NgxSpinnerModule } from "ngx-spinner";
 
-import { PageScrollService } from './data/service/page-scroll.service';
 import { CheckoutService } from './modules/checkout/checkout.service';
-import { WindowRef } from './data/service/window.service';
-import { DocumentRef } from './data/service/document.service';
+import { DocumentRef } from './shared/services/document.service';
+import { WindowRef } from './shared/services/window.service';
+import { PageScrollService } from './shared/services/page-scroll.service';
 
 @NgModule({
   declarations: [AppComponent],

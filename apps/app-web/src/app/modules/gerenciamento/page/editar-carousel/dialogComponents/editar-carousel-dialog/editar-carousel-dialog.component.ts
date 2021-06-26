@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
-import { BackgroundPositions, backgroundSizes, backgroundRepeats} from '../../../../../../data/models/css-background-properties';
+import { BackgroundPositions, backgroundSizes, backgroundRepeats} from '../../../../../../shared/models/interfaces/css-background-properties';
 @Component({
   selector: 'personalizados-lopes-editar-carousel-dialog',
   templateUrl: './editar-carousel-dialog.component.html',

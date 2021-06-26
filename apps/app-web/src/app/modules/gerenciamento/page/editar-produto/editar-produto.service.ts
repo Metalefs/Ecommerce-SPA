@@ -32,4 +32,7 @@ export class EditarProdutoService {
   async ObterCaminhoImagem(a,b,c){
     return this.servicoImagem.getRef(a, b, c);
   }
+  async Remover(id){
+    return this.produtoService.Remover(id);
+  }
 }

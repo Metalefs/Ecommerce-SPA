@@ -1,4 +1,4 @@
-import { NavState } from '../../models/navstate';
+import { NavState } from "../../../shared/models/interfaces"
 
 export class LerNavState {
 

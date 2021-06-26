@@ -1,7 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
-import { DocumentRef } from '../../../data/service/document.service';
-
+import { DocumentRef } from '../../services/document.service';
 @Component({
   selector: 'personalizados-lopes-mercadopago-button',
   templateUrl: './mercadopago-button.component.html',

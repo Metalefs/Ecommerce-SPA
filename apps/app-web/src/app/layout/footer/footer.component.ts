@@ -1,16 +1,15 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { entities } from '@personalizados-lopes/data';
 import { EmailNotificacao, InformacoesContato, Sobre } from 'libs/data/src/lib/classes';
-import { Link } from '../../data/models';
 import { Observable, Subscription } from 'rxjs';
-import { EmailNotificacaoService, SobreService } from '../../data/service';
+import { EmailNotificacaoService } from '../../shared/services';
 import { SobreState, InformacoesContatoState } from 'apps/app-web/src/app/data/store/state';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
 import { LerInformacoesContato } from '../../data/store/actions/informacoescontato.actions';
-import { NavLinks } from '../../data/models/navlinks';
+import { NavLinks, Link } from '../../shared/models/interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'personalizados-lopes-footer',
   templateUrl: './footer.component.html',

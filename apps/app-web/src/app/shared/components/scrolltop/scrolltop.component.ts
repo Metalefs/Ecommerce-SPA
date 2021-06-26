@@ -6,8 +6,8 @@ import {
   HostListener,
   PLATFORM_ID,
 } from '@angular/core';
+import { WindowRef } from '../../services/window.service';
 
-import { WindowRef } from '../../../data/service/window.service';
 
 @Component({
   selector: 'personalizados-lopes-scroll-top',

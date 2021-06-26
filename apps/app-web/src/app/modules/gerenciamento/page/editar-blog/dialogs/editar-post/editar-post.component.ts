@@ -6,7 +6,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { categoriasBlogPost } from 'apps/app-web/src/app/data/models/categoriasBlogPost';
+import { categoriasBlogPost } from 'apps/app-web/src/app/shared/models/interfaces/categoriasBlogPost';
 
 @Component({
   selector: 'personalizados-lopes-editar-post',

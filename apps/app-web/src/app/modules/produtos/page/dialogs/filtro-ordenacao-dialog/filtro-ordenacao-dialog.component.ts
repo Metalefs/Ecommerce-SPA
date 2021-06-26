@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { OrderType } from 'apps/app-web/src/app/data/models/order-type';
-import { TiposOrdenacao } from '../../produtos.component';
+import { OrderType } from 'apps/app-web/src/app/shared/models/interfaces';
 
 @Component({
   selector: 'personalizados-lopes-filtro-ordenacao-dialog',

@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { isPlatformBrowser } from '@angular/common';
 import { EditarProdutoService } from '../../editar-produto.service';
-import { EditarProdutoComponent } from '../../editar-produto.component';
+import { EditarProdutoComponentBase } from '../../editar-produto.component.base';
 
 declare var require: any;
 
@@ -20,7 +20,7 @@ declare var require: any;
   templateUrl: './criar-dialog.component.html',
   styleUrls: ['./criar-dialog.component.scss']
 })
-export class CriarProdutoDialogComponent extends EditarProdutoComponent implements OnInit {
+export class CriarProdutoDialogComponent extends EditarProdutoComponentBase implements OnInit {
   Produto: Produto;
 
   @ViewChild('colorInput') colorInput: ElementRef<HTMLInputElement>;
@@ -88,13 +88,13 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponent implemen
   selectedCor(event: MatAutocompleteSelectedEvent): void {
     alert(event.option.viewValue);
     // this.Produto.Cores.push();
-    this.colorInput.nativeElement.value = '';
+    //this.colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
 
   selectedTamanho(event: MatAutocompleteSelectedEvent): void {
     this.Produto.Tamanhos.push(event.option.viewValue);
-    this.colorInput.nativeElement.value = '';
+    //this.colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
 

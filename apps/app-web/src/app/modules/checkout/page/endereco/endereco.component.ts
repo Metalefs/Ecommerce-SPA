@@ -15,7 +15,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { CEPService, EstadoService, IntegracoesService, MercadoPagoCheckoutService } from '../../../../shared/services';
+import { CEPService, EstadoService } from '../../../../shared/services';
 import { CheckoutService } from '../../checkout.service';
 
 @Component({

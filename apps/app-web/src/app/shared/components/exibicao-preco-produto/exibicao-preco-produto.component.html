@@ -1,0 +1,32 @@
+<div>
+  <ng-container
+  *ngIf="
+    Produto.Status == enumStatusProduto.promocao;
+    then preco_promo;
+    else preco_normal
+  "
+>
+</ng-container>
+<ng-template #preco_promo>
+  <div class="txt-left">
+    <p class="preco linethr">R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
+    <p class="preco promocao preto6">
+      R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
+    </p>
+  </div>
+</ng-template>
+<ng-template #preco_normal>
+  <div class="txt-left">
+    <p class="preco preto6">R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
+  </div>
+</ng-template>
+<div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+  <p class="preto6">
+    Em até {{ Produto.Parcelas }}x
+    <span class="preco-produto"
+      ><b>R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b></span
+    >
+    sem juros
+  </p>
+</div>
+</div>

@@ -4,8 +4,8 @@ import { Select, Store } from '@ngxs/store';
 import { Servico } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { cardFlip, fade } from '../../../animations';
-import { SobreCard } from '../../../data/models';
-import { DocumentRef } from '../../../data/service/document.service';
+import { SobreCard } from '../../../shared/models/interfaces';
+import { DocumentRef } from '../../../shared/services/document.service';
 import { ServicoState } from '../../../data/store/state';
 import { removeDuplicates } from '../../../helper/ObjHelper';
 

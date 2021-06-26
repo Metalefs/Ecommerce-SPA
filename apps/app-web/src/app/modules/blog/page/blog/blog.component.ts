@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { fade, slider } from 'apps/app-web/src/app/animations';
-import { BlogPostService } from 'apps/app-web/src/app/data/service';
 import { BlogPost } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/operators';
+import { BlogPostService } from '../../blog.service';
 
 @Component({
   selector: 'personalizados-lopes-blog',

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { EnderecoEntrega, Usuario } from 'libs/data/src/lib/classes';
+import { Usuario } from 'libs/data/src/lib/classes';
 import { AuthenticationService } from '../../../../../core/service/authentication/authentication.service';
-import { UsuarioService } from '../../../../../data/service';
+import { UsuarioService } from '../../../../../shared/services';
 import { NovaSenhaComponent } from './dialogs/nova-senha/nova-senha.component';
 import { NovoEnderecoComponent } from './dialogs/novo-endereco/novo-endereco.component';
 

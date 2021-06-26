@@ -8,26 +8,24 @@ import { Observable } from 'rxjs';
 import { CriarProdutoDialogComponent } from './DialogComponents/criar-dialog/criar-dialog.component';
 import { BlogPost, Categoria, Produto } from 'libs/data/src/lib/classes';
 import { ProdutoState } from 'apps/app-web/src/app/data/store/state/produto.state';
-import { AdicionarProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
+import { AdicionarProduto, EditarProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { EditarProdutoService } from './editar-produto.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
-import { order, orderPreco, translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
+import { order, orderPreco } from 'apps/app-web/src/app/helper/ObjHelper';
 import { TiposOrdenacao } from '../../../produtos/page/produtos.component';
 import { OrderStatus, OrderType } from 'apps/app-web/src/app/shared/models/interfaces/';
-import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { CategoriaState } from 'apps/app-web/src/app/data/store/state';
 import { fade } from 'apps/app-web/src/app/animations';
-import { FormControl } from '@angular/forms';
 import { CriarCategoriaDialogComponent } from '../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { GalleryConfig } from 'ng-gallery';
 import { CriarPostComponent } from '../editar-blog/dialogs/criar-post/criar-post.component';
 import { CriarClienteDialogComponent } from '../editar-clientes/DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
 import { AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { EditarProdutoDialogComponent } from './DialogComponents/editar-dialog/editar-dialog.component';
 
 @Component({
   selector: 'personalizados-lopes-editar-produto',
@@ -36,26 +34,16 @@ import { AuthenticationService } from 'apps/app-web/src/app/core/service/authent
   animations: [fade]
 })
 export class EditarProdutoComponent implements OnInit {
-  galleryConfig$: Observable<GalleryConfig>;
-  enumStatusProduto = StatusProduto;
-  fileNames:string="nenhum arquivo selecionado.";
-  Produto:Produto;
-  visible = true;
-  selectable = true;
-  removable = true;
-  public Editor;
-  colorCtrl = new FormControl();
-  filteredColors: Observable<Cor[]>;
-  allColors: Cor[] = [
-    {nome: 'Branco', cor:'white'},
-    {nome: 'Preto', cor:'black'},
-    {nome: 'Azul Marinho', cor:'tealblue'},
-  ];
 
-  tagCtrl = new FormControl();
-  sizeCtrl = new FormControl();
-  filteredSizes: Observable<string[]>;
-  allSizes: string[] = ['P','M','G','GG','XGG'];
+  fQuery:FiltrarProdutoSearchQuery={
+    Nome:"",
+    NomeCategoria:"",
+    Preco:"",
+    Status:"",
+    Marca:"",
+    Modelo:"",
+    Tags:""
+  }
 
   Categorias: entities.Categoria[];
 
@@ -124,28 +112,25 @@ export class EditarProdutoComponent implements OnInit {
     protected produtoService: EditarProdutoService,
     protected authService: AuthenticationService
     ) {
-
-      this.Atualizar();
+      this.fQuery={
+        Nome:"",
+        NomeCategoria:"",
+        Preco:"",
+        Status:"",
+        Marca:"",
+        Modelo:"",
+        Tags:""
+      }
   }
 
   ngOnInit(): void {
     this.Atualizar();
   }
 
-  fQuery:FiltrarProdutoSearchQuery={
-    Nome:"",
-    NomeCategoria:"",
-    Preco:"",
-    Status:"",
-    Marca:"",
-    Modelo:"",
-    Tags:""
-  }
-
   atualizarFiltroAtivo(){
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter||''
-    this.fQuery.NomeCategoria  = this.CategoriaAtiva.Nome||"";
+    this.fQuery.NomeCategoria  = this.CategoriaAtiva?.Nome||"";
     if(this.page > 1)
       this.page =1;
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.activeOrderLimit).subscribe(async x=>{
@@ -328,89 +313,43 @@ export class EditarProdutoComponent implements OnInit {
     });
   }
 
+
+  Editar(Produto){
+    let id = Produto._id;
+
+    const dialogRef = this.dialog.open(EditarProdutoDialogComponent, {
+      width: "100%",
+      height: "100%",
+      data: Produto
+    });
+
+    dialogRef.afterClosed().subscribe((Produto :entities.Produto) => {
+      if(Produto != undefined){
+        Produto._id = id;
+        Produto.NomeCategoria = Produto.Categoria.Nome;
+        this.store.dispatch(new EditarProduto(Produto, Produto._id)).subscribe(X=>{
+          this._snackBar.open("Produto alterado com sucesso", "Fechar", {
+            duration: 3000
+          });
+        });
+      }
+    });
+  }
+
+  async Remover(Produto){
+    let confirmation = confirm("Deletar?");
+    if(confirmation){
+      (await this.produtoService.Remover(Produto._id)).subscribe(async x=>{
+        this._snackBar.open("Produto "+Produto.Nome+" removido com sucesso", "Fechar", {
+          duration: 3000
+        });
+       this.Atualizar();
+      });
+    }
+  }
+
   CarregarCategorias(){
     this.produtoService.CarregarCategorias().subscribe(x=>{this.Categorias = x;});
   }
 
-  upload($event){
-    this.Produto.FileList = $event.target.files;
-    this.fileNames = '';
-    for(let i =0; i < this.Produto.FileList.length; i++){
-      this.fileNames+=this.Produto.FileList[i].name+',';
-      console.log(this.Produto.FileList[i].name)
-    }
-    console.log(this.fileNames)
-  }
-
-  addCor(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    if ((value || '').trim())
-      this.Produto.Cores.push(
-        {
-          nome:value.split(';')[0].trim(),
-          cor:value.split(';')[1].trim()
-        }
-      );
-
-    if (input)
-      input.value = '';
-    this.colorCtrl.setValue(null);
-  }
-  addTamanho(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    if ((value || '').trim())
-      this.Produto.Tamanhos.push(value.trim());
-    if (input)
-      input.value = '';
-
-    this.sizeCtrl.setValue(null);
-  }
-  addTag(event: MatChipInputEvent): void{
-    const input = event.input;
-    const value = event.value;
-    if ((value || '').trim())
-      this.Produto.Tags.push(value.trim());
-    if (input)
-      input.value = '';
-    this.tagCtrl.setValue(null);
-  }
-  removeTag(tag: string){
-    const index = this.Produto.Tags.indexOf(tag);
-    if (index >= 0) {
-      this.Produto.Tags.splice(index, 1);
-    }
-  }
-  removeCor(color: Cor): void {
-    const index = this.Produto.Cores.indexOf(color);
-    if (index >= 0) {
-      this.Produto.Cores.splice(index, 1);
-    }
-  }
-  removeTamanho(tamanho: string): void {
-    const index = this.Produto.Tamanhos.indexOf(tamanho);
-    if (index >= 0) {
-      this.Produto.Tamanhos.splice(index, 1);
-    }
-  }
-
-  SelecionarCategoria($event){
-    this.Produto.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
-  }
-
-  IncrementarQuantidade(){
-    this.Produto.Quantidade++;
-  }
-  DecrescerQuantidade(){
-    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
-    this.Produto.Quantidade--;
-  }
-  VerificarQuantidade($event){
-    if($event.target.value < this.Produto.QuantidadeMinima)
-      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
-  }
-  translateStatusProduto(status){
-    return translateEnum(StatusProduto,status);
-  }
 }

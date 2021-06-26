@@ -22,6 +22,7 @@ import { EditorModule } from '../../../../../../shared/components/editor/editor/
 import { TamanhoProdutoComponent } from './tamanho-produto/tamanho-produto.component';
 import { CategoriaProdutoComponent } from './categoria-produto/categoria-produto.component';
 import { StatusProdutoComponent } from './status-produto/status-produto.component';
+import { QuantidadeProdutoComponent } from './quantidade-produto/quantidade-produto.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { StatusProdutoComponent } from './status-produto/status-produto.componen
     DimensoesProdutoComponent,
     TamanhoProdutoComponent,
     CategoriaProdutoComponent,
-    StatusProdutoComponent
+    StatusProdutoComponent,
+    QuantidadeProdutoComponent
   ],
   imports: [
     CommonModule,

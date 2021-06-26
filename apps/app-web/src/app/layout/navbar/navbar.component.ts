@@ -2,13 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { entities } from '@personalizados-lopes/data';
-import { GrupoNavLink, NavLink, NavLinks } from '../../data/models/navlinks';
 import { SideNavState } from '../content-layout/page/content-layout.component';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { CategoriaState, NavStateState } from '../../data/store/state';
-import { Link, NavState } from '../../data/models';
+import { NavState, GrupoNavLink, NavLink, NavLinks } from '../../shared/models/interfaces';
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
 import { Categoria, Usuario } from 'libs/data/src/lib/classes';
 import { MatDialog } from '@angular/material/dialog';

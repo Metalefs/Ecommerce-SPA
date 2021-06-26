@@ -7,8 +7,6 @@ import { environment } from '../../../environments/environment';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
-import { CategoriaService } from './CategoriaService';
-import { ImagemService } from './ImagemService';
 
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
@@ -17,6 +15,7 @@ import { ErrorHandler } from '../../core/error.handler';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 
 import { PaginationResponse } from 'libs/data/src/lib/interfaces';
+import { ImagemService } from '../../shared/services';
 @Injectable({
     providedIn: 'root'
 })

@@ -1,8 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { WindowRef } from 'apps/app-web/src/app/data/service/window.service';
 import { ProdutoState } from 'apps/app-web/src/app/data/store/state';
+import { WindowRef } from 'apps/app-web/src/app/shared/services/window.service';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 

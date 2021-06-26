@@ -7,9 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { CadastroService } from '../../../core/service/cadastro.service';
 import { entities } from '@personalizados-lopes/data';
-import { InformacoesContatoService } from '../../../data/service/InformacoesContatoService';
 import { Usuario } from 'libs/data/src/lib/classes';
-import { Store } from '@ngxs/store';
 
 class Login_Form {
   Email:string;
@@ -41,7 +39,6 @@ export class LoginFormComponent implements OnInit {
   @Input()
   Cadastrar:Boolean;
   constructor(
-    private infocontatoservice: InformacoesContatoService,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,

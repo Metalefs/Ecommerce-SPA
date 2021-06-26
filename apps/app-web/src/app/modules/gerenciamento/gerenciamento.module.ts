@@ -19,19 +19,16 @@ import { EditarSobreComponent } from './page/editar-sobre/editar-sobre.component
 import { EditarInformacoesContatoComponent } from './page/editar-infocontato/editar-informacoescontato.component';
 
 import { GerenciamentoPageRoutes } from './gerenciamento.routing';
-import { EditarProdutoComponent } from './page/editar-produto/editar-produto.component';
 import { EditarTemaComponent } from './page/editar-tema/editar-tema.component';
 import { EditarServicoComponent } from './page/editar-servico/editar-servico.component';
 import { EditarCategoriaComponent } from './page/editar-categoria/editar-categoria.component';
 import { EditarClientesComponent } from './page/editar-clientes/editar-clientes.component';
-import { CriarProdutoDialogComponent } from './page/editar-produto/DialogComponents/criar-dialog/criar-dialog.component';
-import { EditarProdutoDialogComponent } from './page/editar-produto/DialogComponents/editar-dialog/editar-dialog.component';
 import { CriarCategoriaDialogComponent } from './page/editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 import { CriarClienteDialogComponent } from './page/editar-clientes/DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
 
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 
-import { EdicaoCardProdutoComponent } from './page/editar-produto/components/edicao-card-produto/edicao-card-produto.component';
+import { EditarProdutoModule } from './page/editar-produto/editar-produto.module';
 import { EdicaoCardBlogComponent } from './page/editar-blog/edicao-card-blog/edicao-card-blog.component';
 import { EdicaoCardClienteComponent } from './page/editar-clientes/components/edicao-card-cliente/edicao-card-cliente.component';
 import { EditarMensagemComponent } from './page/editar-mensagem/editar-mensagem.component';
@@ -52,22 +49,18 @@ import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-deta
 import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
 import { EditarEstampaComponent } from './page/editar-estampa/editar-estampa.component';
-import { EditarProdutoFormModule } from './page/editar-produto/components/editar-produto-form/editar-produto-form.module';
+import { CardProdutoModule } from '../../shared/components/card-produto/card-produto.module';
 
 @NgModule({
   declarations: [
     GerenciamentoComponent,
     EditarSobreComponent,
     EditarInformacoesContatoComponent,
-    EditarProdutoComponent,
     EditarTemaComponent,
     EditarServicoComponent,
     EditarCategoriaComponent,
-    CriarProdutoDialogComponent,
-    EditarProdutoDialogComponent,
     CriarCategoriaDialogComponent,
     DashboardComponent,
-    EdicaoCardProdutoComponent,
     EdicaoCardBlogComponent,
     EditarClientesComponent,
     EdicaoCardClienteComponent,
@@ -91,6 +84,7 @@ import { EditarProdutoFormModule } from './page/editar-produto/components/editar
   imports: [
     CommonModule,
     SharedModule,
+    CardProdutoModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
@@ -101,19 +95,17 @@ import { EditarProdutoFormModule } from './page/editar-produto/components/editar
     LayoutModule,
     EditorModule,
     MatTableFilterModule,
-    EditarProdutoFormModule,
+    EditarProdutoModule,
     GerenciamentoPageRoutes,
   ],
   exports: [
     GerenciamentoComponent,
+    EditarProdutoModule,
     EditarSobreComponent,
     EditarInformacoesContatoComponent,
-    EditarProdutoComponent,
     EditarTemaComponent,
     EditarServicoComponent,
     EditarCategoriaComponent,
-    CriarProdutoDialogComponent,
-    EditarProdutoDialogComponent,
     CriarPostComponent,
     EditarPostComponent,
     CriarCategoriaDialogComponent,
@@ -122,6 +114,8 @@ import { EditarProdutoFormModule } from './page/editar-produto/components/editar
     EditarMensagemComponent,
     EditarBlogComponent,
     OrcamentoDetailComponent,
+    SharedModule,
+    CardProdutoModule,
     EditorModule,
     CKEditorModule,
     NgxSliderModule,

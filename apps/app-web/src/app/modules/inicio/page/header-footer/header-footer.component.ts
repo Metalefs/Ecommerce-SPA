@@ -1,8 +1,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
-import { SobreCard } from 'apps/app-web/src/app/data/models';
-import { ImagemService } from 'apps/app-web/src/app/data/service';
-import { DocumentRef } from 'apps/app-web/src/app/data/service/document.service';
+import { SobreCard } from 'apps/app-web/src/app/shared/models/interfaces';
+import { DocumentRef } from 'apps/app-web/src/app/shared/services/document.service';
 
 @Component({
   selector: 'personalizados-lopes-header-footer',
@@ -13,7 +12,10 @@ export class HeaderFooterComponent implements OnInit {
   Cards:SobreCard[];
   @Input() specify:string;
   loading:boolean = true;
-  constructor(@Inject(PLATFORM_ID) private platform: Object, private imagemService:ImagemService, private document_: DocumentRef) {
+  constructor(
+    @Inject(PLATFORM_ID) private platform: Object,
+    private document_: DocumentRef
+   ) {
 
   }
   ngOnInit(): void {

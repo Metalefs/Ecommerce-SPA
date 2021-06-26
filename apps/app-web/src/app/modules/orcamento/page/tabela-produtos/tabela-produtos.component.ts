@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { Select, Store } from '@ngxs/store';
 import { fade } from 'apps/app-web/src/app/animations';
-import { LerOrcamento, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
+import { RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
-import { Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
+import { Orcamento } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
-import { Observable, pipe } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'personalizados-lopes-tabela-produtos',

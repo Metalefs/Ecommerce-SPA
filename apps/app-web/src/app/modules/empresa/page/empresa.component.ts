@@ -3,11 +3,10 @@ import { Select, Store } from '@ngxs/store';
 import { Sobre } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { cardFlip, fade } from '../../../animations';
-import { SobreCard } from '../../../data/models';
-import { ImagemService } from '../../../data/service';
+import { cardFlip, fade } from '../../../animations';;
 import { LerSobre } from '../../../data/store/actions/sobre.actions';
 import { SobreState } from '../../../data/store/state';
+import { ImagemService } from '../../../shared/services';
 
 @Component({
   selector: 'personalizados-lopes-empresa',
@@ -24,7 +23,6 @@ export class EmpresaComponent implements OnInit, OnDestroy {
   IsSobreLoadedSub: Subscription;
 
   constructor(private store: Store, private imagemService: ImagemService) { }
-
 
   Atualizar(){
     this.IsSobreLoadedSub = this.IsSobreLoaded$.pipe(

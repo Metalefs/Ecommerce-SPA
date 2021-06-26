@@ -18,6 +18,7 @@ import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-int
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
+import { EditarEstampaComponent } from './page/editar-estampa/editar-estampa.component';
 
 
 export const routes: Routes = [
@@ -124,6 +125,13 @@ export const routes: Routes = [
         path: 'integracoes',
         // canActivate: [AuthGuard],
         component: EditarIntegracoesComponent,
+        pathMatch: 'full',
+        data: { animation:'isRight', title:'Gerenciamento - integracoes' }
+      },
+      {
+        path: 'estampa',
+        // canActivate: [AuthGuard],
+        component: EditarEstampaComponent,
         pathMatch: 'full',
         data: { animation:'isRight', title:'Gerenciamento - integracoes' }
       },

@@ -5,7 +5,7 @@ import { entities } from '@personalizados-lopes/data';
 
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { Router, RouterOutlet } from '@angular/router';
-import { Link } from '../../../data/models';
+import { Link } from '../../../shared/models/interfaces';
 import { fade, slider } from '../../../animations';
 
 @Component({
@@ -52,6 +52,7 @@ export class GerenciamentoComponent implements OnInit {
     this.navs = [
       {name: "Dashboard", href: "/gerenciamento/app"},
       {name: "Produtos", href: "produtos"},
+      {name: "Estampa", href: "estampa"},
       {name: "Pedidos", href: "pedidos"},
       {name: "Usuarios Interessados", href: "emails"},
       {name: "Categorias de produtos", href: "categoria"},

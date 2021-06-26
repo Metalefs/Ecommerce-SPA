@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatTable } from '@angular/material/table';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ItemCarouselState } from 'apps/app-web/src/app/data/store/state';
@@ -12,8 +11,7 @@ import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-
 import { ItemCarousel, Sobre } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable } from 'rxjs';
-import {AdicionarItemCarousel, EditarItemCarousel, RemoverItemCarousel} from '../../../../../data/store/actions/item-carousel.actions';
-import { CriarProdutoDialogComponent } from '../../editar-produto/DialogComponents/criar-dialog/criar-dialog.component';
+import { AdicionarItemCarousel, EditarItemCarousel, RemoverItemCarousel} from '../../../../../data/store/actions/item-carousel.actions';
 import { CriarItemCarouselDialogComponent } from '../dialogComponents/criar-item-carousel-dialog/criar-item-carousel-dialog.component';
 
 @Component({

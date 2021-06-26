@@ -2,16 +2,16 @@
 
 <div mat-dialog-content>
 
-  <personalizados-lopes-editar-produto-form [Produto]="Produto"></personalizados-lopes-editar-produto-form>
+  <personalizados-lopes-editar-produto-form
+    [Produto]="Produto"
+    (onSelectedCor)="selectedCor($event)"
+    (onSelectedTamanho)="selectedTamanho($event)"
+  ></personalizados-lopes-editar-produto-form>
 
   <div class="py-3">
     <a mat-stroked-button (click)="CriarPostagem()">Criar postagem para o produto</a>
     <a mat-stroked-button (click)="CriarDepoimento()">Adicionar Depoimento</a>
   </div>
-
-  <mat-checkbox matNativeControl [(ngModel)]="Produto.Destaque" [checked]="Produto.Destaque">
-    Destaque
-  </mat-checkbox>
 
 </div>
 

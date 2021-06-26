@@ -4,7 +4,7 @@ import { CarouselState, ItemCarouselState } from 'apps/app-web/src/app/data/stor
 import { removeDuplicates } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Carousel, ItemCarousel } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
-import { ObterImagensCarousel } from '../../../../helper/FileHelper';
+
 @Component({
   selector: 'personalizados-lopes-carrousel',
   templateUrl: './carrousel.component.html',
@@ -19,7 +19,6 @@ export class CarrouselComponent implements OnInit {
 
   constructor() { }
 
-
   ngOnInit(): void {
     this.ItemsCarousel$.subscribe(x=>{
       if(x)
@@ -28,10 +27,9 @@ export class CarrouselComponent implements OnInit {
         this.imageUrls = removeDuplicates(this.imageUrls,'url')
       })
     })
-
   }
-
 }
+
 interface IImage {
   url: string | null;
   href?: string;

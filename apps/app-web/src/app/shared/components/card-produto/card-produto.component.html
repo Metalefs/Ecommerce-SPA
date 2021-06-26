@@ -58,13 +58,13 @@
       </div>
 
       <mat-card-footer class="px-3 z-index-2 w-full of-y-scroll ">
-        <div class="my-3" *ngIf="Produto.Rating.length>0">
+        <div class="my-3" *ngIf="Produto?.Rating.length>0">
           <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
             [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
         </div>
         <mat-card-title class="w-full txt-center titulo-produto  mb-0">
           <a  matRipple class="reset-a" pageScroll href="#topo"
-          [routerLink]="['/produtos/'+ Produto._id]">
+          [routerLink]="['/produtos/'+ Produto?._id]">
           {{Produto?.Nome}}
         </a>
 

@@ -101,18 +101,6 @@
                       <li><p class="subtitle"><b>Modelo: </b> <span>{{Produto?.Modelo || ''}}</span></p></li>
                       <li><p class="subtitle"><b>Marca: </b> <span>{{Produto?.Marca || ''}}</span></p></li>
                     </ul>
-
-                    <!-- <div class="block ">
-                      <div>
-                        <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="true" [text]="'Compartilhar este produto'">
-                        </share-button>
-                      </div>
-                      <div>
-                        <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="true" [text]="'Twittar este produto'">
-                        </share-button>
-                      </div>
-                    </div> -->
-
                   </div>
                 </div>
                 <div class="mb-0 pb-0 px-3">
@@ -176,9 +164,9 @@
                               </div>
                             </div> -->
 
-                            <div class="columns pb-0 mb-0 ">
-                              <div class="dis-flex flex-w column pb-0 mb-0 bbr">
-                                <div class="my-2">
+                            <div class=" pb-0 mb-0 ">
+                              <div class="dis-flex flex-w columns pb-0 mb-0 bbr">
+                                <div class="my-2 column">
                                   <ng-container
                                     *ngIf="Produto?.Status == statusProduto.promocao then preco_promo else preco_normal">
                                   </ng-container>
@@ -203,9 +191,9 @@
                                       sem juros
                                     </p>
                                   </div>
-
                                 </div>
-                                <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
+                                <div class="column">
+                                  <ng-container *ngIf="findInvalidControlsRecursive() then erro else done"></ng-container>
                                 <ng-template #erro>
                                   <article class="message margin is-white shadow-light py-0 my-0 bbr"
                                     *ngIf="Produto && produtoForm">
@@ -238,6 +226,7 @@
                                     Novo
                                   </button>
                                 </ng-template>
+                                </div>
                               </div>
                             </div>
                             <!-- <button @fadeIn mat-flat-button title="Personalizar"

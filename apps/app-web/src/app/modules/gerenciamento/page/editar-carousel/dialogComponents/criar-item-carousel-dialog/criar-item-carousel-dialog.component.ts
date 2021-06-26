@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemCarousel } from 'libs/data/src/lib/classes';
-import { BackgroundPositions, backgroundSizes, backgroundRepeats} from '../../../../../../data/models/css-background-properties';
+import { BackgroundPositions, backgroundSizes, backgroundRepeats} from '../../../../../../shared/models/interfaces/css-background-properties';
+
 @Component({
   selector: 'personalizados-lopes-criar-item-carousel',
   templateUrl: './criar-item-carousel-dialog.component.html',

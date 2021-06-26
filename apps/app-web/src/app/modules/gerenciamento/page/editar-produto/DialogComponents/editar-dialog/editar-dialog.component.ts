@@ -3,15 +3,13 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
 import { Produto } from 'libs/data/src/lib/classes';
-import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
-
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Gallery, ThumbnailsPosition } from 'ng-gallery';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { isPlatformBrowser } from '@angular/common';
-import { EditarProdutoComponent } from '../../editar-produto.component';
+import { EditarProdutoComponentBase } from '../../editar-produto.component.base';
 import { EditarProdutoService } from '../../editar-produto.service';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 declare var require: any;
@@ -20,7 +18,7 @@ declare var require: any;
   templateUrl: './editar-dialog.component.html',
   styleUrls: ['./editar-dialog.component.scss']
 })
-export class EditarProdutoDialogComponent extends EditarProdutoComponent implements OnInit {
+export class EditarProdutoDialogComponent extends EditarProdutoComponentBase implements OnInit {
 
   @ViewChild('colorInput') colorInput: ElementRef<HTMLInputElement>;
   @ViewChild('tamanhoInput') tamanhoInput: ElementRef<HTMLInputElement>;
@@ -95,13 +93,13 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponent impleme
   selectedCor(event: MatAutocompleteSelectedEvent): void {
     alert(event.option.viewValue);
     // this.Produto.Cores.push();
-    this.colorInput.nativeElement.value = '';
+    //this.//colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
 
   selectedTamanho(event: MatAutocompleteSelectedEvent): void {
     this.Produto.Tamanhos.push(event.option.viewValue);
-    this.colorInput.nativeElement.value = '';
+    //this.//colorInput.nativeElement.value = '';
     this.colorCtrl.setValue(null);
   }
 

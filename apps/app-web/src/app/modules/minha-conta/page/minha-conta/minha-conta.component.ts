@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { entities } from '@personalizados-lopes/data';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
-import { Link } from 'apps/app-web/src/app/data/models';
+import { Link } from 'apps/app-web/src/app/shared/models/interfaces';
 
 @Component({
   selector: 'personalizados-lopes-minha-conta',

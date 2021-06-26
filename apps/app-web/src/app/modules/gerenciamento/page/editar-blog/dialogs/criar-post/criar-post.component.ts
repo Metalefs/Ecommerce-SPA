@@ -5,7 +5,7 @@ import { BlogPost } from 'libs/data/src/lib/classes';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { StatusPostagem } from 'libs/data/src/lib/classes/blogPost';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
-import { categoriasBlogPost } from'../../../../../../data/models/categoriasBlogPost';
+import { categoriasBlogPost } from'../../../../../../shared/models/interfaces/categoriasBlogPost';
 
 import { MatChipInputEvent } from '@angular/material/chips';
 

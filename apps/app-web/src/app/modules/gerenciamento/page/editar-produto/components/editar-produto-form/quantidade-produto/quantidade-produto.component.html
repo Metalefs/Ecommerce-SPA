@@ -1,0 +1,22 @@
+<div>
+  <p *ngIf="Produto?.QuantidadeMinima > 1"><em>Quantidade</em></p>
+  <div class="field w-full">
+    <div class="control border is-large flex-c flex-m w-full">
+      <button mat-icon-button (click)="DecrescerQuantidade()">
+        <mat-icon class="less">remove</mat-icon>
+      </button>
+      <input
+        placeholder="{{ Produto?.QuantidadeMinima }}"
+        value="{{ Produto?.QuantidadeMinima }}"
+        type="number"
+        (change)="VerificarQuantidade($event)"
+        min="{{ Produto?.QuantidadeMinima }}"
+        class="quantidade-produto input"
+        [(ngModel)]="Produto.Quantidade"
+      />
+      <button mat-icon-button (click)="IncrementarQuantidade()">
+        <mat-icon class="more">add</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

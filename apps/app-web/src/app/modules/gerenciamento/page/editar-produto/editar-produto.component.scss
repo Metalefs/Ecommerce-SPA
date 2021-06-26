@@ -1,3 +1,14 @@
 .mat-card-header-text {
   width: 100%;
 }
+
+.more-button {
+  position: relative;
+  float: right;
+  margin: 0;
+  right: 0px;
+  z-index: 2;
+  top: 15px;
+  color: #020202;
+  padding: 0;
+}

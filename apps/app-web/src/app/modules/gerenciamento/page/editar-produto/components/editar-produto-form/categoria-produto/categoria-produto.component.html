@@ -1,1 +1,30 @@
-<p>categoria-produto works!</p>
+<nav class="breadcrumb is-left pt-0" aria-label="breadcrumbs">
+  <ul class="">
+    <li class="">
+      <a [routerLink]="'/produtos'" href="#" class="">Todos os produtos</a>
+    </li>
+    <li>
+      <mat-form-field appearance="">
+        <mat-label>Categoria</mat-label>
+        <mat-select
+          matNativeControl
+          (selectionChange)="SelecionarCategoria($event)"
+          [(ngModel)]="Produto.NomeCategoria"
+          [value]="Produto.NomeCategoria"
+        >
+          <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">
+            {{ opt.Nome }}
+          </mat-option>
+          <mat-option>
+            <a mat-stroked-button (click)="CriarCategoria()"
+              >Criar Categoria</a
+            >
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </li>
+    <li class="is-active desb">
+      <a href="#" class="">{{ Produto?.Nome }}</a>
+    </li>
+  </ul>
+</nav>

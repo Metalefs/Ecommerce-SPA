@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
 import { cardFlip, fade } from 'apps/app-web/src/app/animations';
-import { BlogPostService, ComentarioProdutoService } from 'apps/app-web/src/app/data/service';
-import { RateProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
 import { sum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { BlogPost } from 'libs/data/src/lib/classes';
 import { Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { map } from 'rxjs/operators';
+import { BlogPostService } from '../../blog.service';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-blog',

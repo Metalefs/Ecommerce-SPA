@@ -31,11 +31,16 @@ export class MercadoPagoCheckoutService {
   }
 
   async goCheckout(Orcamento: Orcamento) {
-    let MercadoPagoCheckout = this.obterPreferencia(Orcamento, await this._integrationService.Ler().toPromise());
-    return this.http.post<any>(environment.endpoint + RouteDictionary.Checkout, { preference: MercadoPagoCheckout }).pipe(
-      retry(3), // retry a failed request up to 3 times
-      catchError(this.ErrorHandler.handleError) // then handle the error
-    );
+    return new Promise(async (resolve, reject) => {
+      try {
+      let MercadoPagoCheckout = this.obterPreferencia(Orcamento, await this._integrationService.Ler().toPromise());
+      resolve(this.http.post<any>(environment.endpoint + RouteDictionary.Checkout, { preference: MercadoPagoCheckout }).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.ErrorHandler.handleError) // then handle the error
+      ));
+      }
+      catch(ex){reject(ex)}
+    });
   }
 
   refund(idPagamento: number): Observable<any> {

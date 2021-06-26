@@ -9,9 +9,8 @@ import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-
 import { Observable, Subject, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import {GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
+import { GalleryConfig, ThumbnailsPosition, GalleryItem, Gallery } from 'ng-gallery';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
-import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDisplayComponent } from 'apps/app-web/src/app/shared/components/dialogs/checkout-display/checkout-display.component';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarCategoriaFiltroProduto } from 'apps/app-web/src/app/data/store/actions/filtroproduto.actions';

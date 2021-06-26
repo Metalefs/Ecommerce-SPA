@@ -9,20 +9,19 @@ import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { LerSobre } from '../../data/store/actions/sobre.actions';
 import { CategoriaState, InformacoesContatoState, NavStateState, OrcamentoState, ProdutoState, SobreState } from '../../data/store/state';
-import { NavState } from '../../data/models/navstate';
-import { NavLinksRes } from '../../data/models/navlinks';
 
 import { EditarNavState } from '../../data/store/actions/navstate.actions';
-import { Link } from '../../data/models';
 import { CheckoutDisplayComponent } from '../../shared/components/dialogs/checkout-display/checkout-display.component';
 import { LoginComponent } from '../../modules/login/page/login.component';
 import { fade, slideInOut } from '../../animations';
 import { EditarCategoriaFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
-import { CategoriaService } from '../../data/service';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 import { isPlatformBrowser } from '@angular/common';
+import { NavState, Link, NavLinksRes } from '../../shared/models/interfaces';
+import { CategoriaService } from '../../shared/services';
+
 @Component({
   selector: 'personalizados-lopes-header',
   templateUrl: './header.component.html',
