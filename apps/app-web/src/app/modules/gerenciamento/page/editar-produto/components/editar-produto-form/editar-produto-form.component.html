@@ -6,52 +6,52 @@
     (onSelecionarCategoria)="SelecionarCategoria($event)"
   ></personalizados-lopes-categoria-produto>
 
-  <div class="columns box has-background-white" id="PRODUTO">
-    <div class="column is-4 mb-0 pos-sticky top-0 pt-3">
-      <mat-chip-list class="is-left">
-        <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{
-          translateStatusProduto(Produto.Status)
-        }}</mat-chip>
-      </mat-chip-list>
+  <div class="columns">
 
-      <personalizados-lopes-status-produto
-        [Produto]="Produto"
-      ></personalizados-lopes-status-produto>
-
-      <div>
-        <gallery
-          gallerize
-          id="myGallery"
-          class=""
-          *ngIf="galleryConfig$ | async; let config"
-          [counter]="false"
-          [nav]="false"
-          [thumbWidth]="config.thumbWidth"
-          [thumbHeight]="config.thumbHeight"
-          [thumbPosition]="config.thumbPosition"
-        >
-        </gallery>
-
-        <div class="file has-name pb-3">
-          <label class="file-label">
-            <input
-              class="file-input"
-              multiple
-              type="file"
-              (change)="upload($event)"
-            />
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="pi pi-cloud-upload"></i>
+    <div class="column is-4 pt-3">
+      <div class="pos-sticky top-0">
+        <mat-chip-list class="is-left">
+          <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{
+            translateStatusProduto(Produto.Status)
+          }}</mat-chip>
+        </mat-chip-list>
+        <personalizados-lopes-status-produto
+          [Produto]="Produto"
+        ></personalizados-lopes-status-produto>
+        <div>
+          <gallery
+            gallerize
+            id="myGallery"
+            class=""
+            *ngIf="galleryConfig$ | async; let config"
+            [counter]="false"
+            [nav]="false"
+            [thumbWidth]="config.thumbWidth"
+            [thumbHeight]="config.thumbHeight"
+            [thumbPosition]="config.thumbPosition"
+          >
+          </gallery>
+          <div class="file has-name pb-3">
+            <label class="file-label">
+              <input
+                class="file-input"
+                multiple
+                type="file"
+                (change)="upload($event)"
+              />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="pi pi-cloud-upload"></i>
+                </span>
+                <span class="file-label">
+                  Escolha as imagens…
+                </span>
+                <span class="file-name">
+                  {{ fileNames }}
+                </span>
               </span>
-              <span class="file-label">
-                Escolha as imagens…
-              </span>
-              <span class="file-name">
-                {{ fileNames }}
-              </span>
-            </span>
-          </label>
+            </label>
+          </div>
         </div>
       </div>
     </div>
@@ -209,96 +209,37 @@
 
           <div class="w-full py-3 mb-0">
             <div class="columns is-mobile mb-0">
-              <div class="column is-6 pb-0">
-                <mat-form-field class="field w-full">
-                  <mat-chip-list #chipList aria-label="Color selection">
-                    <mat-chip
-                      *ngFor="let cor of Produto.Cores"
-                      [selectable]="selectable"
-                      [removable]="removable"
-                      (removed)="removeCor(cor)"
-                    >
-                      {{ cor.nome }}
-                      <mat-icon matChipRemove *ngIf="removable">
-                        cancelar
-                      </mat-icon>
-                    </mat-chip>
-                    <input
-                      placeholder="Nova cor... Separe o nome do valor com ponto e vírgula = branco;#fffff insira com ENTER ou TAB"
-                      #colorInput
-                      [formControl]="colorCtrl"
-                      [matAutocomplete]="auto"
-                      [matChipInputFor]="chipList"
-                      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                      (matChipInputTokenEnd)="addCor($event)"
-                    />
-                  </mat-chip-list>
-
-                  <mat-autocomplete
-                    #auto="matAutocomplete"
-                    (optionSelected)="selectedCor($event)"
-                  >
-                    <mat-option
-                      *ngFor="let cor of filteredColors | async"
-                      [value]="cor.nome"
-                    >
-                      {{ cor.nome }}
-                      <div
-                        [style.backgroundColor]="cor.cor"
-                        style="width: 20px; height: 20px;"
-                      ></div>
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-
-                <mat-divider></mat-divider>
-
-                <p><em>Cores</em></p>
-                <mat-form-field
-                  class="field w-full"
-                  *ngIf="Produto?.Cores"
-                  appearance="fill"
-                >
-                  <mat-label>Selecione uma cor</mat-label>
-                  <mat-select
-                    matNativeControl
-                    [(ngModel)]="Produto.Cor"
-                    [value]="Produto?.Cor"
-                  >
-                    <mat-option
-                      *ngFor="let opt of Produto?.Cores"
-                      [value]="opt"
-                      class="w-full"
-                    >
-                      <div
-                        class="cor-produto card box w-full"
-                        [style.backgroundColor]="opt.cor"
-                        (click)="Produto.Cor = opt"
-                      >
-                        <p>{{ opt.nome }}</p>
-                      </div>
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
+              <div class="column is-6">
+                <!-- Cor -->
+                <personalizados-lopes-cor-produto
+                  [Produto]="Produto"
+                  [colorCtrl]="colorCtrl"
+                  (onAddCor)="addCor($event)"
+                  (onSelectedCor)="selectedCor($event)"
+                  (onRemoveCor)="removeCor($event)"
+                ></personalizados-lopes-cor-produto>
               </div>
 
-              <mat-divider></mat-divider>
-
-              <!-- Tamanho -->
-              <personalizados-lopes-tamanho-produto
-                [Produto]="Produto"
-              ></personalizados-lopes-tamanho-produto>
+              <div class="column is-6">
+                <!-- Tamanho -->
+                <personalizados-lopes-tamanho-produto
+                  [Produto]="Produto"
+                  [sizeCtrl]="sizeCtrl"
+                  (onAddTamanho)="addTamanho($event)"
+                  (onRemoveTamanho)="removeTamanho($event)"
+                  (onSelectedTamanho)="selectedTamanho($event)"
+                ></personalizados-lopes-tamanho-produto>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <personalizados-lopes-dimensoes-produto
-  [Produto]="Produto"
-></personalizados-lopes-dimensoes-produto>
+    [Produto]="Produto"
+  ></personalizados-lopes-dimensoes-produto>
 
   <personalizados-lopes-criacao-tags
     [Produto]="Produto"
@@ -307,17 +248,17 @@
     (onRemoveTag)="removeTag($event)"
   ></personalizados-lopes-criacao-tags>
 
-  <div class="w-full columns is-mobile">
+  <div class="w-full columns is-gapless is-multiline">
     <div class="column is-12">
       <personalizados-lopes-descricao-produto
         [Produto]="Produto"
       ></personalizados-lopes-descricao-produto>
+    </div>
 
-      <div class="column">
-        <personalizados-lopes-especificacao-produto
-          [Produto]="Produto"
-        ></personalizados-lopes-especificacao-produto>
-      </div>
+    <div class="column is-12">
+      <personalizados-lopes-especificacao-produto
+        [Produto]="Produto"
+      ></personalizados-lopes-especificacao-produto>
     </div>
   </div>
   <personalizados-lopes-dicas-cadastro></personalizados-lopes-dicas-cadastro>

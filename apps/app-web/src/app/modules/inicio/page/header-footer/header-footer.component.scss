@@ -1,10 +1,10 @@
 @mixin hover{
   filter:drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  transform: rotate(1deg);
+  transform: rotateY(1deg);
 }
 @mixin unhover{
   box-shadow: none;
-  transform: rotate(0deg);
+  transform: rotateY(0deg);
   filter:grayscale(1)
 }
 .mat-card{

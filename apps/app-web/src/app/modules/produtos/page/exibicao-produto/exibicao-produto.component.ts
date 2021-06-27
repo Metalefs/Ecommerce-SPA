@@ -97,7 +97,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private fb: FormBuilder
     ) {
-
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
@@ -110,7 +109,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
               thumbHeight: 80,
             };
           }else{
-
             this.mobile=false;
             return {
               thumbPosition: ThumbnailsPosition.Bottom,
@@ -157,6 +155,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
     if(produto?.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
+    else
+      this.textoAdicionar = "COMPRAR";
 
     this.Produto = produto;
   }
@@ -184,10 +184,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
     if(!this.IsValid)
     return;
-
     this.Orcamento$.subscribe(x=>{
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
-
       if(!this.orcamentoId){
         if(!this.Produto.Arte){
           this.AbrirModalArte();

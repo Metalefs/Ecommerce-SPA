@@ -94,7 +94,7 @@
     #toCheckout
     [disabled]="!Produto.Canvas['objects'].length||[] > 0"
     [ngClass]="{'wp-btn is-success':!toCheckout.disabled}">
-    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Continar para o carrinho"}}
+    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Continar para o checkout"}}
   </button>
   <button mat-raised-button color=""
     [mat-dialog-close]="null"

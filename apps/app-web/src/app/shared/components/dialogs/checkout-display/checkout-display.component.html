@@ -6,7 +6,7 @@
   <p>
     <mat-toolbar color="primary" class="pri-toolbar">
       <mat-toolbar-row class="pt-3">
-        <h2 class="subtitle mb-0 pt-0">{{(Orcamento$ |async)?.Produto.length > 0 ? "Carrinho" : "Seu carrinho está vazio"}}</h2>
+        <h2 class="subtitle mb-0 pt-0">{{(Orcamento$ |async)?.Produto.length > 0 ? "Cesta de compras" : "Sua cesta está vazia"}}</h2>
         <span class="spacer"></span>
         <button mat-icon-button
         aria-label="fechar carrinho"
@@ -172,7 +172,7 @@
 
         [routerLink]="['/checkout/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
         class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
-          orçamento</span></a>
+          Pedido</span></a>
       <button class="py-3 pb-3  w-full">
         <a
         href="#topo"

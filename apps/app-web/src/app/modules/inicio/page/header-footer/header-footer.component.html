@@ -14,7 +14,7 @@
       <div [id]="card.class" class=" {{card?.class}}">
         <mat-card class="of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
           <article class="media">
-            <div class="media-content dis-flex flex-sb">
+            <div class="media-content dis-flex">
               <a *ngIf="card.img_src" [routerLink]="card.link" href="{{card.id}}" pageScroll class="w-full ">
                 <img loading="lazy" mat-card-image height="200"  src="{{card.img_src}}" class="">
               </a>
@@ -23,7 +23,7 @@
                   <mat-icon>{{card.icon}}</mat-icon>
                 </a>
               </div>
-              <div class="content mx-2">
+              <div class="content mx-2 m-l-20">
                 <mat-card-title>
                   <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
                     <p class="is-size-5 ">{{card.title}}</p>

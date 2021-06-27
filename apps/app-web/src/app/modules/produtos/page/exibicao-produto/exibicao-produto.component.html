@@ -84,7 +84,7 @@
               </div>
               <div class="column is-6 has-background-white bbr shadow-light section" style="margin-bottom:-26px">
 
-                <div class="box">
+                <div class="column is-12">
                   <div class="{{mobile ? 'txt-left': 'txt-left'}}">
                     <h1 class="titulo-produto title">{{Produto?.Nome}}</h1>
                     <ul class="list-unstyled">
@@ -101,7 +101,7 @@
                         <form *ngIf="produtoForm" action="" method="post" [formGroup]="produtoForm">
                           <div class="columns is-vcentered is-multiline" >
                             <div class="field column">
-                              <div class="control is-large flex-c flex-m">
+                              <div class="control is-large flex-m">
                                 <div>
                                   <button mat-icon-button (click)="DecrescerQuantidade()">
                                     <mat-icon class="less">remove</mat-icon>
@@ -117,12 +117,12 @@
                                     <mat-icon class="more">add</mat-icon>
                                   </button>
                                 </div>
-                                <span class="has-text-grey-light subtitle is-size-7" *ngIf="Produto?.QuantidadeMinima">
-                                  <em>
-                                    *Minimo {{Produto?.QuantidadeMinima}} unidade(s)
-                                  </em>
-                                </span>
                               </div>
+                              <span class="has-text-grey-light subtitle is-size-7" *ngIf="Produto?.QuantidadeMinima">
+                                <em>
+                                  *Minimo {{Produto?.QuantidadeMinima}} unidade(s)
+                                </em>
+                              </span>
                             </div>
                             <div class="column is-4" [ngClass]="{'is-danger':ErroTamanho()}"
                             *ngIf="Produto?.Tamanhos">
@@ -247,7 +247,7 @@
                       </div>
                     </div>
                     <div class="text-center is-right w-full">
-                      <ul class="notification is-white shadow-light has-text-grey-light w-full">
+                      <ul class="notification is-info shadow-light has-text-grey-light w-full">
                         <li class="w-full"><i class="is-right pi pi-question-circle"></i></li>
                         <li *ngFor="let infoPagamento of infosPagamento">{{infoPagamento.descricao}}</li>
                       </ul>

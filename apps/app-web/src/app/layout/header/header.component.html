@@ -27,12 +27,27 @@
       class="navbar z-index-top"
       style="z-index: 20;"
     >
-      <div class="dis-flex flex-c-m flex-sa">
-        <div class="navbar-start">
-          <div class="flex-m nav-item">
+      <div class="dis-flex flex-sa flex-c-m">
+        <div class="w-full navbar-start">
+          <div class="w-full dis-flex flex-sa flex-m nav-item">
             <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
               <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
             </a>
+            <div class="is-hidden-desktop mr-6 navbar-item">
+              <button
+                mat-ripple
+                color=""
+                (click)="openCheckout()"
+                title="Cesta de compras"
+                aria-label="Botão abrir Orçamento"
+                class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3"
+              >
+                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+                <p class="cart-counter">
+                  {{ (Orcamento$ | async)?.Produto.length || 0 }}
+                </p>
+              </button>
+            </div>
           </div>
           <form
             type="get"
@@ -64,21 +79,6 @@
         </div>
       </div>
       <div class="dis-flex flex-r navbar-end">
-        <div class="is-hidden-desktop mr-6 navbar-item">
-          <button
-            mat-ripple
-            color=""
-            (click)="openCheckout()"
-            title="Checkout"
-            aria-label="Botão abrir Orçamento"
-            class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3"
-          >
-            <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-            <p class="cart-counter">
-              {{ (Orcamento$ | async)?.Produto.length || 0 }}
-            </p>
-          </button>
-        </div>
 
         <div class="is-hidden-touch ml-6 navbar-item">
           <div class="columns is-mobile is-vcentered">
@@ -86,7 +86,7 @@
               <button
                 mat-ripple
                 (click)="openCheckout()"
-                title="Checkout"
+                title="Cesta de compras"
                 aria-label="Botão abrir Orçamento"
                 color="a"
                 class="size4 flex-c-m boxshadow-none how-social shadow-light orcamento trans-04 m-b-3 m-t-3"
@@ -231,7 +231,6 @@
         </div>
       </div>
     </nav>
-
     <mat-toolbar-row
       [ngClass]="
         (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'

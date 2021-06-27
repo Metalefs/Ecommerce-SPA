@@ -1,16 +1,16 @@
-<mat-toolbar class="py-4 mb-4 bbr w-full has-background-white is-hidden-tablet shadow-light pos-sticky top-0 z-index-top">
+<mat-toolbar class="py-4 mb-4 bbr of-y-scroll w-full has-background-white is-hidden-tablet shadow-light pos-sticky top-0 z-index-top">
   <mat-toolbar-row class="py-1">
     <div class="columns is-gapless my-2 is-mobile w-full">
-      <div class="column card has-background-white bo-0">
-        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
+      <div class="column has-background-white bo-0">
+        <div mat-flat-button class="pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
           (click)="AbrirDialogoCategorias()">
           <p class=" is-size-5">Categoria</p>
           <span class="subtitle is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
           <mat-icon>category</mat-icon>
         </div>
       </div>
-      <div class="column card has-background-white bo-0">
-        <div mat-flat-button class="card pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
+      <div class="column has-background-white bo-0">
+        <div mat-flat-button class="pointer clickable txt-center a-i-c bo-0 w-full py-2 px-3"
           (click)="AbrirDialogoOrdenacao()">
           <p class=" is-size-5">Ordenação</p>
           <span class="subtitle is-size-7"><em>({{translate(activeOrderFilter)}})</em></span>
@@ -26,7 +26,6 @@
       <div class="column mr-0 pr-0 is-2 is-hidden-mobile border">
         <div class="flex-c w-full portfolio pos-sticky p-l-10  p-r-10">
           <div class="is-hidden-mobile w-full">
-
             <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
                   resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
             <mat-list class="pt-0 w-full">
@@ -51,8 +50,7 @@
                 <mat-checkbox
                   labelPosition="after"
                   matNativeControl
-                  (click)="SetCategoria(categoria)"
-                  (change)="atualizarFiltroAtivo()"
+                  (change)="SetCategoria(categoria);atualizarFiltroAtivo()"
                   [checked]="IsCategoriaAtiva(categoria)">
                     <a class="dis-flex flex-sb flex-m">
                       <button class="border-0">

@@ -1,4 +1,4 @@
-<div class="block">
+<div class="section">
   <div class="dis-flex flex-sb">
     <h1 class="title">Gerenciar Produtos</h1>
     <button mat-fab color="primary" (click)="Criar()" class="mx-3">
@@ -7,6 +7,18 @@
   </div>
   <div class="columns">
     <div class="column is-3">
+      <div class="control has-icons-right w-full">
+        <input
+          [(ngModel)]="activeSearchFilter"
+          (change)="atualizarFiltroAtivo()"
+          class="input border py-2"
+          type="text"
+          placeholder="Filtrar {{ CategoriaAtiva?.Nome }}"
+        />
+        <span class="icon is-small is-right">
+          <mat-icon>search</mat-icon>
+        </span>
+      </div>
       <div class="">
         <mat-form-field class="w-full" appearance="fill">
           <mat-label>Categoria</mat-label>
@@ -26,18 +38,6 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div class="control has-icons-right w-full">
-          <input
-            [(ngModel)]="activeSearchFilter"
-            (change)="atualizarFiltroAtivo()"
-            class="input border py-2"
-            type="text"
-            placeholder="Filtrar {{ CategoriaAtiva?.Nome }}"
-          />
-          <span class="icon is-small is-right">
-            <mat-icon>search</mat-icon>
-          </span>
-        </div>
       </div>
       <div class="">
 

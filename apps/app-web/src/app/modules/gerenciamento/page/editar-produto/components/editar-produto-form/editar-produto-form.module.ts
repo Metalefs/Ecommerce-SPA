@@ -23,6 +23,7 @@ import { TamanhoProdutoComponent } from './tamanho-produto/tamanho-produto.compo
 import { CategoriaProdutoComponent } from './categoria-produto/categoria-produto.component';
 import { StatusProdutoComponent } from './status-produto/status-produto.component';
 import { QuantidadeProdutoComponent } from './quantidade-produto/quantidade-produto.component';
+import { CorProdutoComponent } from './cor-produto/cor-produto.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { QuantidadeProdutoComponent } from './quantidade-produto/quantidade-prod
     TamanhoProdutoComponent,
     CategoriaProdutoComponent,
     StatusProdutoComponent,
-    QuantidadeProdutoComponent
+    QuantidadeProdutoComponent,
+    CorProdutoComponent
   ],
   imports: [
     CommonModule,

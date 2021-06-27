@@ -14,6 +14,7 @@ export class TamanhoProdutoComponent implements OnInit {
 
   @Output() onAddTamanho: EventEmitter<any> = new EventEmitter<any>();
   @Output() onRemoveTamanho: EventEmitter<any> = new EventEmitter<any>();
+  @Output() onSelectedTamanho: EventEmitter<any> = new EventEmitter<any>();
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   constructor() { }
@@ -23,6 +24,10 @@ export class TamanhoProdutoComponent implements OnInit {
 
   addTamanho($event){
     this.onAddTamanho.emit($event);
+  }
+
+  selectedTamanho($event){
+    this.onSelectedTamanho.emit($event);
   }
 
   removeTamanho(tamanho){

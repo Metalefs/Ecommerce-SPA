@@ -1,7 +1,16 @@
 <nav class="factory-steps has-background-dark fix-bottom-on-mobile">
   <div class="columns is-mobile is-vcentered">
-    <a class="column" *ngFor="let opcao of Opcoes">
-      <navbaricon class="nav-icon" [EstadoNav]="EstadoNav" [Titulo]="opcao.Titulo" [Link]="opcao.Link" [Icon]="opcao.Icon"></navbaricon>
+    <a *ngFor="let opcao of Opcoes"
+      pageScroll
+      [ngClass]="EstadoNav.pagina == Link ? 'active' : ''"
+      (click)="ChangeToThis(opcao.Link)"
+      [routerLink]="[opcao.Link]"
+      href="#topo"
+      routerLinkActive="Active"
+      class="column has-text-weight-semibold"
+    >
+      <i [ngClass]="EstadoNav.pagina == opcao.Link ? opcao.Icon + ' is-solid' : opcao.Icon"></i>
+      <p class="is-size-7 has-text-weight-semibold nav-icon-p">{{ opcao.Titulo }}</p>
     </a>
   </div>
-  </nav>
+</nav>

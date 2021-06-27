@@ -1,4 +1,4 @@
-<div class="column is-6 pb-0" *ngIf="Produto?.Tamanhos">
+<div class="pb-0" *ngIf="Produto?.Tamanhos">
   <div>
     <mat-form-field class="field w-full">
       <mat-chip-list #chipList2 aria-label="Size selection">
@@ -41,7 +41,7 @@
       *ngIf="Produto?.Cores"
       appearance="fill"
     >
-      <mat-label class="label">Selecione um tamanho</mat-label>
+      <mat-label class="">Selecione um tamanho</mat-label>
       <mat-select
         matNativeControl
         [(ngModel)]="Produto.Tamanho"

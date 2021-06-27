@@ -24,7 +24,9 @@ export class FactoryStepsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  ChangeToThis(link){
+    this.EstadoNav.pagina = link;
+  }
 }
 export class OpcaoNavbar{
   Titulo: string;

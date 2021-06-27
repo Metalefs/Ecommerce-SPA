@@ -1,0 +1,72 @@
+<div class="pb-0">
+  <mat-form-field class="field w-full">
+    <mat-chip-list #chipList aria-label="Color selection">
+      <mat-chip
+        *ngFor="let cor of Produto.Cores"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="removeCor(cor)"
+      >
+        {{ cor.nome }}
+        <mat-icon matChipRemove *ngIf="removable">
+          cancelar
+        </mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Nova cor... Separe o nome do valor com ponto e vírgula = branco;#fffff insira com ENTER ou TAB"
+        #colorInput
+        [formControl]="colorCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addCor($event)"
+      />
+    </mat-chip-list>
+
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selectedCor($event)"
+    >
+      <mat-option
+        *ngFor="let cor of filteredColors | async"
+        [value]="cor.nome"
+      >
+        {{ cor.nome }}
+        <div
+          [style.backgroundColor]="cor.cor"
+          style="width: 20px; height: 20px;"
+        ></div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-divider></mat-divider>
+
+  <p><em>Cores</em></p>
+  <mat-form-field
+    class="field w-full"
+    *ngIf="Produto?.Cores"
+    appearance="fill"
+  >
+    <mat-label>Selecione uma cor</mat-label>
+    <mat-select
+      matNativeControl
+      [(ngModel)]="Produto.Cor"
+      [value]="Produto?.Cor"
+    >
+      <mat-option
+        *ngFor="let opt of Produto?.Cores"
+        [value]="opt"
+        class="w-full"
+      >
+        <div
+          class="cor-produto card box w-full"
+          [style.backgroundColor]="opt.cor"
+          (click)="Produto.Cor = opt"
+        >
+          <p>{{ opt.nome }}</p>
+        </div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

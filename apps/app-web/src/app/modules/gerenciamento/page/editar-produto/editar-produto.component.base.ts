@@ -26,6 +26,13 @@ import { AuthenticationService } from 'apps/app-web/src/app/core/service/authent
   providedIn: 'root'
 })
 export class EditarProdutoComponentBase implements OnInit {
+
+  allColors: Cor[] = [
+    {nome: 'Branco', cor:'white'},
+    {nome: 'Preto', cor:'black'},
+    {nome: 'Azul Marinho', cor:'tealblue'},
+  ];
+
   galleryConfig$: Observable<GalleryConfig>;
   enumStatusProduto = StatusProduto;
   fileNames:string="nenhum arquivo selecionado.";
@@ -34,15 +41,9 @@ export class EditarProdutoComponentBase implements OnInit {
   selectable = true;
   removable = true;
   public Editor;
-  colorCtrl = new FormControl();
-  filteredColors: Observable<Cor[]>;
-  allColors: Cor[] = [
-    {nome: 'Branco', cor:'white'},
-    {nome: 'Preto', cor:'black'},
-    {nome: 'Azul Marinho', cor:'tealblue'},
-  ];
 
   tagCtrl = new FormControl();
+  colorCtrl:FormControl = new FormControl();
   sizeCtrl = new FormControl();
   filteredSizes: Observable<string[]>;
   allSizes: string[] = ['P','M','G','GG','XGG'];

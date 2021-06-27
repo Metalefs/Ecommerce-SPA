@@ -309,12 +309,18 @@ input[type='number'] {
   line-height: 34px !important;
   margin: 6px 6px 0px 0px !important;
 }
-.descricao-produto {
+div.descricao-produto {
   font-size: 16px;
   line-height: 24px !important;
-  figure > .image img{
-    max-width: 50% !important;
-    float: right !important;
+  figure{
+    &.media{
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    > .image img{
+      max-width: 50% !important;
+      float: right !important;
+    }
   }
   .image img{
     max-width: 50% !important;

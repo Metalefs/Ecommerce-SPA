@@ -1,9 +1,14 @@
-<div class="descricao-produto column is-12 w-full">
-  <h2 class="preto6"><b>Especificações</b></h2>
-  <div class="w-full">
-    <personalizados-lopes-editor
-      (Changed)="Produto.Especificacoes = $event"
-      [Conteudo]="Produto.Especificacoes"
-    ></personalizados-lopes-editor>
-  </div>
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Especificações</mat-card-title>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card-header>
+  </mat-card>
+
+  <personalizados-lopes-editor
+    (Changed)="Produto.Especificacoes = $event"
+    [Conteudo]="Produto.Especificacoes"
+  ></personalizados-lopes-editor>
 </div>

@@ -1,23 +1,38 @@
 <footer class="footer footer-color flex-w flex-sb py-0 px-0 of-x-scroll">
-  <div class="margin a-i-c flex-w flex-sb py-0 px-0 of-x-scroll">
-
-    <div class="hero w-full is-small shadow-light ">
-      <div class="w-full bg-footer hero-head shadow-light  bbr px-2">
+  <div class="margin a-i-c flex-w flex-sb py-0 px-0">
+    <div class="hero w-full is-small shadow-light">
+      <div class="w-full bg-footer hero-head shadow-light bbr px-2">
         <div class="margin w-full dis-flex flex-sa flex-m">
           <div class="columns is-gapless is-multiline is-vcentered">
-            <div class="column pb-0 mt-2 w-full dis-flex flex-m  flex-c">
+            <div class="column pb-0 mt-2 w-full dis-flex flex-m flex-c">
               <label for="nome" class="">ASSINE NOSSA NEWSLETTER</label>
             </div>
             <div class="column">
               <div class="dis-flex flex-m">
                 <div class="control">
-                  <input #nome id="nome" [(ngModel)]="Nome"   class="input" placeholder="nome">
+                  <input
+                    #nome
+                    id="nome"
+                    [(ngModel)]="Nome"
+                    class="input"
+                    placeholder="nome"
+                  />
                 </div>
                 <mat-icon class="">mail</mat-icon>
                 <div class="control">
-                  <input #email [(ngModel)]="Email"  class="input" type="email" placeholder="email">
+                  <input
+                    #email
+                    [(ngModel)]="Email"
+                    class="input"
+                    type="email"
+                    placeholder="email"
+                  />
                 </div>
-                <a mat-icon-button class="has-background-light has-text-black nsw-btn" (click)="AssinarNewsLetter()">
+                <a
+                  mat-icon-button
+                  class="has-background-light has-text-black nsw-btn"
+                  (click)="AssinarNewsLetter()"
+                >
                   <mat-icon>chevron_right</mat-icon>
                 </a>
               </div>
@@ -31,14 +46,39 @@
             <div class="footer-widget">
               <h3 class="mb-2 footer-title">Contate-nos</h3>
               <div class="contact-info">
-                <p class="footer-text"><i class="pi pi-map-marker"></i>{{(InformacoesContato$ | async)?.HorarioAtendimento}}</p>
-                <p class="footer-text"><i class="pi pi-map-marker"></i>{{(InformacoesContato$ | async)?.Endereco}}</p>
-                <br>
-                <p class="footer-text"><i class="pi pi-mobile"></i> <a class="footer-text reset-a" href="tel:{{(InformacoesContato$ | async)?.Telefone}}">{{(InformacoesContato$ | async)?.Telefone}}</a></p>
-                <p class="footer-text has-text-bold"><i class="pi pi-mobile"></i>Whatsapp: {{(InformacoesContato$ | async)?.Whatsapp}}</p>
-                <p class="footer-text dis-flex"><i class="pi pi-envelope"></i><a class="footer-text reset-a" href="mailto:{{(InformacoesContato$ | async)?.Email}}">{{(InformacoesContato$ | async)?.Email}}</a></p>
-                <personalizados-lopes-social-network-links data-aos="fade-up" data-aos-offset="-200"></personalizados-lopes-social-network-links>
-
+                <p class="footer-text">
+                  <i class="pi pi-map-marker"></i
+                  >{{ (InformacoesContato$ | async)?.HorarioAtendimento }}
+                </p>
+                <p class="footer-text">
+                  <i class="pi pi-map-marker"></i
+                  >{{ (InformacoesContato$ | async)?.Endereco }}
+                </p>
+                <br />
+                <p class="footer-text">
+                  <i class="pi pi-mobile"></i>
+                  <a
+                    class="footer-text reset-a"
+                    href="tel:{{ (InformacoesContato$ | async)?.Telefone }}"
+                    >{{ (InformacoesContato$ | async)?.Telefone }}</a
+                  >
+                </p>
+                <p class="footer-text has-text-bold">
+                  <i class="pi pi-mobile"></i>Whatsapp:
+                  {{ (InformacoesContato$ | async)?.Whatsapp }}
+                </p>
+                <p class="footer-text dis-flex">
+                  <i class="pi pi-envelope"></i
+                  ><a
+                    class="footer-text reset-a"
+                    href="mailto:{{ (InformacoesContato$ | async)?.Email }}"
+                    >{{ (InformacoesContato$ | async)?.Email }}</a
+                  >
+                </p>
+                <personalizados-lopes-social-network-links
+                  data-aos="fade-up"
+                  data-aos-offset="-200"
+                ></personalizados-lopes-social-network-links>
               </div>
             </div>
           </div>
@@ -57,7 +97,10 @@
 
           <div class="column is-hidden-mobile">
             <h3 class="footer-title">Sobre</h3>
-            <div class="txt-justify footer-text has-text-medium" [innerHTML]="(Sobre$ | async)?.Historia"></div>
+            <div
+              class="txt-justify footer-text has-text-medium"
+              [innerHTML]="(Sobre$ | async)?.Historia"
+            ></div>
           </div>
 
           <div class="column is-2 is-hidden-mobile">
@@ -65,7 +108,7 @@
               <h3 class="mb-2 footer-title">Compras</h3>
               <div class="columns is-multiline is-vcentered">
                 <div class="column is-12 txt-center">
-                  <h4 class="has-text-white">Site seguro</h4>
+                  <!-- <h4 class="has-text-white">Site seguro</h4> -->
                   <img
                     loading="lazy"
                     src="assets/images/icons/SSL_certificate.png"
@@ -73,32 +116,32 @@
                     height="50"
                     [style.height]="'150px !important'"
                     [style.width]="'50px !important'"
-                    class="img-badge "
-                    >
+                    class="img-badge"
+                  />
                 </div>
                 <div class="column is-12 txt-center">
                   <h4 class="has-text-white">Formas de pagamento</h4>
-                  <img
-                  loading="lazy"
-                  src="https://imgmp.mlstatic.com/org-img/MLB/MP/BANNERS/tipo2_468X60.jpg?v=1"
-                  alt="Mercado Pago - Meios de pagamento" title="Mercado Pago - Meios de pagamento"
-                  width="468" height="60"
-                  [style.height]="'60px !important'"
-                  [style.width]="'468px !important'"
-                  >
+                  <div class="w3-xxlarge w3-center">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/boleto.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/visa.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/master.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/diners.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/amex.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/elo.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/hipercard.png">
+                    <img loading="lazy" class="band-bloco" src="assets/images/icons/hiper.png">
+                    </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="hero-foot shadow-light  " >
-
-          <personalizados-lopes-factory-steps class="is-hidden-desktop"></personalizados-lopes-factory-steps>
-        </div>
+      <div class="hero-foot shadow-light">
+        <personalizados-lopes-factory-steps
+          class="is-hidden-desktop"
+        ></personalizados-lopes-factory-steps>
       </div>
     </div>
-  </footer>
-
-
-
+  </div>
+</footer>
