@@ -7,7 +7,7 @@
   [styleClass]="'w-full '"
   [size]="20"
   [minLength]="1"
-  placeholder="Buscar"
+  [placeholder]="CategoriaAtiva ? CategoriaAtiva.Nome : 'Buscar'"
   [dropdown]="true">
   <ng-template let-produto pTemplate="item">
     <a [href]="'/produtos/'+produto?._id">

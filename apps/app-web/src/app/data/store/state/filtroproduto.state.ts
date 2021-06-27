@@ -9,10 +9,10 @@ let defaultCategory = "Todos os produtos";
 export class FiltroProdutoStateModel{
   FiltroProdutos: entities.Produto[];
   Categoria: entities.Categoria;
+  CategoriasAtivas: entities.Categoria[];
   SearchFilter: string;
   OrderFilter: number;
   areFiltroProdutosLoaded: boolean;
-
 }
 
 @State<FiltroProdutoStateModel>({
@@ -20,6 +20,7 @@ export class FiltroProdutoStateModel{
   defaults: {
     FiltroProdutos:[],
     Categoria: new Categoria(defaultCategory,defaultCategory),
+    CategoriasAtivas: [new Categoria(defaultCategory,defaultCategory)],
     SearchFilter: "",
     OrderFilter: 0,
     areFiltroProdutosLoaded: false
@@ -48,6 +49,7 @@ export class FiltroProdutoState {
 
     context.patchState({
         Categoria : action.payload.Categoria,
+        CategoriasAtivas : action.payload.CategoriasAtivas,
         SearchFilter : action.payload.SearchFilter,
         OrderFilter : action.payload.OrderFilter,
         FiltroProdutos : action.payload.Produtos
@@ -59,6 +61,7 @@ export class FiltroProdutoState {
     const current = context.getState();
     context.patchState({
       Categoria : action.payload.Categoria,
+      CategoriasAtivas : action.payload.CategoriasAtivas,
       SearchFilter : action.payload.SearchFilter,
       OrderFilter : action.payload.OrderFilter,
       FiltroProdutos : action.payload.Produtos
@@ -73,6 +76,7 @@ export class FiltroProdutoState {
     }
     context.patchState({
         Categoria : action.payload,
+        CategoriasAtivas :current.CategoriasAtivas,
         SearchFilter : current.SearchFilter,
         OrderFilter : current.OrderFilter,
         FiltroProdutos : current.FiltroProdutos
@@ -85,6 +89,7 @@ export class FiltroProdutoState {
 
     context.patchState({
         Categoria : current.Categoria,
+        CategoriasAtivas :current.CategoriasAtivas,
         SearchFilter : action.payload,
         OrderFilter : current.OrderFilter,
         FiltroProdutos : current.FiltroProdutos

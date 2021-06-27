@@ -129,7 +129,7 @@ function FiltrarProdutos(req, res){
     }
     if (req.query.categoria) {
       if (!decodeURI(req.query.categoria).includes("Todos"))
-        sQuery.NomeCategoria = new RegExp(decodeURI(escapeRegex(req.query.categoria)), 'gi');
+        sQuery.NomeCategoria = new RegExp(decodeURI(escapeRegex(req.query.categoria)).split(',').join('|'), 'gi');
       else
         sQuery.NomeCategoria = new RegExp('.*', 'gi');
     }
