@@ -248,6 +248,9 @@ li .p-menuitem-link span.p-menuitem-text {
 .p-megamenu{
   border: none;
   background: #ffffff;
+
+  z-index: 1;
+
 }
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text,.p-component {
   // font-size: 13px;
@@ -306,11 +309,12 @@ li .p-menuitem-link span.p-menuitem-text {
   transition: all 0.5s ease-in-out;
   border-radius: 50%;
   animation: hideArr 1s ease forwards !important;
+  background: whitesmoke;
   &::after{
     font-size: 30px !important;
   }
   &:hover {
-    background: whitesmoke;
+    opacity: .9;
   }
   & i {
     padding-top: 9px;

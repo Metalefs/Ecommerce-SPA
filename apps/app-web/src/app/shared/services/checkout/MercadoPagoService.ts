@@ -24,7 +24,7 @@ export class MercadoPagoCheckoutService {
 
   listPayments() {
     let payload = this.AuthenticationService.tokenize({});
-    return this.http.get<MercadoPagoSearchPaymentResult>(environment.endpoint + RouteDictionary.ListPayments + `?token=${payload.token}`).pipe(
+    return this.http.get<MercadoPagoSearchPaymentResult>(environment.endpoint + RouteDictionary.ListPayments).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );

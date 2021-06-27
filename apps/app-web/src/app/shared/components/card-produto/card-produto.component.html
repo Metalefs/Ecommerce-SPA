@@ -1,321 +1,409 @@
-<ng-container *ngIf="MostarOpcoes then Padrao else Minimalista"></ng-container>
+<ng-container
+  *ngIf="MostarOpcoes; then Padrao; else Minimalista"
+></ng-container>
 
 <ng-template #Padrao>
-  <ng-container *ngIf="TrocaImagem then troca else naotroca"> </ng-container>
+  <ng-container *ngIf="TrocaImagem; then troca; else naotroca"> </ng-container>
 
   <ng-template #troca>
-
     <a>
-    <mat-card
-    (mouseenter)="
-      this.imgProduto.classList.add('hide');
-      this.imgProduto.classList.remove('show');
-      " (mouseout)="
-      this.imgProduto.classList.remove('hide');
-      this.imgProduto.classList.add('show');
-      "
-      routerLinkActive="router-link-active"
-      matRipple class="portfolio-item zoom of-y-scroll card border"
-       [style.flexDirection]="flex_direction">
+      <mat-card
+        (mouseenter)="
+          this.imgProduto.classList.add('hide');
+          this.imgProduto.classList.remove('show')
+        "
+        (mouseout)="
+          this.imgProduto.classList.remove('hide');
+          this.imgProduto.classList.add('show')
+        "
+        routerLinkActive="router-link-active"
+        matRipple
+        style="    border-radius: 30px;"
+        class="portfolio-item zoom of-y-scroll card border-light"
+        [style.flexDirection]="flex_direction"
+      >
+        <div #imgProduto matRipple class="dis-flex flex-w mx-2 my-2 w-full">
+          <span class="prod-status ">
+            <span class="product-category"></span>
+            <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
+          </span>
 
-      <div
-      #imgProduto matRipple class="dis-flex flex-w mx-2 my-2 w-full" >
-       <!-- <span class="prod-status ">
-        <i class="pi pi-tag  product-category-icon"></i>
-        <span class="product-category"></span>
-        <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
-      </span> -->
-        <!-- <img
-          mat-card-image #imgProduto
-          class=""
-          [src]="Produto.Imagem[0]" [style.opacity]="'1'" [style.display]="'block'"
-          alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
-        <img
-          mat-card-image #imgProduto2
-          class="hide" [src]="Produto.Imagem[1] || Produto.Imagem[0]"
-          alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}"> -->
-          <slideshow mat-card-image
-              *ngIf="imageUrls.length"
-              [imageUrls]="imageUrls"
-              [arrowSize]="(Carrosel$|async)?.arrowSize"
-              [showArrows]="false"
-              [disableSwiping]="false"
-              [autoPlay]="false"
-              [backgroundSize]="'contain'"
-              [backgroundPosition]="(Carrosel$|async)?.backgroundPosition"
-              [backgroundRepeat]="(Carrosel$|async)?.backgroundRepeat"
-              [showDots]="(Carrosel$|async)?.showDots"
-              [dotColor]="'black'"
-              [showCaptions]="(Carrosel$|async)?.showCaptions"
-              [captionColor]="(Carrosel$|async)?.captionColor"
-              [captionBackground]="(Carrosel$|async)?.captionBackground"
-              [lazyLoad]="true"
-              [hideOnNoSlides]="(Carrosel$|async)?.hideOnNoSlides"
-              [fullscreen]="(Carrosel$|async)?.fullscreen"
-              [autoPlayWaitForLazyLoad]="true"
-               >
-            </slideshow>
-      </div>
-
-      <mat-card-footer class="px-3 z-index-2 w-full of-y-scroll ">
-        <div class="my-3" *ngIf="Produto?.Rating.length>0">
-          <star-rating [size]="'small'" [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
-            [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
+          <slideshow
+            mat-card-image
+            *ngIf="imageUrls.length"
+            [imageUrls]="imageUrls"
+            [arrowSize]="(Carrosel$ | async)?.arrowSize"
+            [showArrows]="false"
+            [disableSwiping]="false"
+            [autoPlay]="false"
+            [backgroundSize]="'contain'"
+            [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
+            [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
+            [showDots]="(Carrosel$ | async)?.showDots"
+            [dotColor]="'black'"
+            [showCaptions]="(Carrosel$ | async)?.showCaptions"
+            [captionColor]="(Carrosel$ | async)?.captionColor"
+            [captionBackground]="(Carrosel$ | async)?.captionBackground"
+            [lazyLoad]="true"
+            [hideOnNoSlides]="(Carrosel$ | async)?.hideOnNoSlides"
+            [fullscreen]="(Carrosel$ | async)?.fullscreen"
+            [autoPlayWaitForLazyLoad]="true"
+          >
+          </slideshow>
         </div>
-        <mat-card-title class="w-full txt-center titulo-produto  mb-0">
-          <a  matRipple class="reset-a" pageScroll href="#topo"
-          [routerLink]="['/produtos/'+ Produto?._id]">
-          {{Produto?.Nome}}
-        </a>
 
-        </mat-card-title>
-        <mat-card-actions class="w-full flex-c mx-0 px-0">
+        <mat-card-footer class="px-3 z-index-2 w-full of-y-scroll">
+          <mat-card-title class="w-full txt-center titulo-produto mb-0">
+            <a
+              matRipple
+              class="reset-a"
+              pageScroll
+              href="#topo"
+              [routerLink]="['/produtos/' + Produto?._id]"
+            >
+              {{ Produto?.Nome }}
+            </a>
+
+            <div class="my-3" *ngIf="Produto?.Rating.length > 0">
+              <star-rating
+                [size]="'small'"
+                [rating]="meanRating()"
+                [hoverEnabled]="true"
+                [readOnly]="true"
+                [showHalfStars]="true"
+                [step]="0.5"
+                staticColor="ok"
+                [starType]="'svg'"
+              ></star-rating>
+            </div>
+          </mat-card-title>
+
+          <mat-card-actions class="w-full flex-c mx-0 px-0">
+            <div class="w-full px-4">
+              <div class="columns is-mobile is-vcentered">
+                <div class="column is-12">
+                  <a
+                    href="#topo"
+                    class="w-full button is-dark is-small is-rounded shadow-light btn-vejamais"
+                    style="height: 100%;"
+                    title="Informações"
+                    [routerLink]="[
+                      '/produtos/' +
+                        Produto._id +
+                        '?produto=' +
+                        encodeURI(Produto?.Nome)
+                    ]"
+                    routerLinkActive="router-link-active"
+                  >
+                    <span class="flex-w flex-c-m"> Veja mais</span>
+                  </a>
+                </div>
+                <div class="column is-2 pos-absolute top-0 left-0">
+                  <a
+                    (click)="AdicionarAoOrcamento()"
+                    routerLinkActive="router-link-active"
+                    class="w-full button"
+                    title="Adicionar ao carrinho"
+                    style="height: 100%; text-decoration: none;"
+                  >
+                    <span class="flex-w flex-c-m"
+                      ><span class="mr-1 pi pi-shopping-cart"></span
+                    ></span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <a
+              *ngIf="Produto.Status == statusProduto.esgotado"
+              [routerLink]="[
+                '/produtos/' +
+                  Produto._id +
+                  '?produto=' +
+                  encodeURI(Produto?.Nome)
+              ]"
+              routerLinkActive="router-link-active"
+              class="wp-btn button border is-small box mb-2 pb-2"
+              style="text-decoration: none;"
+            >
+              Esgotado
+            </a>
+          </mat-card-actions>
+
+
+
+          <mat-card-header
+            class="w-full txt-left of-y-scroll"
+            [routerLink]="[
+              '/produtos/' +
+                Produto._id +
+                '?produto=' +
+                encodeURI(Produto?.Nome)
+            ]"
+            routerLinkActive="router-link-active"
+          >
+            <mat-card-subtitle class="mat-card-subtitle is-6">{{
+              Produto?.Subtitulo
+            }}</mat-card-subtitle>
+            <personalizados-lopes-exibicao-preco-produto [Produto]="Produto"></personalizados-lopes-exibicao-preco-produto>
+          </mat-card-header>
+
+        </mat-card-footer>
+
+        <div class="z-index-1">
           <div
-          class=" w-full px-4">
-            <div class="columns is-mobile is-vcentered">
-              <!-- <div class="column is-12">
-                <a href="#topo"
-                class="w-full button is-dark is-small is-rounded shadow-light btn-vejamais"
-                style="height: 100%;"
-                title="Informações"
-                [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-                  <span class="flex-w flex-c-m"> Veja mais</span>
-                </a>
-              </div> -->
-              <div class="column is-2 pos-absolute top-0 left-0">
-                <a (click)="AdicionarAoOrcamento()" routerLinkActive="router-link-active"
-                  class="w-full button"
-                  title="Adicionar ao carrinho"
-                  style="height: 100%; text-decoration: none;">
-                    <span class="flex-w flex-c-m"><span class="mr-1 pi pi-shopping-cart"></span></span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <a *ngIf="Produto.Status == statusProduto.esgotado" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]"  routerLinkActive="router-link-active"
-              class="wp-btn button border is-small box mb-2 pb-2" style="text-decoration: none;">
-            Esgotado
-          </a>
-        </mat-card-actions>
-
-        <mat-card-header class="w-full txt-left pt-1 of-y-scroll" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-
-          <!-- <mat-card-subtitle class="mat-card-subtitle is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
-
-          <mat-card-subtitle
-
-            class="w-full z-index-2 px-3 pb-4 pt-2 is-3 preco ">
-            <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
-            </ng-container>
-            <ng-template #preco_promo>
-              <div
-              class="txt-left pt-0 mt-0">
-                <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-              </div>
-            </ng-template>
-            <ng-template #preco_normal>
-              <p class="preco-produto">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-            </ng-template>
-            <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
-              <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
-                Em até {{Produto.Parcelas}}x de <span
-                  class="parcelas">
-                  <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
-                sem juros
-              </p>
-              <p class=" parcelas" *ngIf="Produto.Parcelas == 1 || Produto.Parcelas == 0">
-                <span
-                class="parcelas"> Á vista por <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b>
-                sem juros</span>
-              </p>
-            </div>
-
-          </mat-card-subtitle>
-        </mat-card-header>
-
-      </mat-card-footer>
-
-
-      <div class="z-index-1">
-        <div class="content m-lr-auto flex-c-m dis-flex"
-        [style.width]="flex_direction == 'row'?'45%':'100%'"
-        [style.left]="flex_direction == 'row'?'':'8%'">
-          <div class="portfolio-overlay events-none w-full" style="top:10px;"
-
+            class="content m-lr-auto flex-c-m dis-flex"
+            [style.width]="flex_direction == 'row' ? '45%' : '100%'"
+            [style.left]="'8%'"
+          >
+            <div
+              class="portfolio-overlay events-none w-full"
+              style="top: 10px;"
             >
               <div class="overlay-items w-full txt-center">
                 <p>
-                  {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
+                  {{
+                    Produto?.DescricaoRapida
+                      ? Produto?.DescricaoRapida
+                      : Produto?.Nome
+                  }}
                 </p>
               </div>
-
+            </div>
+            <!-- <a
+              title="Comprar"
+              matRipple
+              pageScroll
+              href="#topo"
+              class="reset-a button shadow-light hoverable is-success m-lr-auto px-4"
+              [style.top]="flex_direction == 'row' ? '45%' : '37%'"
+              [style.width]="flex_direction == 'row' ? '45%' : '45%'"
+              [routerLink]="[
+                '/produtos/' +
+                  Produto._id +
+                  '?produto=' +
+                  encodeURI(Produto?.Nome)
+              ]"
+              routerLinkActive="router-link-active"
+              mat-flat-button
+              class="mat-accent"
+              ><i class="pi pi-wallet"></i
+            ></a> -->
           </div>
-          <a title="Comprar" matRipple pageScroll
-          href="#topo"
-          class="reset-a button shadow-light hoverable is-success m-lr-auto px-4"
-          [style.top]="flex_direction == 'row'?'45%':'37%'"
-          [style.width]="flex_direction == 'row'?'45%':'45%'"
-          [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-          mat-flat-button class="mat-accent"><i class="pi pi-wallet"></i></a>
         </div>
-      </div>
-    </mat-card>
-  </a>
-    <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
-      <img src="{{Produto?.Imagem[0]}}" alt="">
+      </mat-card>
+    </a>
+    <figure
+      class="image is-64x64 img-orcamento"
+      [ngClass]="isOrcamento ? 'active' : ''"
+    >
+      <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
     </figure>
   </ng-template>
 
   <ng-template #naotroca>
-    <mat-card @fadeIn
-    (mouseenter)="
-      this.imgProduto.classList.add('hide');
-      this.imgProduto.classList.remove('show');
-      " (mouseout)="
-      this.imgProduto.classList.remove('hide');
-      this.imgProduto.classList.add('show');
+    <mat-card
+      @fadeIn
+      (mouseenter)="
+        this.imgProduto.classList.add('hide');
+        this.imgProduto.classList.remove('show')
       "
-      matRipple style="height: 100%;" class="portfolio-item of-y-scroll z-index-top card" [style.backgroundColor]="Produto.Categoria.Cor" [style.flexDirection]="flex_direction">
-
-      <div
-
-      #imgProduto matRipple class="dis-flex flex-w w-full">
-
-          <slideshow mat-card-image
-              *ngIf="imageUrls.length"
-               [imageUrls]="imageUrls"
-               [arrowSize]="(Carrosel$|async)?.arrowSize"
-               [showArrows]="false"
-               [disableSwiping]="false"
-               [backgroundSize]="'contain'"
-               [autoPlay]="false"
-               [backgroundPosition]="(Carrosel$|async)?.backgroundPosition"
-               [backgroundRepeat]="(Carrosel$|async)?.backgroundRepeat"
-               [showDots]="(Carrosel$|async)?.showDots"
-               [dotColor]="'black'"
-               [showCaptions]="(Carrosel$|async)?.showCaptions"
-               [captionColor]="(Carrosel$|async)?.captionColor"
-               [captionBackground]="(Carrosel$|async)?.captionBackground"
-               [lazyLoad]="(Carrosel$|async)?.lazyLoad"
-               [hideOnNoSlides]="(Carrosel$|async)?.hideOnNoSlides"
-               [fullscreen]="(Carrosel$|async)?.fullscreen"
-               [autoPlayWaitForLazyLoad]="true"
-               >
-            </slideshow>
+      (mouseout)="
+        this.imgProduto.classList.remove('hide');
+        this.imgProduto.classList.add('show')
+      "
+      matRipple
+      style="height: 100%;"
+      class="portfolio-item of-y-scroll z-index-top card"
+      [style.backgroundColor]="Produto.Categoria.Cor"
+      [style.flexDirection]="flex_direction"
+    >
+      <div #imgProduto matRipple class="dis-flex flex-w w-full">
+        <slideshow
+          mat-card-image
+          *ngIf="imageUrls.length"
+          [imageUrls]="imageUrls"
+          [arrowSize]="(Carrosel$ | async)?.arrowSize"
+          [showArrows]="false"
+          [disableSwiping]="false"
+          [backgroundSize]="'contain'"
+          [autoPlay]="false"
+          [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
+          [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
+          [showDots]="(Carrosel$ | async)?.showDots"
+          [dotColor]="'black'"
+          [showCaptions]="(Carrosel$ | async)?.showCaptions"
+          [captionColor]="(Carrosel$ | async)?.captionColor"
+          [captionBackground]="(Carrosel$ | async)?.captionBackground"
+          [lazyLoad]="(Carrosel$ | async)?.lazyLoad"
+          [hideOnNoSlides]="(Carrosel$ | async)?.hideOnNoSlides"
+          [fullscreen]="(Carrosel$ | async)?.fullscreen"
+          [autoPlayWaitForLazyLoad]="true"
+        >
+        </slideshow>
       </div>
 
-      <!-- <span class="prod-status is-hidden-desktop is-hidden-touch">
-        <i class="pi pi-tag"></i>
-        {{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}
-      </span> -->
-
-
+      <a
+        matRipple
+        class="dis-flex flex-w w-full"
+        [href]="'/produtos/' + Produto._id"
+      >
+        <span class="prod-status">
+          <i class="pi pi-tag product-category-icon"></i>
+          <span class="product-category"></span>
+          <span
+            [class]="
+              'subtitle is-size-7 is-capitalized product-badge status-' +
+              Produto.Status.toString().toLowerCase()
+            "
+          >
+            Em {{ Produto.Cores?.length }} cores</span
+          >
+        </span>
+      </a>
 
       <mat-card-footer class="px-2 z-index-2">
-
-        <mat-card-header
-        class="w-full txt-center pt-1">
-
-          <mat-card-title
-          class="w-full titulo-produto mb-0">
-            <a matRipple class="reset-a" [routerLink]="['/produtos/'+ Produto._id + '?produto=' + Produto?.Nome.replace('/','')]">
-              {{Produto?.Nome}}
+        <mat-card-header class="w-full txt-center pt-1">
+          <mat-card-title class="w-full titulo-produto mb-0">
+            <a
+              matRipple
+              class="reset-a"
+              [routerLink]="[
+                '/produtos/' +
+                  Produto._id +
+                  '?produto=' +
+                  Produto?.Nome.replace('/', '')
+              ]"
+            >
+              {{ Produto?.Nome }}
             </a>
-            <!-- <div class="my-3">
+            <div class="my-3">
               <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
                 [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
-            </div> -->
-
+            </div>
           </mat-card-title>
-          <!-- <mat-card-subtitle class="txt-center w-full is-6">{{Produto?.Subtitulo}}</mat-card-subtitle> -->
-
         </mat-card-header>
 
-        <mat-card-actions class="w-full pos-relative z-index-1 txt-center left-0 bottom-0 is-3 preco of-y-scroll">
-          <!-- <mat-divider class="my-2"></mat-divider> -->
-          <a matRipple class="dis-flex flex-w  w-full"  [href]="'/produtos/'+Produto._id">
-          <!-- <span class="prod-status ">
-           <i class="pi pi-tag  product-category-icon"></i>
-           <span class="product-category"></span>
-           <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()"> Em {{Produto.Cores?.length}} cores</span>
-         </span> -->
-         </a>
+        <mat-card-actions
+          class="w-full pos-relative z-index-1 txt-center left-0 bottom-0 is-3 preco of-y-scroll"
+        >
+          <mat-divider class="my-2"></mat-divider>
+
           <div class="px-4 py-1">
             <div class="my-3" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
-              <p class=" parcelas" *ngIf="Produto.Parcelas > 1">
-                Em até {{Produto.Parcelas}}x de <span
-                  class="parcelas">
-                  <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b></span>
+              <p class="parcelas" *ngIf="Produto.Parcelas > 1">
+                Em até {{ Produto.Parcelas }}x de
+                <span class="parcelas">
+                  <b
+                    >R${{
+                      (Produto.Status == statusProduto.promocao
+                        ? Produto.PrecoPromocional
+                        : Produto.Preco / Produto.Parcelas
+                      ).toFixed(2)
+                    }}</b
+                  ></span
+                >
                 sem juros
               </p>
-              <p class=" parcelas" *ngIf="Produto.Parcelas == 1">
-                <span
-                class="parcelas"> Á vista por <b>R${{(Produto.Status == statusProduto.promocao ? Produto.PrecoPromocional : Produto.Preco / Produto.Parcelas).toFixed(2)}}</b>
-                sem juros</span>
+              <p class="parcelas" *ngIf="Produto.Parcelas == 1">
+                <span class="parcelas">
+                  Á vista por
+                  <b
+                    >R${{
+                      (Produto.Status == statusProduto.promocao
+                        ? Produto.PrecoPromocional
+                        : Produto.Preco / Produto.Parcelas
+                      ).toFixed(2)
+                    }}</b
+                  >
+                  sem juros</span
+                >
               </p>
             </div>
-            <ng-container *ngIf="Produto.Status == statusProduto.promocao then preco_promo else preco_normal">
-            </ng-container>
-            <ng-template #preco_promo>
-              <div class="txt-center">
-                <p class="preco-produto linethr">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-                <p class="preco-produto promocao">R$ {{Produto?.PrecoPromocional.toFixed(2) || '0.00'}}</p>
-              </div>
-            </ng-template>
-            <ng-template #preco_normal>
-              <div class="txt-center">
-                <p class="preco-produto ">R$ {{Produto?.Preco.toFixed(2) || '0.00'}}</p>
-              </div>
-            </ng-template>
           </div>
         </mat-card-actions>
-        <button href="javascript:void(0)" class="pos-absolute  button is-small  top-0 left-0" (click)='AdicionarAoOrcamento()'>
-          <span
-            class=" is-fullwidth ">
+        <button
+          href="javascript:void(0)"
+          class="pos-absolute button is-small top-0 left-0"
+          (click)="AdicionarAoOrcamento()"
+        >
+          <span class="is-fullwidth">
             <span><i class="pi pi-shopping-cart"></i> </span>
           </span>
         </button>
 
-
         <div class="z-index-1">
           <div class="content a-i-c m-lr-auto w-full">
-            <div class="portfolio-overlay events-none w-full" style="top:10px;"
-            [style.width]="flex_direction == 'row'?'50%':'100%'">
+            <div
+              class="portfolio-overlay events-none w-full"
+              style="top: 10px;"
+              [style.width]="flex_direction == 'row' ? '50%' : '100%'"
+            >
               <div class="overlay-items w-full txt-center">
                 <p>
-                  {{Produto?.DescricaoRapida ? Produto?.DescricaoRapida: Produto?.Nome}}
+                  {{
+                    Produto?.DescricaoRapida
+                      ? Produto?.DescricaoRapida
+                      : Produto?.Nome
+                  }}
                 </p>
               </div>
-
             </div>
-            <a title="Comprar" matRipple pageScroll
-            href="#topo"
-            class="reset-a button shadow-light hoverable is-success m-lr-auto"
-            style="top:37%;left: 25%;"
-
-            [routerLink]="['/produtos/'+ Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active"
-            mat-flat-button class=""><mat-icon color=''>shopping_bag</mat-icon></a>
+            <a
+              title="Comprar"
+              matRipple
+              pageScroll
+              href="#topo"
+              class="reset-a button shadow-light hoverable is-success m-lr-auto"
+              style="top: 37%; left: 25%;"
+              [routerLink]="[
+                '/produtos/' +
+                  Produto._id +
+                  '?produto=' +
+                  encodeURI(Produto?.Nome)
+              ]"
+              routerLinkActive="router-link-active"
+              mat-flat-button
+              class=""
+              ><mat-icon color="">shopping_bag</mat-icon></a
+            >
           </div>
         </div>
       </mat-card-footer>
     </mat-card>
-    <figure class="image is-64x64 img-orcamento" [ngClass]="isOrcamento ? 'active' : ''">
-      <img src="{{Produto?.Imagem[0]}}" alt="">
+    <figure
+      class="image is-64x64 img-orcamento"
+      [ngClass]="isOrcamento ? 'active' : ''"
+    >
+      <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
     </figure>
   </ng-template>
-
 </ng-template>
 
 <ng-template #Minimalista>
-  <mat-card data-aos="flip-down" class="flex-w flex-c portfolio-item zoom mat-elevation-z4">
-    <a pageScroll href="#PRODUTO" [routerLink]="['/produtos/',Produto._id + '?produto=' + encodeURI(Produto?.Nome)]" routerLinkActive="router-link-active">
-      <img src="{{Produto?.Imagem[0]}}" alt="Foto de {{Produto?.NomeCategoria}} {{Produto?.Cor}} - {{Produto?.Nome}}">
+  <mat-card
+    data-aos="flip-down"
+    class="flex-w flex-c portfolio-item zoom mat-elevation-z4"
+  >
+    <a
+      pageScroll
+      href="#PRODUTO"
+      [routerLink]="[
+        '/produtos/',
+        Produto._id + '?produto=' + encodeURI(Produto?.Nome)
+      ]"
+      routerLinkActive="router-link-active"
+    >
+      <img
+        src="{{ (Produto?.Imagem)[0] }}"
+        alt="Foto de {{ Produto?.NomeCategoria }} {{ Produto?.Cor }} - {{
+          Produto?.Nome
+        }}"
+      />
       <mat-card-content class="flex-w flex-c">
         <div class="portfolio-overlay w-full">
           <div class="overlay-items w-full flex-w flex-c">
             <p>
-              {{Produto?.Nome}}
+              {{ Produto?.Nome }}
             </p>
           </div>
         </div>

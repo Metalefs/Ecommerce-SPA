@@ -4,7 +4,7 @@
   &-status{
     position: absolute;
     top: 13px;
-    right: -5px;
+    right: 5px;
     color: #000000;
     padding: 5px 10px;
     z-index: 3;
@@ -260,7 +260,6 @@ img{
   left: 5px;
   height: calc(100% - 10px);
   height: 60%;
-  width: 50%;
   // opacity: 0;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -286,7 +285,7 @@ img{
   position: absolute;
   top: 25%;
   z-index: 5;
-  left: -5px;
+  left:0;
   right: 0;
   visibility: hidden;
 }
@@ -301,6 +300,8 @@ img{
  padding: 5px 5px;
  height: min-content;
  top: -250px;
+ left:0;
+ right: 0;
  background: #16161642;
  display: inline-block;
  -webkit-transform: translateY(20px);
@@ -324,7 +325,7 @@ img{
   border-radius: 0.25rem;
   transition: all ease .2s;
   transition-delay: .2s;
-  opacity: .5;
+  opacity: .85;
   z-index: 2;
   &:hover{
     opacity: 1;

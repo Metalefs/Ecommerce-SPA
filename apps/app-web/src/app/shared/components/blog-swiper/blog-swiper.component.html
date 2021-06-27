@@ -1,7 +1,7 @@
 <div class="w-full" *ngIf="Blog?.length >0">
   <div class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">
     <mat-toolbar class="hoverable">
-      <h2>{{TAGS?'Posts relacionados':'Últimas postagens'}}</h2>
+      <h2>{{TAGS?'Conteúdo relacionado':'Últimas postagens'}}</h2>
     </mat-toolbar>
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let post of Blog" >

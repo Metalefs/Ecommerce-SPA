@@ -18,7 +18,7 @@ import { sum, translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
 
 import { ClickEvent, HoverRatingChangeEvent, RatingChangeEvent } from 'angular-star-rating';
-import { Comentario } from 'libs/data/src/lib/classes/blogPost';
+import { BlogPost, Comentario } from 'libs/data/src/lib/classes/blogPost';
 import { ComentarioProdutoService, ProdutoService } from 'apps/app-web/src/app/data/service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -34,6 +34,7 @@ import { DocumentRef } from 'apps/app-web/src/app/shared/services/document.servi
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
+import { BlogPostService } from '../../../blog/blog.service';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
@@ -55,6 +56,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;
+  Blog:BlogPost[];
   areProdutosLoadedSub: Subscription;
   images: GalleryItem[];
   images$: Observable<GalleryItem[]>;
@@ -86,6 +88,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private store: Store,
     public dialog: NgDialogAnimationService,
     private ComentarioProdutoService: ComentarioProdutoService,
+    private BlogService: BlogPostService,
     private snack: MatSnackBar,
     private scrollService: PageScrollService,
     private servicoProduto:ProdutoService,
@@ -141,7 +144,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.AdicionarDescricao(produto);
     this.updateViews(produto);
     this.LerComentariosProduto(produto._id);
-
+    this.CarregarPostsBlog();
     this.produtoForm = this.fb.group({
       tamanho:[produto?.Tamanho],
       quantidade:[produto?.Quantidade,Validators.required],
@@ -212,9 +215,9 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     if(this.IsValid){
       let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
         data:this.Produto,
-        panelClass:['animate__animated','animate__bounceIn', 'border'],
+        panelClass:['animate__animated','animate__bounceIn', 'border', 'bg-transp'],
         restoreFocus: false,
-        width:'50vw',
+        width:'99vw',
         height:'100vh',
         animation: {
           to: "left",
@@ -497,6 +500,19 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
   CarregarDetalhesCEP(){
     //alert(this.CEP)
+  }
+  CarregarPostsBlog(){
+    this.loading = true;
+    this.BlogService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ key: c.payload.key, ...c.payload.val() })
+        )
+      )
+    ).subscribe(data => {
+      this.Blog = data;
+      this.loading = false;
+    });
   }
 
   meanRating(){

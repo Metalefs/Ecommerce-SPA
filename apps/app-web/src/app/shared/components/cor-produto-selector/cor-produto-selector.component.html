@@ -1,19 +1,46 @@
 <div>
   <p class="is-size-7">
-    <span
-      class="is-size-7">Cor:</span><strong>{{Produto?.Cor?.nome || hovercolor?.nome}}</strong>
-    </p>
-  <div class="dis-flex flex-sb"
-    [ngClass]="{'is-danger':ErroCor}" *ngIf="Produto?.Cores">
-    <div mat-fab color="" (click)="setColor(cor)" (mouseover)="hovercolor = cor" (mouseout)="hovercolor = null" class="hoverable column is-3"
-      *ngFor="let cor of Produto?.Cores; let i =index">
-      <input class="px-2 py-2 mx-1" type="radio" alt="{{cor.nome}}" [value]="Produto.Cor"
-        id="cor{{i}}" [formControlName]="'cor'"
-        [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome,'is-danger':ErroCor}">
-      <div title="{{cor.nome}}" class="ColorlabelBackground shadow-light border"
-        [ngClass]="{'selected':Produto?.Cor?.nome == cor.nome}" (click)="setColor(cor)">
-        <label title="{{cor.nome}}" [style.background]="cor.cor" class="border"
-          for="cor{{i}}"></label>
+    <span class="is-size-7">Cor:</span
+    ><strong>{{ Produto?.Cor?.nome || hovercolor?.nome }}</strong>
+  </p>
+  <div
+    class="columns is-multiline flex-sb"
+    [ngClass]="{ 'is-danger': ErroCor }"
+    *ngIf="Produto?.Cores"
+  >
+    <div
+      mat-fab
+      color=""
+      (click)="setColor(cor)"
+      (mouseover)="hovercolor = cor"
+      (mouseout)="hovercolor = null"
+      class="hoverable column is-3 column"
+      *ngFor="let cor of Produto?.Cores; let i = index"
+    >
+      <input
+        class="px-2 py-2 mx-1"
+        type="radio"
+        alt="{{ cor.nome }}"
+        [value]="Produto.Cor"
+        id="cor{{ i }}"
+        [formControlName]="'cor'"
+        [ngClass]="{
+          selected: Produto?.Cor?.nome == cor.nome,
+          'is-danger': ErroCor
+        }"
+      />
+      <div
+        title="{{ cor.nome }}"
+        class="ColorlabelBackground shadow-light border"
+        [ngClass]="{ selected: Produto?.Cor?.nome == cor.nome }"
+        (click)="setColor(cor)"
+      >
+        <label
+          title="{{ cor.nome }}"
+          [style.background]="cor.cor"
+          class="border"
+          for="cor{{ i }}"
+        ></label>
       </div>
       <span (click)="setColor(cor)"></span>
     </div>

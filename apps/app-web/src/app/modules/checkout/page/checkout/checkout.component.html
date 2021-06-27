@@ -19,6 +19,8 @@
         </mat-horizontal-stepper>
       </div>
     </div>
+
+    <router-outlet @fadeIn #outlet2></router-outlet>
     <ng-container *ngIf="!checkoutService.getValid()">
       <div class="columns is-vcentered"  @fadeIn>
         <div class="column is-3">
@@ -36,9 +38,6 @@
         </div>
       </div>
     </ng-container>
-
-    <router-outlet @fadeIn #outlet2></router-outlet>
-
     <mat-toolbar class="dis-flex flex-sb py-6">
 
       <a class="is-size-7	">aviso legal</a>
