@@ -128,8 +128,10 @@ function FiltrarProdutos(req, res){
       sQuery.Nome = new RegExp(decodeURI(escapeRegex(req.query.nome)), 'gi');
     }
     if (req.query.categoria) {
-      if (!decodeURI(req.query.categoria).includes("Todos"))
-        sQuery.NomeCategoria = new RegExp(decodeURI(escapeRegex(req.query.categoria)).split(',').join('|'), 'gi');
+      if (!decodeURI(req.query.categoria).includes("Todos")){
+        sQuery.NomeCategoria = new RegExp(decodeURI(req.query.categoria).replace('\\','').split(',').join('|'), 'gi');
+        console.log(sQuery.NomeCategoria);
+      }
       else
         sQuery.NomeCategoria = new RegExp('.*', 'gi');
     }

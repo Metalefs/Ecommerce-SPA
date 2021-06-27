@@ -120,11 +120,11 @@ export class ProdutosComponent implements OnInit {
       else {
         this.CategoriaAtiva = new Categoria(this.defaultCategory, this.defaultCategory)
       }
-      // if (x.CategoriasAtivas)
-      //   this.CategoriasAtivas = x.CategoriasAtivas;
-      // else {
-      //   this.CategoriasAtivas = [new Categoria(this.defaultCategory, this.defaultCategory)];
-      // }
+      if (x.CategoriasAtivas)
+        this.CategoriasAtivas = x.CategoriasAtivas;
+      else {
+        this.CategoriasAtivas = [new Categoria(this.defaultCategory, this.defaultCategory)];
+      }
       this.titleService.setTitle(`Produtos - ${this.CategoriaAtiva.Nome}`)
       this.activeOrderFilter = x.OrderFilter;
       this.activeSearchFilter = x.SearchFilter;

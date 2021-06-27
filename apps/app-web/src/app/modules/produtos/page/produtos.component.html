@@ -43,14 +43,18 @@
                 </a>
               </mat-list-item>
               <mat-divider></mat-divider>
-              <mat-list-item *ngFor="let categoria of (Categorias$ | async);let i = index"
+              <mat-list-item
+                *ngFor="let categoria of (Categorias$ | async);let i = index"
                 [style.backgroundColor]="categoria?.Cor"
-                class="pointer w-full-m cat-item has-background-white-bis " (click)="SetCategoria(categoria)"
+                class="pointer w-full-m cat-item has-background-white-bis"
                 [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active  ' : 'has-text-grey'">
-                <mat-checkbox labelPosition="after" matNativeControl (change)="atualizarFiltroAtivo()"
-                    [checked]="IsCategoriaAtiva(categoria)">
-                    <a [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? ' ' : 'has-text-grey'" mat-strocked-button
-                      class="dis-flex flex-sb flex-m ">
+                <mat-checkbox
+                  labelPosition="after"
+                  matNativeControl
+                  (click)="SetCategoria(categoria)"
+                  (change)="atualizarFiltroAtivo()"
+                  [checked]="IsCategoriaAtiva(categoria)">
+                    <a class="dis-flex flex-sb flex-m">
                       <button class="border-0">
                         <!-- <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
                           {{CategoriaAtiva?.Nome == categoria?.Nome ? 'done' : ''}}
