@@ -27,7 +27,7 @@
           </div>
 
           <div
-            class="column is-6 has-background-white bbr shadow-light section"
+            class="column is-6 has-background-white bbr border-light shadow-light section"
           >
             <div class="columns">
               <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
@@ -90,7 +90,6 @@
                         (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
                         (onDuplicarOrcamento)="DuplicarOrcamento()"
                       ></personalizados-lopes-bloco-pagamento-produto>
-                      <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
                     </div>
                     <mat-list *ngIf="!IsValid" class="px-2 mx-2 box border">
                       <mat-list-item *ngFor="let erro of Erros">
@@ -120,6 +119,7 @@
               </div>
             </div>
             <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
+            <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
             <figure
               class="image is-64x64 img-orcamento"
               [ngClass]="isOrcamento ? 'active' : ''"
@@ -130,7 +130,7 @@
         </div>
       </div>
     </div>
-    <div class="hero-foot px-3 py-3" id="product-display">
+    <div data-aos="zoom-up" class="hero-foot px-3 py-3" id="product-display">
       <div class="column is-6 pb-0 is-hidden-desktop">
         <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
       </div>
@@ -140,13 +140,13 @@
     </div>
   </section>
 
-  <div class="has-background-light bbr">
+  <div data-aos="zoom-up" class="has-background-light bbr">
     <personalizados-lopes-estatisticas-produto
       [Produto]="Produto"
     ></personalizados-lopes-estatisticas-produto>
   </div>
 
-  <div class="w-full bg flex-w flex-sa px-6 my-2">
+  <div data-aos="zoom-up" class="w-full bg flex-w flex-sa px-6 my-2">
     <a [routerLink]="'/produtos'" class="has-text-light">
       <button mat-icon-button>
         <mat-icon>chevron_left</mat-icon>
@@ -164,7 +164,7 @@
 
     <div class="hero is-small">
       <div class="hero-body">
-        <div class="py-6 mb-3" *ngIf="Produto?._id">
+        <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
           <personalizados-lopes-tag-produto-swiper
             [TAGS]="Produto?.Tags"
           ></personalizados-lopes-tag-produto-swiper>
@@ -176,7 +176,7 @@
 
     <div class="hero is-small  is-hidden-desktop">
       <div class="hero-body">
-        <div class="py-6 mb-3" *ngIf="Produto?._id">
+        <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
           <personalizados-lopes-produto-swiper
             class="z-index-1"
             [slidesPerView]="3"
@@ -190,7 +190,7 @@
     <mat-divider></mat-divider>
 
     <div class="hero is-small is-hidden-desktop" *ngIf="Blog">
-      <div class="hero-body">
+      <div data-aos="fade-up" class="hero-body">
         <personalizados-lopes-blog-swiper
           [TAGS]="Produto?.Tags"
           [Blog]="Blog"

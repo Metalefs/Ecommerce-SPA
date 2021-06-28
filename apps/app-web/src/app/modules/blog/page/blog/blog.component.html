@@ -14,7 +14,10 @@
         <router-outlet [@routeAnimations]="prepareRoute(outlet3)" @fadeIn #outlet3></router-outlet>
 
         <mat-divider></mat-divider>
-        <personalizados-lopes-produto-swiper [slidesPerView]="5"></personalizados-lopes-produto-swiper>
+        <div data-aos="fade-up">
+
+          <personalizados-lopes-produto-swiper [slidesPerView]="5"></personalizados-lopes-produto-swiper>
+        </div>
       </div>
       <!-- <div class="column is-4-desktop is-12-mobile">
         <personalizados-lopes-sidebar></personalizados-lopes-sidebar>
