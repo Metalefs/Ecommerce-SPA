@@ -13,6 +13,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 
 
 import { SlideshowModule } from 'ng-simple-slideshow';
+import { ExibicaoPrecoProdutoModule } from '../exibicao-preco-produto/exibicao-preco-produto.module';
 
 @NgModule({
   declarations: [CardProdutoComponent],
@@ -27,6 +28,7 @@ import { SlideshowModule } from 'ng-simple-slideshow';
     StarRatingModule.forRoot(),
     GalleryModule,
     SlideshowModule,
+    ExibicaoPrecoProdutoModule,
   ],
   exports: [
     CardProdutoComponent,

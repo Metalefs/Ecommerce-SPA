@@ -215,7 +215,8 @@ a {
 .p-component{
   // font-family: $default_font;
 }
-#topo > div.ng-tns-c323-1.ng-trigger.ng-trigger-routeAnimations > section > personalizados-lopes-header > personalizados-lopes-mega-menu > p-megamenu > div > ul > li:nth-child(1) > a{
+
+p-megamenu > div > ul > li:nth-child(1){
   display: none;
 }
 

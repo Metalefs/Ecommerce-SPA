@@ -5,7 +5,6 @@
         <div class="message-body">
           <personalizados-lopes-exibicao-preco-produto
             [Produto]="Produto"
-            [customClass]="'exibicao-produto'"
           ></personalizados-lopes-exibicao-preco-produto>
         </div>
       </div>
@@ -21,6 +20,7 @@
       <ng-template #erro>
         <personalizados-lopes-mensagem-comprar-produto-desabilitado
           [Produto]="Produto"
+          [textoAdicionar]="textoAdicionar"
         ></personalizados-lopes-mensagem-comprar-produto-desabilitado>
       </ng-template>
       <ng-template #done>

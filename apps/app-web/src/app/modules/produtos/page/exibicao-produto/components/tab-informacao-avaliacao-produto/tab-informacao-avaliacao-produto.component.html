@@ -1,6 +1,6 @@
 <mat-tab-group class="">
   <mat-tab label="Informações" (click)="AdicionarDescricao(this.Produto)">
-    <div class="block has-background-white py-3 px-3">
+    <div class="section container has-background-white py-3 px-3">
       <div class="w-full is-multiline">
         <div class="descricao-produto column is-12-touch is-12 w-full"
           [innerHTML]="(el?.innerHTML)"></div>
@@ -9,7 +9,6 @@
           <h2><strong>ESPECIFICAÇÕES</strong></h2>
           <div [innerHTML]="(Produto?.Especificacoes)"></div>
         </div>
-        <personalizados-lopes-curtir-produto [Produto]="Produto"></personalizados-lopes-curtir-produto>
       </div>
     </div>
   </mat-tab>

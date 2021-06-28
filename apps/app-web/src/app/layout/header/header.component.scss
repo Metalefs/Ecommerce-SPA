@@ -16,10 +16,17 @@
 .navbar {
   // background: rgba($color: white, $alpha: 0.99);
   // background: #f1f2faeb;
-  // background: $background-light;
-  box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
+  background: $background-light;
   margin-top: 0px;
   z-index: 11;
+  &:nth-child(1){
+    box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
+
+  }
+}
+.bg-light{
+
+  background: $background-light;
 }
 .busca{
   font-family: Trebuchet MS;
@@ -99,6 +106,7 @@
   border-top-right-radius: 0;
   color: $navcolor;
   font-weight: $navlinkweight;
+  text-transform: uppercase;
 }
 a.nav-link::before{
   content: "";

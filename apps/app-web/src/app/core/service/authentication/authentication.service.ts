@@ -157,6 +157,6 @@ export class AuthenticationService {
   }
 
   tokenize(item: object) {
-    return item;
+    return {item};
   }
 }
