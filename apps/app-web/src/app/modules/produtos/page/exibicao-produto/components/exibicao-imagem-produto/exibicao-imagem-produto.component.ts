@@ -12,12 +12,12 @@ import { map } from 'rxjs/operators';
 })
 export class ExibicaoImagemProdutoComponent implements OnInit {
   @Input() Produto:Produto;
-  galleryConfig$: Observable<GalleryConfig>;
+  @Input() galleryConfig$: Observable<GalleryConfig>;
 
-  images: GalleryItem[];
-  images$: Observable<GalleryItem[]>;
+  @Input() images: GalleryItem[];
+  @Input() images$: Observable<GalleryItem[]>;
   mobile:boolean;
-  constructor(private gallery: Gallery,
+  constructor(
     breakpointObserver: BreakpointObserver) {
       this.galleryConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
@@ -41,17 +41,7 @@ export class ExibicaoImagemProdutoComponent implements OnInit {
         })
       );
     }
-
   ngOnInit(): void {
-    this.AddImages(this.Produto);
-  }
-
-  AddImages(produto:Produto){
-    const galleryRef = this.gallery.ref('myGallery');
-    galleryRef.reset();
-    produto?.Imagem.forEach(img =>{
-      galleryRef.addImage({ src:img, thumb: img });
-    });
   }
 
 }

@@ -1,5 +1,5 @@
 <div class="has-background-light bbr">
-  <personalizados-lopes-exibicao-breadcrumb
+  <personalizados-lopes-exibicao-breadcrumb *ngIf="Produto"
     [Produto]="Produto"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
@@ -21,6 +21,8 @@
           <div class="column is-6-desktop is-12-tablet">
             <personalizados-lopes-exibicao-imagem-produto
               [Produto]="Produto"
+              [images]="images"
+              [images$]="images$"
             ></personalizados-lopes-exibicao-imagem-produto>
           </div>
 
@@ -53,7 +55,6 @@
                       *ngIf="produtoForm"
                       action=""
                       method="post"
-                      [formGroup]="produtoForm"
                     >
                       <div class="columns is-vcentered is-multiline">
                         <div class="column border-light">
@@ -87,6 +88,9 @@
                             [Produto]="Produto"
                             [isOrcamento]="isOrcamento"
                             [Form]="produtoForm"
+                            [textoAdicionar]="textoAdicionar"
+                            (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
+                            (onDuplicarOrcamento)="DuplicarOrcamento()"
                           ></personalizados-lopes-bloco-pagamento-produto>
                           <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
                         </div>

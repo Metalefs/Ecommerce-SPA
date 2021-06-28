@@ -27,6 +27,7 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { BlogPostService } from '../../../blog/blog.service';
 
 import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper'
+import { Gallery } from 'ng-gallery';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -68,11 +69,20 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private servicoProduto:ProdutoService,
     private windowRef: WindowRef,
     private titleService: Title,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private gallery: Gallery,
     ) {
 
     }
 
+
+  AddImages(produto:Produto){
+    const galleryRef = this.gallery.ref('myGallery');
+    galleryRef.reset();
+    produto?.Imagem.forEach(img =>{
+      galleryRef.addImage({ src:img, thumb: img });
+    });
+  }
   ngOnInit(): void {
     this.activeRoute.params.subscribe(routeParams => {
       if(isPlatformBrowser(this.platform))
@@ -93,6 +103,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.updatePageTitle(produto);
     this.updateViews(produto);
     this.CarregarPostsBlog();
+    this.AddImages(this.Produto);
     this.produtoForm = this.fb.group({
       tamanho:[produto?.Tamanho],
       quantidade:[produto?.Quantidade,Validators.required],

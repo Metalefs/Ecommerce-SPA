@@ -12,6 +12,7 @@ export class BlocoPagamentoProdutoComponent implements OnInit {
   @Input() Produto:Produto;
   @Input() isOrcamento:boolean = false;
   @Input() Form:FormGroup;
+  @Input() textoAdicionar:string;
   @Output() onAdicionarAoOrcamento:EventEmitter<any> = new EventEmitter<any>()
   @Output() onDuplicarOrcamento:EventEmitter<any> = new EventEmitter<any>()
   constructor() { }

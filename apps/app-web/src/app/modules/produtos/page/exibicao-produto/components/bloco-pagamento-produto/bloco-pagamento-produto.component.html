@@ -27,8 +27,9 @@
         <personalizados-lopes-botao-comprar-produto
           [Produto]="Produto"
           [isOrcamento]="isOrcamento"
+          [textoAdicionar]="textoAdicionar"
           (onAdicionarAoOrcamento)="
-          onDuplicarOrcamento.emit($event)
+          onAdicionarAoOrcamento.emit($event)
           "
           (onDuplicarOrcamento)="
           onDuplicarOrcamento.emit($event)

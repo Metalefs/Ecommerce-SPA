@@ -24,7 +24,7 @@
             </ng-container>
             <ng-template #Inclusao>
               <mat-toolbar>
-                <h2 class="title is-size-6" [routerLink]="['/produtos']">Produtos em destaque</h2>
+                <a class="title is-size-6" [routerLink]="['/produtos']" href="#topo" pageScroll>Produtos em destaque</a>
               </mat-toolbar>
             </ng-template>
             <ng-template #Outro>
@@ -32,12 +32,12 @@
               </ng-container>
               <ng-template #Vendas>
                 <mat-toolbar>
-                  <h2 class="title is-size-6" [routerLink]="['/produtos']">Produtos mais vendidos</h2>
+                  <a class="title is-size-6" [routerLink]="['/produtos']" href="#topo" pageScroll>Produtos mais vendidos</a>
                 </mat-toolbar>
               </ng-template>
               <ng-template #Visualizacoes>
                 <mat-toolbar>
-                  <h2 class="title is-size-6" [routerLink]="['/produtos']">Quem comprou, viu também</h2>
+                  <a class="title is-size-6" [routerLink]="['/produtos']" href="#topo" pageScroll>Quem comprou, viu também</a>
                 </mat-toolbar>
               </ng-template>
             </ng-template>

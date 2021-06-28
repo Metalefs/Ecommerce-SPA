@@ -12,6 +12,7 @@ import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 export class BotaoComprarProdutoComponent implements OnInit {
   statusProduto=StatusProduto;
   @Input() Produto:Produto;
+  @Input() textoAdicionar:string;
 
   @Output() onAdicionarAoOrcamento:EventEmitter<any> = new EventEmitter<any>()
   @Output() onDuplicarOrcamento:EventEmitter<any> = new EventEmitter<any>()
