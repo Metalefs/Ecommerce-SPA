@@ -6,7 +6,6 @@
           (click)="AbrirDialogoCategorias()">
           <p class=" is-size-5">Categoria</p>
           <span class="subtitle is-size-7"><em>({{CategoriaAtiva?.Nome}})</em></span>
-          <mat-icon>category</mat-icon>
         </div>
       </div>
       <div class="column has-background-white bo-0">
@@ -107,7 +106,7 @@
             <p-dataView
               *ngIf="(Filtro$ | async).FiltroProdutos?.length > 0"
               [value]="Produtos" [lazy]="false" [paginator]="true" [rows]="12" totalRecords="{{total}}"
-              pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'list' : 'grid'"
+              pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'grid' : 'grid'"
               [emptyMessage]="'Nenhum item encontrado'">
               <ng-template pTemplate="header">
                 <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
