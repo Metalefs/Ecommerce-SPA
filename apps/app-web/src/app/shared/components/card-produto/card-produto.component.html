@@ -242,30 +242,12 @@
         </slideshow>
       </div>
 
-      <a
-        matRipple
-        class="dis-flex flex-w w-full"
-        [href]="'/produtos/' + Produto._id"
-      >
-        <span class="prod-status">
-          <i class="pi pi-tag product-category-icon"></i>
-          <span class="product-category"></span>
-          <span
-            [class]="
-              'subtitle is-size-7 is-capitalized product-badge status-' +
-              Produto.Status.toString().toLowerCase()
-            "
-          >
-            Em {{ Produto.Cores?.length }} cores</span
-          >
-        </span>
-      </a>
 
       <mat-card-footer class="px-2 z-index-2">
         <mat-card-header class="w-full txt-center pt-1">
           <mat-card-title class="w-full titulo-produto mb-0">
             <a
-              matRipple
+            matRipple
               class="reset-a"
               [routerLink]="[
                 '/produtos/' +
@@ -298,7 +280,7 @@
                       (Produto.Status == statusProduto.promocao
                         ? Produto.PrecoPromocional
                         : Produto.Preco / Produto.Parcelas
-                      ).toFixed(2)
+                        ).toFixed(2)
                     }}</b
                   ></span
                 >
@@ -308,20 +290,38 @@
                 <span class="parcelas">
                   Á vista por
                   <b
-                    >R${{
-                      (Produto.Status == statusProduto.promocao
-                        ? Produto.PrecoPromocional
-                        : Produto.Preco / Produto.Parcelas
-                      ).toFixed(2)
-                    }}</b
+                  >R${{
+                    (Produto.Status == statusProduto.promocao
+                    ? Produto.PrecoPromocional
+                    : Produto.Preco / Produto.Parcelas
+                    ).toFixed(2)
+                  }}</b
                   >
                   sem juros</span
-                >
-              </p>
+                  >
+                </p>
+              </div>
+              <a
+                matRipple
+                class="dis-flex flex-w w-full"
+                [href]="'/produtos/' + Produto._id"
+              >
+                <span class="prod-status">
+                  <i class="pi pi-tag product-category-icon"></i>
+                  <span class="product-category"></span>
+                  <span
+                    [class]="
+                      'subtitle is-size-7 is-capitalized product-badge status-' +
+                      Produto.Status.toString().toLowerCase()
+                    "
+                  >
+                    Em {{ Produto.Cores?.length }} cores</span
+                  >
+                </span>
+              </a>
             </div>
-          </div>
-        </mat-card-actions>
-        <button
+          </mat-card-actions>
+          <button
           href="javascript:void(0)"
           class="pos-absolute button is-small top-0 left-0"
           (click)="AdicionarAoOrcamento()"

@@ -1,0 +1,30 @@
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.control {
+  font-family: 'Helvetica';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 122.19%;
+  height: 56px;
+  border-radius: 4px;
+}
+.control input {
+  border: none;
+  border-color: transparent;
+  overflow: visible;
+  max-width: 60px;
+  font-size: 20px;
+}
+.less:hover {
+  color: rgb(230, 76, 45);
+}
+.more:hover {
+  color: rgb(13, 199, 139);
+}

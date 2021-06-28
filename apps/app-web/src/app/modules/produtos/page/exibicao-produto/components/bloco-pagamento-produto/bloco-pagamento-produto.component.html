@@ -1,0 +1,40 @@
+<div class="pb-0 mb-0">
+  <div class="columns pb-0 mb-0 bbr">
+    <div class="column">
+      <div class="message">
+        <div class="message-body">
+          <personalizados-lopes-exibicao-preco-produto
+            [Produto]="Produto"
+            [customClass]="'exibicao-produto'"
+          ></personalizados-lopes-exibicao-preco-produto>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <ng-container
+        *ngIf="
+          findInvalidControlsRecursive();
+          then erro;
+          else done
+        "
+      ></ng-container>
+      <ng-template #erro>
+        <personalizados-lopes-mensagem-comprar-produto-desabilitado
+          [Produto]="Produto"
+        ></personalizados-lopes-mensagem-comprar-produto-desabilitado>
+      </ng-template>
+      <ng-template #done>
+        <personalizados-lopes-botao-comprar-produto
+          [Produto]="Produto"
+          [isOrcamento]="isOrcamento"
+          (onAdicionarAoOrcamento)="
+          onDuplicarOrcamento.emit($event)
+          "
+          (onDuplicarOrcamento)="
+          onDuplicarOrcamento.emit($event)
+          "
+        ></personalizados-lopes-botao-comprar-produto>
+      </ng-template>
+    </div>
+  </div>
+</div>

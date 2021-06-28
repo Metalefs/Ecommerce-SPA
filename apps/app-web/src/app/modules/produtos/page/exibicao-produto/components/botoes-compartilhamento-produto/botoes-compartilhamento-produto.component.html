@@ -1,0 +1,13 @@
+<div class="w-full flex-w">
+  <button mat-button [matMenuTriggerFor]="menu2"><i class="pi pi-share-alt"></i></button>
+  <mat-menu #menu2="matMenu">
+    <div mat-menu-item>
+      <share-button class="mt-3 hoverable" button="facebook" theme="modern-dark" [showText]="false">
+      </share-button>
+    </div>
+    <div mat-menu-item>
+      <share-button class="mt-3 hoverable" button="twitter" theme="modern-dark" [showText]="false">
+      </share-button>
+    </div>
+  </mat-menu>
+</div>

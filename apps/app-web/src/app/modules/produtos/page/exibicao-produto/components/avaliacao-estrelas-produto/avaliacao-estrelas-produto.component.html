@@ -1,0 +1,28 @@
+<div>
+  <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
+  <div
+    *ngIf="Produto?.Rating.length > 10"
+    class="{{
+      mobile ? 'txt-left' : 'txt-left'
+    }} my-1 star-width dis-flex flex-w w-full"
+  >
+    <star-rating
+      [ngClass]="loading ? 'button is-loading' : ''"
+      class="subtitle is-size-7"
+      labelText="{{ meanRating() }}"
+      [showHalfStars]="true"
+      [step]="0.5"
+      size="medium"
+      [rating]="meanRating()"
+      staticColor="ok"
+      [hoverEnabled]="true"
+      [starType]="'svg'"
+    >
+    </star-rating>
+    <span class="subtitle fs-12"
+      >em {{ Produto?.Rating.length }} avaliaç{{
+        Produto?.Rating.length == 1 ? 'ão' : 'ões'
+      }}</span
+    >
+  </div>
+</div>

@@ -37,7 +37,7 @@ export class EditarProdutoComponent implements OnInit {
 
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",
-    NomeCategoria:"",
+    NomeCategoria:"Todos os produtos",
     Preco:"",
     Status:"",
     Marca:"",

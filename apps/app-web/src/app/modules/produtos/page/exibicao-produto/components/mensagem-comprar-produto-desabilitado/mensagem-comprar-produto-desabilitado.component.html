@@ -1,0 +1,23 @@
+<article
+  class="message margin is-white shadow-light py-0 my-0 bbr"
+  *ngIf="Produto"
+>
+  <div class="message-body" @fadeIn>
+    <p class="">
+      Para comprar, Selecione o
+      <strong>Tamanho, Cor</strong> e <strong>Quantidade</strong
+      ><a href="#topo" pageScroll></a>
+      <mat-icon style="transform: rotate(180deg);"
+        >arrow_drop_down_circle</mat-icon
+      >
+    </p>
+  </div>
+  <button
+    @fadeIn
+    mat-raised-button
+    disabled
+    class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c has-text-white has-text-weight-bold"
+  >
+    {{ textoAdicionar }}
+  </button>
+</article>

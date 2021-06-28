@@ -24,9 +24,27 @@ import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costum
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PrimeNgModule } from '../../shared/primeng.module';
 import { PreviewProdutoComponent } from './page/components/preview-produto/preview-produto.component';
+import { EstatisticasProdutoComponent } from './page/exibicao-produto/components/estatisticas-produto/estatisticas-produto.component';
+import { TabInformacaoAvaliacaoProdutoComponent } from './page/exibicao-produto/components/tab-informacao-avaliacao-produto/tab-informacao-avaliacao-produto.component';
+import { BotoesCompartilhamentoProdutoComponent } from './page/exibicao-produto/components/botoes-compartilhamento-produto/botoes-compartilhamento-produto.component';
+import { AvaliacaoEstrelasProdutoComponent } from './page/exibicao-produto/components/avaliacao-estrelas-produto/avaliacao-estrelas-produto.component';
+import { CurtirProdutoComponent } from './page/exibicao-produto/components/curtir-produto/curtir-produto.component';
+import { ExibicaoImagemProdutoComponent } from './page/exibicao-produto/components/exibicao-imagem-produto/exibicao-imagem-produto.component';
+import { DescricaoRapidaProdutoComponent } from './page/exibicao-produto/components/descricao-rapida-produto/descricao-rapida-produto.component';
+import { ExibicaoTagsProdutoComponent } from './page/exibicao-produto/components/exibicao-tags-produto/exibicao-tags-produto.component';
+import { AvaliacaoProdutoComponent } from './page/exibicao-produto/components/avaliacao-produto/avaliacao-produto.component';
+import { SelecaoQuantidadeProdutoComponent } from './page/exibicao-produto/components/selecao-quantidade-produto/selecao-quantidade-produto.component';
+import { SelecaoTamanhoProdutoComponent } from './page/exibicao-produto/components/selecao-tamanho-produto/selecao-tamanho-produto.component';
+import { MensagemComprarProdutoDesabilitadoComponent } from './page/exibicao-produto/components/mensagem-comprar-produto-desabilitado/mensagem-comprar-produto-desabilitado.component';
+import { BotaoComprarProdutoComponent } from './page/exibicao-produto/components/botao-comprar-produto/botao-comprar-produto.component';
+import { BotaoContatoWhatsappComponent } from './page/exibicao-produto/components/botao-contato-whatsapp/botao-contato-whatsapp.component';
+import { ExibicaoArtesProdutoComponent } from './page/exibicao-produto/components/exibicao-artes-produto/exibicao-artes-produto.component';
+import { ExibicaoDadosPagamentoComponent } from './page/exibicao-produto/components/exibicao-dados-pagamento/exibicao-dados-pagamento.component';
+import { ExibicaoBreadcrumbComponent } from './page/exibicao-produto/components/exibicao-breadcrumb/exibicao-breadcrumb.component';
+import { BlocoPagamentoProdutoComponent } from './page/exibicao-produto/components/bloco-pagamento-produto/bloco-pagamento-produto.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent, PreviewProdutoComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent, PreviewProdutoComponent, EstatisticasProdutoComponent, TabInformacaoAvaliacaoProdutoComponent, BotoesCompartilhamentoProdutoComponent, AvaliacaoEstrelasProdutoComponent, CurtirProdutoComponent, ExibicaoImagemProdutoComponent, DescricaoRapidaProdutoComponent, ExibicaoTagsProdutoComponent, AvaliacaoProdutoComponent, SelecaoQuantidadeProdutoComponent, SelecaoTamanhoProdutoComponent, MensagemComprarProdutoDesabilitadoComponent, BotaoComprarProdutoComponent, BotaoContatoWhatsappComponent, ExibicaoArtesProdutoComponent, ExibicaoDadosPagamentoComponent, ExibicaoBreadcrumbComponent, BlocoPagamentoProdutoComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

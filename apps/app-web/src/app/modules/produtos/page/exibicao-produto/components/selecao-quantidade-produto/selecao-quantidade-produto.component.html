@@ -1,0 +1,46 @@
+<div class="field">
+  <div class="control is-large flex-m">
+    <div>
+      <button
+        mat-icon-button
+        (click)="DecrescerQuantidade()"
+      >
+        <mat-icon class="less">remove</mat-icon>
+      </button>
+      <input
+        id="quantidade"
+        *ngIf="Produto"
+        placeholder="{{ Produto?.QuantidadeMinima }}"
+        value="{{
+          Produto?.QuantidadeMinima <= 1
+            ? 1
+            : Produto?.QuantidadeMinima
+        }}"
+        type="number"
+        (change)="VerificarQuantidade($event)"
+        min="{{
+          Produto?.QuantidadeMinima <= 1
+            ? 1
+            : Produto?.QuantidadeMinima
+        }}"
+        class="quantidade-produto input"
+        [ngClass]="{ 'is-danger': ErroQuantidade() }"
+        [(ngModel)]="Produto.Quantidade"
+      />
+      <button
+        mat-icon-button
+        (click)="IncrementarQuantidade()"
+      >
+        <mat-icon class="more">add</mat-icon>
+      </button>
+    </div>
+  </div>
+  <span
+    class="has-text-grey-light subtitle is-size-7"
+    *ngIf="Produto?.QuantidadeMinima"
+  >
+    <em>
+      *Minimo {{ Produto?.QuantidadeMinima }} unidade(s)
+    </em>
+  </span>
+</div>

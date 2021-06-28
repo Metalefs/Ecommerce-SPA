@@ -186,7 +186,7 @@ export class ProdutosComponent implements OnInit {
   atualizarFiltroAtivo(atualizarPreco: boolean = true) {
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter || ''
-    this.fQuery.NomeCategoria = this.CategoriasAtivas.map(x => x.Nome).filter((value,index,self)=>self.indexOf(value) === index).join("|") || "";
+    this.fQuery.NomeCategoria = this.CategoriasAtivas.map(x => x.Nome).filter((value, index, self) => self.indexOf(value) === index).join("|") || "";
     if (this.page > 1)
       this.page = 1;
     this.produtoService.FiltrarProdutos(this.fQuery, this.page, this.activeOrderLimit).subscribe(async x => {
@@ -214,7 +214,7 @@ export class ProdutosComponent implements OnInit {
         this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o => o.Preco)) : this.Produtos[0]?.Preco);
       let FiltroProduto: FiltroProduto = {
         Categoria: this.CategoriaAtiva,
-        CategoriasAtivas: this.CategoriasAtivas.filter((value,index,self)=>self.indexOf(value) === index),
+        CategoriasAtivas: this.CategoriasAtivas.filter((value, index, self) => self.indexOf(value) === index),
         SearchFilter: this.activeSearchFilter,
         OrderFilter: this.activeOrderFilter,
         Produtos: this.Produtos.filter(z => this.filtroAtivo(z)),
@@ -295,11 +295,11 @@ export class ProdutosComponent implements OnInit {
     this.changeOptions(0)
   }
   SetCategoria(categoria: Categoria) {
-    if(categoria == null){
+    if (categoria == null) {
       this.CategoriaAtiva = new Categoria(this.defaultCategory, this.defaultCategory)
       this.CategoriasAtivas = [new Categoria(this.defaultCategory, this.defaultCategory)]
     }
-    else{
+    else {
       this.CategoriaAtiva = categoria;
       let idx = this.CategoriasAtivas.findIndex(x => x.Nome == categoria.Nome);
       let idx2 = this.CategoriasAtivas.findIndex(x => x.Nome == this.defaultCategory);
@@ -313,7 +313,7 @@ export class ProdutosComponent implements OnInit {
         this.CategoriasAtivas.splice(idx2, 1);
       }
     }
-    this.CategoriasAtivas = this.CategoriasAtivas.filter((value,index,self)=>self.indexOf(value) === index)
+    this.CategoriasAtivas = this.CategoriasAtivas.filter((value, index, self) => self.indexOf(value) === index)
     this.titleService.setTitle(`Produtos - ${this.CategoriaAtiva.Nome}`)
     this.atualizarFiltroAtivo();
   }
@@ -403,8 +403,8 @@ export class ProdutosComponent implements OnInit {
   Ceil(number) {
     return Math.ceil(number);
   }
-  IsCategoriaAtiva(Categoria){
-    return this.CategoriasAtivas.some(x=>x.Nome == Categoria.Nome)
+  IsCategoriaAtiva(Categoria) {
+    return this.CategoriasAtivas.some(x => x.Nome == Categoria.Nome)
   }
 }
 export enum TiposOrdenacao {

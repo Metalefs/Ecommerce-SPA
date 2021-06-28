@@ -1,0 +1,10 @@
+
+.bg {
+  background: center/ cover no-repeat url(https://source.unsplash.com/daily?fashion);
+  background-attachment: fixed;
+}
+@media only screen and (max-width: 1023px) {
+  .bg {
+    padding-top: 0;
+  }
+}

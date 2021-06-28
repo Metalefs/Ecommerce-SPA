@@ -1,0 +1,21 @@
+<div class="margin px-6 py-1 mb-6" *ngIf="Produto">
+  <div class="z-index-2 px-2 py-2 my-6">
+    <div class="mx-2">
+      <div class="w-full">
+        <p class="has-text-weight-bold ltr-sp-2">Você já tem este produto?</p>
+        <span class="subtitle is-size-7">Compartilhe a sua opinião com a gente.</span>
+      </div>
+      <p><strong>{{Comentarios?.length||0}} comentários</strong></p>
+      <star-rating [ngClass]="loading ? 'button is-loading':''" class="subtitle is-size-7"
+        labelText="{{meanRating()}}" [showHalfStars]="true" [step]="0.5" size="medium"
+        [rating]="meanRating()" staticColor="ok" (starClickChange)="onClick($event)"
+        (ratingChange)="onRatingChange($event)" (hoverRatingChange)="onHoverRatingChange($event)"
+        [hoverEnabled]="true" [starType]="'svg'">
+      </star-rating>
+      <personalizados-lopes-escrever-comentario (EnviarComentario)="this.Comentar($event)">
+      </personalizados-lopes-escrever-comentario>
+    </div>
+  </div>
+  <personalizados-lopes-exibir-lista-comentario-produto [Comentarios]="ComentariosProduto">
+  </personalizados-lopes-exibir-lista-comentario-produto>
+</div>

@@ -1,0 +1,29 @@
+<div class="">
+  <personalizados-lopes-avaliacao-estrelas-produto
+    [Produto]="Produto"
+  ></personalizados-lopes-avaliacao-estrelas-produto>
+
+  <gallery
+    gallerize
+    id="myGallery"
+    [ngClass]="mobile ? '' : ''"
+    *ngIf="galleryConfig$ | async; let config"
+    [counter]="false"
+    [nav]="false"
+    [loadingStrategy]="'lazy'"
+    [thumbWidth]="config.thumbWidth"
+    [dots]="true"
+    [thumbHeight]="config.thumbHeight"
+    [thumbPosition]="config.thumbPosition"
+  >
+  </gallery>
+
+  <div class="column is-6 pb-0 is-hidden-touch">
+    <div class="w-full flex-c-m">
+      <personalizados-lopes-exibicao-tags-produto [Produto]="Produto"></personalizados-lopes-exibicao-tags-produto>
+      <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
+      <personalizados-lopes-curtir-produto [Produto]="Produto"></personalizados-lopes-curtir-produto>
+    </div>
+  </div>
+  <personalizados-lopes-descricao-rapida-produto [Produto]="Produto"></personalizados-lopes-descricao-rapida-produto>>
+</div>

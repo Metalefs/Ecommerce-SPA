@@ -53,6 +53,7 @@ body {
     border-radius: 90px;
     cursor: pointer;
   }
+  text-rendering: optimizeLegibility;
 }
 .ngx-slider .ngx-slider-pointer {
   background-color: #ffffff !important;
@@ -214,7 +215,7 @@ a {
 .p-component{
   // font-family: $default_font;
 }
-#topo > div.ng-tns-c322-1.ng-trigger.ng-trigger-routeAnimations > section > personalizados-lopes-header > personalizados-lopes-mega-menu > p-megamenu > div > ul > li:nth-child(1) > a{
+#topo > div.ng-tns-c323-1.ng-trigger.ng-trigger-routeAnimations > section > personalizados-lopes-header > personalizados-lopes-mega-menu > p-megamenu > div > ul > li:nth-child(1) > a{
   display: none;
 }
 

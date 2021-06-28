@@ -25,7 +25,7 @@ export interface NavLinkOptions{
 
 export let NavLinks:NavLink[] =
 environment.production ? [
-  {name: "Institucional", href:"", icon:'about',group:GrupoNavLink.none},
+  {name: "Inicio", href:"", icon:'about',group:GrupoNavLink.none},
   {name: "Inicio",     href:"/",  icon:'home',group:GrupoNavLink.institucional},
   {name: "Empresa",     href:"empresa",  icon:'business',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
@@ -33,7 +33,7 @@ environment.production ? [
   {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
   {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
-  {name: "Institucional", href:"", icon:'about',group:GrupoNavLink.none},
+  {name: "Inicio", href:"", icon:'about',group:GrupoNavLink.none},
   {name: "Inicio",     href:"/",  icon:'home',group:GrupoNavLink.institucional},
   {name: "Empresa",     href:"empresa",  icon:'business',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
@@ -46,7 +46,7 @@ environment.production ? [
 export let NavLinksRes:NavLink[] =
 environment.production ? [
   {
-    name: "Institucional", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
+    name: "Inicio", href:"./", icon:'home', Picon:"pi pi-info", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Empresa",link:`/empresa`,queryParams:{}},

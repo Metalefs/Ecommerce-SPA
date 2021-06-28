@@ -1,0 +1,14 @@
+<div
+    class="has-background bg is-medium is-white btr w-full has-background-light"
+  >
+    <p-breadcrumb
+      [styleClass]="'has-background-light has-text-white'"
+      *ngIf="this.Produto"
+      [model]="items"
+      [home]="home"
+    ></p-breadcrumb>
+    <p-skeleton
+      *ngIf="!Produto"
+      styleClass="skeleton p-breadcrumb breadcrumb pt-3"
+    ></p-skeleton>
+</div>

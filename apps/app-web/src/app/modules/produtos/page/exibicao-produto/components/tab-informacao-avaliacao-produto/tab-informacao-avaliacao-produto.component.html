@@ -1,0 +1,19 @@
+<mat-tab-group class="">
+  <mat-tab label="Informações" (click)="AdicionarDescricao(this.Produto)">
+    <div class="block has-background-white py-3 px-3">
+      <div class="w-full is-multiline">
+        <div class="descricao-produto column is-12-touch is-12 w-full"
+          [innerHTML]="(el?.innerHTML)"></div>
+
+        <div class="descricao-produto column is-12-touch is-12 w-full" >
+          <h2><strong>ESPECIFICAÇÕES</strong></h2>
+          <div [innerHTML]="(Produto?.Especificacoes)"></div>
+        </div>
+        <personalizados-lopes-curtir-produto [Produto]="Produto"></personalizados-lopes-curtir-produto>
+      </div>
+    </div>
+  </mat-tab>
+  <mat-tab label="Avaliações">
+    <personalizados-lopes-avaliacao-produto [Produto]="Produto"></personalizados-lopes-avaliacao-produto>
+  </mat-tab>
+</mat-tab-group>

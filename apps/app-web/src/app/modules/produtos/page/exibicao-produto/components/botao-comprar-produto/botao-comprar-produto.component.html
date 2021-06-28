@@ -1,0 +1,28 @@
+<button
+    @fadeIn
+    *ngIf="Produto"
+    mat-raised-button
+    [disabled]="
+      Produto?.Status == statusProduto.esgotado
+    "
+    (click)="onAdicionarAoOrcamento.emit()"
+    class="button bbr share-button wp-btn border-light pb-0 mb-0 w-full flex-m flex-c has-text-white has-text-weight-bold"
+  >
+    {{ textoAdicionar }}
+  </button>
+  <button
+    *ngIf="this.isOrcamento"
+    mat-flat-button
+    title="Criar novo pedido"
+    [disabled]="
+      Produto?.Status == statusProduto.esgotado ||
+      !Produto?.Cor ||
+      !Produto?.Tamanho
+    "
+    (click)="onDuplicarOrcamento.emit()"
+    color="accent"
+    class="background-light-red has-text-white has-text-weight-medium bo-cir"
+  >
+  <mat-icon>add</mat-icon>
+  Novo
+</button>

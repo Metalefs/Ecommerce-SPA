@@ -1,0 +1,17 @@
+
+.heartbutton {
+  display: inline-block;
+  height: 20px;
+  vertical-align: middle;
+  width: 20px;
+  font-size: larger;
+  transition: 1s all ease-in-out;
+  &:hover {
+    bottom: 1px;
+  }
+}
+.liked {
+  opacity: 1;
+  color: rgb(182, 185, 208) !important;
+  cursor: default;
+}

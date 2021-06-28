@@ -1,0 +1,77 @@
+<div>
+  <div
+    class="has-background bg is-medium is-white btr w-full has-background-light"
+    (mouseover)="
+      this.imgProduto.classList.remove('show-img');
+      this.imgProduto.classList.add('hide-img');
+      this.imgProduto2.classList.add('show-img');
+      this.imgProduto2.classList.remove('hide-img')
+    "
+    (mouseout)="
+      this.imgProduto2.classList.remove('show-img');
+      this.imgProduto2.classList.add('hide-img');
+      this.imgProduto.classList.add('show-img');
+      this.imgProduto.classList.remove('hide-img')
+    "
+  >
+    <div class="columns bg-transp is-vcentered is-mobile">
+      <div class="column is-3-mobile is-4-desktop">
+        <figure class="image is-128x128 mb-0 pb-0">
+          <img
+            data-aos="zoom-in"
+            #imgProduto
+            class="background is-transparent"
+            [src]="(Produto?.Imagem)[1] || (Produto?.Imagem)[0]"
+            [style.opacity]="'1'"
+            alt="Foto de {{ Produto?.NomeCategoria }} {{ Produto?.Cor }} - {{
+              Produto?.Nome
+            }}"
+          />
+          <img
+            data-aos="zoom-in"
+            #imgProduto2
+            class="background is-transparent hide-img"
+            [src]="(Produto?.Imagem)[2] || (Produto?.Imagem)[0]"
+            alt="Foto de {{ Produto?.NomeCategoria }} {{ Produto?.Cor }} - {{
+              Produto?.Nome
+            }}"
+          />
+        </figure>
+      </div>
+      <div class="column mb-0 pb-0 of-x-scroll">
+        <nav class="level dis-flex flex-sa of-x-scroll">
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Avaliações</p>
+              <p class="title has-text-white">{{ Produto?.Rating.length }}</p>
+            </div>
+          </div>
+          <!-- <div class="level-item has-text-centered">
+              <div>
+                <p class="heading has-text-light">Disponiveis</p>
+                <p class="title has-text-white">N/A</p>
+              </div>
+            </div> -->
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Compras</p>
+              <p class="title has-text-white">{{ Produto?.Vendas }}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Visualizações</p>
+              <p class="title has-text-white">{{ Produto?.Visualizacoes }}</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
+              <p class="heading has-text-light">Likes</p>
+              <p class="title has-text-white">{{ Produto?.Likes }}</p>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

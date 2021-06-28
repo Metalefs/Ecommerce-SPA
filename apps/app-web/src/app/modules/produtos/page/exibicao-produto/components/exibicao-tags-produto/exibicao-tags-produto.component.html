@@ -1,0 +1,15 @@
+<div>
+  <i class="pi pi-tag"></i>
+  <span class="type-meta">
+    <mat-chip-list aria-label="Tags">
+      <mat-chip
+        color="accent"
+        [routerLink]=""
+        selected
+        *ngFor="let tag of Produto?.Tags"
+      >
+        <p class="has-text-light">{{ tag }}</p>
+      </mat-chip>
+    </mat-chip-list>
+  </span>
+</div>

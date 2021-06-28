@@ -1,0 +1,51 @@
+div.descricao-produto {
+  font-size: 16px;
+  line-height: 24px !important;
+  figure {
+    &.media {
+      align-items: center !important;
+      justify-content: center !important;
+    }
+    > .image img {
+      max-width: 50% !important;
+      float: right !important;
+    }
+  }
+  .image img {
+    max-width: 50% !important;
+    float: right !important;
+  }
+}
+
+.heartbutton {
+  display: inline-block;
+  height: 20px;
+  vertical-align: middle;
+  width: 20px;
+  font-size: larger;
+  transition: 1s all ease-in-out;
+  &:hover {
+    bottom: 1px;
+  }
+}
+.liked {
+  opacity: 1;
+  color: rgb(182, 185, 208) !important;
+  cursor: default;
+}
+
+.star-width {
+  max-width: max-content;
+  height: 35px;
+}
+
+:host ::ng-deep .rating.small {
+  font-size: 15px !important;
+}
+.rating.small {
+  font-size: 15px !important;
+}
+:host ::ng-deep .label-value.small,
+.rating.small .label-value {
+  font-size: 15px !important;
+}

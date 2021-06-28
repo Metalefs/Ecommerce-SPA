@@ -1,0 +1,26 @@
+<div>
+  <button
+    class="w-full dis-flex flex-w flex-m"
+    title="Gostei"
+    matBadge="{{ Produto?.Likes }}"
+    matBadgeColor="accent"
+    (click)="Like()"
+    mat-icon-button
+    [ngClass]="Liked ? 'liked' : ''"
+    [ngClass]="loading ? 'button is-loading' : ''"
+  >
+    <p>
+      <mat-icon
+        [ngClass]="Liked ? 'liked' : ''"
+        class="heartbutton color-light-red"
+      >
+        {{ Liked ? 'favorite' : 'favorite_border' }}</mat-icon
+      >
+    </p>
+  </button>
+  <mat-chip-list *ngIf="Liked" aria-label="Thanks">
+    <mat-chip color="primary" selected
+      >Você curtiu este produto</mat-chip
+    >
+  </mat-chip-list>
+</div>

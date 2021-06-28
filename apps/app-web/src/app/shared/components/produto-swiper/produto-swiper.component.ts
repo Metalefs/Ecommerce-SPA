@@ -14,7 +14,7 @@ import { ProdutoService } from '../../../data/service';
 export class ProdutoSwiperComponent implements OnInit {
   Produtos:Produto[];
   @Input()slidesPerView:number=5;
-  @Input()display:string ='column';
+  @Input()display:string ='row';
   @ViewChild('swiperEl') swiperEl: ElementRef;
   @Input() TipoOrdenacao:TipoOrdenacaoSwiperProduto = TipoOrdenacaoSwiperProduto.Inclusao;
   tipoOrdenacaoSwiperProduto = TipoOrdenacaoSwiperProduto;

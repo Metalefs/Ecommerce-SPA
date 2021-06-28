@@ -1,0 +1,37 @@
+<div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
+  <a>Como essa arte será usada no produto?</a>
+  <div class="column">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Frente</mat-card-subtitle>
+      </mat-card-header>
+      <figure class="image is-128x128" (click)="onAbrirModalArte.emit()">
+        <img mat-mat-card-image [src]="this.Produto?.Arte" height="200" />
+      </figure>
+      <mat-card-actions>
+        <a mat-icon-button (click)="Produto.Arte = null">
+          <mat-icon>clear</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-subtitle>Secundaria</mat-card-subtitle>
+      </mat-card-header>
+      <figure class="image is-128x128">
+        <img
+          mat-mat-card-image
+          [src]="this.Produto?.ArteSecundaria"
+          height="200"
+        />
+      </figure>
+      <mat-card-actions>
+        <a mat-icon-button (click)="Produto.ArteSecundaria = null">
+          <mat-icon>clear</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
