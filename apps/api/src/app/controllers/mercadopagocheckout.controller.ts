@@ -21,11 +21,19 @@ MercadoPagoController
 })
 .post(RouteDictionary.Checkout, async (req: any, res) => {
     try {
-      res.send(await mercadoPagoService.checkout(req.body.preference));
+      let preference = mercadoPagoService.getPreference(req.body.orcamento);
+      res.send(await mercadoPagoService.checkout(preference));
     }
     catch (err) {
       ErrorHandler.DefaultException(err, res)
     }
+})
+.get('/feedback', function(request, response) {
+  response.json({
+   Payment: request.query.payment_id,
+   Status: request.query.status,
+   MerchantOrder: request.query.merchant_order_id
+ })
 })
 .post(RouteDictionary.Refund, (req: any, res) => {
   try {
