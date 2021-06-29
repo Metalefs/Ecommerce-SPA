@@ -31,7 +31,6 @@ export class EditarIntegracoesComponent implements OnInit {
   }
 
   Editar(Integracoes:entities.Integracoes){
-
     let id = Integracoes._id;
 
     const dialogRef = this.dialog.open(EditarIntegracaoDialogComponent, {

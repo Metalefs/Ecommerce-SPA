@@ -18,7 +18,7 @@
    </mat-chip>
   </mat-chip-list>
 
-  <!-- 
+  <!--
     <button mat-icon-button (click)="Remover(Orcamento)">
       <mat-icon>remove</mat-icon>
     </button>
@@ -52,7 +52,7 @@
       <tbody>
         <tr *ngFor="let produto of Orcamento.Produto">
           <td>
-            <a [routerLink]="['/produtos/'+produto.Produto._id]">
+            <a [href]="'/produtos/'+produto.Produto._id" target="_blank">
               <figure class="image is-64x64">
                 <img src="{{produto.Produto.Imagem}}">
               </figure>
@@ -67,19 +67,23 @@
             </div>
           </td>
           <td>
-            <a [routerLink]="['/produtos/'+produto.Produto._id]">
+            <a [href]="'/produtos/'+produto.Produto._id" target="_blank">
               {{produto.Produto.Nome}}
             </a>
           </td>
           <td>
-            <figure class="image is-64x64" *ngIf="produto.Produto.Arte">
-              <img src="{{produto.Produto.Arte}}">
-            </figure>
+            <a [href]="produto.Produto.Arte ?produto.Produto.Arte :''" target="_blank">
+              <figure class="image is-64x64" *ngIf="produto.Produto.Arte">
+                <img src="{{produto.Produto.Arte}}">
+              </figure>
+            </a>
           </td>
           <td>
-            <figure class="image is-64x64" *ngIf="produto.Produto.ArteSecundaria">
-              <img src="{{produto.Produto.ArteSecundaria}}">
-            </figure>
+            <a [href]="produto.Produto.ArteSecundaria ? produto.Produto.ArteSecundaria : ''" target="_blank">
+              <figure class="image is-64x64" *ngIf="produto.Produto.ArteSecundaria">
+                <img src="{{produto.Produto.ArteSecundaria}}">
+              </figure>
+            </a>
           </td>
           <td>
             <p class="title is-6">R${{produto.Produto.Preco.toFixed(2)}}</p>

@@ -1,17 +1,33 @@
+export interface MercadoPagoPayment {
+  additional_info:mp_payment_additional_info;
+  description?: string,
+  installments: number,
+}
+export interface mp_payment_additional_info{
+  items:mp_checkout_items[];
+  payer:mp_checkout_payer;
+  shipments:mp_payment_additional_info_shipments;
+  barcode?:object;
+  application_fee:number;
+  binary_mode:boolean;
+  callback_url?:string;
+}
+export interface mp_payment_additional_info_shipments{
+  receiver_address:mp_reciever_address;
+}
 export interface MercadoPagoCheckout {
   items:mp_checkout_items[]
-  payer:mp_checkout_payer;
-  payment_methods:mp_payment_methods;
+  payer?:mp_checkout_payer;
+  payment_methods?:mp_payment_methods;
   shipments?:mp_shipments;
-  back_urls:mp_checkout_back_urls;
+  back_urls?:mp_checkout_back_urls;
   notification_url?:string;
-  statement_descriptor:string;
+  statement_descriptor?:string;
   id?:string;
-
   // regular_payment // Normal payment.
   // money_transfer  // Money request.
-  additional_info:string; //String(600)   Informações adicionais.
-  auto_return:string;
+  additional_info?:string; //String(600)   Informações adicionais.
+  auto_return?:string;
   //   No caso de estar especificado o comprador será redirecionado para o seu site imediatamente após a compra.
   // approved   // The redirection takes place only for approved payments.
   // all        // The redirection takes place only for approved payments, forward compatibility only if we change the default behavior
@@ -26,9 +42,10 @@ export interface MercadoPagoCheckout {
   marketplace?:string;//Origem do pagamento. Valor por defeito: NENHUM
   marketplace_fee?:number;//Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local
   differential_pricing?:mp_paymentID; //Configuração de preço diferencial para esta preferência.
-  binary_mode:boolean;//Quando definido como true, o pagamento só pode ter os status approved ou rejected. Caso contrário, o status in_process é adicionado.
+  binary_mode?:boolean;//Quando definido como true, o pagamento só pode ter os status approved ou rejected. Caso contrário, o status in_process é adicionado.
   taxes?:object[];//Definição de impostos diferenciados. Disponível apenas para o Mercado Livre Colombia.
   tracks?:object[];//Tracks que serão executados durante a interação do usuário no fluxo de Pagamento.
+  total_amount?:number;
 }
 export interface mp_checkout_back_urls{
   success:string,
@@ -39,7 +56,7 @@ export interface mp_checkout_items{
   id:string,
   title:string,
   description:string,
-  category_id:string,
+  category_id?:string,
   quantity: number,
   currency_id?:string,
   unit_price: number,

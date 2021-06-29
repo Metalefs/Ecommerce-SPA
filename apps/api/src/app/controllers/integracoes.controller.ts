@@ -10,7 +10,7 @@ let IntegracoesService: Services.IntegracoesService = new Services.IntegracoesSe
 
 IntegracoesRouter.get(RouteDictionary.Integracoes, async (req: any, res) => {
   try {
-    res.send(await IntegracoesService.Ler());
+    res.send(await IntegracoesService.LerUltimo());
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)

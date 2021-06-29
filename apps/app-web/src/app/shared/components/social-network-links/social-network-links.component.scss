@@ -4,69 +4,72 @@
   width: 30px;
   height: 30px;
 }
-@media (min-width: 1024px){
-  .size4 {
-    width: auto;
-    height: auto;
-  }
-}
 
- .social {
+.social {
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: -8px;
-}
-
- .social a {
-  display: inline-block;
-  margin: 10px 5px 0 0;
-  width: 30px;
-  height: 30px;
-  // padding: 5px 0;
-  text-align: center;
-  font-size: 18px;
-  background: #ffffff;
-  border-radius: 4px;
-  & > img{
-    filter: none !important;
+  a {
+    :hover {
+      background: #ff6f61;
+      i {
+        color: #ffffff;
+      }
+    }
+    display: inline-block;
+    margin: 10px 5px 0 0;
+    width: 30px;
+    height: 30px;
+    // padding: 5px 0;
+    text-align: center;
+    font-size: 18px;
+    background: #ffffff;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    & > img {
+      filter: none !important;
+    }
+    i {
+      color: #111111;
+    }
   }
 }
 
- .social a i {
-  color: #111111;
-}
-
- .social a:hover {
-  background: #FF6F61;
-}
-
- .social a:hover i {
-  color: #ffffff;
-}
 .how-social {
   color: #999999;
   font-size: 15px;
-  transition:all .5s ease-in;
+  transition: all 0.5s ease-in;
   // box-shadow: 2px 0px 0px #3636360a, 1px 0px 1px #4a4a4a63;
   background-color: #fff;
   border-radius: 5%;
-}
 
-.how-social.facebook a:hover {
-  background-color: #4267B2;
-  color: #fff;
-}
-.social a.how-social.instagram{
-  background: none;
-  a:hover {
-    background: linear-gradient(to top, #b224ef, #7579ff);;
+  &.facebook a:hover {
+    background-color: #4267b2;
+    color: #fff;
+  }
+
+  &.instagram {
+    background: none;
+    a:hover {
+      background: linear-gradient(to top, #b224ef, #7579ff);
+      color: #fff;
+    }
+  }
+
+  &.orcamento a:hover {
+    background-color: $capri;
     color: #fff;
   }
 }
-.how-social.orcamento a:hover {
-  background-color: $capri;
-  color: #fff;
+
+@media (min-width: 1024px) {
+  .size4 {
+    width: auto;
+    height: auto;
+  }
 }

@@ -21,6 +21,16 @@ export class BaseService {
       return x[0];
     });
   }
+  async LerUltimo(){
+    return Repository.List(entities.Integracoes.NomeID).then((x:any) => {
+      if(x){
+        let arr = [];
+        arr.push(x[x.length -1]);
+        return arr[0];
+      }
+      return x;
+    });
+  }
   async Filtrar(filter: {}) {
     return Repository.Filter(this.entity, filter).then(x => {
       return x;

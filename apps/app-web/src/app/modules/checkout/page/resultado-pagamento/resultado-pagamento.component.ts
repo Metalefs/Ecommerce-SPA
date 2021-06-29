@@ -151,14 +151,12 @@ export class ResultadoPagamentoComponent implements OnInit {
       this.Loading = true;
 
       if(orcamento.Usuario.Email)
-      this.servicoIntegracoes.Ler().subscribe(integracao=>{
-        this.checkoutService.goCheckout(orcamento,integracao).then(result => {
-          this._init_point = result;
-          this.Loading = false;
-          if(isPlatformBrowser(PLATFORM_ID))
-            this.scrollService.scrollDown();
-        })
-      });
+      this.checkoutService.goCheckout(orcamento).subscribe(result => {
+        this._init_point = result;
+        this.Loading = false;
+        if(isPlatformBrowser(PLATFORM_ID))
+          this.scrollService.scrollDown();
+      })
       else{
         this.snack.open("Carrinho inválido, tente finalizar o pedido no carrinho novamente para concluir o pagamento.","fechar",{
           verticalPosition:'top',

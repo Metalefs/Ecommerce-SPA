@@ -102,18 +102,16 @@ export class EnderecoComponent implements OnInit {
       this.ErroCadastro = false;
       this.Orcamento$.subscribe(orcamento => {
         this.Loading = true;
-        this.servicoIntegracoes.Ler().subscribe(integracao=>{
-          this.checkoutService.goCheckout(orcamento,integracao).then(result => {
-            this.cadastroTemporario();
-            this._init_point = result;
-            this.Loading = false;
-            this.Pagar = true;
-            if (isPlatformBrowser(this.platform))
-              this.scrollService.scrollTop()
-            CheckoutService.DadosCompleto = true;
-            CheckoutService.EnderecoCompleto = true;
-            CheckoutService.PagamentoCompleto = true;
-          });
+        this.checkoutService.goCheckout(orcamento).subscribe(result => {
+          this.cadastroTemporario();
+          this._init_point = result;
+          this.Loading = false;
+          this.Pagar = true;
+          if (isPlatformBrowser(this.platform))
+            this.scrollService.scrollTop()
+          CheckoutService.DadosCompleto = true;
+          CheckoutService.EnderecoCompleto = true;
+          CheckoutService.PagamentoCompleto = true;
         });
       });
     } else {

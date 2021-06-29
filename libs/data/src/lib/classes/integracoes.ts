@@ -10,6 +10,7 @@ export class Integracoes extends MongoDocument implements entidadeBase {
  auto_return:string = "all"; //URL de acesso ao checkout
  collector_id?:number;//Sua identificação como um vendedor no Mercado Pago.
  client_id?:number;//Id do dono do aplicativo que usa a API do Mercado Livre.
+ client_secret?:string;//secret do dono do aplicativo que usa a API do Mercado Livre.
  public_key?:string;//Id do dono do aplicativo que usa a API do Mercado Livre.
  marketplace?:string;//Origem do pagamento. Valor por defeito: NENHUM
  marketplace_fee?:number;//Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local
@@ -22,6 +23,7 @@ export class Integracoes extends MongoDocument implements entidadeBase {
   auto_return:string,
   collector_id?:number,
   client_id?:number,
+  client_secret?:string,
   public_key?:string,
   marketplace?:string,
   marketplace_fee?:number,
@@ -34,6 +36,7 @@ export class Integracoes extends MongoDocument implements entidadeBase {
     this.auto_return = auto_return;
     this.collector_id = collector_id
     this.client_id = client_id;
+    this.client_secret = client_secret;
     this.public_key = public_key;
     this.marketplace = marketplace;
     this.marketplace_fee = marketplace_fee;

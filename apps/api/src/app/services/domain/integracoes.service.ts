@@ -13,15 +13,5 @@ export class IntegracoesService extends BaseService {
     super(entities.Integracoes.NomeID);
 
   }
-  async Ler() : Promise<Integracoes>{
-    return Repository.List(entities.Integracoes.NomeID).then((x:Integracoes[]) => {
-      if(x){
-        let arr = [];
-        arr.push(x[x.length -1]);
-        return arr[0];
-      }
-      return x;
-    });
-  }
 
 }

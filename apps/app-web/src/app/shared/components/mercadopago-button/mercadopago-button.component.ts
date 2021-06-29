@@ -24,6 +24,7 @@ export class MercadopagoButtonComponent implements OnInit {
     node.id = "mercadopago-script";
     node.charset = 'utf-8';
     node.setAttribute('data-button-label',"Comprar com MercadoPago");
+    node.setAttribute('data-button-type',"wallet");
     node.setAttribute('data-preference-id', this.init_point.id);
     this.document.nativeDocument.getElementById('setup-script-mp').appendChild(node);
   }

@@ -32,8 +32,8 @@ export class CheckoutService {
     CheckoutService.valid = CheckoutService.erros.length == 0;
   }
 
-  async goCheckout(orcamento:Orcamento, integracao:Integracoes){
-    return this.MercadoPago.goCheckout(orcamento,integracao);
+  goCheckout(orcamento:Orcamento){
+    return this.MercadoPago.goCheckout(orcamento);
   }
 
   getValid(){
