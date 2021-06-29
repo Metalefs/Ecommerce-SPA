@@ -1,4 +1,4 @@
-<div matRipple (click)="ToggleNav(0)" class="nav-trigger is-hidden-tablet z-index-top" [ngClass]="NavState.open? 'is-active': ''"
+<div matRipple (click)="ToggleNav(0)" class="nav-trigger is-hidden-desktop z-index-top" [ngClass]="NavState.open? 'is-active': ''"
   role="button" title="Menu">
 
   <div matRipple class="hamburger">
@@ -22,12 +22,6 @@
     <section class="split-home">
       <personalizados-lopes-header></personalizados-lopes-header>
       <div class="main-content has-background-light">
-        <!-- <article class="message is-warning py-0 my-0" @slideInOut *ngIf="Alerta">
-          <div class="message-body py-4">
-            <a href="javascript:void(0)" class="pos-absolute right-0 is-right mr-4" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a>
-            <p class="subtitle is-size-7">{{Alerta}}</p>
-          </div>
-        </article> -->
         <router-outlet #outlet="outlet"></router-outlet>
       </div>
     </section>

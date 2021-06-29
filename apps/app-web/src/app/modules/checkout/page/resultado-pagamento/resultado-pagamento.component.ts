@@ -13,6 +13,7 @@ import { IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions
 import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
 import { CheckoutService } from '../../checkout.service';
+import { IntegracoesService } from 'apps/app-web/src/app/shared/services';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -33,6 +34,7 @@ export class ResultadoPagamentoComponent implements OnInit {
   constructor(private activeRoute:ActivatedRoute,
     private snack: MatSnackBar,
     private checkoutService: CheckoutService,
+    private servicoIntegracoes: IntegracoesService,
     private scrollService:PageScrollService,
     private store:Store) { }
 
@@ -149,12 +151,14 @@ export class ResultadoPagamentoComponent implements OnInit {
       this.Loading = true;
 
       if(orcamento.Usuario.Email)
-        this.checkoutService.goCheckout(orcamento).then(result => {
+      this.servicoIntegracoes.Ler().subscribe(integracao=>{
+        this.checkoutService.goCheckout(orcamento,integracao).then(result => {
           this._init_point = result;
           this.Loading = false;
           if(isPlatformBrowser(PLATFORM_ID))
             this.scrollService.scrollDown();
         })
+      });
       else{
         this.snack.open("Carrinho inválido, tente finalizar o pedido no carrinho novamente para concluir o pagamento.","fechar",{
           verticalPosition:'top',

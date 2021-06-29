@@ -12,15 +12,13 @@ import { MercadoPagoCheckout, MercadoPagoSearchPaymentResult, mp_checkout_items,
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { mp_shipping } from 'libs/data/src/lib/interfaces/mercadoPagoCheckout';
 
-import {IntegracoesService} from './IntegracoesService';
 @Injectable({
   providedIn: 'root'
 })
 export class MercadoPagoCheckoutService {
   constructor(private http: HttpClient,
     private ErrorHandler: ErrorHandler,
-    private AuthenticationService: AuthenticationService,
-    private _integrationService:IntegracoesService) { }
+    private AuthenticationService: AuthenticationService) { }
 
   listPayments() {
     let payload = this.AuthenticationService.tokenize({});
@@ -30,17 +28,16 @@ export class MercadoPagoCheckoutService {
     );
   }
 
-  async goCheckout(Orcamento: Orcamento) {
-    return new Promise(async (resolve, reject) => {
-      try {
-      let MercadoPagoCheckout = this.obterPreferencia(Orcamento, await this._integrationService.Ler().toPromise());
-      resolve(this.http.post<any>(environment.endpoint + RouteDictionary.Checkout, { preference: MercadoPagoCheckout }).pipe(
+  async goCheckout(Orcamento: Orcamento, Integracao: Integracoes) {
+    try {
+      let MercadoPagoCheckout = this.obterPreferencia(Orcamento, Integracao);
+
+      return this.http.post<any>(environment.endpoint + RouteDictionary.Checkout, { preference: MercadoPagoCheckout }).pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.ErrorHandler.handleError) // then handle the error
-      ));
-      }
-      catch(ex){reject(ex)}
-    });
+      )
+    }
+    catch (ex) { }
   }
 
   refund(idPagamento: number): Observable<any> {

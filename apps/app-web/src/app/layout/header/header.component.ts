@@ -49,6 +49,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   defaultCategory = "Todos os produtos";
   TipoUsuario = TipoUsuario;
   galeria = {name:"Galeria",href:`/showcase`,queryParams:{}};
+  Alerta:string = "Covid-19: Atendendo normalmente, na Personalizados Lopes você recebe em casa.";
+
   constructor(
     private AuthenticationService:AuthenticationService,
     private router: Router,

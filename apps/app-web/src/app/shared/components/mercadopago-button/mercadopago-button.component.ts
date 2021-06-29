@@ -10,7 +10,7 @@ export class MercadopagoButtonComponent implements OnInit {
   @Input() init_point;
   @Input() disabled:boolean;
 
-  constructor(private document:DocumentRef, @Inject(PLATFORM_ID) private platform: Object,) { }
+  constructor(private document:DocumentRef, @Inject(PLATFORM_ID) private platform: Object) { }
 
   ngOnInit(): void {
     if(isPlatformBrowser(this.platform))
@@ -24,7 +24,7 @@ export class MercadopagoButtonComponent implements OnInit {
     node.id = "mercadopago-script";
     node.charset = 'utf-8';
     node.setAttribute('data-button-label',"Comprar com MercadoPago");
-    node.setAttribute('data-preference-id',this.init_point.id);
+    node.setAttribute('data-preference-id', this.init_point.id);
     this.document.nativeDocument.getElementById('setup-script-mp').appendChild(node);
   }
 }

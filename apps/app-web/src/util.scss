@@ -2699,6 +2699,9 @@ button{
 .bo-0{
   border-radius:0;
 }
+.bor-0{
+  border:0;
+}
 .of-hidden {overflow: hidden;}
 
 .visible-false {visibility: hidden;}
@@ -3290,6 +3293,9 @@ button{
 }
 .of-x-hidden{
   overflow-x: hidden;
+}
+.of-y-hidden{
+  overflow-y: hidden;
 }
 .of-y-scroll{
   overflow-y: scroll;

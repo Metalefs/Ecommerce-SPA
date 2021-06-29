@@ -3,6 +3,12 @@
   style="overflow-y: visible; z-index: 20;"
 >
   <div class="flex-sb">
+    <article class="message is-warning py-0 my-0" @slideInOut *ngIf="Alerta">
+      <!-- <a href="javascript:void(0)" class="pos-absolute clickable is-right mr-4" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a> -->
+      <div class="message-body py-4">
+        <p class="subtitle is-size-7">{{Alerta}}</p>
+      </div>
+    </article>
     <div class="hoverable navbar-item px-2 has-text-centered mb-0 is-hidden-mobile">
       <div>
         <a
@@ -16,24 +22,24 @@
     <div class="hoverable navbar-item level-item px-2 has-text-centered mr-6">
       <div>
         <a class="reset-a is-size-7 fw-300" [routerLink]="['checkout']"
-          ><span class="is-hidden-touch fw-300">Finalizar pedido </span></a
+          ><span class="is-hidden-mobile fw-300">Finalizar pedido </span></a
         >
       </div>
     </div>
   </div>
 </mat-toolbar>
-<div class="pos-sticky z-index-top top-0">
+<div class="z-index-top top-0" style="overflow-y: visible;">
   <nav
       class="navbar z-index-top py-2"
       style="z-index: 20;"
     >
-      <div class="dis-flex flex-sa flex-c-m">
+      <div class="dis-flex flex-sb flex-c-m">
         <div class="w-full navbar-start">
-          <div class="w-full dis-flex flex-sa flex-m nav-item">
+          <div class="w-full dis-flex flex-sb flex-m nav-item">
             <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
               <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
             </a>
-            <div class="is-hidden-desktop mr-6 navbar-item">
+            <div class="is-hidden-desktop navbar-item">
               <button
                 mat-ripple
                 color=""
@@ -89,7 +95,7 @@
                 title="Cesta de compras"
                 aria-label="Botão abrir Orçamento"
                 color="a"
-                class="size4 flex-c-m boxshadow-none how-social shadow-light orcamento trans-04 m-b-3 m-t-3"
+                class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
               >
                 <mat-icon class="material-icons-outlined"
                   >shopping_bag</mat-icon
@@ -240,7 +246,7 @@
     >
     </mat-toolbar-row>
 </div>
-<personalizados-lopes-mega-menu
+<!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"
   class="is-hidden-touch"
-></personalizados-lopes-mega-menu>
+></personalizados-lopes-mega-menu> -->

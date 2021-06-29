@@ -15,7 +15,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { CEPService, EstadoService } from '../../../../shared/services';
+import { CEPService, EstadoService, IntegracoesService } from '../../../../shared/services';
 import { CheckoutService } from '../../checkout.service';
 
 @Component({
@@ -50,6 +50,7 @@ export class EnderecoComponent implements OnInit {
     private EstadoService: EstadoService,
     private snack: MatSnackBar,
     public checkoutService: CheckoutService,
+    private servicoIntegracoes: IntegracoesService,
     private auth: AuthenticationService,
     private router: Router,
     private scrollService: PageScrollService,
@@ -101,16 +102,18 @@ export class EnderecoComponent implements OnInit {
       this.ErroCadastro = false;
       this.Orcamento$.subscribe(orcamento => {
         this.Loading = true;
-        this.checkoutService.goCheckout(orcamento).then(result => {
-          this.cadastroTemporario();
-          this._init_point = result;
-          this.Loading = false;
-          this.Pagar = true;
-          if (isPlatformBrowser(this.platform))
-            this.scrollService.scrollTop()
-          CheckoutService.DadosCompleto = true;
-          CheckoutService.EnderecoCompleto = true;
-          CheckoutService.PagamentoCompleto = true;
+        this.servicoIntegracoes.Ler().subscribe(integracao=>{
+          this.checkoutService.goCheckout(orcamento,integracao).then(result => {
+            this.cadastroTemporario();
+            this._init_point = result;
+            this.Loading = false;
+            this.Pagar = true;
+            if (isPlatformBrowser(this.platform))
+              this.scrollService.scrollTop()
+            CheckoutService.DadosCompleto = true;
+            CheckoutService.EnderecoCompleto = true;
+            CheckoutService.PagamentoCompleto = true;
+          });
         });
       });
     } else {

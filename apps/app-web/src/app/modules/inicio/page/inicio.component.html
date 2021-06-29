@@ -10,7 +10,7 @@
 
     <div class="hero p-t-1">
       <div class="hero-body p-t-20">
-        <section data-aos="flip-left" class="py-3" *ngIf="(Clientes$ | async)?.length > 0">
+        <section data-aos="flip-left" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
           <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
         </section>
       </div>
