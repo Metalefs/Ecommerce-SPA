@@ -1,20 +1,3 @@
-export interface MercadoPagoPayment {
-  additional_info:mp_payment_additional_info;
-  description?: string,
-  installments: number,
-}
-export interface mp_payment_additional_info{
-  items:mp_checkout_items[];
-  payer:mp_checkout_payer;
-  shipments:mp_payment_additional_info_shipments;
-  barcode?:object;
-  application_fee:number;
-  binary_mode:boolean;
-  callback_url?:string;
-}
-export interface mp_payment_additional_info_shipments{
-  receiver_address:mp_reciever_address;
-}
 export interface MercadoPagoCheckout {
   items:mp_checkout_items[]
   payer?:mp_checkout_payer;
@@ -28,7 +11,7 @@ export interface MercadoPagoCheckout {
   // money_transfer  // Money request.
   additional_info?:string; //String(600)   Informações adicionais.
   auto_return?:string;
-  //   No caso de estar especificado o comprador será redirecionado para o seu site imediatamente após a compra.
+  // No caso de estar especificado o comprador será redirecionado para o seu site imediatamente após a compra.
   // approved   // The redirection takes place only for approved payments.
   // all        // The redirection takes place only for approved payments, forward compatibility only if we change the default behavior
   external_reference?:string //Referência que pode sincronizar com seu sistema de pagamentos.
@@ -105,6 +88,9 @@ export interface mp_checkout_payer_address {
   street_name:string,
   street_number:number,
   zip_code:string,
+  neighborhood:string,
+  city:string,
+  federal_unit:string
 }
 export interface mp_payment_methods{
   excluded_payment_methods: mp_paymentID[];
@@ -116,12 +102,12 @@ export interface mp_paymentID{
 }
 export interface mp_shipments{
   mode:string;//  Modo de envio.
-  modes:string[];//  Modo de envio.
+  modes?:string[];//  Modo de envio.
   // custom   // Custom shipping.
   // me2   // Mercado Envíos.
   // not_specified   // Shipping mode not specified.
   local_pickup?:boolean;//  Preferência de remoção de pacotes em agência(mode:me2 somente).
-  dimensions:string; //  Tamanho do pacote em cm x cm x cm, gr (mode:me2 somente)
+  dimensions?:string; //  Tamanho do pacote em cm x cm x cm, gr (mode:me2 somente)
   default_shipping_method?:number; //  Escolha um método de envio padrão no _checkout_(mode:me2 somente).
   free_methods?: mp_paymentID //Oferecer um método de frete grátis (mode:me2 somente).
   cost?:number; //  Custo do transporte (mode:custom somente).
@@ -150,5 +136,5 @@ export interface mp_reciever_address{
   street_number:number;// O Número.
   floor:string //  Andar.
   apartment:string; //  Apartamento.
-  country_name:string; //  País.
+  country_name?:string; //  País.
 }

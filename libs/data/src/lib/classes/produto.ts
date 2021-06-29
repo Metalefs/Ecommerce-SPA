@@ -36,6 +36,7 @@ export class Produto extends MongoDocument implements entidadeBase{
   Vendas?:number;
   Design?:string;
   Canvas?:string;
+  Codigo?:string;
   static readonly NomeID:string = "Produto";
     constructor(
     Nome:string,

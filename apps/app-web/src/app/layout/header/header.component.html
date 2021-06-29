@@ -87,8 +87,8 @@
       <div class="dis-flex flex-r navbar-end">
 
         <div class="is-hidden-touch ml-6 navbar-item">
-          <div class="columns is-mobile is-vcentered">
-            <div class="column">
+          <div class="columns is-gapless is-mobile is-vcentered">
+            <div class="column mr-0  pr-0 ">
               <button
                 mat-ripple
                 (click)="openCheckout()"
@@ -105,9 +105,9 @@
                 </p>
               </button>
             </div>
-            <div class="column is-hidden-touch mr-3 clickable">
+            <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
               <p
-                class="preco"
+                class="preco has-text-bold"
                 (click)="openCheckout()"
                 *ngIf="(Orcamento$ | async)?.Preco"
               >

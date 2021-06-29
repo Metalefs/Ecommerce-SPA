@@ -3,16 +3,17 @@
   [ngClass]="{ 'is-danger': ErroTamanho() }"
   *ngIf="Produto?.Tamanhos"
 >
-  <mat-label class="label is-small is-size-7"
-    >Tamanho: {{ Produto?.Tamanho || '' }}</mat-label
+  <mat-label class="label is-medium is-size-6"
+    >Tamanho:</mat-label
   >
   <div
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
     class="shadow-light bo-cir button is-small"
-    (click)="Produto.Tamanho = opt"
+    [ngClass]="Produto.Tamanho == opt ? 'is-success' : ''"
+    (click)="Produto.Tamanho = Produto.Tamanho == null ? opt : null"
   >
-    <div class="" (click)="Produto.Tamanho = opt">
+    <div >
       <p>{{ opt }}</p>
     </div>
   </div>

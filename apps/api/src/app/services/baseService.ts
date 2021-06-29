@@ -16,13 +16,15 @@ export class BaseService {
       return x;
     });
   }
+
   async LerPrimeiro() {
     return Repository.List(this.entity).then(x => {
       return x[0];
     });
   }
+
   async LerUltimo(){
-    return Repository.List(entities.Integracoes.NomeID).then((x:any) => {
+    return Repository.List(this.entity).then((x:any) => {
       if(x){
         let arr = [];
         arr.push(x[x.length -1]);
@@ -31,11 +33,25 @@ export class BaseService {
       return x;
     });
   }
+
+  async Count(filter: {}) {
+    return Repository.CountFilter(this.entity, filter).then(x => {
+      return x;
+    });
+  }
+
+  async FiltrarUm(filter: {}) {
+    return Repository.FindOne(this.entity, filter).then(x => {
+      return x;
+    });
+  }
+
   async Filtrar(filter: {}) {
     return Repository.Filter(this.entity, filter).then(x => {
       return x;
     });
   }
+
   async Alterar(Usuario: entities.Usuario, obj: MongoDocument) {
     if (Usuario.Tipo == enums.TipoUsuario.admin) {
       return Repository.Edit(this.entity, obj._id, obj).then(x => {
@@ -43,6 +59,7 @@ export class BaseService {
       });
     }
   }
+
   async Deletar(Usuario: entities.Usuario, id: string) {
     if (Usuario.Tipo == enums.TipoUsuario.admin) {
       return Repository.Remove(this.entity, id).then(x => {
@@ -50,6 +67,7 @@ export class BaseService {
       });
     }
   }
+
   async Inserir(Usuario: entities.Usuario, obj: MongoDocument) {
     if (Usuario.Tipo == enums.TipoUsuario.admin) {
       return Repository.Insert(this.entity, obj).then(x => {
@@ -57,6 +75,7 @@ export class BaseService {
       });
     }
   }
+
   async InserirSemUsuario(obj: MongoDocument) {
     return Repository.Insert(this.entity, obj).then(x => {
       return x;

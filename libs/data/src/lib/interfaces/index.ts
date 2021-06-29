@@ -9,7 +9,6 @@ import {
   mp_transaction_details,
   mp_card,
   mp_card_holder,
-  mp_additional_info
 } from './mercadoPagoPayment';
 import {MercadoPagoSearchPaymentResult} from './mercadoPagoSearchPaymentResult';
 export {
@@ -25,5 +24,4 @@ export {
   mp_transaction_details,
   mp_card,
   mp_card_holder,
-  mp_additional_info
 }

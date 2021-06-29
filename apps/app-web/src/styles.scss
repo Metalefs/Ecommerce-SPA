@@ -128,8 +128,8 @@ a {
     transition: all .25s ease;
     color: #999;
     text-decoration: none;
-    -webkit-transform: rotateZ(1.1deg);
-    transform: rotateZ(1deg);
+    -webkit-transform: translateY(-1px);
+    transform: translateY(-1px);
   }
 }
 .has-background {

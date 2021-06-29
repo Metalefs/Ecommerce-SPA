@@ -1,12 +1,13 @@
-import {mp_checkout_items, mp_checkout_payer, mp_checkout_payer_identification, mp_shipments} from './mercadoPagoCheckout';
+import {mp_checkout_items, mp_checkout_payer_identification, mp_reciever_address} from './mercadoPagoCheckout';
+
 export interface MercadoPagoPayment{
-  id:number; //Identificador de pagamento.
-  date_created:Date;//Data de criação do pagamento.
-  date_approved:Date;//Data de aprovação do pagamento.
-  date_last_updated:Date;//Data da última modificação.
-  money_release_date:Date//Data de liberação do pagamento.
-  collector_id:number;//Identificação do vendedor.
-  operation_type:string;//Tipo de pagamento.
+  id?:number; //Identificador de pagamento.
+  date_created?:Date;//Data de criação do pagamento.
+  date_approved?:Date;//Data de aprovação do pagamento.
+  date_last_updated?:Date;//Data da última modificação.
+  money_release_date?:Date//Data de liberação do pagamento.
+  collector_id?:number;//Identificação do vendedor.
+  operation_type?:string;//Tipo de pagamento.
   // regular_payment // Typification by default of a purchase being paid using Mercado Pago.
   // money_transfer // Funds transfer between two users.
   // recurring_payment // Automatic recurring payment due to an active user subscription.
@@ -14,14 +15,14 @@ export interface MercadoPagoPayment{
   // payment_addition // Addition of money to an existing payment, done in Mercado Pago's site.
   // cellphone_recharge // Recharge of a user's cellphone account.
   // pos_payment // Payment done through a Point Of Sale.
-  payer:any | mp_checkout_payer; //Id do pagador.
+  payer: mp_payment_payer; //Id do pagador.
   binary_mode:boolean; //Quando estiver ativado, o pagamento só pode ser aprovado ou rejeitado. De não estar ativado, para além deste estado, o pagamento pode ser pendente (in_process).
-  live_mode:boolean; //Indica se o pagamento é processado em ambiente de sandbox ou produção.
-  order: mp_order;//Identificador de ordem.
+  live_mode?:boolean; //Indica se o pagamento é processado em ambiente de sandbox ou produção.
+  order: mp_payment_order;//Identificador de ordem.
   external_reference:string;//Identificação fornecida pelo vendedor em seu sistema.
-  description:string;//Razão de pagamento ou título do item.
-  metadata:object;//JSON válido que pode ser adicionado ao pagamento para salvar atributos adicionais do comprador.
-  currency_id:string;//Identificador da moeda utilizada no pagamento.
+  description?:string;//Razão de pagamento ou título do item.
+  metadata?:object;//JSON válido que pode ser adicionado ao pagamento para salvar atributos adicionais do comprador.
+  currency_id?:string;//Identificador da moeda utilizada no pagamento.
   // ARS
   // Argentine peso.
   // BRL
@@ -37,16 +38,16 @@ export interface MercadoPagoPayment{
   // UYU
   // Uruguayan peso.
   transaction_amount:number; //Custo do produto. (Obrigatório)
-  transaction_amount_refunded:number;//Valor total reembolsado este pagamento.
-  coupon_amount:number//Valor do cupom de desconto.
-  date_of_expiration:Date;//Data de expiração do pagamento.
-  campaign_id:number;//Identificador da campanha de desconto.
-  coupon_code:string;//Campanha de desconto com um código específico.
-  transaction_details:mp_transaction_details;
-  fee_details:object[];//Lista de comissões.
-  differential_pricing_id:number;//Id do esquema de absorção do custo financeiro.
-  application_fee:number;//Comissão coletadas pelo mercado ou pelo Mercado Pago.
-  status:string;//Estado do pagamento.
+  transaction_amount_refunded?:number;//Valor total reembolsado este pagamento.
+  coupon_amount?:number//Valor do cupom de desconto.
+  date_of_expiration?:string;//Data de expiração do pagamento.
+  campaign_id?:number;//Identificador da campanha de desconto.
+  coupon_code?:string;//Campanha de desconto com um código específico.
+  transaction_details?:mp_transaction_details;
+  fee_details?:object[];//Lista de comissões.
+  differential_pricing_id?:number;//Id do esquema de absorção do custo financeiro.
+  application_fee?:number;//Comissão coletadas pelo mercado ou pelo Mercado Pago.
+  status?:string;//Estado do pagamento.
   // pending // The user has not yet completed the payment process.
   // approved // The payment has been approved and accredited.
   // authorized // The payment has been authorized but not captured yet.
@@ -56,13 +57,13 @@ export interface MercadoPagoPayment{
   // cancelled // Payment was cancelled by one of the parties or because time for payment has expired
   // refunded // Payment was refunded to the user.
   // charged_back // Was made a chargeback in the buyer’s credit card.
-  status_detail:string;//Fornece informação detalhada do estado atual, ou o motivo de rejeição.
-  capture:boolean;//Determina se o pagamento deve ser capturado(true, default value), ou apenas reservado(false).
-  captured:boolean;//Determina se a captura de a operação foi realizada (somente para cartões de crédito).
-  call_for_authorize_id:string;//Identificador que deve ser fornecida ao banco emissor para autorizar o pagamento.
-  payment_method_id:string;//Meio de pagamento escolhido para fazer o pagamento. (Obrigatório)
-  issuer_id:string;//Id do emitente do meio de pagamento.
-  payment_type_id:string;//Tipo do meio de pagamento escolhido.
+  status_detail?:string;//Fornece informação detalhada do estado atual, ou o motivo de rejeição.
+  capture?:boolean;//Determina se o pagamento deve ser capturado(true, default value), ou apenas reservado(false).
+  captured?:boolean;//Determina se a captura de a operação foi realizada (somente para cartões de crédito).
+  call_for_authorize_id?:string;//Identificador que deve ser fornecida ao banco emissor para autorizar o pagamento.
+  payment_method_id?:string;//Meio de pagamento escolhido para fazer o pagamento. (Obrigatório) PIX
+  issuer_id?:string;//Id do emitente do meio de pagamento.
+  payment_type_id?:string;//Tipo do meio de pagamento escolhido.
   // account_money // Money in the Mercado Pago account.
   // ticket // Printed ticket.
   // bank_transfer // Wire transfer.
@@ -70,14 +71,70 @@ export interface MercadoPagoPayment{
   // credit_card // Payment by credit card.
   // debit_card // Payment by debit card.
   // prepaid_card // Payment by prepaid card.
-  token:string; //Identificador de token card. (Obrigatório para cartão de crédito)
-  card:mp_card;//Os detalhes do cartão utilizado.
+  token?:string; //Identificador de token card. (Obrigatório para cartão de crédito)
+  card?:mp_card;//Os detalhes do cartão utilizado.
   statement_descriptor:string;//Como aparecerá o pagamento no extrato do cartão (ex: o MERCADOPAGO).
-  installments:number;//Quantidade selecionada de cotas. (Obrigatório)
-  notification_url:string; //URL para qual Mercado Pago enviará notificações associadas a mudanças no status do pagamento.
+  installments?:number;//Quantidade selecionada de cotas. (Obrigatório)
+  notification_url?:string; //URL para qual Mercado Pago enviará notificações associadas a mudanças no status do pagamento.
   callback_url:string;//URL para a qual o Mercado Pago faz o redirecionamento final (apenas para transferência bancária).
-  refunds:object[];//Lista de reembolsos que foram feitas a este pagamento.
-  additional_info:object //Informações que podem melhorar a análise de prevenção de fraude e a taxa de conversão. Trata de enviar-nos toda a informação possível.
+  refunds?:object[];//Lista de reembolsos que foram feitas a este pagamento.
+  additional_info?: mp_payment_additional_info //Informações que podem melhorar a análise de prevenção de fraude e a taxa de conversão. Trata de enviar-nos toda a informação possível.
+}
+
+export interface mp_payment_order{
+  type:'mercadolibre'|'mercadopago',
+  id?:number
+}
+export interface mp_payment_payer{
+  entity_type: 'individual'|'association';
+  type:'customer'|'registered'|'guest',
+  id?:string,
+  email:string,
+  identification?:mp_payer_identification,
+  phone:mp_payer_phone,
+  first_name:string,
+  last_name:string
+}
+
+export interface mp_payer_phone{
+  area_code:string,
+  number:string,
+  extension?:string
+}
+export interface mp_payer_identification{
+  type:string,
+  number:string
+}
+
+export interface mp_payment_additional_info{
+  ip_address:string; //IP do qual provém o request (apenas para transferência bancária).
+  items:mp_checkout_items[]; //Lista de itens a pagar.
+  payer:mp_payment_additional_info_payer;
+  shipments:mp_payment_additional_info_shipments;
+  barcode?:object;
+}
+
+export interface mp_payment_additional_info_payer{
+  address:mp_payment_additional_info_payer_address;
+  entity_type: 'individual'|'association';
+  type:'customer'|'registered'|'guest',
+  id?:string,
+  email:string,
+  identification?:mp_payer_identification,
+  phone:mp_payer_phone,
+  first_name:string,
+  last_name:string
+  registration_date?:string //Data de cadastro do comprador em seu site
+}
+
+export interface mp_payment_additional_info_payer_address{
+  zip_code:string //Código postal
+  street_name: string //Rua
+  street_number: number //O Número
+}
+
+export interface mp_payment_additional_info_shipments{
+  receiver_address:mp_reciever_address;
 }
 
 export interface mp_order{
@@ -109,11 +166,4 @@ export interface mp_card{
 export interface mp_card_holder{
   name:string;//  Nome do proprietário tarjata.
   identification:mp_checkout_payer_identification; //  Identificação do proprietário do cartão.
-}
-
-export interface mp_additional_info{
-  ip_address:string; //IP do qual provém o request (apenas para transferência bancária).
-  items:mp_checkout_items[]; //Lista de itens a pagar.
-  payer:mp_checkout_payer;
-  shipments:mp_shipments;
 }

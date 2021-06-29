@@ -5,6 +5,7 @@ import { EmailNotificacaoService } from './email-notificacao.service';
 import { Repository } from '../../repositories/repository';
 import { PaginationResponse } from 'libs/data/src/lib/interfaces';
 import { BaseService } from '../baseService';
+import { MongoDocument } from 'libs/data/src/lib/classes/abstract/MongoDocument';
 var ObjectId = require('mongodb').ObjectID;
 export class ProdutoService extends BaseService {
 
@@ -15,6 +16,14 @@ export class ProdutoService extends BaseService {
     super(entities.Produto.NomeID);
 
   }
+  async Inserir(Usuario: entities.Usuario, obj: Produto) {
+    if (Usuario.Tipo == enums.TipoUsuario.admin) {
+      let codProduto = this.gerarCodProduto(obj);
+      return Repository.Insert(entities.Produto.NomeID, obj).then(x => {
+        return x;
+      });
+    }
+  }
   async Gostar(id: string) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
       x.Likes += 1;
@@ -23,6 +32,7 @@ export class ProdutoService extends BaseService {
       });
     });
   }
+
   async IncrementarVenda(id: string) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
       if (!x.Vendas) Object.assign(x, { Vendas: 1 });
@@ -32,6 +42,7 @@ export class ProdutoService extends BaseService {
       });
     });
   }
+
   async IncrementarVisualizacoes(id: string) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
       console.log(x.Visualizacoes??"N/Z")
@@ -45,6 +56,7 @@ export class ProdutoService extends BaseService {
       });
     });
   }
+
   async Rate(id: string, rating: number) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
       if (!x.Rating) Object.assign(x, { Rating: [rating] });
@@ -54,6 +66,7 @@ export class ProdutoService extends BaseService {
       });
     });
   }
+
   async Search(filter: {}, limit: number, skip: number): Promise<PaginationResponse<Produto>> {
     // Find Demanded Products - Skipping page values, limit results per page
     return Repository.Paginate(entities.Produto.NomeID, filter, limit, skip).then((x: Produto[]) => {
@@ -62,16 +75,7 @@ export class ProdutoService extends BaseService {
       })
     });
   }
-  async Count(filter: {}) {
-    return Repository.CountFilter(entities.Produto.NomeID, filter).then(x => {
-      return x;
-    });
-  }
-  async FiltrarUm(filter: {}) {
-    return Repository.FindOne(entities.Produto.NomeID, filter).then(x => {
-      return x;
-    });
-  }
+
   async Alterar(Usuario: entities.Usuario, Produto: entities.Produto) {
     if (Usuario.Tipo == enums.TipoUsuario.admin) {
       let produtoAntigo = await this.FiltrarUm({ "_id": new ObjectId(Produto._id) }) as Produto;
@@ -85,5 +89,9 @@ export class ProdutoService extends BaseService {
         return x;
       });
     }
+  }
+
+  gerarCodProduto(produto:Produto){
+    this.Count({})
   }
 }

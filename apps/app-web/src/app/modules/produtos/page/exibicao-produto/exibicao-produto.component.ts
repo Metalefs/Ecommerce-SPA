@@ -127,8 +127,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
 
   setColor(color:any){
-    this.Produto.Cor = color;
-    this.produtoForm.get("cor").setValue(color);
+    this.Produto.Cor = this.Produto.Cor == null ? color : null;
+    this.produtoForm.get("cor").setValue(this.Produto.Cor);
     this.produtoForm.get('cor').clearValidators();
     this.produtoForm.get('cor').updateValueAndValidity();
   }
@@ -136,6 +136,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.produtoForm.get("quantidade").setValue(quantidade);
     this.produtoForm.get('quantidade').clearValidators();
     this.produtoForm.get('quantidade').updateValueAndValidity();
+
   }
 
   AdicionarAoOrcamento(){
@@ -339,13 +340,13 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   Validar(){
     let Erros:{erro:string,type:number}[] = [];
     if(this.Produto.Quantidade < 1){
-      Erros.push({erro:"Selecione uma quantidade para o item", type:1});
+      Erros.push({erro:"Selecione uma quantidade para o produto", type:1});
     }
     if(!this.Produto.Cor){
-      Erros.push({erro:"Selecione uma cor para o item", type:2});
+      Erros.push({erro:"Selecione uma cor para o produto", type:2});
     }
     if(!this.Produto.Tamanho){
-      Erros.push({erro:"Selecione um tamanho para o item", type:3});
+      Erros.push({erro:"Selecione um tamanho para o produto", type:3});
     }
     return Erros;
   }

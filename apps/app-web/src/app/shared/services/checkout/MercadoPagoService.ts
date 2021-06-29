@@ -10,7 +10,6 @@ import { MercadoPagoCheckout, MercadoPagoSearchPaymentResult, mp_checkout_items,
 
 
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
-import { MercadoPagoPayment, mp_payment_additional_info, mp_shipping } from 'libs/data/src/lib/interfaces/mercadoPagoCheckout';
 
 @Injectable({
   providedIn: 'root'

@@ -1,14 +1,17 @@
 import { Integracoes, Orcamento, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { TipoUsuario } from 'libs/data/src/lib/enums';
 import { MercadoPagoCheckout, MercadoPagoPayment, MercadoPagoRefund, mp_checkout_items, mp_checkout_payer, mp_payment_methods, mp_shipments } from 'libs/data/src/lib/interfaces';
-import { mp_payment_additional_info, mp_shipping } from 'libs/data/src/lib/interfaces/mercadoPagoCheckout';
+import { mp_checkout_payer_address, mp_shipping } from 'libs/data/src/lib/interfaces/mercadoPagoCheckout';
+import { mp_payment_additional_info, mp_payment_additional_info_payer, mp_payment_additional_info_payer_address, mp_payment_payer } from 'libs/data/src/lib/interfaces/mercadoPagoPayment';
 import { ActualSearchPaymentResponse } from 'libs/data/src/lib/interfaces/mercadoPagoSearchPaymentResult';
 import { IntegracoesService } from '../domain/integracoes.service';
 
+const CALLBACK_URL = "https://www.personalizadoslopes.com.br/checkout/success";
+
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
-let MP_AT;
-(async function configure(){
+let MP_AT: Integracoes;
+(async function configure() {
   let integracoesService = new IntegracoesService();
   MP_AT = await integracoesService.LerUltimo() as Integracoes;
   mercadopago.configure({
@@ -17,10 +20,10 @@ let MP_AT;
   });
 })();
 
-export class MercadoPagoService{
+export class MercadoPagoService {
 
-  async getAllPayments(user:Usuario):Promise<MercadoPagoPayment[]>{
-    if(user.Tipo != TipoUsuario.admin)
+  async getAllPayments(user: Usuario): Promise<MercadoPagoPayment[]> {
+    if (user.Tipo != TipoUsuario.admin)
       return;
 
     var filters = {
@@ -37,10 +40,10 @@ export class MercadoPagoService{
     });
   }
 
-  async searchPayment(payment_id):Promise<ActualSearchPaymentResponse>{
+  async searchPayment(payment_id): Promise<ActualSearchPaymentResponse> {
     var filters = {
       site_id: 'MLB',
-      id:payment_id
+      id: payment_id
     };
 
     return mercadopago.payment.search({
@@ -53,23 +56,23 @@ export class MercadoPagoService{
     });
   }
 
-  async cancel(payment_id:number){
+  async cancel(payment_id: number) {
     return mercadopago.payment.update({
-        id: payment_id,
-        status: "cancelled"
-    }).then(x=>{return x}).catch();
+      id: payment_id,
+      status: "cancelled"
+    }).then(x => { return x }).catch();
   }
 
-  async refund(payment_id:number):Promise<MercadoPagoRefund>{
+  async refund(payment_id: number): Promise<MercadoPagoRefund> {
     return mercadopago.payment.refund(payment_id)
-    .then(function (response) {
-      return response;
-    })
-    .catch(function (error) {
-      // manipular o erro ...
-      console.log(error);
-      return error
-    });
+      .then(function (response) {
+        return response;
+      })
+      .catch(function (error) {
+        // manipular o erro ...
+        console.log(error);
+        return error
+      });
   }
 
   async checkout(preference) {
@@ -86,48 +89,63 @@ export class MercadoPagoService{
     });
   }
 
-  //
-  // obterPagamento(orcamento: Orcamento): MercadoPagoPayment {
-  //   return {
-  //     additional_info: this.getAdditionalInfo(orcamento),
-  //     description: "Pagamendo de produto",
-  //     installments: this.getInstallments(orcamento),
-  //   }
-  // }
+  obterPagamento(orcamento: Orcamento, ipAdress: string, paymentMethod: string = "pix"): MercadoPagoPayment {
+    return {
+      additional_info: this.getAdditionalInfo(orcamento, ipAdress),
+      description: "Pagamendo de produto",
+      external_reference: '',
+      installments: this.getInstallments(orcamento),
+      metadata: {},
+      order: { type: "mercadopago" },
+      payer: this.getPaymentPayer(orcamento),
+      payment_method_id: paymentMethod,
+      transaction_amount: this.getTransactionAmount(orcamento),
+      binary_mode: true,
+      statement_descriptor: MP_AT.ResumoCartao,
+      callback_url: CALLBACK_URL,
+    }
+  }
+
+  getPaymentPayer(orcamento: Orcamento): mp_payment_payer {
+    return {
+      ...this.getAdditionalInfoPayer(orcamento)
+    }
+  }
 
   getPreference(orcamento: Orcamento): MercadoPagoCheckout {
     return {
       items: this.getItems(orcamento),
       payer: this.getPayer(orcamento),
-      // payment_methods: this.getPaymentMethod(orcamento, MP_AT),
-      // shipments: this.getShipments(orcamento),
+      payment_methods: this.getPaymentMethod(orcamento, MP_AT),
+      //shipments: this.getShipments(orcamento),
       back_urls: {
         success: "https://www.personalizadoslopes.com.br/checkout/success",
         failure: "https://www.personalizadoslopes.com.br/checkout/failure",
         pending: "https://www.personalizadoslopes.com.br/checkout/pending"
       },
-      // statement_descriptor: MP_AT.ResumoCartao,
-      // additional_info: '',
-      // auto_return: MP_AT.auto_return,
-      // binary_mode: MP_AT.binary_mode,
+      statement_descriptor: MP_AT.ResumoCartao,
+      additional_info: '',
+      auto_return: MP_AT.auto_return,
+      binary_mode: MP_AT.binary_mode,
       // client_id: parseInt(MP_AT.client_id.toString()),
       // collector_id: parseInt(MP_AT.collector_id.toString()),
       // client_secret: MP_AT.client_secret,
-      auto_return: 'approved'
     };
   }
-  getAdditionalInfo(orcamento: Orcamento): mp_payment_additional_info {
+
+  getAdditionalInfo(orcamento: Orcamento, ipAdress: string): mp_payment_additional_info {
     return {
+      ip_address: ipAdress,
       items: this.getItems(orcamento),
-      payer: this.getPayer(orcamento),
+      payer: this.getAdditionalInfoPayer(orcamento),
       shipments: { receiver_address: this.getRecieverAdress(orcamento) },
-      application_fee: 0,
-      binary_mode: true,
     }
   }
+
   getInstallments(orcamento: Orcamento): number {
     return 6;
   }
+
   getItems(orcamento: Orcamento): mp_checkout_items[] {
     let items: mp_checkout_items[] = [];
     orcamento.Produto.forEach(produto => items.push(
@@ -142,11 +160,11 @@ export class MercadoPagoService{
           parseFloat(produto.Produto.PrecoPromocional.toFixed(2)) :
           parseFloat(produto.Produto.Preco.toFixed(2)),
         pictures: [{ source: produto.Produto.Imagem[0] }],
-        //shipping: this.getShipping(produto.Produto,orcamento)
       }
     ))
     return items;
   }
+
   getPaymentMethod(orcamento: Orcamento, integracoes: Integracoes): mp_payment_methods {
     return {
       excluded_payment_methods: [
@@ -162,6 +180,7 @@ export class MercadoPagoService{
       installments: this.getInstalments(integracoes, orcamento)
     }
   }
+
   getInstalments(integracoes: Integracoes, orcamento: Orcamento): number {
     let installments = integracoes.ParcelasPadrao;
 
@@ -170,6 +189,34 @@ export class MercadoPagoService{
 
     return installments;
   }
+
+  getAdditionalInfoPayer(orcamento: Orcamento): mp_payment_additional_info_payer {
+    return {
+      entity_type: 'individual',
+      type: 'customer',
+      identification: {
+        type: "CPF",
+        number: orcamento.Usuario.CPF
+      },
+      phone: {
+        area_code: orcamento.Usuario.Telefone.substr(0, 2),
+        number: orcamento.Usuario.Telefone.substr(3)
+      },
+      email: orcamento.Usuario.Email,
+      first_name: orcamento.Usuario.Nome,
+      last_name: orcamento.Usuario.Nome.split(" ")?.splice(0, 1)?.reduce((a, b, i) => a + " " + b) ?? "",
+      address: this.getAdditionalInfoPayerAdress(orcamento),
+    }
+  }
+
+  getAdditionalInfoPayerAdress(orcamento: Orcamento): mp_payment_additional_info_payer_address {
+    return {
+      street_name: orcamento.Usuario.EnderecoEntrega.Rua,
+      street_number: parseInt(orcamento.Usuario.EnderecoEntrega.Numero),
+      zip_code: orcamento.Usuario.EnderecoEntrega.CEP,
+    }
+  }
+
   getPayer(orcamento: Orcamento): mp_checkout_payer {
     return {
       name: orcamento.Usuario.Nome,
@@ -187,30 +234,39 @@ export class MercadoPagoService{
         number: orcamento.Usuario.CPF
       },
 
-      address: {
-        street_name: orcamento.Usuario.EnderecoEntrega.Rua,
-        street_number: parseInt(orcamento.Usuario.EnderecoEntrega.Numero),
-        zip_code: orcamento.Usuario.EnderecoEntrega.CEP
-      }
+      address: this.getCheckoutPayerAdress(orcamento)
     }
   }
+
+  getCheckoutPayerAdress(orcamento: Orcamento): mp_checkout_payer_address {
+    return {
+      street_name: orcamento.Usuario.EnderecoEntrega.Rua,
+      street_number: parseInt(orcamento.Usuario.EnderecoEntrega.Numero),
+      zip_code: orcamento.Usuario.EnderecoEntrega.CEP,
+      neighborhood: orcamento.Usuario.EnderecoEntrega.Bairro,
+      federal_unit: 'Brazil',
+      city: orcamento.Usuario.EnderecoEntrega.Cidade,
+    }
+  }
+
   getShipments(orcamento: Orcamento): mp_shipments {
     return {
       mode: 'custom',
-      local_pickup: false,
-      modes: [
-        "custom",
-        "not_specified",
-        "me1",
-        "me2"
-      ],
-      dimensions: orcamento.Dimensoes,
-      // default_shipping_method:0,
-      // free_shipping:false,
-      cost:this.getShippingCost(orcamento),
+      //local_pickup: false,
+      // modes: [
+      //   "custom",
+      //   "not_specified",
+      //   "me1",
+      //   "me2"
+      // ],
+      //dimensions: orcamento.Dimensoes,
+      //default_shipping_method:0,
+      free_shipping: false,
+      cost: this.getShippingCost(orcamento),
       receiver_address: this.getRecieverAdress(orcamento)
     }
   }
+
   getRecieverAdress(orcamento: Orcamento) {
     return {
       zip_code: orcamento.Usuario.EnderecoEntrega.CEP,
@@ -223,7 +279,8 @@ export class MercadoPagoService{
       country_name: 'Brasil',
     }
   }
-  getShipping(produto: Produto, orcamento:Orcamento): mp_shipping {
+
+  getShipping(produto: Produto, orcamento: Orcamento): mp_shipping {
     return {
       mode: 'custom',
       local_pick_up: false,
@@ -235,7 +292,12 @@ export class MercadoPagoService{
       // default_shipping_method:0,
     }
   }
-  getShippingCost(orcamento:Orcamento): number{
+
+  getTransactionAmount(orcamento: Orcamento): number {
+    return orcamento.Preco;
+  }
+
+  getShippingCost(orcamento: Orcamento): number {
     return 25;
   }
 

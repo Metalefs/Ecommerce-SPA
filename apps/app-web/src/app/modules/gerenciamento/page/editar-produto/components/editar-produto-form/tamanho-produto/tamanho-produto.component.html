@@ -4,8 +4,8 @@
       <mat-chip-list #chipList2 aria-label="Size selection">
         <mat-chip
           *ngFor="let tamanho of Produto.Tamanhos"
-          [selectable]="selectable"
-          [removable]="removable"
+          [selectable]="true"
+          [removable]="true"
           (removed)="removeTamanho(tamanho)"
         >
           {{ tamanho }}
