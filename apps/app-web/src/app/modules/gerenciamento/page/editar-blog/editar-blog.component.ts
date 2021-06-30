@@ -30,7 +30,8 @@ export class EditarBlogComponent implements OnInit {
   Criar(): void {
     const dialogRef = this.dialog.open(CriarPostComponent, {
       width: '90%',
-      data: ""
+      data: "",
+      panelClass:['fullscreen-modal']
     });
 
     dialogRef.afterClosed().subscribe((post : BlogPost) => {

@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow:
+
+Sitemap: https://personalizadoslopes.com.br/sitemap.xml

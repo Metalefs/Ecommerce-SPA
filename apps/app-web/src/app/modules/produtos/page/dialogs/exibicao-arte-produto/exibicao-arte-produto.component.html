@@ -90,7 +90,7 @@
 <div mat-dialog-actions>
   <button mat-raised-button color=""
     [mat-dialog-close]="Produto"
-    class="button is-small is-rounded w-full"
+    class="button is-medium is-rounded w-full"
     #toCheckout
     [disabled]="!Produto.Canvas['objects'].length||[] > 0"
     [ngClass]="{'wp-btn is-success':!toCheckout.disabled}">

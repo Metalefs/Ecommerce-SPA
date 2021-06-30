@@ -24,6 +24,8 @@
             "assets": [
               "apps/app-web/src/favicon.ico",
               "apps/app-web/src/assets",
+              "apps/app-web/src/sitemap.xml",
+              "apps/app-web/src/robots.txt",
               "apps/app-web/src/manifest.webmanifest"
             ],
             "styles": [

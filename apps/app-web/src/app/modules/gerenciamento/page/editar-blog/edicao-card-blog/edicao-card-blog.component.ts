@@ -26,7 +26,8 @@ export class EdicaoCardBlogComponent implements OnInit {
 
     const dialogRef = this.dialog.open(EditarPostComponent, {
       width: '90%',
-      data: this.BlogPost
+      data: this.BlogPost,
+      panelClass:['fullscreen-modal']
     });
 
     dialogRef.afterClosed().subscribe((post :BlogPost) => {

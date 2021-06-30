@@ -87,10 +87,10 @@ export class AppComponent {
     this.store.dispatch(new LerCliente()).subscribe(
       () => {
         this.spinner.hide();
-        this.carregandoOque = 'Clientes carregados'
+        this.carregandoOque = 'Carregando'
       }
     );
-    this.store.dispatch(new LerSobre()).subscribe(x => this.carregandoOque = 'Serviços carregados');
+    this.store.dispatch(new LerSobre()).subscribe(x => this.carregandoOque = '');
     this.store.dispatch(new LerServico()).subscribe();
     this.store.dispatch(new LerCategoria()).subscribe();
     this.store.dispatch(new LerMensagem()).subscribe();

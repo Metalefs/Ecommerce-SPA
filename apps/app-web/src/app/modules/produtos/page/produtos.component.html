@@ -22,7 +22,7 @@
 <div class="has-background-white" style="border: 1px solid #e9ecef; border-width: 1px 0 1px 0;">
   <div [@cardFlip]="state" class="" id="Todos">
     <div class="columns is-gapless">
-      <div class="column mr-0 pr-0 is-2 is-hidden-mobile border">
+      <div class="column mr-0 px-1 is-2-desktop is-12-tablet is-hidden-mobile border">
         <div class="flex-c w-full portfolio pos-sticky top-0 ">
           <div class="is-hidden-mobile w-full">
             <div class="w-full my-5 box">
@@ -34,11 +34,9 @@
                 [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active ' : ''">
                 <a mat-strocked-button class="dis-flex flex-sb flex-m"
                   [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? ' ' : 'has-text-grey'">
-                  <button button class="border-0">
-                    <mat-icon [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
-                      {{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}
-                    </mat-icon>
-                  </button>
+                  <mat-icon [ngClass]="CategoriaAtiva?.Nome == defaultCategory ?'has-text-success' :''">
+                    {{CategoriaAtiva?.Nome == defaultCategory ? 'done' : ''}}
+                  </mat-icon>
                   <p>{{defaultCategory}}</p>
                 </a>
               </mat-list-item>
@@ -47,19 +45,18 @@
                 *ngFor="let categoria of (Categorias$ | async);let i = index"
                 [style.backgroundColor]="categoria?.Cor"
                 class="pointer w-full-m cat-item has-background-white-bis"
-                [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ? 'active  ' : 'has-text-grey'">
+               >
                 <mat-checkbox
                   labelPosition="after"
                   matNativeControl
                   (change)="SetCategoria(categoria);atualizarFiltroAtivo()"
                   [checked]="IsCategoriaAtiva(categoria)">
-                    <a class="dis-flex flex-sb flex-m">
-                      <button class="border-0">
-                        <!-- <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
-                          {{CategoriaAtiva?.Nome == categoria?.Nome ? 'done' : ''}}
-                        </mat-icon> -->
-                        {{categoria?.Nome}}
-                      </button>
+                    <a class="dis-flex flex-sb flex-m "
+                    [ngClass]="IsCategoriaAtiva(categoria) ? 'active  ' : 'has-text-grey'">
+                      <!-- <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
+                        {{CategoriaAtiva?.Nome == categoria?.Nome ? 'done' : ''}}
+                      </mat-icon> -->
+                      <p>{{categoria?.Nome}}</p>
                     </a>
                 </mat-checkbox>
 
@@ -108,7 +105,7 @@
             <p-dataView
             *ngIf="(Filtro$ | async).FiltroProdutos?.length > 0"
             [value]="Produtos" [lazy]="false" [paginator]="true" [rows]="12" totalRecords="{{total}}"
-            pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'grid' : 'grid'"
+            pageLinkSize="3" paginatorPosition="both" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'grid' : 'grid'"
             [emptyMessage]="'Nenhum item encontrado'">
             <ng-template pTemplate="header">
               <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
@@ -173,7 +170,7 @@
                       </p-skeleton>
                     </div>
                   </div>
-                  <div class="column is-4 is-12-mobile" *ngIf="filtroAtivo(produto) && !loading">
+                  <div class="column is-3 is-12-mobile" *ngIf="filtroAtivo(produto) && !loading">
                     <personalizados-lopes-card-produto @slideInOut [Produto]="produto" [MostarOpcoes]="true">
                     </personalizados-lopes-card-produto>
                   </div>

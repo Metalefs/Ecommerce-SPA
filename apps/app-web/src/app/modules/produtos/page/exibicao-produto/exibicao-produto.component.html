@@ -91,7 +91,7 @@
                         (onDuplicarOrcamento)="DuplicarOrcamento()"
                       ></personalizados-lopes-bloco-pagamento-produto>
                     </div>
-                    <mat-list *ngIf="!IsValid" class="px-2 pb-0 mx-2 box border">
+                    <mat-list *ngIf="!IsValid" class="w-full px-2 pb-0 mx-0 border">
                       <mat-list-item *ngFor="let erro of Erros">
                         <p class="subtitle is-size-6 has-text-danger">
                           *{{ erro.erro }}

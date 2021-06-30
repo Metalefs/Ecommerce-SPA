@@ -247,7 +247,8 @@ export class EditarProdutoComponent implements OnInit {
     const dialogRef = this.dialog.open(CriarProdutoDialogComponent, {
       width: "100%",
       height: "100%",
-      data: ""
+      data: "",
+      panelClass:['fullscreen-modal']
     });
     dialogRef.afterClosed().subscribe((Produto : entities.Produto) => {
       if(Produto != undefined){
@@ -279,7 +280,9 @@ export class EditarProdutoComponent implements OnInit {
   CriarPostagem(): void {
     const dialogRef = this.dialog.open(CriarPostComponent, {
       width: '90%',
-      data: ""
+      data: "",
+
+      panelClass:['fullscreen-modal']
     });
     dialogRef.afterClosed().subscribe((post: BlogPost) => {
       if (post != undefined) {
@@ -301,7 +304,9 @@ export class EditarProdutoComponent implements OnInit {
   CriarDepoimento(): void {
     const dialogRef = this.dialog.open(CriarClienteDialogComponent, {
       width: '90%',
-      data: ""
+      data: "",
+
+      panelClass:['fullscreen-modal']
     });
     dialogRef.afterClosed().subscribe((Cliente: entities.Cliente) => {
       if (Cliente != undefined) {
@@ -320,7 +325,9 @@ export class EditarProdutoComponent implements OnInit {
     const dialogRef = this.dialog.open(EditarProdutoDialogComponent, {
       width: "100%",
       height: "100%",
-      data: Produto
+      data: Produto,
+
+      panelClass:['fullscreen-modal']
     });
 
     dialogRef.afterClosed().subscribe((Produto :entities.Produto) => {

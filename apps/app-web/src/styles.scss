@@ -617,7 +617,7 @@ canvas{
 }
 .preco{
   font-size: 1.2em;
-  color:rgb(105, 109, 140);
+  color:rgb(48, 49, 54);
   font-weight: 500;
 }
 .preco strong{
@@ -790,9 +790,21 @@ canvas{
   flex: 1 1 auto;
 }
 
-
-
-
+.fullscreen-modal{
+  width:100% !important;
+  max-width:99.9% !important;
+  height:100% !important;
+  max-height:99.9% !important;
+  position:absolute;
+  overflow-y: hidden;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0
+}
+.mat-dialog-container{
+  overflow-y: auto !important;
+}
 /* ----------------------------------------------------
 ----------- Portfolio Filter Styling Starts -----------
 -----------------------------------------------------*/

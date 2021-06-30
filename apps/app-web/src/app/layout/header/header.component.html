@@ -197,6 +197,7 @@
               *ngIf="user"
               href="#topo"
               routerLinkActive="Active"
+              title="Meus dados"
               pageScroll
               [routerLink]="['/minha-conta/pessoal']"
             >
@@ -209,6 +210,7 @@
               mat-menu-item
               *ngIf="user && user?.Tipo == TipoUsuario.admin"
               href="#topo"
+              title="Gerenciamento"
               routerLinkActive="Active"
               pageScroll
               [routerLink]="['/gerenciamento/app']"
