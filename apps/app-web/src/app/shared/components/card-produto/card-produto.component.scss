@@ -171,8 +171,11 @@ img{
 .mat-card-subtitle{
   margin-bottom: 0;
 }
+.preco{
+  color:#3273dc !important
+}
 .preco-produto{
-  // color: #f05558;
+  color: #3273dc;
   // font-size: 12px;
   &.linethr{
     font-size: small;
@@ -261,7 +264,7 @@ img{
   }
   position:absolute;
   top: 0;
-  left: 5px;
+  // left: 5px;
   height: calc(100% - 10px);
   height: 60%;
   // opacity: 0;

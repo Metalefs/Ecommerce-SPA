@@ -802,8 +802,11 @@ canvas{
   top:0;
   bottom:0
 }
-.mat-dialog-container{
-  overflow-y: auto !important;
+// .mat-dialog-container{
+//   overflow-y: auto !important;
+// }
+.mat-dialog-content{
+  max-height: 78vh;
 }
 /* ----------------------------------------------------
 ----------- Portfolio Filter Styling Starts -----------
@@ -872,11 +875,10 @@ canvas{
 	margin-bottom:30px;
 }
 .section-block.summary {
-    background-color: #fe0000;
+  border: 1px solid #ee0d0d42;
 }
 .section-block.summary h1 {
-    color: #fff;
-	display:block;
+  display:block;
 	text-align:center;
 }
 .section-block.transparent {

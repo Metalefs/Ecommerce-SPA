@@ -97,7 +97,7 @@
 .nav-link{
   font-size: $navlinksize;
   padding: 0.5em;
-  // padding: 20px 26px;
+  //padding: 20px 26px;
   // padding-bottom: 30px;
   // min-height: 15px;
   line-height: 30px;
@@ -148,6 +148,15 @@
     color: $naviconcolor
   }
 }
+.active-nav{
+    // color: white;
+    font-weight: 600;
+    animation: selected 2s ease-out forwards;
+    i{
+      color:$naviconcolor
+    }
+    color:$naviconcolor
+  }
 .inicio{
   border-left: none;
 }

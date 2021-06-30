@@ -295,6 +295,9 @@ export class ProdutosComponent implements OnInit {
     this.changeOptions(0);
     this.atualizarFiltroAtivo();
   }
+  JoinCategoriasAtivas(){
+    return this.CategoriasAtivas?.map(x=>x.Nome).join(',');
+  }
   SetCategoria(categoria: Categoria) {
     if (categoria == null) {
       this.CategoriaAtiva = new Categoria(this.defaultCategory, this.defaultCategory)

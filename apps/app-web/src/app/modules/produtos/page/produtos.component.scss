@@ -92,12 +92,13 @@
 .mat-list-item{
   &.active{
 
-    text-decoration: underline;
   }
 }
 .texto-categorias{
-  letter-spacing: .5px;
-  font-family: 'Open sans';
+  // letter-spacing: .5px;
+  color: rgb(87, 87, 87);
+  // font-weight: medium;
+  // font-size: 14px;
 }
 .texto-categoria-ativa{
   font-weight: 600;
