@@ -18,14 +18,27 @@
         "
         routerLinkActive="router-link-active"
         matRipple
-        style="    border-radius: 30px;"
+        style="border-radius: 30px;"
         class="portfolio-item zoom of-y-scroll card border-light"
         [style.flexDirection]="flex_direction"
       >
         <div #imgProduto matRipple class="dis-flex flex-w mx-2 my-2 w-full">
-          <span class="prod-status " *ngIf="Produto?.Status == statusProduto.promocao">
+          <span
+            class="prod-status"
+            *ngIf="Produto?.Status == statusProduto.promocao"
+          >
             <span class="product-category"></span>
-            <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
+            <span
+              [class]="
+                'subtitle is-size-7 is-capitalized product-badge status-' +
+                Produto.Status.toString().toLowerCase()
+              "
+              >{{
+                Produto?.Status == statusProduto.promocao
+                  ? 'Promoção'
+                  : translateStatusProduto(Produto.Status)
+              }}</span
+            >
           </span>
 
           <slideshow
@@ -63,7 +76,20 @@
             >
               {{ Produto?.Nome }}
             </a>
-
+            <mat-card-header
+              class="w-full txt-left of-y-scroll"
+              [routerLink]="[
+                '/produtos/' +
+                  Produto._id +
+                  '?produto=' +
+                  encodeURI(Produto?.Nome)
+              ]"
+              routerLinkActive="router-link-active"
+            >
+              <mat-card-subtitle class="mat-card-subtitle is-6">{{
+                Produto?.Subtitulo
+              }}</mat-card-subtitle>
+            </mat-card-header>
             <div class="my-3" *ngIf="Produto?.Rating.length > 0">
               <star-rating
                 [size]="'small'"
@@ -77,14 +103,13 @@
               ></star-rating>
             </div>
           </mat-card-title>
-
           <mat-card-actions class="w-full flex-c mx-0 px-0">
             <div class="w-full px-4">
               <div class="columns is-mobile is-vcentered">
                 <div class="column is-12">
                   <a
                     href="#topo"
-                    class="w-full button is-dark is-small is-rounded shadow-light btn-vejamais"
+                    class="w-full button is-dark is-small is-rounded shadow-light is-dark"
                     style="height: 100%;"
                     title="Informações"
                     [routerLink]="[
@@ -129,22 +154,9 @@
             </a>
           </mat-card-actions>
 
-          <mat-card-header
-            class="w-full txt-left of-y-scroll"
-            [routerLink]="[
-              '/produtos/' +
-                Produto._id +
-                '?produto=' +
-                encodeURI(Produto?.Nome)
-            ]"
-            routerLinkActive="router-link-active"
-          >
-            <mat-card-subtitle class="mat-card-subtitle is-6">{{
-              Produto?.Subtitulo
-            }}</mat-card-subtitle>
-          </mat-card-header>
-          <personalizados-lopes-exibicao-preco-produto [Produto]="Produto"></personalizados-lopes-exibicao-preco-produto>
-
+          <personalizados-lopes-exibicao-preco-produto
+            [Produto]="Produto"
+          ></personalizados-lopes-exibicao-preco-produto>
         </mat-card-footer>
 
         <div class="z-index-1">
@@ -167,7 +179,7 @@
                 </p>
               </div>
             </div>
-            <a
+            <!-- <a
               title="Comprar"
               matRipple
               pageScroll
@@ -185,7 +197,7 @@
               mat-flat-button
               class="mat-accent"
               ><i class="pi pi-wallet"></i
-            ></a>
+            ></a> -->
           </div>
         </div>
       </mat-card>
@@ -240,12 +252,11 @@
         </slideshow>
       </div>
 
-
       <mat-card-footer class="px-2 z-index-2">
         <mat-card-header class="w-full txt-center pt-1">
           <mat-card-title class="w-full titulo-produto mb-0">
             <a
-            matRipple
+              matRipple
               class="reset-a"
               [routerLink]="[
                 '/produtos/' +
@@ -257,8 +268,15 @@
               {{ Produto?.Nome }}
             </a>
             <div class="my-3">
-              <star-rating [rating]="meanRating()" [hoverEnabled]="true" [readOnly]="true" [showHalfStars]="true"
-                [step]="0.5" staticColor="ok" [starType]="'svg'"></star-rating>
+              <star-rating
+                [rating]="meanRating()"
+                [hoverEnabled]="true"
+                [readOnly]="true"
+                [showHalfStars]="true"
+                [step]="0.5"
+                staticColor="ok"
+                [starType]="'svg'"
+              ></star-rating>
             </div>
           </mat-card-title>
         </mat-card-header>
@@ -278,7 +296,7 @@
                       (Produto.Status == statusProduto.promocao
                         ? Produto.PrecoPromocional
                         : Produto.Preco / Produto.Parcelas
-                        ).toFixed(2)
+                      ).toFixed(2)
                     }}</b
                   ></span
                 >
@@ -288,38 +306,38 @@
                 <span class="parcelas">
                   Á vista por
                   <b
-                  >R${{
-                    (Produto.Status == statusProduto.promocao
-                    ? Produto.PrecoPromocional
-                    : Produto.Preco / Produto.Parcelas
-                    ).toFixed(2)
-                  }}</b
+                    >R${{
+                      (Produto.Status == statusProduto.promocao
+                        ? Produto.PrecoPromocional
+                        : Produto.Preco / Produto.Parcelas
+                      ).toFixed(2)
+                    }}</b
                   >
                   sem juros</span
-                  >
-                </p>
-              </div>
-              <a
-                matRipple
-                class="dis-flex flex-w w-full"
-                [href]="'/produtos/' + Produto._id"
-              >
-                <span class="prod-status">
-                  <i class="pi pi-tag product-category-icon"></i>
-                  <span class="product-category"></span>
-                  <span
-                    [class]="
-                      'subtitle is-size-7 is-capitalized product-badge status-' +
-                      Produto.Status.toString().toLowerCase()
-                    "
-                  >
-                    Em {{ Produto.Cores?.length }} cores</span
-                  >
-                </span>
-              </a>
+                >
+              </p>
             </div>
-          </mat-card-actions>
-          <button
+            <a
+              matRipple
+              class="dis-flex flex-w w-full"
+              [href]="'/produtos/' + Produto._id"
+            >
+              <span class="prod-status">
+                <i class="pi pi-tag product-category-icon"></i>
+                <span class="product-category"></span>
+                <span
+                  [class]="
+                    'subtitle is-size-7 is-capitalized product-badge status-' +
+                    Produto.Status.toString().toLowerCase()
+                  "
+                >
+                  Em {{ Produto.Cores?.length }} cores</span
+                >
+              </span>
+            </a>
+          </div>
+        </mat-card-actions>
+        <button
           href="javascript:void(0)"
           class="pos-absolute button is-small top-0 left-0"
           (click)="AdicionarAoOrcamento()"
@@ -362,7 +380,9 @@
               routerLinkActive="router-link-active"
               mat-flat-button
               class=""
-              ><mat-icon class="material-icons-outlined">shopping_bag</mat-icon></a
+              ><mat-icon class="material-icons-outlined"
+                >shopping_bag</mat-icon
+              ></a
             >
           </div>
         </div>

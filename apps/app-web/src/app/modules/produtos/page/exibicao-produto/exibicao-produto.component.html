@@ -3,7 +3,7 @@
     [Produto]="Produto"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
-  <section class="hero is-small pt-3 is-white btr">
+  <section class="hero is-small pt-0 is-white btr">
     <div class="hero-body pt-3 pb-2">
       <div class="bbr">
         <div *ngIf="!Produto">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <div class="columns is-multiline is-4 pt-3 px-1" *ngIf="Produto">
+        <div class="columns is-multiline is-4 pt-0 px-1" *ngIf="Produto">
           <div class="column is-6-desktop is-12-tablet">
             <personalizados-lopes-exibicao-imagem-produto
               [Produto]="Produto"
@@ -118,7 +118,7 @@
                 </div>
               </div>
             </div>
-            <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
+            <!-- <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento> -->
             <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
             <figure
               class="image is-64x64 img-orcamento"

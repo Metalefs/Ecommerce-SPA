@@ -1,5 +1,5 @@
 <mat-toolbar
-  class="dis-flex bg-light border has-text-dark flex-r z-index-top is-hidden-mobile"
+  class="dis-flex bg-light border has-text-dark flex-r z-index-top is-hidden"
   style="overflow-y: visible; z-index: 20;"
 >
   <div class="flex-sb">
@@ -25,7 +25,7 @@
   </div>
 </mat-toolbar>
 <div class="z-index-top top-0" style="overflow-y: visible;">
-  <nav class="navbar px-3 z-index-top py-2" style="z-index: 20;">
+  <nav class="navbar flex-sb px-3 z-index-top py-2" style="z-index: 20;">
     <div class="dis-flex flex-sb flex-c-m">
       <div class="w-full navbar-start">
         <div class="w-full dis-flex flex-sb flex-m nav-item">
@@ -77,36 +77,7 @@
         </form>
       </div>
     </div>
-    <div class="dis-flex flex-r navbar-end">
-      <div class="is-hidden-touch ml-6 navbar-item">
-        <div class="columns is-gapless is-mobile is-vcentered">
-          <div class="column mr-0 pr-0">
-            <button
-              mat-ripple
-              (click)="openCheckout()"
-              title="Cesta de compras"
-              aria-label="Botão abrir Orçamento"
-              color="a"
-              class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
-            >
-              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-              <p class="cart-counter">
-                {{ (Orcamento$ | async)?.Produto.length || 0 }}
-              </p>
-            </button>
-          </div>
-          <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
-            <p
-              class="preco fw-700"
-              (click)="openCheckout()"
-              *ngIf="(Orcamento$ | async)?.Preco"
-            >
-              R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="columns is-hidden-mobile link-section flex-c-m">
       <div *ngFor="let link of links" class="column">
         <ng-container
@@ -181,6 +152,36 @@
             </div>
           </div>
         </ng-template>
+      </div>
+      <div class="dis-flex flex-r navbar-end">
+        <div class="is-hidden-touch ml-6 navbar-item">
+          <div class="columns is-gapless is-mobile is-vcentered">
+            <div class="column mr-0 pr-0">
+              <button
+                mat-ripple
+                (click)="openCheckout()"
+                title="Cesta de compras"
+                aria-label="Botão abrir Orçamento"
+                color="a"
+                class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
+              >
+                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+                <p class="cart-counter">
+                  {{ (Orcamento$ | async)?.Produto.length || 0 }}
+                </p>
+              </button>
+            </div>
+            <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
+              <p
+                class="preco fw-700"
+                (click)="openCheckout()"
+                *ngIf="(Orcamento$ | async)?.Preco"
+              >
+                R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="column">
         <div class="dropdown mx-3">

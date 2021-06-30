@@ -23,10 +23,12 @@
   <div [@cardFlip]="state" class="" id="Todos">
     <div class="columns is-gapless">
       <div class="column mr-0 pr-0 is-2 is-hidden-mobile border">
-        <div class="flex-c w-full portfolio pos-sticky top-0 p-l-10 p-r-10">
+        <div class="flex-c w-full portfolio pos-sticky top-0 ">
           <div class="is-hidden-mobile w-full">
-            <span class="subtitle is-size-7 w-full "> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
-                  resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
+            <div class="w-full my-5 box">
+              <span class="subtitle is-size-7"> <b>{{(Filtro$|async)?.FiltroProdutos.length}}</b>
+                resultado{{(Filtro$|async)?.FiltroProdutos.length == 1 ? '':'s'}}</span>
+            </div>
             <mat-list class="pt-0 w-full">
               <mat-list-item @fadeIn class="pointer w-full-m cat-item has-background-white-bis " (click)="SetCategoria(null)"
                 [ngClass]="CategoriaAtiva?.Nome == defaultCategory ? 'active ' : ''">
@@ -86,17 +88,17 @@
                   </mat-checkbox>
                 </mat-list-item>
               </mat-list>
+              <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select matNativeControl [(ngModel)]="activeOrderStatus" (selectionChange)="atualizarFiltroAtivo()">
+                  <mat-option *ngFor="let opt of orderStatus" [value]="opt.id" class="w-full">
+                    <div class="box w-full">
+                      <p>{{opt.name}}</p>
+                    </div>
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
-            <mat-form-field class="" appearance="fill">
-              <mat-label>Status</mat-label>
-              <mat-select matNativeControl [(ngModel)]="activeOrderStatus" (selectionChange)="atualizarFiltroAtivo()">
-                <mat-option *ngFor="let opt of orderStatus" [value]="opt.id" class="w-full">
-                  <div class="box w-full">
-                    <p>{{opt.name}}</p>
-                  </div>
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
           </div>
         </div>
       </div>
@@ -104,13 +106,14 @@
         <div class="w-full">
           <div class="is-multiline dis-flex">
             <p-dataView
-              *ngIf="(Filtro$ | async).FiltroProdutos?.length > 0"
-              [value]="Produtos" [lazy]="false" [paginator]="true" [rows]="12" totalRecords="{{total}}"
-              pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'grid' : 'grid'"
-              [emptyMessage]="'Nenhum item encontrado'">
-              <ng-template pTemplate="header">
-                <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
-                      <div class="column is-hidden-tablet is-12-mobile">
+            *ngIf="(Filtro$ | async).FiltroProdutos?.length > 0"
+            [value]="Produtos" [lazy]="false" [paginator]="true" [rows]="12" totalRecords="{{total}}"
+            pageLinkSize="3" paginatorPosition="bottom" [loading]="loading" class="w-full " [layout]="mobileQuery.matches ? 'grid' : 'grid'"
+            [emptyMessage]="'Nenhum item encontrado'">
+            <ng-template pTemplate="header">
+              <div class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0">
+
+                <div class="column is-hidden-tablet is-12-mobile">
                         <span class="p-input-icon-left w-full ">
                           <i class="pi pi-search"></i>
                           <input type="text" class="border py-2" type="text" placeholder="Filtrar em {{CategoriaAtiva?.Nome}}"
@@ -130,7 +133,7 @@
                           </mat-select>
                         </mat-form-field>
                       </div>
-                  <div class="column is-12-desktop is-4-mobile">
+                  <div class="column pb-1 is-12-desktop is-4-mobile">
                     <div class="dis-flex w-full flex-r">
                       <!-- <p-dataViewLayoutOptions class="column is-hidden-touch"></p-dataViewLayoutOptions> -->
                       <mat-form-field appearance="" class="is-hidden-touch">
