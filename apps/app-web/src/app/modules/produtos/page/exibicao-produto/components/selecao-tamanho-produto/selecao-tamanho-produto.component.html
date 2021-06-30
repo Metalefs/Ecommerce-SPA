@@ -9,9 +9,9 @@
   <div
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
-    class="shadow-light bo-cir button is-small"
-    [ngClass]="Produto.Tamanho == opt ? 'is-success' : ''"
-    (click)="Produto.Tamanho = Produto.Tamanho == null ? opt : null"
+    class="shadow-light is-rounded button is-outlined is-small"
+    [ngClass]="{'is-focused':Produto.Tamanho == opt}"
+    (click)="SetTamanho(opt)"
   >
     <div >
       <p>{{ opt }}</p>

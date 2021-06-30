@@ -23,7 +23,7 @@
         [style.flexDirection]="flex_direction"
       >
         <div #imgProduto matRipple class="dis-flex flex-w mx-2 my-2 w-full">
-          <span class="prod-status ">
+          <span class="prod-status " *ngIf="Produto?.Status == statusProduto.promocao">
             <span class="product-category"></span>
             <span [class]="'subtitle is-size-7 is-capitalized product-badge status-' + Produto.Status.toString().toLowerCase()">{{Produto?.Status == statusProduto.promocao ? 'Promoção' : translateStatusProduto(Produto.Status) }}</span>
           </span>
@@ -173,7 +173,7 @@
               pageScroll
               href="#topo"
               class="reset-a button shadow-light hoverable is-success m-lr-auto px-4"
-              [style.top]="flex_direction == 'row' ? '45%' : '37%'"
+              [style.top]="flex_direction == 'row' ? '45%' : '28%'"
               [style.width]="flex_direction == 'row' ? '45%' : '45%'"
               [routerLink]="[
                 '/produtos/' +

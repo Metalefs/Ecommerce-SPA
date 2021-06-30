@@ -286,13 +286,14 @@ export class ProdutosComponent implements OnInit {
   }
 
   redefinirBusca() {
-    this.SetCategoria(new Categoria(this.defaultCategory, this.defaultCategory));
+    this.SetCategoria(null);
     this.activeSearchFilter = '',
-      this.activeOrderFilter = 0;
+    this.activeOrderFilter = 0;
     this.activeOrderStatus = this.orderStatus[0];
     this.Parcelamento = false;
     this.MultiplasCores = false;
-    this.changeOptions(0)
+    this.changeOptions(0);
+    this.atualizarFiltroAtivo();
   }
   SetCategoria(categoria: Categoria) {
     if (categoria == null) {

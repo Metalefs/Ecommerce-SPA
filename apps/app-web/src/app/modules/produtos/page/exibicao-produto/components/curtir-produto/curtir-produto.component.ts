@@ -17,6 +17,7 @@ export class CurtirProdutoComponent implements OnInit {
     private store: Store) { }
 
   ngOnInit(): void {
+    this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
   }
   Like(){
     if(!localStorage.getItem(`heartproduto${this.Produto._id}`)){

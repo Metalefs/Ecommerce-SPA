@@ -5,7 +5,6 @@ import { EmailNotificacaoService } from './email-notificacao.service';
 import { Repository } from '../../repositories/repository';
 import { PaginationResponse } from 'libs/data/src/lib/interfaces';
 import { BaseService } from '../baseService';
-import { MongoDocument } from 'libs/data/src/lib/classes/abstract/MongoDocument';
 var ObjectId = require('mongodb').ObjectID;
 export class ProdutoService extends BaseService {
 
@@ -24,10 +23,11 @@ export class ProdutoService extends BaseService {
       });
     }
   }
+
   async Gostar(id: string) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      x.Likes += 1;
-      return Repository.Edit(entities.Produto.NomeID, x._id, { Likes: x.Likes }).then(y => {
+      if (!x.Likes || isNaN(x.Likes)) Object.assign(x, { Likes: 1 });
+      return Repository.Edit(entities.Produto.NomeID, id, { Likes: x.Likes?++x.Likes:1 }).then(y => {
         return y;
       });
     });
@@ -35,9 +35,8 @@ export class ProdutoService extends BaseService {
 
   async IncrementarVenda(id: string) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      if (!x.Vendas) Object.assign(x, { Vendas: 1 });
-      else x.Vendas += 1;
-      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: x.Vendas }).then(y => {
+      if (!x.Vendas || isNaN(x.Vendas)) Object.assign(x, { Vendas: 1 });
+      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: x.Vendas?++x.Vendas:1 }).then(y => {
         return y;
       });
     });
@@ -45,13 +44,8 @@ export class ProdutoService extends BaseService {
 
   async IncrementarVisualizacoes(id: string) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      console.log(x.Visualizacoes??"N/Z")
-      if (!x.Visualizacoes)
-      Object.assign(x, { Visualizacoes: 1 });
-      else
-      x.Visualizacoes +=1;
-      console.log(x.Visualizacoes)
-      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: x.Visualizacoes+1 }).then(y => {
+      if (!x.Visualizacoes || isNaN(x.Visualizacoes)) Object.assign(x, { Visualizacoes: 1 });
+      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: x.Visualizacoes?++x.Visualizacoes:1 }).then(y => {
         return y;
       });
     });
@@ -60,8 +54,7 @@ export class ProdutoService extends BaseService {
   async Rate(id: string, rating: number) {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
       if (!x.Rating) Object.assign(x, { Rating: [rating] });
-      else x.Rating.push(rating);
-      return Repository.Edit(entities.Produto.NomeID, id, { Rating: x.Rating }).then(y => {
+      return Repository.Edit(entities.Produto.NomeID, id, { Rating: x.Rating.push(rating) }).then(y => {
         return y;
       });
     });

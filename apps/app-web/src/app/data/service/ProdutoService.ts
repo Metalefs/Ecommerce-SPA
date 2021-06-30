@@ -40,7 +40,6 @@ export class ProdutoService {
     }
 
     FiltrarProdutos(fields:FiltrarProdutoSearchQuery, page:number = 1, limit:number = 12): Observable<PaginationResponse<Produto>> {
-
       let query = '?nome='+fields.Nome;
       query += '&categoria='+fields.NomeCategoria;
       query += '&preco='+fields.Preco;

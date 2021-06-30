@@ -5,6 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { ResetarOrcamento, EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
+import { CheckoutService } from 'apps/app-web/src/app/modules/checkout/checkout.service';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
@@ -27,6 +28,7 @@ export class CheckoutDisplayComponent implements OnInit {
   constructor(private store:Store,
     private snack: MatSnackBar,
     public dialogRef: MatDialogRef<CheckoutDisplayComponent>,
+    private checkoutService: CheckoutService
     ) { }
 
   ngOnInit(): void {
@@ -34,7 +36,6 @@ export class CheckoutDisplayComponent implements OnInit {
       this.ProdutoTable = new MaterialTable();
       let Produtos =  x.Produto;
       this.ProdutoTable.dataSource = Produtos;
-      console.log(Produtos);
       this.ProdutoTable.displayedColumns = [
         "Produtos",
         "Quantidade",
@@ -71,11 +72,16 @@ export class CheckoutDisplayComponent implements OnInit {
 
   EditarOrcamento(element:CodProduto){
     this.store.dispatch(new EditarProdutoOrcamentoLocal(element.Produto,element.Produto._id,element.codOrcamento));
+    this.Orcamento$.subscribe(x=>{
+      this.checkoutService.Validate(x);
+    });
   }
 
   VerificarQuantidade($event,element){
-    if($event.target.value < element.QuantidadeMinima)
-      element.Quantidade = element.QuantidadeMinima;
+    if($event.target.value <= element.Produto.QuantidadeMinima)
+      element.Quantidade = element.Produto.QuantidadeMinima == 0 ? 1 : element.Produto.QuantidadeMinima;
+
+    this.EditarOrcamento(element);
   }
 
   removerProduto(Produto:CodProduto){
@@ -96,7 +102,7 @@ export class CheckoutDisplayComponent implements OnInit {
     })
     if(produto.Produto.Preco){
       let preco =  produto.Produto.Status == StatusProduto.promocao? produto.Produto.PrecoPromocional : produto.Produto.Preco;
-      return parseInt(preco.toString()) * parseInt(produto.Produto.Quantidade.toString());
+      return parseInt(preco.toString()) * parseInt(produto?.Produto?.Quantidade?.toString() ?? "0");
     }
     return 0;
   }

@@ -103,7 +103,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.updatePageTitle(produto);
     this.updateViews(produto);
     this.CarregarPostsBlog();
-    this.AddImages(this.Produto);
+    this.AddImages(produto);
     this.produtoForm = this.fb.group({
       tamanho:[produto?.Tamanho],
       quantidade:[produto?.Quantidade,Validators.required],
@@ -127,7 +127,11 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   }
 
   setColor(color:any){
-    this.Produto.Cor = this.Produto.Cor == null ? color : null;
+    if(this.Produto.Cor)
+      this.Produto.Cor = null;
+    else{
+      this.Produto.Cor = color;
+    }
     this.produtoForm.get("cor").setValue(this.Produto.Cor);
     this.produtoForm.get('cor').clearValidators();
     this.produtoForm.get('cor').updateValueAndValidity();
@@ -164,7 +168,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         }
       }
       this.textoAdicionar = this.textoAtualizar;
-      this.isOrcamento = true;
+      this.produtoNoCheckout();
     });
   }
 

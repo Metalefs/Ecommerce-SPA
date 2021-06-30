@@ -6,132 +6,147 @@
     <article class="message is-warning py-0 my-0" @slideInOut *ngIf="Alerta">
       <!-- <a href="javascript:void(0)" class="pos-absolute clickable is-right mr-4" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a> -->
       <div class="message-body py-4">
-        <p class="subtitle is-size-7">{{Alerta}}</p>
+        <p class="subtitle is-size-7">{{ Alerta }}</p>
       </div>
     </article>
-    <div class="hoverable navbar-item px-2 has-text-centered mb-0 is-hidden-mobile">
-      <div>
-        <a
-          class="subtitle is-size-7 fw-300"
-          href="tel:{{ (InfoContato$ | async)?.Telefone }}"
-          ><i class="pi pi-mobile"></i>
-          <span>{{ (InfoContato$ | async)?.Telefone }}</span></a
-        >
-      </div>
-    </div>
-    <div class="hoverable navbar-item level-item px-2 has-text-centered">
-      <div>
-        <a class="reset-a is-size-7 fw-300" [routerLink]="['checkout']"
-          ><span class="is-hidden-mobile fw-300">Finalizar pedido </span></a
-        >
-      </div>
-    </div>
+    <a
+      href="tel:{{ (InfoContato$ | async)?.Telefone }}"
+      class="subtitle is-size-7 hoverable navbar-item px-2 has-text-centered mb-0 is-hidden-mobile"
+    >
+      <i class="pi pi-mobile"></i>
+      <span>{{ (InfoContato$ | async)?.Telefone }}</span>
+    </a>
+    <a
+      [routerLink]="['checkout']"
+      class="subtitle is-size-7 hoverable navbar-item level-item px-2 has-text-centered"
+    >
+      <span class="is-hidden-mobile fw-300">Finalizar pedido </span>
+    </a>
   </div>
 </mat-toolbar>
 <div class="z-index-top top-0" style="overflow-y: visible;">
-  <nav
-      class="navbar z-index-top py-2"
-      style="z-index: 20;"
-    >
-      <div class="dis-flex flex-sb flex-c-m">
-        <div class="w-full navbar-start">
-          <div class="w-full dis-flex flex-sb flex-m nav-item">
-            <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
-              <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
-            </a>
-            <div class="is-hidden-desktop navbar-item">
-              <button
-                mat-ripple
-                color=""
-                (click)="openCheckout()"
-                title="Cesta de compras"
-                aria-label="Botão abrir Orçamento"
-                class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3"
-              >
-                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-                <p class="cart-counter">
-                  {{ (Orcamento$ | async)?.Produto.length || 0 }}
-                </p>
-              </button>
-            </div>
+  <nav class="navbar px-3 z-index-top py-2" style="z-index: 20;">
+    <div class="dis-flex flex-sb flex-c-m">
+      <div class="w-full navbar-start">
+        <div class="w-full dis-flex flex-sb flex-m nav-item">
+          <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
+            <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
+          </a>
+          <div class="is-hidden-desktop navbar-item">
+            <button
+              mat-ripple
+              color=""
+              (click)="openCheckout()"
+              title="Cesta de compras"
+              aria-label="Botão abrir Orçamento"
+              class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3"
+            >
+              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+              <p class="cart-counter">
+                {{ (Orcamento$ | async)?.Produto.length || 0 }}
+              </p>
+            </button>
           </div>
-          <form
-            type="get"
-            class="bbr w-full nav-item btr has-background-white-bis shadow-light is-hidden-touch"
-            action="/produtos/?nome={{
-              search_filter
-            }}?categoria=Todos os produtos"
-          >
-            <div class="py-2">
-              <div class="mr-3 dis-flex">
-                <button
-                  mat-icon-button
-                  type="submit"
-                  (click)="executar_pesquisa()"
-                  class="has-background-white mx-1"
-                >
-                  <mat-icon>search</mat-icon>
-                </button>
+        </div>
+        <form
+          type="get"
+          class="bbr w-full nav-item btr has-background-white-bis shadow-light is-hidden-touch"
+          action="/produtos/?nome={{
+            search_filter
+          }}?categoria=Todos os produtos"
+        >
+          <div class="py-2">
+            <div class="mr-3 dis-flex">
+              <button
+                mat-icon-button
+                type="submit"
+                (click)="executar_pesquisa()"
+                class="has-background-white mx-1"
+              >
+                <mat-icon>search</mat-icon>
+              </button>
 
-                <div @fadeIn class="" *ngIf="search">
-                  <personalizados-lopes-autocomplete-dropdown
-                    (VerTodosResultados)="executar_pesquisa()"
-                    (SearchValueChanged)="handleSearchValue($event)"
-                  ></personalizados-lopes-autocomplete-dropdown>
-                </div>
+              <div @fadeIn class="" *ngIf="search">
+                <personalizados-lopes-autocomplete-dropdown
+                  (VerTodosResultados)="executar_pesquisa()"
+                  (SearchValueChanged)="handleSearchValue($event)"
+                ></personalizados-lopes-autocomplete-dropdown>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
-      <div class="dis-flex flex-r navbar-end">
-
-        <div class="is-hidden-touch ml-6 navbar-item">
-          <div class="columns is-gapless is-mobile is-vcentered">
-            <div class="column mr-0  pr-0 ">
-              <button
-                mat-ripple
-                (click)="openCheckout()"
-                title="Cesta de compras"
-                aria-label="Botão abrir Orçamento"
-                color="a"
-                class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
-              >
-                <mat-icon class="material-icons-outlined"
-                  >shopping_bag</mat-icon
-                >
-                <p class="cart-counter">
-                  {{ (Orcamento$ | async)?.Produto.length || 0 }}
-                </p>
-              </button>
-            </div>
-            <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
-              <p
-                class="preco has-text-bold"
-                (click)="openCheckout()"
-                *ngIf="(Orcamento$ | async)?.Preco"
-              >
-                R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
+    </div>
+    <div class="dis-flex flex-r navbar-end">
+      <div class="is-hidden-touch ml-6 navbar-item">
+        <div class="columns is-gapless is-mobile is-vcentered">
+          <div class="column mr-0 pr-0">
+            <button
+              mat-ripple
+              (click)="openCheckout()"
+              title="Cesta de compras"
+              aria-label="Botão abrir Orçamento"
+              color="a"
+              class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
+            >
+              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+              <p class="cart-counter">
+                {{ (Orcamento$ | async)?.Produto.length || 0 }}
               </p>
-            </div>
+            </button>
+          </div>
+          <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
+            <p
+              class="preco fw-700"
+              (click)="openCheckout()"
+              *ngIf="(Orcamento$ | async)?.Preco"
+            >
+              R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
+            </p>
           </div>
         </div>
       </div>
-      <div class="columns is-hidden-touch link-section flex-c-m">
-        <div *ngFor="let link of links" class="column">
-          <ng-container
-            *ngIf="link.options; then dropdown; else normal"
-          ></ng-container>
-          <ng-template #normal>
+    </div>
+    <div class="columns is-hidden-mobile link-section flex-c-m">
+      <div *ngFor="let link of links" class="column">
+        <ng-container
+          *ngIf="link.options; then dropdown; else normal"
+        ></ng-container>
+        <ng-template #normal>
+          <a
+            (click)="SetActiveNav(link)"
+            class="nav-link navbar-item  {{
+              link.name == 'inicio' ? 'inicio' : ''
+            }}"
+            pageScroll
+            [routerLink]="link.href"
+            routerLinkActive="active-nav"
+            href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
+          >
+            <mat-icon
+              *ngIf="link.Micon && (NavState$ | async)?.activeNav == link.name"
+              >{{ link.Micon }}</mat-icon
+            >
+            <i
+              *ngIf="link.Picon && (NavState$ | async)?.activeNav == link.name"
+              [class]="link.Picon"
+            ></i>
+            <span class="m-l-5">{{
+              link.name == 'Todos' ? 'Produtos' : link.name
+            }}</span>
+          </a>
+        </ng-template>
+
+        <ng-template #dropdown>
+          <div class="dropdown">
             <a
               (click)="SetActiveNav(link)"
-              class="nav-link navbar-item  {{
+              [routerLink]="link.href"
+              pageScroll
+              routerLinkActive="active-nav"
+              class="nav-link navbar-item flex-m dis-flex{{
                 link.name == 'inicio' ? 'inicio' : ''
               }}"
-              pageScroll
-              [routerLink]="link.href"
-              routerLinkActive="active-nav"
-              href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
             >
               <mat-icon
                 *ngIf="
@@ -145,106 +160,76 @@
                 "
                 [class]="link.Picon"
               ></i>
-              <span class="m-l-5">{{ link.name == 'Todos' ? 'Produtos' : link.name }}</span>
+              <span class="m-l-5">{{
+                link.name == 'Todos' ? 'Produtos' : link.name
+              }}</span>
             </a>
-          </ng-template>
-
-          <ng-template #dropdown>
-            <div class="dropdown">
-              <a
-                (click)="SetActiveNav(link)"
-                [routerLink]="link.href"
-                pageScroll
-                routerLinkActive="active-nav"
-                class="nav-link navbar-item flex-m dis-flex{{
-                  link.name == 'inicio' ? 'inicio' : ''
-                }}"
-              >
-                <mat-icon
-                  *ngIf="
-                    link.Micon && (NavState$ | async)?.activeNav == link.name
-                  "
-                  >{{ link.Micon }}</mat-icon
-                >
-                <i
-                  *ngIf="
-                    link.Picon && (NavState$ | async)?.activeNav == link.name
-                  "
-                  [class]="link.Picon"
-                ></i>
-                <span class="m-l-5">{{ link.name == 'Todos' ? 'Produtos' : link.name }}</span>
-              </a>
-              <div class="dropdown-content has-background-white box">
-                <a
-                  class="nav-link is-capitalized {{
-                    link.name == 'inicio' ? 'inicio' : ''
-                  }} of-x-scroll"
-                  pageScroll
-                  routerLinkActive="Active"
-                  href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
-                  mat-menu-item
-                  [routerLink]="opt.link"
-                  [queryParams]="opt.queryParams"
-                  *ngFor="let opt of link.options"
-                  >{{ opt.nome }}</a
-                >
-              </div>
-            </div>
-          </ng-template>
-        </div>
-        <div class="column">
-          <div class="dropdown">
-            <p class="nav-link" style="border: none !important;">
-              <button class="w-full has-text-centered py-4" title="Perfil">
-                <mat-icon>person_outline</mat-icon>
-                {{ user?.Nome || 'Meu perfil' }}
-              </button>
-            </p>
             <div class="dropdown-content has-background-white box">
-              <button
-                mat-menu-item
-                *ngIf="user"
-                href="#topo"
-                routerLinkActive="Active"
+              <a
+                class="nav-link is-capitalized {{
+                  link.name == 'inicio' ? 'inicio' : ''
+                }} of-x-scroll"
                 pageScroll
-                [routerLink]="['/minha-conta/pessoal']"
-              >
-                Meus dados
-              </button>
-              <button
-                class=""
-                mat-menu-item
-                *ngIf="!user"
-                (click)="openLogin()"
-              >
-                Entrar
-              </button>
-              <button
-                mat-menu-item
-                *ngIf="user && user?.Tipo == TipoUsuario.admin"
-                href="#topo"
                 routerLinkActive="Active"
-                pageScroll
-                [routerLink]="['/gerenciamento/app']"
+                href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
+                mat-menu-item
+                [routerLink]="opt.link"
+                [queryParams]="opt.queryParams"
+                *ngFor="let opt of link.options"
+                >{{ opt.nome }}</a
               >
-                Gerenciamento
-              </button>
-              <button mat-menu-item *ngIf="user" (click)="Logout()">
-                Sair
-              </button>
             </div>
+          </div>
+        </ng-template>
+      </div>
+      <div class="column">
+        <div class="dropdown mx-3">
+          <p class="nav-link" style="border: none !important;">
+            <button class="w-full has-text-centered py-4" title="Perfil">
+              <mat-icon>person_outline</mat-icon>
+              {{ user?.Nome || 'Meu perfil' }}
+            </button>
+          </p>
+          <div class="dropdown-content has-background-white box">
+            <button
+              mat-menu-item
+              *ngIf="user"
+              href="#topo"
+              routerLinkActive="Active"
+              pageScroll
+              [routerLink]="['/minha-conta/pessoal']"
+            >
+              Meus dados
+            </button>
+            <button class="" mat-menu-item *ngIf="!user" (click)="openLogin()">
+              Entrar
+            </button>
+            <button
+              mat-menu-item
+              *ngIf="user && user?.Tipo == TipoUsuario.admin"
+              href="#topo"
+              routerLinkActive="Active"
+              pageScroll
+              [routerLink]="['/gerenciamento/app']"
+            >
+              Gerenciamento
+            </button>
+            <button mat-menu-item *ngIf="user" (click)="Logout()">
+              Sair
+            </button>
           </div>
         </div>
       </div>
-    </nav>
-    <mat-toolbar-row
-      [ngClass]="
-        (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'
-          ? 'produtos-nav-under'
-          : 'produtos-nav-under'
-      "
-    >
-    </mat-toolbar-row>
+    </div>
+  </nav>
+  <mat-toolbar-row
+    [ngClass]="
+      (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'
+        ? 'produtos-nav-under'
+        : 'produtos-nav-under'
+    "
+  >
+  </mat-toolbar-row>
 </div>
 <!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"

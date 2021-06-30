@@ -1,13 +1,13 @@
 <div>
   <button
-    class="w-full dis-flex flex-w flex-m"
+    class="w-full is-rounded dis-flex flex-w flex-m"
     title="Gostei"
     matBadge="{{ Produto?.Likes }}"
     matBadgeColor="accent"
     (click)="Like()"
     mat-icon-button
-    [ngClass]="Liked ? 'liked' : ''"
-    [ngClass]="loading ? 'button is-loading' : ''"
+    [ngClass]="Liked ? 'liked disabled' : ''"
+    [ngClass]="loading ? ' is-loading' : ''"
   >
     <p>
       <mat-icon
@@ -18,8 +18,8 @@
       >
     </p>
   </button>
-  <mat-chip-list *ngIf="Liked" aria-label="Thanks">
-    <mat-chip color="primary" selected
+  <mat-chip-list *ngIf="Liked" aria-label="Obrigado">
+    <mat-chip color="primary" class="px-2 py-2" selected
       >Você curtiu este produto</mat-chip
     >
   </mat-chip-list>

@@ -26,7 +26,7 @@ export class ExibicaoImagemProdutoComponent implements OnInit {
           if (res.matches) {
             this.mobile=true;
             return {
-              thumbPosition: ThumbnailsPosition.Left,
+              thumbPosition: ThumbnailsPosition.Bottom,
               thumbWidth: 80,
               thumbHeight: 80,
             };

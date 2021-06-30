@@ -14,5 +14,11 @@ export class SelecaoTamanhoProdutoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  SetTamanho(tamanho){
+    if(this.Produto.Tamanho)
+      this.Produto.Tamanho = null;
+    else{
+      this.Produto.Tamanho = tamanho;
+    }
+  }
 }

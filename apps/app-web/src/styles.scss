@@ -650,19 +650,19 @@ canvas{
   z-index: 0;
   content: "";
   width: 100%;
-  height: 110%;
+  height: 103%;
   position: relative;
-  bottom: -8px;
+  bottom: -2px;
   border-radius: 30px;
 }
 .card-bg::before{
   z-index: 0;
   content: "";
   width: 100%;
-  height: 107%;
+  height: 102%;
   border-radius: 30px;
   position: relative;
-  bottom: -8px;
+  bottom: -2px;
   transform: rotate(2deg);
   transition: all .25s ease-out;
   background: wheat;

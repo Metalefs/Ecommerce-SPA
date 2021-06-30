@@ -1,7 +1,7 @@
-<h1 mat-dialog-title class="tem-cor-primaria" style="border-bottom: 4px solid #f0f0f0;">Escolha de design</h1>
-<button mat-button color="basic" class="close" [mat-dialog-close]="" cdkFocusInitial>
+<h1 mat-dialog-title class="tem-cor-primaria is-uppercase" style="border-bottom: 4px solid #f0f0f0;">Escolha de design</h1>
+<a mat-button color="basic" class="close bo-0" [mat-dialog-close]="" cdkFocusInitial>
   <mat-icon>close</mat-icon>
-</button>
+</a>
 <div mat-dialog-content class="margin w-half">
   <div class="columns is-multiline is-vcentered">
 
@@ -73,13 +73,13 @@
   </div>
 
   <div class="">
-    <h4 class="has-text-danger py-3"><em>Atenção às regras de personalização!</em></h4>
+    <h4 class="has-text-danger py-3"><mark>*Atenção às regras de personalização!</mark></h4>
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card color="primary" class="box shadow-light hoverable" style="min-height: 200px;">
+        <mat-card color="primary" class="box border-light hoverable" style="min-height: 200px;">
           <mat-card-content>
-            <span class="">{{rule}}</span>
+            <p class="fw-500">{{rule}}</p>
           </mat-card-content>
         </mat-card>
       </div>
@@ -90,16 +90,15 @@
 <div mat-dialog-actions>
   <button mat-raised-button color=""
     [mat-dialog-close]="Produto"
-    class="button w-full"
+    class="button is-small is-rounded w-full"
     #toCheckout
     [disabled]="!Produto.Canvas['objects'].length||[] > 0"
     [ngClass]="{'wp-btn is-success':!toCheckout.disabled}">
-    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Continar para o checkout"}}
+    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Continar para o Checkout"}}
   </button>
   <button mat-raised-button color=""
     [mat-dialog-close]="null"
-    class="button w-full"
-    #toCheckout
+    class="button is-small is-rounded w-full"
   >Voltar
 </button>
 
