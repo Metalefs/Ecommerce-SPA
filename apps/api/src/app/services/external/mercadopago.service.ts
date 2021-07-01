@@ -28,6 +28,7 @@ export class MercadoPagoService {
 
     var filters = {
       site_id: 'MLB',
+
     };
 
     return mercadopago.payment.search({
@@ -92,7 +93,7 @@ export class MercadoPagoService {
   obterPagamento(orcamento: Orcamento, ipAdress: string, paymentMethod: string = "pix"): MercadoPagoPayment {
     return {
       additional_info: this.getAdditionalInfo(orcamento, ipAdress),
-      description: "Pagamendo de produto",
+      description: "Pagamento de produto",
       external_reference: '',
       installments: this.getInstallments(orcamento),
       metadata: {},
