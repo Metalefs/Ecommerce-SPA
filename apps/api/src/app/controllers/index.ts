@@ -11,7 +11,7 @@ import { MensagemRouter } from './mensagem.controller';
 import { ImagemRouter } from './imagem.controller';
 import { ItemCarouselRouter } from './itemcarousel.controller';
 import { CarouselRouter } from './carousel.controller';
-import { MercadoPagoController } from './mercadopagocheckout.controller';
+import { MercadoPagoController } from './mercadopago.controller';
 import { IntegracoesRouter } from './integracoes.controller';
 
 export let Routers = [

@@ -46,7 +46,10 @@ export let RouteDictionary = {
     },
 
     Gerenciamento:"/gerenciamento/",
-    Integracoes: "/integracoes/",
+    Integracoes: {
+      Raiz: "/integracoes/",
+      ChavePublicaMercadoPago: "/mercadoPagoPublicKey/"
+    },
 
     Checkout: '/checkout/',
     Refund: '/refund/',

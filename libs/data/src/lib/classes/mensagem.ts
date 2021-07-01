@@ -1,7 +1,7 @@
 import { entidadeBase } from '../interfaces/entity';
 import { MongoDocument } from './abstract/MongoDocument';
 
-export class Mensagem extends MongoDocument implements entidadeBase{
+export class MensagemEmail extends MongoDocument implements entidadeBase{
   Whatsapp:string;
   EmailRecebimentoOrcamento:string;
   EmailRecebimentoContato:string;

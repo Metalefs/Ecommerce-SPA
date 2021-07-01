@@ -10,37 +10,44 @@ const ItemCarouselRouter = express();
 let ItemCarouselService: Services.ItemCarouselService = new Services.ItemCarouselService();
 
 ItemCarouselRouter.get(RouteDictionary.ItemCarousel, async (req: any, res) => {
-  try {
-    res.send(await ItemCarouselService.Ler());
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  ItemCarouselService.LerPrimeiro()
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
 })
+
 .post(RouteDictionary.ItemCarousel, async (req: any, res) => {
-  try {
-    res.send(await ItemCarouselService.Inserir(await UsuarioLogado(req,res), req.body.item.ItemCarousel));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ItemCarouselService.Inserir(usuario, req.body.item.ItemCarousel)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
+
 .put(RouteDictionary.ItemCarousel, async (req: any, res) => {
-  try {
-    res.send(await ItemCarouselService.Alterar(await UsuarioLogado(req,res), req.body.item.ItemCarousel));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ItemCarouselService.Alterar(usuario, req.body.item.ItemCarousel)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.ItemCarousel, async (req: any, res) => {
-  try {
-    res.send(await ItemCarouselService.Deletar(await UsuarioLogado(req,res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.ItemCarousel + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ItemCarouselService.Deletar(usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
+
 export {
   ItemCarouselRouter
 }

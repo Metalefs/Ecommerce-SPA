@@ -6,7 +6,7 @@ import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, Ad
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
-import { ResultadoPagamentoMP } from 'libs/data/src/lib/classes/orcamento';
+import { MercadoPagoResultadoPagamentoCheckout } from 'libs/data/src/lib/interfaces/mercadoPagoResultadoPagamentoCheckout';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
@@ -19,7 +19,7 @@ export class OrcamentoStateModel{
 
 }
 let enderecoEntrega = new EnderecoEntrega("","","","","","","");
-let resultadoPagamentoMP: ResultadoPagamentoMP = {
+let resultadoPagamentoMP: MercadoPagoResultadoPagamentoCheckout = {
   collection_id:0,
   collection_status:"", //approved&pending
   payment_id:0,

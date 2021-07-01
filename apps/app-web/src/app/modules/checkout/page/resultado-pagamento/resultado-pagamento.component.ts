@@ -13,7 +13,6 @@ import { IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions
 import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
 import { CheckoutService } from '../../checkout.service';
-import { IntegracoesService } from 'apps/app-web/src/app/shared/services';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -34,7 +33,6 @@ export class ResultadoPagamentoComponent implements OnInit {
   constructor(private activeRoute:ActivatedRoute,
     private snack: MatSnackBar,
     private checkoutService: CheckoutService,
-    private servicoIntegracoes: IntegracoesService,
     private scrollService:PageScrollService,
     private store:Store) { }
 

@@ -11,6 +11,7 @@ import {
   mp_card_holder,
 } from './mercadoPagoPayment';
 import {MercadoPagoSearchPaymentResult} from './mercadoPagoSearchPaymentResult';
+import {MercadoPagoResultadoPagamentoCheckout} from './mercadoPagoResultadoPagamentoCheckout';
 export {
   TrocaSenha,
   FiltrarProdutoSearchQuery,
@@ -18,6 +19,7 @@ export {
   MercadoPagoRefund,
   MercadoPagoCheckout,
   MercadoPagoSearchPaymentResult,
+  MercadoPagoResultadoPagamentoCheckout,
   mp_checkout_items, mp_payment_methods, mp_checkout_payer, mp_shipments,
   MercadoPagoPayment,
   mp_order,

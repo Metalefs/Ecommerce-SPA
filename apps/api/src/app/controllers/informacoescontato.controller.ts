@@ -48,6 +48,7 @@ InformacoesContatoRouter.get(RouteDictionary.InformacoesContato, async (req: any
         .catch(err => ErrorHandler.DefaultException(err, res))
   })
 });
+
 export {
   InformacoesContatoRouter
 }

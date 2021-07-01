@@ -1,5 +1,4 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
 import * as express from 'express';
@@ -19,6 +18,7 @@ MercadoPagoController
     ErrorHandler.DefaultException(err, res)
   }
 })
+
 .post(RouteDictionary.Checkout, async (req: any, res) => {
     try {
       let preference = mercadoPagoService.getPreference(req.body.orcamento);
@@ -28,6 +28,7 @@ MercadoPagoController
       ErrorHandler.DefaultException(err, res)
     }
 })
+
 .get('/feedback', function(request, response) {
   response.json({
    Payment: request.query.payment_id,
@@ -35,6 +36,7 @@ MercadoPagoController
    MerchantOrder: request.query.merchant_order_id
  })
 })
+
 .post(RouteDictionary.Refund, (req: any, res) => {
   try {
     mercadoPagoService.searchPayment(req.body.idPagamento).then(payment=>{
@@ -53,7 +55,6 @@ MercadoPagoController
           break;
         }
       }
-
     });
   }
   catch (err) {

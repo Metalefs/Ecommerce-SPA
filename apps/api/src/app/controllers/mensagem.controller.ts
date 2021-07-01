@@ -10,37 +10,44 @@ const MensagemRouter = express();
 let MensagemService: Services.MensagemService = new Services.MensagemService();
 
 MensagemRouter.get(RouteDictionary.Mensagem, async (req: any, res) => {
-  try {
-    res.send(await MensagemService.Ler());
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  MensagemService.Ler()
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
 })
+
 .post(RouteDictionary.Mensagem, async (req: any, res) => {
-  try {
-    res.send(await MensagemService.Inserir(await UsuarioLogado(req,res), req.body.item.Mensagem));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    MensagemService.Inserir(usuario, req.body.item.Mensagem)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
+
 .put(RouteDictionary.Mensagem, async (req: any, res) => {
-  try {
-    res.send(await MensagemService.Alterar(await UsuarioLogado(req,res), req.body.item.Mensagem));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    MensagemService.Alterar(usuario, req.body.item.Mensagem)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.Mensagem, async (req: any, res) => {
-  try {
-    res.send(await MensagemService.Deletar(await UsuarioLogado(req,res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.Mensagem + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    MensagemService.Deletar(usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
+
 export {
   MensagemRouter
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { entities } from '@personalizados-lopes/data';
-import { IntegracoesService } from 'apps/app-web/src/app/shared/services';
+import { IntegracoesService } from 'apps/app-web/src/app/data/service';
 import { Integracoes } from 'libs/data/src/lib/classes';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { EditarIntegracaoDialogComponent } from './dialogs/editar-integracao-dialog/editar-integracao-dialog.component';

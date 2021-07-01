@@ -12,7 +12,7 @@ import { Cliente } from 'libs/data/src/lib/classes';
 
 import { fade } from '../.././../../../../animations';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
-import { ImagemService } from 'apps/app-web/src/app/shared/services';
+import { ImagemService } from 'apps/app-web/src/app/data/service';
 
 @Component({
   selector: 'personalizados-lopes-edicao-card-cliente',
