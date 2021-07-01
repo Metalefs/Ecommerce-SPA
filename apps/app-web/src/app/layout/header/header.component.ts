@@ -20,7 +20,7 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
 
 import { isPlatformBrowser } from '@angular/common';
 import { NavState, Link, NavLinksRes } from '../../shared/models/interfaces';
-import { CategoriaService } from '../../shared/services';
+import { CategoriaService } from '../../data/service';
 
 @Component({
   selector: 'personalizados-lopes-header',

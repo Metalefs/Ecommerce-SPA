@@ -36,8 +36,7 @@ export class MensagemService {
     }
 
     Remover(id: string): Observable<any>{
-      let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Mensagem>(environment.endpoint + RouteDictionary.Mensagem + `?id=${id}`).pipe(
+      return this.http.delete<entities.Mensagem>(environment.endpoint + RouteDictionary.Mensagem + `/${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

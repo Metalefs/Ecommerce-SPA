@@ -11,7 +11,7 @@
         >
           <p class="is-size-5">Categoria</p>
           <span class="subtitle is-size-7"
-            ><em>({{ CategoriaAtiva?.Nome }})</em></span
+            ><em>({{ JoinCategoriasAtivas() }})</em></span
           >
         </div>
       </div>
@@ -35,64 +35,60 @@
   <div [@cardFlip]="state" class="" id="Todos">
     <div class="columns is-gapless">
       <div class="column is-2-desktop is-12-tablet is-hidden-mobile">
-        <div class="flex-c px-3 w-full portfolio pos-sticky top-0">
+        <div class="flex-c w-full portfolio pos-sticky top-0">
           <div class="is-hidden-mobile w-full">
             <div>
               <div class="pb-3">
                 <div class="box bo-0 bos-0">
-                  <div class="dis-flex flex-c-m">
+                  <div class="pl-2 dis-flex flex-c-m">
                     <span class=""
-                      ><a
-                        href="/"
-                        class="reset-a"
-                        ><span class=""
-                          >personalizadoslopes.com.br</span
-                        ></a
-                      ><span class=""
-                        > &gt; </span
-                      ><a
-                        href="/produtos/?categoria={{CategoriaAtiva?.Nome}}"
+                      ><a href="/" class="reset-a"
+                        ><span class="">personalizadoslopes.com.br</span></a
+                      ><i class="pi pi-angle-right"></i>
+                      <a
+                        href="/produtos/?categoria={{ CategoriaAtiva?.Nome }}"
                         class=""
-                        ><span class="has-color-primary"
-                          >{{JoinCategoriasAtivas()}}</span
-                        ></a
-                      ><span class=""
-                        >&gt;</span
-                      ></span
-                    >
+                        ><span class="has-color-primary">{{
+                          JoinCategoriasAtivas()
+                        }}</span></a
+                      >
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-            <mat-list class="pt-0 w-full  has-background-white-bis border-light">
-              <mat-list-item
-                @fadeIn
-                class="pointer w-full-m py-2 cat-item"
-                (click)="SetCategoria(null)"
-                [ngClass]="
-                  CategoriaAtiva?.Nome == defaultCategory ? 'active ' : ''
-                "
-              >
-                <a
-                  mat-strocked-button
-                  class="dis-flex flex-sb flex-m"
-                  [ngClass]="
-                    CategoriaAtiva?.Nome == defaultCategory
-                      ? ' '
-                      : 'has-text-grey'
-                  "
+            <mat-list
+              class="pt-0 w-full px-3 has-background-white-bis border-light"
+            >
+              <mat-list-item>
+                <mat-checkbox
+                  labelPosition="after"
+                  matNativeControl
+                  (change)="SetCategoria(null); atualizarFiltroAtivo()"
+                  [checked]="IsCategoriaAtiva(null)"
                 >
-                  <mat-icon
+                  <a
+                    class="dis-flex flex-sb flex-m"
                     [ngClass]="
-                      CategoriaAtiva?.Nome == defaultCategory
-                        ? 'has-text-success'
-                        : ''
+                      IsCategoriaAtiva(null) ? 'active  ' : 'has-text-grey'
                     "
                   >
-                    {{ CategoriaAtiva?.Nome == defaultCategory ? 'done' : '' }}
-                  </mat-icon>
-                  <p class="texto-categorias">{{ defaultCategory }}</p>
-                </a>
+                    <mat-icon
+                      [ngClass]="
+                        CategoriaAtiva?.Nome == defaultCategory
+                          ? 'has-text-success'
+                          : ''
+                      "
+                    >
+                      {{
+                        CategoriaAtiva?.Nome == defaultCategory
+                          ? 'done'
+                          : 'check_box_outline_blank'
+                      }}
+                    </mat-icon>
+                    <p class="texto-categorias">{{ defaultCategory }}</p>
+                  </a>
+                </mat-checkbox>
               </mat-list-item>
 
               <mat-list-item
@@ -112,13 +108,22 @@
                       IsCategoriaAtiva(categoria) ? 'active  ' : 'has-text-grey'
                     "
                   >
-                    <!-- <mat-icon [ngClass]="CategoriaAtiva?.Nome == categoria?.Nome ?'has-text-success' :''">
-                        {{CategoriaAtiva?.Nome == categoria?.Nome ? 'done' : ''}}
-                      </mat-icon> -->
+                    <mat-icon
+                      [ngClass]="
+                        CategoriaAtiva?.Nome == defaultCategory
+                          ? 'has-text-success'
+                          : ''
+                      "
+                    >
+                      {{
+                        IsCategoriaAtiva(categoria) || CategoriaAtiva?.Nome == defaultCategory
+                          ? 'done'
+                          : 'check_box_outline_blank'
+                      }}
+                    </mat-icon>
                     <p class="texto-categorias">{{ categoria?.Nome }}</p>
                   </a>
                 </mat-checkbox>
-
               </mat-list-item>
             </mat-list>
 
@@ -147,12 +152,11 @@
                     [(ngModel)]="MultiplasCores"
                     (change)="atualizarFiltroAtivo()"
                     [checked]="false"
-                  >
-                    <label for="mpc" class="">Multiplas Cores</label>
+                    >Multiplas Cores
                   </mat-checkbox>
                 </mat-list-item>
               </mat-list>
-              <mat-form-field class="w-full" appearance="fill">
+              <mat-form-field class="w-full" appearance="">
                 <mat-label>Status</mat-label>
                 <mat-select
                   matNativeControl
@@ -161,7 +165,7 @@
                 >
                   <mat-option
                     *ngFor="let opt of orderStatus"
-                    [value]="opt.id"
+                    [value]="opt"
                     class="w-full"
                   >
                     <div class="box w-full">
@@ -197,7 +201,6 @@
                 <div
                   class="w-full columns flex-r dis-flex px-0 mx-0 flex-w is-vcentered is-mobile mb-0"
                 >
-
                   <div class="column is-hidden-tablet is-6-mobile">
                     <span class="p-input-icon-left w-full">
                       <i class="pi pi-search"></i>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
-import { UsuarioService } from 'apps/app-web/src/app/shared/services';
+import { UsuarioService } from 'apps/app-web/src/app/data/service';
 import { TrocaSenha } from 'libs/data/src/lib/interfaces';
 
 @Component({

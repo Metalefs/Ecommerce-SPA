@@ -1,45 +1,52 @@
+import * as express from 'express';
+
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
-import * as express from 'express';
-import { exception } from 'console';
 import { UsuarioLogado } from '../_handlers/Authentication';
+
 const InformacoesContatoRouter = express();
 
 let InformacoesContatoService: Services.InformacoesContatoService = new Services.InformacoesContatoService();
 
 InformacoesContatoRouter.get(RouteDictionary.InformacoesContato, async (req: any, res) => {
-  try {
-    res.send(await InformacoesContatoService.LerPrimeiro());
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  InformacoesContatoService.LerPrimeiro()
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
 })
+
 .post(RouteDictionary.InformacoesContato, async (req: any, res) => {
-  try {
-    res.send(await InformacoesContatoService.Inserir(await UsuarioLogado(req, res), req.body.item.InformacoesContato));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    InformacoesContatoService.Inserir(usuario, req.body.item.InformacoesContato)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
+
 .put(RouteDictionary.InformacoesContato, async (req: any, res) => {
-  try {
-    res.send(await InformacoesContatoService.Alterar(await UsuarioLogado(req, res), req.body.item.InformacoesContato));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    InformacoesContatoService.Alterar(usuario, req.body.item.InformacoesContato)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.InformacoesContato, async (req: any, res) => {
-  try {
-    res.send(await InformacoesContatoService.Deletar(await UsuarioLogado(req, res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.InformacoesContato + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    InformacoesContatoService.Deletar(usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
 export {
   InformacoesContatoRouter

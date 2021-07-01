@@ -94,11 +94,15 @@
 
   }
 }
+:host ::ng-deep .mat-checkbox-inner-container{
+  width: 1px;
+  visibility: hidden;
+}
 .texto-categorias{
-  // letter-spacing: .5px;
   color: rgb(87, 87, 87);
-  // font-weight: medium;
-  // font-size: 14px;
+  letter-spacing: -1px;
+  font-size: 14px;
+  font-weight: 200;
 }
 .texto-categoria-ativa{
   font-weight: 600;

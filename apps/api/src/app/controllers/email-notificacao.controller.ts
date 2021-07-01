@@ -10,37 +10,39 @@ const EmailNotificacaoRouter = express();
 let EmailNotificacaoService: Services.EmailNotificacaoService = new Services.EmailNotificacaoService();
 
 EmailNotificacaoRouter.get(RouteDictionary.EmailNotificacao, async(req: any, res) => {
-  try {
-    res.send(await EmailNotificacaoService.Ler());
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  EmailNotificacaoService.Ler()
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
 })
+
 .post(RouteDictionary.EmailNotificacao, async(req: any, res) => {
-  try {
-    res.send(await EmailNotificacaoService.Inserir(req.body.item));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  EmailNotificacaoService.Inserir(req.body.item.EmailNotificacao)
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res))
 })
+
 .put(RouteDictionary.EmailNotificacao, async (req: any, res) => {
-  try {
-    res.send(await EmailNotificacaoService.Alterar(await UsuarioLogado(req,res), req.body.item.EmailNotificacao));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    EmailNotificacaoService.Alterar(usuario,req.body.item.EmailNotificacao)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.EmailNotificacao, async (req: any, res) => {
-  try {
-    res.send(await EmailNotificacaoService.Deletar(await UsuarioLogado(req,res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.EmailNotificacao + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    EmailNotificacaoService.Deletar(usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
+
 export {
   EmailNotificacaoRouter
 }

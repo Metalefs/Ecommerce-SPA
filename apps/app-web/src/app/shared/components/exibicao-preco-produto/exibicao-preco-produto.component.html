@@ -9,7 +9,7 @@
 </ng-container>
 <ng-template #preco_promo>
   <div class="">
-    <p class="preco linethr">R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
+    <p class="preco linethr"><span class="is-size-7 preto6">de</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
     <p class="preco promocao ">
       <span class="is-size-7 preto6">Por</span> R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
     </p>

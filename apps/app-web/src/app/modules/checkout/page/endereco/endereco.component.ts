@@ -15,7 +15,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 
-import { CEPService, EstadoService, IntegracoesService } from '../../../../shared/services';
+import { CEPService, EstadoService } from '../../../../shared/services';
 import { CheckoutService } from '../../checkout.service';
 
 @Component({
@@ -50,7 +50,6 @@ export class EnderecoComponent implements OnInit {
     private EstadoService: EstadoService,
     private snack: MatSnackBar,
     public checkoutService: CheckoutService,
-    private servicoIntegracoes: IntegracoesService,
     private auth: AuthenticationService,
     private router: Router,
     private scrollService: PageScrollService,

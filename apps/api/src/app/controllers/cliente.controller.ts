@@ -10,37 +10,44 @@ const ClienteRouter = express();
 let ClienteService: Services.ClienteService = new Services.ClienteService();
 
 ClienteRouter.get(RouteDictionary.Cliente, async (req: any, res) => {
-  try {
-    res.send(await ClienteService.Ler());
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  ClienteService.Ler()
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
 })
+
 .post(RouteDictionary.Cliente, async (req: any, res) => {
-  try {
-    res.send(await ClienteService.Inserir(await UsuarioLogado(req,res), req.body.item.Cliente));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ClienteService.Inserir(usuario, req.body.item.Cliente)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
+
 .put(RouteDictionary.Cliente, async (req: any, res) => {
-  try {
-    res.send(await ClienteService.Alterar(await UsuarioLogado(req,res), req.body.item.Cliente));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ClienteService.Alterar(usuario, req.body.item.Cliente)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.Cliente, async (req: any, res) => {
-  try {
-    res.send(await ClienteService.Deletar(await UsuarioLogado(req,res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.Cliente + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ClienteService.Deletar(usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
+
 export {
   ClienteRouter
 }

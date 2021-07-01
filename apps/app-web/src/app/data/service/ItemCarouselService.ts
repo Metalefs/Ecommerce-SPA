@@ -46,13 +46,14 @@ export class ItemCarouselService {
         catchError(this.ErrorHandler.handleError)
       )
     }
+
     Remover(id: string): Observable<any>{
-      let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `?id=${id}`).pipe(
+      return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `/${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
     }
+
     Incluir(item: entities.ItemCarousel):  Observable<ItemCarousel> {
         let payload = this.AuthenticationService.tokenize({ItemCarousel:item});
         return this.http.post<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel, payload).pipe(
@@ -60,9 +61,9 @@ export class ItemCarouselService {
           catchError(this.ErrorHandler.handleError)
         );
     }
+
     async EditarImagens(item:ItemCarousel) : Promise<ItemCarousel>{
       if(item.url){
-
         alert("Imagens diferentes")
         return this.RemoverImagens(item).then(async()=>{
           return await this.UploadItemImages(item);

@@ -3,8 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngxs/store';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { UsuarioService } from 'apps/app-web/src/app/data/service';
 import { Estado } from 'apps/app-web/src/app/shared/models/interfaces';
-import { CEPService, EstadoService, UsuarioService } from 'apps/app-web/src/app/shared/services';
+import { CEPService, EstadoService } from 'apps/app-web/src/app/shared/services';
 import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
 
 @Component({

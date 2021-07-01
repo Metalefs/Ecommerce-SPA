@@ -22,7 +22,7 @@ export class UsuarioService {
     AtualizarInformacoes(item: entities.Usuario): Observable<entities.Usuario> {
       let payload = this.authenticationService.tokenize({Usuario:item});
       console.log(payload);
-      return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.AtualizarConta,
+      return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario.AtualizarConta,
       payload).pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.ErrorHandler.handleError) // then handle the error
@@ -31,20 +31,20 @@ export class UsuarioService {
     TrocarSenha(trocaSenha:TrocaSenha): Observable<entities.Usuario> {
       let payload = this.authenticationService.tokenize({TrocaSenha:trocaSenha});
       console.log(payload);
-      return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.TrocarSenha,
+      return this.http.put<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario.TrocarSenha,
       payload).pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.ErrorHandler.handleError) // then handle the error
       );
     }
     RecoverPassword(email: string): any {
-      return this.http.post<string>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.RecuperarSenha, {email:email}).pipe(
+      return this.http.post<string>(environment.endpoint + RouteDictionary.Usuario.RecuperarSenha, {email:email}).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
     }
     DeleteAccount(id: string): any {
-        return this.http.delete<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario + RouteDictionary.DeletarConta).pipe(
+        return this.http.delete<entities.Usuario>(environment.endpoint + RouteDictionary.Usuario.DeletarConta + `/${id}`).pipe(
             retry(3),
             catchError(this.ErrorHandler.handleError)
         );

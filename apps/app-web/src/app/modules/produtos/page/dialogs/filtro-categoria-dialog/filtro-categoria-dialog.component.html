@@ -16,7 +16,8 @@
         labelPosition="after"
         matNativeControl
         (click)="SetCategoria(categoria)"
-        (change)="atualizarFiltroAtivo()">
+        (change)="atualizarFiltroAtivo()"
+        [checked]="IsCategoriaAtiva(categoria)">
           <a class="dis-flex flex-sb flex-m">
             <button class="border-0">
               {{categoria?.Nome}}

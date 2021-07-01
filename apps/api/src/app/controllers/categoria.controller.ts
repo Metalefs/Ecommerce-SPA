@@ -5,6 +5,7 @@ import { ErrorHandler } from '../_handlers/error-handler';
 import * as express from 'express';
 import { escapeRegex } from '../_handlers/regexescape';
 import { UsuarioLogado } from '../_handlers/Authentication';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 const CategoriaRouter = express();
 
@@ -14,39 +15,49 @@ CategoriaRouter.get(RouteDictionary.Categoria, async (req: any, res) => {
   try {
     if (req.query.nicho) {
       let Nicho = new RegExp(decodeURI(escapeRegex(req.query.nicho)), 'gi');
-      res.send(await CategoriaService.Filtrar({ Nicho: Nicho }));
+      CategoriaService.Filtrar({ Nicho: Nicho }).then(result => res.send(result));
     }
     else
-      res.send(await CategoriaService.Ler())
+      CategoriaService.Ler().then(result => res.send(result));
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
 })
+
 .post(RouteDictionary.Categoria, async (req: any, res) => {
-  try {
-    res.send(await CategoriaService.Inserir(await UsuarioLogado(req, res), req.body.item.Categoria));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+    .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+    .then(usuario => {
+      if (usuario)
+      CategoriaService.Inserir(usuario as Usuario, req.body.item.Categoria)
+          .then(result => res.send(result))
+          .catch(err => ErrorHandler.DefaultException(err, res))
+    })
 })
+
 .put(RouteDictionary.Categoria, async (req: any, res) => {
-  try {
-    res.send(await CategoriaService.Alterar(await UsuarioLogado(req, res), req.body.item.Categoria));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    CategoriaService.Alterar(usuario as Usuario, req.body.item.Categoria)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.Categoria, async (req: any, res) => {
-  try {
-    res.send(await CategoriaService.Deletar(await UsuarioLogado(req, res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.Categoria + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    CategoriaService.Deletar(usuario as Usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
+
 export {
   CategoriaRouter
 }

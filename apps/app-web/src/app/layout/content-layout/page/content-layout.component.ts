@@ -4,8 +4,8 @@ import { Select } from '@ngxs/store';
 import { InformacoesContato, } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { cardFlip, fade, slideInOut, slider } from '../../../animations';
+import { MensagemService } from '../../../data/service';
 import { InformacoesContatoState } from '../../../data/store/state';
-import { MensagemService } from '../../../shared/services';
 
 @Component({
   selector: 'personalizados-lopes-content-layout',

@@ -10,7 +10,8 @@ let ServicoService: Services.ServicoService = new Services.ServicoService();
 
 ServicoRouter.get(RouteDictionary.Servico, async (req: any, res) => {
   try {
-    res.send(await ServicoService.Ler());
+    const result = await ServicoService.Ler();
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
@@ -18,7 +19,9 @@ ServicoRouter.get(RouteDictionary.Servico, async (req: any, res) => {
 })
 .post(RouteDictionary.Servico, async (req: any, res) => {
   try {
-    res.send(await ServicoService.Inserir(await UsuarioLogado(req, res), req.body.item.Servico));
+    const usuario = await UsuarioLogado(req, res);
+    const result = await ServicoService.Inserir(usuario, req.body.item.Servico);
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
@@ -26,7 +29,9 @@ ServicoRouter.get(RouteDictionary.Servico, async (req: any, res) => {
 })
 .put(RouteDictionary.Servico, async (req: any, res) => {
   try {
-    res.send(await ServicoService.Alterar(await UsuarioLogado(req, res), req.body.item.Servico));
+    const usuario = await UsuarioLogado(req, res);
+    const result = await ServicoService.Alterar(usuario, req.body.item.Servico);
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
@@ -34,7 +39,9 @@ ServicoRouter.get(RouteDictionary.Servico, async (req: any, res) => {
 })
 .delete(RouteDictionary.Servico, async (req: any, res) => {
   try {
-    res.send(ServicoService.Deletar(await UsuarioLogado(req, res), req.query.id));
+    const usuario = await UsuarioLogado(req, res);
+    const result = ServicoService.Deletar(usuario, req.query.id);
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)

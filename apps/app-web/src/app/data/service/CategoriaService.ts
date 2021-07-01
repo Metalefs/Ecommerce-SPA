@@ -39,8 +39,7 @@ export class CategoriaService {
       );
     }
     Remover(id: string): Observable<any>{
-      let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria + `?id=${id}`).pipe(
+      return this.http.delete<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria + `/${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

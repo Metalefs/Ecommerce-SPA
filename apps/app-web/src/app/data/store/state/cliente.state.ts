@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
-import { ClienteService } from '../../../shared/services';
+import { ClienteService } from '../../service';
 
 import { LerCliente, EditarCliente, AdicionarCliente, RemoverCliente } from '../actions/cliente.actions'
 import { tap } from 'rxjs/operators';

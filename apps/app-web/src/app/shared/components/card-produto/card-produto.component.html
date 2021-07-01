@@ -18,7 +18,6 @@
         "
         routerLinkActive="router-link-active"
         matRipple
-        style="border-radius: 30px;"
         class="portfolio-item zoom of-y-scroll card border-light"
         [style.flexDirection]="flex_direction"
       >
@@ -86,9 +85,9 @@
               ]"
               routerLinkActive="router-link-active"
             >
-              <mat-card-subtitle class="mat-card-subtitle is-italic fw-100 subtitle is-size-7">{{
+              <!-- <mat-card-subtitle class="mat-card-subtitle is-italic fw-100 subtitle is-size-7">{{
                 Produto?.Subtitulo
-              }}</mat-card-subtitle>
+              }}</mat-card-subtitle> -->
             </mat-card-header>
             <!-- <div class="my-3" *ngIf="Produto?.Rating.length > 0">
               <star-rating
@@ -297,7 +296,7 @@
             <ng-template #preco_promo>
               <div class="w-full" *ngIf="Produto?.Parcelas == 0">
                 <p class="is-size-7 linethr">
-                  R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
+                  <span class="is-size-7 preto6">de</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
                 </p>
                 <p class="preco promocao preto6">
                   <span class="is-size-7">Por</span> R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}

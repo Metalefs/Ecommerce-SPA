@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { tap } from 'rxjs/operators';
-import { CarouselService } from '../../../shared/services';
+import { CarouselService } from '../../service';
 import { LerCarousel, EditarCarousel } from '../actions/carousel.actions'
 
 export class CarouselStateModel{

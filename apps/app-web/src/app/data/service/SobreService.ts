@@ -24,7 +24,6 @@ export class SobreService {
     }
     Editar(item: entities.Sobre): Observable<entities.Sobre> {
         let payload = this.AuthenticationService.tokenize({Sobre:item});
-        console.log(payload);
         return this.http.put<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
@@ -32,7 +31,7 @@ export class SobreService {
         );
     }
     Remover(id: string): Observable<any>{
-        return this.http.delete<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre).pipe(
+        return this.http.delete<entities.Sobre>(environment.endpoint + RouteDictionary.Sobre + `/${id}`).pipe(
             retry(3),
             catchError(this.ErrorHandler.handleError)
         );

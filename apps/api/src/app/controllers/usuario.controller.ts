@@ -9,7 +9,7 @@ import { Usuario } from 'libs/data/src/lib/classes';
 
 const app = express();
 
-app.post(RouteDictionary.Login, (req : any, res, next) => {
+app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     console.log(req.body);
     try{
       UsuarioService.authenticate(req.body)
@@ -19,7 +19,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     catch(ex){
       ErrorHandler.DefaultException(ex,res);
     }
-}).post(RouteDictionary.Registro, (req,res, next) =>{
+}).post(RouteDictionary.Usuario.Registro, (req,res, next) =>{
   try{
     console.log(req.body.Usuario);
     UsuarioService.create(req.body.Usuario)
@@ -29,7 +29,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-}).post(RouteDictionary.RegistroTemporario, (req,res, next) =>{
+}).post(RouteDictionary.Usuario.RegistroTemporario, (req,res, next) =>{
   try{
     console.log(req.body.Usuario);
     let user:Usuario = req.body.Usuario;
@@ -42,7 +42,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-}).put(RouteDictionary.AtualizarConta, (req,res, next) =>{
+}).put(RouteDictionary.Usuario.AtualizarConta, (req,res, next) =>{
   try{
     UsuarioService.getByToken(req.body.token).then(user => {
       if(user)
@@ -57,7 +57,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.put(RouteDictionary.TrocarSenha, (req,res, next) =>{
+.put(RouteDictionary.Usuario.TrocarSenha, (req,res, next) =>{
   try{
     console.log(req.body);
     UsuarioService.getByToken(req.body.token).then(user => {
@@ -73,7 +73,7 @@ app.post(RouteDictionary.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.post(RouteDictionary.RecuperarSenha, (req,res, next) =>{
+.post(RouteDictionary.Usuario.RecuperarSenha, (req,res, next) =>{
   try{
     console.log(req.body.email);
     UsuarioService.recoverPassword(req.body.email)

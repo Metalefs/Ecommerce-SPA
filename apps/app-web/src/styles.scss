@@ -617,7 +617,7 @@ canvas{
 }
 .preco{
   font-size: 1.2em;
-  color:rgb(48, 49, 54);
+  color:#fc5a5a;
   font-weight: 500;
 }
 .preco strong{
@@ -625,8 +625,6 @@ canvas{
   font-size: 1.2em;
 }
 .descricao-produto {
-  font-size: 16px;
-  line-height: 24px !important;
   text-align: left;
   figure > .image img{
     max-width: 50% !important;
@@ -1065,6 +1063,7 @@ canvas{
   &-mobile{
     display: block;
   }
+  ;
   &:hover  .dropdown-content{
     opacity: 1;
     -webkit-transform: translateZ(0);
@@ -1076,6 +1075,7 @@ canvas{
   &-content {
     position: absolute;border-radius:0;
     width: 100%;
+    min-width: 120px;
     z-index: 20;
     opacity: 0;
     box-sizing: border-box;
@@ -1175,8 +1175,6 @@ justify-content: center;
   vertical-align: middle;
 }
 div.descricao-produto {
-  font-size: 16px;
-  line-height: 24px !important;
   figure{
     &.media{
       align-items: center !important;

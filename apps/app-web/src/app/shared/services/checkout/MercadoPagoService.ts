@@ -5,9 +5,8 @@ import { retry, catchError } from 'rxjs/operators';
 import { ErrorHandler } from '../../../core/error.handler';
 import { environment } from '../../../../environments/environment';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { Integracoes, Orcamento, Produto } from 'libs/data/src/lib/classes';
-import { MercadoPagoCheckout, MercadoPagoSearchPaymentResult, mp_checkout_items, mp_checkout_payer, mp_payment_methods, mp_shipments } from 'libs/data/src/lib/interfaces';
-
+import { Orcamento } from 'libs/data/src/lib/classes';
+import { MercadoPagoSearchPaymentResult } from 'libs/data/src/lib/interfaces';
 
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 
@@ -20,7 +19,6 @@ export class MercadoPagoCheckoutService {
     private AuthenticationService: AuthenticationService) { }
 
   listPayments() {
-    let payload = this.AuthenticationService.tokenize({});
     return this.http.get<MercadoPagoSearchPaymentResult>(environment.endpoint + RouteDictionary.ListPayments).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)

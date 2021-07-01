@@ -15,7 +15,7 @@ import { ErrorHandler } from '../../core/error.handler';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 
 import { PaginationResponse } from 'libs/data/src/lib/interfaces';
-import { ImagemService } from '../../shared/services';
+import { ImagemService } from './ImagemService';
 @Injectable({
     providedIn: 'root'
 })
@@ -26,14 +26,14 @@ export class ProdutoService {
     private servicoImagem: ImagemService) { }
 
     Ler(limit?:number,skip?:number): Observable<PaginationResponse<Produto>> {
-        return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produto).pipe(
+        return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produtos.Produto).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
 
     Filtrar(id:any): Observable<Produto[]> {
-      return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produto + `${id}`).pipe(
+      return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produtos.Produto + `${id}`).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError) // then handle the error
       );
@@ -49,7 +49,7 @@ export class ProdutoService {
       query += '&tags='+fields.Tags;
       query += '&limit='+limit;
 
-      return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.FiltrarProduto +`${page}/`+ query).pipe(
+      return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produtos.Filtrar +`${page}/`+ query).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError) // then handle the error
       );
@@ -57,11 +57,9 @@ export class ProdutoService {
 
     async Editar(item: entities.Produto): Promise<Observable<entities.Produto>> {
         return this.EditarImagens(item).then(x=>{
-
           let payload = this.AuthenticationService.tokenize({Produto:item});
           // alert("Editando !");
-          console.log(item);
-          return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produto,
+          return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Produto,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.ErrorHandler.handleError)
@@ -71,28 +69,28 @@ export class ProdutoService {
     }
 
     Gostar(id:string) :Observable<entities.Produto> {
-      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.GostarProduto, {id:id}).pipe(
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Gostar, {id:id}).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
     }
 
     IncrementarVenda(id:string) :Observable<entities.Produto> {
-      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.IncrementarVendaProduto, {id:id}).pipe(
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.IncrementarVendas, {id:id}).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
     }
 
     IncrementarVisualizacoes(id:string) :Observable<entities.Produto> {
-      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.IncrementarVisualizacoesProduto, {id:id}).pipe(
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.IncrementarVisualizacoes, {id:id}).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
     }
 
     Rate(id:string,rating:number) :Observable<entities.Produto> {
-      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.RateProduto, {id:id, rating:rating}).pipe(
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Rate, {id:id, rating:rating}).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
@@ -107,8 +105,7 @@ export class ProdutoService {
               //await this.servicoImagem.deleteImage(Produto[0].Imagem[i]);
             }catch(EX){ console.log(EX); continue;}
           }
-          let token = this.AuthenticationService.tokenize({id});
-          resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produto + `?id=${id}`).pipe(
+          resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Produto + `/${id}`).pipe(
               retry(3),
               catchError(this.ErrorHandler.handleError)
           ));
@@ -119,7 +116,7 @@ export class ProdutoService {
     Incluir(item: entities.Produto): Observable<Produto> {
 
       let payload = this.AuthenticationService.tokenize({Produto:item});
-      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produto, payload).pipe(
+      return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Produto, payload).pipe(
         retry(3),
         catchError(this.ErrorHandler.handleError)
       );

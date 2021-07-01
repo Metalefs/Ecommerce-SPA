@@ -25,201 +25,197 @@
   </div>
 </mat-toolbar>
 <div class="z-index-top top-0" style="overflow-y: visible;">
-  <nav class="navbar flex-sb px-3 z-index-top py-2" style="z-index: 20;">
-    <div class="dis-flex flex-sb flex-c-m">
-      <div class="w-full navbar-start">
-        <div class="w-full dis-flex flex-sb flex-m nav-item">
+  <nav class="navbar columns is-vcentered w-full flex-sb px-3 mx-0 z-index-top py-2" style="z-index: 20;">
+
+    <div class="column is-6">
+      <div class="columns is-mobile">
+        <div class="column is-4">
           <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
             <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
           </a>
-          <div class="is-hidden-desktop navbar-item">
-            <button
-              mat-ripple
-              color=""
-              (click)="openCheckout()"
-              title="Cesta de compras"
-              aria-label="Botão abrir Orçamento"
-              class="size4 flex-c-m how-social boxshadow-none shadow-light orcamento trans-04 p-b-3 p-t-3"
-            >
-              <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-              <p class="cart-counter">
-                {{ (Orcamento$ | async)?.Produto.length || 0 }}
-              </p>
-            </button>
-          </div>
         </div>
-        <form
-          type="get"
-          class="bbr w-full nav-item btr has-background-white-bis shadow-light is-hidden-touch"
-          action="/produtos/?nome={{
-            search_filter
-          }}?categoria=Todos os produtos"
-        >
-          <div class="py-2">
-            <div class="mr-3 dis-flex">
-              <button
-                mat-icon-button
-                type="submit"
-                (click)="executar_pesquisa()"
-                class="has-background-white mx-1"
-              >
-                <mat-icon>search</mat-icon>
-              </button>
+        <div class="column is-7">
+          <form
+            type="get"
+            class="bbr is-5 w-full nav-item btr mr-5 pr-2 has-background-white-bis shadow-light is-hidden-touch"
+            action="/produtos/?nome={{
+              search_filter
+            }}?categoria=Todos os produtos"
+          >
+            <div class="py-2 w-full ">
+              <div class="  w-full dis-flex">
+                <button
+                  mat-icon-button
+                  type="submit"
+                  (click)="executar_pesquisa()"
+                  class="has-background-white mx-1"
+                >
+                  <mat-icon>search</mat-icon>
+                </button>
 
-              <div @fadeIn class="" *ngIf="search">
-                <personalizados-lopes-autocomplete-dropdown
-                  (VerTodosResultados)="executar_pesquisa()"
-                  (SearchValueChanged)="handleSearchValue($event)"
-                ></personalizados-lopes-autocomplete-dropdown>
+                <div @fadeIn class=" w-full " *ngIf="search">
+                  <personalizados-lopes-autocomplete-dropdown
+                    (VerTodosResultados)="executar_pesquisa()"
+                    (SearchValueChanged)="handleSearchValue($event)"
+                  ></personalizados-lopes-autocomplete-dropdown>
+                </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
+        <div class="column is-1"></div>
       </div>
     </div>
 
-    <div class="columns is-hidden-mobile link-section flex-c-m">
-      <div *ngFor="let link of links" class="column">
-        <ng-container
-          *ngIf="link.options; then dropdown; else normal"
-        ></ng-container>
-        <ng-template #normal>
-          <a
-            (click)="SetActiveNav(link)"
-            class="nav-link navbar-item  {{
-              link.name == 'inicio' ? 'inicio' : ''
-            }}"
-            pageScroll
-            [routerLink]="link.href"
-            routerLinkActive="active-nav"
-            href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
-          >
-            <mat-icon
-              *ngIf="link.Micon && (NavState$ | async)?.activeNav == link.name"
-              >{{ link.Micon }}</mat-icon
-            >
-            <i
-              *ngIf="link.Picon && (NavState$ | async)?.activeNav == link.name"
-              [class]="link.Picon"
-            ></i>
-            <span class="m-l-5">{{
-              link.name == 'Todos' ? 'Produtos' : link.name
-            }}</span>
-          </a>
-        </ng-template>
-
-        <ng-template #dropdown>
-          <div class="dropdown">
+    <div class="column is-hidden-mobile">
+      <div class="columns is-mobile is-vcentered is-hidden-mobile link-section flex-c-m">
+        <div *ngFor="let link of links" class="column">
+          <ng-container
+            *ngIf="link.options; then dropdown; else normal"
+          ></ng-container>
+          <ng-template #normal>
             <a
               (click)="SetActiveNav(link)"
-              [routerLink]="link.href"
-              pageScroll
-              routerLinkActive="active-nav"
-              class="nav-link navbar-item flex-m dis-flex{{
+              class="nav-link navbar-item  {{
                 link.name == 'inicio' ? 'inicio' : ''
               }}"
+              pageScroll
+              [routerLink]="link.href"
+              routerLinkActive="active-nav"
+              href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
             >
               <mat-icon
-                *ngIf="
-                  link.Micon && (NavState$ | async)?.activeNav == link.name
-                "
+                *ngIf="link.Micon && (NavState$ | async)?.activeNav == link.name"
                 >{{ link.Micon }}</mat-icon
               >
               <i
-                *ngIf="
-                  link.Picon && (NavState$ | async)?.activeNav == link.name
-                "
+                *ngIf="link.Picon && (NavState$ | async)?.activeNav == link.name"
                 [class]="link.Picon"
               ></i>
               <span class="m-l-5">{{
                 link.name == 'Todos' ? 'Produtos' : link.name
               }}</span>
             </a>
-            <div class="dropdown-content has-background-white box">
+          </ng-template>
+
+          <ng-template #dropdown>
+            <div class="dropdown">
               <a
-                class="nav-link is-capitalized {{
-                  link.name == 'inicio' ? 'inicio' : ''
-                }} of-x-scroll"
+                (click)="SetActiveNav(link)"
+                [routerLink]="link.href"
                 pageScroll
-                routerLinkActive="Active"
-                href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
-                mat-menu-item
-                [routerLink]="opt.link"
-                [queryParams]="opt.queryParams"
-                *ngFor="let opt of link.options"
-                >{{ opt.nome }}</a
+                routerLinkActive="active-nav"
+                class="nav-link navbar-item flex-m dis-flex{{
+                  link.name == 'inicio' ? 'inicio' : ''
+                }}"
               >
+                <mat-icon
+                  *ngIf="
+                    link.Micon && (NavState$ | async)?.activeNav == link.name
+                  "
+                  >{{ link.Micon }}</mat-icon
+                >
+                <i
+                  *ngIf="
+                    link.Picon && (NavState$ | async)?.activeNav == link.name
+                  "
+                  [class]="link.Picon"
+                ></i>
+                <span class="m-l-5">{{
+                  link.name == 'Todos' ? 'Produtos' : link.name
+                }}</span>
+              </a>
+              <div class="dropdown-content has-background-white box">
+                <a
+                  class="nav-link is-capitalized {{
+                    link.name == 'inicio' ? 'inicio' : ''
+                  }} of-x-scroll"
+                  pageScroll
+                  routerLinkActive="Active"
+                  href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
+                  mat-menu-item
+                  [routerLink]="opt.link"
+                  [queryParams]="opt.queryParams"
+                  *ngFor="let opt of link.options"
+                  >{{ opt.nome }}</a
+                >
+              </div>
             </div>
-          </div>
-        </ng-template>
+          </ng-template>
+        </div>
       </div>
-      <div class="dis-flex flex-r navbar-end">
-        <div class="is-hidden-touch ml-6 navbar-item">
-          <div class="columns is-gapless is-mobile is-vcentered">
-            <div class="column mr-0 pr-0">
-              <button
-                mat-ripple
-                (click)="openCheckout()"
-                title="Cesta de compras"
-                aria-label="Botão abrir Orçamento"
-                color="a"
-                class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
-              >
-                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-                <p class="cart-counter">
-                  {{ (Orcamento$ | async)?.Produto.length || 0 }}
-                </p>
+    </div>
+
+    <div class="column">
+      <div class="columns is-vcentered is-gapless is-mobile flex-c-m">
+        <div class="column is-hidden-mobile">
+          <div class="dropdown">
+            <p class="nav-link" style="border: none !important;">
+              <button class="w-full has-text-centered py-4" title="Perfil">
+                <mat-icon>person_outline</mat-icon>
+                {{ user?.Nome || 'Meu perfil' }}
               </button>
-            </div>
-            <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
-              <p
-                class="preco fw-700"
-                (click)="openCheckout()"
-                *ngIf="(Orcamento$ | async)?.Preco"
+            </p>
+            <div class="dropdown-content  w-full has-background-white box">
+              <button
+                mat-menu-item
+                *ngIf="user"
+                href="#topo"
+                routerLinkActive="Active"
+                title="Meus dados"
+                pageScroll
+                [routerLink]="['/minha-conta/pessoal']"
               >
-                R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
-              </p>
+                Meus dados
+              </button>
+              <button class="" mat-menu-item *ngIf="!user" (click)="openLogin()">
+                Entrar
+              </button>
+              <button
+                mat-menu-item
+                *ngIf="user && user?.Tipo == TipoUsuario.admin"
+                href="#topo"
+                title="Gerenciamento"
+                routerLinkActive="Active"
+                pageScroll
+                [routerLink]="['/gerenciamento/app']"
+              >
+                Gerenciamento
+              </button>
+              <button mat-menu-item *ngIf="user" (click)="Logout()">
+                Sair
+              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div class="column">
-        <div class="dropdown mx-3">
-          <p class="nav-link" style="border: none !important;">
-            <button class="w-full has-text-centered py-4" title="Perfil">
-              <mat-icon>person_outline</mat-icon>
-              {{ user?.Nome || 'Meu perfil' }}
-            </button>
-          </p>
-          <div class="dropdown-content has-background-white box">
-            <button
-              mat-menu-item
-              *ngIf="user"
-              href="#topo"
-              routerLinkActive="Active"
-              title="Meus dados"
-              pageScroll
-              [routerLink]="['/minha-conta/pessoal']"
-            >
-              Meus dados
-            </button>
-            <button class="" mat-menu-item *ngIf="!user" (click)="openLogin()">
-              Entrar
-            </button>
-            <button
-              mat-menu-item
-              *ngIf="user && user?.Tipo == TipoUsuario.admin"
-              href="#topo"
-              title="Gerenciamento"
-              routerLinkActive="Active"
-              pageScroll
-              [routerLink]="['/gerenciamento/app']"
-            >
-              Gerenciamento
-            </button>
-            <button mat-menu-item *ngIf="user" (click)="Logout()">
-              Sair
-            </button>
+        <div class="dis-flex flex-r navbar-end">
+          <div class="ml-6 navbar-item">
+            <div class="columns is-gapless is-multiline is-vcentered">
+              <div class="column mr-0 pr-0">
+                <button
+                  mat-ripple
+                  (click)="openCheckout()"
+                  title="Cesta de compras"
+                  aria-label="Botão abrir Orçamento"
+                  color="a"
+                  class="size4 flex-c-m boxshadow-none how-social shadow-light pr-2 orcamento trans-04 m-b-3 m-t-3"
+                >
+                  <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+                  <p class="cart-counter">
+                    {{ (Orcamento$ | async)?.Produto.length || 0 }}
+                  </p>
+                </button>
+              </div>
+              <div class="column ml-0 pl-0 is-hidden-touch mr-3 clickable">
+                <p
+                  class="preco fw-700"
+                  (click)="openCheckout()"
+                  *ngIf="(Orcamento$ | async)?.Preco"
+                >
+                  R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -47,8 +47,8 @@
               </div>
             </div>
 
-            <div *ngIf="Produto" class="columns is-multiline">
-              <div class="column  is-12-desktop is-12-tablet is-12-mobile">
+            <div *ngIf="Produto" class="columns pb-0 is-multiline">
+              <div class="column  pb-0 is-12-desktop is-12-tablet is-12-mobile">
                 <form
                   *ngIf="produtoForm"
                   action=""
@@ -110,7 +110,7 @@
                     </personalizados-lopes-botao-esgotado>
                   </div>
                 </form>
-                <div class="pt-3 px-2 txt-left of-x-scroll">
+                <div class="pt-3 px-2 txt-left of-x-scroll"  *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
                   <personalizados-lopes-exibicao-artes-produto
                     [Produto]="Produto"
                     (onAbrirModalArte)="AbrirModalArte($event)"
@@ -133,7 +133,7 @@
     <div data-aos="zoom-up" class="hero-foot px-3 py-3" id="product-display">
       <div class="column is-6 pb-0 is-hidden-desktop dis-flex">
         <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
-        <personalizados-lopes-curtir-produto [Produto]="Produto"></personalizados-lopes-curtir-produto>
+        <personalizados-lopes-curtir-produto [Liked]="Liked" [Produto]="Produto"></personalizados-lopes-curtir-produto>
       </div>
       <personalizados-lopes-tab-informacao-avaliacao-produto
         [Produto]="Produto"
@@ -141,29 +141,31 @@
     </div>
   </section>
 
-  <div data-aos="zoom-up" class="has-background-light bbr">
-    <personalizados-lopes-estatisticas-produto
-      [Produto]="Produto"
-    ></personalizados-lopes-estatisticas-produto>
+  <div data-aos="zoom-up">
+    <div class="has-background-light bbr">
+      <personalizados-lopes-estatisticas-produto
+        [Produto]="Produto"
+      ></personalizados-lopes-estatisticas-produto>
+    </div>
+
+    <div class="w-full bg flex-w flex-sa px-6 my-2">
+      <a [routerLink]="'/produtos'" class="has-text-light">
+        <button mat-icon-button>
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </a>
+      <a [routerLink]="'/showcase'" class="has-text-light">
+        <button mat-icon-button>
+          <mat-icon>collections</mat-icon>
+        </button>
+      </a>
+    </div>
   </div>
 
-  <div data-aos="zoom-up" class="w-full bg flex-w flex-sa px-6 my-2">
-    <a [routerLink]="'/produtos'" class="has-text-light">
-      <button mat-icon-button>
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-    </a>
-    <a [routerLink]="'/showcase'" class="has-text-light">
-      <button mat-icon-button>
-        <mat-icon>collections</mat-icon>
-      </button>
-    </a>
-  </div>
-
-  <div class="px-4 margin py-4 txt-center" style="overflow-x: hidden;">
+  <div class=" margin py-4 txt-center">
     <mat-divider></mat-divider>
 
-    <div class="hero is-small">
+    <div class="hero is-medium ">
       <div class="hero-body">
         <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
           <personalizados-lopes-tag-produto-swiper
@@ -175,9 +177,9 @@
 
     <mat-divider class=" is-hidden-desktop"></mat-divider>
 
-    <div class="hero is-small  is-hidden-desktop">
+    <div class="hero is-medium is-hidden-desktop">
       <div class="hero-body">
-        <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
+        <div data-aos="fade-up" class=" mb-3" *ngIf="Produto?._id">
           <personalizados-lopes-produto-swiper
             class="z-index-1"
             [slidesPerView]="3"
@@ -190,7 +192,7 @@
 
     <mat-divider></mat-divider>
 
-    <div class="hero is-small is-hidden-desktop" *ngIf="Blog">
+    <div class="hero is-medium is-hidden-desktop" *ngIf="Blog">
       <div data-aos="fade-up" class="hero-body">
         <personalizados-lopes-blog-swiper
           [TAGS]="Produto?.Tags"

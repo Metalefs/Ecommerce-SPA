@@ -8,46 +8,44 @@ import { UsuarioLogado } from '../_handlers/Authentication';
 const ImagemRouter = express();
 let ImagemService: Services.ImagemService = new Services.ImagemService();
 
-ImagemRouter.get(RouteDictionary.Imagem, async (req: any, res) => {
-  try {
-    if (req.query.src) {
-      res.send(await ImagemService.Filtrar({ Src: req.query.src }));
-    }
-    if (req.query.nome) {
-      res.send(await ImagemService.Filtrar({ Nome: req.query.nome }));
-    }
-    else {
-      res.send(await ImagemService.Ler());
-    }
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
+ImagemRouter.get(RouteDictionary.Imagem, FiltrarImagem)
+
 .post(RouteDictionary.Imagem, async (req: any, res) => {
-  try {
-    res.send(await ImagemService.InserirSemUsuario(req.body.item));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  ImagemService.InserirSemUsuario(req.body.item)
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
 })
+
 .put(RouteDictionary.Imagem, async (req: any, res) => {
-  try {
-    res.send(await ImagemService.Alterar(await UsuarioLogado(req,res), req.body.item.Imagem));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+  UsuarioLogado(req, res)
+  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ImagemService.Alterar(usuario,req.body.item.Imagem)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 })
-.delete(RouteDictionary.Imagem, async (req: any, res) => {
-  try {
-    res.send(await ImagemService.Deletar(await UsuarioLogado(req,res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
+
+.delete(RouteDictionary.Imagem + ":id", async (req: any, res) => {
+  UsuarioLogado(req, res)
+  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
+  .then(usuario => {
+    if (usuario)
+    ImagemService.Deletar(usuario, req.params.id)
+        .then(result => res.send(result))
+        .catch(err => ErrorHandler.DefaultException(err, res))
+  })
 });
+
 export {
   ImagemRouter
+}
+
+function FiltrarImagem(req, res) {
+  if (req.query.src) ImagemService.Filtrar({ Src: req.query.src }).then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
+
+  if (req.query.nome) ImagemService.Filtrar({ Src: req.query.nome }).then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
+
+  else ImagemService.Ler().then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
 }

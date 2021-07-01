@@ -11,13 +11,16 @@ import { Produto } from 'libs/data/src/lib/classes';
 export class CurtirProdutoComponent implements OnInit {
   @Input() Produto:Produto;
 
-  Liked:boolean = false;
+  @Input() Liked:boolean = false;
   loading:boolean = false;
   constructor(
     private store: Store) { }
 
   ngOnInit(): void {
-    this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
+    setTimeout(()=>{
+      if(this.Produto)
+      this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
+    },2000)
   }
   Like(){
     if(!localStorage.getItem(`heartproduto${this.Produto._id}`)){

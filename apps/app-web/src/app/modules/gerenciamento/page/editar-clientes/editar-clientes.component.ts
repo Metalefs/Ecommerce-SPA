@@ -10,7 +10,7 @@ import { Cliente } from 'libs/data/src/lib/classes';
 import { CriarClienteDialogComponent } from './DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
 
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
-import { ImagemService } from 'apps/app-web/src/app/shared/services';
+import { ImagemService } from 'apps/app-web/src/app/data/service';
 
 @Component({
   selector: 'personalizados-lopes-editar-clientes',

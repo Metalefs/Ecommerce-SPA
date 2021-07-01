@@ -1,5 +1,4 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { entities } from 'libs/data/src';
 import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
 
@@ -7,153 +6,131 @@ import * as express from 'express';
 import { escapeRegex } from '../_handlers/regexescape';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
 import { UsuarioLogado } from '../_handlers/Authentication';
+import { Usuario } from 'libs/data/src/lib/classes';
 
 const ProdutoRouter = express();
 
 let ProdutoService: Services.ProdutoService = new Services.ProdutoService();
 
-var ObjectId = require('mongodb').ObjectID;
-ProdutoRouter.get(RouteDictionary.Produto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.Search({}, parseInt(req.query.limit) || 12, req.query.skip || 1));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.get(RouteDictionary.Produto + ":id", async (req: any, res) => {
-  try {
-    if (req.params.id) {
-      res.send(await ProdutoService.Filtrar({ "_id": new ObjectId(req.params.id) }));
-    }
-    else {
-      ErrorHandler.DefaultException("unknown", res);
-    }
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.get(RouteDictionary.FiltrarProduto + ":page", FiltrarProdutos)
-.post(RouteDictionary.Produto, async (req: any, res) => {
-  try {
-    let usuario
-    try{
-      usuario = await UsuarioLogado(req, res);
-    }
-    catch(ex){
-      ErrorHandler.AuthorizationException(ex, res);
-      return;
-    }
-    res.send(await ProdutoService.Inserir(usuario, req.body.item.Produto));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.post(RouteDictionary.GostarProduto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.Gostar(req.body.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.post(RouteDictionary.RateProduto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.Rate(req.body.id, req.body.rating));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.post(RouteDictionary.IncrementarVendaProduto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.IncrementarVenda(req.body.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.post(RouteDictionary.IncrementarVisualizacoesProduto, async (req: any, res) => {
-  try {
-    res.send(await ProdutoService.IncrementarVisualizacoes(req.body.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.put(RouteDictionary.Produto, async (req: any, res) => {
-  try{
-    let usuario;
-    try{
-      usuario = await UsuarioLogado(req, res);
-    }
-    catch(ex){
-      ErrorHandler.AuthorizationException(ex, res);
-      return;
-    }
-    res.send(await ProdutoService.Alterar(usuario, req.body.item.Produto));
-  }
-  catch(ex){
-    ErrorHandler.DefaultException(ex, res)
-  }
-})
-.delete(RouteDictionary.Produto, async (req: any, res) => {
-  try{
-    let usuario;
-    try{
-      usuario = await UsuarioLogado(req, res);
-    }
-    catch(ex){
-      ErrorHandler.AuthorizationException(ex, res);
-      return;
-    }
-    res.send(await ProdutoService.Deletar(usuario, req.query.id));
-  }
-  catch(ex){
-    ErrorHandler.DefaultException(ex, res);
-  }
-});
+ProdutoRouter.get(RouteDictionary.Produtos.Produto, ListarProdutos)
+  .get(RouteDictionary.Produtos.Produto + ":id", FiltrarPorId)
+  .get(RouteDictionary.Produtos.Filtrar + ":page", FiltrarProdutos)
+  .post(RouteDictionary.Produtos.Produto, CadastrarProduto)
+  .post(RouteDictionary.Produtos.Gostar, GostarProduto)
+  .post(RouteDictionary.Produtos.Rate, AvaliarProduto)
+  .post(RouteDictionary.Produtos.IncrementarVendas, IncrementarVenda)
+  .post(RouteDictionary.Produtos.IncrementarVisualizacoes, IncrementarVisualizacao)
+  .put(RouteDictionary.Produtos.Produto, AtualizarProduto)
+  .delete(RouteDictionary.Produtos.Produto + ":id", DeletarProduto);
+
 export {
   ProdutoRouter
 }
 
+function ListarProdutos(req, res){
+  ProdutoService.Search({}, parseInt(req.query.limit) || 12, req.query.skip || 1)
+    .then(result => res.send(result))
+    .catch(err => ErrorHandler.DefaultException(err, res));
+}
+
+function FiltrarPorId(req, res){
+  if (req.params.id)
+    ProdutoService.FiltrarPorId(req.params.id)
+      .then(result => res.send(result))
+      .then(err => ErrorHandler.DefaultException(err, res))
+  else
+    ErrorHandler.DefaultException("unknown", res);
+}
+
 function FiltrarProdutos(req, res){
   const limit = parseInt(req.query.limit) || 12; // results per page
-    const page = req.params.page || 1; // Page
-    let sQuery: FiltrarProdutoSearchQuery = {}
+  const page = req.params.page || 1; // Page
+  let sQuery: FiltrarProdutoSearchQuery = {}
 
-    if (req.query.nome) {
-      sQuery.Nome = new RegExp(decodeURI(escapeRegex(req.query.nome)), 'gi');
-    }
-    if (req.query.categoria) {
-      if (!decodeURI(req.query.categoria).includes("Todos")){
-        sQuery.NomeCategoria = new RegExp(decodeURI(req.query.categoria).replace('\\','').split(',').join('|'), 'gi');
-        console.log(sQuery.NomeCategoria);
-      }
-      else
-        sQuery.NomeCategoria = new RegExp('.*', 'gi');
-    }
-    if (req.query.preco) {
-      sQuery.Preco = new RegExp(decodeURI(escapeRegex(req.query.preco)), 'gi');
-    }
-    if (req.query.status) {
-      sQuery.Status = new RegExp(decodeURI(escapeRegex(req.query.status)), 'gi');
-    }
-    if (req.query.marca) {
-      sQuery.Marca = new RegExp(decodeURI(escapeRegex(req.query.marca)), 'gi');
-    }
-    if (req.query.modelo) {
-      sQuery.Modelo = new RegExp(decodeURI(escapeRegex(req.query.modelo)), 'gi');
-    }
-    if (req.query.tags) {
-      sQuery.Tags = new RegExp(decodeURI(escapeRegex(req.query.tags)), 'gi');
-    }
+  if (req.query.nome) sQuery.Nome = new RegExp(decodeURI(escapeRegex(req.query.nome)), 'gi');
 
-    ProdutoService.Search(
-      sQuery
-      , limit, page).then(x => {
-        res.send(x);
-    });
+  if (req.query.categoria)
+    sQuery.NomeCategoria = !decodeURI(req.query.categoria)
+      .includes("Todos") ?
+      new RegExp(decodeURI(req.query.categoria).replace('\\', '').split(',').join('|'), 'gi')
+      :
+      sQuery.NomeCategoria = new RegExp('.*', 'gi');
+
+  if (req.query.preco) sQuery.Preco = new RegExp(decodeURI(escapeRegex(req.query.preco)), 'gi');
+
+  if (req.query.status) sQuery.Status = new RegExp(decodeURI(escapeRegex(req.query.status)), 'gi');
+
+  if (req.query.marca) sQuery.Marca = new RegExp(decodeURI(escapeRegex(req.query.marca)), 'gi');
+
+  if (req.query.modelo) sQuery.Modelo = new RegExp(decodeURI(escapeRegex(req.query.modelo)), 'gi');
+
+  if (req.query.tags) sQuery.Tags = new RegExp(decodeURI(escapeRegex(req.query.tags)), 'gi');
+
+  ProdutoService.Search(sQuery, limit, page)
+    .then(x => res.send(x));
+}
+
+function CadastrarProduto(req, res){
+  UsuarioLogado(req, res)
+    .catch(ex => {
+      ErrorHandler.AuthorizationException(ex, res);
+      return;
+    })
+    .then(usuario => {
+      if (usuario)
+        ProdutoService.Inserir(usuario as Usuario, req.body.item.Produto)
+          .then(result => res.send(result))
+          .catch(err => ErrorHandler.DefaultException(err, res))
+    })
+}
+
+function AtualizarProduto(req,res){
+  UsuarioLogado(req, res)
+  .catch(ex => {
+    ErrorHandler.AuthorizationException(ex, res);
+    return;
+  })
+  .then(usuario => {
+    if (usuario)
+      ProdutoService.Alterar(usuario, req.body.item.Produto)
+      .then(result => res.send(result))
+      .catch(err => ErrorHandler.DefaultException(err, res))
+  })
+}
+
+function DeletarProduto(req,res){
+  UsuarioLogado(req, res)
+  .catch(ex => {
+    ErrorHandler.AuthorizationException(ex, res);
+    return;
+  })
+  .then(usuario => {
+    if (usuario)
+      ProdutoService.Deletar(usuario, req.params.id)
+      .then(result => res.send(result))
+      .catch(err => ErrorHandler.DefaultException(err, res))
+  })
+}
+
+function GostarProduto(req,res){
+  ProdutoService.Gostar(req.body.id).then(result=> res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res))
+}
+
+function AvaliarProduto(req,res){
+  ProdutoService.Rate(req.body.id, req.body.rating)
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res))
+}
+
+function IncrementarVenda(req,res){
+  ProdutoService.IncrementarVenda(req.body.id)
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res));
+}
+
+function IncrementarVisualizacao(req,res){
+  ProdutoService.IncrementarVisualizacoes(req.body.id)
+  .then(result => res.send(result))
+  .catch (err =>  ErrorHandler.DefaultException(err, res));
 }

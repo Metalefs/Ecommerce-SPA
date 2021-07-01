@@ -11,7 +11,7 @@ import { ErrorHandler } from '../../core/error.handler';
 import { Servico } from 'libs/data/src/lib/classes';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
-import { ImagemService } from '../../shared/services';
+import { ImagemService } from './ImagemService';
 
 @Injectable({
     providedIn: 'root'
@@ -66,8 +66,7 @@ export class ServicoService {
     }
 
     Remover(id: string): Observable<any>{
-      let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Servico>(environment.endpoint + RouteDictionary.Servico + `?id=${id}`).pipe(
+      return this.http.delete<entities.Servico>(environment.endpoint + RouteDictionary.Servico + `/${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

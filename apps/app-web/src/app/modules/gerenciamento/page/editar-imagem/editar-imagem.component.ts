@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { entities } from '@personalizados-lopes/data';
-import { ImagemService } from 'apps/app-web/src/app/shared/services';
 import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
 import { QuestionBase, DynFormQuestions } from 'apps/app-web/src/app/shared/components/dynamic-form/question-base';
 import { FileQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-file';
@@ -13,6 +12,7 @@ import { FormControl } from '@angular/forms';
 import { MatTableFilter } from 'mat-table-filter';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { ImagemService } from 'apps/app-web/src/app/data/service';
 
 @Component({
   selector: 'personalizados-lopes-editar-imagem',

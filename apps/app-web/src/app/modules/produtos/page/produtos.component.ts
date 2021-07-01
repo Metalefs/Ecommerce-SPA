@@ -88,10 +88,10 @@ export class ProdutosComponent implements OnInit {
   ]
   activeOrderStatus: OrderStatus;
   orderStatus: OrderStatus[] = [
-    { name: 'Padrão', id: StatusProduto.padrao },
     { name: 'Novos', id: StatusProduto.novo },
     { name: 'Em promoção', id: StatusProduto.promocao },
     { name: 'Esgotados', id: StatusProduto.esgotado },
+    { name: 'Padrão', id: StatusProduto.padrao },
   ]
   Parcelamento: boolean;
   MultiplasCores: boolean;
@@ -185,7 +185,8 @@ export class ProdutosComponent implements OnInit {
   }
   atualizarFiltroAtivo(atualizarPreco: boolean = true) {
     this.loading = true;
-    this.fQuery.Nome = this.activeSearchFilter || ''
+    this.fQuery.Nome = this.activeSearchFilter || '';
+    this.fQuery.Status = this.activeOrderStatus.id.toString();
     this.fQuery.NomeCategoria = this.CategoriasAtivas.map(x => x.Nome).filter((value, index, self) => self.indexOf(value) === index).join("|") || "";
     if (this.page > 1)
       this.page = 1;
@@ -264,8 +265,10 @@ export class ProdutosComponent implements OnInit {
   }
   matchStatusFilter(produto: Produto) {
     if (this.activeOrderStatus) {
-      // alert(this.activeOrderStatus.id)
-      return produto.Status == this.activeOrderStatus.id || this.activeOrderStatus.id == StatusProduto.padrao;
+      if(this.activeOrderStatus.id == StatusProduto.padrao)
+        return true;
+      else
+        return produto.Status == this.activeOrderStatus.id;
     }
     return true;
   }
@@ -296,10 +299,10 @@ export class ProdutosComponent implements OnInit {
     this.atualizarFiltroAtivo();
   }
   JoinCategoriasAtivas(){
-    return this.CategoriasAtivas?.map(x=>x.Nome).join(',');
+    return this.CategoriasAtivas?.map(x=>x.Nome).join(', ');
   }
   SetCategoria(categoria: Categoria) {
-    if (categoria == null) {
+    if (categoria == null || categoria.Nome == this.defaultCategory) {
       this.CategoriaAtiva = new Categoria(this.defaultCategory, this.defaultCategory)
       this.CategoriasAtivas = [new Categoria(this.defaultCategory, this.defaultCategory)]
     }
@@ -408,6 +411,8 @@ export class ProdutosComponent implements OnInit {
     return Math.ceil(number);
   }
   IsCategoriaAtiva(Categoria) {
+    if(Categoria == null)
+    return this.CategoriasAtivas.some(x => x.Nome == this.defaultCategory)
     return this.CategoriasAtivas.some(x => x.Nome == Categoria.Nome)
   }
 }

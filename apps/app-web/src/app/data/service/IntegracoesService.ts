@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
+import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 
-import { ErrorHandler } from '../../../core/error.handler';
+import { ErrorHandler } from '../../core/error.handler';
 @Injectable({
     providedIn: 'root'
 })

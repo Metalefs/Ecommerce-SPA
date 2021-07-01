@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';

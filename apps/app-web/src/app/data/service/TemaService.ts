@@ -33,7 +33,7 @@ export class TemaService {
         );
     }
     Remover(id: string): Observable<any>{
-        return this.http.delete<entities.Tema>(environment.endpoint + RouteDictionary.Tema).pipe(
+        return this.http.delete<entities.Tema>(environment.endpoint + RouteDictionary.Tema + `/${id}`).pipe(
             retry(3),
             catchError(this.ErrorHandler.handleError)
         );

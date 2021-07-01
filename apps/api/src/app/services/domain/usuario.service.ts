@@ -66,7 +66,6 @@ export module UsuarioService {
                 token
             };
         }else{
-          console.log("usuário não cadastrado");
           throw 'usuário não cadastrado';
         }
     }
@@ -151,7 +150,6 @@ export module UsuarioService {
               token
           };
       }else{
-        console.log("usuário não cadastrado");
         throw 'usuário não cadastrado';
       }
   }

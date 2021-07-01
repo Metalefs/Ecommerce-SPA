@@ -10,12 +10,12 @@
 
     <div class="hero p-t-1">
       <div class="hero-body p-t-20">
-        <section data-aos="flip-left" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
+        <section data-aos="zoom-up" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
           <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
         </section>
       </div>
       <div class="hero-foot of-y-scroll p-t-10 p-b-30 px-2">
-        <div data-aos="flip-left" class="container">
+        <div data-aos="zoom-up" class="">
           <personalizados-lopes-produto-swiper
             [slidesPerView]="3"
           ></personalizados-lopes-produto-swiper>

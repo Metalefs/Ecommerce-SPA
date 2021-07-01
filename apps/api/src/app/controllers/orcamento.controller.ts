@@ -9,41 +9,49 @@ const OrcamentoRouter = express();
 
 let OrcamentoService: Services.OrcamentoService = new Services.OrcamentoService();
 
-OrcamentoRouter.get(RouteDictionary.Orcamento, async (req: any, res) => {
+OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
   try {
-    res.send(await OrcamentoService.Ler());
+    const result = await OrcamentoService.Ler();
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
 })
-.get(RouteDictionary.Pedidos, async (req: any, res) => {
+.get(RouteDictionary.Orcamento.Pedidos, async (req: any, res) => {
   try {
-    res.send(await OrcamentoService.FiltrarOrcamentosPorUsuario(await UsuarioLogado(req, res)));
+    const usuario = await UsuarioLogado(req, res);
+    const result = await OrcamentoService.FiltrarOrcamentosPorUsuario(usuario);
+    res.send(result);
   }
   catch (err) {
   ErrorHandler.DefaultException(err, res)
 }
 })
-.post(RouteDictionary.Orcamento, async (req: any, res) => {
+.post(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
   try {
-    res.send(await OrcamentoService.Inserir(null, req.body.payload.item.Orcamento));
+    const result = await OrcamentoService.Inserir(null, req.body.payload.item.Orcamento);
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
 })
-.put(RouteDictionary.Orcamento, async (req: any, res) => {
+.put(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
   try {
-    res.send(await OrcamentoService.Alterar(await UsuarioLogado(req, res), req.body.item.Orcamento));
+    const usuario = await UsuarioLogado(req, res);
+    const result = await OrcamentoService.Alterar(usuario, req.body.item.Orcamento);
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
 })
-.delete(RouteDictionary.Orcamento, async (req: any, res) => {
+.delete(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
   try {
-    res.send(await OrcamentoService.Deletar(await UsuarioLogado(req, res), req.query.id));
+    const usuario = await UsuarioLogado(req, res);
+    const result = await OrcamentoService.Deletar(usuario, req.query.id);
+    res.send(result);
   }
   catch (err) {
     ErrorHandler.DefaultException(err, res)

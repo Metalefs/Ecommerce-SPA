@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 
 import { DynamicFormComponent } from '../../../../shared/components/dynamic-form/dynamic-form.component';
 import { TextboxQuestion } from '../../../../shared/components/dynamic-form/question-textbox';
 import { QuestionBase, DynFormQuestions } from '../../../../shared/components/dynamic-form/question-base';
 
 import { entities } from '@personalizados-lopes/data';
-import { SobreService } from '../../../../data/service/';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SobreState } from 'apps/app-web/src/app/data/store/state';
 import { Sobre } from 'libs/data/src/lib/classes';
