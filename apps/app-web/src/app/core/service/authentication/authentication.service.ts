@@ -33,8 +33,8 @@ export class AuthenticationService {
       return this.http
         .post<any>(
           `${environment.endpoint}` +
-            RouteDictionary.Usuario +
-            RouteDictionary.Registro,
+            RouteDictionary.Usuario.Usuario +
+            RouteDictionary.Usuario.Registro,
           { Usuario }
         )
         .pipe(
@@ -65,8 +65,8 @@ export class AuthenticationService {
     return this.http
       .post<any>(
         `${environment.endpoint}` +
-          RouteDictionary.Usuario +
-          RouteDictionary.RegistroTemporario,
+          RouteDictionary.Usuario.Usuario +
+          RouteDictionary.Usuario.RegistroTemporario,
         { Usuario }
       )
       .pipe(
@@ -95,8 +95,8 @@ export class AuthenticationService {
     return this.http
       .post<any>(
         `${environment.endpoint}` +
-          RouteDictionary.Usuario +
-          RouteDictionary.Login,
+          RouteDictionary.Usuario.Usuario +
+          RouteDictionary.Usuario.Login,
         { Email, Senha }
       )
       .pipe(
@@ -119,8 +119,8 @@ export class AuthenticationService {
     return this.http
       .post<any>(
         `${environment.endpoint}` +
-          RouteDictionary.Usuario +
-          RouteDictionary.RecuperarSenha,
+          RouteDictionary.Usuario.Usuario +
+          RouteDictionary.Usuario.RecuperarSenha,
         { email }
       )
       .pipe(

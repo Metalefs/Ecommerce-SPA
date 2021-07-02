@@ -32,6 +32,13 @@ export class ProdutoService {
         );
     }
 
+    FiltrarSemelhantes(id:number): Observable<PaginationResponse<Produto>> {
+        return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produtos.Semelhantes + `${id}`).pipe(
+            retry(3), // retry a failed request up to 3 times
+            catchError(this.ErrorHandler.handleError) // then handle the error
+        );
+    }
+
     Filtrar(id:any): Observable<Produto[]> {
       return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produtos.Produto + `${id}`).pipe(
           retry(3), // retry a failed request up to 3 times

@@ -48,10 +48,11 @@
   background-color: #fff;
   border-radius: 5%;
 
-  &.facebook a:hover {
+  &.facebook{ a:hover {
     background-color: #4267b2;
     color: #fff;
   }
+}
 
   &.instagram {
     background: none;

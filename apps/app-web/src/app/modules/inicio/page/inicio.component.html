@@ -3,19 +3,19 @@
     <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   </div>
 
-  <div class="bg p-t-1 mat-elevation-z4">
-    <div class="block has-background-light">
+  <div class="bg mat-elevation-z4">
+    <div class="block pt-4 has-background-light">
       <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
     </div>
 
     <div class="hero p-t-1">
       <div class="hero-body p-t-20">
-        <section data-aos="zoom-up" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
+        <section data-aos-offset="-10" data-aos="zoom-up" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
           <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
         </section>
       </div>
-      <div class="hero-foot of-y-scroll p-t-10 p-b-30 px-2">
-        <div data-aos="zoom-up" class="">
+      <div class="hero-foot of-y-scroll p-t-10 px-2">
+        <div data-aos="zoom-up" class="margin">
           <personalizados-lopes-produto-swiper
             [slidesPerView]="3"
           ></personalizados-lopes-produto-swiper>

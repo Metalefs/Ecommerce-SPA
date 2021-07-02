@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit {
     this.BlogService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
+          ({ key: c.payload.val(), ...c.payload.val() })
         )
       )
     ).subscribe(data => {

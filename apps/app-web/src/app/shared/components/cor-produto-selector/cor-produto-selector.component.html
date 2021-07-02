@@ -4,7 +4,7 @@
     ><strong>{{ Produto?.Cor?.nome || hovercolor?.nome }}</strong>
   </p>
   <div
-    class="columns is-multiline flex-sa"
+    class="columns is-multiline flex-sa px-2"
     [ngClass]="{ 'is-danger': ErroCor }"
     *ngIf="Produto?.Cores"
   >
@@ -28,14 +28,14 @@
       />
       <div
         title="{{ cor.nome }}"
-        class="ColorlabelBackground shadow-light button is-rounded"
+        class="ColorlabelBackground is-rounded"
         [ngClass]="{ 'is-focused selected': Produto?.Cor?.nome == cor.nome, 'is-danger': ErroCor }"
         (click)="setColor(cor)"
       >
         <label
           title="{{ cor.nome }}"
           [style.background]="cor.cor"
-          class="border"
+          class="border-light"
           for="cor{{ i }}"
         ></label>
       </div>

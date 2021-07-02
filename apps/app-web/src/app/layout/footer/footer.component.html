@@ -5,7 +5,7 @@
         <div class="margin w-full dis-flex flex-sa flex-m">
           <div data-aos="fade-up" class="columns is-gapless is-multiline is-vcentered">
             <div class="column pb-0 mt-2 w-full dis-flex flex-m flex-c">
-              <label for="nome" class="">ASSINE NOSSA NEWSLETTER</label>
+              <label for="nome" class="">Receba nossas notificações</label>
             </div>
             <div class="column">
               <div class="dis-flex flex-m">
@@ -147,7 +147,8 @@
           </div>
         </mat-toolbar-row>
         <div class="w-full px-3 flex-sa  py-2"  title="Desenvolvido por Devportable -Jackson Pires">
-          <p [innerHTML]="(Sobre$|async)?.Descricao + ' - CNPJ: ' + (Sobre$|async)?.CNPJ + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
+          <p class="dis-flex flex-w" [innerHTML]="(Sobre$|async)?.Descricao + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
+          CNPJ : <div [innerHTML]="(Sobre$|async)?.CNPJ"></div>
         </div>
       </div>
     </div>

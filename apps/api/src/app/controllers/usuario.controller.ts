@@ -8,7 +8,7 @@ import { ErrorHandler } from '../_handlers/error-handler';
 import { Usuario } from 'libs/data/src/lib/classes';
 
 const app = express();
-
+const user_route = '/usuario';
 app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     console.log(req.body);
     try{
@@ -19,7 +19,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     catch(ex){
       ErrorHandler.DefaultException(ex,res);
     }
-}).post(RouteDictionary.Usuario.Registro, (req,res, next) =>{
+}).post(RouteDictionary.Usuario.Registro.replace(user_route,''), (req,res, next) =>{
   try{
     console.log(req.body.Usuario);
     UsuarioService.create(req.body.Usuario)
@@ -29,7 +29,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-}).post(RouteDictionary.Usuario.RegistroTemporario, (req,res, next) =>{
+}).post(RouteDictionary.Usuario.RegistroTemporario.replace(user_route,''), (req,res, next) =>{
   try{
     console.log(req.body.Usuario);
     let user:Usuario = req.body.Usuario;
@@ -42,7 +42,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-}).put(RouteDictionary.Usuario.AtualizarConta, (req,res, next) =>{
+}).put(RouteDictionary.Usuario.AtualizarConta.replace(user_route,''), (req,res, next) =>{
   try{
     UsuarioService.getByToken(req.body.token).then(user => {
       if(user)
@@ -57,7 +57,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.put(RouteDictionary.Usuario.TrocarSenha, (req,res, next) =>{
+.put(RouteDictionary.Usuario.TrocarSenha.replace(user_route,''), (req,res, next) =>{
   try{
     console.log(req.body);
     UsuarioService.getByToken(req.body.token).then(user => {
@@ -73,7 +73,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.post(RouteDictionary.Usuario.RecuperarSenha, (req,res, next) =>{
+.post(RouteDictionary.Usuario.RecuperarSenha.replace(user_route,''), (req,res, next) =>{
   try{
     console.log(req.body.email);
     UsuarioService.recoverPassword(req.body.email)

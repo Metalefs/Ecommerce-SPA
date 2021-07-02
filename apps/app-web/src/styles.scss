@@ -218,9 +218,12 @@ p-megamenu > div > ul > li:nth-child(1){
   display: none;
 }
 
+.p-paginator{
+  border: 0 none;
+}
 .p-dataview .p-dataview-header {
   // background:transparent;
-  // border:none;
+  border:none;
   padding:none;
 }
 // .p-dataview-content{
@@ -279,6 +282,7 @@ li .p-menuitem-link span.p-menuitem-text {
 // .p-dataview .p-dataview-content {
 //   background: transparent;
 // }
+
 .swiper-container{
   &:hover > .swiper-button-prev{
     animation: showArr 1s ease forwards !important;
@@ -602,9 +606,9 @@ canvas{
 .mat-form-field-subscript-wrapper {
   margin-top: 0.1666666667em;
 }
-.mat-card-title {
-  font-weight: 600;
-}
+// .mat-card-title {
+//   font-weight: 600;
+// }
 .background-primary-warmer{
   background: $crayola;
 }
@@ -617,7 +621,7 @@ canvas{
 }
 .preco{
   font-size: 1.2em;
-  color:#fc5a5a;
+  color:#0d42f0;
   font-weight: 500;
 }
 .preco strong{

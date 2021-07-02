@@ -18,8 +18,8 @@ import { LerServico } from './data/store/actions/servico.actions';
 import { LerSobre } from './data/store/actions/sobre.actions';
 import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';
-import { IntegracoesService } from './shared/services';
 import { LerProduto } from './data/store/actions/produto.actions';
+import { IntegracoesService } from './data/service';
 
 declare let gtag: Function;
 declare let Mercadopago: any;
@@ -101,8 +101,8 @@ export class AppComponent {
     if (isPlatformBrowser(this.platform)) {
       this.spinner.show();
       this.LerServicosAPI();
-      this.integracoesService.Ler().subscribe(x => {
-        Mercadopago.setPublishableKey(x.public_key);
+      this.integracoesService.ObterChavePublicaMercadoPago().subscribe(public_key => {
+        Mercadopago.setPublishableKey(public_key);
       })
 
       // const element = document.createElement('link');

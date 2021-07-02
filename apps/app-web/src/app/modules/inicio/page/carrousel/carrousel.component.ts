@@ -21,6 +21,7 @@ export class CarrouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.ItemsCarousel$.subscribe(x=>{
+      console.log(x)
       if(x)
       x.forEach(img=>{
         this.imageUrls.push(img);

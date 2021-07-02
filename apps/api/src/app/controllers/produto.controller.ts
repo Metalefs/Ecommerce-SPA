@@ -6,15 +6,17 @@ import * as express from 'express';
 import { escapeRegex } from '../_handlers/regexescape';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
 import { UsuarioLogado } from '../_handlers/Authentication';
-import { Usuario } from 'libs/data/src/lib/classes';
+import { Produto, Usuario } from 'libs/data/src/lib/classes';
 
 const ProdutoRouter = express();
 
 let ProdutoService: Services.ProdutoService = new Services.ProdutoService();
 
 ProdutoRouter.get(RouteDictionary.Produtos.Produto, ListarProdutos)
+  .get(RouteDictionary.Produtos.EmDestaque, ListarProdutosEmDestaque)
   .get(RouteDictionary.Produtos.Produto + ":id", FiltrarPorId)
   .get(RouteDictionary.Produtos.Filtrar + ":page", FiltrarProdutos)
+  .get(RouteDictionary.Produtos.Semelhantes + ":id", FiltrarProdutosSemelhantes)
   .post(RouteDictionary.Produtos.Produto, CadastrarProduto)
   .post(RouteDictionary.Produtos.Gostar, GostarProduto)
   .post(RouteDictionary.Produtos.Rate, AvaliarProduto)
@@ -27,22 +29,30 @@ export {
   ProdutoRouter
 }
 
-function ListarProdutos(req, res){
+async function ListarProdutos(req, res){
   ProdutoService.Search({}, parseInt(req.query.limit) || 12, req.query.skip || 1)
     .then(result => res.send(result))
     .catch(err => ErrorHandler.DefaultException(err, res));
 }
 
-function FiltrarPorId(req, res){
+async function ListarProdutosEmDestaque(req, res){
+  let result = await ProdutoService.Filtrar({"Destaque": true});
+  console.log(result);
+  res.send(result);
+  // .then(result => res.send(result))
+  // .catch(err => ErrorHandler.DefaultException(err, res));
+}
+
+async function FiltrarPorId(req, res){
   if (req.params.id)
     ProdutoService.FiltrarPorId(req.params.id)
       .then(result => res.send(result))
-      .then(err => ErrorHandler.DefaultException(err, res))
+      .catch(err => ErrorHandler.DefaultException(err, res))
   else
     ErrorHandler.DefaultException("unknown", res);
 }
 
-function FiltrarProdutos(req, res){
+async function FiltrarProdutos(req, res){
   const limit = parseInt(req.query.limit) || 12; // results per page
   const page = req.params.page || 1; // Page
   let sQuery: FiltrarProdutoSearchQuery = {}
@@ -64,13 +74,40 @@ function FiltrarProdutos(req, res){
 
   if (req.query.modelo) sQuery.Modelo = new RegExp(decodeURI(escapeRegex(req.query.modelo)), 'gi');
 
-  if (req.query.tags) sQuery.Tags = new RegExp(decodeURI(escapeRegex(req.query.tags)), 'gi');
+  if (req.query.tags) sQuery.Tags = new RegExp(decodeURI(req.query.tags).replace('\\', '').split(',').join('|'), 'gi');
 
   ProdutoService.Search(sQuery, limit, page)
-    .then(x => res.send(x));
+    .then(x => res.send(x))
+    .catch(err => ErrorHandler.DefaultException(err, res))
 }
 
-function CadastrarProduto(req, res){
+async function FiltrarProdutosSemelhantes(req, res){
+
+  const limit = parseInt(req.query.limit) || 12; // results per page
+  const page = req.params.page || 1; // Page
+  const id = req.params.id;
+  const produto = await ProdutoService.FiltrarPorId(id) as Produto;
+  let sQuery: FiltrarProdutoSearchQuery = {}
+
+  if (req.query.categoria)
+    sQuery.NomeCategoria = new RegExp(+produto.NomeCategoria+'.*', 'gi');
+
+  //if (req.query.preco) sQuery.Preco = new RegExp(decodeURI(escapeRegex(req.query.preco)), 'gi');
+
+  //if (req.query.status) sQuery.Status = new RegExp(decodeURI(escapeRegex(req.query.status)), 'gi');
+
+  //if (req.query.marca) sQuery.Marca = new RegExp(decodeURI(escapeRegex(req.query.marca)), 'gi');
+
+  //if (req.query.modelo) sQuery.Modelo = new RegExp(decodeURI(escapeRegex(req.query.modelo)), 'gi');
+
+  if (req.query.tags) sQuery.Tags = new RegExp(produto.Tags.join(',').replace('\\', '').split(',').join('|'), 'gi');
+
+  ProdutoService.Search(sQuery, limit, page)
+    .then(x => res.send(x))
+    .catch(err => ErrorHandler.DefaultException(err, res))
+}
+
+async function CadastrarProduto(req, res){
   UsuarioLogado(req, res)
     .catch(ex => {
       ErrorHandler.AuthorizationException(ex, res);
@@ -84,7 +121,7 @@ function CadastrarProduto(req, res){
     })
 }
 
-function AtualizarProduto(req,res){
+async function AtualizarProduto(req,res){
   UsuarioLogado(req, res)
   .catch(ex => {
     ErrorHandler.AuthorizationException(ex, res);
@@ -98,7 +135,7 @@ function AtualizarProduto(req,res){
   })
 }
 
-function DeletarProduto(req,res){
+async function DeletarProduto(req,res){
   UsuarioLogado(req, res)
   .catch(ex => {
     ErrorHandler.AuthorizationException(ex, res);
@@ -112,24 +149,24 @@ function DeletarProduto(req,res){
   })
 }
 
-function GostarProduto(req,res){
+async function GostarProduto(req,res){
   ProdutoService.Gostar(req.body.id).then(result=> res.send(result))
   .catch(err => ErrorHandler.DefaultException(err, res))
 }
 
-function AvaliarProduto(req,res){
+async function AvaliarProduto(req,res){
   ProdutoService.Rate(req.body.id, req.body.rating)
   .then(result => res.send(result))
   .catch(err => ErrorHandler.DefaultException(err, res))
 }
 
-function IncrementarVenda(req,res){
+async function IncrementarVenda(req,res){
   ProdutoService.IncrementarVenda(req.body.id)
   .then(result => res.send(result))
   .catch(err => ErrorHandler.DefaultException(err, res));
 }
 
-function IncrementarVisualizacao(req,res){
+async function IncrementarVisualizacao(req,res){
   ProdutoService.IncrementarVisualizacoes(req.body.id)
   .then(result => res.send(result))
   .catch (err =>  ErrorHandler.DefaultException(err, res));

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProdutoService } from 'apps/app-web/src/app/data/service';
-import { CategoriaService, ImagemService } from 'apps/app-web/src/app/shared/services';
+import { CategoriaService, ImagemService } from 'apps/app-web/src/app/data/service';
 import { BlogPost } from 'libs/data/src/lib/classes';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';

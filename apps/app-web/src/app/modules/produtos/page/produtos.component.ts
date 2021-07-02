@@ -186,7 +186,7 @@ export class ProdutosComponent implements OnInit {
   atualizarFiltroAtivo(atualizarPreco: boolean = true) {
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter || '';
-    this.fQuery.Status = this.activeOrderStatus.id.toString();
+    this.fQuery.Status = this.activeOrderStatus?.id.toString() ?? "";
     this.fQuery.NomeCategoria = this.CategoriasAtivas.map(x => x.Nome).filter((value, index, self) => self.indexOf(value) === index).join("|") || "";
     if (this.page > 1)
       this.page = 1;

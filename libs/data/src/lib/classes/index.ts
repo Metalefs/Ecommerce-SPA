@@ -9,7 +9,7 @@ import { Servico } from './servico';
 import { Sobre } from './sobre';
 import { Tema } from './tema';
 import { EmailNotificacao } from './email-notificacao';
-import { Mensagem } from './mensagem';
+import { MensagemEmail } from './mensagem';
 import { Imagem } from './imagem';
 import { Carousel } from './carousel';
 import { ItemCarousel } from './item-carousel';
@@ -31,7 +31,7 @@ export {
     Sobre,
     Tema,
     EmailNotificacao,
-    Mensagem,
+    MensagemEmail as Mensagem,
     Imagem,
     Carousel,
     ItemCarousel,

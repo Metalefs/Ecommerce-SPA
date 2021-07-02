@@ -40,7 +40,7 @@ export let Services = [
   ServicoService,
   OrcamentoService,
   ComentarioProdutoService,
-   InformacoesContatoService,
+  InformacoesContatoService,
   UsuarioService,
   EmailNotificacaoService,
   CategoriaService,

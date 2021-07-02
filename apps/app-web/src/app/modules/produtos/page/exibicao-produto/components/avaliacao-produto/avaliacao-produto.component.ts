@@ -32,16 +32,19 @@ export class AvaliacaoProdutoComponent implements OnInit {
     private ComentarioProdutoService: ComentarioProdutoService) { }
 
   ngOnInit(): void {
-    this.LerComentariosProduto(this.Produto._id);
-
-    this.readonlyRating = localStorage.getItem(`rateproduto${this.Produto._id}`) == 'true' ? true: false;
+    setTimeout(()=>{
+      if(this.Produto){
+        this.LerComentariosProduto(this.Produto._id);
+        this.readonlyRating = localStorage.getItem(`rateproduto${this.Produto._id}`) == 'true' ? true: false;
+      }
+    },2000)
   }
 
   LerComentariosProduto(idProduto:string){
     this.ComentarioProdutoService.getAll().snapshotChanges().pipe(
       map(changes =>
         changes.map(c =>
-          ({ key: c.payload.key, ...c.payload.val() })
+          ({ key: c.payload.val(), ...c.payload.val() })
         )
       )
     ).subscribe(data => {

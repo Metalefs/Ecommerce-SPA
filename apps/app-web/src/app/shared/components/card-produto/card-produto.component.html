@@ -6,7 +6,7 @@
   <ng-container *ngIf="TrocaImagem; then troca; else naotroca"> </ng-container>
 
   <ng-template #troca>
-    <a>
+
       <mat-card
         (mouseenter)="
           this.imgProduto.classList.add('hide');
@@ -16,9 +16,8 @@
           this.imgProduto.classList.remove('hide');
           this.imgProduto.classList.add('show')
         "
-        routerLinkActive="router-link-active"
         matRipple
-        class="portfolio-item zoom of-y-scroll card border-light"
+        class="portfolio-item zoom of-y-scroll card"
         [style.flexDirection]="flex_direction"
       >
         <div #imgProduto matRipple class="dis-flex flex-w mx-2 my-2 w-full">
@@ -39,7 +38,19 @@
               }}</span
             >
           </span>
-
+          <div class="pos-absolute z-index-1 top-0 left-0">
+            <a
+              (click)="AdicionarAoOrcamento()"
+              routerLinkActive="router-link-active"
+              class="w-full button bor-0"
+              title="Adicionar a cesta"
+              style="height: 100%; text-decoration: none;"
+            >
+              <span class="flex-w flex-c-m"
+                ><span class="mr-1 pi pi-shopping-cart"></span
+              ></span>
+            </a>
+          </div>
           <slideshow
             mat-card-image
             *ngIf="imageUrls.length"
@@ -105,7 +116,7 @@
           <mat-card-actions class="w-full flex-c mx-0 px-0">
             <div class="w-full px-4">
               <div class="columns is-mobile is-vcentered">
-                <div class="column is-12">
+                <!-- <div class="column is-12">
                   <a
                     href="#topo"
                     class="w-full button is-dark is-small is-rounded shadow-light is-dark"
@@ -121,20 +132,8 @@
                   >
                     <span class="flex-w flex-c-m"> Veja mais</span>
                   </a>
-                </div>
-                <div class="column is-2 pos-absolute top-0 left-0">
-                  <a
-                    (click)="AdicionarAoOrcamento()"
-                    routerLinkActive="router-link-active"
-                    class="w-full button bor-0"
-                    title="Adicionar a cesta"
-                    style="height: 100%; text-decoration: none;"
-                  >
-                    <span class="flex-w flex-c-m"
-                      ><span class="mr-1 pi pi-shopping-cart"></span
-                    ></span>
-                  </a>
-                </div>
+                </div> -->
+
               </div>
             </div>
             <a
@@ -178,13 +177,13 @@
                 </p>
               </div>
             </div>
-            <!-- <a
+            <a
               title="Comprar"
               matRipple
               pageScroll
               href="#topo"
-              class="reset-a button shadow-light hoverable is-success m-lr-auto px-4"
-              [style.top]="flex_direction == 'row' ? '45%' : '28%'"
+              class="reset-a button shadow-light hoverable m-lr-auto px-4"
+              [style.top]="flex_direction == 'row' ? '45%' : '35%'"
               [style.width]="flex_direction == 'row' ? '45%' : '45%'"
               [routerLink]="[
                 '/produtos/' +
@@ -196,11 +195,11 @@
               mat-flat-button
               class="mat-accent"
               ><i class="pi pi-wallet"></i
-            ></a> -->
+            ></a>
           </div>
         </div>
-      </mat-card>
-    </a>
+    </mat-card>
+
     <figure
       class="image is-64x64 img-orcamento"
       [ngClass]="isOrcamento ? 'active' : ''"

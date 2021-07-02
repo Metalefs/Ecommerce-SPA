@@ -85,9 +85,6 @@ export class HeaderFooterComponent implements OnInit {
         elements.push(this.document_.nativeDocument.getElementById("yellow"));
         elements.push(this.document_.nativeDocument.getElementById("red"));
         elements.push(this.document_.nativeDocument.getElementById("blue"));
-        elements.push(this.document_.nativeDocument.getElementsByClassName("yellow"))
-        elements.push(this.document_.nativeDocument.getElementsByClassName("red"))
-        elements.push(this.document_.nativeDocument.getElementsByClassName("blue"))
         elements.forEach(el=>{
 
           if(el.length){
@@ -118,6 +115,7 @@ export class HeaderFooterComponent implements OnInit {
     }
     function toggleActiveArr(el){
       setTimeout(()=>{
+        if(el.forEach)
         el.forEach(item=>{
           if(item.classList.contains("active") && !item.classList.contains("inactive"))
             item.classList.remove("active");

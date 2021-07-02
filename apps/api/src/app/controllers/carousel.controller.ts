@@ -9,7 +9,7 @@ const CarouselRouter = express();
 let CarouselService: Services.CarouselService = new Services.CarouselService();
 
 CarouselRouter.get(RouteDictionary.Carousel, async (req: any, res) => {
-  CarouselService.LerPrimeiro()
+  CarouselService.LerUltimo()
   .then(result => res.send(result))
   .catch(err =>ErrorHandler.DefaultException(err, res));
 })

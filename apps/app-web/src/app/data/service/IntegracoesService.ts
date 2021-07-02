@@ -18,15 +18,23 @@ export class IntegracoesService {
         private AuthenticationService: AuthenticationService) { }
 
     Ler(): Observable<entities.Integracoes> {
-        return this.http.get<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes).pipe(
+        return this.http.get<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes.Raiz).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.ErrorHandler.handleError) // then handle the error
         );
     }
+
+    ObterChavePublicaMercadoPago(): Observable<entities.Integracoes> {
+      return this.http.get<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes.ChavePublicaMercadoPago).pipe(
+          retry(3), // retry a failed request up to 3 times
+          catchError(this.ErrorHandler.handleError) // then handle the error
+      );
+    }
+
     Editar(item: entities.Integracoes): Observable<entities.Integracoes> {
         let payload = this.AuthenticationService.tokenize({Integracoes:item});
         console.log(payload);
-        return this.http.put<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes,
+        return this.http.put<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes.Raiz,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
             catchError(this.ErrorHandler.handleError) // then handle the error
@@ -34,14 +42,14 @@ export class IntegracoesService {
     }
     Remover(id: string): Observable<any>{
       let token = this.AuthenticationService.tokenize({id});
-      return this.http.delete<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes + `?id=${id}`).pipe(
+      return this.http.delete<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes.Raiz + `?id=${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );
     }
     Incluir(item: entities.Integracoes): Observable<any> {
         let payload = this.AuthenticationService.tokenize({Integracoes:item});
-        return this.http.post<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes, {payload}).pipe(
+        return this.http.post<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes.Raiz, {payload}).pipe(
             retry(3),
             catchError(this.ErrorHandler.handleError)
         );

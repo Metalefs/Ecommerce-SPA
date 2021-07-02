@@ -25,36 +25,39 @@ export class ProdutoService extends BaseService {
   }
 
   async Gostar(id: string) {
-    return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      if (!x.Likes || isNaN(x.Likes)) Object.assign(x, { Likes: 1 });
-      return Repository.Edit(entities.Produto.NomeID, id, { Likes: x.Likes?++x.Likes:1 }).then(y => {
+    return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
+      if (!Object.keys(produto).includes('Likes')) Object.assign(produto, { Likes: 1 });
+
+      return Repository.Edit(entities.Produto.NomeID, id, { Likes: ++produto.Likes }).then(y => {
         return y;
       });
     });
   }
 
   async IncrementarVenda(id: string) {
-    return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      if (!x.Vendas || isNaN(x.Vendas)) Object.assign(x, { Vendas: 1 });
-      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: x.Vendas?++x.Vendas:1 }).then(y => {
+    return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
+      if (!Object.keys(produto).includes('Vendas')) Object.assign(produto, { Vendas: 1 });
+
+      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: ++produto.Vendas }).then(y => {
         return y;
       });
     });
   }
 
   async IncrementarVisualizacoes(id: string) {
-    return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      if (!x.Visualizacoes || isNaN(x.Visualizacoes)) Object.assign(x, { Visualizacoes: 1 });
-      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: x.Visualizacoes?++x.Visualizacoes:1 }).then(y => {
+    return this.FiltrarPorId(id).then((produto: Produto) => {
+      if (!Object.keys(produto).includes('Visualizacoes')) Object.assign(produto, { Visualizacoes: 1 });
+
+      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: ++produto.Visualizacoes }).then(y => {
         return y;
       });
     });
   }
 
   async Rate(id: string, rating: number) {
-    return this.Filtrar({ "_id": new ObjectId(id) }).then((x: Produto) => {
-      if (!x.Rating) Object.assign(x, { Rating: [rating] });
-      return Repository.Edit(entities.Produto.NomeID, id, { Rating: x.Rating.push(rating) }).then(y => {
+    return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
+      if (!produto.Rating) Object.assign(produto, { Rating: [rating] });
+      return Repository.Edit(entities.Produto.NomeID, id, { Rating: produto.Rating.push(rating) }).then(y => {
         return y;
       });
     });
