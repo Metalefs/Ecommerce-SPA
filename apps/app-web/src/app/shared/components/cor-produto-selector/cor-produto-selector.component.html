@@ -1,6 +1,6 @@
 <div>
   <p class="is-size-7">
-    <span class="is-size-7">Cor:</span
+    <span class="is-size-7">Cor: </span
     ><strong>{{ Produto?.Cor?.nome || hovercolor?.nome }}</strong>
   </p>
   <div
@@ -23,7 +23,7 @@
         alt="{{ cor.nome }}"
         [value]="Produto.Cor"
         id="cor{{ i }}"
-        [formControlName]="'cor'"
+
         [ngClass]="{ ' is-focused selected': Produto?.Cor?.nome == cor.nome, 'is-danger': ErroCor }"
       />
       <div

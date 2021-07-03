@@ -18,7 +18,44 @@ MercadoPagoController
     ErrorHandler.DefaultException(err, res)
   }
 })
+.post("/ipn", (req, res) => {
+  res.status(201).send();
+  console.log(req.query.id)
+})
+.post("/hook", (req, res) => {
+  res.status(201).send();
+  console.log(req.query.id)
+})
+.post("/process_payment", (req, res) => {
 
+  var payment_data = {
+    transaction_amount: Number(req.body.transactionAmount),
+    token: req.body.token,
+    description: req.body.description,
+    installments: Number(req.body.installments),
+    payment_method_id: req.body.paymentMethodId,
+    issuer_id: req.body.issuerId,
+    payer: {
+      email: req.body.payer.email,
+      identification: {
+        type: req.body.payer.identification.docType,
+        number: req.body.payer.identification.docNumber
+      }
+    }
+  };
+  console.log(payment_data);
+  // mercadopago.payment.save(payment_data)
+  //   .then(function(response) {
+  //     res.status(response.status).json({
+  //       status: response.body.status,
+  //       message: response.body.status_detail,
+  //       id: response.body.id
+  //     });
+  //   })
+  //   .catch(function(error) {
+  //     res.status(error.status).send(error);
+  //   });
+})
 .post(RouteDictionary.Checkout, async (req: any, res) => {
     try {
       let preference = mercadoPagoService.getPreference(req.body.orcamento);
@@ -27,14 +64,6 @@ MercadoPagoController
     catch (err) {
       ErrorHandler.DefaultException(err, res)
     }
-})
-
-.get('/feedback', function(request, response) {
-  response.json({
-   Payment: request.query.payment_id,
-   Status: request.query.status,
-   MerchantOrder: request.query.merchant_order_id
- })
 })
 
 .post(RouteDictionary.Refund, (req: any, res) => {

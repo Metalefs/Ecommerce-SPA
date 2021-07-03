@@ -5,6 +5,7 @@ import { ConfirmacaoComponent } from './page/confirmacao/confirmacao.component';
 import { DadosComponent } from './page/dados/dados.component';
 import { EnderecoComponent } from './page/endereco/endereco.component';
 import { ResultadoPagamentoComponent } from './page/resultado-pagamento/resultado-pagamento.component';
+import { PagamentoTransparenteComponent } from './page/pagamento-transparente/pagamento-transparente.component';
 export const routes: Routes = [
   {
     path: '',
@@ -27,6 +28,12 @@ export const routes: Routes = [
         path: "endereco",
         // canActivate: [AuthGuard],
         component: EnderecoComponent,
+        data: { animation:'isLeft', title: 'Checkout - Endereço de entrega' },
+      },
+      {
+        path: "pagamento-transparente",
+        // canActivate: [AuthGuard],
+        component: PagamentoTransparenteComponent,
         data: { animation:'isLeft', title: 'Checkout - Endereço de entrega' },
       },
       {

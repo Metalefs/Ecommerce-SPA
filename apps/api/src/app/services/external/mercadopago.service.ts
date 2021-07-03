@@ -118,7 +118,7 @@ export class MercadoPagoService {
       items: this.getItems(orcamento),
       payer: this.getPayer(orcamento),
       payment_methods: this.getPaymentMethod(orcamento, MP_AT),
-      //shipments: this.getShipments(orcamento),
+      shipments: this.getShipments(orcamento),
       back_urls: {
         success: "https://www.personalizadoslopes.com.br/checkout/success",
         failure: "https://www.personalizadoslopes.com.br/checkout/failure",
@@ -131,6 +131,7 @@ export class MercadoPagoService {
       // client_id: parseInt(MP_AT.client_id.toString()),
       // collector_id: parseInt(MP_AT.collector_id.toString()),
       // client_secret: MP_AT.client_secret,
+      notification_url: "https://personalizadoslopes-api.herokuapp.com/hook",
     };
   }
 
@@ -154,7 +155,7 @@ export class MercadoPagoService {
         id: produto.Produto._id,
         title: produto.Produto.Nome,
         description: produto.Produto.Subtitulo,
-        category_id: produto.Produto.Categoria.Nome,
+        category_id: "fashion",
         quantity: produto.Produto.Quantidade,
         currency_id: 'BRL',
         unit_price: produto.Produto.PrecoPromocional > 0 ?

@@ -23,15 +23,19 @@
 <ng-template #pedido>
 
   <section @fadeIn class="section ">
-    <div *ngIf="edit" class="has-text-left">
-      <h2 class="title is-size-5">Confira o seu pedido</h2>
-      <p class="subtitle is-size-6">Revise seus produtos e continue para inserir seus dados pessoais.</p>
-    </div>
+
+    <section *ngIf="edit" class="shopping-cart dark">
+      <div *ngIf="edit" class="has-text-left">
+        <h2 class="title is-size-5">Confira o seu pedido</h2>
+        <p class="subtitle is-size-6">Revise seus produtos e continue para inserir seus dados pessoais.</p>
+      </div>
+    </section>
+
     <div class="a-i-c">
 
       <div class=" w-full px-2 of-x-scroll ">
 
-        <table mat-table [dataSource]="dataSource" class=" of-x-scroll card table-striped shadow-light w-full">
+        <table mat-table [dataSource]="dataSource" class=" of-x-scroll table-striped  w-full">
 
           <ng-container matColumnDef="Produtos">
             <th @fadeIn mat-header-cell *matHeaderCellDef> Produtos </th>
@@ -183,15 +187,14 @@
           <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
           <tr @slideInOut mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
         </table>
+
         <div class="w-full pt-3">
-          <div class="columns">
-            <div class="column"></div>
-            <div class="column"></div>
-            <div class="column has-text-right">
-              <p class="titulo-produto px-3">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2) ||
-                  ''}}</span></p>
-            </div>
+          <div class="summary">
+            <h3>Carrinho</h3>
+            <div class="summary-item"><span class="text">Subtotal: </span><span class="price" id="cart-total"><span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2) ||
+              ''}}</span></span></div>
           </div>
+
         </div>
       </div>
 

@@ -1,24 +1,5 @@
-.is-pri-image{
-  transform: rotate(0deg);
-  position: relative;
-  top: 0;
-  z-index: 1;
-  right: 0;
-  &:hover{
-    // z-index: 2;
-  }
-}
-.is-sec-image{
-  transform: rotate(15deg);
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  border: 1px solid;
-  left: 4px;
-  &:hover{
-    z-index: 2;
-  }
-}
+
+
 main {
   margin: 4px 0 0px 0;
   background-color: #f6f6f6;
@@ -65,6 +46,52 @@ main {
 .shopping-cart .block-heading h3 {
   margin-bottom: 1.2rem;
   color: #009EE3;
+}
+
+.shopping-cart .items {
+  margin: auto;
+}
+
+.shopping-cart .items .product {
+  margin-bottom: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.shopping-cart .items .product .info {
+  padding-top: 0px;
+  text-align: left;
+}
+
+.shopping-cart .items .product .info .product-details .product-detail {
+  padding-top: 40px;
+  padding-left: 40px;
+}
+
+.shopping-cart .items .product .info .product-details h5 {
+  color: #009EE3;
+  font-size: 19px;
+}
+
+.shopping-cart .items .product .info .product-details .product-info {
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+.shopping-cart .items .product .info .product-details label {
+  width: 50px;
+  color: #009EE3;
+  font-size: 19px;
+}
+
+.shopping-cart .items .product .info .product-details input {
+  width: 80px;
+}
+
+.shopping-cart .items .product .info .price {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 22px;
 }
 
 .shopping-cart .summary {
@@ -126,10 +153,10 @@ main {
   }
 }
 
-/* Checkout Payment Section - Start */
-.container_payment {
-  display: none;
-}
+/* Card Payment Section - Start */
+// .container__payment {
+//   display: none;
+// }
 
 .payment-form {
   padding-bottom: 10px;
@@ -198,6 +225,11 @@ main {
   font-size: 0.9em;
 }
 
+.payment-form .products .item-description {
+  font-size: 0.8em;
+  opacity: 0.6;
+}
+
 .payment-form .products .item p {
   margin-bottom: 0.2em;
 }
@@ -229,7 +261,7 @@ main {
   text-transform: uppercase;
 }
 
-.payment-form button {
+.payment-form .payment-details button {
   margin-top: 0.6em;
   padding: 12px 0;
   font-weight: 500;
@@ -237,9 +269,10 @@ main {
   margin-bottom: 10px;
 }
 
-.payment-form .mercadopago-button {
-  width: 100%;
-  padding: 8px 0;
+.payment-form .date-separator {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 .payment-form a, .payment-form a:not([href]) {
@@ -254,13 +287,6 @@ main {
   color: #3483FA;
   cursor:pointer;
 }
-
-.input-background {
-  background-position: 98% 50%;
-  background-repeat: no-repeat;
-  background-color: #fff;
-}
-
 
 footer {
   padding: 2% 10% 6% 10%;
@@ -301,11 +327,61 @@ footer p a:hover {
 	}
 
 	.payment-form .payment-details {
-	  padding: 20px 40px;
+	  padding: 40px 40px 30px;
 	}
 
 	.payment-form .payment-details button {
 	  margin-top: 1em;
 	  margin-bottom: 15px;
   }
+
+  .footer_logo {
+    margin: 0 0 0 0;
+    width: 20%;
+    text-align: left;
+    position: absolute;
+  }
+
+  .footer_text {
+    margin: 0 0 0 65%;
+    width: 200px;
+    text-align: left;
+    position: absolute
+  }
+
+  footer p {
+    padding: 1px;
+    font-size: 13px;
+    color: RGBA(0,0,0,0.45);
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  footer {
+    padding: 5% 1% 15% 1%;
+    height: 55px;
+  }
+
+  footer p {
+    padding: 1px;
+    font-size: 11px;
+    margin-bottom: 0;
+  }
+  .footer_text {
+    margin: 0 0 0 45%;
+    width: 180px;
+    position: absolute
+  }
+
+  .footer_logo {
+    margin: 0 0 0 0;
+    position: absolute;
+  }
+
+}
+
+/* Payment Result Section - Start */
+.container__result {
+  display: none;
 }

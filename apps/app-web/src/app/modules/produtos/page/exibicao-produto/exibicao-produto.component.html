@@ -1,6 +1,7 @@
 <div class="has-background-light bbr">
   <personalizados-lopes-exibicao-breadcrumb *ngIf="Produto"
     [Produto]="Produto"
+    [items]="items"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
   <section class="hero is-small pt-0 is-white btr">
@@ -55,7 +56,7 @@
                   action=""
                   method="post"
                 >
-                  <div class="columns m-l-1 m-r-1 shadow-light container is-vcentered is-multiline">
+                  <div class="columns m-l-1 m-r-1 container is-vcentered is-multiline">
                     <div class="column mh-full is-4">
                       <personalizados-lopes-selecao-quantidade-produto
                         [Produto]="Produto"
@@ -82,6 +83,19 @@
                     *ngIf="Produto?.Status != statusProduto.esgotado"
                     class="txt-left pt-4"
                   >
+                    <div class="pos-relative z-index-1 top-0 left-0">
+                      <a
+                        (click)="AdicionarAoOrcamento()"
+                        routerLinkActive="router-link-active"
+                        class="w-full button is-small is-rounded bor-0"
+                        title="Adicionar a cesta"
+                        style="height: 100%; text-decoration: none;"
+                      >
+                        <span class="flex-w flex-c-m"
+                          ><span class="mr-1 pi pi-shopping-cart"></span
+                        ></span>
+                      </a>
+                    </div>
                     <div>
                       <personalizados-lopes-bloco-pagamento-produto
                         [Produto]="Produto"
@@ -163,7 +177,7 @@
     </div>
   </div>
 
-  <div class=" margin py-4 txt-center">
+  <div class="of-x-hidden margin py-4 txt-center">
     <mat-divider></mat-divider>
 
     <div class="hero is-medium ">
@@ -178,7 +192,7 @@
 
     <mat-divider class=" is-hidden-desktop"></mat-divider>
 
-    <div class="hero is-medium is-hidden-desktop">
+    <div class="hero is-fullheight is-hidden-desktop">
       <div class="hero-body">
         <div data-aos="fade-up" class=" mb-3" *ngIf="Produto?._id">
           <personalizados-lopes-produto-swiper
@@ -193,7 +207,7 @@
 
     <mat-divider></mat-divider>
 
-    <div class="hero is-medium is-hidden-desktop" *ngIf="Blog">
+    <div class="hero is-fullheight is-hidden-desktop" *ngIf="Blog">
       <div data-aos="fade-up" class="hero-body">
         <personalizados-lopes-blog-swiper
           [TAGS]="Produto?.Tags"

@@ -10,16 +10,13 @@ import { MenuItem } from 'primeng/api';
 export class ExibicaoBreadcrumbComponent implements OnInit {
   @Input() Produto:Produto;
 
-  items: MenuItem[];
+  @Input() items: MenuItem[];
   home: MenuItem;
   constructor() { }
 
   ngOnInit(): void {
     this.home = {icon: 'pi pi-home', url:"/produtos"};
-    this.items = [
-      {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria=" + this.Produto?.NomeCategoria},
-      {label:this.Produto?.Nome, styleClass:'desb'}
-    ];
+
   }
 
 }

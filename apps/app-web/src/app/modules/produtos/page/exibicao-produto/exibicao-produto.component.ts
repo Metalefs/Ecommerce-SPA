@@ -28,6 +28,7 @@ import { BlogPostService } from '../../../blog/blog.service';
 
 import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper'
 import { Gallery } from 'ng-gallery';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -58,6 +59,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
   selected = new FormControl(0);
   produtoForm:FormGroup;
   CEP:string="";
+
+  items: MenuItem[];
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     private activeRoute:ActivatedRoute,
@@ -110,7 +113,10 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       cor:[produto?.Cor,Validators.required],
       cep:[this.CEP],
     })
-
+    this.items = [
+      {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria=" + this.Produto?.NomeCategoria},
+      {label:this.Produto?.Nome, styleClass:'desb'}
+    ];
     if(produto?.Quantidade == 0)
       produto.Quantidade = produto.QuantidadeMinima;
 
@@ -193,17 +199,15 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         position: { rowStart: "0" },
       })
       dialogref.afterClosed().subscribe(x=>{
-        if(x.Canvas.objects){
-          if(x.Canvas.objects){
-            if(!this.orcamentoId){
-              this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
-                this.orcamentoId = y.codOrcamento;
-              });
-            }else{
-              this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
-            }
-            this.navegarParaCheckout();
+        if(x?.Canvas?.objects){
+          if(!this.orcamentoId){
+            this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
+              this.orcamentoId = y.codOrcamento;
+            });
+          }else{
+            this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
           }
+          this.navegarParaCheckout();
         }
       })
     }

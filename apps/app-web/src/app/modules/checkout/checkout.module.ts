@@ -18,8 +18,9 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultadoPagamentoComponent } from './page/resultado-pagamento/resultado-pagamento.component';
+import { PagamentoTransparenteComponent } from './page/pagamento-transparente/pagamento-transparente.component';
 @NgModule({
-  declarations: [CheckoutComponent, ConfirmacaoComponent, DadosComponent, EnderecoComponent, ResultadoPagamentoComponent],
+  declarations: [CheckoutComponent, ConfirmacaoComponent, DadosComponent, EnderecoComponent, ResultadoPagamentoComponent, PagamentoTransparenteComponent],
   imports: [
     CheckoutPageRoutes,
     CommonModule,
