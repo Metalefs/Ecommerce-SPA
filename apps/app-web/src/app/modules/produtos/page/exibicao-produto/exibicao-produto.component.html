@@ -156,30 +156,7 @@
     </div>
   </section>
 
-  <div data-aos="zoom-up">
-    <div class="has-background-light bbr">
-      <personalizados-lopes-estatisticas-produto
-        [Produto]="Produto"
-      ></personalizados-lopes-estatisticas-produto>
-    </div>
-
-    <div class="w-full bg flex-w flex-sa px-6 my-2">
-      <a [routerLink]="'/produtos'" class="has-text-light">
-        <button mat-icon-button>
-          <mat-icon>chevron_left</mat-icon>
-        </button>
-      </a>
-      <a [routerLink]="'/showcase'" class="has-text-light">
-        <button mat-icon-button>
-          <mat-icon>collections</mat-icon>
-        </button>
-      </a>
-    </div>
-  </div>
-
   <div class="of-x-hidden margin py-4 txt-center">
-    <mat-divider></mat-divider>
-
     <div class="hero is-medium ">
       <div class="hero-body">
         <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
@@ -192,11 +169,10 @@
 
     <mat-divider class=" is-hidden-desktop"></mat-divider>
 
-    <div class="hero is-fullheight is-hidden-desktop">
+    <div class="hero is-medium is-hidden-desktop">
       <div class="hero-body">
-        <div data-aos="fade-up" class=" mb-3" *ngIf="Produto?._id">
+        <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
           <personalizados-lopes-produto-swiper
-            class="z-index-1"
             [slidesPerView]="3"
             [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
           >
@@ -213,6 +189,26 @@
           [TAGS]="Produto?.Tags"
           [Blog]="Blog"
         ></personalizados-lopes-blog-swiper>
+      </div>
+    </div>
+    <div data-aos="zoom-up">
+      <div class="has-background-light bbr">
+        <personalizados-lopes-estatisticas-produto
+          [Produto]="Produto"
+        ></personalizados-lopes-estatisticas-produto>
+      </div>
+
+      <div class="w-full bg flex-w flex-sa px-6 my-2">
+        <a [routerLink]="'/produtos'" class="has-text-light">
+          <button mat-icon-button>
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+        </a>
+        <a [routerLink]="'/showcase'" class="has-text-light">
+          <button mat-icon-button>
+            <mat-icon>collections</mat-icon>
+          </button>
+        </a>
       </div>
     </div>
 

@@ -1,33 +1,38 @@
 <div id="Contato" class="hero">
 
-  <iframe data-aos="zoom-up" class="w-full vh-25 mb-0 pb-0" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
   <div class="hero-body pt-0 pl-20 pr-20 has-background-white">
-    <div class="margin">
-
-      <h2 class="titulo is-uppercase my-2">Quer uma solução personalizada para o seu negócio?</h2>
+    <div class="margin section">
+      <div class="box">
+        <h2 class="header">ENDEREÇO</h2>
+        <iframe data-aos="zoom-up" class="w-full vh-25 mb-0 pb-0" src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=Rua%20Kennedy%20Sapori%20N.%20681.%20Floren%C3%A7a%20-%20Ribeir%C3%A3o%20das%20Neves+(Empresa)&amp;ie=UTF8&amp;t=h&amp;z=16&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+      </div>
+      <!-- <h2 class="titulo is-uppercase my-2">Quer uma solução personalizada para o seu negócio?</h2> -->
+      <h2 class="header titulo is-uppercase my-2">Preencha os dados abaixo para entrar em contato conosco.</h2>
       <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
 
       <ng-template #Produtos>
-        <h2 class="titulo is-uppercase my-2">Preencha os dados abaixo para entrar em contato conosco.</h2>
-        <mat-divider></mat-divider>
-        <div class="columns mt-4 mb-6 reverse-col-mobile " data-aos="flip-left">
-          <div class="column bg-contato  has-text-centered">
-            <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
+        <div class="columns mt-4 mb-6 reverse-col-mobile ">
+          <div class="column bg-contato  has-text-centered"  data-aos="zoom-up">
+            <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
+            <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>>
           </div>
           <div class="column ">
-            <personalizados-lopes-formulario [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
-            <button mat-raised-button (click)="EnviarOrcamento()" class="w-full is-pulled-right my-3 wp-btn has-text-white submit">Enviar</button>
+            <div class="columns">
+              <div class="column-is-12"  data-aos="zoom-up">
+                <personalizados-lopes-formulario [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
+                <button mat-raised-button (click)="EnviarOrcamento()" class="w-full is-pulled-right my-3 wp-btn has-text-white submit">Enviar</button>
+              </div>
+            </div>
           </div>
         </div>
-        <personalizados-lopes-card-contato class="box"></personalizados-lopes-card-contato>
       </ng-template>
 
       <ng-template #Padrao>
-        <div class="columns is-vcentered" data-aos="flip-left">
-          <div class="column  bg-contato">
+        <div class="columns is-vcentered">
+          <div class="column"  data-aos="zoom-up">
             <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
           </div>
-          <div class="column">
+          <div class="column"  data-aos="zoom-up">
             <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
             <div class="w-full flex-w flex-m">
               <button mat-flat-button (click)="EnviarOrcamento()" class="w-full wp-btn has-text-white submit">Enviar</button>

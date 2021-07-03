@@ -7,7 +7,7 @@
 
 </div>
 
-<div class="wrapper" id="topo">
+<div class="wrapper has-background-dark" id="topo">
 
   <div id="nav-menu" [ngClass]="NavState.open? 'is-active': ''" class="">
     <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
@@ -19,7 +19,7 @@
     [@routeAnimations]="prepareRoute(outlet)"
     [ngClass]="NavState.open? 'main is-active': ''"
     (mouseover)="CloseNav()">
-    <section class="split-home">
+    <section class="split-home ">
       <personalizados-lopes-header></personalizados-lopes-header>
       <div class="main-content has-background-light">
         <router-outlet #outlet="outlet"></router-outlet>

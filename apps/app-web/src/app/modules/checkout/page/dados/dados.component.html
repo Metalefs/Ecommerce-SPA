@@ -1,6 +1,6 @@
 <section [@cardFlip]="state" class="section py-0">
   <p>Comprando {{(Orcamento$|async)?.Produto?.length}} item(s) no valor de
-    R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}} reais</p>
+    R${{(Orcamento$|async)?.Preco.toFixed(2) || ''}}</p>
     <form action="" method="post" [formGroup]="dadosForm">
   <div class="columns is-multiline">
 

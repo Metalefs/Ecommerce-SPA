@@ -12,5 +12,7 @@ export class EstatisticasProdutoComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  alert(msg){
+    window.alert(msg)
+  }
 }

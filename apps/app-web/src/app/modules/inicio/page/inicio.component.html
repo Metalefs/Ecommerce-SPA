@@ -9,7 +9,7 @@
     </div>
 
     <div class="hero p-t-1">
-      <div class="hero-body p-t-20">
+      <div class="hero-body p-t-1">
         <section data-aos-offset="-10" data-aos="zoom-up" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
           <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
         </section>

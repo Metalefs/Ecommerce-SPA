@@ -105,7 +105,7 @@
                 [routerLink]="link.href"
                 pageScroll
                 routerLinkActive="active-nav"
-                class="nav-link navbar-item flex-m dis-flex{{
+                class="nav-link flex-m dis-flex{{
                   link.name == 'inicio' ? 'inicio' : ''
                 }}"
               >
@@ -125,11 +125,11 @@
                   link.name == 'Todos' ? 'Produtos' : link.name
                 }}</span>
               </a>
-              <div class="dropdown-content has-background-white box">
+              <div class="dropdown-content has-background-white">
                 <a
                   class="nav-link is-capitalized {{
                     link.name == 'inicio' ? 'inicio' : ''
-                  }} of-x-scroll"
+                  }} px-2 of-x-scroll"
                   pageScroll
                   routerLinkActive="Active"
                   href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
@@ -148,7 +148,7 @@
 
     <div class="column">
       <div class="columns is-vcentered is-gapless is-mobile">
-        <div class="column is-6 is-hidden-mobile">
+        <div class="column is-7 is-hidden-mobile">
           <div class="dropdown">
             <p class="nav-link" style="border: none !important;">
               <button class="w-full has-text-centered py-4" title="Perfil">
@@ -188,7 +188,7 @@
             </div>
           </div>
         </div>
-        <div class="column is-6 ">
+        <div class="column is-5 ">
           <div class="flex-r">
             <div class="columns is-gapless is-multiline is-vcentered">
               <div class="column is-12 mr-0 pr-0">

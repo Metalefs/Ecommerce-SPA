@@ -25,7 +25,7 @@
   <section @fadeIn class="section ">
 
     <section *ngIf="edit" class="shopping-cart dark">
-      <div *ngIf="edit" class="has-text-left">
+      <div *ngIf="edit" class="has-text-left summary">
         <h2 class="title is-size-5">Confira o seu pedido</h2>
         <p class="subtitle is-size-6">Revise seus produtos e continue para inserir seus dados pessoais.</p>
       </div>
@@ -177,7 +177,7 @@
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="Subtotal" class="is-hidden-touch">
+          <ng-container matColumnDef="Subtotal" class="is-hidden-touch summary">
             <th mat-header-cell *matHeaderCellDef class="is-hidden-touch"> Subtotal</th>
             <td mat-cell *matCellDef="let element" class="is-hidden-touch">
               <span class="preco">R$ <span>{{CalcularPreco(element)}}</span></span>
@@ -199,6 +199,9 @@
       </div>
 
       <div *ngIf="edit" class="w-full">
+        <button [routerLink]="['/checkout/dados/']" [disabled]="!checkoutService.getValid()" pageScroll href="#TOPO"
+        routerLinkActive="router-link-active" class="button is-success w-full"><span
+        class="nunitoParagraphy16 has-text-white">Finalizar orçamento</span></button>
         <a href="#topo" class="py-3" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
           <button class="py-3 pb-3 subtitle w-full">
             <span
@@ -207,9 +210,6 @@
             produtos</span>
           </button>
         </a>
-        <button [routerLink]="['/checkout/dados/']" [disabled]="!checkoutService.getValid()" pageScroll href="#TOPO"
-          routerLinkActive="router-link-active" class="button is-success w-full"><span
-            class="nunitoParagraphy16 has-text-white">Finalizar orçamento</span></button>
       </div>
     </div>
 

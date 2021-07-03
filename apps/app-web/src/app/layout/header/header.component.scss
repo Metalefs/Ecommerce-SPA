@@ -16,9 +16,10 @@
 .navbar {
   // background: rgba($color: white, $alpha: 0.99);
   // background: #f1f2faeb;
-  margin-top: 0px;
   z-index: 11;
   &:nth-child(1){
+    margin-top: 30px;
+    margin-bottom: 0 !important;
     box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
     background: $background-light;
     background: #FFFFFF;
