@@ -50,6 +50,8 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
 
 import { EditarEstampaComponent } from './page/editar-estampa/editar-estampa.component';
 import { CardProdutoModule } from '../../shared/components/card-produto/card-produto.module';
+import { EditarEstampaDialogComponent } from './page/editar-estampa/dialogs/editar-estampa-dialog/editar-estampa-dialog.component';
+import { CriarEstampaComponent } from './page/editar-estampa/components/criar-estampa/criar-estampa.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { CardProdutoModule } from '../../shared/components/card-produto/card-pro
     EditarIntegracaoDialogComponent,
     OrcamentoDetailComponent,
     EditarEstampaComponent,
+    EditarEstampaDialogComponent,
+    CriarEstampaComponent,
   ],
   imports: [
     CommonModule,

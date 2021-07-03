@@ -11,7 +11,11 @@ export let RouteDictionary = {
       EmDestaque: rota_produto+"/destaques/",
       Semelhantes: rota_produto+"/semelhantes/",
     },
+    Categoria:"/categoria/",
 
+    Estampa: {
+      Raiz: "/estampa/",
+    },
     InformacoesContato:"/informacoesContato/",
     Cliente:"/cliente/",
     Sobre:"/sobre/",
@@ -22,7 +26,6 @@ export let RouteDictionary = {
       Pedidos:"/pedido/",
     },
 
-    Categoria:"/categoria/",
     Feedback:"/feedback/",
     Tema:"/tema/",
 

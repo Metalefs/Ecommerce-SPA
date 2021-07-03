@@ -12,9 +12,10 @@ import { MensagemService } from './MensagemService';
 import { ImagemService } from './ImagemService';
 import { ItemCarouselService } from './ItemCarouselService';
 import { CarouselService } from './CarouselService';
+import { EstampaService } from './EstampaService';
+import { IntegracoesService } from './IntegracoesService';
 import { ComentarioProdutoService } from './comentarios/comentarioProdutoService';
 
-import { IntegracoesService } from './IntegracoesService';
 export {
   SobreService,
   ProdutoService,
@@ -30,8 +31,9 @@ export {
   MensagemService,
   ImagemService,
   ItemCarouselService,
+  EstampaService,
   CarouselService,
-  IntegracoesService
+  IntegracoesService,
 }
 
 export let Services = [
@@ -49,6 +51,7 @@ export let Services = [
   MensagemService,
   ImagemService,
   ItemCarouselService,
+  EstampaService,
   CarouselService,
-  IntegracoesService
+  IntegracoesService,
 ]

@@ -76,7 +76,6 @@ async function FiltrarProdutos(req, res){
 
   if (req.query.tags) sQuery.Tags = new RegExp(decodeURI(req.query.tags).replace('\\', '').split(',').join('|'), 'gi');
 
-  console.log(sQuery);
   ProdutoService.Search(sQuery, limit, page)
     .then(x => res.send(x))
     .catch(err => ErrorHandler.DefaultException(err, res))

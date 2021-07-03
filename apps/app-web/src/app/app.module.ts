@@ -26,7 +26,7 @@ import { CookieLawModule } from 'angular2-cookie-law';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { States } from './data/store/state';
-import { OrcamentoService, ProdutoService, EmailNotificacaoService, ImagemService, ItemCarouselService, SobreService } from './data/service';
+import { OrcamentoService, ProdutoService, EmailNotificacaoService, ImagemService, ItemCarouselService, SobreService, EstampaService } from './data/service';
 import { CEPService, EstadoService } from './shared/services'
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -88,6 +88,7 @@ import { PageScrollService } from './shared/services/page-scroll.service';
     { provide: EmailNotificacaoService },
     { provide: ItemCarouselService },
     { provide: ImagemService },
+    { provide: EstampaService },
     { provide: CEPService },
     { provide: EstadoService },
     { provide: ErrorHandler },
