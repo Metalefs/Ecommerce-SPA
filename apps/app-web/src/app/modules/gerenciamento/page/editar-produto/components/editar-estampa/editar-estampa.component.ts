@@ -13,7 +13,7 @@ import { EditarEstampaService } from './editar-estampa.service';
 })
 export class EditarEstampaComponent implements OnInit {
 
-  @Input() Estampa:Estampa = new Estampa("",new Imagem("","",""),0);
+  @Input() Estampa:Estampa = new Estampa("",[new Imagem("","","")],0);
   Estampas:Estampa[] = [];
   constructor(
     protected store: Store,
@@ -22,7 +22,7 @@ export class EditarEstampaComponent implements OnInit {
     protected estampaService: EditarEstampaService) { }
 
   ngOnInit(): void {
-    this.estampaService.Ler().subscribe(estampas => this.Estampas = estampas);
+    this.Atualizar();
   }
 
   async Editar(estampa) {
@@ -36,8 +36,13 @@ export class EditarEstampaComponent implements OnInit {
       if(estampa != undefined){
         await (await this.estampaService.EditarEstampa(estampa)).subscribe(result=>{
           this.snackBar.open("Estampa editada com sucesso", "Fechar", {verticalPosition:"top"});
+          this.Atualizar();
         })
       }
     });
+  }
+
+  Atualizar(){
+    this.estampaService.Ler().subscribe(estampas => this.Estampas = estampas);
   }
 }

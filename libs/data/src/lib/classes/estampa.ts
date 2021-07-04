@@ -6,7 +6,7 @@ export class Estampa extends MongoDocument implements entidadeBase {
   IdCategoria:string;
   Nome:string;
   Preco:number;
-  Imagem:Imagem;
+  Imagem:Imagem[];
   Descricao?:string;
   Posicao?:string;
   Destaque?:string;
@@ -15,7 +15,7 @@ export class Estampa extends MongoDocument implements entidadeBase {
   static readonly NomeID:string = "Estampa";
   constructor(
     IdCategoria:string,
-    Imagem:Imagem,
+    Imagem:Imagem[],
     Preco:number,
     FileList?:FileList
     ){

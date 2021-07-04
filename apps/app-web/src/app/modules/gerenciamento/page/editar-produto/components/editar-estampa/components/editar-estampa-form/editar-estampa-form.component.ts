@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
@@ -12,6 +12,7 @@ import { EditarEstampaService } from '../../editar-estampa.service';
 })
 export class EditarEstampaFormComponent implements OnInit {
   @Input() Estampa:Estampa;
+  @Output() onUpdate:EventEmitter<any> = new EventEmitter<any>();
   estampaForm:FormGroup;
   categorias: Categoria[] = [];
   fileNames:string = "";
@@ -61,17 +62,17 @@ export class EditarEstampaFormComponent implements OnInit {
 
   UploadFiles(files){
     this.estampaService.UploadFile(files, this.estampaForm.getRawValue() as Estampa, this.fileNames);
-    getPreviewURL(files,this.fileNames,(res,name)=>{
+    getPreviewURL(files, this.fileNames, (res,name)=>{
       this.Estampa.Base64 = res;
-      this.estampaForm.get("Base64").setValue(res);
+      this.estampaForm.get("FileList").setValue(files.target.files);
       this.fileNames = name;
     })
   }
 
   async Criar() {
-    console.log(this.estampaForm.getRawValue());
-    // await (await this.estampaService.CriarEstampa(this.estampaForm.getRawValue())).subscribe(result=>{
-    //   this.snackBar.open("Estampa criada com sucesso", "Fechar", {verticalPosition:"top"});
-    // })
+    await (await this.estampaService.CriarEstampa(this.estampaForm.getRawValue())).subscribe(result=>{
+      this.snackBar.open("Estampa criada com sucesso", "Fechar", {verticalPosition:"top"});
+      this.onUpdate.emit();
+    })
   }
 }

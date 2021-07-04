@@ -13,6 +13,7 @@ import { ItemCarouselRouter } from './itemcarousel.controller';
 import { CarouselRouter } from './carousel.controller';
 import { MercadoPagoController } from './mercadopago.controller';
 import { IntegracoesRouter } from './integracoes.controller';
+import { EstampaRouter } from './estampa.controller';
 
 export let Routers = [
     CategoriaRouter,
@@ -38,6 +39,8 @@ export let Routers = [
     ImagemRouter,
 
     ItemCarouselRouter,
+
+    EstampaRouter,
 
     CarouselRouter,
 

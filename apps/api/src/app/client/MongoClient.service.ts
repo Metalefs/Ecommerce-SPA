@@ -26,7 +26,6 @@ export class MongoClientService {
           if (err) {
             reject(err);
           }
-          console.log("Inserido " + res.insertedCount + " " + collection + " : | " + new Date());
           resolve(await self.FindOne(collection, { _id: value._id }));
         }));
       });
@@ -89,7 +88,6 @@ export class MongoClientService {
           if (err) {
             reject(err);
           }
-          console.log("Mongo FindOne", query, result[0]);
           resolve(result[0])
         }));
       });

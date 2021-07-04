@@ -5,6 +5,7 @@
     "module": "esnext",
     "types": ["jest", "node"]
   },
+  "experimentalDecorators": true,
   "files": ["src/test-setup.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

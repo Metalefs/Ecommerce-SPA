@@ -24,9 +24,7 @@ import { FiltrarEditarProdutoComponent } from './components/filtrar-editar-produ
 import { EditarCategoriaComponent } from './components/editar-categoria/editar-categoria.component';
 import { CriarCategoriaDialogComponent } from './components/editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 
-import { EditarEstampaComponent } from './components/editar-estampa/editar-estampa.component';
-import { EditarEstampaDialogComponent } from './components/editar-estampa/dialogs/editar-estampa-dialog/editar-estampa-dialog.component';
-
+import { EditarEstampaModule } from './components/editar-estampa/editar-estampa.module';
 
 @NgModule({
   declarations: [
@@ -35,9 +33,7 @@ import { EditarEstampaDialogComponent } from './components/editar-estampa/dialog
     EditarProdutoDialogComponent,
     FiltrarEditarProdutoComponent,
     EditarCategoriaComponent,
-    CriarCategoriaDialogComponent,
-    EditarEstampaComponent,
-    EditarEstampaDialogComponent,
+    CriarCategoriaDialogComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +49,7 @@ import { EditarEstampaDialogComponent } from './components/editar-estampa/dialog
     FormsModule,
     EditorModule,
     EditarProdutoFormModule,
+    EditarEstampaModule,
     CardProdutoModule,
   ],
   exports: [

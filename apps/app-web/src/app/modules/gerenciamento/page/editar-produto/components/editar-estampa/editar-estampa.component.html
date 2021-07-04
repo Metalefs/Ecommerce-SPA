@@ -2,24 +2,36 @@
   <mat-card class="card">
 
     <mat-card-title class="title is-5 is-uppercase">Cadastrar estampas</mat-card-title>
-    <mat-card-header>
-    </mat-card-header>
+
     <mat-card-content class="card-body">
       <personalizados-lopes-editar-estampa-form
         [Estampa]="Estampa"
-      ></personalizados-lopes-editar-estampa-form>
+        (onUpdate)="Atualizar()"
+        >
+      </personalizados-lopes-editar-estampa-form>
     </mat-card-content>
 
   </mat-card>
 
-  <div class="box">
+  <div class="section">
     <div class="columns">
-      <div class="column" *ngFor="let estampa of Estampas">
-        <figure>
-          <img src="{{estampa.Image}}" alt="">
-        </figure>
+      <div class="column is-4">
+        <mat-card *ngFor="let estampa of Estampas">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{estampa.Nome}}</mat-card-title>
+            <mat-card-subtitle>{{''}}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{estampa?.Imagem[0]?.Src}}" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <p></p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
       </div>
     </div>
   </div>
-
 </div>

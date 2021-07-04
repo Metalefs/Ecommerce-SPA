@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../core/service/authentication/authent
 
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
-import { Estampa } from 'libs/data/src/lib/classes';
+import { Estampa, Imagem } from 'libs/data/src/lib/classes';
 import { ErrorHandler } from '../../core/error.handler';
 
 import { ImagemService } from './ImagemService';
@@ -90,13 +90,13 @@ export class EstampaService {
   }
 
   async SalvarImagem(item: Estampa): Promise<Estampa> {
-    if (item.FileList) {
-      for (let i = 0; i <= item.FileList.length; i++) {
+    if (item.FileList.length) {
+      for (let i = 0; i <= item.FileList.length; i++)
         if (item.FileList[i])
           await this.servicoImagem.storeImage(PathDictionary.estampas, item.FileList[i]).then(async x => {
-            item.Imagem[i] = await this.servicoImagem.getRef((await x).metadata.fullPath, item.Nome, "Estampa");
+            let src = await this.servicoImagem.getRef((await x).metadata.fullPath, item.Nome, "Estampa");
+            item.Imagem[i] = new Imagem(src,item.Nome,'Estampa');
           })
-      }
       return item;
     }
   }

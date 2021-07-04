@@ -15,7 +15,7 @@ EstampaRouter.get(RouteDictionary.Estampa.Raiz, FiltrarEstampa)
   .catch(ex => ErrorHandler.AuthorizationException(ex, res))
   .then(usuario => {
     if (usuario)
-    EstampaService.Inserir(usuario, req.body.item.InformacoesContato)
+    EstampaService.Inserir(usuario, req.body.item.Estampa)
         .then(result => res.send(result))
         .catch(err => ErrorHandler.DefaultException(err, res))
   })

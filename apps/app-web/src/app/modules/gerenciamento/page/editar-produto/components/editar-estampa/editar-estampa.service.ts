@@ -25,10 +25,11 @@ export class EditarEstampaService {
       fileNames+=Estampa.FileList[i].name+',';
   }
 
-  CriarEstampa(estampa:Estampa){
-    return this.servicoEstampa.SalvarImagem(estampa).then(estampaComImagem => {
-      return this.servicoEstampa.Incluir(estampaComImagem);
-    })
+  async CriarEstampa(estampa:Estampa){
+    console.log(estampa);
+    let estampaComImagem = await this.servicoEstampa.SalvarImagem(estampa);
+    console.log(estampaComImagem);
+    return this.servicoEstampa.Incluir(estampaComImagem);
   }
 
   async EditarEstampa(estampa:Estampa){
