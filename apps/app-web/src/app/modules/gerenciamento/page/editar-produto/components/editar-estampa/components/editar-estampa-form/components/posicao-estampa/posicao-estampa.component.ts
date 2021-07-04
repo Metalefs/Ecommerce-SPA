@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Estampa } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-posicao-estampa',
@@ -6,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./posicao-estampa.component.scss']
 })
 export class PosicaoEstampaComponent implements OnInit {
+  @Input() Estampa:Estampa;
   @Output() onPosicaoChange:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 

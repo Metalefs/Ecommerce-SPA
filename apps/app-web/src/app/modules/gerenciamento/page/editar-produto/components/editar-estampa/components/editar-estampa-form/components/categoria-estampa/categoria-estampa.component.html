@@ -1,8 +1,9 @@
 <mat-form-field appearance="fil" class="">
-  <mat-label>Categoria</mat-label>
+  <mat-label>Categorias</mat-label>
   <mat-select
     multiple
     matNativeControl
+    [(ngModel)]="Estampa.IdCategoria"
     (selectionChange)="SelecionarCategoria($event)"
   >
     <mat-option *ngFor="let opt of Categorias" [value]="opt">

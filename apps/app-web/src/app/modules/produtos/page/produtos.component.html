@@ -100,7 +100,7 @@
                   labelPosition="after"
                   matNativeControl
                   (change)="SetCategoria(categoria); atualizarFiltroAtivo()"
-                  [checked]="IsCategoriaAtiva(categoria) || IsCategoriaAtiva(null)"
+                  [checked]="IsCategoriaAtiva(categoria)"
                 >
                   <a
                     class="dis-flex flex-sb flex-m"
@@ -117,7 +117,7 @@
                     >
                       {{
                         IsCategoriaAtiva(categoria) || CategoriaAtiva?.Nome == defaultCategory
-                          ? ''
+                          ? 'check'
                           : ''
                       }}
                     </mat-icon>

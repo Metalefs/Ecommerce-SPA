@@ -75,7 +75,7 @@
 }
 .cart-counter{
   position: absolute;
-  margin-left: auto;
+  margin-left: 20px;
   margin-right: auto;
   text-align: center;
   color: #1106CC;
@@ -102,7 +102,7 @@
   // min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  border-left: 1px solid $navlinkbordercolor;
+  // border-left: 1px solid $navlinkbordercolor;
   color: $navcolor;
   // font-weight: $navlinkweight;
   // text-transform: uppercase;

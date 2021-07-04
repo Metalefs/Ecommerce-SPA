@@ -9,6 +9,8 @@ import { PosicaoEstampaComponent } from './components/posicao-estampa/posicao-es
 import { EditarEstampaFormComponent } from './editar-estampa-form.component';
 
 import { SharedModule } from '../../../../../../../../shared/shared.module';
+import { NomeEstampaComponent } from './components/nome-estampa/nome-estampa.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,11 +19,14 @@ import { SharedModule } from '../../../../../../../../shared/shared.module';
     PrecoEstampaComponent,
     DescricaoEstampaComponent,
     PosicaoEstampaComponent,
-    EditarEstampaFormComponent
+    EditarEstampaFormComponent,
+    NomeEstampaComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CategoriaEstampaComponent,

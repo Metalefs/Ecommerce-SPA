@@ -1,1 +1,12 @@
-<personalizados-lopes-editar-estampa-form></personalizados-lopes-editar-estampa-form>
+<h1 mat-dialog-title class="tem-cor-primaria">Editar estampa</h1>
+
+<div mat-dialog-content>
+  <personalizados-lopes-editar-estampa-form [Estampa]="Estampa">
+  </personalizados-lopes-editar-estampa-form>
+</div>
+
+<div mat-dialog-actions>
+  <button class="button is-rounded" mat-raised-button [mat-dialog-close]='Estampa'>Salvar</button>
+  <button class="button is-rounded" mat-raised-button [mat-dialog-close]=''>Fechar</button>
+</div>
+

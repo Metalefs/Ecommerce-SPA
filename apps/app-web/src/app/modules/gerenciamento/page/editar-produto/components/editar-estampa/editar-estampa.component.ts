@@ -13,7 +13,7 @@ import { EditarEstampaService } from './editar-estampa.service';
 })
 export class EditarEstampaComponent implements OnInit {
 
-  @Input() Estampa:Estampa = new Estampa("",[new Imagem("","","")],0);
+  @Input() Estampa:Estampa = new Estampa("",[new Imagem("","","")],0,"",0,false);
   Estampas:Estampa[] = [];
   constructor(
     protected store: Store,
@@ -33,6 +33,7 @@ export class EditarEstampaComponent implements OnInit {
       panelClass:['fullscreen-modal']
     });
     dialogRef.afterClosed().subscribe(async (estampa : Estampa) => {
+      console.log(estampa)
       if(estampa != undefined){
         await (await this.estampaService.EditarEstampa(estampa)).subscribe(result=>{
           this.snackBar.open("Estampa editada com sucesso", "Fechar", {verticalPosition:"top"});
@@ -40,6 +41,15 @@ export class EditarEstampaComponent implements OnInit {
         })
       }
     });
+  }
+
+  async Remover(estampa) {
+    let confirmar = confirm("Remover estampa?");
+    if(confirmar)
+    (await this.estampaService.RemoverEstampa(estampa)).subscribe(result=>{
+        this.snackBar.open("Estampa removida com sucesso", "Fechar", {verticalPosition:"top"});
+        this.Atualizar();
+      })
   }
 
   Atualizar(){

@@ -29,24 +29,24 @@ environment.production ? [
   {name: "Inicio",     href:"/",  icon:'home',group:GrupoNavLink.institucional},
   {name: "Empresa",     href:"empresa",  icon:'business',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
-  {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
-  {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
+  {name: "Loja",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Notícias",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ] : [
   {name: "Inicio", href:"", icon:'about',group:GrupoNavLink.none},
   {name: "Inicio",     href:"/",  icon:'home',group:GrupoNavLink.institucional},
   {name: "Empresa",     href:"empresa",  icon:'business',group:GrupoNavLink.institucional},
   {name: "Serviços",  href:"servicos", icon:'',group:GrupoNavLink.institucional},
-  {name: "Todos",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
-  {name: "Orcamento",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
-  {name: "Blog",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
+  {name: "Loja",   href:"produtos", icon:'shopping_bag',group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"orcamento",icon:'mail', group:GrupoNavLink.duvidas},
+  {name: "Notícias",      href:"blog",     icon:'comment', group:GrupoNavLink.duvidas},
 ];
 
 
 export let NavLinksRes:NavLink[] =
 environment.production ? [
   {
-    name: "Institucional", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
+    name: "Informações", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Empresa",link:`/empresa`,queryParams:{}},
@@ -54,12 +54,12 @@ environment.production ? [
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Todos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
-  {name: "Orcamento",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
-  {name: "Blog",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
+  {name: "Loja",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
+  {name: "Notícias",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
   {
-    name: "Institucional", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
+    name: "Informações", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Empresa",link:`/empresa`,queryParams:{}},
@@ -67,7 +67,7 @@ environment.production ? [
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Todos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
-  {name: "Orcamento",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
-  {name: "Blog",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
+  {name: "Loja",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
+  {name: "Notícias",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ];

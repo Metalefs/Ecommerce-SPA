@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Estampa } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-preco-estampa',
@@ -6,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./preco-estampa.component.scss']
 })
 export class PrecoEstampaComponent implements OnInit {
+  @Input() Estampa:Estampa;
   @Output() onPrecoChange:EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }

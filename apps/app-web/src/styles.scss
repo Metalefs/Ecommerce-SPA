@@ -68,6 +68,9 @@ body, button, input, optgroup, select, textarea {
 #jcont{
   --right:17px;
 }
+.mat-card-image {
+  margin: 0 !important;
+}
 .has-background-light-custom{
   background:rgba(238, 238, 238, 0.877);
 }

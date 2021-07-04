@@ -41,7 +41,8 @@ export class EmailNotificacaoService {
     }
 
     Incluir(item: entities.EmailNotificacao): Observable<any> {
-        return this.http.post<entities.EmailNotificacao>(environment.endpoint + RouteDictionary.EmailNotificacao, {item}).pipe(
+      let payload = this.AuthenticationService.tokenize({EmailNotificacao:item});
+        return this.http.post<entities.EmailNotificacao>(environment.endpoint + RouteDictionary.EmailNotificacao, payload).pipe(
             retry(3),
             catchError(this.ErrorHandler.handleError)
         );

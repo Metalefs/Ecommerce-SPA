@@ -241,10 +241,10 @@ img{
 .portfolio-item {
   margin: 0px;
   display: block;
-  // border-radius: 30px;
-  display: flex;
+  border-radius: 0px;
+  display: grid;
   background: #ffffff;
-  height: 90%;
+  height: 100%;
   overflow: hidden;
   &:hover{
     .slideshow-container .slides:not(.link) {

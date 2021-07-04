@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Estampa } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-imagem-estampa',
@@ -7,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ImagemEstampaComponent implements OnInit {
   @Input()filenames:string;
+  @Input() Estampa:Estampa;
   @Output()onUpload:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 

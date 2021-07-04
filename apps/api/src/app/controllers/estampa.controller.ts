@@ -9,7 +9,7 @@ const EstampaRouter = express();
 let EstampaService: Services.EstampaService = new Services.EstampaService();
 
 EstampaRouter.get(RouteDictionary.Estampa.Raiz, FiltrarEstampa)
-
+.get(RouteDictionary.Estampa.Raiz + ":id", FiltrarPorId)
 .post(RouteDictionary.Estampa.Raiz, async (req: any, res) => {
   UsuarioLogado(req, res)
   .catch(ex => ErrorHandler.AuthorizationException(ex, res))
@@ -46,7 +46,14 @@ EstampaRouter.get(RouteDictionary.Estampa.Raiz, FiltrarEstampa)
 export {
   EstampaRouter
 }
-
+async function FiltrarPorId(req, res){
+  if (req.params.id)
+  EstampaService.FiltrarPorId(req.params.id)
+      .then(result => res.send(result))
+      .catch(err => ErrorHandler.DefaultException(err, res))
+  else
+    ErrorHandler.DefaultException("unknown", res);
+}
 function FiltrarEstampa(req, res) {
   if (req.query.src) EstampaService.Filtrar({ Src: req.query.src }).then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
 

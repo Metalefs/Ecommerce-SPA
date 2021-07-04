@@ -4,21 +4,21 @@
   </div>
 
   <div class="bg mat-elevation-z4">
-    <div class="block pt-4 has-background-light">
-      <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-    </div>
+    <personalizados-lopes-produto-swiper
+      [slidesPerView]="4"
+    ></personalizados-lopes-produto-swiper>
 
-    <div class="hero p-t-1">
-      <div class="hero-body p-t-1">
-        <section data-aos-offset="-10" data-aos="zoom-up" class="py-3 of-x-hidden" *ngIf="(Clientes$ | async)?.length > 0">
-          <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
-        </section>
+    <div class="hero">
+      <div class="hero-body">
+        <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       </div>
       <div class="hero-foot of-y-scroll p-t-10 px-2">
         <div data-aos="zoom-up" class="margin">
-          <personalizados-lopes-produto-swiper
-            [slidesPerView]="1"
-          ></personalizados-lopes-produto-swiper>
+          <div class="block pt-4">
+            <section data-aos-offset="-10" data-aos="zoom-up" class="py-3" *ngIf="(Clientes$ | async)?.length > 0">
+              <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
+            </section>
+          </div>
         </div>
       </div>
     </div>

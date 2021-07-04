@@ -40,8 +40,8 @@ export class MensagemService extends BaseService {
     return Mensagem;
   }
   SubstituirChavesReestoqueProduto(Mensagem:string, produto:Produto, link:string){
-    let fotoProduto=`<figure><img src="${produto.Imagem[0] || ''} width="100"  height="100"/></figure>`
-    Mensagem = Mensagem.replace("{{PRODUTO}}", fotoProduto+produto.Nome);
+    let fotoProduto=`<figure><img src="${produto.Imagem[0] || ''} width="500" height="500"/></figure>`
+    Mensagem = Mensagem.replace("{{PRODUTO}}", `<div> <h1>${produto.Nome}</h1> ${fotoProduto} </div>`);
     Mensagem = Mensagem.replace("{{LINKPRODUTO}}", '<a href="'+link+'">Página do produto</a>');
     return Mensagem;
   }

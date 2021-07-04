@@ -40,7 +40,7 @@
         </tr>
       </tbody>
     </table>
-    <div *ngIf="!Pedidos">
+    <div *ngIf="!Pedidos || Pedidos.length == 0">
       <h1>Nenhum pedido encontrado. </h1>
       <p >Quando fizer um pedido na sua conta, você vai poder encontra-lo aqui.</p>
     </div>

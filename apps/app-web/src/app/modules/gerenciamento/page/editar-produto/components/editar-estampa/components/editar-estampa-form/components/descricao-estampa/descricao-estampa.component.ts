@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Estampa } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-descricao-estampa',
@@ -7,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class DescricaoEstampaComponent implements OnInit {
   @Output() onDescricaoChange:EventEmitter<any> = new EventEmitter<any>();
+  @Input() Estampa:Estampa;
   constructor() { }
 
   ngOnInit(): void {

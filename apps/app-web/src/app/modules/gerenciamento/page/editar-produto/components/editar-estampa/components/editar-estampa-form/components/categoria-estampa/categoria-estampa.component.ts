@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Categoria } from 'libs/data/src/lib/classes';
+import { Categoria, Estampa } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-categoria-estampa',
@@ -8,7 +8,7 @@ import { Categoria } from 'libs/data/src/lib/classes';
 })
 export class CategoriaEstampaComponent implements OnInit {
   @Input() Categorias:Categoria[];
-
+  @Input() Estampa:Estampa;
   @Output() onSelecionarCategoria:EventEmitter<any> = new EventEmitter<any>();
   @Output() onCriarCategoria:EventEmitter<any> = new EventEmitter<any>();
 

@@ -31,6 +31,7 @@ export class EditarImagemComponent implements OnInit {
   EmpresaTable: MatTableDataSource<Imagem>;
   ProdutoTable: MatTableDataSource<Imagem>;
   ClienteTable: MatTableDataSource<Imagem>;
+  EstampaTable: MatTableDataSource<Imagem>;
   Imagems:any;
   Loading:boolean = true;
   filterEntity: Imagem;
@@ -48,18 +49,22 @@ export class EditarImagemComponent implements OnInit {
       this.ProdutoTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Produto"));
       this.EmpresaTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Empresa"));
       this.ClienteTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Cliente"));
+      this.EstampaTable = new MatTableDataSource(x.filter(x=>x.Tipo == "Estampa"));
       this.tabs = [
         {name:'Empresa',  table:this.EmpresaTable},
         {name:'Produtos', table:this.ProdutoTable},
-        {name:'Clientes', table:this.ClienteTable}
+        {name:'Clientes', table:this.ClienteTable},
+        {name:'Estampas', table:this.EstampaTable}
       ];
       this.ProdutoTable.paginator = this.paginator;
       this.EmpresaTable.paginator = this.paginator;
       this.ClienteTable.paginator = this.paginator;
+      this.EstampaTable.paginator = this.paginator;
 
       this.ProdutoTable.sort = this.sort;
       this.EmpresaTable.sort = this.sort;
       this.ClienteTable.sort = this.sort;
+      this.EstampaTable.sort = this.sort;
       this.Loading = false;
     })
   }
@@ -74,6 +79,7 @@ export class EditarImagemComponent implements OnInit {
     this.ProdutoTable.filter = filterValue.trim().toLowerCase();
     this.EmpresaTable.filter = filterValue.trim().toLowerCase();
     this.ClienteTable.filter = filterValue.trim().toLowerCase();
+    this.EstampaTable.filter = filterValue.trim().toLowerCase();
 
     if (this.ProdutoTable.paginator) {
       this.ProdutoTable.paginator.firstPage();

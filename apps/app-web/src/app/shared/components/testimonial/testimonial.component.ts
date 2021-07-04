@@ -63,8 +63,9 @@ export class TestimonialComponent implements OnInit {
               preloadImages          : true,
               lazy                   : false,
               observer               : true,
-              spaceBetween           : 12,
+              spaceBetween           : 30,
               height                 : 450,
+              width                  : 700,
               navigation             : true,
               slidesPerView:          2,
               autoplay: {

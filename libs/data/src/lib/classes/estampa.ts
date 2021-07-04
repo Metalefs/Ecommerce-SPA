@@ -8,22 +8,28 @@ export class Estampa extends MongoDocument implements entidadeBase {
   Preco:number;
   Imagem:Imagem[];
   Descricao?:string;
-  Posicao?:string;
-  Destaque?:string;
-  FileList:FileList;
+  Posicao?:number;
+  Destaque?:boolean;
+  Files:any;
   Base64:string;
   static readonly NomeID:string = "Estampa";
   constructor(
     IdCategoria:string,
     Imagem:Imagem[],
     Preco:number,
-    FileList?:FileList
+    Descricao:string,
+    Posicao:number,
+    Destaque:boolean,
+    Files?:any
     ){
       super();
       this.IdCategoria =  IdCategoria;
       this.Imagem =  Imagem;
+      this.Descricao = Descricao;
+      this.Posicao = Posicao;
+      this.Destaque = Destaque;
       this.Preco = Preco;
-      this.FileList = FileList;
+      this.Files = Files;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

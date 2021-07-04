@@ -11,8 +11,7 @@
   transition: all .25s ease-out;
   height: min-content;
   box-shadow: none;
-  // border-bottom-right-radius: 30px;
-  // border-bottom-left-radius: 30px;
+  height: 90%;
   transform: rotate(0deg);
   opacity: 1;
   // max-width: 400px;
@@ -86,6 +85,7 @@ p{
 .yellow,.red,.blue{
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
+  height: 90%;
   &:hover{
     @include hover;
     & mat-card > article > mat-card-header > div.mat-card-avatar{

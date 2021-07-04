@@ -8,9 +8,11 @@ import { Estampa } from 'libs/data/src/lib/classes';
   styleUrls: ['./editar-estampa-dialog.component.scss']
 })
 export class EditarEstampaDialogComponent implements OnInit {
-
+  Estampa:Estampa;
   constructor(public dialogRef: MatDialogRef<EditarEstampaDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Estampa) { }
+    @Inject(MAT_DIALOG_DATA) public data: Estampa) {
+      this.Estampa = data;
+     }
 
   ngOnInit(): void {
   }

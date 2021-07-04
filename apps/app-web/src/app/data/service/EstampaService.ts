@@ -30,7 +30,7 @@ export class EstampaService {
   }
 
   Filtrar(id: any): Observable<Array<Estampa>> {
-    return this.http.get<Array<Estampa>>(environment.endpoint + RouteDictionary.Estampa.Raiz + `${id}`).pipe(
+    return this.http.get<Array<Estampa>>(environment.endpoint + RouteDictionary.Estampa.Raiz + `/${id}`).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );
@@ -53,7 +53,8 @@ export class EstampaService {
       this.Filtrar(id).subscribe(async Estampa => {
 
         if(Estampa[0].Imagem)
-          await this.servicoImagem.deleteImage(Estampa[0].Imagem).catch(err=>{this.ErrorHandler.handleError(err);reject(err)});
+          await this.servicoImagem.deleteImage(Estampa[0].Imagem[0].Src)
+          .catch(err=>{this.ErrorHandler.handleError(err);reject(err)});
 
         resolve(this.http.delete<Estampa>(environment.endpoint + RouteDictionary.Estampa.Raiz + `/${id}`).pipe(
           retry(3),
@@ -74,26 +75,26 @@ export class EstampaService {
   }
 
   async EditarImagens(item: Estampa): Promise<Estampa> {
-    if (!isEmpty(item.FileList[0])) {
+    if (!isEmpty(item.Files[0])) {
       let deletar = confirm("Imagens diferentes, deletar?");
       if (deletar)
         await this.DeletarImagem(item);
+      return await this.SalvarImagem(item);
     }
-    return await this.SalvarImagem(item);
   }
 
   async DeletarImagem(item: Estampa) {
     if (item.Imagem)
-      return await this.servicoImagem.deleteImage(item.Imagem).catch(ex=>{
+      return await this.servicoImagem.deleteImage(item.Imagem[0].Src).catch(ex=>{
         console.log(ex);
       })
   }
 
   async SalvarImagem(item: Estampa): Promise<Estampa> {
-    if (item.FileList.length) {
-      for (let i = 0; i <= item.FileList.length; i++)
-        if (item.FileList[i])
-          await this.servicoImagem.storeImage(PathDictionary.estampas, item.FileList[i]).then(async x => {
+    if (item.Files?.length) {
+      for (let i = 0; i <= item.Files.length; i++)
+        if (item.Files[i])
+          await this.servicoImagem.storeImage(PathDictionary.estampas, item.Files[i]).then(async x => {
             let src = await this.servicoImagem.getRef((await x).metadata.fullPath, item.Nome, "Estampa");
             item.Imagem[i] = new Imagem(src,item.Nome,'Estampa');
           })

@@ -175,7 +175,7 @@
 
     <mat-divider></mat-divider>
 
-    <div class="hero is-medium is-hidden-desktop" *ngIf="Blog">
+    <div class="hero is-medium is-hidden-desktop" *ngIf="Blog.length >= 2">
       <div data-aos="fade-up" class="hero-body">
         <personalizados-lopes-blog-swiper
           [TAGS]="Produto?.Tags"
@@ -183,28 +183,28 @@
         ></personalizados-lopes-blog-swiper>
       </div>
     </div>
-    <div data-aos="zoom-up">
-      <div class="has-background-light bbr">
-        <personalizados-lopes-estatisticas-produto
-          [Produto]="Produto"
-        ></personalizados-lopes-estatisticas-produto>
-      </div>
-
-      <div class="w-full bg flex-w flex-sa px-6 my-2">
-        <a [routerLink]="'/produtos'" class="has-text-light">
-          <button mat-icon-button>
-            <mat-icon>chevron_left</mat-icon>
-          </button>
-        </a>
-        <a [routerLink]="'/showcase'" class="has-text-light">
-          <button mat-icon-button>
-            <mat-icon>collections</mat-icon>
-          </button>
-        </a>
-      </div>
-    </div>
 
     <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
     </personalizados-lopes-loading-cube>
+  </div>
+  <div data-aos="fade-up" class="margin">
+    <div class="has-background-light bbr">
+      <personalizados-lopes-estatisticas-produto
+        [Produto]="Produto"
+      ></personalizados-lopes-estatisticas-produto>
+    </div>
+
+    <div class="w-full bg flex-w flex-sa px-6 my-2">
+      <a [routerLink]="'/produtos'" class="has-text-light">
+        <button mat-icon-button>
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </a>
+      <a [routerLink]="'/showcase'" class="has-text-light">
+        <button mat-icon-button>
+          <mat-icon>collections</mat-icon>
+        </button>
+      </a>
+    </div>
   </div>
 </div>

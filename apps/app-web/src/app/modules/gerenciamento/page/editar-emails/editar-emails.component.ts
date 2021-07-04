@@ -52,7 +52,7 @@ export class EditarEmailsComponent implements OnInit {
     this.emailTable.displayedColumns = [
       "checked",
       "Email",
-      "Nome",
+      // "Nome",
       "Produto",
       "Acoes",
     ];

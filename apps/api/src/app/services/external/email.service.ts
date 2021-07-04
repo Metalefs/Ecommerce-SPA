@@ -14,8 +14,8 @@ export class EmailService {
   ServicoSobre = new SobreService();
 
   async SendRegistrationMessage(NovoUsuario: entities.Usuario) {
-    const InfoContato = await this.ServicoInfoContato.Ler() as InformacoesContato;
-    const Sobre = await this.ServicoSobre.Ler() as Sobre
+    const InfoContato = await this.ServicoInfoContato.LerPrimeiro() as InformacoesContato;
+    const Sobre = await this.ServicoSobre.LerPrimeiro() as Sobre
     const Mensagens = await this.ServicoMensagens.Ler();
     let mensagem_registro = this.ServicoMensagens.SubstituirChaves(Mensagens[0].EmailCadadastroUsuario, NovoUsuario);
     await this.SendHtmlMessage({
@@ -30,8 +30,8 @@ export class EmailService {
   }
 
   async SendUpdatePasswordMessage(NovoUsuario: entities.Usuario, senha: string) {
-    const InfoContato = await this.ServicoInfoContato.Ler() as InformacoesContato;
-    const Sobre = await this.ServicoSobre.Ler() as Sobre
+    const InfoContato = await this.ServicoInfoContato.LerPrimeiro() as InformacoesContato;
+    const Sobre = await this.ServicoSobre.LerPrimeiro() as Sobre
     const Mensagens = await this.ServicoMensagens.Ler();
 
     let mensagem_troca_senha = this.ServicoMensagens.SubstituirChavesTrocaSenha(Mensagens[0].EmailRecuperacaoSenha, NovoUsuario, senha);
@@ -48,8 +48,8 @@ export class EmailService {
   }
 
   async SendReestockEmail(email: string, produto: Produto, link: string) {
-    const InfoContato = await this.ServicoInfoContato.Ler() as InformacoesContato;
-    const Sobre = await this.ServicoSobre.Ler() as Sobre
+    const InfoContato = await this.ServicoInfoContato.LerPrimeiro() as InformacoesContato;
+    const Sobre = await this.ServicoSobre.LerPrimeiro() as Sobre
     const Mensagens = await this.ServicoMensagens.Ler();
 
     let mensagem_reestoque = this.ServicoMensagens.SubstituirChavesReestoqueProduto(Mensagens[0].EmailProdutoReestocado, produto, link);
@@ -66,7 +66,7 @@ export class EmailService {
   }
 
   async SendHtmlMessage(EmailInfo: EmailInfo) {
-    const InfoContato = await this.ServicoInfoContato.Ler() as InformacoesContato;
+    const InfoContato = await this.ServicoInfoContato.LerPrimeiro() as InformacoesContato;
     // create reusable transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       host: "smtp.umbler.com",
@@ -76,6 +76,7 @@ export class EmailService {
         user: InfoContato.Email, // generated ethereal user
         pass: email.secret, // generated ethereal password
       },
+      tls: { rejectUnauthorized: false } // true para 465, falso para outras portas
     });
 
     // send mail with defined transport object

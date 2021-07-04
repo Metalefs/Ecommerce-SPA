@@ -18,11 +18,11 @@ export class EditarEstampaService {
   }
 
   UploadFile(files, Estampa:Estampa, fileNames:string){
-    Estampa.FileList = files.target.files;
+    Estampa.Files = files.target.files;
     fileNames = '';
 
-    for(let i =0; i < Estampa.FileList.length; i++)
-      fileNames+=Estampa.FileList[i].name+',';
+    for(let i =0; i < Estampa.Files.length; i++)
+      fileNames+=Estampa.Files[i].name+',';
   }
 
   async CriarEstampa(estampa:Estampa){
@@ -34,5 +34,9 @@ export class EditarEstampaService {
 
   async EditarEstampa(estampa:Estampa){
     return (await (await this.servicoEstampa.Editar(estampa)));
+  }
+
+  async RemoverEstampa(estampa:Estampa){
+    return this.servicoEstampa.Remover(estampa._id);
   }
 }
