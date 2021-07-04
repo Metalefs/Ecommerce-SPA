@@ -51,20 +51,14 @@ export class GerenciamentoComponent implements OnInit {
 
     this.navs = [
       {name: "Dashboard", href: "/gerenciamento/app"},
+      {name: "Configurações", href: "configuracoes"},
       {name: "Produtos", href: "produtos"},
-      {name: "Estampa", href: "estampa"},
       {name: "Pedidos", href: "pedidos"},
-      {name: "Usuarios Interessados", href: "emails"},
-      {name: "Categorias de produtos", href: "categoria"},
+      {name: "Assinantes", href: "emails"},
       {name: "Depoimentos", href: "cliente"},
       {name: "Blog", href: "blog"},
-      {name: "Sobre a empresa", href: "sobre"},
-      {name: "Informações de contato", href: "informacaocontato"},
-      {name: "Serviços da empresa", href: "servico"},
       {name: "Carrosel de imagens", href: "carrosel"},
-      {name: "Mensagens Automaticas", href: "mensagem"},
       {name: "Imagens do site", href: "imagens"},
-      {name: "Integrações", href: "integracoes"},
     ]
   }
   prepareRoute(outlet: RouterOutlet) {

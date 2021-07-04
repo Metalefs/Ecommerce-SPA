@@ -1,20 +1,17 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { entities } from '@personalizados-lopes/data';
-import { Select, Store } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { BlogPost, Categoria, Produto } from 'libs/data/src/lib/classes';
-import { ProdutoState } from 'apps/app-web/src/app/data/store/state/produto.state';
+import { BlogPost, Produto } from 'libs/data/src/lib/classes';
 import { EditarProdutoService } from './editar-produto.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
-import { fade } from 'apps/app-web/src/app/animations';
 import { FormControl } from '@angular/forms';
-import { CriarCategoriaDialogComponent } from '../editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { GalleryConfig } from 'ng-gallery';
@@ -22,6 +19,7 @@ import { CriarPostComponent } from '../editar-blog/dialogs/criar-post/criar-post
 import { CriarClienteDialogComponent } from '../editar-clientes/DialogComponents/criar-cliente-dialog/criar-cliente-dialog.component';
 import { AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { CriarCategoriaDialogComponent } from './components/editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -141,11 +139,9 @@ export class EditarProdutoComponentBase implements OnInit {
   upload($event){
     this.Produto.FileList = $event.target.files;
     this.fileNames = '';
-    for(let i =0; i < this.Produto.FileList.length; i++){
+
+    for(let i =0; i < this.Produto.FileList.length; i++)
       this.fileNames+=this.Produto.FileList[i].name+',';
-      console.log(this.Produto.FileList[i].name)
-    }
-    console.log(this.fileNames)
   }
 
   addCor(event: MatChipInputEvent): void {

@@ -74,10 +74,9 @@
   display: block !important;
 }
 .cart-counter{
-  position: relative;
+  position: absolute;
   margin-left: auto;
   margin-right: auto;
-
   text-align: center;
   color: #1106CC;
   font-size: 10px;
@@ -85,9 +84,9 @@
   border-radius: 90px;
   width: 20px;
   height: 20px;
+  top:10px;
   font-weight: 800;
 }
-
 .preco{
   color:#666;
   font-size: 13px;
@@ -104,11 +103,9 @@
   line-height: 30px;
   transition: 0.25s all ease-in-out;
   border-left: 1px solid $navlinkbordercolor;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 0;
   color: $navcolor;
-  font-weight: $navlinkweight;
-  text-transform: uppercase;
+  // font-weight: $navlinkweight;
+  // text-transform: uppercase;
   &.active-nav{
     // color: white;
     font-weight: 600;
@@ -116,24 +113,24 @@
     i{
       color:$naviconcolor
     }
-    color:$naviconcolor
+    color:$naviconcolor;
+    &::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      // background: #f6f9fd;
+      opacity: 0;
+      box-sizing: border-box;
+      -webkit-transform: scaleX(.1);
+      transform: scaleX(.1);
+      transition: all .7s ease;
+      transition-timing-function: cubic-bezier(.2,1,.3,1);
+    };
   }
-  ::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    // background: #f6f9fd;
-    opacity: 0;
-    box-sizing: border-box;
-    -webkit-transform: scaleX(.1);
-    transform: scaleX(.1);
-    transition: all .7s ease;
-    transition-timing-function: cubic-bezier(.2,1,.3,1);
-  };
   :hover{
     &::before{
       opacity: 1;
@@ -171,7 +168,6 @@
     // background: #c9c2c228;
     // text-decoration: underline;
     color: black;
-
   }
 }
 .sticky-nav{
@@ -201,7 +197,6 @@
   -moz-animation: AnimationName 1s ease forwards;
   animation: AnimationName 1s ease forwards;
   & a.nav-link{
-    // color:white;
     font-weight: 600;
   }
   & .active-nav{
@@ -230,9 +225,6 @@
 }
 @media (min-width: 0px ) and (max-width: 1023px) {
 
-  // .mat-toolbar {
-  //   height: 65px;
-  // }
   .logo{
     margin-left: 0;
     max-height: 67px;

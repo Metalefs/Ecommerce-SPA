@@ -1,120 +1,120 @@
-<div class="flex-w flex-l">
-  <h1 class="title txt-left is-5 is-uppercase">Pedidos.</h1>
-</div>
-<div class=" w-full">
-  <div class="mat-elevation-z8 w-full  of-x-scroll">
-    <mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSource"
-      class="mat-elevation-z8">
-      <ng-container matColumnDef="Nome">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Nome" [(ngModel)]="filterEntity.Usuario.Nome">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="text" readonly [(ngModel)]="row.Usuario.Nome">
-          <span class="is-sr-only">{{row.Usuario.Nome}}</span>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="Email">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Email" [(ngModel)]="filterEntity.Usuario.Email">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="email" type="text" readonly [(ngModel)]="row.Usuario.Email">
-          <span class="is-sr-only">{{row.Usuario.Email}}</span>
-        </td>
-      </ng-container>
+<mat-card>
+  <mat-card-title>Orçamentos </mat-card-title>
+  <mat-card-content>
+    <div class="mat-elevation-z8 w-full  of-x-scroll">
+      <mat-table matTableFilter [exampleEntity]="filterEntity" [filterType]="filterType" [dataSource]="dataSource"
+        class="mat-elevation-z8">
+        <ng-container matColumnDef="Nome">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Nome" [(ngModel)]="filterEntity.Usuario.Nome">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="text" readonly [(ngModel)]="row.Usuario.Nome">
+            <span class="is-sr-only">{{row.Usuario.Nome}}</span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Email">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Email" [(ngModel)]="filterEntity.Usuario.Email">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="email" type="text" readonly [(ngModel)]="row.Usuario.Email">
+            <span class="is-sr-only">{{row.Usuario.Email}}</span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="CPF">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="CPF" [(ngModel)]="filterEntity.Usuario.CPF">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="text" mask="000.000.000-00" type="text" readonly [(ngModel)]="row.Usuario.CPF">
-          <span class="is-sr-only">{{row.Usuario.CPF}}</span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="CPF">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="CPF" [(ngModel)]="filterEntity.Usuario.CPF">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="text" mask="000.000.000-00" type="text" readonly [(ngModel)]="row.Usuario.CPF">
+            <span class="is-sr-only">{{row.Usuario.CPF}}</span>
+          </td>
+        </ng-container>
 
-      <!-- <ng-container matColumnDef="IDPagamento">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="ID Pagamento" [(ngModel)]="filterEntity.ResultadoPagamentoMP.payment_id">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="email" type="text" readonly [(ngModel)]="row.ResultadoPagamentoMP.payment_id">
-          <span class="is-sr-only">{{row.ResultadoPagamentoMP.payment_id}}</span>
-        </td>
-      </ng-container> -->
+        <!-- <ng-container matColumnDef="IDPagamento">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="ID Pagamento" [(ngModel)]="filterEntity.ResultadoPagamentoMP.payment_id">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="email" type="text" readonly [(ngModel)]="row.ResultadoPagamentoMP.payment_id">
+            <span class="is-sr-only">{{row.ResultadoPagamentoMP.payment_id}}</span>
+          </td>
+        </ng-container> -->
 
-      <ng-container matColumnDef="Preco">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Preco do pedido" [(ngModel)]="filterEntity.Preco">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="email" type="text" readonly prefix="R$" mask="0*.00" [(ngModel)]="row.Preco">
-          <span class="is-sr-only">{{row.Preco}}</span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="Preco">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Preco do pedido" [(ngModel)]="filterEntity.Preco">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="email" type="text" readonly prefix="R$" mask="0*.00" [(ngModel)]="row.Preco">
+            <span class="is-sr-only">{{row.Preco}}</span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="Status">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Status da sua resposta" [(ngModel)]="filterEntity.Status">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row" >
-          <input type="email" type="text" readonly value="{{row.Status == 0 ? 'Aberto' : 'Respondido'}}">
-          <span class="is-sr-only">{{row.Status == 0 ? 'Aberto' : 'Respondido'}}</span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="Status">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Status da sua resposta" [(ngModel)]="filterEntity.Status">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row" >
+            <input type="email" type="text" readonly value="{{row.Status == 0 ? 'Aberto' : 'Respondido'}}">
+            <span class="is-sr-only">{{row.Status == 0 ? 'Aberto' : 'Respondido'}}</span>
+          </td>
+        </ng-container>
 
-      <!-- <ng-container matColumnDef="StatusMP">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Status do pagamento" [(ngModel)]="filterEntity.ResultadoPagamentoMP.status">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="email" type="text" readonly [(ngModel)]="row.ResultadoPagamentoMP.status">
-          <span class="is-sr-only">{{row.ResultadoPagamentoMP.status}}</span>
-        </td>
-      </ng-container> -->
+        <!-- <ng-container matColumnDef="StatusMP">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Status do pagamento" [(ngModel)]="filterEntity.ResultadoPagamentoMP.status">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="email" type="text" readonly [(ngModel)]="row.ResultadoPagamentoMP.status">
+            <span class="is-sr-only">{{row.ResultadoPagamentoMP.status}}</span>
+          </td>
+        </ng-container> -->
 
-      <ng-container matColumnDef="Data">
-        <th mat-header-cell *matHeaderCellDef>
-          <mat-form-field appearance="outline">
-            <input matInput placeholder="Data Hora Criacao" [(ngModel)]="filterEntity.DataHoraCriacao">
-          </mat-form-field>
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <input type="email" type="text" readonly [(ngModel)]="row.DataHoraCriacao">
-          <span class="is-sr-only">{{row.DataHoraCriacao}}</span>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="Data">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-form-field appearance="outline">
+              <input matInput placeholder="Data Hora Criacao" [(ngModel)]="filterEntity.DataHoraCriacao">
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <input type="email" type="text" readonly [(ngModel)]="row.DataHoraCriacao">
+            <span class="is-sr-only">{{row.DataHoraCriacao}}</span>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="Actions">
-        <th mat-header-cell *matHeaderCellDef> Ações </th>
-        <td mat-cell *matCellDef="let row">
-          <a pageScroll href="#TOPO" class="button is-dark" [routerLink]="['/gerenciamento/app/pedidos/'+row._id]"
-            routerLinkActive="router-link-active">
-            Abrir
-          </a>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="Actions">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let row">
+            <a pageScroll href="#TOPO" class="button is-dark" [routerLink]="['/gerenciamento/app/pedidos/'+row._id]"
+              routerLinkActive="router-link-active">
+              Abrir
+            </a>
+          </td>
+        </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns" class="of-x-scroll" ></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.Status == 0 ? 'has-background-warning' : ''"></mat-row>
-    </mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns" class="of-x-scroll" ></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="row.Status == 0 ? 'has-background-warning' : ''"></mat-row>
+      </mat-table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-  </div>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
 
-</div>
+  </mat-card-content>
+</mat-card>

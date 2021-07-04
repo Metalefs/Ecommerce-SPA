@@ -1,24 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../core/guard/auth.guard';
-import { EditarCategoriaComponent } from './page/editar-categoria/editar-categoria.component';
 import { EditarClientesComponent } from './page/editar-clientes/editar-clientes.component';
 import { EditarEmailsComponent } from './page/editar-emails/editar-emails.component';
 import { EditarImagemComponent } from './page/editar-imagem/editar-imagem.component';
-import { EditarInformacoesContatoComponent } from './page/editar-infocontato/editar-informacoescontato.component';
-import { EditarMensagemComponent } from './page/editar-mensagem/editar-mensagem.component';
 import { EditarProdutoComponent } from './page/editar-produto/editar-produto.component';
-import { EditarServicoComponent } from './page/editar-servico/editar-servico.component';
-import { EditarSobreComponent } from './page/editar-sobre/editar-sobre.component';
-import { EditarTemaComponent } from './page/editar-tema/editar-tema.component';
-import { EditarCarouselComponent } from './page/editar-carousel/editar-carousel.component';
 import { GerenciamentoComponent } from './page/gerenciamento.component';
 import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
-import { EditarIntegracoesComponent } from './page/editar-integracoes/editar-integracoes.component';
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
 import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
-import { EditarEstampaComponent } from './page/editar-estampa/editar-estampa.component';
+import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes-empresa/editar-configuracoes-empresa.component';
 
 
 export const routes: Routes = [
@@ -32,6 +24,12 @@ export const routes: Routes = [
         // pathMatch: 'full',
         component: DashboardComponent,
         data: { animation:'isRight', }
+      },
+      {
+        path: "configuracoes",
+        // pathMatch: 'full',
+        component: EditarConfiguracoesEmpresaComponent,
+        data: { animation:'isRight', title:'Gerenciamento - Configurações' }
       },
       {
         path: "produtos",
@@ -52,13 +50,6 @@ export const routes: Routes = [
         data: { animation:'isRight', title:'Gerenciamento - pedido'}
       },
       {
-        path: 'categoria',
-        // canActivate: [AuthGuard],
-        component: EditarCategoriaComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - categoria' }
-      },
-      {
         path: 'cliente',
         // canActivate: [AuthGuard],
         component: EditarClientesComponent,
@@ -73,39 +64,11 @@ export const routes: Routes = [
         data: { animation:'isRight', title:'Gerenciamento - blog' }
       },
       {
-        path: 'sobre',
+        path: 'imagens',
         // canActivate: [AuthGuard],
-        component: EditarSobreComponent,
+        component: EditarImagemComponent,
         pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - sobre' }
-      },
-      {
-        path: 'informacaocontato',
-        // canActivate: [AuthGuard],
-        component: EditarInformacoesContatoComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - informacaocontato' }
-      },
-      {
-        path: 'servico',
-        // canActivate: [AuthGuard],
-        component: EditarServicoComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - servico' }
-      },
-      {
-        path: 'carrosel',
-        // canActivate: [AuthGuard],
-        component: EditarCarouselComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - carrosel' }
-      },
-      {
-        path: 'mensagem',
-        // canActivate: [AuthGuard],
-        component: EditarMensagemComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - mensagem' }
+        data: { animation:'isRight', title:'Gerenciamento - imagens' }
       },
       {
         path: 'emails',
@@ -114,34 +77,6 @@ export const routes: Routes = [
         pathMatch: 'full',
         data: { animation:'isRight', title:'Gerenciamento - emails' }
       },
-      {
-        path: 'imagens',
-        // canActivate: [AuthGuard],
-        component: EditarImagemComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - imagens' }
-      },
-      {
-        path: 'integracoes',
-        // canActivate: [AuthGuard],
-        component: EditarIntegracoesComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - integracoes' }
-      },
-      {
-        path: 'estampa',
-        // canActivate: [AuthGuard],
-        component: EditarEstampaComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - integracoes' }
-      },
-      {
-        path: 'tema',
-        // canActivate: [AuthGuard],
-        component: EditarTemaComponent,
-        pathMatch: 'full',
-        data: { animation:'isRight', title:'Gerenciamento - tema' }
-      }
     ],
 
   },

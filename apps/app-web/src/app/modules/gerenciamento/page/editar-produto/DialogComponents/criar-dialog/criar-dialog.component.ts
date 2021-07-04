@@ -31,8 +31,8 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
 
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: entities.Produto,
-    protected produtoService: EditarProdutoService,
     protected dialog: MatDialog,
+    protected produtoService: EditarProdutoService,
     protected store: Store,
     protected snack: MatSnackBar,
     protected authService: AuthenticationService,

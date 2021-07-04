@@ -10,60 +10,48 @@ import { AuthenticationService } from '../../core/service/authentication/authent
 import { ErrorHandler } from '../../core/error.handler';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
 export class OrcamentoService {
-    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
-        private AuthenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private ErrorHandler: ErrorHandler,
+    private AuthenticationService: AuthenticationService) { }
 
-    Ler(): Observable<entities.Orcamento[]> {
-        return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Orcamento.Padrao).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
-    }
+  Ler(): Observable<entities.Orcamento[]> {
+    return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Orcamento.Padrao).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.ErrorHandler.handleError) // then handle the error
+    );
+  }
 
-    FiltrarOrcamentosPorUsuario(token:string): Observable<entities.Orcamento[]> {
-      return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Orcamento.Pedidos + `?token=${token}`).pipe(
-          retry(3), // retry a failed request up to 3 times
-          catchError(this.ErrorHandler.handleError) // then handle the error
+  FiltrarOrcamentosPorUsuario(token: string): Observable<entities.Orcamento[]> {
+    return this.http.get<entities.Orcamento[]>(environment.endpoint + RouteDictionary.Orcamento.Pedidos + `?token=${token}`).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.ErrorHandler.handleError) // then handle the error
+    );
+  }
+
+  Editar(item: entities.Orcamento): Observable<entities.Orcamento> {
+    let payload = this.AuthenticationService.tokenize({ Orcamento: item });
+    return this.http.put<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao,
+      payload).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.ErrorHandler.handleError) // then handle the error
       );
-    }
+  }
 
-    Editar(item: entities.Orcamento): Observable<entities.Orcamento> {
-        let payload = this.AuthenticationService.tokenize({Orcamento:item});
-        return this.http.put<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao,
-            payload).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
-    }
+  Remover(id: string): Observable<any> {
+    return this.http.delete<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao + `/${id}`).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
 
-    Remover(id: string): Observable<any>{
-      return this.http.delete<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao + `/${id}`).pipe(
-          retry(3),
-          catchError(this.ErrorHandler.handleError)
-      );
-    }
-
-    Incluir(item: entities.Orcamento): Observable<any> {
-        let payload = this.AuthenticationService.tokenize({Orcamento:item});
-        return this.http.post<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao, {payload}).pipe(
-            retry(3),
-            catchError(this.ErrorHandler.handleError)
-        );
-    }
-
-    handleError(error) {
-        let errorMessage = '';
-        if(error.error instanceof ErrorEvent) {
-            // Get client-side error
-            errorMessage = error.error.message;
-        } else {
-            // Get server-side error
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        return throwError(errorMessage);
-    }
+  Incluir(item: entities.Orcamento): Observable<any> {
+    let payload = this.AuthenticationService.tokenize({ Orcamento: item });
+    return this.http.post<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao, { payload }).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
 }

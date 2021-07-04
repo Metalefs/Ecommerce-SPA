@@ -1,152 +1,150 @@
-<div class="has-background-light bbr">
+<div class="bbr">
   <personalizados-lopes-exibicao-breadcrumb *ngIf="Produto"
     [Produto]="Produto"
     [items]="items"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
-  <section class="hero is-small pt-0 is-white btr">
-    <div class="hero-body pt-3 pb-2">
-      <div class="bbr ">
-        <div *ngIf="!Produto">
-          <div class="p-grid p-formgrid">
-            <div class="p-field p-col-12 p-md-6">
-              <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
-              <p-skeleton width="10rem" styleClass="mb-2 pb-2"></p-skeleton>
-              <p-skeleton width="5rem" styleClass="mb-2 pb-2"></p-skeleton>
-              <p-skeleton height="2rem" styleClass="mb-2 pb-2"></p-skeleton>
-              <p-skeleton width="10rem" height="4rem"></p-skeleton>
-            </div>
+  <section class="section is-white">
+    <div class="bbr ">
+      <div *ngIf="!Produto">
+        <div class="p-grid p-formgrid">
+          <div class="p-field p-col-12 p-md-6">
+            <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton width="10rem" styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton height="2rem" styleClass="mb-2 pb-2"></p-skeleton>
+            <p-skeleton width="10rem" height="4rem"></p-skeleton>
           </div>
-        </div>
-        <div class="columns is-vcentered is-multiline is-4 pt-0 px-1" *ngIf="Produto">
-          <div class="column is-6-desktop is-12-tablet">
-            <personalizados-lopes-exibicao-imagem-produto
-              [Produto]="Produto"
-              [images]="images"
-              [images$]="images$"
-            ></personalizados-lopes-exibicao-imagem-produto>
-          </div>
-
-          <div
-            class="column is-6-desktop is-12-tablet has-background-white bbr border-light shadow-light section"
-            style="display:grid"
-          >
-            <div class="columns">
-              <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
-                <h1 class="titulo-produto title">{{ Produto?.Nome }}</h1>
-                <ul class="list-unstyled">
-                  <li>
-                    <p class="subtitle">
-                      <b>Modelo: </b> <span>{{ Produto?.Modelo || '' }}</span>
-                    </p>
-                  </li>
-                  <li>
-                    <p class="subtitle">
-                      <b>Marca: </b> <span>{{ Produto?.Marca || '' }}</span>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div *ngIf="Produto" class="columns is-vcentered pb-0 is-multiline">
-              <div class="column  pb-0 is-12-desktop is-12-tablet is-12-mobile">
-                <form
-                  *ngIf="produtoForm"
-                  action=""
-                  method="post"
-                >
-                  <div class="columns m-l-1 m-r-1 container is-vcentered is-multiline">
-                    <div class="column mh-full is-4">
-                      <personalizados-lopes-selecao-quantidade-produto
-                        [Produto]="Produto"
-                        [ErroQuantidade]="ErroQuantidade"
-                        [Erros]="Erros"
-                        (onQuantidadeChange)="setQuantidade($event)"
-                      ></personalizados-lopes-selecao-quantidade-produto>
-                    </div>
-                    <div class="column mh-full is-4">
-                      <personalizados-lopes-selecao-tamanho-produto
-                        [Produto]="Produto"
-                        [ErroTamanho]="ErroTamanho"
-                        [Erros]="Erros"
-                      ></personalizados-lopes-selecao-tamanho-produto>
-                    </div>
-                    <div class="column mh-full is-4 of-x-scroll">
-                      <personalizados-lopes-cor-produto-selector
-                        [Produto]="Produto"
-                        (onSetColor)="setColor($event)"
-                      ></personalizados-lopes-cor-produto-selector>
-                    </div>
-                  </div>
-                  <div
-                    *ngIf="Produto?.Status != statusProduto.esgotado"
-                    class="txt-left pt-4"
-                  >
-                    <div class="pos-relative z-index-1 top-0 left-0">
-                      <a
-                        (click)="AdicionarAoOrcamento()"
-                        routerLinkActive="router-link-active"
-                        class="w-full button is-small is-rounded bor-0"
-                        title="Adicionar a cesta"
-                        style="height: 100%; text-decoration: none;"
-                      >
-                        <span class="flex-w flex-c-m"
-                          ><span class="mr-1 pi pi-shopping-cart"></span
-                        ></span>
-                      </a>
-                    </div>
-                    <div>
-                      <personalizados-lopes-bloco-pagamento-produto
-                        [Produto]="Produto"
-                        [isOrcamento]="isOrcamento"
-                        [Form]="produtoForm"
-                        [textoAdicionar]="textoAdicionar"
-                        (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
-                        (onDuplicarOrcamento)="DuplicarOrcamento()"
-                      ></personalizados-lopes-bloco-pagamento-produto>
-                    </div>
-                    <mat-list *ngIf="!IsValid" class="w-full px-2 pb-0 mx-0 border">
-                      <mat-list-item *ngFor="let erro of Erros">
-                        <p class="subtitle is-size-6 has-text-danger">
-                          *{{ erro.erro }}
-                        </p>
-                        <hr />
-                      </mat-list-item>
-                    </mat-list>
-                  </div>
-                  <div
-                    *ngIf="Produto?.Status == statusProduto.esgotado"
-                    class="box pt-5 w-full"
-                  >
-                    <personalizados-lopes-botao-esgotado
-                      [Produto]="Produto"
-                    >
-                    </personalizados-lopes-botao-esgotado>
-                  </div>
-                </form>
-                <div class="pt-3 px-2 txt-left of-x-scroll"  *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
-                  <personalizados-lopes-exibicao-artes-produto
-                    [Produto]="Produto"
-                    (onAbrirModalArte)="AbrirModalArte($event)"
-                  ></personalizados-lopes-exibicao-artes-produto>
-                </div>
-              </div>
-            </div>
-            <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
-            <figure
-            class="image is-64x64 img-orcamento"
-            [ngClass]="isOrcamento ? 'active' : ''"
-            >
-            <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
-          </figure>
-          <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
-        </div>
         </div>
       </div>
+      <div class="columns is-vcentered is-multiline is-4" *ngIf="Produto">
+        <div class="column is-6-desktop is-12-tablet">
+          <personalizados-lopes-exibicao-imagem-produto
+            [Produto]="Produto"
+            [images]="images"
+            [images$]="images$"
+          ></personalizados-lopes-exibicao-imagem-produto>
+        </div>
+
+        <div
+          class="column is-6-desktop is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
+          style="display:grid"
+        >
+          <div class="columns">
+            <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
+              <h1 class="titulo-produto title">{{ Produto?.Nome }}</h1>
+              <ul class="list-unstyled">
+                <li>
+                  <p class="subtitle">
+                    <b>Modelo: </b> <span>{{ Produto?.Modelo || '' }}</span>
+                  </p>
+                </li>
+                <li>
+                  <p class="subtitle">
+                    <b>Marca: </b> <span>{{ Produto?.Marca || '' }}</span>
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div *ngIf="Produto" class="columns is-vcentered is-multiline">
+            <div class="column is-12-desktop is-12-tablet is-12-mobile">
+              <form
+                *ngIf="produtoForm"
+                action=""
+                method="post"
+              >
+                <div class="columns block is-vcentered is-multiline">
+                  <div class="column mh-full">
+                    <personalizados-lopes-selecao-quantidade-produto
+                      [Produto]="Produto"
+                      [ErroQuantidade]="ErroQuantidade"
+                      [Erros]="Erros"
+                      (onQuantidadeChange)="setQuantidade($event)"
+                    ></personalizados-lopes-selecao-quantidade-produto>
+                  </div>
+                  <div class="column mh-full">
+                    <personalizados-lopes-selecao-tamanho-produto
+                      [Produto]="Produto"
+                      [ErroTamanho]="ErroTamanho"
+                      [Erros]="Erros"
+                    ></personalizados-lopes-selecao-tamanho-produto>
+                  </div>
+                  <div class="column mh-full of-x-scroll">
+                    <personalizados-lopes-cor-produto-selector
+                      [Produto]="Produto"
+                      (onSetColor)="setColor($event)"
+                    ></personalizados-lopes-cor-produto-selector>
+                  </div>
+                </div>
+                <div
+                  *ngIf="Produto?.Status != statusProduto.esgotado"
+                  class="txt-left"
+                >
+                  <div class="pos-relative z-index-1 top-0 left-0">
+                    <a
+                      (click)="AdicionarAoOrcamento()"
+                      routerLinkActive="router-link-active"
+                      class="w-full button is-small is-rounded bor-0"
+                      title="Adicionar a cesta"
+                      style="height: 100%; text-decoration: none;"
+                    >
+                      <span class="flex-w flex-c-m"
+                        ><span class="mr-1 pi pi-shopping-cart"></span
+                      ></span>
+                    </a>
+                  </div>
+                  <div>
+                    <personalizados-lopes-bloco-pagamento-produto
+                      [Produto]="Produto"
+                      [isOrcamento]="isOrcamento"
+                      [Form]="produtoForm"
+                      [textoAdicionar]="textoAdicionar"
+                      (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
+                      (onDuplicarOrcamento)="DuplicarOrcamento()"
+                    ></personalizados-lopes-bloco-pagamento-produto>
+                  </div>
+                  <mat-list *ngIf="!IsValid" class="w-full mx-0 border">
+                    <mat-list-item *ngFor="let erro of Erros">
+                      <p class="subtitle is-size-6 has-text-danger">
+                        *{{ erro.erro }}
+                      </p>
+                      <hr />
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+                <div
+                  *ngIf="Produto?.Status == statusProduto.esgotado"
+                  class="box w-full"
+                >
+                  <personalizados-lopes-botao-esgotado
+                    [Produto]="Produto"
+                  >
+                  </personalizados-lopes-botao-esgotado>
+                </div>
+              </form>
+              <div class="txt-left of-x-scroll"  *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
+                <personalizados-lopes-exibicao-artes-produto
+                  [Produto]="Produto"
+                  (onAbrirModalArte)="AbrirModalArte($event)"
+                ></personalizados-lopes-exibicao-artes-produto>
+              </div>
+            </div>
+          </div>
+          <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
+          <figure
+          class="image is-64x64 img-orcamento"
+          [ngClass]="isOrcamento ? 'active' : ''"
+          >
+          <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
+        </figure>
+        <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
+      </div>
+      </div>
     </div>
-    <div data-aos="zoom-up" class="hero-foot px-3 py-3" id="product-display" *ngIf="Produto">
-      <div class="column is-6 pb-0 is-hidden-desktop dis-flex">
+    <div data-aos="zoom-up" class="hero-foot" id="product-display" *ngIf="Produto">
+      <div class="column is-6 is-hidden-desktop dis-flex">
         <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
         <personalizados-lopes-curtir-produto [Liked]="Liked" [Produto]="Produto"></personalizados-lopes-curtir-produto>
       </div>
@@ -156,34 +154,28 @@
     </div>
   </section>
 
-  <div class="of-x-hidden margin py-4 txt-center">
-    <div class="hero is-medium ">
-      <div class="hero-body">
-        <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
-          <personalizados-lopes-tag-produto-swiper
-            [TAGS]="Produto?.Tags"
-          ></personalizados-lopes-tag-produto-swiper>
-        </div>
-      </div>
+  <div class="of-x-hidden margin section">
+    <div data-aos="fade-up" *ngIf="Produto?._id">
+      <personalizados-lopes-tag-produto-swiper
+        [TAGS]="Produto?.Tags"
+      ></personalizados-lopes-tag-produto-swiper>
     </div>
 
     <mat-divider class=" is-hidden-desktop"></mat-divider>
 
     <div class="hero is-medium is-hidden-desktop">
-      <div class="hero-body">
-        <div data-aos="fade-up" class="py-6 mb-3" *ngIf="Produto?._id">
-          <personalizados-lopes-produto-swiper
-            [slidesPerView]="3"
-            [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
-          >
-          </personalizados-lopes-produto-swiper>
-        </div>
+      <div data-aos="fade-up" class="hero-body" *ngIf="Produto?._id">
+        <personalizados-lopes-produto-swiper
+          [slidesPerView]="3"
+          [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
+        >
+        </personalizados-lopes-produto-swiper>
       </div>
     </div>
 
     <mat-divider></mat-divider>
 
-    <div class="hero is-fullheight is-hidden-desktop" *ngIf="Blog">
+    <div class="hero is-medium is-hidden-desktop" *ngIf="Blog">
       <div data-aos="fade-up" class="hero-body">
         <personalizados-lopes-blog-swiper
           [TAGS]="Produto?.Tags"

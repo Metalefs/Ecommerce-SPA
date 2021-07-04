@@ -1,0 +1,17 @@
+<mat-form-field appearance="fil" class="">
+  <mat-label>Categoria</mat-label>
+  <mat-select
+    multiple
+    matNativeControl
+    (selectionChange)="SelecionarCategoria($event)"
+  >
+    <mat-option *ngFor="let opt of Categorias" [value]="opt">
+      {{ opt.Nome }}
+    </mat-option>
+    <!-- <mat-option>
+      <a mat-stroked-button (click)="CriarCategoria()"
+        >Criar Categoria</a
+      >
+    </mat-option> -->
+  </mat-select>
+</mat-form-field>

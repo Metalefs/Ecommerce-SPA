@@ -8,16 +8,24 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { CKEditorModule } from 'ckeditor4-angular';
-import { SharedModule } from 'primeng/api';
 import { EditorModule } from '../../../../shared/components/editor/editor/editor.module';
+import { MaterialModule } from 'apps/app-web/src/app/shared/material.module';
+import { FormsModule } from '@angular/forms';
+import { SharedModule } from 'apps/app-web/src/app/shared/shared.module';
 
 import { EditarProdutoComponent } from './editar-produto.component';
 import { CriarProdutoDialogComponent } from './DialogComponents/criar-dialog/criar-dialog.component';
 import { EditarProdutoDialogComponent } from './DialogComponents/editar-dialog/editar-dialog.component';
 import { EditarProdutoFormModule } from './components/editar-produto-form/editar-produto-form.module';
-import { MaterialModule } from 'apps/app-web/src/app/shared/material.module';
-import { FormsModule } from '@angular/forms';
+
 import { CardProdutoModule } from 'apps/app-web/src/app/shared/components/card-produto/card-produto.module';
+import { FiltrarEditarProdutoComponent } from './components/filtrar-editar-produto/filtrar-editar-produto.component';
+
+import { EditarCategoriaComponent } from './components/editar-categoria/editar-categoria.component';
+import { CriarCategoriaDialogComponent } from './components/editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
+
+import { EditarEstampaComponent } from './components/editar-estampa/editar-estampa.component';
+import { EditarEstampaDialogComponent } from './components/editar-estampa/dialogs/editar-estampa-dialog/editar-estampa-dialog.component';
 
 
 @NgModule({
@@ -25,6 +33,11 @@ import { CardProdutoModule } from 'apps/app-web/src/app/shared/components/card-p
     EditarProdutoComponent,
     CriarProdutoDialogComponent,
     EditarProdutoDialogComponent,
+    FiltrarEditarProdutoComponent,
+    EditarCategoriaComponent,
+    CriarCategoriaDialogComponent,
+    EditarEstampaComponent,
+    EditarEstampaDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +61,7 @@ import { CardProdutoModule } from 'apps/app-web/src/app/shared/components/card-p
     EditarProdutoComponent,
     CriarProdutoDialogComponent,
     EditarProdutoDialogComponent,
+    FiltrarEditarProdutoComponent,
   ]
 })
 export class EditarProdutoModule { }

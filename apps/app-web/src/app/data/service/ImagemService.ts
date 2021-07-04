@@ -33,12 +33,11 @@ export class ImagemService {
     })
   }
 
-  async storeImage(dir, caminho): Promise<AngularFireUploadTask> {
-    console.log(caminho);
+  async storeImage(dir, data): Promise<AngularFireUploadTask> {
     return new Promise((resolve, reject) => {
       try {
-        this.AF.upload(dir + `${Math.random()}${caminho.name}`, caminho).then(x => {
-          resolve(x);
+        this.AF.upload(dir + `${Math.random()}${data.name}`, data).then(uploadTask => {
+          resolve(uploadTask as AngularFireUploadTask);
         });
       }
       catch (ex) { alert("Erro ao armazenar imagem"); console.error(ex); reject(ex) }
@@ -123,17 +122,5 @@ export class ImagemService {
         catchError(this.ErrorHandler.handleError)
       );
     }
-  }
-
-  handleError(error) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(errorMessage);
   }
 }

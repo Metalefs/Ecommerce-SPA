@@ -4,21 +4,19 @@
     ><strong>{{ Produto?.Cor?.nome || hovercolor?.nome }}</strong>
   </p>
   <div
-    class="columns is-multiline flex-sa px-2"
+    class="columns is-multiline"
     [ngClass]="{ 'is-danger': ErroCor }"
     *ngIf="Produto?.Cores"
   >
     <div
-      mat-fab
-      color=""
       (click)="setColor(cor)"
       (mouseover)="hovercolor = cor"
       (mouseout)="hovercolor = null"
-      class="hoverable column is-3 column"
+      class="hoverable column"
       *ngFor="let cor of Produto?.Cores; let i = index"
     >
       <input
-        class="px-2 py-2 mx-1 button is-rounded"
+        class="mx-1 button is-rounded"
         type="radio"
         alt="{{ cor.nome }}"
         [value]="Produto.Cor"

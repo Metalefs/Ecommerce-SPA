@@ -1,0 +1,62 @@
+
+<div class="w-full">
+  <form [formGroup]="estampaForm">
+    <div class="pt-3">
+      <div class="columns is-multiline">
+
+        <div class="column is-3">
+         <div class="box">
+            <figure class="image is-square has-ratio">
+              <img src="{{Estampa.Base64}}" alt="">
+            </figure>
+         </div>
+          <personalizados-lopes-imagem-estampa
+            [filenames]="fileNames"
+            (onUpload)="UploadFiles($event)"
+          ></personalizados-lopes-imagem-estampa>
+        </div>
+
+        <div class="column is-12-touch">
+          <personalizados-lopes-categoria-estampa
+            [Categorias]="categorias"
+            (onSelecionarCategoria)="SelecionarCategoria($event)"
+          ></personalizados-lopes-categoria-estampa>
+        </div>
+
+        <div class="column">
+          <personalizados-lopes-preco-estampa
+            (onPrecoChange)="SetPrecoEstampa($event)"
+          ></personalizados-lopes-preco-estampa>
+        </div>
+
+        <div class="column">
+          <personalizados-lopes-descricao-estampa
+            (onDescricaoChange)="SetDescricaoEstampa($event)"
+          ></personalizados-lopes-descricao-estampa>
+        </div>
+
+        <div class="column">
+          <personalizados-lopes-posicao-estampa
+            (onPosicaoChange)="SetPosicaoEstampa($event)"
+          ></personalizados-lopes-posicao-estampa>
+        </div>
+
+        <div class="column">
+          <mat-checkbox
+            matNativeControl
+            (change)="SetDestaqueEstampa($event)"
+            >Destaque
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <button
+        class="button is-success w-full"
+        [disabled]="estampaForm.invalid"
+        (click)="Criar()"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>

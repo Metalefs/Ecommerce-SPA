@@ -1,0 +1,11 @@
+<mat-form-field class="field">
+  <div class="control">
+    <input
+      matInput
+      class="input"
+      type="text"
+      (keyup)="onDescricaoChange.emit($event.target.value)"
+      placeholder="Descrição"
+    />
+  </div>
+</mat-form-field>

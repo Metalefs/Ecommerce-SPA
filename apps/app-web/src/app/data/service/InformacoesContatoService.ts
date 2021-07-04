@@ -10,50 +10,38 @@ import { AuthenticationService } from '../../core/service/authentication/authent
 
 import { ErrorHandler } from '../../core/error.handler';
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
 export class InformacoesContatoService {
-    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
-        private AuthenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private ErrorHandler: ErrorHandler,
+    private AuthenticationService: AuthenticationService) { }
 
-    Ler(): Observable<entities.InformacoesContato> {
-        return this.http.get<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
-    }
-    Editar(item: entities.InformacoesContato): Observable<entities.InformacoesContato> {
-        let payload = this.AuthenticationService.tokenize({InformacoesContato:item});
-        return this.http.put<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato,
-            payload).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
-    }
-    Remover(id: string): Observable<any>{
-      return this.http.delete<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato + `/${id}`).pipe(
-          retry(3),
-          catchError(this.ErrorHandler.handleError)
+  Ler(): Observable<entities.InformacoesContato> {
+    return this.http.get<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.ErrorHandler.handleError) // then handle the error
+    );
+  }
+  Editar(item: entities.InformacoesContato): Observable<entities.InformacoesContato> {
+    let payload = this.AuthenticationService.tokenize({ InformacoesContato: item });
+    return this.http.put<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato,
+      payload).pipe(
+        retry(3), // retry a failed request up to 3 times
+        catchError(this.ErrorHandler.handleError) // then handle the error
       );
-    }
-    Incluir(item: entities.InformacoesContato): Observable<any> {
-        let payload = this.AuthenticationService.tokenize({InformacoesContato:item});
-        return this.http.post<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato, {payload}).pipe(
-            retry(3),
-            catchError(this.ErrorHandler.handleError)
-        );
-    }
-
-    handleError(error) {
-        let errorMessage = '';
-        if(error.error instanceof ErrorEvent) {
-            // Get client-side error
-            errorMessage = error.error.message;
-        } else {
-            // Get server-side error
-            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-        }
-        return throwError(errorMessage);
-    }
+  }
+  Remover(id: string): Observable<any> {
+    return this.http.delete<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato + `/${id}`).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
+  Incluir(item: entities.InformacoesContato): Observable<any> {
+    let payload = this.AuthenticationService.tokenize({ InformacoesContato: item });
+    return this.http.post<entities.InformacoesContato>(environment.endpoint + RouteDictionary.InformacoesContato, { payload }).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
 }
