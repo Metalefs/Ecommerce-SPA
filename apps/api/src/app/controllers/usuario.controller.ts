@@ -7,6 +7,8 @@ import * as express from 'express';
 import { ErrorHandler } from '../_handlers/error-handler';
 import { Usuario } from 'libs/data/src/lib/classes';
 
+import { UsuarioLogado } from '../_handlers/Authentication';
+
 const app = express();
 const user_route = '/usuario';
 app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
@@ -44,9 +46,11 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
   }
 }).put(RouteDictionary.Usuario.AtualizarConta.replace(user_route,''), (req,res, next) =>{
   try{
-    UsuarioService.getByToken(req.body.token).then(user => {
-      if(user)
-      UsuarioService.UpdateInfo(user, req.body.item.Usuario)
+    UsuarioLogado(req, res)
+    .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+    .then(usuario => {
+      if (usuario)
+      UsuarioService.UpdateInfo(usuario, req.body.item.Usuario)
           .then((user: Usuario | any) => res.json(user))
           .catch(reason => ErrorHandler.AuthorizationException(reason,res));
       else
@@ -59,10 +63,11 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
 })
 .put(RouteDictionary.Usuario.TrocarSenha.replace(user_route,''), (req,res, next) =>{
   try{
-    console.log(req.body);
-    UsuarioService.getByToken(req.body.token).then(user => {
-      if(user)
-        UsuarioService.changePassword(user,req.body.item.TrocaSenha)
+    UsuarioLogado(req, res)
+    .catch(ex => ErrorHandler.AuthorizationException(ex, res))
+    .then(usuario => {
+      if (usuario)
+        UsuarioService.changePassword(usuario,req.body.item.TrocaSenha)
         .then((user: Usuario | any) => res.json(user))
         .catch(reason => ErrorHandler.AuthorizationException(reason,res));
       else

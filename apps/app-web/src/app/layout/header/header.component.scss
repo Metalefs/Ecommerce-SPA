@@ -107,13 +107,11 @@
   // font-weight: $navlinkweight;
   // text-transform: uppercase;
   &.active-nav{
-    // color: white;
-    font-weight: 600;
-    animation: selected 2s ease-out forwards;
-    i{
-      color:$naviconcolor
-    }
-    color:$naviconcolor;
+    // animation: selected 2s ease-out forwards;
+    // i{
+    //   color:$naviconcolor
+    // }
+    // color:$naviconcolor;
     &::before{
       content: "";
       position: absolute;
@@ -137,23 +135,20 @@
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
     }
-    &:hover > .mat-icon{
-      color:#484848
-    }
-    i{
-      color: $naviconcolor
-    }
-    color: $naviconcolor
+
+    // i{
+    //   color: $naviconcolor
+    // }
+    // color: $naviconcolor
   }
 }
 .active-nav{
     // color: white;
-    font-weight: 600;
     animation: selected 2s ease-out forwards;
-    i{
-      color:$naviconcolor
-    }
-    color:$naviconcolor
+    // i{
+    //   color:$naviconcolor
+    // }
+    // color:$naviconcolor
   }
 .inicio{
   border-left: none;
@@ -165,9 +160,7 @@
   }
 
   100%{
-    // background: #c9c2c228;
-    // text-decoration: underline;
-    color: black;
+    background: #c9c2c228;
   }
 }
 .sticky-nav{

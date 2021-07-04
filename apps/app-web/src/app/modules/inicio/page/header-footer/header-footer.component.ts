@@ -65,7 +65,7 @@ export class HeaderFooterComponent implements OnInit {
           link:"/produtos",
           id:"#topo",
           content:`Veja todos os produtos por categoria.`,
-          img_src:img[0].Src
+          //img_src:img[0].Src
         },
         {
           title:"Orçamento e contato",
@@ -74,8 +74,7 @@ export class HeaderFooterComponent implements OnInit {
           class:"blue",
           link:"/orcamento",
           id:"#topo",
-          content:`Faça um orçamento enviando o
-          seu pedido ou entre em contato.<a href="/orcamento">Entre em Contato !</a>`
+          content:`Faça um orçamento ou <a href="/orcamento">Entre em Contato !</a>`
         },
       ];
       let elements = [];

@@ -40,13 +40,13 @@ export let RouteDictionary = {
 
     Usuario: {
       Usuario: rota_user,
-      DeletarConta: "/deletarConta/",
-      AtualizarConta:"/atualizarConta/",
-      Login:"/login/",
-      Registro:"/registro/",
-      RegistroTemporario:"/registroTemporario/",
-      RecuperarSenha:"/recuperarSenha/",
-      TrocarSenha:"/trocarSenha/",
+      DeletarConta: rota_user+"/deletarConta/",
+      AtualizarConta:rota_user+"/atualizarConta/",
+      Login:rota_user+"/login/",
+      Registro:rota_user+"/registro/",
+      RegistroTemporario:rota_user+"/registroTemporario/",
+      RecuperarSenha:rota_user+"/recuperarSenha/",
+      TrocarSenha:rota_user+"/trocarSenha/",
     },
 
     Gerenciamento:"/gerenciamento/",

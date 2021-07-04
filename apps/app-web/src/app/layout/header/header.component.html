@@ -71,7 +71,7 @@
             <p class="nav-link" style="border: none !important;">
               <a class="w-full has-text-centered py-4 reset-a" title="Perfil">
                 <mat-icon>person_outline</mat-icon>
-                {{ user?.Nome || 'Meu perfil' }}
+                {{ user?.Nome ? 'Bem vindo '+user.Nome : 'Meu perfil' }}
               </a>
             </p>
             <div class="dropdown-content w-full has-background-white box">
@@ -185,7 +185,7 @@
 
     <div class="column">
       <div class="">
-        <button
+        <a
         mat-ripple
         (click)="openCheckout()"
         title="Cesta de compras"
@@ -194,18 +194,18 @@
         class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
       >
         <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-        <p class="cart-counter">
+        <a class="cart-counter">
           {{ (Orcamento$ | async)?.Produto.length || 0 }}
-        </p>
-      </button>
+        </a>
+      </a>
       <div class="is-hidden-touch clickable">
-        <p
+        <a
           class="preco fw-500"
           (click)="openCheckout()"
           *ngIf="(Orcamento$ | async)?.Preco"
         >
           R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
-        </p>
+        </a>
       </div>
     </div>
     </div>

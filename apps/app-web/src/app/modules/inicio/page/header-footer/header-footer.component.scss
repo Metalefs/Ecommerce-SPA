@@ -85,7 +85,7 @@ p{
 .yellow,.red,.blue{
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
-  height: 90%;
+
   &:hover{
     @include hover;
     & mat-card > article > mat-card-header > div.mat-card-avatar{

@@ -73,7 +73,7 @@
                       IsCategoriaAtiva(null) ? 'active  ' : 'has-text-grey'
                     "
                   >
-                    <mat-icon
+                    <!-- <mat-icon
                       [ngClass]="
                         CategoriaAtiva?.Nome == defaultCategory
                           ? 'has-text-success'
@@ -85,7 +85,7 @@
                           ? ''
                           : ''
                       }}
-                    </mat-icon>
+                    </mat-icon> -->
                     <p class="texto-categorias">{{ defaultCategory }}</p>
                   </a>
                 </mat-checkbox>
@@ -108,7 +108,7 @@
                       IsCategoriaAtiva(categoria) ? 'active  ' : 'has-text-grey'
                     "
                   >
-                    <mat-icon
+                    <!-- <mat-icon
                       [ngClass]="
                         CategoriaAtiva?.Nome == defaultCategory
                           ? 'has-text-success'
@@ -117,10 +117,10 @@
                     >
                       {{
                         IsCategoriaAtiva(categoria) || CategoriaAtiva?.Nome == defaultCategory
-                          ? 'check'
+                          ? ''
                           : ''
                       }}
-                    </mat-icon>
+                    </mat-icon> -->
                     <p class="texto-categorias">{{ categoria?.Nome }}</p>
                   </a>
                 </mat-checkbox>
@@ -190,8 +190,8 @@
               [paginator]="true"
               [rows]="12"
               totalRecords="{{ total }}"
-              pageLinkSize="3"
-              paginatorPosition="both"
+              pageLinkSize="2"
+              paginatorPosition="bottom"
               [loading]="loading"
               class="w-full"
               [layout]="mobileQuery.matches ? 'grid' : 'grid'"

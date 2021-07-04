@@ -56,7 +56,7 @@ export class ServicoService {
     async UploadItemImages(item:entities.Servico) : Promise<entities.Servico>{
       if(item.FileList){
         for(let i =0; i<= item.FileList.length ; i++){
-          if(item.FileList[i])
+          if(item.FileList[i]?.name)
           await this.servicoImagem.storeImage(PathDictionary.servicos,item.FileList[i]).then(async x=>{
             item.Imagem = await this.servicoImagem.getRef((await x).metadata.fullPath, item.Nome, "Empresa");
           })

@@ -5,11 +5,11 @@
     <ng-container  *ngIf="i%2 == 0 then left else right"></ng-container>
 
     <ng-template #right>
-      <div class="column is-6" [style.background] = "'url('+card.content.Imagem+')'" style="background-size: contain !important;" data-aos="slide-right">
+      <div class="column is-6"  data-aos="slide-right" data-aos-offset="200"  [style.background] = "'url('+card.content.Imagem+')'" style="background-size: contain !important;" data-aos="slide-right">
 
       </div>
 
-      <div class="column is-6">
+      <div class="column is-6"  data-aos="slide-right" data-aos-offset="200" >
         <mat-card class="w-full card empresa-card">
           <mat-card-header class="py-1 mx-0">
             <mat-card-title>
@@ -25,7 +25,7 @@
 
 
     <ng-template #left>
-      <div class="column is-6" data-aos="slide-right">
+      <div class="column is-6"  data-aos="slide-right" data-aos-offset="200" >
         <mat-card class="w-full card empresa-card">
           <mat-card-header class="py-1 mx-0">
             <mat-card-title>
@@ -38,7 +38,7 @@
         </mat-card>
       </div>
 
-      <div class="column is-6 section" [style.background] = "'url('+card.content.Imagem+')'">
+      <div class="column is-6 section"  data-aos="slide-right" data-aos-offset="200"  [style.background] = "'url('+card.content.Imagem+')'">
 
       </div>
     </ng-template>

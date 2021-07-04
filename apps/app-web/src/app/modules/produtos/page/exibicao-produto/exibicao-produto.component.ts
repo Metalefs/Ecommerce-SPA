@@ -29,6 +29,7 @@ import { BlogPostService } from '../../../blog/blog.service';
 import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper'
 import { Gallery } from 'ng-gallery';
 import { MenuItem } from 'primeng/api';
+import AOS from 'aos'
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -75,7 +76,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private gallery: Gallery,
     ) {
-
+      AOS.refresh();
     }
 
 
@@ -100,6 +101,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       if(isPlatformBrowser(this.platform))
       this.scrollService.scrollTop();
     });
+    AOS.refreshHard();
   }
 
   LoadProduto(produto:Produto){
