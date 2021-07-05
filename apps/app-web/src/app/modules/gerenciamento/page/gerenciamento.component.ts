@@ -56,7 +56,7 @@ export class GerenciamentoComponent implements OnInit {
       {name: "Pedidos", href: "pedidos"},
       {name: "Assinantes", href: "emails"},
       {name: "Depoimentos", href: "cliente"},
-      {name: "Blog", href: "blog"},
+      {name: "Noticias", href: "blog"},
       {name: "Imagens do site", href: "imagens"},
     ]
   }

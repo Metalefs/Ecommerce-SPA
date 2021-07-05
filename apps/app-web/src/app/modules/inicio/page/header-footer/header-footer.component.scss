@@ -4,8 +4,8 @@
 }
 @mixin unhover{
   box-shadow: none;
-  // transform: translateY(3px);
-  filter:grayscale(1)
+  transform: translateY(3px);
+  //filter:grayscale(1)
 }
 .mat-card{
   transition: all .25s ease-out;
@@ -93,6 +93,8 @@ p{
     }
   }
   transition: all 1s;
+
+  // animation: 3s hoverAnim ease infinite;
 }
 @media screen and (max-width:720px){
   .yellow,.red,.blue{
@@ -140,7 +142,8 @@ p{
 }
 @keyframes hoverAnim {
   0%{
-    background-color: black;
+    // background-color: black;
+    @include hover;
   }
   100%{
     @include unhover;

@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Store } from '@ngxs/store';
-import AOS from 'aos'
+import AOS from 'aos';
 
 import { AppDeploymentState } from './data/enums/AppDeploymentState';
 import { LerCategoria } from './data/store/actions/categoria.actions';

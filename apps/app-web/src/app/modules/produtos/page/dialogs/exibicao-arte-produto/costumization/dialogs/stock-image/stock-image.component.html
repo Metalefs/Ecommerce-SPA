@@ -7,26 +7,26 @@
     </div>
     <div class="columns is-multiline container-modal">
       <div class="column is-4 category-list">
-        <div class="category-item" (click)="changeImgSrc(imgSrc)">
+        <div class="category-item is-disabled" (click)="changeImgSrc(imgSrc)">
           <span>Imagens</span>
         </div>
-        <div class="category-item" (click)="changeImgSrc(illuSrc)">
-          <span>Ilustrações</span>
+        <div class="category-item is-disabled" (click)="changeImgSrc(imgSrc)">
+          <span>Ilustrações</span> <em>Em breve..</em>
         </div>
-        <div class="category-item" (click)="changeImgSrc(girlSrc)">
-          <span>Infantis</span>
+        <div class="category-item is-disabled" (click)="changeImgSrc(imgSrc)">
+          <span>Infantis</span> <em>Em breve..</em>
         </div>
       </div>
-      <div class="column is-8 content">
+      <div class="column is-8 content is-12-mobile">
         <ul class="assets" >
           <li class="item-modal" *ngFor="let item of list">
               <img
-               [src] = "item.img"
+               [src] = "item.Imagem[0].Src"
                class="img-stock"
                (click)="addStockImg($event)">
               <div class="infos-item">
-                <span class="name">{{item.name}}</span>
-                <span class="price">{{item.price}}</span>
+                <span class="name">{{item.Nome}}</span>
+                <span class="price">{{item.Preco}}</span>
               </div>
           </li>
         </ul>

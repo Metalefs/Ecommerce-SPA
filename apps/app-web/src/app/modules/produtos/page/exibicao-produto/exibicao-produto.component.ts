@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 
-import { InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { Estampa, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { IncrementarVisualizacoesProduto } from 'apps/app-web/src/app/data/store/actions/produto.actions';
@@ -90,8 +90,8 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       autoPlay: true
     };
     galleryRef.setConfig(config)
-
   }
+
   ngOnInit(): void {
     this.activeRoute.params.subscribe(routeParams => {
       if(isPlatformBrowser(this.platform))
@@ -184,12 +184,17 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       this.produtoNoCheckout();
     });
   }
+  EstampaSelecionada:Estampa;
+  SelecionarEstampa(estampa:Estampa){
+    this.EstampaSelecionada = estampa;
+    this.AbrirModalArte(estampa);
+  }
 
-  AbrirModalArte(){
+  AbrirModalArte(estampa){
     this.IsValid = this.Erros.length > 0 ? false : true;
     if(this.IsValid){
       let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
-        data:this.Produto,
+        data:{Produto: this.Produto, Estampa: estampa},
         panelClass:['animate__animated','animate__bounceIn', 'border', 'bg-transp'],
         restoreFocus: false,
         width:'99vw',

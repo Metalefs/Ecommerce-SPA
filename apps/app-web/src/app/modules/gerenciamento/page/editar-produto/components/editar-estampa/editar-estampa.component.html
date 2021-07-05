@@ -16,21 +16,12 @@
   <div class="section w-full">
     <div class="columns is-multiline">
       <div class="column is-2" *ngFor="let estampa of Estampas">
-        <mat-card >
-          <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{estampa.Nome}}</mat-card-title>
-            <mat-card-subtitle>{{''}}</mat-card-subtitle>
-          </mat-card-header>
-          <img mat-card-image src="{{estampa?.Imagem[0]?.Src}}" alt="Photo of a Shiba Inu">
-          <mat-card-content>
-            <p></p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button class="button is-rounded" (click)="Editar(estampa)" >Editar</button>
-            <button class="button is-rounded" (click)="Remover(estampa)" >Remover</button>
-          </mat-card-actions>
-        </mat-card>
+        <personalizados-lopes-card-estampa
+          [Estampa]="estampa"
+          [is_edit]="true"
+          (onEditar)="Editar($event)"
+          (onRemover)="Remover($event)">
+        </personalizados-lopes-card-estampa>
       </div>
     </div>
   </div>

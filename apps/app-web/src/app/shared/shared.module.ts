@@ -51,6 +51,7 @@ import { EditorModule } from './components/editor/editor/editor.module';
 import { AutocompleteDropdownModule } from './components/autocomplete-dropdown/autocomplete-dropdown.module';
 import { CorProdutoSelectorComponent } from './components/cor-produto-selector/cor-produto-selector.component';
 import { ExibicaoPrecoProdutoModule } from './components/exibicao-preco-produto/exibicao-preco-produto.module';
+import { CardEstampaComponent } from './components/card-estampa/card-estampa.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -86,6 +87,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      TagProdutoSwiperComponent,
      BlogSwiperComponent,
      CorProdutoSelectorComponent,
+     CardEstampaComponent,
     ],
   imports: [
     CommonModule,
@@ -155,7 +157,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EditorModule,
     AutocompleteDropdownModule,
     CorProdutoSelectorComponent,
-    ExibicaoPrecoProdutoModule
+    ExibicaoPrecoProdutoModule,
+    CardEstampaComponent
   ],
   providers:[
     {

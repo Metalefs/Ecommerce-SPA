@@ -1,0 +1,21 @@
+<mat-card class="clickable"
+  (click)='onClick.emit(Estampa)'
+>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{Estampa?.Nome}}</mat-card-title>
+    <mat-card-subtitle>{{''}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
+  <mat-card-content>
+    <p></p>
+  </mat-card-content>
+  <mat-card-actions>
+    <ng-container *ngIf='is_edicao then editar else exibir'></ng-container>
+    <ng-template #editar>
+      <button class="button is-rounded" (click)="this.onEditar.emit(Estampa)" >Editar</button>
+      <button class="button is-rounded" (click)="this.onRemover.emit(Estampa)" >Remover</button>
+    </ng-template>
+    <ng-template #exibir></ng-template>
+  </mat-card-actions>
+</mat-card>

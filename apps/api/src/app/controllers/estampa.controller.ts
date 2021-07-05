@@ -59,5 +59,7 @@ function FiltrarEstampa(req, res) {
 
   if (req.query.nome) EstampaService.Filtrar({ Src: req.query.nome }).then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
 
+  if (req.query.idCategoria) EstampaService.Filtrar({ IdCategoria:  RegExp(decodeURI(req.query.idCategoria).replace('\\', '').split(',').join('|'), 'gi') }).then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
+
   else EstampaService.Ler().then(result => res.send(result)).catch(err => ErrorHandler.DefaultException(err, res));
 }

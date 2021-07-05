@@ -11,9 +11,11 @@ import { SharedModule } from '../../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShareModule } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { PrimeNgModule } from '../../shared/primeng.module';
+
 import { ExibicaoProdutoComponent } from './page/exibicao-produto/exibicao-produto.component';
 import { FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
 import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
@@ -21,8 +23,6 @@ import { ExibicaoArteProdutoComponent } from './page/dialogs/exibicao-arte-produ
 import { CostumizationComponent } from './page/dialogs/exibicao-arte-produto/costumization/costumization.component';
 import { StockImageComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/stock-image/stock-image.component';
 import { ImportacaoComponent } from './page/dialogs/exibicao-arte-produto/costumization/dialogs/importacao/importacao.component';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
-import { PrimeNgModule } from '../../shared/primeng.module';
 import { PreviewProdutoComponent } from './page/components/preview-produto/preview-produto.component';
 import { EstatisticasProdutoComponent } from './page/exibicao-produto/components/estatisticas-produto/estatisticas-produto.component';
 import { TabInformacaoAvaliacaoProdutoComponent } from './page/exibicao-produto/components/tab-informacao-avaliacao-produto/tab-informacao-avaliacao-produto.component';
@@ -42,9 +42,10 @@ import { ExibicaoArtesProdutoComponent } from './page/exibicao-produto/component
 import { ExibicaoDadosPagamentoComponent } from './page/exibicao-produto/components/exibicao-dados-pagamento/exibicao-dados-pagamento.component';
 import { ExibicaoBreadcrumbComponent } from './page/exibicao-produto/components/exibicao-breadcrumb/exibicao-breadcrumb.component';
 import { BlocoPagamentoProdutoComponent } from './page/exibicao-produto/components/bloco-pagamento-produto/bloco-pagamento-produto.component';
+import { SelecaoEstampaComponent } from './page/exibicao-produto/components/selecao-estampa/selecao-estampa.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent, PreviewProdutoComponent, EstatisticasProdutoComponent, TabInformacaoAvaliacaoProdutoComponent, BotoesCompartilhamentoProdutoComponent, AvaliacaoEstrelasProdutoComponent, CurtirProdutoComponent, ExibicaoImagemProdutoComponent, DescricaoRapidaProdutoComponent, ExibicaoTagsProdutoComponent, AvaliacaoProdutoComponent, SelecaoQuantidadeProdutoComponent, SelecaoTamanhoProdutoComponent, MensagemComprarProdutoDesabilitadoComponent, BotaoComprarProdutoComponent, BotaoContatoWhatsappComponent, ExibicaoArtesProdutoComponent, ExibicaoDadosPagamentoComponent, ExibicaoBreadcrumbComponent, BlocoPagamentoProdutoComponent],
+  declarations: [ProdutosComponent, ExibicaoProdutoComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoArteProdutoComponent, CostumizationComponent, StockImageComponent, ImportacaoComponent, PreviewProdutoComponent, EstatisticasProdutoComponent, TabInformacaoAvaliacaoProdutoComponent, BotoesCompartilhamentoProdutoComponent, AvaliacaoEstrelasProdutoComponent, CurtirProdutoComponent, ExibicaoImagemProdutoComponent, DescricaoRapidaProdutoComponent, ExibicaoTagsProdutoComponent, AvaliacaoProdutoComponent, SelecaoQuantidadeProdutoComponent, SelecaoTamanhoProdutoComponent, MensagemComprarProdutoDesabilitadoComponent, BotaoComprarProdutoComponent, BotaoContatoWhatsappComponent, ExibicaoArtesProdutoComponent, ExibicaoDadosPagamentoComponent, ExibicaoBreadcrumbComponent, BlocoPagamentoProdutoComponent, SelecaoEstampaComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,
