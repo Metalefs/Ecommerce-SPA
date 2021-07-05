@@ -190,7 +190,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.AbrirModalArte(estampa);
   }
 
-  AbrirModalArte(estampa){
+  AbrirModalArte(estampa = null){
     this.IsValid = this.Erros.length > 0 ? false : true;
     if(this.IsValid){
       let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{

@@ -106,12 +106,11 @@ export class Produto extends MongoDocument implements entidadeBase{
 
     ObterPreco(){
       if(this.Preco)
-        return ( this.Preco * this.Quantidade ) + this.Estampa?.Preco;
+        return ( this.Preco * this.Quantidade ) + (this.Estampas ? this.Estampas.map(x=>x.Preco).reduce((a,b,i)=> a+b) : 0);
       return 0;
     }
     RecalcularPreco(){
-      if(this.Preco)
-      this.Preco = ( this.Preco * this.Quantidade ) + this.Estampa?.Preco;
+      this.Preco = ( this.Preco * this.Quantidade ) + (this.Estampas ? this.Estampas.map(x=>x.Preco).reduce((a,b,i)=> a+b) : 0);
     }
 };
 export interface Cor{
