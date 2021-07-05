@@ -95,9 +95,9 @@
             ]"
             routerLinkActive="router-link-active"
           >
-            <!-- <mat-card-subtitle class="mat-card-subtitle is-italic fw-100 subtitle is-size-7">{{
-              Produto?.Subtitulo
-            }}</mat-card-subtitle> -->
+            <mat-card-subtitle class="mat-card-subtitle is-italic fw-100 subtitle is-size-7">
+                {{ Produto?.Subtitulo }}
+            </mat-card-subtitle>
           </mat-card-header>
           <div class="mt-5 mb-3" *ngIf="Produto?.Rating.length > 0">
             <star-rating

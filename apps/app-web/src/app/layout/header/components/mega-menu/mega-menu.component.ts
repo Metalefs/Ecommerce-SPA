@@ -65,7 +65,7 @@ export class MegaMenuComponent implements OnInit {
             festaProds.push(prod);
             newItem[0].items.push({
               label: prod.Nome,
-              command: ()=>{this.abrirProduto(prod._id)}
+              command: ()=>{this.abrirProduto(prod._id,prod.Categoria)}
             });
           }
         })
@@ -81,7 +81,7 @@ export class MegaMenuComponent implements OnInit {
     })
   }
 
-  abrirProduto(prodId:string){
-    this.router.navigate(['/produtos/'+prodId]);
+  abrirProduto(prodId:string,categoria:Categoria){
+    this.router.navigate(['/produtos/'],{queryParams:{categoria:categoria.Nome}});
   }
 }

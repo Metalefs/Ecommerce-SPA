@@ -49,7 +49,7 @@ export class OrcamentoService {
 
   Incluir(item: entities.Orcamento): Observable<any> {
     let payload = this.AuthenticationService.tokenize({ Orcamento: item });
-    return this.http.post<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao, { payload }).pipe(
+    return this.http.post<entities.Orcamento>(environment.endpoint + RouteDictionary.Orcamento.Padrao, payload).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );

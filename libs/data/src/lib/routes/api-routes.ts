@@ -14,7 +14,7 @@ export let RouteDictionary = {
     Categoria:"/categoria/",
 
     Estampa: {
-      Raiz: "/estampa",
+      Raiz: "/estampa/",
     },
     InformacoesContato:"/informacoesContato/",
     Cliente:"/cliente/",

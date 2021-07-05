@@ -30,7 +30,7 @@ export class EstampaService {
   }
 
   Filtrar(id: any): Observable<Array<Estampa>> {
-    return this.http.get<Array<Estampa>>(environment.endpoint + RouteDictionary.Estampa.Raiz + `/${id}`).pipe(
+    return this.http.get<Array<Estampa>>(environment.endpoint + RouteDictionary.Estampa.Raiz + `${id}`).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );
@@ -56,7 +56,7 @@ export class EstampaService {
           await this.servicoImagem.deleteImage(Estampa[0].Imagem[0].Src)
           .catch(err=>{this.ErrorHandler.handleError(err);reject(err)});
 
-        resolve(this.http.delete<Estampa>(environment.endpoint + RouteDictionary.Estampa.Raiz + `/${id}`).pipe(
+        resolve(this.http.delete<Estampa>(environment.endpoint + RouteDictionary.Estampa.Raiz + `${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
         ));

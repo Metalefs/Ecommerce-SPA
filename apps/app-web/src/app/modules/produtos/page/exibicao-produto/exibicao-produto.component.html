@@ -31,7 +31,7 @@
           style="display:grid"
         >
           <div class="columns">
-            <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
+            <div class="column is-7 {{ mobile ? 'txt-left' : 'txt-left' }}">
               <h1 class="titulo-produto title">{{ Produto?.Nome }}</h1>
               <ul class="list-unstyled">
                 <li>
@@ -46,6 +46,7 @@
                 </li>
               </ul>
             </div>
+            <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
           </div>
 
           <div *ngIf="Produto" class="columns is-vcentered is-multiline">
@@ -55,7 +56,7 @@
                 action=""
                 method="post"
               >
-                <div class="columns block is-multiline">
+                <div class="columns is-vcentered block is-multiline">
                   <div class="column is-3 mh-full">
                     <personalizados-lopes-selecao-quantidade-produto
                       [Produto]="Produto"
@@ -132,7 +133,7 @@
               </div>
             </div>
           </div>
-          <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
+
           <figure
           class="image is-64x64 img-orcamento"
           [ngClass]="isOrcamento ? 'active' : ''"

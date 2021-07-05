@@ -11,6 +11,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
+import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 
 export class OrcamentoStateModel{
   Orcamentos: entities.Orcamento;
@@ -46,7 +47,8 @@ export class OrcamentoState {
 
   constructor(
     private OrcamentoService:OrcamentoService,
-    private usuarioService:UsuarioService
+    private usuarioService:UsuarioService,
+    private auth:AuthenticationService
     ){
 
   }
@@ -77,7 +79,8 @@ export class OrcamentoState {
   Adicionar({getState,patchState}: StateContext<OrcamentoStateModel>){
     return this.OrcamentoService.Incluir(getState().Orcamentos).subscribe((result) => {
       const state = getState();
-      this.usuarioService.AtualizarInformacoes(state.Orcamentos.Usuario).subscribe();
+      if(this.auth.currentUserValue._id)
+        this.usuarioService.AtualizarInformacoes(state.Orcamentos.Usuario).subscribe();
       patchState({
           Orcamentos: DEFAULT_ORCAMENTO
       });

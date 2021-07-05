@@ -30,7 +30,7 @@ OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
 })
 .post(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
   try {
-    const result = await OrcamentoService.Inserir(null, req.body.payload.item.Orcamento);
+    const result = await OrcamentoService.Inserir(null, req.body.item.Orcamento);
     res.send(result);
   }
   catch (err) {

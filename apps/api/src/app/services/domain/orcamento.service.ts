@@ -25,15 +25,17 @@ export class OrcamentoService extends BaseService {
     });
   }
   async Inserir(Usuario:entities.Usuario, Orcamento:entities.Orcamento){
+    console.log("inserindo orçamento")
     if(await this.Filtrar({IDPagamento:Orcamento.ResultadoPagamentoMP.payment_id}) == 0)
     return Repository.Insert(entities.Orcamento.NomeID, Orcamento).then(async x => {
       let ServicoMensagens = new MensagemService();
       let ServicoInfoContato = new InformacoesContatoService();
       let ServicoSobre = new SobreService();
       let emailService = new EmailService();
-      const InfoContato = await ServicoInfoContato.Ler() as InformacoesContato;
-      const Sobre = await ServicoSobre.Ler() as Sobre;
+      const InfoContato = await ServicoInfoContato.LerPrimeiro() as InformacoesContato;
+      const Sobre = await ServicoSobre.LerPrimeiro() as Sobre;
       const msg = await ServicoMensagens.Ler();
+      console.log(InfoContato.Email)
       let mensagem_orcamento = ServicoMensagens.SubstituirChavesMensagemOrcamento(msg[0].EmailRecebimentoOrcamento,Orcamento);
       await emailService.SendHtmlMessage(
         {
