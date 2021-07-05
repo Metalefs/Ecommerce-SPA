@@ -213,27 +213,34 @@ export class ProdutosComponent implements OnInit {
       this.Produtos = x.items;
       if (atualizarPreco)
         this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o => o.Preco)) : this.Produtos[0]?.Preco);
-      let FiltroProduto: FiltroProduto = {
-        Categoria: this.CategoriaAtiva,
-        CategoriasAtivas: this.CategoriasAtivas.filter((value, index, self) => self.indexOf(value) === index),
-        SearchFilter: this.activeSearchFilter,
-        OrderFilter: this.activeOrderFilter,
-        Produtos: this.Produtos.filter(z => this.filtroAtivo(z)),
-      };
 
-      this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe(y => {
-        delay(400).then(x => { this.loading = x; });
-      });
+      this.AtualizarFiltroProduto()
 
-      function delay(ms: number): Promise<boolean> {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(false);
-          }, ms);
-        });
-      }
     })
   }
+
+  delay(ms: number): Promise<boolean> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(false);
+      }, ms);
+    });
+  }
+
+  AtualizarFiltroProduto(){
+    let FiltroProduto: FiltroProduto = {
+      Categoria: this.CategoriaAtiva,
+      CategoriasAtivas: this.CategoriasAtivas.filter((value, index, self) => self.indexOf(value) === index),
+      SearchFilter: this.activeSearchFilter,
+      OrderFilter: this.activeOrderFilter,
+      Produtos: this.Produtos.filter(z => this.filtroAtivo(z)),
+    };
+
+    this.store.dispatch(new EditarFiltroProduto(FiltroProduto)).subscribe(y => {
+      this.delay(400).then(x => { this.loading = x; });
+    });
+  }
+
   changeOptions(ceil: number) {
     const newOptions: Options = Object.assign({}, this.options);
     newOptions.ceil = ceil || 0;
@@ -334,6 +341,8 @@ export class ProdutosComponent implements OnInit {
       this.total = x.total;
       x.items.forEach(item => this.Produtos.push(item))
       this.loading_more = false;
+
+      this.AtualizarFiltroProduto();
     })
   }
 

@@ -18,7 +18,7 @@
       <div class="column is-2" *ngFor="let estampa of Estampas">
         <personalizados-lopes-card-estampa
           [Estampa]="estampa"
-          [is_edit]="true"
+          [is_edicao]="true"
           (onEditar)="Editar($event)"
           (onRemover)="Remover($event)">
         </personalizados-lopes-card-estampa>

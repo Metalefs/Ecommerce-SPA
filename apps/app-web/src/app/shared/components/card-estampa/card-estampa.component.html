@@ -2,9 +2,11 @@
   (click)='onClick.emit(Estampa)'
 >
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{Estampa?.Nome}}</mat-card-title>
-    <mat-card-subtitle>{{''}}</mat-card-subtitle>
+    <div mat-card-avatar>
+
+      <mat-card-title>{{Estampa?.Nome}}</mat-card-title>
+      <mat-card-subtitle>{{''}}</mat-card-subtitle>
+    </div>
   </mat-card-header>
   <img mat-card-image src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
   <mat-card-content>

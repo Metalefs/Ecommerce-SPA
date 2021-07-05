@@ -31,7 +31,7 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-<div class="has-background-white section bg-image">
+<div class="has-background-white section pt-4 bg-image">
   <div [@cardFlip]="state" class="margin" id="Todos">
     <div class="columns is-gapless">
       <div class="column is-2-desktop is-12-tablet is-hidden-mobile">
@@ -345,7 +345,7 @@
             </ng-container>
             <p-skeleton *ngIf="total == 0"></p-skeleton>
           </div>
-          <div class="w-full dis-flex flex-c-m">
+          <div class="w-full dis-flex flex-c-m block">
             <div class="w-full is-hidden-desktop mb-3">
               <ngx-slider
                 [(value)]="value"
@@ -358,7 +358,7 @@
               [ngClass]="loading_more ? 'button is-loading' : ''"
               mat-fab
               title="Carregar mais produtos"
-              class="px-3 w-full button wp-btn txt-center border-light"
+              class="px-3 w-full button wp-btn  txt-center border-light"
               *ngIf="total > Produtos?.length"
               (click)="CarregarMaisProdutos()"
             >
