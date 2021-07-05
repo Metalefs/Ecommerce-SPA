@@ -36,6 +36,13 @@ export class EstampaService {
     );
   }
 
+  FiltrarPorIdCategoria(idCategoria: any): Observable<Array<Estampa>> {
+    return this.http.get<Array<Estampa>>(environment.endpoint + RouteDictionary.Estampa.Raiz + `?idCategoria = ${idCategoria}`).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
+
   async Editar(item: Estampa): Promise<Observable<Estampa>> {
     return this.EditarImagens(item).then(x => {
       let payload = this.AuthenticationService.tokenize({ Estampa: item });

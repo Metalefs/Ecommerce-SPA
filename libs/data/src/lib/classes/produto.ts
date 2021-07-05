@@ -1,6 +1,7 @@
 import { Categoria } from '.';
 import { entidadeBase } from '../interfaces/entity';
 import { MongoDocument } from './abstract/MongoDocument';
+import { Estampa } from './estampa';
 
 export class Produto extends MongoDocument implements entidadeBase{
   Nome:string;
@@ -27,6 +28,7 @@ export class Produto extends MongoDocument implements entidadeBase{
   Parcelas?:number;
   Dimensoes?:Dimensoes = {Altura:0,Largura:0, Comprimento:0};
   Peso?:number = 500;
+  Estampas?:Estampa[];
   Arte?:string | ArrayBuffer;
   ArteSecundaria?:string | ArrayBuffer;
   Rating?:number[] = [];
@@ -104,8 +106,12 @@ export class Produto extends MongoDocument implements entidadeBase{
 
     ObterPreco(){
       if(this.Preco)
-        return this.Preco * this.Quantidade;
+        return ( this.Preco * this.Quantidade ) + this.Estampa?.Preco;
       return 0;
+    }
+    RecalcularPreco(){
+      if(this.Preco)
+      this.Preco = ( this.Preco * this.Quantidade ) + this.Estampa?.Preco;
     }
 };
 export interface Cor{

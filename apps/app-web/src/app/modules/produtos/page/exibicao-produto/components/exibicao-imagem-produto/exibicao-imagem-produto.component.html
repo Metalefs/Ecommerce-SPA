@@ -38,7 +38,6 @@
              let-data="data"
              let-currIndex="currIndex">
   <span *ngIf="type === 'image' && index === currIndex"
-        [@slideAnimation]
         class="item-text">
     {{data?.title}}
   </span>

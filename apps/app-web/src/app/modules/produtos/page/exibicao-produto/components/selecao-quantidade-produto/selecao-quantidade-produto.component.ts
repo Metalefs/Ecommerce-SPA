@@ -10,11 +10,11 @@ export class SelecaoQuantidadeProdutoComponent implements OnInit {
   @Input() Produto:Produto;
   @Input() ErroQuantidade : Function;
   @Input() Erros: any;
-
   @Output() onQuantidadeChange:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   IncrementarQuantidade(){

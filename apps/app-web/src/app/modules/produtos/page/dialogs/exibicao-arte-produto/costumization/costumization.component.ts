@@ -103,7 +103,6 @@ export class CostumizationComponent implements OnInit {
     this.SaveDesign();
 
     if(this.Produto.Canvas){
-
       console.log(this.Produto.Canvas)
       this.importJson(this.Produto.Canvas)
     }
@@ -150,7 +149,6 @@ export class CostumizationComponent implements OnInit {
       }
       this.importOpen = false;
     })
-
   }
   // upload image
   uploadImage(e) {
@@ -177,7 +175,7 @@ export class CostumizationComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  uploadImageURL(url) {
+  public uploadImageURL(url) {
     let self = this;
     var data = url;
     fabric.Image.fromURL(data, function (img) {
@@ -192,6 +190,7 @@ export class CostumizationComponent implements OnInit {
       var a = self.__canvas.setActiveObject(oImg);
       var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
       self.Produto.Arte = url;
+      self.Produto.Estampas.push()
       this.SaveDesign();
     });
   }
@@ -223,8 +222,8 @@ export class CostumizationComponent implements OnInit {
   addStockImg() {
     this.importOpen = true;
     let dialogRef = this.dialog.open(StockImageComponent, {
-
-      panelClass:['animate__animated','animate__bounceIn', 'border']
+      panelClass:['animate__animated','animate__bounceIn', 'border'],
+      data:{IdCategoria: this.Produto.Categoria._id}
     })
     let self = this;
     dialogRef.afterClosed().subscribe(e=>{
@@ -238,7 +237,6 @@ export class CostumizationComponent implements OnInit {
             angle: 0,
             id: "00ab"
           });
-
           self.__canvas.add(oImg).renderAll();
           var a = self.__canvas.setActiveObject(oImg);
         });

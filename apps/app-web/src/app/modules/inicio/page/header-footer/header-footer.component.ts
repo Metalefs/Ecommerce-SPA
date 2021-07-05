@@ -82,14 +82,13 @@ export class HeaderFooterComponent implements OnInit {
       let timer=500;
       if(isPlatformBrowser(this.platform)) {
         setTimeout(()=>{
-          setInterval(()=>{
           timer=500;
           elements.push(this.document_.nativeDocument.getElementById("yellow"));
           elements.push(this.document_.nativeDocument.getElementById("red"));
           elements.push(this.document_.nativeDocument.getElementById("blue"));
           elements.forEach(el=>{
 
-            if(el.length){
+            if(el?.length){
               toggleActiveArr(el);
               toggleActiveArr(el);
             }
@@ -98,7 +97,6 @@ export class HeaderFooterComponent implements OnInit {
               toggleActive(el);
             }
           })
-         },3000);
         },500);
 
         this.loading = false;

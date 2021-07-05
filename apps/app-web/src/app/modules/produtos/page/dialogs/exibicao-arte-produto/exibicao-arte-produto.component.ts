@@ -1,7 +1,8 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
-import { Produto } from 'libs/data/src/lib/classes';
+import { Estampa, Produto } from 'libs/data/src/lib/classes';
+import { CostumizationComponent } from './costumization/costumization.component';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-arte-produto',
@@ -10,14 +11,27 @@ import { Produto } from 'libs/data/src/lib/classes';
 })
 export class ExibicaoArteProdutoComponent implements OnInit {
   @Input() Produto:Produto;
+  @Input() Estampa:Estampa;
+  @ViewChild(CostumizationComponent)
+  costumizationComponent: CostumizationComponent;
 
   arte_traseira:boolean=false;
   constructor(public dialogRef?: MatDialogRef<ExibicaoArteProdutoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data?:  Produto) {
-      this.Produto = data;
-    }
+    @Inject(MAT_DIALOG_DATA) public data?:{Produto:Produto, Estampa:Estampa}) {
+      this.Produto = data.Produto;
+      this.Estampa = data.Estampa;
+  }
 
+  ngAfterViewInit(){
+    if(this.Estampa){
+      this.costumizationComponent.uploadImageURL(this.Estampa.Imagem[0].Src);
+      this.Produto.Arte = this.Estampa.Imagem[0].Src;
+      this.Produto.Estampas = [this.Estampa];
+      this.Produto.RecalcularPreco();
+    }
+  }
   ngOnInit(): void {
+
   }
   fileNames:string="";
   secondaryfileNames:string="";

@@ -57,7 +57,7 @@
                 method="post"
               >
                 <div class="columns is-vcentered block is-multiline">
-                  <div class="column is-3 mh-full">
+                  <div class="column is-4 mh-full">
                     <personalizados-lopes-selecao-quantidade-produto
                       [Produto]="Produto"
                       [ErroQuantidade]="ErroQuantidade"
@@ -127,13 +127,19 @@
               </form>
               <div class="txt-left of-x-scroll"  *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
                 <personalizados-lopes-exibicao-artes-produto
-                  [Produto]="Produto"
-                  (onAbrirModalArte)="AbrirModalArte($event)"
+                [Produto]="Produto"
+                (onAbrirModalArte)="AbrirModalArte($event)"
                 ></personalizados-lopes-exibicao-artes-produto>
               </div>
             </div>
           </div>
 
+          <div class="of-x-hidden">
+            <personalizados-lopes-selecao-estampa
+              [Produto]='Produto'
+              (onSelecionarEstampa)='SelecionarEstampa($event)'
+            ></personalizados-lopes-selecao-estampa>
+          </div>
           <figure
           class="image is-64x64 img-orcamento"
           [ngClass]="isOrcamento ? 'active' : ''"
