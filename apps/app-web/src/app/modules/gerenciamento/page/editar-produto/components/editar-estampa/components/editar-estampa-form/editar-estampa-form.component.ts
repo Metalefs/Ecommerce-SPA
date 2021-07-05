@@ -81,6 +81,7 @@ export class EditarEstampaFormComponent implements OnInit {
       for (let i = 0; i < estampaCriar.Files.length; i++) {
         let estampaaux =
           new Estampa(
+            estampaCriar.Nome,
             estampaCriar.IdCategoria,
             estampaCriar.Imagem,
             estampaCriar.Preco,

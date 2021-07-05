@@ -65,6 +65,9 @@ export class StockImageComponent implements OnInit {
     })
     this.changeImgSrc(this.imgSrc)
   }
+  formatarPreco(preco){
+    return Number(preco).toFixed(2);
+  }
   changeImgSrc(src) {
     this.list = src;
   }

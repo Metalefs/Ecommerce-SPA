@@ -2,12 +2,12 @@
   #swiperEl3
   (mouseenter)="onSwiperHover(true)"
   (mouseleave)="onSwiperHover(false)"
-  class="swiper-container z-index-1 px-1 of-x-hidden"
+  class="swiper-container z-index-1 px-1  mh-full"
   [swiper]="swiperConfig$ | async"
 >
   <mat-label>Estampas</mat-label>
-  <div class="swiper-wrapper">
-    <div class="swiper-slide" *ngFor="let estampa of Estampas">
+  <div class="swiper-wrapper of-x-hidden mh-full">
+    <div class="swiper-slide border-light" *ngFor="let estampa of Estampas">
       <personalizados-lopes-card-estampa
         [Estampa]="estampa"
         [is_edicao]="false"

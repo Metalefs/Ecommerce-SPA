@@ -118,7 +118,7 @@ export class MercadoPagoService {
       items: this.getItems(orcamento),
       payer: this.getPayer(orcamento),
       payment_methods: this.getPaymentMethod(orcamento, MP_AT),
-      shipments: this.getShipments(orcamento),
+      //shipments: this.getShipments(orcamento),
       back_urls: {
         success: "https://www.personalizadoslopes.com.br/checkout/success",
         failure: "https://www.personalizadoslopes.com.br/checkout/failure",

@@ -1,5 +1,6 @@
 <div class=" mb_-4" [style.minHeight]="(Carrosel$|async)?.height_mobile">
-  <div style="display:block;" class="is-hidden-touch  mb_-4"
+  <p-skeleton *ngIf="!(Carrosel$|async)?.width" width="100vw" height="44vh"></p-skeleton>
+  <div *ngIf="(Carrosel$|async)?.width" style="display:block;" class="is-hidden-touch  mb_-4"
        [style.width]="(Carrosel$|async)?.width">
     <slideshow *ngIf="imageUrls.length"
                [imageUrls]="imageUrls"
@@ -27,7 +28,7 @@
                >
     </slideshow>
   </div>
-  <div style="display:block;" class="is-hidden-desktop"
+  <div *ngIf="(Carrosel$|async)?.width" style="display:block;" class="is-hidden-desktop"
        [style.width]="(Carrosel$|async)?.width">
     <slideshow *ngIf="imageUrls.length"
                [imageUrls]="imageUrls"

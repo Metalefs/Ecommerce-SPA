@@ -13,7 +13,7 @@ import { EditarEstampaService } from './editar-estampa.service';
 })
 export class EditarEstampaComponent implements OnInit {
 
-  @Input() Estampa:Estampa = new Estampa("",[new Imagem("","","")],0,"",0,false);
+  @Input() Estampa:Estampa = new Estampa("","",[new Imagem("","","")],0,"",0,false);
   Estampas:Estampa[] = [];
   constructor(
     protected store: Store,

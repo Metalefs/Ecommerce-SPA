@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="column is-8 is-12-mobile">
-        <div class="columns is-vcentered " >
+        <div class="columns is-vcentered is-multiline" >
           <div class="column is-12-mobile" *ngFor="let item of list">
               <figure class="image is-128x128">
                 <img
@@ -27,7 +27,7 @@
                (click)="addStockImg($event)">
               <div class="infos-item z-index-2">
                 <span class="name">{{item.Nome}}</span>
-                <span class="price">{{item.Preco}}</span>
+                <span class="price">{{item.Preco != 0 ? 'R$ '+ formatarPreco(item.Preco) : 'GRÁTIS'}}</span>
               </div>
               </figure>
           </div>
