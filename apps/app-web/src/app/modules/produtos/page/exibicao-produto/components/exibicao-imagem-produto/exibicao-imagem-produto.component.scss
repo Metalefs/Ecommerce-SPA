@@ -2,28 +2,13 @@ gallery {
   background-color: transparent !important;
   height: 451px;
 }
-:host ::ng-deep #lightbox-lightbox > gallery {
-  background-color: #000000bf !important;
-}
-#lightbox-lightbox > gallery {
-  background-color: #000000bf !important;
-}
-img {
-  transition: opacity 1s ease;
-  &.show-img {
-    // animation: show 1s ease forwards !important;
-    visibility: show !important;
-    opacity: 1 !important;
-  }
-  &.hide-img {
-    // animation: hide 1s ease forwards !important;
-    transition: all 1s ease;
-    visibility: hidden;
-    opacity: 0 !important;
-  }
+// :host ::ng-deep #lightbox-lightbox > gallery {
+//   background-color: #000000bf !important;
+// }
+// #lightbox-lightbox > gallery {
+//   background-color: #000000bf !important;
+// }
 
-  filter: none !important;
-}
 :host ::ng-deep gallery-slider:hover {
   transition: 2s all ease-in-out;
   cursor: grab;

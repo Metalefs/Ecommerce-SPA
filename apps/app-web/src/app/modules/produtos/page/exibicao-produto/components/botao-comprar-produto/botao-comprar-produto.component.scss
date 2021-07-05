@@ -1,12 +1,15 @@
 
 .share-button {
-  border-radius: 4px;
+  // border-radius: 4px;
   display: flex;
   letter-spacing: 1px;
-  font-weight: 500 !important;
+  font-weight: 500;
   height: 56px;
+  box-shadow:none;
   transition: all 0.2s ease;
+  text-transform: capitalize;
   &:hover {
     opacity: 0.5;
   }
+  font-family: 'Roboto';
 }

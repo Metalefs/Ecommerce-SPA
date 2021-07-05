@@ -1,10 +1,10 @@
-<div class="bbr">
+<div class="bbr bg-image">
   <personalizados-lopes-exibicao-breadcrumb *ngIf="Produto"
     [Produto]="Produto"
     [items]="items"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
-  <section class="section is-white">
+  <section class="section has-background-white-bis">
     <div class="bbr ">
       <div *ngIf="!Produto">
         <div class="p-grid p-formgrid">
@@ -55,8 +55,8 @@
                 action=""
                 method="post"
               >
-                <div class="columns block is-vcentered is-multiline">
-                  <div class="column mh-full">
+                <div class="columns block is-multiline">
+                  <div class="column is-3 mh-full">
                     <personalizados-lopes-selecao-quantidade-produto
                       [Produto]="Produto"
                       [ErroQuantidade]="ErroQuantidade"
@@ -64,7 +64,7 @@
                       (onQuantidadeChange)="setQuantidade($event)"
                     ></personalizados-lopes-selecao-quantidade-produto>
                   </div>
-                  <div class="column mh-full">
+                  <div class="column is-3 mh-full">
                     <personalizados-lopes-selecao-tamanho-produto
                       [Produto]="Produto"
                       [ErroTamanho]="ErroTamanho"
@@ -143,7 +143,7 @@
       </div>
       </div>
     </div>
-    <div data-aos="zoom-up" class="hero-foot" id="product-display" *ngIf="Produto">
+    <div data-aos="zoom-up" data-aos-offset="200" class="hero-foot" id="product-display" *ngIf="Produto">
       <div class="column is-6 is-hidden-desktop dis-flex">
         <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
         <personalizados-lopes-curtir-produto [Liked]="Liked" [Produto]="Produto"></personalizados-lopes-curtir-produto>
@@ -155,7 +155,7 @@
   </section>
 
   <div class="of-x-hidden margin section">
-    <div data-aos="fade-up" *ngIf="Produto?._id">
+    <div data-aos="fade-up" data-aos-offset="200" *ngIf="Produto?._id">
       <personalizados-lopes-tag-produto-swiper
         [TAGS]="Produto?.Tags"
       ></personalizados-lopes-tag-produto-swiper>
@@ -164,7 +164,7 @@
     <mat-divider class=" is-hidden-desktop"></mat-divider>
 
     <div class="hero is-medium is-hidden-desktop">
-      <div data-aos="fade-up" class="hero-body" *ngIf="Produto?._id">
+      <div data-aos="fade-up" data-aos-offset="200" class="hero-body" *ngIf="Produto?._id">
         <personalizados-lopes-produto-swiper
           [slidesPerView]="3"
           [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
@@ -176,7 +176,7 @@
     <mat-divider></mat-divider>
 
     <div class="hero is-medium is-hidden-desktop" *ngIf="Blog?.length >= 2">
-      <div data-aos="fade-up" class="hero-body">
+      <div data-aos="fade-up" data-aos-offset="200" class="hero-body">
         <personalizados-lopes-blog-swiper
           [TAGS]="Produto?.Tags"
           [Blog]="Blog"
@@ -187,7 +187,7 @@
     <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
     </personalizados-lopes-loading-cube>
   </div>
-  <div data-aos="fade-up" class="margin">
+  <div data-aos="fade-up" data-aos-offset="200" class="margin">
     <div class="has-background-light bbr">
       <personalizados-lopes-estatisticas-produto
         [Produto]="Produto"

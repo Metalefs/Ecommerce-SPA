@@ -4,10 +4,10 @@
   ></personalizados-lopes-avaliacao-estrelas-produto>
 
   <gallery
-    gallerize
-    id="myGallery"
-    [ngClass]="mobile ? '' : ''"
     *ngIf="galleryConfig$ | async; let config"
+    id="myGallery"
+    [gallerize]
+    [ngClass]="mobile ? '' : ''"
     [counter]="false"
     [nav]="false"
     [loadingStrategy]="'lazy'"
@@ -15,9 +15,35 @@
     [dots]="true"
     [thumbHeight]="config.thumbHeight"
     [thumbPosition]="config.thumbPosition"
+    [thumbTemplate]="thumbTemplate"
+    [itemTemplate]="itemTemplate"
   >
   </gallery>
+<!-- Add custom template to thumbnails -->
 
+<ng-template #thumbTemplate let-type="type">
+  <span *ngIf="type === 'youtube'" class="item-type">
+    <fa-icon [icon]="youtubeIcon" size="lg"></fa-icon>
+  </span>
+  <span *ngIf="type === 'video'" class="item-type">
+    <fa-icon [icon]="videoIcon" size="lg"></fa-icon>
+  </span>
+</ng-template>
+
+<!-- Add custom template to image items -->
+
+<ng-template #itemTemplate
+             let-index="index"
+             let-type="type"
+             let-data="data"
+             let-currIndex="currIndex">
+  <span *ngIf="type === 'image' && index === currIndex"
+        [@slideAnimation]
+        class="item-text">
+    {{data?.title}}
+  </span>
+  <ngx-imageviewer [src]="data.src"></ngx-imageviewer>
+</ng-template>
   <div class="column is-6 pb-0 is-hidden-touch">
     <div class="w-full flex-c-m">
       <personalizados-lopes-exibicao-tags-produto [Produto]="Produto"></personalizados-lopes-exibicao-tags-produto>

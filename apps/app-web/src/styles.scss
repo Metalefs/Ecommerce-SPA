@@ -76,11 +76,15 @@ body, button, input, optgroup, select, textarea {
 }
 :host ::ng-deep #lightbox-lightbox > gallery{
   background-color:#000000bf !important;
-  height: 451px;
+  padding:30px;
+  margin:auto;
+  // height: 451px;
 }
 #lightbox-lightbox > gallery{
   background-color:#000000bf !important;
-  height: 451px;
+  padding:30px;
+  margin:auto;
+  // height: 451px;
 }
 .file.is-info .file-cta {
   background-color: #4d69b1;
@@ -152,7 +156,9 @@ a {
     }
   }
 }
-
+.bg-image{
+  background:url(/assets/images/empresa/webb.png)
+}
 .portfolio-item .slideshow-container a{
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
@@ -225,7 +231,7 @@ p-megamenu > div > ul > li:nth-child(1){
   border: 0 none;
 }
 .p-dataview .p-dataview-header {
-  // background:transparent;
+  background:transparent;
   border:none;
   padding:none;
 }
@@ -564,6 +570,23 @@ canvas{
 
   }
 }
+img {
+  transition: opacity 1s ease;
+  &.show-img {
+    // animation: show 1s ease forwards !important;
+    visibility: show !important;
+    opacity: 1 !important;
+  }
+  &.hide-img {
+    // animation: hide 1s ease forwards !important;
+    transition: all 1s ease;
+    visibility: hidden;
+    opacity: 0 !important;
+  }
+
+  filter: none !important;
+}
+
 /**/
 .mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element,.mat-input-element{
   caret-color: initial;

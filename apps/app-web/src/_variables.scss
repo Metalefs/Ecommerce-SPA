@@ -1,6 +1,7 @@
 
 @import './theme/cores.scss';
 @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;500;600;700&display=swap');
 $gray-web: rgba(123, 123, 123, 1);
 $white: rgba(255, 255, 255, 1);
 $capri: rgba(58, 184, 255, 1);
@@ -21,13 +22,13 @@ $gradient-top-left: linear-gradient(225deg, #7B7B7Bff, #FFFFFFff, #3AB8FFff, #FD
 $gradient-bottom-left: linear-gradient(315deg, #7B7B7Bff, #FFFFFFff, #3AB8FFff, #FDB23Cff, #FE0000ff);
 $gradient-radial: radial-gradient(#7B7B7Bff, #FFFFFFff, #3AB8FFff, #FDB23Cff, #FE0000ff);
 
-$default_font:'Hind Madurai', sans-serif;;
+$default_font:'Titillium Web', sans-serif;
 
 $background-light : #f1f2faeb;
 $navcolor : rgba(0,0,0,.6);
 $footercolor : white;
 $footerbg : #FF4A4A;
-$naviconcolor : rgb(247, 4, 4);
+$naviconcolor : rgb(48, 132, 241);
 $navlinkbordercolor : #e6dbdb41;
 $navlinkweight: 400;
 $navlinksize: 1rem;

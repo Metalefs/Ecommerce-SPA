@@ -7,8 +7,8 @@
 
   <div class="px-6 pt-4 ">
     <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
-    <div class="columns is-multiline is-gapless portfolio-container">
-      <div class="column is-4 is-12-mobile" *ngFor="let produto of Produtos$ | async">
+    <div class="columns has-5-cols is-multiline is-gapless portfolio-container">
+      <div class="column is-3 is-12-mobile" *ngFor="let produto of Produtos$ | async">
         <personalizados-lopes-card-produto class="portfolio-item" [Produto]="produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>
       </div>
     </div>

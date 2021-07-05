@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Produto } from 'libs/data/src/lib/classes';
 import { Observable, Subscription } from 'rxjs';
@@ -22,6 +23,7 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
   areProdutosLoadedSub: Subscription;
 
   constructor(
+    @Inject(PLATFORM_ID) private platform: Object,
     private store: Store,
     ) {
   }
@@ -39,6 +41,9 @@ export class ShowcaseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.Atualizar();
+    if(isPlatformBrowser(this.platform)){
+      setTimeout(()=>document.querySelector(".eapps-link").remove(),5000)
+    }
   }
 
   ngOnDestroy(){

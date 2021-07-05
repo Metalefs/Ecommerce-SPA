@@ -37,7 +37,7 @@ import AOS from 'aos'
   animations:[fade]
 })
 export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
-  textoAdicionar:string = 'COMPRAR';
+  textoAdicionar:string = 'Comprar';
   textoAtualizar:string = 'ATUALIZAR CARRINHO';
   textoEsgotado:string  = 'Esgotado';
   Url:string;
@@ -84,8 +84,13 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     const galleryRef = this.gallery.ref('myGallery');
     galleryRef.reset();
     produto?.Imagem.forEach(img =>{
-      galleryRef.addImage({ src:img, thumb: img });
+      galleryRef.addImage({ src:img, thumb: img, title: "Adicione sua estampa - Personalizados Lopes"});
     });
+    const config: any = {
+      autoPlay: true
+    };
+    galleryRef.setConfig(config)
+
   }
   ngOnInit(): void {
     this.activeRoute.params.subscribe(routeParams => {
@@ -125,7 +130,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     if(produto?.Status == StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
     else
-      this.textoAdicionar = "COMPRAR";
+      this.textoAdicionar = "Comprar";
 
     this.Produto = produto;
   }

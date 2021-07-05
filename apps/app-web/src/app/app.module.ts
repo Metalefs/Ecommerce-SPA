@@ -9,6 +9,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor, ErrorInterceptor } from './core/interceptor';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { GalleryModule } from  'ng-gallery';
+import { LightboxModule } from  'ng-gallery/lightbox';
+import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
+import { ImageViewerModule } from '@hallysonh/ngx-imageviewer';
 
 import { RouteReuseStrategy } from '@angular/router';
 import { RouteReuseService } from './core/service/RouteReuseService';
@@ -38,6 +42,7 @@ import { CheckoutService } from './modules/checkout/checkout.service';
 import { DocumentRef } from './shared/services/document.service';
 import { WindowRef } from './shared/services/window.service';
 import { PageScrollService } from './shared/services/page-scroll.service';
+import { AuthenticationService } from './core/service/authentication/authentication.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +57,9 @@ import { PageScrollService } from './shared/services/page-scroll.service';
     AngularFireStorageModule,
     HammerModule,
     CookieLawModule,
+    GalleryModule,
+    LightboxModule,
+    ImageViewerModule,
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCYzAtXmRwAvgeqvVn1J8SNC0TOEM6Jbq4",
       authDomain: "personalizados-lopes-web-app.firebaseapp.com",
@@ -76,6 +84,13 @@ import { PageScrollService } from './shared/services/page-scroll.service';
     NgDialogAnimationService,
     Title,
     CheckoutService,
+    AuthenticationService,
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false
+      }
+    },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: WindowRef },

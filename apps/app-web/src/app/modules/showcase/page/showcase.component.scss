@@ -3,3 +3,11 @@
   min-height: 93vh;
   height: 100%;
 }
+
+.columns.has-5-cols{
+  .column.is-3{
+
+        flex: none;
+        width: 20%;
+  }
+}

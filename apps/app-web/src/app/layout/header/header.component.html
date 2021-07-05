@@ -29,7 +29,7 @@
     class="navbar columns is-vcentered w-full is-mobile z-index-top py-2 mx-0"
     style="z-index: 20;"
   >
-    <div class="column is-6-desktop is-10-mobile">
+    <div class="column is-5-desktop is-10-mobile">
       <div class="columns is-vcentered is-mobile">
         <div class="column is-4">
           <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
@@ -115,11 +115,11 @@
       </div>
     </div>
 
-    <div class="column is-5-desktop is-hidden-mobile">
+    <div class="column is-6-desktop is-hidden-mobile">
       <div
         class="columns is-mobile is-vcentered is-hidden-mobile link-section flex-c-m"
       >
-        <div *ngFor="let link of links" class="column">
+        <div *ngFor="let link of links" class="column px-0">
           <ng-container
             *ngIf="link.options; then dropdown; else normal"
           ></ng-container>
@@ -142,13 +142,13 @@
           </ng-template>
 
           <ng-template #dropdown>
-            <div class="dropdown">
+            <div class="dropdown w-full">
               <a
                 (click)="SetActiveNav(link)"
                 [routerLink]="link.href"
                 pageScroll
                 routerLinkActive="active-nav"
-                class="nav-link navbar-item {{
+                class="nav-link navbar-item w-full {{
                   link.name == 'inicio' ? 'inicio' : ''
                 }}"
               >
