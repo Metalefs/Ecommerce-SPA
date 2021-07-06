@@ -22,13 +22,14 @@ $gradient-top-left: linear-gradient(225deg, #7B7B7Bff, #FFFFFFff, #3AB8FFff, #FD
 $gradient-bottom-left: linear-gradient(315deg, #7B7B7Bff, #FFFFFFff, #3AB8FFff, #FDB23Cff, #FE0000ff);
 $gradient-radial: radial-gradient(#7B7B7Bff, #FFFFFFff, #3AB8FFff, #FDB23Cff, #FE0000ff);
 
-$default_font:'Titillium Web', sans-serif;
+//$default_font:'Titillium Web', sans-serif;
+$default_font:'Hind Madurai', sans-serif;
 
 $background-light : #f1f2faeb;
 $navcolor : rgba(0,0,0,.6);
 $footercolor : white;
 $footerbg : #FF4A4A;
-$naviconcolor : rgb(48, 132, 241);
+$naviconcolor : #f70404;
 $navlinkbordercolor : #e6dbdb41;
 $navlinkweight: 400;
 $navlinksize: 1rem;

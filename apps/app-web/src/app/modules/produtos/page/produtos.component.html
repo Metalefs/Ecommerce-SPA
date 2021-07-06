@@ -39,7 +39,7 @@
           <div class="is-hidden-mobile w-full">
             <div>
               <div class="pb-2">
-                <div class="box bo-0 bos-0">
+                <div class="box hoverable bo-0 bos-0">
                   <div class="pl-2 dis-flex flex-c-m">
                     <span class=""
                       ><a href="/" class="reset-a"
@@ -73,7 +73,7 @@
                       IsCategoriaAtiva(null) ? 'active  ' : 'has-text-grey'
                     "
                   >
-                    <!-- <mat-icon
+                    <mat-icon
                       [ngClass]="
                         CategoriaAtiva?.Nome == defaultCategory
                           ? 'has-text-success'
@@ -82,10 +82,10 @@
                     >
                       {{
                         CategoriaAtiva?.Nome == defaultCategory
-                          ? ''
+                          ? 'check'
                           : ''
                       }}
-                    </mat-icon> -->
+                    </mat-icon>
                     <p class="texto-categorias">{{ defaultCategory }}</p>
                   </a>
                 </mat-checkbox>

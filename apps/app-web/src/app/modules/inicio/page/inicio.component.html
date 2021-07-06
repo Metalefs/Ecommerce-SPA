@@ -7,17 +7,21 @@
     <personalizados-lopes-produto-swiper
       [slidesPerView]="4"
     ></personalizados-lopes-produto-swiper>
-
     <div class="hero is-medium">
       <div class="hero-body">
-        <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
+        <section
+          data-aos-offset="-10"
+          data-aos="zoom-up"
+          class="py-3"
+          *ngIf="(Clientes$ | async)?.length > 0"
+        >
+          <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
+        </section>
       </div>
       <div class="hero-foot of-y-scroll p-t-10 px-2">
         <div data-aos="zoom-up" class="margin">
           <div class="block pt-4">
-            <section data-aos-offset="-10" data-aos="zoom-up" class="py-3" *ngIf="(Clientes$ | async)?.length > 0">
-              <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
-            </section>
+            <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
           </div>
         </div>
       </div>
