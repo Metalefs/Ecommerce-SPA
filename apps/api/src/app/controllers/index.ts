@@ -14,37 +14,46 @@ import { CarouselRouter } from './carousel.controller';
 import { MercadoPagoController } from './mercadopago.controller';
 import { IntegracoesRouter } from './integracoes.controller';
 import { EstampaRouter } from './estampa.controller';
+import { TamanhoProdutoRouter } from './tamanho-produto.controller';
+import { CorProdutoRouter } from './cor-produto.controller';
+import { FornecedorProdutoRouter } from './fornecedor-produto.controller';
 
 export let Routers = [
-    CategoriaRouter,
+  CategoriaRouter,
 
-    InformacoesContatoRouter,
+  InformacoesContatoRouter,
 
-    OrcamentoRouter,
+  OrcamentoRouter,
 
-    ProdutoRouter,
+  ProdutoRouter,
 
-    ClienteRouter,
+  ClienteRouter,
 
-    ServicoRouter,
+  ServicoRouter,
 
-    SobreRouter,
+  SobreRouter,
 
-    TemaRouter,
+  TemaRouter,
 
-    EmailNotificacaoRouter,
+  EmailNotificacaoRouter,
 
-    MensagemRouter,
+  MensagemRouter,
 
-    ImagemRouter,
+  ImagemRouter,
 
-    ItemCarouselRouter,
+  ItemCarouselRouter,
 
-    EstampaRouter,
+  EstampaRouter,
 
-    CarouselRouter,
+  CarouselRouter,
 
-    MercadoPagoController,
+  MercadoPagoController,
 
-    IntegracoesRouter
+  IntegracoesRouter,
+
+  TamanhoProdutoRouter,
+
+  CorProdutoRouter,
+
+  FornecedorProdutoRouter,
 ];

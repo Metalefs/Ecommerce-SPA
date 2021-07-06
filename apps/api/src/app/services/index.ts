@@ -15,6 +15,9 @@ import {CarouselService} from './domain/carousel.service';
 import {MercadoPagoService} from './external/mercadopago.service';
 import {IntegracoesService} from './domain/integracoes.service';
 import {EstampaService} from './domain/estampa.service';
+import {TamanhoProdutoService} from './domain/tamanhoProduto.service';
+import {CorProdutoService} from './domain/corProduto.service';
+import { FornecedorProdutoService } from './domain/fornecedorProduto.service';
 
 export {
     UsuarioService,
@@ -33,5 +36,8 @@ export {
     CarouselService,
     MercadoPagoService,
     IntegracoesService,
-    EstampaService
+    EstampaService,
+    TamanhoProdutoService,
+    CorProdutoService,
+    FornecedorProdutoService
 }

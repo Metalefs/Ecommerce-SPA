@@ -18,6 +18,9 @@ import { Integracoes } from './integracoes';
 import { BlogPost } from './blogPost';
 import { ComentarioProduto } from './comentarioProduto';
 import { Estampa } from './estampa';
+import { TamanhoProduto } from './tamanhoProduto';
+import { FornecedorProduto } from './fornecedorProduto';
+import { CorProduto } from './corProduto';
 
 export {
     Categoria,
@@ -39,5 +42,8 @@ export {
     Integracoes,
     BlogPost,
     ComentarioProduto,
-    Estampa
+    Estampa,
+    TamanhoProduto,
+    FornecedorProduto,
+    CorProduto,
 }

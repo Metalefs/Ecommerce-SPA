@@ -15,6 +15,9 @@ import { CarouselService } from './CarouselService';
 import { EstampaService } from './EstampaService';
 import { IntegracoesService } from './IntegracoesService';
 import { ComentarioProdutoService } from './comentarios/comentarioProdutoService';
+import { CorProdutoService } from './cor-produto.service';
+import { TamanhoProdutoService } from './tamanho-produto.service';
+import { FornecedorProdutoService } from './fornecedor-produto.service';
 
 export {
   SobreService,
@@ -22,7 +25,7 @@ export {
   ServicoService,
   OrcamentoService,
   ComentarioProdutoService,
-   InformacoesContatoService,
+  InformacoesContatoService,
   UsuarioService,
   EmailNotificacaoService,
   CategoriaService,
@@ -34,6 +37,9 @@ export {
   EstampaService,
   CarouselService,
   IntegracoesService,
+  CorProdutoService,
+  TamanhoProdutoService,
+  FornecedorProdutoService,
 }
 
 export let Services = [
@@ -54,4 +60,7 @@ export let Services = [
   EstampaService,
   CarouselService,
   IntegracoesService,
+  CorProdutoService,
+  TamanhoProdutoService,
+  FornecedorProdutoService,
 ]

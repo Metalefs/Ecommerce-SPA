@@ -43,6 +43,7 @@ import { DocumentRef } from './shared/services/document.service';
 import { WindowRef } from './shared/services/window.service';
 import { PageScrollService } from './shared/services/page-scroll.service';
 import { AuthenticationService } from './core/service/authentication/authentication.service';
+import { BaseService } from './data/service/base/base.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -96,6 +97,7 @@ import { AuthenticationService } from './core/service/authentication/authenticat
     { provide: WindowRef },
     { provide: DocumentRef },
     { provide: AngularFireStorage },
+    { provide: BaseService },
     { provide: ProdutoService },
     { provide: PageScrollService },
     { provide: SobreService },

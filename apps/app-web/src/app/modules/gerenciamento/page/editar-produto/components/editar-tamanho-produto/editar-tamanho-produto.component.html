@@ -1,0 +1,29 @@
+<div class="w-full">
+  <form [formGroup]="tamanhoProdutoForm">
+    <div class="columns is-multiline">
+      <div class="column is-6">
+        <mat-form-field class="field">
+          <div class="control">
+            <input matInput class="input" type="text" placeholder="Nome" />
+          </div>
+        </mat-form-field>
+      </div>
+
+      <div class="column is-12-touch">
+        <mat-form-field class="field">
+          <div class="control">
+            <input matInput class="input" type="color" placeholder="Cor" />
+          </div>
+        </mat-form-field>
+      </div>
+
+      <button
+        class="button is-success w-full"
+        [disabled]="tamanhoProdutoForm.invalid"
+        (click)="Criar()"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>
