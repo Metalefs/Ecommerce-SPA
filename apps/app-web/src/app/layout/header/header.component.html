@@ -29,9 +29,9 @@
     class="navbar columns is-vcentered w-full is-mobile z-index-top py-2 mx-0"
     style="z-index: 20;"
   >
-    <div class="column is-5-desktop is-10-mobile">
+    <div class="column is-6-desktop is-10-mobile">
       <div class="columns is-vcentered is-mobile">
-        <div class="column is-4">
+        <div class="column is-3">
           <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
             <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
           </a>
@@ -39,7 +39,7 @@
         <div class="column">
           <form
             type="get"
-            class="bbr is-5 w-full nav-item btr mr-5 pr-2 has-background-white-bis shadow-light is-hidden-touch"
+            class="bbr is-6 w-full nav-item btr mr-5 pr-2 has-background-white-bis shadow-light is-hidden-touch"
             action="/produtos/?nome={{
               search_filter
             }}?categoria=Todos os produtos"
@@ -66,9 +66,9 @@
           </form>
         </div>
 
-        <div class="column is-hidden-mobile">
+        <div class="column is-hidden-mobile mr-2">
           <div class="dropdown">
-            <p class="nav-link" style="border: none !important;">
+            <p class="mr-4" style="border: none !important;">
               <a class="w-full has-text-centered py-4 subtitle is-size-7 reset-a" title="Perfil">
                 <mat-icon>person_outline</mat-icon>
                 {{ user?.Nome ? 'Bem vindo '+user.Nome : 'Meu perfil' }}
@@ -115,7 +115,7 @@
       </div>
     </div>
 
-    <div class="column is-6-desktop is-hidden-mobile">
+    <div class="column is-5-desktop is-hidden-mobile">
       <div
         class="columns is-mobile is-vcentered is-hidden-mobile link-section flex-c-m"
       >

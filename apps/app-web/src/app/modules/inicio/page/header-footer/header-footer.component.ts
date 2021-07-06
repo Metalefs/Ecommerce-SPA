@@ -27,7 +27,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Produtos",
           icon:"photo_library",
-          color:"#FF4A4A",
+          color:"#FD6D13",
           class:"red",
           link:"/produtos",
           id:"#topo",
@@ -39,7 +39,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Orçamento",
           icon:"email",
-          color:"#4d5899",
+          color:"#3AB8FF",
           class:"blue",
           link:"/orcamento",
           id:"#topo",
@@ -51,7 +51,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Galeria de fotos",
           icon:"image",
-          color:"#4d589",
+          color:"#FFB041",
           class:"yellow",
           link:"/showcase",
           id:"#topo",
@@ -60,7 +60,7 @@ export class HeaderFooterComponent implements OnInit {
         {
           title:"Todos os produtos",
           icon:"photo_library",
-          color:"#FF4A4",
+          color:"#FF4A4A",
           class:"red",
           link:"/produtos",
           id:"#topo",

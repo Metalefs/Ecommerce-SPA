@@ -6,6 +6,7 @@
 @import '~ngx-sharebuttons/themes/modern/modern-dark-theme';
 @import url('https://fonts.googleapis.com/css2?family=Buenard:wght@400;700&family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500&display=swap');
 @import '~css-star-rating/css/star-rating.min.css';
 @import '~@angular/cdk/overlay-prebuilt.css';
 @import '~swiper/swiper-bundle.min.css';
@@ -191,6 +192,7 @@ a {
 }
 .slideshow-container .slick-dots li button{
   border: none !important;
+  width: 30px !important;
 }
 .arrow-container.prev,.arrow-container.next{
   opacity: .5;
@@ -586,7 +588,9 @@ img {
 
   filter: none !important;
 }
-
+.table td, .table th {
+  vertical-align:middle;
+}
 /**/
 .mat-form-field.mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element,.mat-input-element{
   caret-color: initial;
@@ -609,9 +613,9 @@ img {
   background: $blue1;
 }
 .mat-form-field-appearance-fill .mat-form-field-flex {
-  background-color: white !important;
+  background-color: #F5F5F5 !important;
   border: 1px solid #9bb6d23b !important;
-  border-radius: 4px;
+  border-radius: 11px;
 }
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   // background-color: #fe0000;
@@ -631,6 +635,19 @@ img {
 }
 .mat-form-field-subscript-wrapper {
   margin-top: 0.1666666667em;
+}
+.mat-dialog-container {
+  display: block;
+  padding: 10px !important;
+  border-radius: 0px !important;
+  box-sizing: border-box;
+  overflow: auto;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  max-height: inherit;
+  background: #fffffff7 !important;
 }
 // .mat-card-title {
 //   font-weight: 600;
@@ -673,27 +690,6 @@ img {
   line-height: 1.25;
   font-size: 14px;
   color: #0db9f0;
-}
-.card-bg{
-  z-index: 0;
-  content: "";
-  width: 100%;
-  height: 103%;
-  position: relative;
-  bottom: -2px;
-  border-radius: 30px;
-}
-.card-bg::before{
-  z-index: 0;
-  content: "";
-  width: 100%;
-  height: 102%;
-  border-radius: 30px;
-  position: relative;
-  bottom: -2px;
-  transform: rotate(2deg);
-  transition: all .25s ease-out;
-  background: wheat;
 }
 .mat-card{
   animation: bounce .5s ease-out forwards;

@@ -46,7 +46,7 @@ environment.production ? [
 export let NavLinksRes:NavLink[] =
 environment.production ? [
   {
-    name: "Informações", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
+    name: "Home", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Empresa",link:`/empresa`,queryParams:{}},
@@ -59,15 +59,17 @@ environment.production ? [
   {name: "Notícias",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
   {
-    name: "Informações", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
+    name: "Home", href:"/inicio", icon:'home', Picon:"", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
-      {nome:"Empresa",link:`/empresa`,queryParams:{}},
-      {nome:"Serviços",link:`/servicos`,queryParams:{}},
+      // {nome:"Empresa",link:`/empresa`,queryParams:{}},
+      // {nome:"Serviços",link:`/servicos`,queryParams:{}},
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Loja",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Empresa",   href:"./empresa", Picon:"pi pi-business", group:GrupoNavLink.produtos},
+  {name: "Produtos",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Serviços",   href:"./servicos", Picon:"pi pi-square", group:GrupoNavLink.produtos},
   {name: "Contato",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
   {name: "Notícias",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ];

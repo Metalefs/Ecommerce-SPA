@@ -1,43 +1,40 @@
-<figure class="image is-square pos-absolute"><img src="/assets/images/figures/undraw_decide_3iwx.svg" alt=""></figure>
 <div *ngIf="loading" class="a-i-c mx-0 columns is-multiline bg flex-sa mlr-auto">
   <div class="column card-bg is-4 my-1" *ngFor="let card of [].constructor(3);">
     <mat-card>
-
       <p-skeleton styleClass="mat-card" width="100%" height="100%"></p-skeleton>
     </mat-card>
   </div>
 </div>
-<div class="columns is-multiline w-full mx-0">
-  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column mx-0 is-4 pb-1">
-    <div class="card-bg shadow-light {{card?.class}}">
-      <!-- pageScroll href="#{{card.link.replace('/','')}}" [routerLink]="[card.link]" routerLinkActive="Ative" -->
+
+<div class="columns is-multiline">
+  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column is-4">
+    <div class="card-bg {{card?.class}}">
       <div [id]="card.class" class=" {{card?.class}}">
-        <mat-card class="of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
+        <mat-card class="of-y-scroll shadow-light" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
           <article class="media">
-            <div class="media-content dis-flex">
+            <div class="media-left">
               <a *ngIf="card.img_src" [routerLink]="card.link" href="{{card.id}}" pageScroll class="w-full ">
                 <img loading="lazy" mat-card-image height="200"  src="{{card.img_src}}" class="">
               </a>
-              <div *ngIf="!card.img_src" mat-card-avatar class="w-full {{card?.class}}">
+              <div *ngIf="!card.img_src" mat-card-avatar class="{{card?.class}}">
                 <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
                   <mat-icon>{{card.icon}}</mat-icon>
                 </a>
               </div>
-              <div class="content mx-2 m-l-20">
-                <mat-card-title>
-                  <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
-                    <p class="header is-size-6">{{card.title}}</p>
-                  </a>
-                </mat-card-title>
+            </div>
+            <div class="media-content">
+              <mat-card-title >
+                <a [routerLink]="card.link" href="{{card.id}}" pageScroll>
+                  <p class="title is-size-6">{{card.title}}</p>
+                </a>
+              </mat-card-title>
 
-                <mat-card-content>
-                  <p [innerHtml]="card.content" class="">
-                  </p>
-                </mat-card-content>
-              </div>
+              <mat-card-content class="content">
+                <p [innerHtml]="card.content" class="subtitle">
+                </p>
+              </mat-card-content>
             </div>
           </article>
-
         </mat-card>
       </div>
     </div>

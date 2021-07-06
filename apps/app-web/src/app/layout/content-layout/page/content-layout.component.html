@@ -21,9 +21,9 @@
     (mouseover)="CloseNav()">
     <section class="split-home ">
       <personalizados-lopes-header></personalizados-lopes-header>
-      <div class="main-content has-background-light">
+      <main class="main-content has-background-light">
         <router-outlet #outlet="outlet"></router-outlet>
-      </div>
+      </main>
     </section>
     <personalizados-lopes-icone-whatsapp [Whatsapp]="(InformacoesContato$|async)?.Whatsapp" [Mensagem]="Mensagem">
     </personalizados-lopes-icone-whatsapp>

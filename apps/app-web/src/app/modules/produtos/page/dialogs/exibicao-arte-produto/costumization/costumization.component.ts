@@ -159,7 +159,7 @@ export class CostumizationComponent implements OnInit {
     reader.onload = function (f) {
       var data = f.target.result;
       fabric.Image.fromURL(data, function (img) {
-        img.scaleToWidth(300);
+        img.scaleToWidth(200);
         var oImg = img.set({
           left: 0,
           top: 0,
@@ -179,11 +179,11 @@ export class CostumizationComponent implements OnInit {
     let self = this;
     var data = url;
     fabric.Image.fromURL(data, function (img) {
-      img.scaleToWidth(300);
+      img.scaleToWidth(200);
       var oImg = img.set({
         left: 0,
         top: 0,
-        angle: 0,
+        angle: 5,
       });
 
       self.__canvas.add(oImg).renderAll();

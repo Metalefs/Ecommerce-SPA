@@ -3,17 +3,20 @@
 <ng-template #Iscompact>
   <form>
 
-    <mat-form-field class="w-full" appearance="fill">
-      <mat-label>Nome</mat-label>
-      <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
-        placeholder="Ex. Fulano de tal">
-      <mat-error *ngIf="nomeFormControl.hasError('required')">
-        É necessário inserir um <strong>nome</strong>
-      </mat-error>
-    </mat-form-field>
 
     <div class="flex-w flex-c columns my-0">
-      <div class="column">
+      <div class="column is-12">
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Nome" [formControl]="nomeFormControl"
+              placeholder="Ex. Fulano de tal">
+            <mat-error *ngIf="nomeFormControl.hasError('required')">
+              É necessário inserir um <strong>nome</strong>
+            </mat-error>
+          </mat-form-field>
+      </div>
+
+      <div class="column is-6">
         <mat-form-field class="w-full" appearance="fill">
           <mat-label>Email</mat-label>
           <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Email" [formControl]="emailFormControl"
@@ -27,7 +30,7 @@
         </mat-form-field>
       </div>
 
-      <div class="column">
+      <div class="column is-6">
         <mat-form-field class="w-full" appearance="fill">
           <mat-label>Telefone</mat-label>
           <input class="w-full" matInput (change)="AtualizarOrcamento()" [(ngModel)]="Orcamento.Usuario.Telefone" [formControl]="phoneFormControl"

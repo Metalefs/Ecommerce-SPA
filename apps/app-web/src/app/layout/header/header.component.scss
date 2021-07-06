@@ -104,15 +104,27 @@
   // min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  // border-left: 1px solid $navlinkbordercolor;
+  border-left: 1px solid $navlinkbordercolor;
   color: $navcolor;
-  // font-weight: $navlinkweight;
-  // text-transform: uppercase;
+  font-family: Public Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16.2902px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  /* nav-link-color */
+
+  color: rgba(0, 0, 0, 0.8);
   &.active-nav{
     // animation: selected 2s ease-out forwards;
     i{
       color:$naviconcolor
     }
+    font-weight: 600;
     //color:$naviconcolor;
     &::before{
       content: "";
@@ -162,7 +174,7 @@
   }
 
   100%{
-    background: #c9c2c228;
+    //background: #c9c2c228;
   }
 }
 .sticky-nav{
