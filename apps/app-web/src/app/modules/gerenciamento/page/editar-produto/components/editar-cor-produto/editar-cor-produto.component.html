@@ -1,29 +1,28 @@
 <div class="w-full">
-  <form [formGroup]="corProdutoForm">
-    <div class="columns is-multiline">
-      <div class="column is-6">
-        <mat-form-field class="field">
-          <div class="control">
-            <input matInput class="input" type="text" placeholder="Nome" />
-          </div>
-        </mat-form-field>
-      </div>
 
-      <div class="column is-12-touch">
-        <mat-form-field class="field">
-          <div class="control">
-            <input matInput class="input" type="color" placeholder="Cor" />
-          </div>
-        </mat-form-field>
-      </div>
+  <mat-card class="card">
 
-      <button
-        class="button is-success w-full"
-        [disabled]="corProdutoForm.invalid"
-        (click)="Criar()"
-      >
-        Cadastrar
-      </button>
-    </div>
-  </form>
+    <mat-card-title class="title is-5 is-uppercase">Cadastrar cor produto</mat-card-title>
+
+    <mat-card-content class="card-body">
+      <personalizados-lopes-editar-cor-produto-form
+      (onSend)="Criar($event)"
+    ></personalizados-lopes-editar-cor-produto-form>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+<div class="block dis-flex flex-sb">
+  <personalizados-lopes-cor-produto-checkbox-selector
+    [Cores]="CoresProduto"
+    (onSelected)="CorSelecionada = $event"
+    [Multiple]="true"
+  ></personalizados-lopes-cor-produto-checkbox-selector>
+  <div>
+    <ng-container *ngIf="CorSelecionada">
+      <button class="button is-small is-roudend" (click)="Editar()" mat-icon-button><mat-icon>edit</mat-icon></button>
+      <button class="button is-small is-roudend" (click)="Remover()" mat-icon-button><mat-icon>remove</mat-icon></button>
+    </ng-container>
+  </div>
 </div>

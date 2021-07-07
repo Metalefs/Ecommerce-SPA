@@ -1,0 +1,30 @@
+<form [formGroup]="corProdutoForm">
+  <div class="columns is-multiline">
+    <div class="column is-4">
+      <mat-form-field class="field">
+        <div class="control">
+          <input matInput class="input" [formControlName]="'Nome'" type="text" placeholder="Nome" />
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="column is-4 is-12-touch">
+      <mat-form-field class="field">
+        <div class="control">
+          <input matInput class="input" [formControlName]="'Cor'" type="color" placeholder="Cor" />
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="column is-12-touch">
+      <button
+        class="button is-success w-full"
+        [disabled]="corProdutoForm.invalid"
+        (click)="Criar()"
+      >
+        Cadastrar
+      </button>
+    </div>
+
+  </div>
+</form>

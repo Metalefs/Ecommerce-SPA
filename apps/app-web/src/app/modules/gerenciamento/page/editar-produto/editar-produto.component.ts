@@ -37,7 +37,7 @@ export class EditarProdutoComponent implements OnInit {
       width: "100%",
       height: "100%",
       data: "",
-      panelClass:['fullscreen-modal']
+      panelClass:['']
     });
     dialogRef.afterClosed().subscribe((Produto : entities.Produto) => {
       if(Produto != undefined){

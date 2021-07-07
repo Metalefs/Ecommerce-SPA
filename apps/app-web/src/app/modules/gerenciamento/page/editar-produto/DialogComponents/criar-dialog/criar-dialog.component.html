@@ -4,13 +4,9 @@
 
   <personalizados-lopes-editar-produto-form
     [Produto]="Produto"
-    (onSelectedCor)="selectedCor($event)"
-    (onSelectedTamanho)="selectedTamanho($event)"
   ></personalizados-lopes-editar-produto-form>
 
   <div class="py-3">
-    <a mat-stroked-button (click)="CriarPostagem()">Criar postagem para o produto</a>
-    <a mat-stroked-button (click)="CriarDepoimento()">Adicionar Depoimento</a>
   </div>
 
 </div>
@@ -19,6 +15,8 @@
   <button mat-raised-button color="basic" [mat-dialog-close]="Produto">
     Enviar
   </button>
+  <a mat-stroked-button (click)="CriarPostagem()">Criar postagem para o produto</a>
+  <a mat-stroked-button (click)="CriarDepoimento()">Adicionar Depoimento</a>
   <button mat-raised-button color="basic" (click)="onNoClick()" cdkFocusInitial>
     Cancelar
   </button>

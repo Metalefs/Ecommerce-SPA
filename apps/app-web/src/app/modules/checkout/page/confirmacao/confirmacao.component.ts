@@ -6,9 +6,9 @@ import { fade, slideInOut } from 'apps/app-web/src/app/animations';
 import { EditarProdutoOrcamentoLocal, RemoverProdutoOrcamento, ResetarOrcamento } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { getPreviewURL } from 'apps/app-web/src/app/helper/FileHelper';
-import { Orcamento } from 'libs/data/src/lib/classes';
+import { CorProduto, Orcamento } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
-import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
 import { Observable, pipe } from 'rxjs';
@@ -105,7 +105,7 @@ export class ConfirmacaoComponent implements OnInit {
     });
   }
 
-  setColor(cor:Cor, element){
+  setColor(cor:CorProduto, element){
     element.Produto.Cor = cor;
     this.EditarOrcamento(element);
   }

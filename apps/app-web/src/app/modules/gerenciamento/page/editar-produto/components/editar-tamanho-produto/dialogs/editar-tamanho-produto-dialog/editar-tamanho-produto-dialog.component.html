@@ -1,0 +1,14 @@
+<h1 mat-dialog-title class="tem-cor-primaria">Editar Tamanho</h1>
+
+<div mat-dialog-content>
+  <personalizados-lopes-editar-tamanho-produto-form
+    [TamanhoProduto]='TamanhoProduto'
+    [editing]="true"
+  ></personalizados-lopes-editar-tamanho-produto-form>
+</div>
+
+<div mat-dialog-actions>
+  <button #editar class="button is-rounded" mat-raised-button [mat-dialog-close]='TamanhoProduto'>Salvar</button>
+  <button class="button is-rounded" mat-raised-button [mat-dialog-close]=''>Fechar</button>
+</div>
+

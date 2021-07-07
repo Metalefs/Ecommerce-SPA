@@ -5,7 +5,7 @@ import { UsuarioService, OrcamentoService} from '../../service';
 import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento } from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { EnderecoEntrega, Orcamento, Usuario } from 'libs/data/src/lib/classes';
+import { EnderecoEntrega, Orcamento, TamanhoProduto, Usuario } from 'libs/data/src/lib/classes';
 import { MercadoPagoResultadoPagamentoCheckout } from 'libs/data/src/lib/interfaces/mercadoPagoResultadoPagamentoCheckout';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 
@@ -114,11 +114,11 @@ export class OrcamentoState {
       [""],
       0,
       0,
-      "",
+      new TamanhoProduto("",[]),
       null,
       0,
-      [{nome:'branco',cor:'white'}],
-      ["M"],
+      [],
+      [],
       StatusProduto.novo,
       0,
       false,

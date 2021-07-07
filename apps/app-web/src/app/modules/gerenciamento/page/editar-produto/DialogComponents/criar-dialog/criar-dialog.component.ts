@@ -3,7 +3,7 @@ import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { entities } from '@personalizados-lopes/data';
-import { Produto } from 'libs/data/src/lib/classes';
+import { CorProduto, FornecedorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { EditarProdutoDialogComponent } from '../editar-dialog/editar-dialog.component';
 import { Store } from '@ngxs/store';
@@ -58,11 +58,11 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
       [""],
       0,
       0,
-      "",
+      new TamanhoProduto("",[]),
       null,
       0,
-      [{ nome: 'branco', cor: 'white' }],
-      ["M"],
+      [],
+      [],
       StatusProduto.novo,
       0,
       false,
@@ -74,7 +74,7 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
       "",
       "",
       [],
-      "",
+      new FornecedorProduto("",""),
       "",
       0
     )
@@ -83,19 +83,6 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
   ngOnInit() {
     this.CarregarCategorias();
 
-  }
-
-  selectedCor(event: MatAutocompleteSelectedEvent): void {
-    alert(event.option.viewValue);
-    // this.Produto.Cores.push();
-    //this.colorInput.nativeElement.value = '';
-    this.colorCtrl.setValue(null);
-  }
-
-  selectedTamanho(event: MatAutocompleteSelectedEvent): void {
-    this.Produto.Tamanhos.push(event.option.viewValue);
-    //this.colorInput.nativeElement.value = '';
-    this.colorCtrl.setValue(null);
   }
 
   onNoClick(): void {

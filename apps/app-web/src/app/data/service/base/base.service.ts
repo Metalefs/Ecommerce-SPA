@@ -34,7 +34,7 @@ export class BaseService<Type> {
 
   Editar<Type>(item: Type): Observable<Type> {
     return this.http.put<any>(environment.endpoint + this.domain_route,
-      item).pipe(
+      {item}).pipe(
         retry(3),
         catchError(this.ErrorHandler.handleError)
       )

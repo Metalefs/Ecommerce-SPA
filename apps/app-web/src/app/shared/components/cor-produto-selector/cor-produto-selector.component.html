@@ -1,6 +1,6 @@
 <div>
   <p class="is-size-7 dis-flex flex-m">
-    <span class="has-text-weight-medium is-size-6">Cor:  </span><strong class=" is-size-7">{{ Produto?.Cor?.nome || hovercolor?.nome }}</strong>
+    <span class="has-text-weight-medium is-size-6">Cor:  </span><strong class=" is-size-7">{{ Produto?.Cor?.Nome || hovercolor?.Nome }}</strong>
   </p>
   <div
     class="columns is-multiline flex-sb"
@@ -17,21 +17,21 @@
       <input
         class="mx-1 button is-rounded"
         type="radio"
-        alt="{{ cor.nome }}"
+        alt="{{ cor.Nome }}"
         [value]="Produto.Cor"
         id="cor{{ i }}"
 
-        [ngClass]="{ ' is-focused selected': Produto?.Cor?.nome == cor.nome, 'is-danger': ErroCor }"
+        [ngClass]="{ ' is-focused selected': Produto?.Cor?.Nome == cor.Nome, 'is-danger': ErroCor }"
       />
       <div
-        title="{{ cor.nome }}"
+        title="{{ cor.Nome }}"
         class="ColorlabelBackground is-rounded"
-        [ngClass]="{ 'is-focused selected': Produto?.Cor?.nome == cor.nome, 'is-danger': ErroCor }"
+        [ngClass]="{ 'is-focused selected': Produto?.Cor?.Nome == cor.Nome, 'is-danger': ErroCor }"
         (click)="setColor(cor)"
       >
         <label
-          title="{{ cor.nome }}"
-          [style.background]="cor.cor"
+          title="{{ cor.Nome }}"
+          [style.background]="cor.Cor"
           class="border-light"
           for="cor{{ i }}"
         ></label>

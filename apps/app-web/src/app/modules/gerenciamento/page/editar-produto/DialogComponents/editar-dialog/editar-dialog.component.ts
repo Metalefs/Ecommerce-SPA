@@ -44,7 +44,7 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
     dialogRef.disableClose = true;
     this.Produto = data;
     if(!this.Produto.Cores){
-      this.Produto.Cores = [{cor:'',nome:''}]
+      this.Produto.Cores = []
     }
     if(!this.Produto.Tamanhos){
       this.Produto.Tamanhos = []
@@ -88,19 +88,6 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  selectedCor(event: MatAutocompleteSelectedEvent): void {
-    alert(event.option.viewValue);
-    // this.Produto.Cores.push();
-    //this.//colorInput.nativeElement.value = '';
-    this.colorCtrl.setValue(null);
-  }
-
-  selectedTamanho(event: MatAutocompleteSelectedEvent): void {
-    this.Produto.Tamanhos.push(event.option.viewValue);
-    //this.//colorInput.nativeElement.value = '';
-    this.colorCtrl.setValue(null);
   }
 
 }

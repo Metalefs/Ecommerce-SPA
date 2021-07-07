@@ -1,7 +1,10 @@
 import { Categoria } from '.';
 import { entidadeBase } from '../interfaces/entity';
 import { MongoDocument } from './abstract/MongoDocument';
+import { CorProduto } from './corProduto';
 import { Estampa } from './estampa';
+import { FornecedorProduto } from './fornecedorProduto';
+import { TamanhoProduto } from './tamanhoProduto';
 
 export class Produto extends MongoDocument implements entidadeBase{
   Nome:string;
@@ -12,13 +15,13 @@ export class Produto extends MongoDocument implements entidadeBase{
   Preco?:number;
   Imagem:string[];
   FileList:FileList;
-  Tamanho?:string;
-  Cor?:Cor;
+  Tamanho?:TamanhoProduto;
+  Tamanhos?:TamanhoProduto[];
+  Cor?:CorProduto;
+  Cores?:CorProduto[];
   Likes?:number = 0;
   Quantidade?:number = 1;
   QuantidadeMinima?:number = 10;
-  Cores?:Cor[];
-  Tamanhos?:string[];
   Status?:StatusProduto;
   PrecoPromocional?:number;
   Destaque?:boolean;
@@ -32,7 +35,7 @@ export class Produto extends MongoDocument implements entidadeBase{
   Arte?:string | ArrayBuffer;
   ArteSecundaria?:string | ArrayBuffer;
   Rating?:number[] = [];
-  Marca?:string;
+  Marca?:FornecedorProduto;
   Modelo?:string;
   Visualizacoes:number;
   Vendas?:number;
@@ -49,11 +52,11 @@ export class Produto extends MongoDocument implements entidadeBase{
     Imagem:string[],
     QuantidadeMinima?:number,
     Preco?:number,
-    Tamanho?:string,
-    Cor?:Cor,
+    Tamanho?:TamanhoProduto,
+    Cor?:CorProduto,
     Likes?:number,
-    Cores?:Cor[],
-    Tamanhos?:string[],
+    Cores?:CorProduto[],
+    Tamanhos?:TamanhoProduto[],
     Status?:StatusProduto,
     PrecoPromocional?:number,
     Destaque?:boolean,
@@ -65,7 +68,7 @@ export class Produto extends MongoDocument implements entidadeBase{
     Arte?:string | ArrayBuffer,
     ArteSecundaria?:string | ArrayBuffer,
     Rating?:number[],
-    Marca?:string,
+    Marca?:FornecedorProduto,
     Modelo?:string,
     Peso?:number,
     Visualizacoes?:number,
@@ -113,10 +116,6 @@ export class Produto extends MongoDocument implements entidadeBase{
       this.Preco = ( this.Preco * this.Quantidade ) + (this.Estampas ? this.Estampas.map(x=>x.Preco).reduce((a,b,i)=> a+b) : 0);
     }
 };
-export interface Cor{
-  nome:string;
-  cor:string;
-}
 export enum StatusProduto{
   novo,
   promocao,

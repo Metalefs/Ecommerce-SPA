@@ -4,63 +4,74 @@
     <div class="pt-3">
       <div class="columns is-multiline">
 
-        <div class="column is-3">
-         <div class="box border-light">
-            <figure class="image is-square has-ratio">
-              <img src="{{Estampa.Imagem[0].Src || Estampa.Base64}}" alt="">
-            </figure>
-         </div>
-          <personalizados-lopes-imagem-estampa
-            [filenames]="fileNames"
-            (onUpload)="UploadFiles($event)"
-            [Estampa]="Estampa"
-          ></personalizados-lopes-imagem-estampa>
+        <div class="column is-4">
+          <div class="columns">
+            <div class="column is-12">
+              <div class="box border-light">
+                 <figure class="image is-square has-ratio">
+                   <img width="300" height="300" src="{{Estampa.Imagem[0].Src || Estampa.Base64}}" alt="">
+                 </figure>
+              </div>
+               <personalizados-lopes-imagem-estampa
+                 [filenames]="fileNames"
+                 (onUpload)="UploadFiles($event)"
+                 [Estampa]="Estampa"
+               ></personalizados-lopes-imagem-estampa>
+             </div>
+            </div>
+        </div>
+        <div class="column is-8">
+          <div class="columns">
+            <div class="column is-12-touch">
+              <personalizados-lopes-nome-estampa
+                (onNomeChange)="SelecionarNome($event)"
+                [Estampa]="Estampa"
+              ></personalizados-lopes-nome-estampa>
+            </div>
+
+            <div class="column is-12-touch">
+              <personalizados-lopes-categoria-estampa
+                [Categorias]="categorias"
+                [Estampa]="Estampa"
+                (onSelecionarCategoria)="SelecionarCategoria($event)"
+              ></personalizados-lopes-categoria-estampa>
+            </div>
+
+            <div class="column">
+              <personalizados-lopes-descricao-estampa
+                (onDescricaoChange)="SetDescricaoEstampa($event)"
+                [Estampa]="Estampa"
+              ></personalizados-lopes-descricao-estampa>
+            </div>
+          </div>
+
+          <div class="columns">
+
+            <div class="column">
+              <personalizados-lopes-preco-estampa
+                (onPrecoChange)="SetPrecoEstampa($event)"
+                [Estampa]="Estampa"
+              ></personalizados-lopes-preco-estampa>
+            </div>
+
+            <div class="column">
+              <personalizados-lopes-posicao-estampa
+                (onPosicaoChange)="SetPosicaoEstampa($event)"
+                [Estampa]="Estampa"
+              ></personalizados-lopes-posicao-estampa>
+            </div>
+
+            <div class="column">
+              <mat-checkbox
+                matNativeControl
+                (change)="SetDestaqueEstampa($event)"
+                [(ngModel)]="Estampa.Destaque"
+                >Destaque
+              </mat-checkbox>
+            </div>
+          </div>
         </div>
 
-        <div class="column is-12-touch">
-          <personalizados-lopes-nome-estampa
-            (onNomeChange)="SelecionarNome($event)"
-            [Estampa]="Estampa"
-          ></personalizados-lopes-nome-estampa>
-        </div>
-
-        <div class="column is-12-touch">
-          <personalizados-lopes-categoria-estampa
-            [Categorias]="categorias"
-            [Estampa]="Estampa"
-            (onSelecionarCategoria)="SelecionarCategoria($event)"
-          ></personalizados-lopes-categoria-estampa>
-        </div>
-
-        <div class="column">
-          <personalizados-lopes-preco-estampa
-            (onPrecoChange)="SetPrecoEstampa($event)"
-            [Estampa]="Estampa"
-          ></personalizados-lopes-preco-estampa>
-        </div>
-
-        <div class="column">
-          <personalizados-lopes-descricao-estampa
-            (onDescricaoChange)="SetDescricaoEstampa($event)"
-            [Estampa]="Estampa"
-          ></personalizados-lopes-descricao-estampa>
-        </div>
-
-        <div class="column">
-          <personalizados-lopes-posicao-estampa
-            (onPosicaoChange)="SetPosicaoEstampa($event)"
-            [Estampa]="Estampa"
-          ></personalizados-lopes-posicao-estampa>
-        </div>
-
-        <div class="column">
-          <mat-checkbox
-            matNativeControl
-            (change)="SetDestaqueEstampa($event)"
-            [(ngModel)]="Estampa.Destaque"
-            >Destaque
-          </mat-checkbox>
-        </div>
       </div>
 
       <button

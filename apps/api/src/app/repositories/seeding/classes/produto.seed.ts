@@ -1,4 +1,5 @@
 import { entities } from "@personalizados-lopes/data";
+import { CorProduto, TamanhoProduto } from "libs/data/src/lib/classes";
 import { Categoria } from './categoria.seed';
 export let Produto = [
     new entities.Produto(
@@ -10,8 +11,8 @@ export let Produto = [
         [""],
         0,
         0,
-        "",
-        {nome:"",cor:""},
+        new TamanhoProduto("",[]),
+        new CorProduto("",""),
         0
     ),
 ]

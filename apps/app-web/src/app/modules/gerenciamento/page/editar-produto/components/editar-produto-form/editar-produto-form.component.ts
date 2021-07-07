@@ -36,14 +36,16 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
 
   ngOnInit(): void {
     this.CarregarCategorias();
+    this.CarregarCores();
+    this.CarregarTamanhos();
   }
 
-  selectedCor(event: MatAutocompleteSelectedEvent): void {
-    this.onSelectedCor.emit(event);
+  selectedCor(event: any): void {
+    this.Produto.Cores = event;
   }
 
-  selectedTamanho(event: MatAutocompleteSelectedEvent): void {
-    this.onSelectedTamanho.emit(event);
+  selectedTamanho(event: any): void {
+    this.Produto.Tamanhos = event;
   }
 
 }

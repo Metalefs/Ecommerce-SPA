@@ -1,0 +1,34 @@
+<ng-container *ngIf="Multiple then multiple else single"></ng-container>
+<ng-template #single>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Cores</mat-label>
+    <mat-select
+      matNativeControl
+      (selectionChange)="this.onSelected.emit($event.value)"
+    >
+      <mat-option *ngFor="let opt of Cores" [value]="opt">
+        <div class="dis-flex flex-sb">
+          <p>{{ opt?.Nome }}</p>
+          <div class="square" [style.background]="opt?.Cor"></div>
+        </div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>
+<ng-template #multiple>
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Cores</mat-label>
+    <mat-select
+      multiple
+      matNativeControl
+      (selectionChange)="this.onSelected.emit($event.value)"
+    >
+      <mat-option *ngFor="let opt of Cores" [value]="opt">
+        <div class="dis-flex flex-sb">
+          <p>{{ opt?.Nome }}</p>
+          <div class="square" [style.background]="opt?.Cor"></div>
+        </div>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-template>

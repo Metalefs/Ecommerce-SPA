@@ -5,11 +5,11 @@ import { entities } from '@personalizados-lopes/data';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { BlogPost, Produto } from 'libs/data/src/lib/classes';
+import { BlogPost, CorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { EditarProdutoService } from './editar-produto.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
-import { Cor, StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { FormControl } from '@angular/forms';
 import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
@@ -24,12 +24,6 @@ import { CriarCategoriaDialogComponent } from './components/editar-categoria/Dia
   providedIn: 'root'
 })
 export class EditarProdutoComponentBase implements OnInit {
-
-  allColors: Cor[] = [
-    {nome: 'Branco', cor:'white'},
-    {nome: 'Preto', cor:'black'},
-    {nome: 'Azul Marinho', cor:'tealblue'},
-  ];
 
   galleryConfig$: Observable<GalleryConfig>;
   enumStatusProduto = StatusProduto;
@@ -47,6 +41,8 @@ export class EditarProdutoComponentBase implements OnInit {
   allSizes: string[] = ['P','M','G','GG','XGG'];
 
   Categorias: entities.Categoria[];
+  Cores: CorProduto[];
+  Tamanhos: TamanhoProduto[];
 
   value: number = 1;
   maxValue: number = 100;
@@ -136,6 +132,14 @@ export class EditarProdutoComponentBase implements OnInit {
     this.produtoService.CarregarCategorias().subscribe(x=>{this.Categorias = x;});
   }
 
+  CarregarCores(){
+    this.produtoService.CarregarCores().subscribe(x=>{this.Cores = x;});
+  }
+
+  CarregarTamanhos(){
+    this.produtoService.CarregarTamanhos().subscribe(x=>{this.Tamanhos = x;});
+  }
+
   upload($event){
     this.Produto.FileList = $event.target.files;
     this.fileNames = '';
@@ -144,31 +148,6 @@ export class EditarProdutoComponentBase implements OnInit {
       this.fileNames+=this.Produto.FileList[i].name+',';
   }
 
-  addCor(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    if ((value || '').trim())
-      this.Produto.Cores.push(
-        {
-          nome:value.split(';')[0].trim(),
-          cor:value.split(';')[1].trim()
-        }
-      );
-
-    if (input)
-      input.value = '';
-    this.colorCtrl.setValue(null);
-  }
-  addTamanho(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    if ((value || '').trim())
-      this.Produto.Tamanhos.push(value.trim());
-    if (input)
-      input.value = '';
-
-    this.sizeCtrl.setValue(null);
-  }
   addTag(event: MatChipInputEvent): void{
     const input = event.input;
     const value = event.value;
@@ -184,18 +163,6 @@ export class EditarProdutoComponentBase implements OnInit {
       this.Produto.Tags.splice(index, 1);
     }
   }
-  removeCor(color: Cor): void {
-    const index = this.Produto.Cores.indexOf(color);
-    if (index >= 0) {
-      this.Produto.Cores.splice(index, 1);
-    }
-  }
-  removeTamanho(tamanho: string): void {
-    const index = this.Produto.Tamanhos.indexOf(tamanho);
-    if (index >= 0) {
-      this.Produto.Tamanhos.splice(index, 1);
-    }
-  }
 
   SelecionarCategoria($event){
     this.Produto.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
@@ -203,10 +170,15 @@ export class EditarProdutoComponentBase implements OnInit {
 
   IncrementarQuantidade(){
     this.Produto.Quantidade++;
+    if(this.Produto.QuantidadeMinima < this.Produto.Quantidade)
+      this.Produto.QuantidadeMinima = this.Produto.Quantidade;
   }
   DecrescerQuantidade(){
     if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
     this.Produto.Quantidade--;
+
+    if(this.Produto.QuantidadeMinima > this.Produto.Quantidade)
+    this.Produto.QuantidadeMinima = this.Produto.Quantidade;
   }
   VerificarQuantidade($event){
     if($event.target.value < this.Produto.QuantidadeMinima)

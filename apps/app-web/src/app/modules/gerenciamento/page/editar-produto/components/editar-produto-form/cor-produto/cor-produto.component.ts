@@ -2,7 +2,7 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Produto } from 'libs/data/src/lib/classes';
-import { Cor } from 'libs/data/src/lib/classes/produto';
+import { CorProduto } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cor-produto.component.scss']
 })
 export class CorProdutoComponent implements OnInit {
-  filteredColors: Observable<Cor[]>;
+  filteredColors: Observable<CorProduto[]>;
   @Input() Produto:Produto;
   @Input() colorCtrl:FormControl;
 

@@ -7,14 +7,8 @@
   ></personalizados-lopes-categoria-produto>
 
   <div class="columns">
-
     <div class="column is-4 pt-3">
       <div class="pos-sticky top-0">
-        <mat-chip-list class="is-left">
-          <mat-chip class="mx-1 py-1 px-6 is-capitalized">{{
-            translateStatusProduto(Produto.Status)
-          }}</mat-chip>
-        </mat-chip-list>
         <personalizados-lopes-status-produto
           [Produto]="Produto"
         ></personalizados-lopes-status-produto>
@@ -58,8 +52,8 @@
 
     <div class="column px-3 has-background-white z-index-2 pos-sticky">
       <div class="columns is-multiline mb-0 pb-0">
-        <div class="column has-background-light">
-          <mat-form-field class="field w-full">
+        <div class="column">
+          <mat-form-field appearance="fill" class="field w-full">
             <div class="control"></div>
             <input
               matInput
@@ -73,7 +67,7 @@
 
           <mat-divider></mat-divider>
 
-          <mat-form-field class="field w-full">
+          <mat-form-field appearance="fill" class="my-4 field w-full">
             <div class="control"></div>
             <input
               matInput
@@ -86,22 +80,22 @@
 
           <mat-divider></mat-divider>
 
-          <div class="descricao-produto w-full py-4">
-            <mat-form-field class="field w-full">
+          <div class="descricao-produto w-full">
+            <mat-form-field appearance="fill" class="field w-full">
               <div class="control"></div>
               <textarea
                 matInput
                 class="input"
                 type="text"
                 [(ngModel)]="Produto.DescricaoRapida"
-                placeholder="Descricao Rapida"
+                placeholder="Texto de chamada"
               ></textarea>
             </mat-form-field>
           </div>
 
           <mat-divider></mat-divider>
 
-          <mat-form-field class="field w-full">
+          <mat-form-field appearance="fill" class="my-4 field w-full">
             <div class="control">
               <input
                 matInput
@@ -115,7 +109,7 @@
 
           <mat-divider></mat-divider>
 
-          <mat-form-field class="field w-full">
+          <mat-form-field appearance="fill" class="field w-full">
             <div class="control">
               <input
                 matInput
@@ -129,8 +123,9 @@
 
           <mat-divider></mat-divider>
 
-          <div class="my-1">
-            <mat-form-field class="field">
+          <div class="my-4 columns">
+            <mat-form-field appearance="fill" class="column field">
+              <mat-label>Preco</mat-label>
               <div class="control">
                 <input
                   matInput
@@ -144,9 +139,7 @@
               </div>
             </mat-form-field>
 
-            <mat-divider></mat-divider>
-
-            <mat-form-field class="field">
+            <mat-form-field appearance="fill" class="column field">
               <mat-label>Preco Promocional</mat-label>
               <div class="control">
                 <input
@@ -160,7 +153,10 @@
               </div>
             </mat-form-field>
 
-            <mat-form-field class="field">
+            <mat-divider></mat-divider>
+
+            <mat-form-field appearance="fill" class="column field">
+              <mat-label>Parcelas</mat-label>
               <div class="control">
                 <input
                   matInput
@@ -173,37 +169,36 @@
                 />
               </div>
             </mat-form-field>
-
-            <mat-divider></mat-divider>
-
-            <personalizados-lopes-exibicao-preco-produto
-              [Produto]="Produto"
-            ></personalizados-lopes-exibicao-preco-produto>
           </div>
-
-          <personalizados-lopes-quantidade-produto
-            [Produto]="Produto"
-            (onDecrescerQuantidade)="DecrescerQuantidade()"
-            (onIncrementarQuantidade)="IncrementarQuantidade()"
-            (onVerificarQuantidade)="VerificarQuantidade($event)"
-          ></personalizados-lopes-quantidade-produto>
 
           <mat-divider></mat-divider>
 
-          <mat-form-field class="field">
-            <mat-label>Quantidade Minima</mat-label>
-            <div class="control">
-              <input
-                matInput
-                class="input"
-                type="number"
-                min="1"
-                value="1"
-                [(ngModel)]="Produto.QuantidadeMinima"
-                [value]="Produto.QuantidadeMinima"
-              />
+          <div class="columns my-4">
+            <div class="column">
+              <personalizados-lopes-quantidade-produto
+                [Produto]="Produto"
+                (onDecrescerQuantidade)="DecrescerQuantidade()"
+                (onIncrementarQuantidade)="IncrementarQuantidade()"
+                (onVerificarQuantidade)="VerificarQuantidade($event)"
+              ></personalizados-lopes-quantidade-produto>
             </div>
-          </mat-form-field>
+            <div class="column my-4">
+              <mat-form-field appearance="fill" class="field w-full">
+                <mat-label>Quantidade Minima</mat-label>
+                <div class="control">
+                  <input
+                    matInput
+                    class="input"
+                    type="number"
+                    min="1"
+                    value="1"
+                    [(ngModel)]="Produto.QuantidadeMinima"
+                    [value]="Produto.QuantidadeMinima"
+                  />
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
 
           <mat-divider></mat-divider>
 
@@ -211,24 +206,20 @@
             <div class="columns is-mobile mb-0">
               <div class="column is-6">
                 <!-- Cor -->
-                <personalizados-lopes-cor-produto
-                  [Produto]="Produto"
-                  [colorCtrl]="colorCtrl"
-                  (onAddCor)="addCor($event)"
-                  (onSelectedCor)="selectedCor($event)"
-                  (onRemoveCor)="removeCor($event)"
-                ></personalizados-lopes-cor-produto>
+                <personalizados-lopes-cor-produto-checkbox-selector
+                  (onSelected)="selectedCor($event)"
+                  [Multiple]="true"
+                  [Cores]="Cores"
+                ></personalizados-lopes-cor-produto-checkbox-selector>
               </div>
 
               <div class="column is-6">
                 <!-- Tamanho -->
-                <personalizados-lopes-tamanho-produto
-                  [Produto]="Produto"
-                  [sizeCtrl]="sizeCtrl"
-                  (onAddTamanho)="addTamanho($event)"
-                  (onRemoveTamanho)="removeTamanho($event)"
-                  (onSelectedTamanho)="selectedTamanho($event)"
-                ></personalizados-lopes-tamanho-produto>
+                <personalizados-lopes-tamanho-produto-selector
+                  (onSelected)="selectedTamanho($event)"
+                  [Multiple]="true"
+                  [TamanhosProduto]="Tamanhos"
+                ></personalizados-lopes-tamanho-produto-selector>
               </div>
             </div>
           </div>
@@ -237,18 +228,28 @@
     </div>
   </div>
 
-  <personalizados-lopes-dimensoes-produto
-    [Produto]="Produto"
-  ></personalizados-lopes-dimensoes-produto>
+  <div class="container">
+    <personalizados-lopes-dimensoes-produto
+      [Produto]="Produto"
+    ></personalizados-lopes-dimensoes-produto>
 
-  <personalizados-lopes-criacao-tags
-    [Produto]="Produto"
-    [tagCtrl]="tagCtrl"
-    (onAddTag)="addTag($event)"
-    (onRemoveTag)="removeTag($event)"
-  ></personalizados-lopes-criacao-tags>
+    <personalizados-lopes-criacao-tags
+      [Produto]="Produto"
+      [tagCtrl]="tagCtrl"
+      (onAddTag)="addTag($event)"
+      (onRemoveTag)="removeTag($event)"
+    ></personalizados-lopes-criacao-tags>
 
-  <div class="w-full columns is-gapless is-multiline">
+    <mat-checkbox
+      matNativeControl
+      [(ngModel)]="Produto.Destaque"
+      [checked]="Produto.Destaque"
+    >
+      Destaque
+    </mat-checkbox>
+  </div>
+
+  <div class="block w-full columns is-gapless is-multiline">
     <div class="column is-12">
       <personalizados-lopes-descricao-produto
         [Produto]="Produto"
@@ -262,12 +263,4 @@
     </div>
   </div>
   <personalizados-lopes-dicas-cadastro></personalizados-lopes-dicas-cadastro>
-
-  <mat-checkbox
-    matNativeControl
-    [(ngModel)]="Produto.Destaque"
-    [checked]="Produto.Destaque"
-  >
-    Destaque
-  </mat-checkbox>
 </div>

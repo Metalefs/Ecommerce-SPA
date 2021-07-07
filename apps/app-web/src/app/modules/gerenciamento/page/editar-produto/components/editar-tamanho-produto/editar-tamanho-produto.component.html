@@ -1,29 +1,26 @@
 <div class="w-full">
-  <form [formGroup]="tamanhoProdutoForm">
-    <div class="columns is-multiline">
-      <div class="column is-6">
-        <mat-form-field class="field">
-          <div class="control">
-            <input matInput class="input" type="text" placeholder="Nome" />
-          </div>
-        </mat-form-field>
-      </div>
+  <mat-card class="card">
 
-      <div class="column is-12-touch">
-        <mat-form-field class="field">
-          <div class="control">
-            <input matInput class="input" type="color" placeholder="Cor" />
-          </div>
-        </mat-form-field>
-      </div>
+    <mat-card-title class="title is-5 is-uppercase">Cadastrar Tamanho</mat-card-title>
 
-      <button
-        class="button is-success w-full"
-        [disabled]="tamanhoProdutoForm.invalid"
-        (click)="Criar()"
-      >
-        Cadastrar
-      </button>
+    <mat-card-content class="card-body">
+      <personalizados-lopes-editar-tamanho-produto-form
+        (onSend)="Criar($event)"
+      ></personalizados-lopes-editar-tamanho-produto-form>
+    </mat-card-content>
+
+  </mat-card>
+  <div class="block dis-flex flex-sb">
+    <personalizados-lopes-tamanho-produto-selector *ngIf="tamanhosProduto"
+      [TamanhosProduto]="tamanhosProduto"
+      (onSelected)="SelecionarTamanho($event)"
+      [Multiple]="true"
+    ></personalizados-lopes-tamanho-produto-selector>
+    <div>
+      <ng-container *ngIf="tamanhoProdutoSelecionado">
+        <button class="button is-small is-roudend" (click)="Editar()" mat-icon-button><mat-icon>edit</mat-icon></button>
+        <button class="button is-small is-roudend" (click)="Remover()" mat-icon-button><mat-icon>remove</mat-icon></button>
+      </ng-container>
     </div>
-  </form>
+  </div>
 </div>

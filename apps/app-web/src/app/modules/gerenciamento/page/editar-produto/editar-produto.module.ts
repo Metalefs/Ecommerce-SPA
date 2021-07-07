@@ -28,6 +28,9 @@ import { EditarEstampaModule } from './components/editar-estampa/editar-estampa.
 import { EditarTamanhoProdutoComponent } from './components/editar-tamanho-produto/editar-tamanho-produto.component';
 import { EditarCorProdutoComponent } from './components/editar-cor-produto/editar-cor-produto.component';
 import { EditarFornecedorProdutoComponent } from './components/editar-fornecedor-produto/editar-fornecedor-produto.component';
+import { EditarCorProdutoFormComponent } from './components/editar-cor-produto/components/editar-cor-produto-form/editar-cor-produto-form.component';
+import { EditarTamanhoProdutoFormComponent } from './components/editar-tamanho-produto/components/editar-tamanho-produto-form/editar-tamanho-produto-form.component';
+import { EditarTamanhoProdutoDialogComponent } from './components/editar-tamanho-produto/dialogs/editar-tamanho-produto-dialog/editar-tamanho-produto-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { EditarFornecedorProdutoComponent } from './components/editar-fornecedor
     CriarCategoriaDialogComponent,
     EditarTamanhoProdutoComponent,
     EditarCorProdutoComponent,
-    EditarFornecedorProdutoComponent
+    EditarFornecedorProdutoComponent,
+    EditarCorProdutoFormComponent,
+    EditarTamanhoProdutoFormComponent,
+    EditarTamanhoProdutoDialogComponent,
   ],
   imports: [
     CommonModule,

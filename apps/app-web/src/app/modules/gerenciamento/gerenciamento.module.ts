@@ -52,7 +52,6 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
 import { CardProdutoModule } from '../../shared/components/card-produto/card-produto.module';
 import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes-empresa/editar-configuracoes-empresa.component';
 
-
 @NgModule({
   declarations: [
     GerenciamentoComponent,

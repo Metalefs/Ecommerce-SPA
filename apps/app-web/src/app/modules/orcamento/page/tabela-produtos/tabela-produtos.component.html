@@ -4,6 +4,7 @@
     <th @fadeIn mat-header-cell *matHeaderCellDef> Produtos </th>
     <td @fadeIn mat-cell *matCellDef="let element">
       <a  href="#topo"
+        class="is-uppercase"
         [routerLink]="['/produtos/',element._id]"
         routerLinkActive="router-link-active">
         {{element.Produto.Nome}}

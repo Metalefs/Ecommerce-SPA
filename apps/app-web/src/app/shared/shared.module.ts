@@ -53,6 +53,10 @@ import { CorProdutoSelectorComponent } from './components/cor-produto-selector/c
 import { ExibicaoPrecoProdutoModule } from './components/exibicao-preco-produto/exibicao-preco-produto.module';
 import { CardEstampaComponent } from './components/card-estampa/card-estampa.component';
 
+import { CorProdutoCheckboxSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/cor-produto-selector/cor-produto-selector.component';
+import { TamanhoProdutoSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/tamanho-produto-selector/tamanho-produto-selector.component';
+
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   navigation: {
@@ -88,6 +92,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      BlogSwiperComponent,
      CorProdutoSelectorComponent,
      CardEstampaComponent,
+     CorProdutoCheckboxSelectorComponent,
+     TamanhoProdutoSelectorComponent
     ],
   imports: [
     CommonModule,
@@ -158,7 +164,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AutocompleteDropdownModule,
     CorProdutoSelectorComponent,
     ExibicaoPrecoProdutoModule,
-    CardEstampaComponent
+    CardEstampaComponent,
+    CorProdutoCheckboxSelectorComponent,
+    TamanhoProdutoSelectorComponent
   ],
   providers:[
     {

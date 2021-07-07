@@ -1,74 +1,114 @@
 <div>
-
   <div [ngSwitch]="question.controlType" class="w-full">
-
     <div *ngSwitchCase="'textbox'" class="w-full">
       <mat-form-field class="w-full">
-        <mat-label>{{question.label}}</mat-label>
-        <input matInput type="text" class="input w-full" [id]="question.key"
+        <mat-label>{{ question.label }}</mat-label>
+        <input
+          matInput
+          type="text"
+          class="input w-full"
+          [id]="question.key"
           (change)="updateProp(question.value)"
-          [type]="question.type" [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
-          title={{question.key}} name="{{question.key}}" required />
+          [type]="question.type"
+          [(ngModel)]="question.value"
+          value="{{ question.value }}"
+          placeholder="{{ question.key }}"
+          title="{{ question.key }}"
+          name="{{ question.key }}"
+          required
+        />
       </mat-form-field>
     </div>
 
     <div *ngSwitchCase="'textarea'" class="w-full">
       <mat-form-field class="w-full">
-        <mat-label>{{question.label}}</mat-label>
-        <textarea matInput class="textarea w-full" [id]="question.key"
-        [type]="question.type"
-        [(ngModel)]="question.value" value="{{question.value}}" placeholder="{{question.key}}"
-        title={{question.key}} name="{{question.key}}" required></textarea>
+        <mat-label>{{ question.label }}</mat-label>
+        <textarea
+          matInput
+          class="textarea w-full"
+          [id]="question.key"
+          [type]="question.type"
+          [(ngModel)]="question.value"
+          value="{{ question.value }}"
+          placeholder="{{ question.key }}"
+          title="{{ question.key }}"
+          name="{{ question.key }}"
+          required
+        ></textarea>
       </mat-form-field>
     </div>
 
     <div *ngSwitchCase="'file'" class="w-full">
-
       <div class="file has-name pb-3 w-full">
         <label class="file-label">
-          <label>{{question.label}}</label>
-          <input  #file class="file w-full" [id]="question.key" [type]="'file'" style="width: 100%" (change)="fileChangeEvent($event)"
-          placeholder="{{question.key}}" title="{{question.key}}" name="{{question.key}}" required
-          >
+          <label>{{ question.label }}</label>
+          <input
+            #file
+            class="file w-full"
+            [id]="question.key"
+            [type]="'file'"
+            style="width: 100%;"
+            (change)="fileChangeEvent($event)"
+            placeholder="{{ question.key }}"
+            title="{{ question.key }}"
+            name="{{ question.key }}"
+            required
+          />
           <span class="file-cta">
             <span class="file-icon">
               <i class="pi pi-upload"></i>
             </span>
             <span class="file-label">
-              {{file.files[0]?.name||'Escolha as imagens…'}}
+              {{ file.files[0]?.name || 'Escolha as imagens…' }}
             </span>
           </span>
         </label>
       </div>
 
-      <input  />
-
+      <input />
     </div>
 
     <div *ngSwitchCase="'color'">
-      <!-- <mat-form-field class="example-full-width"> -->
-      <label>{{question.label}}</label>
-      <input class="file" [id]="question.key" [type]="'color'" style="width: 100%" [(ngModel)]="question.value"
-        placeholder="{{question.key}}" title="{{question.key}}" name="{{question.key}}" required />
-      <!-- </mat-form-field> -->
+      <mat-form-field class="field">
+        <div class="control">
+          <label>{{ question.label }}</label>
+          <input
+            class="input"
+            matInput
+            [id]="question.key"
+            [type]="'color'"
+            style="width: 100%;"
+            [(ngModel)]="question.value"
+            placeholder="{{ question.key }}"
+            title="{{ question.key }}"
+            name="{{ question.key }}"
+            required
+          />
+        </div>
+      </mat-form-field>
     </div>
 
     <mat-form-field appearance="fill" *ngSwitchCase="'dropdown'">
-      <mat-label>{{question.label}}</mat-label>
-      <mat-select matNativeControl [id]="question.key" [formControlName]="question.key">
+      <mat-label>{{ question.label }}</mat-label>
+      <mat-select
+        matNativeControl
+        [id]="question.key"
+        [formControlName]="question.key"
+      >
         <mat-option *ngFor="let opt of question.options" [value]="opt.key">
-          {{opt.value}}
+          {{ opt.value }}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <div *ngSwitchCase="'email-messaging'" class="w-full">
-      <label>{{question.label}}</label>
-      <personalizados-lopes-editor (Changed)="question.value = $event" [Conteudo]="question.value"></personalizados-lopes-editor>
+      <label>{{ question.label }}</label>
+      <personalizados-lopes-editor
+        (Changed)="question.value = $event"
+        [Conteudo]="question.value"
+      ></personalizados-lopes-editor>
     </div>
-
   </div>
-
 </div>
 
 <!--

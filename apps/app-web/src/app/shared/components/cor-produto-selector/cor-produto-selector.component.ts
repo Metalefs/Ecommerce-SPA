@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Produto } from 'libs/data/src/lib/classes';
-import { Cor } from 'libs/data/src/lib/classes/produto';
+import { CorProduto, Produto } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-cor-produto-selector',
@@ -11,13 +10,13 @@ export class CorProdutoSelectorComponent implements OnInit {
   @Input() Produto: Produto;
   @Input() ErroCor: boolean;
   hovercolor:any;
-  @Output() onSetColor: EventEmitter<Cor> = new EventEmitter<Cor>();
+  @Output() onSetColor: EventEmitter<CorProduto> = new EventEmitter<CorProduto>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  setColor(cor:Cor){
+  setColor(cor:CorProduto){
     this.onSetColor.emit(cor);
   }
 }
