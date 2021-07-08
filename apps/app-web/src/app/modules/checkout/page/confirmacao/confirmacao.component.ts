@@ -37,6 +37,7 @@ export class ConfirmacaoComponent implements OnInit {
       this.ProdutoTable.displayedColumns = [
         "Produtos",
         "Quantidade",
+        // "Canvas",
         "Subtotal",
       ];
 

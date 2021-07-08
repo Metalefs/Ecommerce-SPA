@@ -28,13 +28,9 @@
       </ng-template>
       <ng-template #novaArte>
         <div class="px-2 txt-center">
-          <div class="column">
-            <mat-checkbox class="mr-3" matNativeControl [(ngModel)]="arte_traseira" [checked]="arte_traseira">
-              Tem arte traseira
-            </mat-checkbox>
-          </div>
+
           <div class="column px-2">
-            <button @fadeIn *ngIf="arte_traseira && !Produto.ArteSecundaria" mat-flat-button
+            <button @fadeIn *ngIf="!Produto.ArteSecundaria" mat-flat-button
               class="button file has-name pb-3" title="Enviar arte para usar no produto">
               <label class="file-label">
                 <input class="file-input" multiple type="file" (change)="uploadSecundario($event)">
@@ -92,9 +88,9 @@
     [mat-dialog-close]="Produto"
     class="button is-medium is-rounded w-full"
     #toCheckout
-    [disabled]="!Produto.Canvas['objects'].length||[] > 0"
+    [disabled]="!Produto.Canvas"
     [ngClass]="{'wp-btn is-success':!toCheckout.disabled}">
-    {{!Produto.Canvas['objects'].length||[] > 0?"Adicione uma arte":"Continar para o Checkout"}}
+    {{!Produto.Canvas?"Adicione uma arte":"Continar para o Checkout"}}
   </button>
   <button mat-raised-button color=""
     [mat-dialog-close]="null"

@@ -23,8 +23,14 @@ export class ExibicaoArteProdutoComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+    if(this.Produto.Canvas){
+      console.log(this.Produto.Canvas)
+      this.costumizationComponent.importJson(this.Produto.Canvas)
+    }
     if(this.Estampa){
       this.costumizationComponent.uploadImageURL(this.Estampa.Imagem[0].Src);
+
+
       this.Produto.Arte = this.Estampa.Imagem[0].Src;
       this.Produto.Estampas = [this.Estampa];
       this.Produto.RecalcularPreco();

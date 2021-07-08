@@ -56,6 +56,7 @@ import { CardEstampaComponent } from './components/card-estampa/card-estampa.com
 import { CorProdutoCheckboxSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/cor-produto-selector/cor-produto-selector.component';
 import { TamanhoProdutoSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/tamanho-produto-selector/tamanho-produto-selector.component';
 import { FornecedorProdutoSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/fornecedor-produto-selector/fornecedor-produto-selector.component';
+import { ExibicaoCanvasDesignProdutoComponent } from './components/exibicao-canvas-design-produto/exibicao-canvas-design-produto.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -95,87 +96,89 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      CardEstampaComponent,
      CorProdutoCheckboxSelectorComponent,
      TamanhoProdutoSelectorComponent,
-     FornecedorProdutoSelectorComponent
+     FornecedorProdutoSelectorComponent,
+     ExibicaoCanvasDesignProdutoComponent
     ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    MaterialModule,
-    DynamicFormModule,
-    LoginFormModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CardProdutoModule,
-    CardClienteModule,
-    RouterModule,
-    ScrolltopModule,
-    GalleryModule,
-    LightboxModule.withConfig({
-      panelClass: 'fullscreen'
-    }),
-    SwiperModule,
-    StarRatingModule.forRoot(),
-    NgxMaskModule.forRoot(),
-    EscreverComentarioModule,
-    CardComentarioModule,
-    ExibicaoPerfilModule,
-    CardComentarioProdutoModule,
-    CardBlogModule,
-    CardPedidoModule,
-    EditorModule,
-    AutocompleteDropdownModule,
-    ExibicaoPrecoProdutoModule
-  ],
-  exports: [
-    CommonModule,
-    FontAwesomeModule,
-    MaterialModule,
-    DynamicFormModule,
-    LoginFormModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CardProdutoModule,
-    CardClienteModule,
-    VisualizacaoClientesModule,
-    IconeWhatsappComponent,
-    SocialNetworkLinksComponent,
-    RouterModule,
-    TestimonialComponent,
-    ScrolltopModule,
-    LoadingCubeComponent,
-    NgxMaskModule,
-    CloseBtnComponent,
-    BotaoEsgotadoComponent,
-    MercadopagoButtonComponent,
-    CardBlogModule,
-    GalleryModule,
-    LightboxModule,
-    SwiperModule,
-    StarRatingModule,
-    EscreverComentarioModule,
-    CardComentarioModule,
-    CardComentarioProdutoModule,
-    ExibirListaComentarioComponent,
-    ExibirListaComentarioProdutoComponent,
-    ProdutoSwiperComponent,
-    ExibicaoPerfilModule,
-    CardPedidoModule,
-    TagProdutoSwiperComponent,
-    BlogSwiperComponent,
-    EditorModule,
-    AutocompleteDropdownModule,
-    CorProdutoSelectorComponent,
-    ExibicaoPrecoProdutoModule,
-    CardEstampaComponent,
-    CorProdutoCheckboxSelectorComponent,
-    TamanhoProdutoSelectorComponent,
-    FornecedorProdutoSelectorComponent
-  ],
-  providers:[
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    }
-  ]
-})
-export class SharedModule { }
+    imports: [
+      CommonModule,
+      FontAwesomeModule,
+      MaterialModule,
+      DynamicFormModule,
+      LoginFormModule,
+      FormsModule,
+      ReactiveFormsModule,
+      CardProdutoModule,
+      CardClienteModule,
+      RouterModule,
+      ScrolltopModule,
+      GalleryModule,
+      LightboxModule.withConfig({
+        panelClass: 'fullscreen'
+      }),
+      SwiperModule,
+      StarRatingModule.forRoot(),
+      NgxMaskModule.forRoot(),
+      EscreverComentarioModule,
+      CardComentarioModule,
+      ExibicaoPerfilModule,
+      CardComentarioProdutoModule,
+      CardBlogModule,
+      CardPedidoModule,
+      EditorModule,
+      AutocompleteDropdownModule,
+      ExibicaoPrecoProdutoModule
+    ],
+    exports: [
+      CommonModule,
+      FontAwesomeModule,
+      MaterialModule,
+      DynamicFormModule,
+      LoginFormModule,
+      FormsModule,
+      ReactiveFormsModule,
+      CardProdutoModule,
+      CardClienteModule,
+      VisualizacaoClientesModule,
+      IconeWhatsappComponent,
+      SocialNetworkLinksComponent,
+      RouterModule,
+      TestimonialComponent,
+      ScrolltopModule,
+      LoadingCubeComponent,
+      NgxMaskModule,
+      CloseBtnComponent,
+      BotaoEsgotadoComponent,
+      MercadopagoButtonComponent,
+      CardBlogModule,
+      GalleryModule,
+      LightboxModule,
+      SwiperModule,
+      StarRatingModule,
+      EscreverComentarioModule,
+      CardComentarioModule,
+      CardComentarioProdutoModule,
+      ExibirListaComentarioComponent,
+      ExibirListaComentarioProdutoComponent,
+      ProdutoSwiperComponent,
+      ExibicaoPerfilModule,
+      CardPedidoModule,
+      TagProdutoSwiperComponent,
+      BlogSwiperComponent,
+      EditorModule,
+      AutocompleteDropdownModule,
+      CorProdutoSelectorComponent,
+      ExibicaoPrecoProdutoModule,
+      CardEstampaComponent,
+      CorProdutoCheckboxSelectorComponent,
+      TamanhoProdutoSelectorComponent,
+      FornecedorProdutoSelectorComponent,
+      ExibicaoCanvasDesignProdutoComponent
+    ],
+    providers:[
+      {
+        provide: SWIPER_CONFIG,
+        useValue: DEFAULT_SWIPER_CONFIG
+      }
+    ]
+  })
+  export class SharedModule { }

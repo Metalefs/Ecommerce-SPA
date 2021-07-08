@@ -33,6 +33,11 @@ export class CostumizationComponent implements OnInit {
 
   importOpen:boolean=false;
   ngOnInit(): void {
+    this.SaveDesign = this.SaveDesign.bind(this);
+    this.deleteObject = this.deleteObject.bind(this);
+    this.renderIcon = this.renderIcon.bind(this);
+
+
     this.__canvas = new this.fabric.Canvas('c');
 
     this.fabric.Object.prototype.cornerColor = '#131313';
@@ -100,12 +105,7 @@ export class CostumizationComponent implements OnInit {
         this.__canvas.renderAll();
       }
     }
-    this.SaveDesign();
 
-    if(this.Produto.Canvas){
-      console.log(this.Produto.Canvas)
-      this.importJson(this.Produto.Canvas)
-    }
   }
 
   addText() {
@@ -169,7 +169,7 @@ export class CostumizationComponent implements OnInit {
         self.__canvas.add(oImg).renderAll();
         var a = self.__canvas.setActiveObject(oImg);
         var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
-        this.SaveDesign();
+        self.SaveDesign();
       });
     };
     reader.readAsDataURL(file);
@@ -253,8 +253,11 @@ export class CostumizationComponent implements OnInit {
   SaveDesign() {
     var exportSvg = this.__canvas.toSVG();
     localStorage.setItem('svg', exportSvg);
-    var json = this.__canvas.toDatalessJSON();
+    ///var json = this.__canvas.toDatalessJSON();
+
+    var json = JSON.stringify(this.__canvas.toDatalessJSON())
     console.log(json)
+
     if(!this.Produto.Canvas)
       Object.assign(this.Produto, {Canvas: json});
     else
@@ -294,31 +297,37 @@ export class CostumizationComponent implements OnInit {
   }
 
 
-  importJson(json) {
-
+  public importJson(json) {
+    console.log(json);
+    let self = this;
+    this.__canvas.loadFromJSON(json, function (obj) {
+      console.log(' this is a callback. invoked when canvas is loaded!xxx ');
+      self.__canvas.renderAll();
+      //this.SaveDesign();
+    });
     //uploadJson(fileLoaded)
-    var result
-    var formatted
-    var fr = new FileReader();
-    fr.onload = function (e) {
-      // console.log("2", e);
-      result = JSON.parse(e.target.result.toString());
-      // console.log("result", result);
-      formatted = JSON.stringify(result, null, 2);
-      // console.log("formatted", formatted);
+    // var result
+    // var formatted
+    // var fr = new FileReader();
+    // fr.onload = function (e) {
+    //   // console.log("2", e);
+    //   result = JSON.parse(e.target.result.toString());
+    //   // console.log("result", result);
+    //   formatted = JSON.stringify(result, null, 2);
+    //   // console.log("formatted", formatted);
 
-      loadJson(formatted);
-    }
+    //   loadJson(formatted);
+    // }
 
-    //fr.readAsText(json);
-    function loadJson(formatted) {
-      console.log('here');
-      this.__canvas.loadFromJSON(formatted, function (obj) {
-        console.log(' this is a callback. invoked when canvas is loaded!xxx ');
-        this.__canvas.renderAll();
-        this.SaveDesign();
-      });
-    }
+    // //fr.readAsText(json);
+    // function loadJson(formatted) {
+    //   console.log('here');
+    //   this.__canvas.loadFromJSON(formatted, function (obj) {
+    //     console.log(' this is a callback. invoked when canvas is loaded!xxx ');
+    //     this.__canvas.renderAll();
+    //     this.SaveDesign();
+    //   });
+    // }
   }
 
   switchDisplayFont(obj) {

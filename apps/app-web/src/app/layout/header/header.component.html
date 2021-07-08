@@ -29,7 +29,7 @@
     class="navbar columns is-vcentered w-full is-mobile z-index-top py-2 mx-0"
     style="z-index: 20;"
   >
-    <div class="column is-6-desktop is-10-mobile">
+    <div class="column is-5-desktop is-10-mobile">
       <div class="columns is-vcentered is-mobile">
         <div class="column is-3">
           <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
@@ -66,7 +66,7 @@
           </form>
         </div>
 
-        <div class="column is-hidden-mobile mr-2">
+        <!-- <div class="column is-hidden-mobile mr-2">
           <div class="dropdown">
             <p class="mr-4" style="border: none !important;">
               <a class="w-full has-text-centered py-4 subtitle is-size-7 reset-a" title="Perfil">
@@ -110,7 +110,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- <div class="column is-1"></div> -->
       </div>
     </div>
@@ -182,7 +182,51 @@
         </div>
       </div>
     </div>
-
+    <div class="column is-hidden-mobile mr-2 ">
+      <div class="dropdown">
+        <p  class=" of-x-scroll" style="border: none !important;">
+          <mat-icon>person_outline</mat-icon>
+          <a class="w-full has-text-centered py-4 subtitle is-size-7 reset-a" title="Perfil">
+            {{ user?.Nome ? user.Nome : 'Meu perfil' }}
+          </a>
+        </p>
+        <div class="dropdown-content w-full has-background-white box">
+          <button
+            mat-menu-item
+            *ngIf="user"
+            href="#topo"
+            routerLinkActive="Active"
+            title="Meus dados"
+            pageScroll
+            [routerLink]="['/minha-conta/pessoal']"
+          >
+            Meus dados
+          </button>
+          <button
+            class=""
+            mat-menu-item
+            *ngIf="!user"
+            (click)="openLogin()"
+          >
+            Entrar
+          </button>
+          <button
+            mat-menu-item
+            *ngIf="user && user?.Tipo == TipoUsuario.admin"
+            href="#topo"
+            title="Gerenciamento"
+            routerLinkActive="Active"
+            pageScroll
+            [routerLink]="['/gerenciamento/app']"
+          >
+            Gerenciamento
+          </button>
+          <button mat-menu-item *ngIf="user" (click)="Logout()">
+            Sair
+          </button>
+        </div>
+      </div>
+    </div>
     <div class="column">
       <div class="">
         <a

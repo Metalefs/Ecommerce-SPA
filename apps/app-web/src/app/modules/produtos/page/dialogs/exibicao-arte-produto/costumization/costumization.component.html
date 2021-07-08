@@ -1,12 +1,12 @@
 <div class="txt-center w-full margin w-half flex-sa level dis-flex flex-w flex-m">
   <div class="container-app columns margin w-half is-vcentered txt-center is-multiline py-4 w-full mx-0">
 
-    <div data-aos="zoom-in" class="controls shadow-light is-4 pos-absolute right-0 z-index-top">
+    <div data-aos="zoom-in" class="controls shadow-light is-4 pos-absolute right-0 mr-4 z-index-top">
       <a id="add" class="button" (click)="addText()"><p>Inserir texto</p></a>
       <a class="button" (click)="addStockImg()"><p>Inserir um Design</p></a>
       <a class="button" (click)="importFile()"><p>Importar uma foto</p></a>
     </div>
-    <div data-aos="zoom-in" class="column is-12-desktop is-12-touch box bg-img1 size1 overlay1">
+    <div data-aos="zoom-in" class="column is-12-desktop is-12-touch section border-light bg-img1 size1 overlay1">
       <figure data-aos="zoom-in">
         <img [src]="Produto?.Imagem[0]" class="prod-img">
       </figure>

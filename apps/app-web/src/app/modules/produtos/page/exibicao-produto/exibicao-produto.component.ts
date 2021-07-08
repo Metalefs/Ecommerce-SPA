@@ -211,7 +211,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
         position: { rowStart: "0" },
       })
       dialogref.afterClosed().subscribe(x=>{
-        if(x?.Canvas?.objects){
+        if(x?.Canvas){
           if(!this.orcamentoId){
             this.store.dispatch(new AdicionarProdutoAoOrcamento(x)).subscribe(y=>{
               this.orcamentoId = y.codOrcamento;
