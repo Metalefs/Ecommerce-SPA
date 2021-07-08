@@ -1,4 +1,3 @@
-
 <mat-form-field appearance="fill" class="w-full">
   <mat-label>Tamanhos</mat-label>
   <mat-select
@@ -7,15 +6,23 @@
     (selectionChange)="this.onSelected.emit($event.value)"
     [value]="[Produto?.Tamanho]"
   >
-    <mat-optgroup *ngFor="let group of TamanhosProduto" [label]="group.Nome">
-      <mat-option *ngFor="let opt of group?.Tamanhos" [value]="group"  >
+    <ng-container *ngIf="getTamanhos()[0].Nome then object else simple"></ng-container>
+    <ng-template #simple>
+      <mat-option *ngFor="let opt of getTamanhos()" [value]="opt">
         <div class="dis-flex flex-sb">
-          <p>{{ opt?.Tamanho }}</p>
-          <p>R${{ opt?.Preco }}</p>
+          <p>{{ opt }}</p>
         </div>
       </mat-option>
-    </mat-optgroup>
+    </ng-template>
+    <ng-template #object>
+      <mat-optgroup *ngFor="let group of getTamanhos()" [label]="group?.Nome">
+        <mat-option *ngFor="let opt of group?.Tamanhos" [value]="group">
+          <div class="dis-flex flex-sb">
+            <p>{{ opt.Tamanho }}</p>
+            <p>R${{ opt?.Preco }}</p>
+          </div>
+        </mat-option>
+      </mat-optgroup>
+    </ng-template>
   </mat-select>
 </mat-form-field>
-
-

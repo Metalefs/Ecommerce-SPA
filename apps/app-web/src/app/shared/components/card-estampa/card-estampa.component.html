@@ -1,4 +1,5 @@
-<mat-card class="clickable"
+<button>
+  <mat-card class="clickable"
   (click)='onClick.emit(Estampa)'
 >
   <mat-card-header>
@@ -7,7 +8,7 @@
       <mat-card-subtitle>{{''}}</mat-card-subtitle>
     </div>
   </mat-card-header>
-  <img mat-card-avatar width="200" height="200" src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
+  <img mat-card-image width="200" height="200" src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
   <mat-card-content>
     <p></p>
   </mat-card-content>
@@ -20,3 +21,5 @@
     <ng-template #exibir></ng-template>
   </mat-card-actions>
 </mat-card>
+
+</button>

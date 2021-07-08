@@ -27,7 +27,7 @@ export class EditarTamanhoProdutoFormComponent implements OnInit {
     this.tamanhoProdutoForm.valueChanges.subscribe(x=>{
       this.TamanhoProduto = this.tamanhoProdutoForm.getRawValue();
     })
-    this.faixasTamanho = this.TamanhoProduto?.Tamanhos;
+    this.faixasTamanho = this.TamanhoProduto?.Tamanhos?? [];
   }
   Send(){
     this.onSend.emit(this.tamanhoProdutoForm.getRawValue())

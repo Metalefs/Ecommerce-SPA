@@ -1,4 +1,4 @@
-<mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top is-hidden" style="height: 37px;">
+<mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top " style="height: 37px;">
 
 </mat-toolbar>
 <div class="of-x-scroll px-2 mh-full">
@@ -61,114 +61,16 @@
 
         <div class="w-full of-x-scroll">
 
-          <table mat-table [dataSource]="ProdutoTable.dataSource" class="card tabled-striped shadow-light w-full" >
-
-            <ng-container matColumnDef="Produtos">
-              <th mat-header-cell *matHeaderCellDef> Produtos </th>
-              <td @slideInOut mat-cell *matCellDef="let element">
-                <div @slideInOut class="columns a-i-c mt-3">
-                  <div class="column flex-m" >
-                    <figure class="image is-64x64">
-                      <img src="{{element.Produto.Imagem[0]}}">
-                    </figure>
-                    <figure class="image is-64x64 d-block ">
-                      <img *ngIf="element.Produto.Arte" src="{{element.Produto.Arte || ''}}">
-                      <div *ngIf="!element.Produto.Arte" class="px-2 txt-center ">
-                        <em>Sem Arte</em>
-                        <!-- <button mat-flat-button class="button file is-info has-name pb-3 px-0">
-                          <label class="file-label">
-                            <input class="file-input" multiple type="file" (change)="upload($event,element)">
-                            <span class="file-cta">
-                              <span class="file-icon">
-                               <mat-icon>file_upload</mat-icon>
-                              </span>
-                            </span>
-                          </label>
-                        </button> -->
-                      </div>
-                    </figure>
-                    <a
-                    href="#topo"
-                    (click)="delayClose()"
-                    [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
-                    routerLinkActive="router-link-active"
-                    class="px-3 titulo-produto is-hidden-desktop"
-                    >{{element.Produto.Nome}}
-                    <p class="subtitle">{{element.Produto.Cor?.nome || 'adicionar cor'}}</p>
-                    <p class="subtitle">{{element.Produto.Tamanho || 'adicionar tamanho'}}</p>
-                  </a>
-                  </div>
-                  <div class="column ">
-                    <a
-                    (click)="delayClose()"
-                    href="#topo"
-                    [routerLink]="['/produtos/'+element.Produto._id+'/'+element.codOrcamento]"
-                    routerLinkActive="router-link-active"
-                    class="titulo-produto is-hidden-touch"
-                    >{{element.Produto.Nome}}
-                    <p class="subtitle">{{element.Produto.Cor?.nome || 'adicionar cor'}}</p>
-                    <p class="subtitle">{{element.Produto.Tamanho || 'adicionar tamanho'}}</p>
-                  </a>
-                  <button (click)="removerProduto(element)">
-                    remover
-                  </button>
-                  </div>
-                </div>
-                <div class="columns is-mobile is-hidden-desktop mb-2">
-                  <div class="column is-9">
-                    <div class="control is-small">
-                      <input
-                        placeholder="{{element?.Produto.QuantidadeMinima}}"
-                        value="{{element?.Produto.QuantidadeMinima}}"
-                        type="number"
-                        (change)="VerificarQuantidade($event,element)"
-                        min="{{element?.Produto.QuantidadeMinima}}"
-                        class="quantidade-produto is-rounded"
-                        [(ngModel)]="(element).Produto.Quantidade">
-                    </div>
-                  </div>
-                  <div class="column">
-                    <span class="preco">R$ {{CalcularPreco(element)}}</span>
-                  </div>
-                </div>
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="Quantidade" class="is-hidden-touch">
-              <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> qtd </th>
-              <td @slideInOut mat-cell *matCellDef="let element"  class="is-hidden-touch">
-                <div class="control is-small ">
-                  <input
-                    placeholder="{{element?.Produto.QuantidadeMinima}}"
-                    type="number"
-                    (change)="VerificarQuantidade($event,element)"
-                    min="{{element?.Produto.QuantidadeMinima}}"
-                    class="quantidade-produto is-rounded"
-                    [(ngModel)]="(element).Produto.Quantidade">
-                </div>
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="Subtotal" class="is-hidden-touch">
-              <th mat-header-cell *matHeaderCellDef  class="is-hidden-touch"> Subtotal</th>
-              <td mat-cell *matCellDef="let element"  class="is-hidden-touch">
-              <span  class="preco">R$ <span>{{CalcularPreco(element)}}</span></span>
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="ProdutoTable.displayedColumns"></tr>
-            <tr @slideInOut mat-row *matRowDef="let row; columns: ProdutoTable.displayedColumns;"></tr>
-          </table>
+          <personalizados-lopes-tabela-edicao-orcamento>
+          </personalizados-lopes-tabela-edicao-orcamento>
 
         </div>
 
       </div>
 
     </section>
-    <div class="w-full ">
-      <a
-        (click)="delayClose()"
-
+    <div class="w-full container">
+      <a (click)="delayClose()"
         [routerLink]="['/checkout/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
         class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
           Pedido</span></a>

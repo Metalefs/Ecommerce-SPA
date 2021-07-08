@@ -135,7 +135,7 @@ export class CostumizationComponent implements OnInit {
     this.__canvas.setActiveObject(rect);
     this.SaveDesign();
   }
-  importFile() {
+  public importFile() {
     this.importOpen = true;
     this.dialog.open(ImportacaoComponent,{
       data:this.fileLoaded,

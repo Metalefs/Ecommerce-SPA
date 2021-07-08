@@ -16,7 +16,6 @@ import { BlogPost } from 'libs/data/src/lib/classes/blogPost';
 import { ProdutoService } from 'apps/app-web/src/app/data/service';
 
 import { fade } from 'apps/app-web/src/app/animations';
-import { ExibicaoArteProdutoComponent } from '../dialogs/exibicao-arte-produto/exibicao-arte-produto.component';
 import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/components/produto-swiper/produto-swiper.component';
 import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
@@ -30,6 +29,7 @@ import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/Fo
 import { Gallery } from 'ng-gallery';
 import { MenuItem } from 'primeng/api';
 import AOS from 'aos'
+import { ExibicaoArteProdutoComponent } from 'apps/app-web/src/app/shared/components/exibicao-arte-produto/exibicao-arte-produto.component';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',

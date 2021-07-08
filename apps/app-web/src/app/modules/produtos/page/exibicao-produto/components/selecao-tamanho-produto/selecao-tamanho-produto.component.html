@@ -10,7 +10,7 @@
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
     class="shadow-light is-rounded button is-outlined is-small"
-    [ngClass]="{'is-focused':Produto.Tamanho == opt}"
+    [ngClass]="{'is-focused':(Produto.Tamanho?.Nome == opt?.Nome)}"
     (click)="SetTamanho(opt)"
   >
     <div >

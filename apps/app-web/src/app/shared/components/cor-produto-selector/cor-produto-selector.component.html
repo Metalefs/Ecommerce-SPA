@@ -31,7 +31,7 @@
       >
         <label
           title="{{ cor.Nome || cor.nome }}"
-          [style.background]="cor?.Cor"
+          [style.background]="cor?.Cor || cor?.cor"
           class="border-light"
           for="cor{{ i }}"
         ></label>

@@ -7,7 +7,7 @@ import { Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
   styleUrls: ['./tamanho-produto-selector.component.scss']
 })
 export class TamanhoProdutoSelectorComponent implements OnInit {
-  @Input() Produto:Produto = null;
+  @Input() Produto:Produto;
   @Input() TamanhosProduto:TamanhoProduto[];
   @Input() editable:boolean;
   @Input() Multiple:boolean;
@@ -18,6 +18,12 @@ export class TamanhoProdutoSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.TamanhosProduto)
+    console.log(this.Produto)
   }
+
+  getTamanhos() :any{
+    return this.Produto?.Tamanhos || this.TamanhosProduto;
+  }
+
+
 }

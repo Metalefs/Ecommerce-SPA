@@ -24,7 +24,7 @@ export class CheckoutService {
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui quantidade selecionada.`);
       if(!prd.Produto.Tamanho)
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui tamanho selecionado.`);
-      if(!prd.Produto.Arte && (prd.Produto.Canvas['objects'].length == 0))
+      if(!prd.Produto.Arte && (prd.Produto.Canvas))
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui arte selecionada.`);
     })
 
