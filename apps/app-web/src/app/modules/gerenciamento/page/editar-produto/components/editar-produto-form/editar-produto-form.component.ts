@@ -19,7 +19,6 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
   @Input() Produto:Produto;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
-
   @Output() onSelectedCor:EventEmitter<any> = new EventEmitter<any>();
   @Output() onSelectedTamanho:EventEmitter<any> = new EventEmitter<any>();
 
@@ -36,8 +35,12 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
 
   ngOnInit(): void {
     this.CarregarCategorias();
+
     this.CarregarCores();
+
     this.CarregarTamanhos();
+
+    this.CarregarFornecedores();
   }
 
   selectedCor(event: any): void {
@@ -46,6 +49,10 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
 
   selectedTamanho(event: any): void {
     this.Produto.Tamanhos = event;
+  }
+
+  selectedFornecedor(event: any): void {
+    this.Produto.Marca = event;
   }
 
 }

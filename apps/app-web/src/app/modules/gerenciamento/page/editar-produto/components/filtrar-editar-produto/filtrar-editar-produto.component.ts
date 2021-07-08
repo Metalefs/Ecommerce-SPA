@@ -26,7 +26,7 @@ export class FiltrarEditarProdutoComponent implements OnInit {
 
   fQuery:FiltrarProdutoSearchQuery={
     Nome:"",
-    NomeCategoria:"Todos os produtos",
+    NomeCategoria:"Todos",
     Preco:"",
     Status:"",
     Marca:"",
@@ -120,7 +120,7 @@ export class FiltrarEditarProdutoComponent implements OnInit {
   atualizarFiltroAtivo(){
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter||''
-    this.fQuery.NomeCategoria  = this.CategoriaAtiva?.Nome||"";
+    this.fQuery.NomeCategoria  = this.CategoriaAtiva?.Nome||"Todos";
     if(this.page > 1)
       this.page =1;
     this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.activeOrderLimit).subscribe(async x=>{

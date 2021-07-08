@@ -15,6 +15,7 @@ export class EditarEstampaComponent implements OnInit {
 
   @Input() Estampa:Estampa = new Estampa("","",[new Imagem("","","")],0,"",0,false);
   Estampas:Estampa[] = [];
+  EstampasSelecionadas:Estampa[] = [];
   constructor(
     protected store: Store,
     protected dialog: MatDialog,
@@ -29,7 +30,7 @@ export class EditarEstampaComponent implements OnInit {
     const dialogRef = this.dialog.open(EditarEstampaDialogComponent, {
       width: "100%",
       height: "100%",
-      data: estampa,
+      data: estampa[0],
       panelClass:['fullscreen-modal']
     });
     dialogRef.afterClosed().subscribe(async (estampa : Estampa) => {
@@ -43,13 +44,15 @@ export class EditarEstampaComponent implements OnInit {
     });
   }
 
-  async Remover(estampa) {
+  async Remover(estampas) {
+   estampas.forEach(async(estampa)=>{
     let confirmar = confirm("Remover estampa?");
     if(confirmar)
     (await this.estampaService.RemoverEstampa(estampa)).subscribe(result=>{
         this.snackBar.open("Estampa removida com sucesso", "Fechar", {verticalPosition:"top"});
         this.Atualizar();
       })
+   })
   }
 
   Atualizar(){

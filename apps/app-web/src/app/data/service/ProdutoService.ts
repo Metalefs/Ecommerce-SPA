@@ -41,7 +41,7 @@ export class ProdutoService {
   }
 
   Filtrar(id: any): Observable<Produto[]> {
-    return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produtos.Produto + `${id}`).pipe(
+    return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produtos.Produto + `/${id}`).pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.ErrorHandler.handleError) // then handle the error
     );

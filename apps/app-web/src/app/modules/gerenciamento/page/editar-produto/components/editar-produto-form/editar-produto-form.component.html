@@ -95,17 +95,11 @@
 
           <mat-divider></mat-divider>
 
-          <mat-form-field appearance="fill" class="my-4 field w-full">
-            <div class="control">
-              <input
-                matInput
-                class="input"
-                type="text"
-                [(ngModel)]="Produto.Marca"
-                placeholder="Marca"
-              />
-            </div>
-          </mat-form-field>
+          <personalizados-lopes-fornecedor-produto-selector
+            (onSelected)="selectedFornecedor($event)"
+            [FornecedoresProduto]="Fornecedores"
+            [Produto]="Produto"
+          ></personalizados-lopes-fornecedor-produto-selector>
 
           <mat-divider></mat-divider>
 
@@ -210,6 +204,7 @@
                   (onSelected)="selectedCor($event)"
                   [Multiple]="true"
                   [Cores]="Cores"
+                  [Produto]="Produto"
                 ></personalizados-lopes-cor-produto-checkbox-selector>
               </div>
 
@@ -219,6 +214,7 @@
                   (onSelected)="selectedTamanho($event)"
                   [Multiple]="true"
                   [TamanhosProduto]="Tamanhos"
+                  [Produto]="Produto"
                 ></personalizados-lopes-tamanho-produto-selector>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { entities } from '@personalizados-lopes/data';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import { BlogPost, CorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
+import { BlogPost, CorProduto, FornecedorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { EditarProdutoService } from './editar-produto.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
@@ -43,6 +43,7 @@ export class EditarProdutoComponentBase implements OnInit {
   Categorias: entities.Categoria[];
   Cores: CorProduto[];
   Tamanhos: TamanhoProduto[];
+  Fornecedores: FornecedorProduto[];
 
   value: number = 1;
   maxValue: number = 100;
@@ -138,6 +139,10 @@ export class EditarProdutoComponentBase implements OnInit {
 
   CarregarTamanhos(){
     this.produtoService.CarregarTamanhos().subscribe(x=>{this.Tamanhos = x;});
+  }
+
+  CarregarFornecedores(){
+    this.produtoService.CarregarFornecedores().subscribe(x=>{this.Fornecedores = x;});
   }
 
   upload($event){

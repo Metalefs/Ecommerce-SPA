@@ -92,11 +92,12 @@ export class EditarEstampaFormComponent implements OnInit {
 
         estampaaux.Files = [];
         estampaaux.Files[0] = estampaCriar.Files.item(i);
-
         await (await this.estampaService.CriarEstampa(estampaaux)).subscribe(result => {
           this.snackBar.open("Estampa criada com sucesso", "Fechar", { verticalPosition: "top" });
           this.onUpdate.emit();
         })
+        estampaaux.Posicao += 1;
+        estampaaux.Nome += ` (${i})`;
       }
     }
   }

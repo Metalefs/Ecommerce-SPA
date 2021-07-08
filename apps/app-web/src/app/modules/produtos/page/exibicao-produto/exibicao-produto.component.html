@@ -41,7 +41,7 @@
                 </li>
                 <li>
                   <p class="subtitle">
-                    <b>Marca: </b> <span>{{ Produto?.Marca || '' }}</span>
+                    <b>Marca: </b> <span>{{ Produto?.Marca?.Nome || Produto?.Marca || '' }}</span>
                   </p>
                 </li>
               </ul>

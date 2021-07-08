@@ -18,11 +18,12 @@ export class SelecaoQuantidadeProdutoComponent implements OnInit {
   }
 
   IncrementarQuantidade(){
+    if(this.Produto.Quantidade >= this.Produto.QuantidadeMinima)
     this.Produto.Quantidade++;
     this.onQuantidadeChange.emit(this.Produto.Quantidade);
   }
   DecrescerQuantidade(){
-    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima || this.Produto.Quantidade > 1)
+    if(this.Produto.Quantidade - 1 >= this.Produto.QuantidadeMinima)
     this.Produto.Quantidade--;
     this.onQuantidadeChange.emit(this.Produto.Quantidade);
   }

@@ -55,6 +55,7 @@ import { CardEstampaComponent } from './components/card-estampa/card-estampa.com
 
 import { CorProdutoCheckboxSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/cor-produto-selector/cor-produto-selector.component';
 import { TamanhoProdutoSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/tamanho-produto-selector/tamanho-produto-selector.component';
+import { FornecedorProdutoSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/fornecedor-produto-selector/fornecedor-produto-selector.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -93,7 +94,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
      CorProdutoSelectorComponent,
      CardEstampaComponent,
      CorProdutoCheckboxSelectorComponent,
-     TamanhoProdutoSelectorComponent
+     TamanhoProdutoSelectorComponent,
+     FornecedorProdutoSelectorComponent
     ],
   imports: [
     CommonModule,
@@ -166,7 +168,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibicaoPrecoProdutoModule,
     CardEstampaComponent,
     CorProdutoCheckboxSelectorComponent,
-    TamanhoProdutoSelectorComponent
+    TamanhoProdutoSelectorComponent,
+    FornecedorProdutoSelectorComponent
   ],
   providers:[
     {

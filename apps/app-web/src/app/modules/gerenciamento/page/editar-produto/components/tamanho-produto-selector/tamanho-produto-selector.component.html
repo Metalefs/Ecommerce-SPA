@@ -1,40 +1,21 @@
-<ng-container *ngIf="Multiple then multiple else single"></ng-container>
-<ng-template #single>
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Tamanhos</mat-label>
-    <mat-select
-      matNativeControl
-      (selectionChange)="this.onSelected.emit($event.value)"
-    >
-      <mat-optgroup *ngFor="let group of TamanhosProduto" [label]="group.Nome">
-        <mat-option *ngFor="let opt of group?.Tamanhos" [value]="group">
-          <div class="dis-flex flex-sb">
-            <p>{{ opt?.Tamanho }}</p>
-            <p>R${{ opt?.Preco }}</p>
-          </div>
-        </mat-option>
-      </mat-optgroup>
-    </mat-select>
-  </mat-form-field>
-</ng-template>
-<ng-template #multiple>
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Tamanhos</mat-label>
-    <mat-select
-      multiple
-      matNativeControl
-      (selectionChange)="this.onSelected.emit($event.value)"
-    >
-      <mat-optgroup *ngFor="let group of TamanhosProduto" [label]="group.Nome">
-        <mat-option *ngFor="let opt of group?.Tamanhos" [value]="group">
-          <div class="dis-flex flex-sb">
-            <p>{{ opt?.Tamanho }}</p>
-            <p>R${{ opt?.Preco }}</p>
-          </div>
-        </mat-option>
-      </mat-optgroup>
-    </mat-select>
-  </mat-form-field>
-</ng-template>
+
+<mat-form-field appearance="fill" class="w-full">
+  <mat-label>Tamanhos</mat-label>
+  <mat-select
+    [multiple]="Multiple"
+    matNativeControl
+    (selectionChange)="this.onSelected.emit($event.value)"
+    [value]="[Produto?.Tamanho]"
+  >
+    <mat-optgroup *ngFor="let group of TamanhosProduto" [label]="group.Nome">
+      <mat-option *ngFor="let opt of group?.Tamanhos" [value]="group"  >
+        <div class="dis-flex flex-sb">
+          <p>{{ opt?.Tamanho }}</p>
+          <p>R${{ opt?.Preco }}</p>
+        </div>
+      </mat-option>
+    </mat-optgroup>
+  </mat-select>
+</mat-form-field>
 
 

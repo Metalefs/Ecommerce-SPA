@@ -1,16 +1,18 @@
+
 <mat-form-field appearance="fill" class="w-full">
-  <mat-label>Cores</mat-label>
+  <mat-label>Fornecedor</mat-label>
   <mat-select
-    [multiple]="Multiple"
     matNativeControl
     (selectionChange)="this.onSelected.emit($event.value)"
-    [value]="[Produto?.Cor]"
+    [value]="Produto?.Marca"
   >
-    <mat-option *ngFor="let opt of Cores" [value]="opt">
+    <mat-option *ngFor="let opt of FornecedoresProduto" [value]="opt" >
       <div class="dis-flex flex-sb">
         <p>{{ opt?.Nome }}</p>
-        <div class="square" [style.background]="opt?.Cor"></div>
+        <p>{{ opt?.Website }}</p>
       </div>
     </mat-option>
   </mat-select>
 </mat-form-field>
+
+

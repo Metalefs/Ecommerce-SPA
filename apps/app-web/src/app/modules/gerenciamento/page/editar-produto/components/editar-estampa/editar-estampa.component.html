@@ -15,12 +15,37 @@
 
   <div class="section w-full">
     <div class="columns is-multiline">
-      <div class="column is-2" *ngFor="let estampa of Estampas">
+      <div class="column is-12" >
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Estampas</mat-label>
+          <mat-select
+            multiple
+            matNativeControl
+            (selectionChange)="this.EstampasSelecionadas = $event.value"
+          >
+            <mat-option *ngFor="let opt of Estampas" [value]="opt">
+              <personalizados-lopes-card-estampa
+                [Estampa]="estampa"
+                [is_edicao]="true"
+                (onEditar)="Editar([$event])"
+                (onRemover)="Remover([$event])">
+              </personalizados-lopes-card-estampa>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <ng-container *ngIf="EstampasSelecionadas">
+            <button class="button is-small is-roudend" (click)="Editar(EstampasSelecionadas)" mat-icon-button><mat-icon>edit</mat-icon></button>
+            <button class="button is-small is-roudend" (click)="Remover(EstampasSelecionadas)" mat-icon-button><mat-icon>remove</mat-icon></button>
+          </ng-container>
+        </div>
+      </div>
+      <div class="column is-2"  *ngFor="let estampa of Estampas">
         <personalizados-lopes-card-estampa
           [Estampa]="estampa"
           [is_edicao]="true"
-          (onEditar)="Editar($event)"
-          (onRemover)="Remover($event)">
+          (onEditar)="Editar([$event])"
+          (onRemover)="Remover([$event])">
         </personalizados-lopes-card-estampa>
       </div>
     </div>

@@ -8,6 +8,8 @@ import { Router, RouterOutlet } from '@angular/router';
 import { Link } from '../../../shared/models/interfaces';
 import { fade, slider } from '../../../animations';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'personalizados-lopes-gerenciamento',
   templateUrl: './gerenciamento.component.html',
@@ -37,6 +39,10 @@ export class GerenciamentoComponent implements OnInit {
       return this.mobileQuery;
   }
 
+  ultimoLogin(){
+    return moment(this.user?.DataHoraAlteracao).calendar()
+  }
+
   Logout(){
     this.AuthenticationService.logout();
     this.router.navigateByUrl("/")
@@ -47,6 +53,7 @@ export class GerenciamentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    moment.locale('pt-br')
     this.AuthenticationService.currentUser.subscribe(x=>this.user=x);
 
     this.navs = [

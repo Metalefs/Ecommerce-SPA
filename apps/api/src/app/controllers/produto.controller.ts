@@ -14,7 +14,7 @@ let ProdutoService: Services.ProdutoService = new Services.ProdutoService();
 
 ProdutoRouter.get(RouteDictionary.Produtos.Produto, ListarProdutos)
   .get(RouteDictionary.Produtos.EmDestaque, ListarProdutosEmDestaque)
-  .get(RouteDictionary.Produtos.Produto + ":id", FiltrarPorId)
+  .get(RouteDictionary.Produtos.Produto + "/:id", FiltrarPorId)
   .get(RouteDictionary.Produtos.Filtrar + ":page", FiltrarProdutos)
   .get(RouteDictionary.Produtos.Semelhantes + ":id", FiltrarProdutosSemelhantes)
   .post(RouteDictionary.Produtos.Produto, CadastrarProduto)
@@ -23,7 +23,7 @@ ProdutoRouter.get(RouteDictionary.Produtos.Produto, ListarProdutos)
   .post(RouteDictionary.Produtos.IncrementarVendas, IncrementarVenda)
   .post(RouteDictionary.Produtos.IncrementarVisualizacoes, IncrementarVisualizacao)
   .put(RouteDictionary.Produtos.Produto, AtualizarProduto)
-  .delete(RouteDictionary.Produtos.Produto + ":id", DeletarProduto);
+  .delete(RouteDictionary.Produtos.Produto + "/:id", DeletarProduto);
 
 export {
   ProdutoRouter

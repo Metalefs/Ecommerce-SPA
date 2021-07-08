@@ -42,8 +42,8 @@ export class EditarProdutoComponent implements OnInit {
     dialogRef.afterClosed().subscribe((Produto : entities.Produto) => {
       if(Produto != undefined){
         this.store.dispatch(new AdicionarProduto(Produto)).subscribe(x=>{
-          this._snackBar.open("Adicionando produto", "Fechar", {
-
+          this._snackBar.open("Produto adicionado com sucesso", "Fechar", {
+            verticalPosition:"top"
           });
         });
       }
@@ -54,11 +54,9 @@ export class EditarProdutoComponent implements OnInit {
     let id = Produto._id;
 
     const dialogRef = this.dialog.open(EditarProdutoDialogComponent, {
-      width: "100%",
+      width: "90%",
       height: "100%",
       data: Produto,
-
-      panelClass:['fullscreen-modal']
     });
 
     dialogRef.afterClosed().subscribe((Produto :entities.Produto) => {

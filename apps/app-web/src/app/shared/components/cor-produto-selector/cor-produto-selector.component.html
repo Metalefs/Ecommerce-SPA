@@ -1,6 +1,6 @@
 <div>
   <p class="is-size-7 dis-flex flex-m">
-    <span class="has-text-weight-medium is-size-6">Cor:  </span><strong class=" is-size-7">{{ Produto?.Cor?.Nome || hovercolor?.Nome }}</strong>
+    <span class="has-text-weight-medium is-size-6">Cor:  </span><strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong>
   </p>
   <div
     class="columns is-multiline flex-sb"
@@ -8,30 +8,30 @@
     *ngIf="Produto?.Cores"
   >
     <div
+    *ngFor="let cor of Produto?.Cores; let i = index"
       (click)="setColor(cor)"
       (mouseover)="hovercolor = cor"
       (mouseout)="hovercolor = null"
       class="hoverable column"
-      *ngFor="let cor of Produto?.Cores; let i = index"
     >
       <input
         class="mx-1 button is-rounded"
         type="radio"
         alt="{{ cor.Nome }}"
-        [value]="Produto.Cor"
+        [value]="Produto?.Cor?.Nome ||Produto?.Cor?.nome "
         id="cor{{ i }}"
 
-        [ngClass]="{ ' is-focused selected': Produto?.Cor?.Nome == cor.Nome, 'is-danger': ErroCor }"
+        [ngClass]="{ ' is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome)  == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
       />
       <div
-        title="{{ cor.Nome }}"
+        title="{{ cor?.Nome || cor.nome }}"
         class="ColorlabelBackground is-rounded"
-        [ngClass]="{ 'is-focused selected': Produto?.Cor?.Nome == cor.Nome, 'is-danger': ErroCor }"
+        [ngClass]="{ 'is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome ) == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
         (click)="setColor(cor)"
       >
         <label
-          title="{{ cor.Nome }}"
-          [style.background]="cor.Cor"
+          title="{{ cor.Nome || cor.nome }}"
+          [style.background]="cor?.Cor"
           class="border-light"
           for="cor{{ i }}"
         ></label>

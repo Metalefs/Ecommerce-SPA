@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CorProdutoService, ProdutoService, TamanhoProdutoService } from 'apps/app-web/src/app/data/service';
+import { CorProdutoService, FornecedorProdutoService, ProdutoService, TamanhoProdutoService } from 'apps/app-web/src/app/data/service';
 import { CategoriaService, ImagemService } from 'apps/app-web/src/app/data/service';
-import { BlogPost, CorProduto, TamanhoProduto } from 'libs/data/src/lib/classes';
+import { BlogPost, CorProduto, FornecedorProduto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { Observable } from 'rxjs';
@@ -17,6 +17,7 @@ export class EditarProdutoService {
     private categoriaService:CategoriaService,
     private corProdutoService:CorProdutoService,
     private tamanhoProdutoService:TamanhoProdutoService,
+    private fornecedorProdutoService:FornecedorProdutoService,
     private blogService:BlogPostService,
     private servicoImagem:ImagemService) { }
 
@@ -28,6 +29,9 @@ export class EditarProdutoService {
   }
   CarregarTamanhos(){
     return this.tamanhoProdutoService.Ler() as Observable<Array<TamanhoProduto>>;
+  }
+  CarregarFornecedores(){
+    return this.fornecedorProdutoService.Ler() as Observable<Array<FornecedorProduto>>;
   }
   FiltrarProdutos(fields:FiltrarProdutoSearchQuery, page:number = 1, limit:number = 12){
     return this.produtoService.FiltrarProdutos(fields,page,limit);
