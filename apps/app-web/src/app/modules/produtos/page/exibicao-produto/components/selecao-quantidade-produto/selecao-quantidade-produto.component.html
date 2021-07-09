@@ -1,14 +1,13 @@
 <div class="field">
-  <mat-label class="label is-medium is-size-6">
+  <mat-label class="label is-small">
     Quantidade:
   </mat-label>
   <div class="control border is-large flex-m">
     <div class=" w-full dis-flex flex-sb">
       <button
-        mat-icon-button
         (click)="DecrescerQuantidade()"
       >
-        <mat-icon class="less">remove</mat-icon>
+        <mat-icon class="less fs-14">remove</mat-icon>
       </button>
       <input
         id="quantidade"
@@ -31,10 +30,9 @@
         [(ngModel)]="Produto.Quantidade"
       />
       <button
-        mat-icon-button
         (click)="IncrementarQuantidade()"
       >
-        <mat-icon class="more">add</mat-icon>
+        <mat-icon class="more fs-14">add</mat-icon>
       </button>
     </div>
   </div>

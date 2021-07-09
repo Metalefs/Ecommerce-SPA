@@ -1,11 +1,17 @@
 <div class="bbr bg-image">
-  <personalizados-lopes-exibicao-breadcrumb *ngIf="Produto"
+  <personalizados-lopes-exibicao-breadcrumb
+    *ngIf="Produto"
     [Produto]="Produto"
     [items]="items"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
-  <section class="section has-background-white-bis">
-    <div class="bbr ">
+  <div class="hero is-small bg">
+    <div class="hero-head" style="padding: 60px 0;">
+      <h1 class="bg-transp box header titulo-produto">{{ Produto?.Nome }}</h1>
+    </div>
+  </div>
+  <section class="section">
+    <div class="bbr section ">
       <div *ngIf="!Produto">
         <div class="p-grid p-formgrid">
           <div class="p-field p-col-12 p-md-6">
@@ -17,21 +23,25 @@
           </div>
         </div>
       </div>
-      <div class="columns  is-multiline is-4" *ngIf="Produto">
-        <div class="column is-6-desktop is-12-tablet">
+      <div class="columns is-multiline is-4" *ngIf="Produto">
+        <div class="column is-4-desktop is-12-tablet">
           <personalizados-lopes-exibicao-imagem-produto
             [Produto]="Produto"
             [images]="images"
             [images$]="images$"
           ></personalizados-lopes-exibicao-imagem-produto>
+
+          <personalizados-lopes-botao-contato-whatsapp
+            (click)="EntrarEmContato()"
+          ></personalizados-lopes-botao-contato-whatsapp>
         </div>
 
         <div
-          class="column is-6-desktop is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
-          style="display:grid"
+          class="column is-4-desktop is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
+          style="display: grid;"
         >
           <div class="columns">
-            <div class="column is-7 {{ mobile ? 'txt-left' : 'txt-left' }}">
+            <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
               <h1 class="titulo-produto title">{{ Produto?.Nome }}</h1>
               <ul class="list-unstyled">
                 <li>
@@ -41,61 +51,23 @@
                 </li>
                 <li>
                   <p class="subtitle">
-                    <b>Marca: </b> <span>{{ Produto?.Marca?.Nome || Produto?.Marca || '' }}</span>
+                    <b>Marca: </b>
+                    <span>{{
+                      Produto?.Marca?.Nome || Produto?.Marca || ''
+                    }}</span>
                   </p>
                 </li>
               </ul>
             </div>
-            <personalizados-lopes-exibicao-dados-pagamento></personalizados-lopes-exibicao-dados-pagamento>
           </div>
 
           <div *ngIf="Produto" class="columns is-vcentered is-multiline">
             <div class="column is-12-desktop is-12-tablet is-12-mobile">
-              <form
-                *ngIf="produtoForm"
-                action=""
-                method="post"
-              >
-                <div class="columns is-vcentered block is-multiline">
-                  <div class="column is-4 mh-full">
-                    <personalizados-lopes-selecao-quantidade-produto
-                      [Produto]="Produto"
-                      [ErroQuantidade]="ErroQuantidade"
-                      [Erros]="Erros"
-                      (onQuantidadeChange)="setQuantidade($event)"
-                    ></personalizados-lopes-selecao-quantidade-produto>
-                  </div>
-                  <div class="column is-3 mh-full">
-                    <personalizados-lopes-selecao-tamanho-produto
-                      [Produto]="Produto"
-                      [ErroTamanho]="ErroTamanho"
-                      [Erros]="Erros"
-                    ></personalizados-lopes-selecao-tamanho-produto>
-                  </div>
-                  <div class="column mh-full of-x-scroll">
-                    <personalizados-lopes-cor-produto-selector
-                      [Produto]="Produto"
-                      (onSetColor)="setColor($event)"
-                    ></personalizados-lopes-cor-produto-selector>
-                  </div>
-                </div>
+              <form *ngIf="produtoForm" action="" method="post">
                 <div
                   *ngIf="Produto?.Status != statusProduto.esgotado"
                   class="txt-left"
                 >
-                  <div class="pos-relative z-index-1 top-0 left-0">
-                    <a
-                      (click)="AdicionarAoOrcamento()"
-                      routerLinkActive="router-link-active"
-                      class="w-full button is-small is-rounded bor-0"
-                      title="Adicionar a cesta"
-                      style="height: 100%; text-decoration: none;"
-                    >
-                      <span class="flex-w flex-c-m"
-                        ><span class="mr-1 pi pi-shopping-cart"></span
-                      ></span>
-                    </a>
-                  </div>
                   <div>
                     <personalizados-lopes-bloco-pagamento-produto
                       [Produto]="Produto"
@@ -119,50 +91,97 @@
                   *ngIf="Produto?.Status == statusProduto.esgotado"
                   class="box w-full"
                 >
-                  <personalizados-lopes-botao-esgotado
-                    [Produto]="Produto"
-                  >
+                  <personalizados-lopes-botao-esgotado [Produto]="Produto">
                   </personalizados-lopes-botao-esgotado>
+                </div>
+                <div class="columns is-vcentered w-full is-multiline">
+                  <div class="column mh-full">
+                    <personalizados-lopes-selecao-quantidade-produto
+                      [Produto]="Produto"
+                      [ErroQuantidade]="ErroQuantidade"
+                      [Erros]="Erros"
+                      (onQuantidadeChange)="setQuantidade($event)"
+                    ></personalizados-lopes-selecao-quantidade-produto>
+                  </div>
+                  <div class="column mh-full">
+                    <personalizados-lopes-selecao-tamanho-produto
+                      [Produto]="Produto"
+                      [ErroTamanho]="ErroTamanho"
+                      [Erros]="Erros"
+                    ></personalizados-lopes-selecao-tamanho-produto>
+                  </div>
+                  <div class="column mh-full of-x-scroll">
+                    <personalizados-lopes-cor-produto-selector
+                      [Produto]="Produto"
+                      (onSetColor)="setColor($event)"
+                    ></personalizados-lopes-cor-produto-selector>
+                  </div>
                 </div>
               </form>
             </div>
             <div class="column is-6"></div>
             <div class="column is-6">
-              <div class="txt-left of-x-scroll"  *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
+              <div
+                class="txt-left of-x-scroll"
+                *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
+              >
                 <personalizados-lopes-exibicao-artes-produto
-                [Produto]="Produto"
-                (onAbrirModalArte)="AbrirModalArte($event)"
+                  [Produto]="Produto"
+                  (onAbrirModalArte)="AbrirModalArte($event)"
                 ></personalizados-lopes-exibicao-artes-produto>
               </div>
             </div>
           </div>
 
-          <div class="of-x-hidden block">
+          <div class="of-x-hidden">
             <personalizados-lopes-selecao-estampa
-              [Produto]='Produto'
-              (onSelecionarEstampa)='SelecionarEstampa($event)'
+              [Produto]="Produto"
+              (onSelecionarEstampa)="SelecionarEstampa($event)"
             ></personalizados-lopes-selecao-estampa>
           </div>
+
           <figure
-          class="image is-64x64 img-orcamento"
-          [ngClass]="isOrcamento ? 'active' : ''"
+            class="image is-64x64 img-orcamento"
+            [ngClass]="isOrcamento ? 'active' : ''"
           >
-          <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
-        </figure>
-        <personalizados-lopes-botao-contato-whatsapp (click)="EntrarEmContato()"></personalizados-lopes-botao-contato-whatsapp>
-      </div>
+            <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
+          </figure>
+        </div>
+
+        <div class="column">
+          <personalizados-lopes-tab-informacao-avaliacao-produto
+            [Produto]="Produto"
+          ></personalizados-lopes-tab-informacao-avaliacao-produto>
+        </div>
       </div>
     </div>
-    <div data-aos="zoom-up" data-aos-offset="200" class="hero-foot" id="product-display" *ngIf="Produto">
-      <div class="column is-6 is-hidden-desktop dis-flex">
+    <div class="hero-foot" id="product-display" *ngIf="Produto">
+      <div class="column is-6 dis-flex">
         <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
-        <personalizados-lopes-curtir-produto [Liked]="Liked" [Produto]="Produto"></personalizados-lopes-curtir-produto>
       </div>
-      <personalizados-lopes-tab-informacao-avaliacao-produto
-        [Produto]="Produto"
-      ></personalizados-lopes-tab-informacao-avaliacao-produto>
     </div>
   </section>
+
+  <div class="margin">
+    <div class="has-background-light btr">
+      <personalizados-lopes-estatisticas-produto
+        [Produto]="Produto"
+      ></personalizados-lopes-estatisticas-produto>
+    </div>
+
+    <div class="w-full bg flex-w flex-sa px-6 my-2">
+      <a [routerLink]="'/produtos'" class="has-text-light">
+        <button mat-icon-button>
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </a>
+      <a [routerLink]="'/showcase'" class="has-text-light">
+        <button mat-icon-button>
+          <mat-icon>collections</mat-icon>
+        </button>
+      </a>
+    </div>
+  </div>
 
   <div class="of-x-hidden margin section">
     <div data-aos="fade-up" data-aos-offset="200" *ngIf="Produto?._id">
@@ -171,10 +190,15 @@
       ></personalizados-lopes-tag-produto-swiper>
     </div>
 
-    <mat-divider class=" is-hidden-desktop"></mat-divider>
+    <mat-divider class="is-hidden-desktop"></mat-divider>
 
     <div class="hero is-medium is-hidden-desktop">
-      <div data-aos="fade-up" data-aos-offset="200" class="hero-body" *ngIf="Produto?._id">
+      <div
+        data-aos="fade-up"
+        data-aos-offset="200"
+        class="hero-body"
+        *ngIf="Produto?._id"
+      >
         <personalizados-lopes-produto-swiper
           [slidesPerView]="3"
           [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
@@ -197,24 +221,5 @@
     <personalizados-lopes-loading-cube *ngIf="redirecionando" [Mensagem]="''">
     </personalizados-lopes-loading-cube>
   </div>
-  <div data-aos="fade-up" data-aos-offset="200" class="margin">
-    <div class="has-background-light bbr">
-      <personalizados-lopes-estatisticas-produto
-        [Produto]="Produto"
-      ></personalizados-lopes-estatisticas-produto>
-    </div>
 
-    <div class="w-full bg flex-w flex-sa px-6 my-2">
-      <a [routerLink]="'/produtos'" class="has-text-light">
-        <button mat-icon-button>
-          <mat-icon>chevron_left</mat-icon>
-        </button>
-      </a>
-      <a [routerLink]="'/showcase'" class="has-text-light">
-        <button mat-icon-button>
-          <mat-icon>collections</mat-icon>
-        </button>
-      </a>
-    </div>
-  </div>
 </div>

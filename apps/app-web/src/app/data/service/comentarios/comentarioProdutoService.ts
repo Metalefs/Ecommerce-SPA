@@ -8,10 +8,9 @@ import { FireBaseService } from '../base/firebase.service';
 export class ComentarioProdutoService extends FireBaseService{
 
   firestoreBlogCollection = this.db.list('ComentarioProduto');
-  firestoreBlogRef = this.db.database().ref('ComentarioProduto');
 
   constructor(private db: AngularFireDatabase) {
-    super(db.database().ref('/ComentarioProduto'));
+    super(db.list('/ComentarioProduto'));
   }
 
 }

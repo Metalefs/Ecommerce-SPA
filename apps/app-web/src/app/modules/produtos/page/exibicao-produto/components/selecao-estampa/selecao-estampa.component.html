@@ -5,9 +5,10 @@
   class="swiper-container z-index-1 px-1  mh-full"
   [swiper]="swiperConfig$ | async"
 >
-  <mat-label>Estampas</mat-label>
+  <mat-label class="label is-small">Estampas</mat-label>
   <div class="swiper-wrapper of-x-hidden mh-full">
-    <div class="swiper-slide border-light" *ngFor="let estampa of Estampas">
+    <div class="swiper-slide
+    " *ngFor="let estampa of Estampas">
       <personalizados-lopes-card-estampa
         [Estampa]="estampa"
         [is_edicao]="false"

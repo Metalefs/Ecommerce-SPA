@@ -33,7 +33,6 @@ export class AuthenticationService {
       return this.http
         .post<any>(
           `${environment.endpoint}` +
-            RouteDictionary.Usuario.Usuario +
             RouteDictionary.Usuario.Registro,
           { Usuario }
         )
@@ -65,7 +64,6 @@ export class AuthenticationService {
     return this.http
       .post<any>(
         `${environment.endpoint}` +
-          RouteDictionary.Usuario.Usuario +
           RouteDictionary.Usuario.RegistroTemporario,
         { Usuario }
       )
@@ -119,7 +117,6 @@ export class AuthenticationService {
     return this.http
       .post<any>(
         `${environment.endpoint}` +
-          RouteDictionary.Usuario.Usuario +
           RouteDictionary.Usuario.RecuperarSenha,
         { email }
       )

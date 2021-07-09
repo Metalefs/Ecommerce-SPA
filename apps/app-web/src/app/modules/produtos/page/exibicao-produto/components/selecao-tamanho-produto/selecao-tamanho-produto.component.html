@@ -3,9 +3,8 @@
   [ngClass]="{ 'is-danger': ErroTamanho() }"
   *ngIf="Produto?.Tamanhos"
 >
-  <mat-label class="label is-medium is-size-6"
-    >Tamanho:</mat-label
-  >
+  <mat-label class="label is-small"
+    >Tamanho: <b>{{Produto.Tamanho?.Nome || Produto?.Tamanho}}</b></mat-label>
   <div
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"

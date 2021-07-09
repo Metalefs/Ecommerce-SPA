@@ -2,23 +2,29 @@
   <div class="mat-elevation-z4">
     <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   </div>
-  <div data-aos="zoom-up" class="py-4 has-background-light px-2">
-    <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-  </div>
-  <div class="mat-elevation-z1 ">
-    <personalizados-lopes-produto-swiper
-      [slidesPerView]="4"
-    ></personalizados-lopes-produto-swiper>
-    <div class="hero is-small">
-      <div class="hero-body">
-        <section
-          data-aos-offset="-10"
-          data-aos="zoom-up"
-          class="py-3"
-          *ngIf="(Clientes$ | async)?.length > 0"
-        >
-          <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
-        </section>
+  <div class="hero is-small">
+    <div class="hero-head">
+      <div data-aos="zoom-up" class="py-4 has-background-light px-2">
+        <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
+      </div>
+    </div>
+    <div class="hero-body">
+      <div class="mat-elevation-z1 ">
+        <personalizados-lopes-produto-swiper
+          [slidesPerView]="4"
+        ></personalizados-lopes-produto-swiper>
+        <div class="hero is-small">
+          <div class="hero-body">
+            <section
+              data-aos-offset="-10"
+              data-aos="zoom-up"
+              class="section py-3"
+              *ngIf="(Clientes$ | async)?.length > 0"
+            >
+              <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
+            </section>
+          </div>
+        </div>
       </div>
     </div>
   </div>

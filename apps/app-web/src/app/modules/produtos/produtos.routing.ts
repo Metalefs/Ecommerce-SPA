@@ -13,13 +13,13 @@ export const routes: Routes = [
     path: ':id',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
-    data: { animation:'isDown', title: 'Produto -' }
+    data: { animation:'flip', title: 'Produto -' }
   },
   {
     path: ':id/:orcamentoId',
     component: ExibicaoProdutoComponent,
     pathMatch: 'full',
-    data: { animation:'isDown', title: 'Produto -' }
+    data: { animation:'flip', title: 'Produto -' }
   }
 ];
 @NgModule({

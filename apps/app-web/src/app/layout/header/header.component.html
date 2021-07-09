@@ -1,14 +1,14 @@
 <mat-toolbar
-  class="dis-flex bg-light border has-text-dark flex-r z-index-top is-hidden"
-  style="overflow-y: visible; z-index: 20;"
+  class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top is-hidden-touch"
+  style="overflow-y: visible; z-index: 20;height:30px"
 >
   <div class="flex-sb">
-    <article class="message is-warning py-0 my-0" @slideInOut *ngIf="Alerta">
-      <!-- <a href="javascript:void(0)" class="pos-absolute clickable is-right mr-4" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a> -->
+    <!-- <article class="message is-warning py-0 my-0" @slideInOut *ngIf="Alerta">
+      <a href="javascript:void(0)" class="pos-absolute clickable is-right mr-4" (click)="Alerta = null"><i class="has-text-danger is-right pi pi-times-circle"></i></a>
       <div class="message-body py-4">
         <p class="subtitle is-size-7">{{ Alerta }}</p>
       </div>
-    </article>
+    </article>-->
     <a
       href="tel:{{ (InfoContato$ | async)?.Telefone }}"
       class="subtitle is-size-7 hoverable navbar-item px-2 has-text-centered mb-0 is-hidden-mobile"

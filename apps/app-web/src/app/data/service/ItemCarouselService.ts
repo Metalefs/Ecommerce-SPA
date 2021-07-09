@@ -48,7 +48,7 @@ export class ItemCarouselService {
   }
 
   Remover(id: string): Observable<any> {
-    return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `/${id}`).pipe(
+    return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `${id}`).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );

@@ -84,7 +84,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     const galleryRef = this.gallery.ref('myGallery');
     galleryRef.reset();
     produto?.Imagem.forEach(img =>{
-      galleryRef.addImage({ src:img, thumb: img, title: "Adicione sua estampa - Personalizados Lopes"});
+      galleryRef.addImage({ src:img, thumb: img});
     });
     const config: any = {
       autoPlay: true

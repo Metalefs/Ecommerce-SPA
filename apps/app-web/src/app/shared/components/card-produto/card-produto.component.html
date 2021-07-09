@@ -50,6 +50,25 @@
                 ><span class="mr-1 pi pi-shopping-cart"></span
               ></span>
             </a>
+            <a
+              title="Mais informações"
+              matRipple
+              pageScroll
+              href="#topo"
+              class="reset-a button shadow-light hoverable m-lr-auto px-4"
+              [style.top]="flex_direction == 'row' ? '45%' : '35%'"
+              [style.width]="flex_direction == 'row' ? '45%' : '45%'"
+              [routerLink]="[
+                '/produtos/' +
+                  Produto._id +
+                  '?produto=' +
+                  encodeURI(Produto?.Nome)
+              ]"
+              routerLinkActive="router-link-active"
+              mat-flat-button
+              class=""
+              ><i class="pi pi-window-maximize"></i
+            ></a>
           </div>
           <slideshow
             mat-card-image
@@ -154,25 +173,7 @@
                 </p>
               </div>
             </div>
-            <a
-              title="Comprar"
-              matRipple
-              pageScroll
-              href="#topo"
-              class="reset-a button shadow-light hoverable m-lr-auto px-4"
-              [style.top]="flex_direction == 'row' ? '45%' : '35%'"
-              [style.width]="flex_direction == 'row' ? '45%' : '45%'"
-              [routerLink]="[
-                '/produtos/' +
-                  Produto._id +
-                  '?produto=' +
-                  encodeURI(Produto?.Nome)
-              ]"
-              routerLinkActive="router-link-active"
-              mat-flat-button
-              class="mat-accent"
-              ><i class="pi pi-wallet"></i
-            ></a>
+
           </div>
         </div>
     </mat-card>
