@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Orcamento } from 'libs/data/src/lib/classes';
+import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { MercadoPagoCheckoutService } from '../../shared/services/checkout/MercadoPagoService';
 
 @Injectable({
@@ -17,7 +19,7 @@ export class CheckoutService {
     CheckoutService.erros = [];
 
 
-    Orcamento.Produto.forEach(prd=>{
+    Orcamento.Produto.forEach((prd :CodProduto)=>{
       if(!prd.Produto.Cor)
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui cor selecionada.`);
       if(!prd.Produto.Quantidade || prd.Produto.Quantidade <= 0)
@@ -26,6 +28,8 @@ export class CheckoutService {
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui tamanho selecionado.`);
       if(!prd.Produto.Arte && (prd.Produto.Canvas))
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui arte selecionada.`);
+      if(prd.Produto.Status == StatusProduto.esgotado)
+      CheckoutService.erros.push(`${prd.Produto.Nome} está esgotado.`);
     })
 
     CheckoutService.valid = CheckoutService.erros.length == 0;

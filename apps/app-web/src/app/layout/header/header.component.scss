@@ -79,14 +79,13 @@
 .cart-counter{
   position: absolute;
   text-align: center;
-  color: #1106CC;
+  color: white;
   font-size: 10px;
-  background: #d0ff12;
+  background: black;
   border-radius: 90px;
-  width: 15px;
-  height: 20px;
-  top: -2px;
-  left: 18px;
+  width: 20px;
+  top: -5px;
+  left: 17px;
   font-weight: 800;
 }
 .preco{
@@ -112,9 +111,10 @@
   font-size: 16.2902px;
   line-height: 19px;
   display: flex;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
 
   /* nav-link-color */
 
@@ -153,7 +153,8 @@
     // i{
     //   color: $naviconcolor
     // }
-    color: $naviconcolor
+    color: $navcolor;
+
   }
 }
 .active-nav{
@@ -174,7 +175,7 @@
   }
 
   100%{
-    //background: #c9c2c228;
+    background: #c9c2c228;
   }
 }
 .sticky-nav{

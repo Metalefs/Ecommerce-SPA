@@ -137,18 +137,17 @@
           </div>
         </div>
       </div>
-      <div class="hero-foot shadow-light">
+      <div class="hero-foot shadow-light of-x-scroll">
         <mat-toolbar-row class="w-full btr shadow-light" style="white-space: break-spaces; ">
           <div class="w-full margin">
             <div class="w-full flex-sa txt-center">
               <p class="has-text-light"><b>{{(Sobre$ | async)?.Nome}}</b> Todos os direitos reservados</p>
-
             </div>
           </div>
         </mat-toolbar-row>
         <div class="w-full px-3 flex-sa  py-2"  title="Desenvolvido por Devportable -Jackson Pires">
-          <p class="dis-flex flex-w" [innerHTML]="(Sobre$|async)?.Descricao + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
-          CNPJ : <div [innerHTML]="(Sobre$|async)?.CNPJ"></div>
+          <p class="dis-flex flex-w has-text-light" [innerHTML]="(Sobre$|async)?.Descricao + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
+          <span>CNPJ : <span [innerHTML]="(Sobre$|async)?.CNPJ"></span></span>
         </div>
       </div>
     </div>

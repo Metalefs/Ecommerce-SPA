@@ -36,7 +36,7 @@
             <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
           </a>
         </div>
-        <div class="column">
+        <div class="column"  *ngIf="search">
           <form
             type="get"
             class="bbr is-6 w-full nav-item btr mr-5 pr-2 has-background-white-bis shadow-light is-hidden-touch"
@@ -126,7 +126,7 @@
           <ng-template #normal>
             <a
               (click)="SetActiveNav(link)"
-              class="nav-link navbar-item  {{
+              class="nav-link  {{
                 link.name == 'inicio' ? 'inicio' : ''
               }}"
               pageScroll
@@ -148,7 +148,7 @@
                 [routerLink]="link.href"
                 pageScroll
                 routerLinkActive="active-nav"
-                class="nav-link navbar-item w-full {{
+                class="nav-link w-full {{
                   link.name == 'inicio' ? 'inicio' : ''
                 }}"
               >
@@ -187,7 +187,7 @@
         <p  class=" of-x-scroll" style="border: none !important;">
           <mat-icon>person_outline</mat-icon>
           <a class="w-full has-text-centered py-4 subtitle is-size-7 reset-a" title="Perfil">
-            {{ user?.Nome ? user.Nome : 'Meu perfil' }}
+            {{ user?.Nome }}
           </a>
         </p>
         <div class="dropdown-content w-full has-background-white box">
@@ -234,10 +234,10 @@
         (click)="openCheckout()"
         title="Cesta de compras"
         aria-label="Botão abrir Orçamento"
-        color="a"
+        color=""
         class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
       >
-        <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+        <mat-icon class="material-icons-outlined has-text-dark">shopping_bag</mat-icon>
         <a class="cart-counter">
           {{ (Orcamento$ | async)?.Produto.length || 0 }}
         </a>
@@ -263,7 +263,7 @@
   >
   </mat-toolbar-row>
 </div>
-<personalizados-lopes-mega-menu
+<!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"
   class="is-hidden-touch"
-></personalizados-lopes-mega-menu>
+></personalizados-lopes-mega-menu> -->

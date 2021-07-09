@@ -87,8 +87,8 @@ export class TabelaEdicaoOrcamentoComponent implements OnInit {
     })
     dialogref.afterClosed().subscribe(x=>{
       if(x?.Canvas){
-
-        this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,element.codOrcamento));
+        element.Produto = x;
+        this.EditarOrcamento(element)
       }
     })
   }

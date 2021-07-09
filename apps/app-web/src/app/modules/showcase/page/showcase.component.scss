@@ -4,10 +4,13 @@
   height: 100%;
 }
 
-.columns.has-5-cols{
-  .column.is-3{
 
-        flex: none;
-        width: 20%;
+@media (min-width: 1024px) {
+  .columns.has-5-cols{
+    .column.is-3{
+
+          flex: none;
+          width: 20%;
+    }
   }
 }

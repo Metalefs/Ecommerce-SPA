@@ -55,7 +55,7 @@ export class EditarTamanhoProdutoComponent implements OnInit {
         let confirmar = confirm(`Excluir tamanho ${tamanho.Nome}?`);
         if (confirmar)
           this.tamanhoProdutoService.Remover(tamanho._id).subscribe(result => {
-            this.snackBar.open(`Cor ${tamanho.Nome} removida com sucesso`, "Fechar");
+            this.snackBar.open(`Tamanho ${tamanho.Nome} removida com sucesso`, "Fechar");
             this.CarregarTamanhosProduto();
           })
       })
