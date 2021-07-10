@@ -8,7 +8,7 @@
   //filter:grayscale(1)
 }
 .mat-card{
-  transition: all .25s ease-out;
+  transition: all .1s ease-out;
   height: min-content;
   height: 100%;
   transform: rotate(0deg);
@@ -103,7 +103,7 @@ p{
       @include hover;
     }
   }
-  transition: all 1s;
+  transition: all .1s;
 
   // animation: 3s hoverAnim ease infinite;
 }
@@ -115,7 +115,7 @@ p{
         @include hover;
       }
     }
-    transition: all 1s;
+    transition: all .1s;
     transform: translateY(0);
   }
 }

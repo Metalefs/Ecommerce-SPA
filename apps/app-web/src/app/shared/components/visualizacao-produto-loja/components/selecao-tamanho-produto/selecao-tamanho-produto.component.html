@@ -3,17 +3,28 @@
   [ngClass]="{ 'is-danger': ErroTamanho() }"
   *ngIf="Produto?.Tamanhos"
 >
-  <mat-label class="label is-small"
+  <mat-label class="label is-small"  [ngClass]="{'': (Produto.Tamanho?.Nome || Produto?.Tamanho)}"
     >Tamanho: <b>{{Produto.Tamanho?.Nome || Produto?.Tamanho}}</b></mat-label>
   <div
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
     class="shadow-light is-rounded button is-outlined is-small"
     [ngClass]="{'is-focused':(Produto.Tamanho?.Nome == opt?.Nome)}"
-    (click)="SetTamanho(opt)"
+
   >
-    <div >
+    <div (click)="SetTamanho(opt)">
       <p>{{ opt.Nome || opt}}</p>
+    </div>
+    <div
+      *ngFor="let faixa of Produto?.Tamanho?.Tamanhos"
+      [value]="faixa"
+      class="shadow-light is-rounded button is-outlined is-small"
+      [ngClass]="{'is-focused':(Produto.FaixaTamanho?.Tamanho == faixa)}"
+      (click)="SetFaixaTamanho(faixa)"
+    >
+      <div >
+        <p>{{ faixa.Tamanho }}</p>
+      </div>
     </div>
   </div>
 </div>

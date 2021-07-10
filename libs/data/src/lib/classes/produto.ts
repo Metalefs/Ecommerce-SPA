@@ -4,7 +4,7 @@ import { MongoDocument } from './abstract/MongoDocument';
 import { CorProduto } from './corProduto';
 import { Estampa } from './estampa';
 import { FornecedorProduto } from './fornecedorProduto';
-import { TamanhoProduto } from './tamanhoProduto';
+import { FaixaTamanho, TamanhoProduto } from './tamanhoProduto';
 
 export class Produto extends MongoDocument implements entidadeBase{
   Nome:string;
@@ -16,6 +16,7 @@ export class Produto extends MongoDocument implements entidadeBase{
   Imagem:string[];
   FileList:FileList;
   Tamanho?:TamanhoProduto;
+  FaixaTamanho?:FaixaTamanho;
   Tamanhos?:TamanhoProduto[];
   Cor?:CorProduto;
   Cores?:CorProduto[];

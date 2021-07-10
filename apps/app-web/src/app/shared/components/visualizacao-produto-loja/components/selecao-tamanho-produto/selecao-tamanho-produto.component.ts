@@ -21,4 +21,11 @@ export class SelecaoTamanhoProdutoComponent implements OnInit {
       this.Produto.Tamanho = tamanho;
     }
   }
+  SetFaixaTamanho(faixa){
+    if(this.Produto.FaixaTamanho)
+      this.Produto.FaixaTamanho = null;
+    else{
+      this.Produto.FaixaTamanho = faixa;
+    }
+  }
 }

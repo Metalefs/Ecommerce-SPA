@@ -134,13 +134,13 @@ a {
   position: relative;
   // color: $gray-web;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: all 0.1s ease;
   &:hover {
-    transition: all 0.25s ease;
+    transition: all 0.1s ease;
     color: #999;
     text-decoration: none;
-    -webkit-transform: translateY(-1px);
-    transform: translateY(-1px);
+    -webkit-transform: translateZ(-1deg);
+    transform: translateZ(-1deg);
   }
 }
 .has-background {

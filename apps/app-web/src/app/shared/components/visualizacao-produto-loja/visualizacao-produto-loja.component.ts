@@ -90,7 +90,6 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     this.Url = `https://${location.href}`;
 
     this.LoadProduto(this.Produto);
-
     if(isPlatformBrowser(this.platform))
     this.scrollService.scrollTop();
     AOS.refreshHard();
@@ -98,6 +97,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
 
   LoadProduto(produto:Produto){
     this.AddImages(produto);
+    this.updateViews(produto);
     this.produtoForm = this.fb.group({
       tamanho:[produto?.Tamanho],
       quantidade:[produto?.Quantidade,Validators.required],

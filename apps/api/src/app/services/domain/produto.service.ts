@@ -25,30 +25,30 @@ export class ProdutoService extends BaseService {
   }
 
   async Gostar(id: string) {
-    return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
+    return this.FiltrarUm({ "_id": new ObjectId(id) }).then((produto: Produto) => {
       if (!Object.keys(produto).includes('Likes')) Object.assign(produto, { Likes: 1 });
-
-      return Repository.Edit(entities.Produto.NomeID, id, { Likes: produto.Likes+1 }).then(y => {
+      let value = parseInt(produto.Likes.toString()||'1') + 1;
+      return Repository.Edit(entities.Produto.NomeID, id, { Likes: value }).then(y => {
         return y;
       });
     });
   }
 
   async IncrementarVenda(id: string) {
-    return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
+    return this.FiltrarUm({ "_id": new ObjectId(id) }).then((produto: Produto) => {
       if (!Object.keys(produto).includes('Vendas')) Object.assign(produto, { Vendas: 1 });
-
-      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: produto.Vendas+1 }).then(y => {
+      let value = parseInt(produto.Vendas.toString()||'1') + 1;
+      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: value }).then(y => {
         return y;
       });
     });
   }
 
   async IncrementarVisualizacoes(id: string) {
-    return this.FiltrarPorId(id).then((produto: Produto) => {
+    return this.FiltrarUm({ "_id": new ObjectId(id) }).then((produto: Produto) => {
       if (!Object.keys(produto).includes('Visualizacoes')) Object.assign(produto, { Visualizacoes: 1 });
-
-      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: produto.Visualizacoes+1 }).then(y => {
+      let value = parseInt(produto.Visualizacoes.toString()||'1') + 1;
+      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: value }).then(y => {
         return y;
       });
     });

@@ -12,7 +12,6 @@ import { CorProdutoSelectorComponent } from './cor-produto-selector.component';
     MaterialModule,
     RouterModule,
     FormsModule,
-    CorProdutoSelectorComponent
   ],
   exports: [
     CorProdutoSelectorComponent,

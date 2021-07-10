@@ -38,31 +38,38 @@
               }}</span
             >
           </span>
-          <div class="pos-absolute z-index-1 top-0 left-0">
-            <a
-              (click)="AdicionarAoOrcamento()"
-              routerLinkActive="router-link-active"
-              class="w-full button bor-0"
-              title="Adicionar a cesta"
-              style="height: 100%; text-decoration: none;"
+          <div class="pos-absolute z-index-1 top-0 right-0">
+            <div>
+              <a
+            matRipple
+            pageScroll
+            href="#topo"
+            class="columns button"
+            title="Adicionar a cesta"
+            (click)="AdicionarAoOrcamento()"
+            mat-flat-button
             >
               <span class="flex-w flex-c-m"
                 ><span class="mr-1 pi pi-shopping-cart"></span
               ></span>
             </a>
-            <a
+            </div>
+            <div>
+              <a
               title="Mais informações"
               matRipple
               pageScroll
               href="#topo"
-              class="reset-a button shadow-light hoverable m-lr-auto px-4"
-              [style.top]="flex_direction == 'row' ? '45%' : '35%'"
-              [style.width]="flex_direction == 'row' ? '45%' : '45%'"
+              class="columns button"
+
               (click)="AbrirPreviewProduto()"
               mat-flat-button
-              class=""
-              ><i class="pi pi-window-maximize"></i
-            ></a>
+              >
+              <span class="flex-w flex-c-m"
+                ><span class="mr-1 pi pi-window-maximize"></span
+              ></span>
+            </a>
+            </div>
           </div>
           <slideshow
             mat-card-image
@@ -167,7 +174,26 @@
                 </p>
               </div>
             </div>
-
+            <a
+            title="Comprar"
+            matRipple
+            pageScroll
+            href="#topo"
+            class="reset-a button shadow-light hoverable is-success m-lr-auto"
+            style="top: 30%; left: 25%;"
+            [routerLink]="[
+              '/produtos/' +
+                Produto._id +
+                '?produto=' +
+                encodeURI(Produto?.Nome)
+            ]"
+            routerLinkActive="router-link-active"
+            mat-flat-button
+            class=""
+            ><mat-icon class="material-icons-outlined"
+              >shopping_bag</mat-icon
+            ></a
+          >
           </div>
         </div>
     </mat-card>
