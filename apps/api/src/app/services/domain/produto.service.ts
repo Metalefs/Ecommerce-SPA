@@ -28,7 +28,7 @@ export class ProdutoService extends BaseService {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
       if (!Object.keys(produto).includes('Likes')) Object.assign(produto, { Likes: 1 });
 
-      return Repository.Edit(entities.Produto.NomeID, id, { Likes: ++produto.Likes }).then(y => {
+      return Repository.Edit(entities.Produto.NomeID, id, { Likes: produto.Likes+1 }).then(y => {
         return y;
       });
     });
@@ -38,7 +38,7 @@ export class ProdutoService extends BaseService {
     return this.Filtrar({ "_id": new ObjectId(id) }).then((produto: Produto) => {
       if (!Object.keys(produto).includes('Vendas')) Object.assign(produto, { Vendas: 1 });
 
-      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: ++produto.Vendas }).then(y => {
+      return Repository.Edit(entities.Produto.NomeID, id, { Vendas: produto.Vendas+1 }).then(y => {
         return y;
       });
     });
@@ -48,7 +48,7 @@ export class ProdutoService extends BaseService {
     return this.FiltrarPorId(id).then((produto: Produto) => {
       if (!Object.keys(produto).includes('Visualizacoes')) Object.assign(produto, { Visualizacoes: 1 });
 
-      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: ++produto.Visualizacoes }).then(y => {
+      return Repository.Edit(entities.Produto.NomeID, id, { Visualizacoes: produto.Visualizacoes+1 }).then(y => {
         return y;
       });
     });

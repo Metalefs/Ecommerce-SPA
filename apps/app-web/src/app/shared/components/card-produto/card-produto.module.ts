@@ -28,7 +28,7 @@ import { ExibicaoPrecoProdutoModule } from '../exibicao-preco-produto/exibicao-p
     StarRatingModule.forRoot(),
     GalleryModule,
     SlideshowModule,
-    ExibicaoPrecoProdutoModule,
+    ExibicaoPrecoProdutoModule
   ],
   exports: [
     CardProdutoComponent,

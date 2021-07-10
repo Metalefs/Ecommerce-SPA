@@ -1,18 +1,19 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Carousel, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
-import { Gallery, GalleryComponent, GalleryItem } from 'ng-gallery';
+import { Gallery } from 'ng-gallery';
 import { IImage } from 'ng-simple-slideshow';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
-import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoOrcamentoLocal } from '../../../data/store/actions/orcamento.actions';
+import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento} from '../../../data/store/actions/orcamento.actions';
 import { CarouselState, OrcamentoState } from '../../../data/store/state';
 import { sum, translateEnum } from '../../../helper/ObjHelper';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
+import { PreviewProdutoComponent } from '../dialogs/preview-produto/preview-produto.component';
 
 @Component({
   selector: 'personalizados-lopes-card-produto',
@@ -109,6 +110,15 @@ export class CardProdutoComponent implements OnInit {
         right:'0'
       },
       panelClass:['no-padding']
+    });
+  }
+  AbrirPreviewProduto(){
+    this.dialog.open(PreviewProdutoComponent, {
+      width:'80vw',
+      height:'80vh',
+      restoreFocus: false,
+      data:this.Produto,
+      panelClass:['']
     });
   }
   translateStatusProduto(status){

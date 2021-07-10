@@ -26,7 +26,7 @@ export class CheckoutService {
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui quantidade selecionada.`);
       if(!prd.Produto.Tamanho)
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui tamanho selecionado.`);
-      if(!prd.Produto.Arte && (prd.Produto.Canvas))
+      if(!prd.Produto.Arte && !(prd.Produto.Canvas))
       CheckoutService.erros.push(`${prd.Produto.Nome} não possui arte selecionada.`);
       if(prd.Produto.Status == StatusProduto.esgotado)
       CheckoutService.erros.push(`${prd.Produto.Nome} está esgotado.`);

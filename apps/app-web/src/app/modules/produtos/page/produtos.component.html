@@ -33,14 +33,14 @@
 </mat-toolbar>
 <div class="hero is-small">
   <div class="hero-head">
-    <div class="ml-3 box">
+    <div class="ml-3 block">
       <h1 class="header">Produtos Disponíveis</h1>
     </div>
   </div>
   <div class="hero-body">
-    <div class="has-background-white section pt-4">
+    <div class="has-background-white section">
       <div [@cardFlip]="state" class="margin" id="Todos">
-        <div class="columns pt-2 is-gapless">
+        <div class="columns is-gapless">
           <div class="column is-3-desktop is-12-tablet is-hidden-mobile">
             <div class="flex-c w-full portfolio pos-sticky top-0">
               <div class="is-hidden-mobile w-full">
@@ -203,7 +203,7 @@
                 >
                   <ng-template pTemplate="header">
                     <div
-                      class="w-full columns is-vcentered box flex-r dis-flex px-0 py-0 mx-0 flex-w pt-0 is-mobile mb-0"
+                      class="w-full columns is-vcentered flex-r dis-flex px-0 py-0 mx-0 flex-w is-mobile"
                     >
                       <div class="column is-hidden-tablet is-8-mobile">
                         <span class="p-input-icon-left w-full">

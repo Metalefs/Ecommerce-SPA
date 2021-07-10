@@ -13,6 +13,7 @@
   height: 100%;
   transform: rotate(0deg);
   opacity: 1;
+  box-shadow: none;
   // max-width: 400px;
   &:hover{
     // @include hover;
@@ -115,6 +116,7 @@ p{
       }
     }
     transition: all 1s;
+    transform: translateY(0);
   }
 }
 @media screen and (min-width:720px){

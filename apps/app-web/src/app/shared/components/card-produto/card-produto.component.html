@@ -58,13 +58,7 @@
               class="reset-a button shadow-light hoverable m-lr-auto px-4"
               [style.top]="flex_direction == 'row' ? '45%' : '35%'"
               [style.width]="flex_direction == 'row' ? '45%' : '45%'"
-              [routerLink]="[
-                '/produtos/' +
-                  Produto._id +
-                  '?produto=' +
-                  encodeURI(Produto?.Nome)
-              ]"
-              routerLinkActive="router-link-active"
+              (click)="AbrirPreviewProduto()"
               mat-flat-button
               class=""
               ><i class="pi pi-window-maximize"></i
@@ -227,7 +221,31 @@
         >
         </slideshow>
       </div>
-
+      <div class="pos-absolute z-index-1 top-0 right-0">
+        <a
+          (click)="AdicionarAoOrcamento()"
+          routerLinkActive="router-link-active"
+          class="w-full  bor-0"
+          title="Adicionar a cesta"
+          style="height: 100%; text-decoration: none;"
+        >
+          <span class="flex-w flex-c-m"
+            ><span class="mr-1 pi pi-shopping-cart"></span
+          ></span>
+        </a>
+        <a
+          title="Mais informações"
+          matRipple
+          pageScroll
+          href="#topo"
+          class="reset-a  shadow-light hoverable m-lr-auto px-4"
+          [style.top]="flex_direction == 'row' ? '45%' : '35%'"
+          [style.width]="flex_direction == 'row' ? '45%' : '45%'"
+          (click)="AbrirPreviewProduto()"
+          class=""
+          ><i class="pi pi-window-maximize"></i
+        ></a>
+      </div>
       <mat-card-footer class="px-2 z-index-2">
         <mat-card-header class="w-full txt-center pt-1">
           <mat-card-title class="w-full titulo-produto mb-0">

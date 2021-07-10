@@ -1,33 +1,41 @@
-<div matRipple (click)="ToggleNav(0)" class="nav-trigger is-hidden-desktop z-index-top" [ngClass]="NavState.open? 'is-active': ''"
-  role="button" title="Menu">
-
+<div
+  matRipple
+  (click)="ToggleNav(0)"
+  class="nav-trigger is-hidden-desktop z-index-top"
+  [ngClass]="NavState.open ? 'is-active' : ''"
+  role="button"
+  title="Menu"
+>
   <div matRipple class="hamburger">
     <div class="icon"></div>
   </div>
-
 </div>
 
-<div class="wrapper " id="topo">
-<div class="has-background-dark">
-
-  <div id="nav-menu" [ngClass]="NavState.open? 'is-active': ''" class="">
-    <personalizados-lopes-navbar [NavState]="NavState"></personalizados-lopes-navbar>
+<div class="wrapper" id="topo">
+  <div class="has-background-dark">
+    <div id="nav-menu" [ngClass]="NavState.open ? 'is-active' : ''" class="">
+      <personalizados-lopes-navbar
+        [NavState]="NavState"
+      ></personalizados-lopes-navbar>
+    </div>
   </div>
-</div>
 
   <!-- [@cardFlip]="prepareRoute(outlet)" -->
   <div
-
     [@routeAnimations]="prepareRoute(outlet)"
-    [ngClass]="NavState.open? 'main is-active': ''"
-    (mouseover)="CloseNav()">
-    <section class="split-home ">
+    [ngClass]="NavState.open ? 'main is-active' : ''"
+    (mouseover)="CloseNav()"
+  >
+    <section class="split-home">
       <personalizados-lopes-header></personalizados-lopes-header>
       <main class="main-content has-background-light">
         <router-outlet #outlet="outlet"></router-outlet>
       </main>
     </section>
-    <personalizados-lopes-icone-whatsapp [Whatsapp]="(InformacoesContato$|async)?.Whatsapp" [Mensagem]="Mensagem">
+    <personalizados-lopes-icone-whatsapp
+      [Whatsapp]="(InformacoesContato$ | async)?.Whatsapp"
+      [Mensagem]="Mensagem"
+    >
     </personalizados-lopes-icone-whatsapp>
     <personalizados-lopes-scroll-top></personalizados-lopes-scroll-top>
     <personalizados-lopes-footer></personalizados-lopes-footer>

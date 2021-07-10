@@ -15,3 +15,12 @@
   background: center/ cover no-repeat url(https://source.unsplash.com/daily?sky);
   background-attachment: fixed;
 }
+.check-img{
+  margin-bottom: -80px;
+}
+@media screen and (max-width: 768px){
+
+.check-img{
+  margin-bottom: -160px;
+}
+}

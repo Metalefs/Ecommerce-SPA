@@ -18,7 +18,7 @@ export class SelecaoEstampaComponent implements OnInit {
 
   Estampas: Estampa[]
 
-  @ViewChild('swiperEl3') swiperEl: ElementRef;
+  @ViewChild('swiperEl4') swiperEl: ElementRef;
 
   swiperConfig$: Observable<SwiperConfigInterface>;
 

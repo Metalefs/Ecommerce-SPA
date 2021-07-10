@@ -30,7 +30,6 @@ import { ScrolltopModule } from './components/scrolltop/scrolltop.module';
 import { LoadingCubeComponent } from './components/loading-cube/loading-cube.component';
 import { CloseBtnComponent } from './components/close-btn/close-btn.component';
 import { CheckoutDisplayComponent } from './components/dialogs/checkout-display/checkout-display.component';
-import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgotado.component';
 import { CaixaObterEmailComponent } from './components/dialogs/caixa-obter-email/caixa-obter-email.component';
 import { MercadopagoButtonComponent } from './components/mercadopago-button/mercadopago-button.component';
 
@@ -63,6 +62,10 @@ import { ExibicaoArteProdutoComponent } from './components/exibicao-arte-produto
 import { CostumizationComponent } from './components/exibicao-arte-produto/costumization/costumization.component';
 import { StockImageComponent } from './components/exibicao-arte-produto/costumization/dialogs/stock-image/stock-image.component';
 import { ImportacaoComponent } from './components/exibicao-arte-produto/costumization/dialogs/importacao/importacao.component';
+import { VisualizacaoProdutoLojaModule } from './components/visualizacao-produto-loja/visualizacao-produto-loja.module';
+import { PreviewProdutoModule } from './components/dialogs/preview-produto/preview-produto.module';
+import { CardEstampaModule } from './components/card-estampa/card-estampa.module';
+import { CorProdutoSelectorModule } from './components/cor-produto-selector/cor-produto-selector.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -89,7 +92,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoadingCubeComponent,
     CloseBtnComponent,
     CheckoutDisplayComponent,
-    BotaoEsgotadoComponent,
     CaixaObterEmailComponent,
     MercadopagoButtonComponent,
     ExibirListaComentarioComponent,
@@ -97,8 +99,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ProdutoSwiperComponent,
     TagProdutoSwiperComponent,
     BlogSwiperComponent,
-    CorProdutoSelectorComponent,
-    CardEstampaComponent,
     CorProdutoCheckboxSelectorComponent,
     TamanhoProdutoSelectorComponent,
     FornecedorProdutoSelectorComponent,
@@ -111,7 +111,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibicaoArteProdutoComponent,
     CostumizationComponent,
     StockImageComponent,
-    ImportacaoComponent
+    ImportacaoComponent,
   ],
   imports: [
     CommonModule,
@@ -122,6 +122,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     ReactiveFormsModule,
     CardProdutoModule,
+    CorProdutoSelectorModule,
     CardClienteModule,
     RouterModule,
     ScrolltopModule,
@@ -140,7 +141,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardPedidoModule,
     EditorModule,
     AutocompleteDropdownModule,
-    ExibicaoPrecoProdutoModule
+    ExibicaoPrecoProdutoModule,
+    PreviewProdutoModule,
+    CardEstampaModule
   ],
   exports: [
     CommonModule,
@@ -161,7 +164,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LoadingCubeComponent,
     NgxMaskModule,
     CloseBtnComponent,
-    BotaoEsgotadoComponent,
     MercadopagoButtonComponent,
     CardBlogModule,
     GalleryModule,
@@ -180,9 +182,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BlogSwiperComponent,
     EditorModule,
     AutocompleteDropdownModule,
-    CorProdutoSelectorComponent,
+    CorProdutoSelectorModule,
     ExibicaoPrecoProdutoModule,
-    CardEstampaComponent,
     CorProdutoCheckboxSelectorComponent,
     TamanhoProdutoSelectorComponent,
     FornecedorProdutoSelectorComponent,
@@ -191,7 +192,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ExibicaoArteProdutoComponent,
     CostumizationComponent,
     StockImageComponent,
-    ImportacaoComponent
+    ImportacaoComponent,
+    VisualizacaoProdutoLojaModule,
+    PreviewProdutoModule,
+    CardEstampaModule
   ],
   providers: [
     {
