@@ -10,8 +10,8 @@ import { ClienteRouter } from './cliente.controller';
 import { MensagemRouter } from './mensagem.controller';
 import { ImagemRouter } from './imagem.controller';
 import { ItemCarouselRouter } from './itemcarousel.controller';
-import { CarouselRouter } from './carousel.controller';
-import { MercadoPagoController } from './mercadopago.controller';
+import { CarrouselRouter } from './carousel.controller';
+import { MercadoPagoController } from './checkout/mercadopago.controller';
 import { IntegracoesRouter } from './integracoes.controller';
 import { EstampaRouter } from './estampa.controller';
 import { TamanhoProdutoRouter } from './tamanho-produto.controller';
@@ -45,7 +45,7 @@ export let Routers = [
 
   EstampaRouter,
 
-  CarouselRouter,
+  CarrouselRouter,
 
   MercadoPagoController,
 

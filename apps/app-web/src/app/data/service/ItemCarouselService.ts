@@ -1,37 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { ItemCarousel } from 'libs/data/src/lib/classes';
 import { ImagemService } from './ImagemService';
 import { ErrorHandler } from '../../core/error.handler';
+import { BaseServiceWithImageHandling } from './base/base-with-image-handling';
 @Injectable({
   providedIn: 'root'
 })
 
-export class ItemCarouselService {
-  constructor(private http: HttpClient, private ErrorHandler: ErrorHandler,
-    private AuthenticationService: AuthenticationService,
-    private servicoImagem: ImagemService) { }
+export class ItemCarouselService extends BaseServiceWithImageHandling<ItemCarousel> {
 
-  Ler(): Observable<entities.ItemCarousel[]> {
-    return this.http.get<entities.ItemCarousel[]>(environment.endpoint + RouteDictionary.ItemCarousel).pipe(
-      retry(3), // retry a failed request up to 3 times
-      catchError(this.ErrorHandler.handleError) // then handle the error
-    );
-  }
-
-  Filtrar(id: any): Observable<entities.ItemCarousel[]> {
-    return this.http.get<entities.ItemCarousel[]>(environment.endpoint + RouteDictionary.ItemCarousel + `?id = ${id}`).pipe(
-      retry(3), // retry a failed request up to 3 times
-      catchError(this.ErrorHandler.handleError) // then handle the error
-    );
+  constructor(protected HttpClient: HttpClient, protected ErrorHandler: ErrorHandler,
+    protected servicoImagem: ImagemService) {
+    super(RouteDictionary.ItemCarousel, HttpClient, ErrorHandler, servicoImagem)
   }
 
   async Editar(item: entities.ItemCarousel): Promise<Observable<entities.ItemCarousel>> {
@@ -39,9 +27,8 @@ export class ItemCarouselService {
     //     // alert("Editando !");
     //     console.log(item);
     //   });
-    let payload = this.AuthenticationService.tokenize({ ItemCarousel: item });
     return this.http.put<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel,
-      payload).pipe(
+      { item }).pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.ErrorHandler.handleError)
       )
@@ -49,14 +36,6 @@ export class ItemCarouselService {
 
   Remover(id: string): Observable<any> {
     return this.http.delete<entities.Cliente>(environment.endpoint + RouteDictionary.ItemCarousel + `${id}`).pipe(
-      retry(3),
-      catchError(this.ErrorHandler.handleError)
-    );
-  }
-
-  Incluir(item: entities.ItemCarousel): Observable<ItemCarousel> {
-    let payload = this.AuthenticationService.tokenize({ ItemCarousel: item });
-    return this.http.post<entities.ItemCarousel>(environment.endpoint + RouteDictionary.ItemCarousel, payload).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );
@@ -87,7 +66,5 @@ export class ItemCarouselService {
       item.url = await this.servicoImagem.getRef((await x).metadata.fullPath, item.nome, "ItemCarousel");
     })
     return item;
-    // if(item.url){
-    // }
   }
 }

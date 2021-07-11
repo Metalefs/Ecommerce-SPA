@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
+import { InformacoesContato } from 'libs/data/src/lib/classes';
 import { tap } from 'rxjs/operators';
 import { InformacoesContatoService } from '../../service';
 import { LerInformacoesContato, EditarInformacoesContato } from '../actions/informacoescontato.actions'
@@ -41,7 +42,7 @@ export class InformacoesContatoState {
           const state = getState();
           setState({
             ...state,
-            InformacoesContato: result,
+            InformacoesContato: result as any as InformacoesContato,
             InformacoesContatoLoaded: true
           });
         }));

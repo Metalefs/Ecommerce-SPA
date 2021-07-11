@@ -56,6 +56,6 @@ export class EditarEstampaComponent implements OnInit {
   }
 
   Atualizar(){
-    this.estampaService.Ler().subscribe(estampas => this.Estampas = estampas);
+    this.estampaService.Ler().subscribe(estampas => this.Estampas = estampas as any as Estampa[]);
   }
 }

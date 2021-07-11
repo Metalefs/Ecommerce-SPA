@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { Imagem } from 'libs/data/src/lib/classes';
 import { ErrorHandler } from '../../core/error.handler';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
@@ -17,7 +16,6 @@ import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 
 export class ImagemService {
   constructor(private http: HttpClient, private ErrorHandler: ErrorHandler,
-    private AuthenticationService: AuthenticationService,
     private AF: AngularFireStorage) { }
 
 
@@ -86,10 +84,8 @@ export class ImagemService {
   }
 
   Editar(item: entities.Imagem): any {
-    let payload = this.AuthenticationService.tokenize({ Imagem: item });
-    console.log(payload);
     return this.http.put<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem,
-      payload).pipe(
+      {item}).pipe(
         retry(3), // retry a failed request up to 3 times
         catchError(this.ErrorHandler.handleError) // then handle the error
       );
@@ -97,7 +93,7 @@ export class ImagemService {
 
   Remover(src: string) {
     this.Filtrar(src).subscribe((x: Imagem[]) => {
-      this.http.delete<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem + `/${x[0]._id}`).pipe(
+      this.http.delete<entities.Imagem>(environment.endpoint + RouteDictionary.Imagem + `${x[0]._id}`).pipe(
         retry(3),
         catchError(this.ErrorHandler.handleError)
       ).subscribe();

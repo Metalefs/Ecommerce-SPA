@@ -1,16 +1,20 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import * as express from 'express';
 import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
-
-import * as express from 'express';
 import { escapeRegex } from '../_handlers/regexescape';
-import { UsuarioLogado } from '../_handlers/Authentication';
-import { Usuario } from 'libs/data/src/lib/classes';
-
-const CategoriaRouter = express();
+import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+import BaseController from './base.controller';
 
 let CategoriaService: Services.CategoriaService = new Services.CategoriaService();
+const CategoriaRouter = express();
+export class CategoriaController extends BaseController {
+  constructor(service:Services.CarouselService) {
+    super(service)
+  }
+}
 
+const CategoriaCtrl = new CategoriaController(CategoriaService)
 CategoriaRouter.get(RouteDictionary.Categoria, async (req: any, res) => {
   try {
     if (req.query.nicho) {
@@ -24,39 +28,9 @@ CategoriaRouter.get(RouteDictionary.Categoria, async (req: any, res) => {
     ErrorHandler.DefaultException(err, res)
   }
 })
-
-.post(RouteDictionary.Categoria, async (req: any, res) => {
-  UsuarioLogado(req, res)
-    .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-    .then(usuario => {
-      if (usuario)
-      CategoriaService.Inserir(usuario as Usuario, req.body.item.Categoria)
-          .then(result => res.send(result))
-          .catch(err => ErrorHandler.DefaultException(err, res))
-    })
-})
-
-.put(RouteDictionary.Categoria, async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    CategoriaService.Alterar(usuario as Usuario, req.body.item.Categoria)
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
-})
-
-.delete(RouteDictionary.Categoria + ":id", async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    CategoriaService.Deletar(usuario as Usuario, req.params.id)
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
-});
+.put(RouteDictionary.Categoria, ensureIsAdmin, CategoriaCtrl.Editar)
+.post(RouteDictionary.Categoria, ensureIsAdmin, CategoriaCtrl.Incluir)
+.delete(RouteDictionary.Categoria + `:id`, ensureIsAdmin, CategoriaCtrl.Remover);
 
 export {
   CategoriaRouter

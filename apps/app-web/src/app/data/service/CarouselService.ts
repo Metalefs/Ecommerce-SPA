@@ -23,7 +23,7 @@ export class CarouselService {
         );
     }
     Editar(item: entities.Carousel): Observable<entities.Carousel> {
-        let payload = this.AuthenticationService.tokenize({Carousel:item});
+        let payload = this.AuthenticationService.tokenize({item});
         return this.http.put<entities.Carousel>(environment.endpoint + RouteDictionary.Carousel,
             payload).pipe(
             retry(3), // retry a failed request up to 3 times
@@ -37,7 +37,7 @@ export class CarouselService {
         );
     }
     Incluir(item: entities.Carousel): Observable<any> {
-      let payload = this.AuthenticationService.tokenize({Carousel:item});
+      let payload = this.AuthenticationService.tokenize({item});
       return this.http.post<entities.Carousel>(environment.endpoint + RouteDictionary.Carousel, payload).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)

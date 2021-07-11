@@ -35,36 +35,21 @@ import { UsuarioLogado } from '../_handlers/Authentication';
    * @return {Object} res The response object
    */
   Incluir(req, res, next) {
-    UsuarioLogado(req, res)
-    .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-    .then(usuario => {
-      if (usuario)
-        this._service.Inserir(usuario, req.body.item)
+    this._service.Inserir(res.locals.user, req.body.item)
           .then(result => res.send(result))
           .catch(err => ErrorHandler.DefaultException(err, res))
-    })
   }
 
   Editar(req,res,next){
-    UsuarioLogado(req, res)
-          .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-          .then(usuario => {
-            if (usuario)
-              this._service.Alterar(usuario, req.body.item)
-                .then(result => res.send(result))
-                .catch(err => ErrorHandler.DefaultException(err, res))
-          })
+    this._service.Alterar(res.locals.user, req.body.item)
+      .then(result => res.send(result))
+      .catch(err => ErrorHandler.DefaultException(err, res))
   }
 
   Remover(req,res,next){
-    UsuarioLogado(req, res)
-          .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-          .then(usuario => {
-            if (usuario)
-              this._service.Deletar(usuario, req.params.id)
-                .then(result => res.send(result))
-                .catch(err => ErrorHandler.DefaultException(err, res))
-          })
+    this._service.Deletar(res.locals.user, req.params.id)
+      .then(result => res.send(result))
+      .catch(err => ErrorHandler.DefaultException(err, res))
   }
 }
 

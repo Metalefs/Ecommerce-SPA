@@ -27,7 +27,7 @@ export class ProdutoService {
     private servicoImagem: ImagemService) { }
 
   Ler(limit?: number, skip?: number): Observable<PaginationResponse<Produto>> {
-    return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produtos.Produto).pipe(
+    return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produtos.Raiz).pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.ErrorHandler.handleError) // then handle the error
     );
@@ -41,7 +41,7 @@ export class ProdutoService {
   }
 
   Filtrar(id: any): Observable<Produto[]> {
-    return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produtos.Produto + `/${id}`).pipe(
+    return this.http.get<Produto[]>(environment.endpoint + RouteDictionary.Produtos.Raiz + `/${id}`).pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.ErrorHandler.handleError) // then handle the error
     );
@@ -65,10 +65,8 @@ export class ProdutoService {
 
   async Editar(item: entities.Produto): Promise<Observable<entities.Produto>> {
     return this.EditarImagens(item).then(x => {
-      let payload = this.AuthenticationService.tokenize({ Produto: item });
-      // alert("Editando !");
-      return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Produto,
-        payload).pipe(
+      return this.http.put<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Raiz,
+        {item}).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError)
         )
@@ -113,7 +111,7 @@ export class ProdutoService {
             //await this.servicoImagem.deleteImage(Produto[0].Imagem[i]);
           } catch (EX) { console.log(EX); continue; }
         }
-        resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Produto + `/${id}`).pipe(
+        resolve(this.http.delete<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Raiz + `/${id}`).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
         ));
@@ -122,35 +120,28 @@ export class ProdutoService {
   }
 
   Incluir(item: entities.Produto): Observable<Produto> {
-
-    let payload = this.AuthenticationService.tokenize({ Produto: item });
-    return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Produto, payload).pipe(
+    return this.http.post<entities.Produto>(environment.endpoint + RouteDictionary.Produtos.Raiz, {item}).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );
-
   }
 
   async EditarImagens(item: Produto): Promise<Produto> {
-
     if (!isEmpty(item.FileList[0])) {
       let deletar = confirm("Imagens diferentes, deletar?");
       if (deletar)
         await this.RemoverImagens(item)
     }
     return await this.UploadItemImages(item);
-
   }
 
   async RemoverImagens(item: Produto) {
     for (let i = 0; i <= item.Imagem.length; i++) {
-
       try {
         if (item.Imagem != []) {
           await this.servicoImagem.deleteImage(item.Imagem[i]);
         }
       } catch (EX) { console.log(EX); continue; }
-
     }
   }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
+import { Sobre } from 'libs/data/src/lib/classes';
 import { tap } from 'rxjs/operators';
 import { SobreService } from '../../service';
 import { LerSobre, EditarSobre } from '../actions/sobre.actions'
@@ -41,7 +42,7 @@ export class SobreState {
           const state = getState();
           setState({
             ...state,
-            Sobre: result,
+            Sobre: result as any as Sobre,
             sobreLoaded: true
           });
         }));

@@ -7,7 +7,6 @@ export class LerProduto {
   constructor() {}
 }
 
-
 export class AdicionarProduto {
 
   static readonly type = '[Produto] Add'

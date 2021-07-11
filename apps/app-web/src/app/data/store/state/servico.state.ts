@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
+import { Servico } from 'libs/data/src/lib/classes';
 import { tap } from 'rxjs/operators';
 import { ServicoService } from '../../service';
 import { LerServico, EditarServico, RemoverServico } from '../actions/servico.actions'
@@ -41,7 +42,7 @@ export class ServicoState {
           const state = getState();
           setState({
             ...state,
-            Servico: result,
+            Servico: result as any as Servico[],
             ServicoLoaded: true
           });
         }));
@@ -64,7 +65,7 @@ export class ServicoState {
 
   @Action(EditarServico)
   async Editar({getState,setState}: StateContext<ServicoStateModel>, {payload, id} : EditarServico){
-    return (await (await this.ServicoService.Editar(payload)).subscribe(result => {
+    return (await (await this.ServicoService.EditarServico(payload)).subscribe(result => {
         const state = getState();
         const ListaServicos = [...state.Servico];
         const index = ListaServicos.findIndex(item => item._id === id);

@@ -1,23 +1,25 @@
-import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import * as Services from "../services";
-import { ErrorHandler } from '../_handlers/error-handler';
-
 import * as express from 'express';
+import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import { ErrorHandler } from '../_handlers/error-handler';
 import { UsuarioLogado } from '../_handlers/Authentication';
+
+import BaseController from './base.controller';
+import { ensureIsAdmin } from "../middleware/ensure-is-admin";
 
 const OrcamentoRouter = express();
 
 let OrcamentoService: Services.OrcamentoService = new Services.OrcamentoService();
 
-OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
-  try {
-    const result = await OrcamentoService.Ler();
-    res.send(result);
+export class OrcamentoController extends BaseController {
+  constructor(service:Services.OrcamentoService) {
+    super(service);
   }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
+}
+
+const OrcamentoCtrl = new OrcamentoController(OrcamentoService)
+
+OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao,OrcamentoCtrl.Ler)
 .get(RouteDictionary.Orcamento.Pedidos, async (req: any, res) => {
   try {
     const usuario = await UsuarioLogado(req, res);
@@ -25,38 +27,13 @@ OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
     res.send(result);
   }
   catch (err) {
-  ErrorHandler.DefaultException(err, res)
-}
-})
-.post(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
-  try {
-    const result = await OrcamentoService.Inserir(null, req.body.item.Orcamento);
-    res.send(result);
-  }
-  catch (err) {
     ErrorHandler.DefaultException(err, res)
   }
 })
-.put(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
-  try {
-    const usuario = await UsuarioLogado(req, res);
-    const result = await OrcamentoService.Alterar(usuario, req.body.item.Orcamento);
-    res.send(result);
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.delete(RouteDictionary.Orcamento.Padrao, async (req: any, res) => {
-  try {
-    const usuario = await UsuarioLogado(req, res);
-    const result = await OrcamentoService.Deletar(usuario, req.query.id);
-    res.send(result);
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-});
+.put(RouteDictionary.Orcamento.Padrao, ensureIsAdmin, OrcamentoCtrl.Editar)
+.post(RouteDictionary.Orcamento.Padrao, ensureIsAdmin, OrcamentoCtrl.Incluir)
+.delete(RouteDictionary.Orcamento + `:id`, ensureIsAdmin, OrcamentoCtrl.Remover);
+
 export {
   OrcamentoRouter
 }

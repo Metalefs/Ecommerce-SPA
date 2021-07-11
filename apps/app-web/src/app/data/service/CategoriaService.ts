@@ -8,45 +8,21 @@ import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { ErrorHandler } from '../../core/error.handler';
+import { Categoria } from 'libs/data/src/lib/classes';
+import { BaseService } from './base/base.service';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class CategoriaService {
-    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
-        private AuthenticationService: AuthenticationService) { }
+export class CategoriaService extends BaseService<Categoria> {
 
-    Ler(): Observable<entities.Categoria[]> {
-      return this.http.get<entities.Categoria[]>(environment.endpoint + RouteDictionary.Categoria).pipe(
-          retry(3), // retry a failed request up to 3 times
-          catchError(this.ErrorHandler.handleError) // then handle the error
-      );
-    }
-    Filtrar(query:string): Observable<entities.Categoria[]> {
-      return this.http.get<entities.Categoria[]>(environment.endpoint + RouteDictionary.Categoria + `?${query}`).pipe(
-          retry(3), // retry a failed request up to 3 times
-          catchError(this.ErrorHandler.handleError) // then handle the error
-      );
-    }
+  constructor(protected HttpClient:HttpClient, protected ErrorHandler:ErrorHandler) {
+    super(RouteDictionary.Categoria,HttpClient,ErrorHandler)
+   }
 
-    Editar(item: entities.Categoria): Observable<entities.Categoria> {
-      let payload = this.AuthenticationService.tokenize({Categoria:item});
-      return this.http.put<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria,
-          payload).pipe(
-          retry(3), // retry a failed request up to 3 times
-          catchError(this.ErrorHandler.handleError) // then handle the error
-      );
-    }
     Remover(id: string): Observable<any>{
       return this.http.delete<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria + `/${id}`).pipe(
-          retry(3),
-          catchError(this.ErrorHandler.handleError)
-      );
-    }
-    Incluir(item: entities.Categoria): Observable<any> {
-      let payload = this.AuthenticationService.tokenize({Categoria:item});
-      return this.http.post<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria, payload).pipe(
           retry(3),
           catchError(this.ErrorHandler.handleError)
       );

@@ -10,9 +10,7 @@ import { Usuario } from 'libs/data/src/lib/classes';
 import { UsuarioLogado } from '../_handlers/Authentication';
 
 const app = express();
-const user_route = '/usuario';
 app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
-    console.log(req.body);
     try{
       UsuarioService.authenticate(req.body)
           .then((user: entities.Usuario) => res.status(200).json(user))
@@ -23,7 +21,6 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     }
 }).post(RouteDictionary.Usuario.Registro, (req,res, next) =>{
   try{
-    console.log(req.body.Usuario);
     UsuarioService.create(req.body.Usuario)
         .then((user: entities.Usuario | any) => res.json(user))
         .catch(reason => ErrorHandler.ConflictException(reason,res));
@@ -33,7 +30,6 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
   }
 }).post(RouteDictionary.Usuario.RegistroTemporario, (req,res, next) =>{
   try{
-    console.log(req.body.Usuario);
     let user:Usuario = req.body.Usuario;
     let senha = UsuarioService.generateRandomPassword();
     user.Senha = senha;

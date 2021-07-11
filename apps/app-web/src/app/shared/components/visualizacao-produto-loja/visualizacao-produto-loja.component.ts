@@ -20,10 +20,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Title } from '@angular/platform-browser';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 
-import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper'
-import { Gallery } from 'ng-gallery';
+import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper';
 import AOS from 'aos'
 import { ExibicaoArteProdutoComponent } from 'apps/app-web/src/app/shared/components/exibicao-arte-produto/exibicao-arte-produto.component';
+import { GalleryComponent } from 'ng-gallery';
+import { ExibicaoImagemProdutoComponent } from './components/exibicao-imagem-produto/exibicao-imagem-produto.component';
 
 @Component({
   selector: 'personalizados-lopes-visualizacao-produto-loja',
@@ -57,47 +58,40 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   produtoForm:FormGroup;
   CEP:string="";
 
+  @ViewChild(ExibicaoImagemProdutoComponent) gallery:ExibicaoImagemProdutoComponent;
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
-    private activeRoute:ActivatedRoute,
     private router: Router,
+    private activeRoute: ActivatedRoute,
     private store: Store,
     public dialog: NgDialogAnimationService,
     private scrollService: PageScrollService,
     private windowRef: WindowRef,
     private titleService: Title,
     private fb: FormBuilder,
-    private gallery: Gallery,
     ) {
       AOS.refresh();
     }
 
 
-  AddImages(produto:Produto){
-    const galleryRef = this.gallery.ref('myGallery');
-    galleryRef.reset();
-    produto?.Imagem.forEach(img =>{
-      galleryRef.addImage({ src:img, thumb: img});
-    });
-    const config: any = {
-      autoPlay: true
-    };
-    galleryRef.setConfig(config)
-  }
-
   ngOnInit(): void {
-    if(isPlatformBrowser(this.platform))
-    this.Url = `https://${location.href}`;
 
-    this.LoadProduto(this.Produto);
-    if(isPlatformBrowser(this.platform))
-    this.scrollService.scrollTop();
-    AOS.refreshHard();
   }
+  ngAfterViewInit(){
+    this.activeRoute.params.subscribe(routeParams => {
+      if(isPlatformBrowser(this.platform))
+      this.Url = `https://${location.href}`;
 
+      this.LoadProduto(this.Produto);
+
+      if(isPlatformBrowser(this.platform))
+      this.scrollService.scrollTop();
+    AOS.refreshHard();
+    })
+  }
   LoadProduto(produto:Produto){
-    this.AddImages(produto);
     this.updateViews(produto);
+    this.gallery.AddImages(produto);
     this.produtoForm = this.fb.group({
       tamanho:[produto?.Tamanho],
       quantidade:[produto?.Quantidade,Validators.required],

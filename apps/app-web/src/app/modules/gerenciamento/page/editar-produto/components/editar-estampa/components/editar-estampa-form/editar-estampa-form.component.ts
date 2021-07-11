@@ -38,7 +38,7 @@ export class EditarEstampaFormComponent implements OnInit {
   }
 
   CarregarCategorias() {
-    this.estampaService.CarregarCategorias().subscribe(x => { this.categorias = x; });
+    this.estampaService.CarregarCategorias().subscribe(x => { this.categorias = x as any as Categoria[]; });
   }
 
   SelecionarCategoria(Categoria: Categoria[]) {

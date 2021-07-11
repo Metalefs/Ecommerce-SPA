@@ -55,7 +55,7 @@ export class EdicaoCardClienteComponent implements OnInit {
           order: 1
         })
       )
-      if(key == "Foto"){
+      if(key == "Files"){
         questions.push(
           new FileQuestion({
             key: key,

@@ -1,58 +1,31 @@
-import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import * as express from 'express';
 import * as Services from "../services";
 import { ErrorHandler } from '../_handlers/error-handler';
+import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+import BaseController from './base.controller';
 
-import * as express from 'express';
-import { UsuarioLogado } from '../_handlers/Authentication';
-
-const CarouselRouter = express();
 let CarouselService: Services.CarouselService = new Services.CarouselService();
 
-CarouselRouter.get(RouteDictionary.Carousel, async (req: any, res) => {
+const CarrouselRouter = express();
+
+export class CarrouselController extends BaseController {
+  constructor(service:Services.CarouselService) {
+    super(service)
+  }
+}
+
+const CarrouselCtrl = new CarrouselController(CarouselService)
+
+CarrouselRouter.get(RouteDictionary.Carousel, async (req: any, res) => {
   CarouselService.LerUltimo()
   .then(result => res.send(result))
   .catch(err =>ErrorHandler.DefaultException(err, res));
 })
-
-.post(RouteDictionary.Carousel, async (req: any, res) => {
-  UsuarioLogado(req, res)
-    .catch(ex => {
-      ErrorHandler.AuthorizationException(ex, res);
-      return;
-    })
-    .then(usuario => {
-      if (usuario)
-      CarouselService.Inserir(usuario, req.body.item.Carousel)
-          .then(result => res.send(result))
-          .catch(err => ErrorHandler.DefaultException(err, res))
-    })
-})
-
-.put(RouteDictionary.Carousel, async (req: any, res) => {
-  UsuarioLogado(req, res)
-    .catch(ex => {
-      ErrorHandler.AuthorizationException(ex, res);
-      return;
-    })
-    .then(usuario => {
-      if (usuario)
-      CarouselService.Alterar(usuario, req.body.item.Carousel)
-          .then(result => res.send(result))
-          .catch(err => ErrorHandler.DefaultException(err, res))
-    });
-})
-
-.delete(RouteDictionary.Carousel + ":id", async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    CarouselService.Deletar(usuario, req.params.id)
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
-});
+.put(RouteDictionary.Carousel, ensureIsAdmin, CarrouselCtrl.Editar)
+.post(RouteDictionary.Carousel, ensureIsAdmin, CarrouselCtrl.Incluir)
+.delete(RouteDictionary.Carousel + `:id`, ensureIsAdmin, CarrouselCtrl.Remover);
 
 export {
-  CarouselRouter
+  CarrouselRouter
 }

@@ -64,6 +64,7 @@ export class BaseService {
       throw `Erro ao filtrar ${this.entity}. - ${err}`
     });
   }
+
   async FiltrarPorId(id) {
     return Repository.Filter(this.entity, { "_id": new ObjectId(id) }).then(x => {
       return x;

@@ -3,6 +3,7 @@ import * as Services from "../services";
 
 import * as express from 'express';
 import BaseController from './base.controller';
+import { ensureIsAdmin } from '../middleware/ensure-is-admin';
 
 let ItemCarouselService: Services.ItemCarouselService = new Services.ItemCarouselService();
 
@@ -17,9 +18,9 @@ export class ItemCarouselController extends BaseController {
 const ItemCarouselCtrl = new ItemCarouselController(ItemCarouselService)
 
 ItemCarouselRouter.get(RouteDictionary.ItemCarousel,ItemCarouselCtrl.Ler);
-ItemCarouselRouter.put(RouteDictionary.ItemCarousel,ItemCarouselCtrl.Editar);
-ItemCarouselRouter.post(RouteDictionary.ItemCarousel,ItemCarouselCtrl.Incluir);
-ItemCarouselRouter.delete(RouteDictionary.ItemCarousel + `:id`,ItemCarouselCtrl.Remover);
+ItemCarouselRouter.put(RouteDictionary.ItemCarousel, ensureIsAdmin, ItemCarouselCtrl.Editar);
+ItemCarouselRouter.post(RouteDictionary.ItemCarousel, ensureIsAdmin, ItemCarouselCtrl.Incluir);
+ItemCarouselRouter.delete(RouteDictionary.ItemCarousel + `:id`, ensureIsAdmin, ItemCarouselCtrl.Remover);
 
 export {
   ItemCarouselRouter

@@ -1,6 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild } from '@angular/core';
 
-import { Estampa, InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { InformacoesContatoState, OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
@@ -15,14 +15,14 @@ import { fade } from 'apps/app-web/src/app/animations';
 import { TipoOrdenacaoSwiperProduto } from 'apps/app-web/src/app/shared/components/produto-swiper/produto-swiper.component';
 import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { BlogPostService } from '../../../blog/blog.service';
 
-import { Gallery } from 'ng-gallery';
 import { MenuItem } from 'primeng/api';
 import AOS from 'aos'
+import { EditarProdutoAbertoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 @Component({
   selector: 'personalizados-lopes-exibicao-produto',
   templateUrl: './exibicao-produto.component.html',
@@ -61,6 +61,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     private scrollService: PageScrollService,
     private servicoProduto:ProdutoService,
     private titleService: Title,
+    private store:Store
     ) {
       AOS.refresh();
     }
@@ -98,6 +99,7 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
       this.textoAdicionar = "Comprar";
 
     this.Produto = produto;
+    this.store.dispatch(new EditarProdutoAbertoOrcamentoLocal(this.Produto))
   }
 
   ngOnDestroy(){

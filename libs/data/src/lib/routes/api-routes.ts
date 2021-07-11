@@ -3,7 +3,7 @@ let rota_produto = '/produtos';
 export let RouteDictionary = {
 
   Produtos: {
-    Produto: rota_produto,
+    Raiz: rota_produto,
     Filtrar: rota_produto + "/filtrar/",
     Gostar: rota_produto + "/gostar/",
     Rate: rota_produto + "/rate/",

@@ -5,8 +5,8 @@
 
   <gallery
     *ngIf="galleryConfig$ | async; let config"
-    id="myGallery"
     [gallerize]
+    [items]="images"
     [ngClass]="mobile ? '' : ''"
     [counter]="false"
     [nav]="false"

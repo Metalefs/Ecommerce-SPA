@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { UsuarioService, OrcamentoService} from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento } from '../actions/orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal } from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, TamanhoProduto, Usuario } from 'libs/data/src/lib/classes';
@@ -17,7 +17,7 @@ export class OrcamentoStateModel{
   Orcamentos: entities.Orcamento;
   ListaOrcamentos: entities.Orcamento[];
   areOrcamentosLoaded: boolean;
-
+  openProduct:Produto
 }
 let enderecoEntrega = new EnderecoEntrega("","","","","","","");
 let resultadoPagamentoMP: MercadoPagoResultadoPagamentoCheckout = {
@@ -39,7 +39,8 @@ export let DEFAULT_ORCAMENTO = new Orcamento([],"",StatusOrcamento.aberto,0,"",n
   defaults: {
     Orcamentos: DEFAULT_ORCAMENTO,
     ListaOrcamentos: [],
-    areOrcamentosLoaded: false
+    areOrcamentosLoaded: false,
+    openProduct:null,
   }
 })
 @Injectable()
@@ -59,18 +60,23 @@ export class OrcamentoState {
   }
 
   @Selector()
+  static ObterProdutoAberto(state: OrcamentoStateModel) {
+    return state.openProduct;
+  }
+
+  @Selector()
   static ObterListaOrcamentos(state: OrcamentoStateModel) {
     return state.ListaOrcamentos;
   }
 
   @Action(LerOrcamento)
   LerOrcamento({getState, setState}: StateContext<OrcamentoStateModel>){
-    this.OrcamentoService.Ler().subscribe(rslt=>{
+    this.OrcamentoService.Ler().subscribe((rslt):any=>{
       const state = getState();
-      rslt = rslt.sort(x=>x.Status);
+      rslt = rslt.sort((x)=>x.Status);
       setState({
         ...state,
-        ListaOrcamentos: rslt
+        ListaOrcamentos: rslt as any as Orcamento[]
       });
     });
   }
@@ -100,6 +106,7 @@ export class OrcamentoState {
     });
     return cod;
   }
+
   @Action(DuplicarProdutoOrcamento)
   DuplicarProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : DuplicarProdutoOrcamento){
     const state = getState();
@@ -182,6 +189,17 @@ export class OrcamentoState {
     patchState({
       ...state,
       Orcamentos: payload,
+    });
+  }
+
+  @Action(EditarProdutoAbertoOrcamentoLocal)
+  EditarProdutoAbertoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarProdutoAbertoOrcamentoLocal){
+    let state = getState();
+    this.atualizarPreco(state);
+    this.atualizarDimensoes(state);
+    patchState({
+      ...state,
+      openProduct: payload,
     });
   }
 

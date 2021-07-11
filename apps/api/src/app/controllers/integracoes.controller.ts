@@ -1,23 +1,25 @@
-import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
+import * as express from 'express';
 import * as Services from "../services";
+import BaseController from './base.controller';
+import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { ErrorHandler } from '../_handlers/error-handler';
 
-import * as express from 'express';
-import { UsuarioLogado } from '../_handlers/Authentication';
 import { Integracoes } from 'libs/data/src/lib/classes';
+import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+
 const IntegracoesRouter = express();
+let IntegracoesService = new Services.IntegracoesService();
 
-let IntegracoesService: Services.IntegracoesService = new Services.IntegracoesService();
-
-IntegracoesRouter.get(RouteDictionary.Integracoes.Raiz, async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    IntegracoesService.LerUltimo()
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
+export class IntegracoesController extends BaseController {
+  constructor(service:Services.IntegracoesService) {
+    super(service)
+  }
+}
+const IntegracoesCtrl = new IntegracoesController(IntegracoesService);
+IntegracoesRouter.get(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, async (req: any, res) => {
+  IntegracoesService.LerUltimo()
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res))
 })
 
 .get(RouteDictionary.Integracoes.ChavePublicaMercadoPago, async (req: any, res) => {
@@ -26,38 +28,9 @@ IntegracoesRouter.get(RouteDictionary.Integracoes.Raiz, async (req: any, res) =>
   .catch(err => ErrorHandler.DefaultException(err, res))
 })
 
-.post(RouteDictionary.Integracoes.Raiz, async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    IntegracoesService.Inserir(usuario, req.body.item.Integracoes)
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
-})
-
-.put(RouteDictionary.Integracoes.Raiz, async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex => ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    IntegracoesService.Alterar(usuario, req.body.item.Integracoes)
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
-})
-
-.delete(RouteDictionary.Integracoes.Raiz + ":id", async (req: any, res) => {
-  UsuarioLogado(req, res)
-  .catch(ex =>ErrorHandler.AuthorizationException(ex, res))
-  .then(usuario => {
-    if (usuario)
-    IntegracoesService.Deletar(usuario, req.params.id)
-        .then(result => res.send(result))
-        .catch(err => ErrorHandler.DefaultException(err, res))
-  })
-});
+.put(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, IntegracoesCtrl.Editar)
+.post(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, IntegracoesCtrl.Incluir)
+.delete(RouteDictionary.Integracoes.Raiz + `:id`, ensureIsAdmin, IntegracoesCtrl.Remover);
 
 export {
   IntegracoesRouter

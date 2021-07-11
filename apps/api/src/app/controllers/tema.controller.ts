@@ -1,45 +1,24 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import * as Services from "../services";
-import { ErrorHandler } from '../_handlers/error-handler';
-
+import * as Services from "../services"
 import * as express from 'express';
-import { UsuarioLogado } from '../_handlers/Authentication';
+import BaseController from './base.controller';
+import { ensureIsAdmin } from '../middleware/ensure-is-admin';
 const TemaRouter = express();
 
 let TemaService: Services.TemaService = new Services.TemaService();
 
-TemaRouter.get(RouteDictionary.Tema, async (req: any, res) => {
-  try {
-    res.send(await TemaService.Ler());
+export class TemaController extends BaseController {
+  constructor(service:Services.TemaService) {
+    super(service);
   }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.post(RouteDictionary.Tema, async (req: any, res) => {
-  try {
-    res.send(await TemaService.Inserir(await UsuarioLogado(req,res), req.body.item.Tema));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.put(RouteDictionary.Tema, async (req: any, res) => {
-  try {
-    res.send(await TemaService.Alterar(await UsuarioLogado(req,res), req.body.item.Produtos));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-})
-.delete(RouteDictionary.Tema, async (req: any, res) => {
-  try {
-    res.send(await TemaService.Deletar(await UsuarioLogado(req,res), req.query.id));
-  }
-  catch (err) {
-    ErrorHandler.DefaultException(err, res)
-  }
-});
+}
+
+const TemaCtrl = new TemaController(TemaService)
+
+TemaRouter.get(RouteDictionary.Tema,TemaCtrl.Ler);
+TemaRouter.put(RouteDictionary.Tema, ensureIsAdmin, TemaCtrl.Editar);
+TemaRouter.post(RouteDictionary.Tema, ensureIsAdmin, TemaCtrl.Incluir);
+TemaRouter.delete(RouteDictionary.Tema + `:id`, ensureIsAdmin, TemaCtrl.Remover);
 
 export {
   TemaRouter

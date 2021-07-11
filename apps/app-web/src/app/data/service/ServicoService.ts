@@ -6,35 +6,27 @@ import { environment } from '../../../environments/environment';
 
 import { entities } from '@personalizados-lopes/data';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { AuthenticationService } from '../../core/service/authentication/authentication.service';
+import { ImagemService } from './ImagemService';
 import { ErrorHandler } from '../../core/error.handler';
 import { Servico } from 'libs/data/src/lib/classes';
 import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
-import { ImagemService } from './ImagemService';
+import { BaseService } from './base/base.service';
 
 @Injectable({
     providedIn: 'root'
 })
 
-export class ServicoService {
-    constructor(private http: HttpClient, private ErrorHandler:ErrorHandler,
-      private servicoImagem: ImagemService,
-        private AuthenticationService: AuthenticationService) { }
+export class ServicoService extends BaseService<Servico> {
 
-    Ler(): Observable<entities.Servico[]> {
-        return this.http.get<entities.Servico[]>(environment.endpoint + RouteDictionary.Servico).pipe(
-            retry(3), // retry a failed request up to 3 times
-            catchError(this.ErrorHandler.handleError) // then handle the error
-        );
-    }
+  constructor(protected HttpClient:HttpClient, protected ErrorHandler:ErrorHandler, private servicoImagem:ImagemService) {
+    super(RouteDictionary.Servico,HttpClient,ErrorHandler)
+  }
 
-    async Editar(item: entities.Servico): Promise<Observable<entities.Servico>> {
+    async EditarServico(item: entities.Servico): Promise<Observable<entities.Servico>> {
       return this.EditarImagens(item).then(x=>{
-        let payload = this.AuthenticationService.tokenize({Servico:item});
-        console.log(item);
         return this.http.put<entities.Servico>(environment.endpoint + RouteDictionary.Servico,
-          payload).pipe(
+          {item}).pipe(
           retry(3), // retry a failed request up to 3 times
           catchError(this.ErrorHandler.handleError)
         )
@@ -42,15 +34,12 @@ export class ServicoService {
     }
 
     async EditarImagens(item:Servico) : Promise<Servico>{
-
-      if(!isEmpty(item.FileList)){
-
+      if(!isEmpty(item.FileList) && item.FileList != null){
         alert("Imagens diferentes")
         // return this.RemoverImagens(item).then(async()=>{
         // })
       }
       return await this.UploadItemImages(item);
-
     }
 
     async UploadItemImages(item:entities.Servico) : Promise<entities.Servico>{
@@ -63,20 +52,5 @@ export class ServicoService {
         }
         return item;
       }
-    }
-
-    Remover(id: string): Observable<any>{
-      return this.http.delete<entities.Servico>(environment.endpoint + RouteDictionary.Servico + `/${id}`).pipe(
-          retry(3),
-          catchError(this.ErrorHandler.handleError)
-      );
-    }
-
-    Incluir(item: entities.Servico): Observable<any> {
-      let payload = this.AuthenticationService.tokenize({Servico:item});
-      return this.http.post<entities.Servico>(environment.endpoint + RouteDictionary.Servico, payload).pipe(
-          retry(3),
-          catchError(this.ErrorHandler.handleError)
-      );
     }
 }

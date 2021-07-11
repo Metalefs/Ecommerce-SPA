@@ -7,6 +7,7 @@ export class Cliente extends MongoDocument implements entidadeBase{
   Origem:string;
   Comentario:string;
   Foto:string;
+  Files:any;
   static readonly NomeID:string = "Cliente";
     constructor(
       Nome:string,

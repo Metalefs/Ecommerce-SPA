@@ -1,9 +1,9 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { ErrorHandler } from '../_handlers/error-handler';
+import { ErrorHandler } from '../../_handlers/error-handler';
 
 import * as express from 'express';
-import { MercadoPagoService } from '../services';
-import { UsuarioLogado } from '../_handlers/Authentication';
+import { MercadoPagoService } from '../../services';
+import { UsuarioLogado } from '../../_handlers/Authentication';
 
 const MercadoPagoController = express();
 

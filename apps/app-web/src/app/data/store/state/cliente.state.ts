@@ -5,6 +5,7 @@ import { ClienteService } from '../../service';
 import { LerCliente, EditarCliente, AdicionarCliente, RemoverCliente } from '../actions/cliente.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { Cliente } from 'libs/data/src/lib/classes';
 
 export class ClienteStateModel{
   Clientes: entities.Cliente[];
@@ -43,7 +44,7 @@ export class ClienteState {
           const state = getState();
           setState({
             ...state,
-            Clientes: result,
+            Clientes: result as any as Cliente[],
             areClientesLoaded: true
           });
         }));
@@ -54,7 +55,7 @@ export class ClienteState {
     return this.ClienteService.Incluir(payload).pipe(tap((result) => {
       const state = getState();
       patchState({
-          Clientes: [...state.Clientes, result]
+          Clientes: [...state.Clientes, result as Cliente]
       });
   }));
   }
