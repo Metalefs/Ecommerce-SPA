@@ -16,7 +16,7 @@ export class FactoryStepsComponent implements OnInit {
   constructor() {  }
   EstadoNav = new EstadoNav();
   Opcoes:OpcaoNavbar[] = [
-    new OpcaoNavbar("Inicio", "","pi pi-home"),
+    new OpcaoNavbar("Inicio", "/inicio","pi pi-home"),
     new OpcaoNavbar("Produtos", "/produtos", "pi pi-shopping-cart"),
     new OpcaoNavbar("Checkout", "/checkout", "pi pi-check"),
     new OpcaoNavbar("Orcamento", "/orcamento", "pi pi-mobile"),

@@ -73,7 +73,7 @@ export class OrcamentoState {
   LerOrcamento({getState, setState}: StateContext<OrcamentoStateModel>){
     this.OrcamentoService.Ler().subscribe((rslt):any=>{
       const state = getState();
-      rslt = rslt.sort((x)=>x.Status);
+      rslt = rslt.sort((x:any)=>x.Status);
       setState({
         ...state,
         ListaOrcamentos: rslt as any as Orcamento[]
@@ -195,8 +195,6 @@ export class OrcamentoState {
   @Action(EditarProdutoAbertoOrcamentoLocal)
   EditarProdutoAbertoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload} : EditarProdutoAbertoOrcamentoLocal){
     let state = getState();
-    this.atualizarPreco(state);
-    this.atualizarDimensoes(state);
     patchState({
       ...state,
       openProduct: payload,

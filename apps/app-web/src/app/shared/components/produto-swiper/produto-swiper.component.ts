@@ -120,7 +120,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     preloadImages          : true,
                     lazy                   : true,
                     observer               : true,
-                    slidesPerView          : this.slidesPerView,
+                    slidesPerView          : this.Produtos.length > this.slidesPerView ? this.slidesPerView : this.Produtos.length,
                     navigation: {
                       nextEl: '.swiper-button-next',
                       prevEl: '.swiper-button-prev',

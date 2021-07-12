@@ -1,5 +1,5 @@
 <mat-toolbar
-  class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top is-hidden-touch"
+  class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top "
   style="overflow-y: visible; z-index: 20;height:30px"
 >
   <div class="flex-sb">
@@ -24,12 +24,12 @@
     </a>
   </div>
 </mat-toolbar>
-<div class="z-index-top top-0" style="overflow-y: visible;">
+<div class="pos-sticky z-index-top top-0 " style="overflow-y: visible;">
   <nav
-    class="navbar columns is-vcentered w-full is-mobile z-index-top py-2 mx-0"
+    class="navbar columns is-vcentered w-full is-mobile z-index-top  mx-0"
     style="z-index: 20;"
   >
-    <div class="column is-5-desktop is-10-mobile">
+    <div class="column py-0 is-5-desktop is-10-mobile">
       <div class="columns is-vcentered is-mobile">
         <div class="column is-3">
           <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
@@ -227,7 +227,7 @@
         </div>
       </div>
     </div>
-    <div class="column">
+    <div class="column pb-0">
       <div class="">
         <a
         mat-ripple
@@ -263,7 +263,7 @@
   >
   </mat-toolbar-row>
 </div>
-<!-- <personalizados-lopes-mega-menu
+<personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"
   class="is-hidden-touch"
-></personalizados-lopes-mega-menu> -->
+></personalizados-lopes-mega-menu>

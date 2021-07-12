@@ -13,8 +13,7 @@ import { VisualizacaoProdutoLojaModule } from '../../visualizacao-produto-loja/v
     VisualizacaoProdutoLojaModule
   ],
   exports: [
-    SlideshowModule,
-    VisualizacaoProdutoLojaModule
+    SlideshowModule
   ]
 })
 export class PreviewProdutoModule { }

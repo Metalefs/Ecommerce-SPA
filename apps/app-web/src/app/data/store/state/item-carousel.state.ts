@@ -44,7 +44,7 @@ export class ItemCarouselState {
           const state = getState();
           setState({
             ...state,
-            ItemsCarousel: result,
+            ItemsCarousel: result as any,
             areItemsCarouselLoaded: true
           });
         }));

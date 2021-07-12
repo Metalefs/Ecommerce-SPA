@@ -130,7 +130,7 @@ export class EditarProdutoComponentBase implements OnInit {
   }
 
   CarregarCategorias(){
-    this.produtoService.CarregarCategorias().subscribe(x=>{this.Categorias = x;});
+    this.produtoService.CarregarCategorias().subscribe(x=>{this.Categorias = x as any;});
   }
 
   CarregarCores(){

@@ -31,19 +31,17 @@
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
-<div class="hero is-small">
-  <div class="hero-head">
-    <div class="section">
-      <h1 class="header">Produtos Disponíveis</h1>
-    </div>
+<div class="hero is-small px-1 bg ">
+  <div class="hero-head txt-center has-text-white w-full" style="padding: 60px 0;">
+    <h1 class="bg-transp txt-center box  has-text-white">Produtos Disponíveis</h1>
   </div>
-  <div class="hero-body">
-    <div class="has-background-white section">
+  <div class="hero-body px-0 pb-0 margin ">
+    <div class="has-background-white px-0">
       <div [@cardFlip]="state" class="margin" id="Todos">
         <div class="columns is-gapless">
           <div class="column is-3-desktop is-12-tablet is-hidden-mobile">
             <div class="flex-c w-full portfolio pos-sticky top-0">
-              <div class="is-hidden-mobile w-full">
+              <div class="is-hidden-mobile w-full section">
                 <div>
                   <div class="hoverable bo-0 bos-0">
                     <div class="pl-2 dis-flex flex-c-m">
@@ -184,7 +182,7 @@
             </div>
           </div>
           <div class="column ml-0 pl-0 is-9 is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll">
-            <div class="w-full">
+            <div class="w-full section">
               <div class="is-multiline dis-flex">
                 <p-dataView
                   *ngIf="(Filtro$ | async).FiltroProdutos?.length > 0"

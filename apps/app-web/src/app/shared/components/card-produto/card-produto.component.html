@@ -98,13 +98,7 @@
 
         <mat-card-header
           class=" of-y-scroll"
-          [routerLink]="[
-            '/produtos/' +
-              Produto._id +
-              '?produto=' +
-              encodeURI(Produto?.Nome)
-          ]"
-          routerLinkActive="router-link-active"
+          (click)="AbrirPaginaProduto()"
         >
         <mat-card-title class="title titulo-produto">
           <a
@@ -112,7 +106,7 @@
             class="reset-a"
             pageScroll
             href="#topo"
-            [routerLink]="['/produtos/' + Produto?._id]"
+            (click)="AbrirPaginaProduto()"
           >
             {{ Produto?.Nome }}
           </a>
@@ -136,12 +130,7 @@
         <mat-card-footer class="mx-0 px-0 z-index-2 w-full of-y-scroll">
           <a
             *ngIf="Produto.Status == statusProduto.esgotado"
-            [routerLink]="[
-              '/produtos/' +
-                Produto._id +
-                '?produto=' +
-                encodeURI(Produto?.Nome)
-            ]"
+            (click)="AbrirPaginaProduto()"
             routerLinkActive="router-link-active"
             class="wp-btn button border is-rounded is-small py-3 box"
             style="text-decoration: none;"
@@ -181,12 +170,7 @@
             href="#topo"
             class="reset-a button shadow-light hoverable is-success m-lr-auto"
             style="top: 30%; left: 25%;"
-            [routerLink]="[
-              '/produtos/' +
-                Produto._id +
-                '?produto=' +
-                encodeURI(Produto?.Nome)
-            ]"
+            (click)="AbrirPaginaProduto()"
             routerLinkActive="router-link-active"
             mat-flat-button
             class=""
@@ -248,7 +232,7 @@
         </slideshow>
       </div>
       <div class="pos-absolute z-index-1 top-0 right-0">
-        <a
+        <!-- <a
           (click)="AdicionarAoOrcamento()"
           routerLinkActive="router-link-active"
           class="w-full  bor-0"
@@ -258,19 +242,19 @@
           <span class="flex-w flex-c-m"
             ><span class="mr-1 pi pi-shopping-cart"></span
           ></span>
-        </a>
-        <a
+        </a> -->
+        <button
           title="Mais informações"
           matRipple
           pageScroll
           href="#topo"
-          class="reset-a  shadow-light hoverable m-lr-auto px-4"
+          class=" button is-small shadow-light hoverable m-lr-auto px-4"
           [style.top]="flex_direction == 'row' ? '45%' : '35%'"
           [style.width]="flex_direction == 'row' ? '45%' : '45%'"
           (click)="AbrirPreviewProduto()"
           class=""
           ><i class="pi pi-window-maximize"></i
-        ></a>
+        ></button>
       </div>
       <mat-card-footer class="px-2 z-index-2">
         <mat-card-header class="w-full txt-center pt-1">
@@ -278,12 +262,7 @@
             <a
               matRipple
               class="reset-a"
-              [routerLink]="[
-                '/produtos/' +
-                  Produto._id +
-                  '?produto=' +
-                  Produto?.Nome.replace('/', '')
-              ]"
+              (click)="AbrirPaginaProduto()"
             >
               {{ Produto?.Nome }}
             </a>
@@ -415,13 +394,7 @@
               href="#topo"
               class="reset-a button shadow-light hoverable is-success m-lr-auto"
               style="top: 37%; left: 25%;"
-              [routerLink]="[
-                '/produtos/' +
-                  Produto._id +
-                  '?produto=' +
-                  encodeURI(Produto?.Nome)
-              ]"
-              routerLinkActive="router-link-active"
+              (click)="AbrirPaginaProduto()"
               mat-flat-button
               class=""
               ><mat-icon class="material-icons-outlined"
@@ -450,11 +423,7 @@
     <a
       pageScroll
       href="#PRODUTO"
-      [routerLink]="[
-        '/produtos/',
-        Produto._id + '?produto=' + encodeURI(Produto?.Nome)
-      ]"
-      routerLinkActive="router-link-active"
+      (click)="AbrirPaginaProduto()"
     >
       <img
         src="{{ (Produto?.Imagem)[0] }}"

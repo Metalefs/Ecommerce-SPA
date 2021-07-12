@@ -5,75 +5,79 @@
     [items]="items"
   ></personalizados-lopes-exibicao-breadcrumb>
   <!-- -->
-  <div class="hero is-small bg">
-    <div class="hero-head" style="padding: 60px 0;">
-      <h1 class="bg-transp box header titulo-produto">{{ Produto?.Nome }}</h1>
+
+  <div class="hero is-small hoverable bg mb-1">
+    <div class="hero-head txt-center has-text-white w-full" style="padding: 30px 0;">
+      <h1 class="bg-transp card-header txt-center box ">{{ Produto?.Nome }}</h1>
     </div>
-  </div>
-
-  <personalizados-lopes-visualizacao-produto-loja
-  *ngIf="Produto"
-    [(Produto)]="Produto"
-    [orcamentoId]="orcamentoId"
-  ></personalizados-lopes-visualizacao-produto-loja>
-
-  <div class="has-background-light btr">
-    <personalizados-lopes-estatisticas-produto
-    *ngIf="Produto"
-      [Produto]="Produto"
-    ></personalizados-lopes-estatisticas-produto>
   </div>
   <div class="margin">
 
+    <personalizados-lopes-visualizacao-produto-loja
+    *ngIf="Produto"
+      [(Produto)]="Produto"
+      [orcamentoId]="orcamentoId"
+    ></personalizados-lopes-visualizacao-produto-loja>
 
-  </div>
-
-  <div class="of-x-hidden margin section">
-    <div data-aos="fade-up" data-aos-offset="200" *ngIf="Produto?._id">
-      <personalizados-lopes-tag-produto-swiper
-        [TAGS]="Produto?.Tags"
-      ></personalizados-lopes-tag-produto-swiper>
+    <div class="has-background-light btr">
+      <personalizados-lopes-estatisticas-produto
+      *ngIf="Produto"
+        [Produto]="Produto"
+      ></personalizados-lopes-estatisticas-produto>
     </div>
 
-    <mat-divider class="is-hidden-desktop"></mat-divider>
 
-    <div class="hero is-medium is-hidden-desktop">
-      <div
-        data-aos="fade-up"
-        data-aos-offset="200"
-        class="hero-body"
-        *ngIf="Produto?._id"
-      >
-        <personalizados-lopes-produto-swiper
-          [slidesPerView]="3"
-          [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
-        >
-        </personalizados-lopes-produto-swiper>
+    <div class="of-x-hidden margin block has-background-light">
+      <div class="py-3 px-3">
+
+        <div data-aos="fade-up" data-aos-offset="200" *ngIf="Produto?._id">
+          <personalizados-lopes-tag-produto-swiper
+            [TAGS]="Produto?.Tags"
+          ></personalizados-lopes-tag-produto-swiper>
+        </div>
+
+        <mat-divider class="is-hidden-desktop"></mat-divider>
+
+        <div class="hero is-medium is-hidden-desktop">
+          <div
+            data-aos="fade-up"
+            data-aos-offset="200"
+            class="hero-body"
+            *ngIf="Produto?._id"
+          >
+            <personalizados-lopes-produto-swiper
+              [slidesPerView]="3"
+              [TipoOrdenacao]="tipoOrdenacaoSliderProduto.Visualizacoes"
+            >
+            </personalizados-lopes-produto-swiper>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="hero is-medium is-hidden-desktop" *ngIf="Blog?.length >= 2">
+          <div data-aos="fade-up" data-aos-offset="200" class="hero-body">
+            <personalizados-lopes-blog-swiper
+              [TAGS]="Produto?.Tags"
+              [Blog]="Blog"
+            ></personalizados-lopes-blog-swiper>
+          </div>
+        </div>
+      </div>
+      <div class="w-full bg flex-w flex-sa px-6">
+        <a [routerLink]="'/produtos'" class="has-text-light">
+          <button mat-icon-button>
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+        </a>
+        <a [routerLink]="'/showcase'" class="has-text-light">
+          <button mat-icon-button>
+            <mat-icon>collections</mat-icon>
+          </button>
+        </a>
       </div>
     </div>
+  </div>
 
-    <mat-divider></mat-divider>
-
-  </div>
-  <div class="hero is-medium is-hidden-desktop" *ngIf="Blog?.length >= 2">
-    <div data-aos="fade-up" data-aos-offset="200" class="hero-body">
-      <personalizados-lopes-blog-swiper
-        [TAGS]="Produto?.Tags"
-        [Blog]="Blog"
-      ></personalizados-lopes-blog-swiper>
-    </div>
-  </div>
-  <div class="w-full bg flex-w flex-sa px-6">
-    <a [routerLink]="'/produtos'" class="has-text-light">
-      <button mat-icon-button>
-        <mat-icon>chevron_left</mat-icon>
-      </button>
-    </a>
-    <a [routerLink]="'/showcase'" class="has-text-light">
-      <button mat-icon-button>
-        <mat-icon>collections</mat-icon>
-      </button>
-    </a>
-  </div>
 
 </div>

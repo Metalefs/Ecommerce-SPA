@@ -86,7 +86,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
 
       if(isPlatformBrowser(this.platform))
       this.scrollService.scrollTop();
-    AOS.refreshHard();
+      AOS.refreshHard();
     })
   }
   LoadProduto(produto:Produto){

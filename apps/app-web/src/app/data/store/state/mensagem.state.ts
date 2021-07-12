@@ -5,6 +5,7 @@ import { MensagemService } from '../../service';
 import { LerMensagem, EditarMensagem, AdicionarMensagem, RemoverMensagem } from '../actions/mensagem.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { Mensagem } from 'libs/data/src/lib/classes';
 
 export class MensagemStateModel{
   Mensagens: entities.Mensagem[];
@@ -43,7 +44,7 @@ export class MensagemState {
           const state = getState();
           setState({
             ...state,
-            Mensagens: result,
+            Mensagens: result as any,
             areMensagemsLoaded: true
           });
         }));
@@ -54,7 +55,7 @@ export class MensagemState {
     return this.MensagemService.Incluir(payload).pipe(tap((result) => {
       const state = getState();
       patchState({
-          Mensagens: [...state.Mensagens, result]
+          Mensagens: [...state.Mensagens, result as any as Mensagem]
       });
   }));
   }

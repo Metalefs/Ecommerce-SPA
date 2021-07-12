@@ -54,8 +54,8 @@ export class ExibicaoImagemProdutoComponent implements OnInit {
       );
     }
   ngOnInit(): void {
-    this.Produto$.subscribe(routeParams => {
-      this.images = []
+    this.Produto$.subscribe(produto => {
+      this.AddImages(produto);
     })
   }
 

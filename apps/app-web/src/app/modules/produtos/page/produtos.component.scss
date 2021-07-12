@@ -1,8 +1,7 @@
-
-.produto-column{
-  // border-left: 2px solid rgba(211, 211, 211, 0.342);
+.bg {
+  background: center/ cover no-repeat url(https://source.unsplash.com/daily?coloful);
+  background-attachment: fixed;
 }
-
 .skeleton{
   min-height: 577px;
   border: 1px solid #e7e7e7;

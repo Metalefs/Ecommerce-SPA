@@ -21,7 +21,7 @@ export class ContentLayoutComponent implements OnInit {
   NavState:SideNavState = {open : false};
 
   ngOnInit(): void {
-    this.service.Ler().subscribe(x=>{
+    this.service.Ler().subscribe((x : any):any=>{
       this.Mensagem = x[0].Whatsapp;
     });
   }

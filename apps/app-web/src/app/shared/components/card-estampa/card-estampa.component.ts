@@ -18,4 +18,7 @@ export class CardEstampaComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  FormatarPreco(preco){
+    return Number(preco).toFixed(2);
+  }
 }

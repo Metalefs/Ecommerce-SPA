@@ -4,7 +4,7 @@
   &-status{
     position: absolute;
     top: 13px;
-    right: 5px;
+    left: 5px;
     color: #000000;
     padding: 5px 10px;
     z-index: 3;
@@ -49,6 +49,7 @@ img{
   align-items: center !important;
   border-left: 1px solid #e7e7e7;
   height: 100%;
+  min-height: 450px;
   // padding: 0 !important;
   //box-shadow: none;
   color: #323648;
@@ -392,13 +393,13 @@ img{
 }
 
 :host ::ng-deep slideshow{
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   &.mat-card-image{
-    border-radius: 30px;
+   // border-radius: 30px;
   }
 }
 .portfolio-item .slideshow-container a{
-  border-radius: 30px;
+  //border-radius: 30px;
 }
 .btn-vejamais{
   background: rgba(0, 0, 0, 1);

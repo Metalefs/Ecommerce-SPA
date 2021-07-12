@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   CarregarCategorias(){
-    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x;});
+    this.ServicoCategoria.Ler().subscribe(x=>{this.Categorias = x as any;});
   }
 
   SelecionarCategoria($event){

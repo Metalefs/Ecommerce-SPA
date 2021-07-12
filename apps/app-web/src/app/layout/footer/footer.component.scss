@@ -23,11 +23,19 @@ a{
   @extend .base;
   text-decoration: none;
   display: inline;
-  &.footer-text.links p{
+  &.footer-text.links {
+    p{
     text-align: left;
     line-height: 20px;
     font-weight: 600;
     text-transform: uppercase;
+    }
+    &.active{
+
+      color: gold !important;
+      padding-left: 5px;
+      transition: .31s all;
+    }
   }
   &.footer-text.links p:hover{
     color: gold !important;

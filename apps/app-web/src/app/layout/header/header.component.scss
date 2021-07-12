@@ -78,9 +78,9 @@
 .cart-counter{
   position: absolute;
   text-align: center;
-  color: white;
+  color: black;
   font-size: 10px;
-  background: black;
+  background: rgb(152, 243, 5);
   border-radius: 90px;
   width: 20px;
   top: -5px;
@@ -113,7 +113,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 
   /* nav-link-color */
 
@@ -235,6 +235,7 @@
   .logo{
     margin-left: 0;
     max-height: 67px;
+    height: 28px;
   }
 
 

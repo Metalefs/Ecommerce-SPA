@@ -12,14 +12,17 @@
       <div class="mat-elevation-z1 ">
         <div class="hero is-small">
           <div class="hero-body">
+            <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
+          </div>
+          <div class="hero-foot">
             <section
-              data-aos-offset="-10"
-              data-aos="zoom-up"
-              class="section py-3"
-              *ngIf="(Clientes$ | async)?.length > 0"
-            >
-              <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
-            </section>
+            data-aos-offset="-10"
+            data-aos="zoom-up"
+            class="py-3"
+            *ngIf="(Clientes$ | async)?.length > 0"
+          >
+            <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
+          </section>
           </div>
         </div>
       </div>

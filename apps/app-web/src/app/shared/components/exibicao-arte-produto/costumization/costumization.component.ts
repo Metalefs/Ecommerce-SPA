@@ -35,13 +35,14 @@ export class CostumizationComponent implements OnInit {
   ngOnInit(): void {
     this.SaveDesign = this.SaveDesign.bind(this);
     this.deleteObject = this.deleteObject.bind(this);
-    this.renderIcon = this.renderIcon.bind(this);
+    //this.renderIcon = this.renderIcon.bind(this);
 
 
     this.__canvas = new this.fabric.Canvas('c');
 
     this.fabric.Object.prototype.cornerColor = '#131313';
     this.fabric.Object.prototype.transparentCorners = false;
+
     if(isPlatformBrowser(this.platform)){
       this.setup();
       // if(!this.importOpen)
@@ -51,24 +52,22 @@ export class CostumizationComponent implements OnInit {
 
   setup(){
 
-    // this.uploadImageURL(this.Produto.Imagem[0]);
-
     this.__canvas.on('selection:created', ()=>{this.onObjectSelected()});
     this.__canvas.on('selection:cleared', ()=>{this.onObjectCleared()});
     this.__canvas.on('selection:updated', ()=>{this.onObjectUpdated()});
+    let self = this;
 
     fabric.Object.prototype.controls.deleteControl = new fabric.Control({
       x: 0.5,
       y: -0.5,
       offsetY: 16,
       cursorStyle: 'pointer',
-      mouseUpHandler: this.deleteObject,
-      render: this.renderIcon,
+      mouseUpHandler: self.deleteObject,
+      render: self.renderIcon,
       cornerSize: 24
     });
     fabric.Object.prototype.cornerColor = '#131313';
     fabric.Object.prototype.transparentCorners = false;
-    let self = this;
     document.getElementById('fill-color').onchange = function (x) {
         self.__canvas.getActiveObject().set("fill", x.returnValue);
         self.__canvas.renderAll();
@@ -256,7 +255,6 @@ export class CostumizationComponent implements OnInit {
     ///var json = this.__canvas.toDatalessJSON();
 
     var json = JSON.stringify(this.__canvas.toDatalessJSON())
-    console.log(json)
 
     if(!this.Produto.Canvas)
       Object.assign(this.Produto, {Canvas: json});
@@ -275,8 +273,6 @@ export class CostumizationComponent implements OnInit {
 
   deleteObject(eventData, target) {
     var canvas = target.target.canvas;
-    console.log(target)
-    console.log(canvas);
     canvas.remove(target.target);
     canvas.requestRenderAll();
     this.SaveDesign();
@@ -293,12 +289,10 @@ export class CostumizationComponent implements OnInit {
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
     ctx.drawImage(img, -size / 2, -size / 2, size, size);
     ctx.restore();
-    this.SaveDesign();
   }
 
 
   public importJson(json) {
-    console.log(json);
     let self = this;
     this.__canvas.loadFromJSON(json, function (obj) {
       console.log(' this is a callback. invoked when canvas is loaded!xxx ');

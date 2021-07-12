@@ -1,5 +1,5 @@
-<section class="section">
-  <div class="bbr section ">
+<section class="">
+  <div class="bbr py-3">
     <div *ngIf="!Produto">
       <div class="p-grid p-formgrid">
         <div class="p-field p-col-12 p-md-6">
@@ -23,7 +23,7 @@
       </div>
 
       <div
-        class="column is-6-desktop is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
+        class="column is-6-desktop z-index-1 is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
         style="display: grid;"
       >
         <div class="columns">
@@ -80,34 +80,41 @@
                 <personalizados-lopes-botao-esgotado [Produto]="Produto">
                 </personalizados-lopes-botao-esgotado>
               </div>
-              <mat-divider></mat-divider>
-              <div class="columns is-vcentered w-full is-multiline">
-                <div class="column mh-full">
-                  <personalizados-lopes-selecao-quantidade-produto
-                    [Produto]="Produto"
-                    [ErroQuantidade]="ErroQuantidade"
-                    [Erros]="Erros"
-                    (onQuantidadeChange)="setQuantidade($event)"
-                  ></personalizados-lopes-selecao-quantidade-produto>
-                </div>
-                <div class="column mh-full">
-                  <personalizados-lopes-selecao-tamanho-produto
-                    [Produto]="Produto"
-                    [ErroTamanho]="ErroTamanho"
-                    [Erros]="Erros"
-                  ></personalizados-lopes-selecao-tamanho-produto>
-                </div>
-                <div class="column mh-full of-x-scroll">
-                  <personalizados-lopes-cor-produto-selector
-                    [Produto]="Produto"
-                    (onSetColor)="setColor($event)"
-                  ></personalizados-lopes-cor-produto-selector>
+              <div class="columns">
+                <div class="column is-12">
+                  <div class="message is-white">
+                    <div class="message-body px-0">
+                      <div class="columns  mx-0 w-full is-multiline pb-1">
+                        <div class="column mh-full">
+                          <personalizados-lopes-selecao-quantidade-produto
+                            [Produto]="Produto"
+                            [ErroQuantidade]="ErroQuantidade"
+                            [Erros]="Erros"
+                            (onQuantidadeChange)="setQuantidade($event)"
+                          ></personalizados-lopes-selecao-quantidade-produto>
+                        </div>
+                        <div class="column is-5 mh-full">
+                          <personalizados-lopes-selecao-tamanho-produto
+                            [Produto]="Produto"
+                            [ErroTamanho]="ErroTamanho"
+                            [Erros]="Erros"
+                          ></personalizados-lopes-selecao-tamanho-produto>
+                        </div>
+                        <div class="column mh-full of-x-scroll">
+                          <personalizados-lopes-cor-produto-selector
+                            [Produto]="Produto"
+                            (onSetColor)="setColor($event)"
+                          ></personalizados-lopes-cor-produto-selector>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>
           </div>
-          <div class="column is-6"></div>
-          <div class="column is-6">
+          <div class="column is-6" *ngIf="Produto?.Arte || Produto?.ArteSecundaria"></div>
+          <div class="column is-6" *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
             <div
               class="txt-left of-x-scroll"
               *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
@@ -119,7 +126,6 @@
             </div>
           </div>
         </div>
-        <mat-divider></mat-divider>
         <div class="of-x-hidden">
           <personalizados-lopes-selecao-estampa
             [Produto]="Produto"
@@ -142,9 +148,9 @@
       </div>
     </div>
   </div>
-  <div class="hero-foot" id="product-display" *ngIf="Produto">
+  <!-- <div class="hero-foot" id="product-display" *ngIf="Produto">
     <div class="column is-6 dis-flex">
       <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
     </div>
-  </div>
+  </div> -->
 </section>

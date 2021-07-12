@@ -1,11 +1,12 @@
 @import '../../../../../theme/cores.scss';
-.bg-transp{
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+.card-header{
   width: 30%!important;
   margin: 0 auto;
   background-color: #ffffffc2;
   padding: 5px;
   font-weight: 400!important;
-  font-family: KIdDOS-Regular;
+  font-family: Oswald;
 }
 @keyframes show {
   0% {
@@ -86,7 +87,7 @@
 }
 
 .bg {
-  background: center/ cover no-repeat url(https://source.unsplash.com/daily?modelling);
+  background: center/ cover no-repeat url(https://source.unsplash.com/daily?fashion);
   background-attachment: fixed;
 }
 @media only screen and (max-width: 1023px) {

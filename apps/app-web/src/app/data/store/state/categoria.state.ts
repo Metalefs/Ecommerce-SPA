@@ -44,7 +44,7 @@ export class CategoriaState {
           const state = getState();
           setState({
             ...state,
-            Categorias: result.sort((a, b) => order(a,b,true)),
+            Categorias: result.sort((a, b) => order(a,b,true)) as any,
             areCategoriasLoaded: true
           });
         }));
@@ -55,7 +55,7 @@ export class CategoriaState {
     return this.CategoriaService.Incluir(payload).pipe(tap((result) => {
       const state = getState();
       patchState({
-          Categorias: [...state.Categorias, result]
+          Categorias: [...state.Categorias, result as any]
       });
   }));
   }

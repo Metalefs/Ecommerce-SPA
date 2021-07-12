@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { Carousel, Orcamento, Produto } from 'libs/data/src/lib/classes';
@@ -9,7 +10,7 @@ import { IImage } from 'ng-simple-slideshow';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
-import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento} from '../../../data/store/actions/orcamento.actions';
+import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal} from '../../../data/store/actions/orcamento.actions';
 import { CarouselState, OrcamentoState } from '../../../data/store/state';
 import { sum, translateEnum } from '../../../helper/ObjHelper';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
@@ -27,7 +28,7 @@ export class CardProdutoComponent implements OnInit {
 
   isOrcamento:boolean;
   Liked:boolean = false;
-  constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery,) { }
+  constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery, private router:Router) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
@@ -94,7 +95,13 @@ export class CardProdutoComponent implements OnInit {
 
     });
   }
-
+  AbrirPaginaProduto(){
+    this.store.dispatch(new EditarProdutoAbertoOrcamentoLocal(this.Produto))
+    this.router.navigate([
+      '/produtos/' +
+        this.Produto._id
+    ]);
+  }
   meanRating(){
     if (!this.Produto.Rating)
     return 0;
