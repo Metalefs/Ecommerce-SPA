@@ -1254,4 +1254,9 @@ div.descricao-produto {
     max-width: 50% !important;
     float: right !important;
   }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
 }

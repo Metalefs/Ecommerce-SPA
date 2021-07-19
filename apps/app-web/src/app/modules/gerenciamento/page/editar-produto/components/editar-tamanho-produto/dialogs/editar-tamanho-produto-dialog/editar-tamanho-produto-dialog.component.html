@@ -4,6 +4,7 @@
   <personalizados-lopes-editar-tamanho-produto-form
     [TamanhoProduto]='TamanhoProduto'
     [editing]="true"
+    (onUpdate)="this.TamanhoProduto = $event"
   ></personalizados-lopes-editar-tamanho-produto-form>
 </div>
 

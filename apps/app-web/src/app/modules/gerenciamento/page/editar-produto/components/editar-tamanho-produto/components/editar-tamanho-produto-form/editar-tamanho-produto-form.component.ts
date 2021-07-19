@@ -10,13 +10,14 @@ import { FaixaTamanho } from 'libs/data/src/lib/classes/tamanhoProduto';
 })
 export class EditarTamanhoProdutoFormComponent implements OnInit {
   tamanhoProdutoForm: FormGroup;
-  @Input() TamanhoProduto:TamanhoProduto;
+  @Input() TamanhoProduto:TamanhoProduto = new TamanhoProduto("",[]);
   @Input() editing:boolean;
 
   tamanhoesProduto:TamanhoProduto[];
   faixasTamanho:FaixaTamanho[] = [];
 
   @Output() onSend:EventEmitter<any> = new EventEmitter<any>();
+  @Output() onUpdate:EventEmitter<any> = new EventEmitter<any>();
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -25,7 +26,10 @@ export class EditarTamanhoProdutoFormComponent implements OnInit {
       Tamanhos: [this.TamanhoProduto?.Tamanhos || '', [Validators.required]],
     })
     this.tamanhoProdutoForm.valueChanges.subscribe(x=>{
-      this.TamanhoProduto = this.tamanhoProdutoForm.getRawValue();
+      this.TamanhoProduto.Nome = this.tamanhoProdutoForm.get("Nome").value;
+      this.TamanhoProduto.Tamanhos = this.tamanhoProdutoForm.get("Tamanhos").value;
+
+      this.onUpdate.emit(this.TamanhoProduto);
     })
     this.faixasTamanho = this.TamanhoProduto?.Tamanhos?? [];
   }

@@ -23,8 +23,9 @@ import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper';
 import AOS from 'aos'
 import { ExibicaoArteProdutoComponent } from 'apps/app-web/src/app/shared/components/exibicao-arte-produto/exibicao-arte-produto.component';
-import { GalleryComponent } from 'ng-gallery';
 import { ExibicaoImagemProdutoComponent } from './components/exibicao-imagem-produto/exibicao-imagem-produto.component';
+
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'personalizados-lopes-visualizacao-produto-loja',
@@ -54,6 +55,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   arte_traseira:boolean=false;
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
 
+  items: MenuItem[];
   selected = new FormControl(0);
   produtoForm:FormGroup;
   CEP:string="";
@@ -99,6 +101,11 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       cep:[this.CEP],
     })
 
+    this.items = [
+      {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria=" + this.Produto?.NomeCategoria},
+      {label:this.Produto?.Nome, styleClass:'desb'}
+    ];
+
     if(produto?.Quantidade == 0)
       produto.Quantidade = produto.QuantidadeMinima;
 
@@ -129,7 +136,6 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     this.produtoForm.get("quantidade").setValue(quantidade);
     this.produtoForm.get('quantidade').clearValidators();
     this.produtoForm.get('quantidade').updateValueAndValidity();
-
   }
 
   AdicionarAoOrcamento(){

@@ -15,6 +15,10 @@ export class BlocoPagamentoProdutoComponent implements OnInit {
   @Input() textoAdicionar:string;
   @Output() onAdicionarAoOrcamento:EventEmitter<any> = new EventEmitter<any>()
   @Output() onDuplicarOrcamento:EventEmitter<any> = new EventEmitter<any>()
+
+  @Input() ErroQuantidade : Function;
+  @Input() Erros: any;
+  @Output() onQuantidadeChange:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {

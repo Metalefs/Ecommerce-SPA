@@ -18,10 +18,11 @@ export class CorProdutoService extends BaseService {
 
     let servicoProduto = new ProdutoService();
 
-    servicoProduto.Filtrar({Cor:{_id:CorProduto._id}})
+    servicoProduto.Filtrar({"Cores._id": CorProduto._id})
     .then((produtos : Array<Produto>)=>{
       produtos.forEach(async(produto)=>{
-        produto.Cor = CorProduto;
+        let idx = produto.Cores.findIndex(x=>x._id == CorProduto._id);
+        produto.Cores[idx] = CorProduto;
         await servicoProduto.Alterar(Usuario,produto)
       })
     })

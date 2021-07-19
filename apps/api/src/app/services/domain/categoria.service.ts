@@ -18,7 +18,7 @@ export class CategoriaService extends BaseService {
 
     let servicoProduto = new ProdutoService();
 
-    servicoProduto.Filtrar({Categoria:{_id:Categoria._id}})
+    servicoProduto.Filtrar({"Categoria._id": Categoria._id})
     .then((produtos : Array<Produto>)=>{
       produtos.forEach(async(produto)=>{
         produto.Categoria = Categoria;

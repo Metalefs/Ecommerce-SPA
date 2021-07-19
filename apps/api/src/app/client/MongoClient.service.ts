@@ -99,6 +99,8 @@ export class MongoClientService {
 
   async Filter(collection: string, query: any) { // filters by query
     try {
+
+      console.log(query);
       return new Promise((resolve, reject) :any => {
         Connection.db().then((db:any)=>db.collection(collection).find(query).toArray(function (err: any, result: any) {
           if (err) {
@@ -146,13 +148,13 @@ export class MongoClientService {
 
   async Edit(collection: any, id: string, query: any) { // edits one document by id
     try {
-      delete query._id;
-      delete query.DataHoraCriacao;
       query.DataHoraAlteracao = new Date();
+      const { _id, DataHoraCriacao, ...queryWithoutIdAndCreationDate } = query;
+
       let self = this;
       console.log(query);
       return new Promise((resolve, reject) :any => {
-        Connection.db().then((db:any)=>db.collection(collection).updateOne({ "_id": new ObjectId(id) }, { $set: query }, async function (err: any, result: any) {
+        Connection.db().then((db:any)=>db.collection(collection).updateOne({ "_id": new ObjectId(id) }, { $set: queryWithoutIdAndCreationDate }, async function (err: any, result: any) {
           if (err) {
             reject(err);
           }

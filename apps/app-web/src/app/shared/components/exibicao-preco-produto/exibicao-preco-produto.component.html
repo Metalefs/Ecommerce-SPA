@@ -15,18 +15,18 @@
     </p>
   </div>
 </ng-template>
-<ng-template #preco_normal>
-  <div class="w-full">
-    <p class="preco "><span class="is-size-7 preto6">Por</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
-  </div>
-</ng-template>
 <div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
   <p class="preto6">
-    Em até {{ Produto.Parcelas }}x
+    {{ Produto.Parcelas }}x de
     <span class="preco-produto"
       ><b>R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b></span
     >
     sem juros
   </p>
 </div>
+<ng-template #preco_normal>
+  <div class="w-full">
+    <p class="preco "><span class="is-size-7 preto6"></span>R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
+  </div>
+</ng-template>
 </div>

@@ -17,10 +17,11 @@ export class TamanhoProdutoService extends BaseService {
 
     let servicoProduto = new ProdutoService();
 
-    servicoProduto.Filtrar({Tamanhos:{_id:TamanhoProduto._id}})
+    servicoProduto.Filtrar({"Tamanhos._id": TamanhoProduto._id})
     .then((produtos : Array<Produto>)=>{
       produtos.forEach(async(produto)=>{
-        produto.Tamanhos.find(x=>x._id == TamanhoProduto._id)[0] = TamanhoProduto;
+        let idx = produto.Tamanhos.findIndex(x=>x._id == TamanhoProduto._id);
+        produto.Tamanhos[idx] = TamanhoProduto;
         await servicoProduto.Alterar(Usuario,produto)
       })
     })
