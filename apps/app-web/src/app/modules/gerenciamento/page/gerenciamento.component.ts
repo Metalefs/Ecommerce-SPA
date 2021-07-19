@@ -64,7 +64,7 @@ export class GerenciamentoComponent implements OnInit {
       {name: "Assinantes", href: "emails"},
       {name: "Depoimentos", href: "cliente"},
       {name: "Noticias", href: "blog"},
-      {name: "Imagens do site", href: "imagens"},
+      {name: "Imagens", href: "imagens"},
     ]
   }
   prepareRoute(outlet: RouterOutlet) {

@@ -1,6 +1,6 @@
 <div>
   <p class="is-size-7 dis-flex flex-m">
-    <span [ngClass]="{'': (Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Cor:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
+    <span [ngClass]="{'is-hidden': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Cor:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
   </p>
   <div
     class="columns is-multiline flex-sb"
