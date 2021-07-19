@@ -39,14 +39,14 @@ import { EditarItemCarouselComponent } from './page/editar-imagem/components/edi
 import { CriarItemCarouselDialogComponent } from './page/editar-imagem/components/editar-carousel/dialogComponents/criar-item-carousel-dialog/criar-item-carousel-dialog.component';
 import { EditarCarouselDialogComponent } from './page/editar-imagem/components/editar-carousel/dialogComponents/editar-carousel-dialog/editar-carousel-dialog.component';
 
-import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
+import { EditarPedidoComponent } from './page/editar-pedido/editar-pedido.component';
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
 import { CriarPostComponent } from './page/editar-blog/dialogs/criar-post/criar-post.component';
 import { EditarPostComponent } from './page/editar-blog/dialogs/editar-post/editar-post.component';
 
 import { EditarIntegracoesComponent } from './page/editar-configuracoes-empresa/components/editar-integracoes/editar-integracoes.component';
 import { EditarIntegracaoDialogComponent } from './page/editar-configuracoes-empresa/components/editar-integracoes/dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
-import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
+import { PedidoDetailComponent } from './page/editar-pedido/pedido-detail/pedido-detail.component';
 import { EditorModule } from '../../shared/components/editor/editor/editor.module';
 
 import { CardProdutoModule } from '../../shared/components/card-produto/card-produto.module';
@@ -74,10 +74,10 @@ import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes
     EditarCarouselComponent,
     EditarItemCarouselComponent,
     EditarCarouselDialogComponent,
-    EditarOrcamentoComponent,
+    EditarPedidoComponent,
+    PedidoDetailComponent,
     EditarBlogComponent,
     EditarPostComponent,
-    OrcamentoDetailComponent,
     EditarConfiguracoesEmpresaComponent,
   ],
   imports: [
@@ -110,7 +110,8 @@ import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes
     CriarClienteDialogComponent,
     EditarClientesComponent,
     EditarBlogComponent,
-    OrcamentoDetailComponent,
+    EditarPedidoComponent,
+    PedidoDetailComponent,
     SharedModule,
     CardProdutoModule,
     EditorModule,

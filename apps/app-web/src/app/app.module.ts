@@ -44,6 +44,13 @@ import { WindowRef } from './shared/services/window.service';
 import { PageScrollService } from './shared/services/page-scroll.service';
 import { AuthenticationService } from './core/service/authentication/authentication.service';
 import { BaseService } from './data/service/base/base.service';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -79,7 +86,8 @@ import { BaseService } from './data/service/base/base.service';
     NgxsLoggerPluginModule.forRoot({
       disabled:true
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    PerfectScrollbarModule,
   ],
   providers: [
     NgDialogAnimationService,
@@ -94,6 +102,10 @@ import { BaseService } from './data/service/base/base.service';
     },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    },
     { provide: WindowRef },
     { provide: DocumentRef },
     { provide: AngularFireStorage },

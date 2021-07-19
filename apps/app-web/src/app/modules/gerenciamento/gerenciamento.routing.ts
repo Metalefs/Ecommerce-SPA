@@ -6,9 +6,9 @@ import { EditarEmailsComponent } from './page/editar-emails/editar-emails.compon
 import { EditarImagemComponent } from './page/editar-imagem/editar-imagem.component';
 import { EditarProdutoComponent } from './page/editar-produto/editar-produto.component';
 import { GerenciamentoComponent } from './page/gerenciamento.component';
-import { EditarOrcamentoComponent } from './page/editar-orcamento/editar-orcamento.component';
+import { EditarPedidoComponent } from './page/editar-pedido/editar-pedido.component';
 import { EditarBlogComponent } from './page/editar-blog/editar-blog.component';
-import { OrcamentoDetailComponent } from './page/editar-orcamento/orcamento-detail/orcamento-detail.component';
+import { PedidoDetailComponent } from './page/editar-pedido/pedido-detail/pedido-detail.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes-empresa/editar-configuracoes-empresa.component';
 
@@ -40,13 +40,13 @@ export const routes: Routes = [
       {
         path: "pedidos",
         // pathMatch: 'full',
-        component: EditarOrcamentoComponent,
+        component: EditarPedidoComponent,
         data: { animation:'isRight', title:'Gerenciamento - pedidos'}
       },
       {
         path: "pedidos/:id",
         pathMatch: 'full',
-        component: OrcamentoDetailComponent,
+        component: PedidoDetailComponent,
         data: { animation:'isRight', title:'Gerenciamento - pedido'}
       },
       {

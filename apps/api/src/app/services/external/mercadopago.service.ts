@@ -22,6 +22,44 @@ let MP_AT: Integracoes;
 
 export class MercadoPagoService {
 
+  FindPaymentById(id:string|number):MercadoPagoPayment{
+    var filters = {
+      id:id
+    };
+
+    return mercadopago.payment.search({
+      qs: filters
+    }).then(function (data) {
+      return data;
+    }).catch(function (error) {
+      console.log(error);
+      return error
+    });
+  }
+  FindPlanById(id:string|number){
+
+  }
+  FindSubscriptionById(id:string|number){
+
+  }
+  FindInvoiceById(id:string|number){
+
+  }
+  FindMerchantOrderById(id:string|number){
+    var filters = {
+      id:id
+    };
+
+    return mercadopago.merchant_order.search({
+      qs: filters
+    }).then(function (data) {
+      return data;
+    }).catch(function (error) {
+      console.log(error);
+      return error
+    });
+  }
+
   async getAllPayments(user: Usuario): Promise<MercadoPagoPayment[]> {
     if (user.Tipo != TipoUsuario.admin)
       return;

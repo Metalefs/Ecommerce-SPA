@@ -2,6 +2,8 @@ import { SobreService } from './SobreService';
 import { ProdutoService } from './ProdutoService';
 import { ServicoService } from './ServicoService';
 import { OrcamentoService } from './OrcamentoService';
+import { PedidoService } from './pedido.service';
+import { FeedbackService } from './feedback.service';
 import { InformacoesContatoService } from './InformacoesContatoService';
 import { UsuarioService } from './UsuarioService';
 import { EmailNotificacaoService } from './EmailNotificacaoService';
@@ -40,6 +42,8 @@ export {
   CorProdutoService,
   TamanhoProdutoService,
   FornecedorProdutoService,
+  PedidoService,
+  FeedbackService,
 }
 
 export let Services = [
@@ -63,4 +67,6 @@ export let Services = [
   CorProdutoService,
   TamanhoProdutoService,
   FornecedorProdutoService,
+  PedidoService,
+  FeedbackService,
 ]

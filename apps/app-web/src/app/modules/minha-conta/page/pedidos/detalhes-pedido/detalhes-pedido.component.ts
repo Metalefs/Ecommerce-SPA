@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Orcamento } from 'libs/data/src/lib/classes';
+import { Pedido } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-detalhes-pedido',
@@ -8,9 +8,9 @@ import { Orcamento } from 'libs/data/src/lib/classes';
   styleUrls: ['./detalhes-pedido.component.scss']
 })
 export class DetalhesPedidoComponent implements OnInit {
-  Pedido:Orcamento;
+  Pedido:Pedido;
   constructor(private matRef:MatDialogRef<DetalhesPedidoComponent>,
-     @Inject(MAT_DIALOG_DATA) public data:  Orcamento ) {
+     @Inject(MAT_DIALOG_DATA) public data:  Pedido ) {
        this.Pedido = data;
      }
 

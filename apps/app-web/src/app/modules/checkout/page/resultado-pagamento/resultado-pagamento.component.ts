@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
-import { Orcamento } from 'libs/data/src/lib/classes';
+import { Orcamento, Pedido } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { Observable } from 'rxjs';
 
@@ -13,6 +13,7 @@ import { IncrementarVendaProduto } from 'apps/app-web/src/app/data/store/actions
 import { isPlatformBrowser } from '@angular/common';
 import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
 import { CheckoutService } from '../../checkout.service';
+import { PedidoService } from 'apps/app-web/src/app/data/service';
 
 @Component({
   selector: 'personalizados-lopes-resultado-pagamento',
@@ -22,6 +23,7 @@ import { CheckoutService } from '../../checkout.service';
 export class ResultadoPagamentoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Orcamento: Orcamento;
+  Pedido: Pedido;
 
   Finalizado:boolean = false;
   Loading:boolean = false;
@@ -30,7 +32,9 @@ export class ResultadoPagamentoComponent implements OnInit {
   status:StatusPagamento;
   StatusPagamento = StatusPagamento;
   _init_point:{};
-  constructor(private activeRoute:ActivatedRoute,
+  constructor(
+    private pedidoService:PedidoService,
+    private activeRoute:ActivatedRoute,
     private snack: MatSnackBar,
     private checkoutService: CheckoutService,
     private scrollService:PageScrollService,
@@ -39,6 +43,8 @@ export class ResultadoPagamentoComponent implements OnInit {
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
+      this.Pedido = new Pedido(x.Produto,x.Empresa,x.Status,x.Preco,x.Mensagem,x.Usuario,x.Dimensoes);
+
       if(this.Orcamento.Produto){
         this.Orcamento.Produto.forEach(prod=>{
           if(!prod.Produto.Vendas)
@@ -47,6 +53,7 @@ export class ResultadoPagamentoComponent implements OnInit {
           this.store.dispatch(new IncrementarVendaProduto(prod.Produto._id));
         })
       }
+
       if(this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
     })
@@ -58,7 +65,7 @@ export class ResultadoPagamentoComponent implements OnInit {
 
   LerParametros(){
     this.activeRoute.queryParams.subscribe(params => {
-      this.PreencherDadosPagamentoNoOrcamento(params);
+      this.PreencherDadosPagamentoNoPedido(params);
 
       switch(params.status){
         case ("approved"): {
@@ -86,12 +93,12 @@ export class ResultadoPagamentoComponent implements OnInit {
       if(!params.status||params.status == 'null'){
         this.status = StatusPagamento.desistencia;
       }
-      this.SalvarOrcamento();
+      this.SalvarPedido();
     });
   }
 
-  PreencherDadosPagamentoNoOrcamento(resultadoPagamento:any){
-    this.Orcamento.ResultadoPagamentoMP = {
+  PreencherDadosPagamentoNoPedido(resultadoPagamento:any){
+    this.Pedido.ResultadoPagamentoMP = {
       collection_id: resultadoPagamento.collection_id ?? 0,
       collection_status: resultadoPagamento.collection_status ?? '',
       site_id: resultadoPagamento.site_id ?? '',
@@ -106,23 +113,12 @@ export class ResultadoPagamentoComponent implements OnInit {
     }
   }
 
-  SalvarOrcamento(){
+  SalvarPedido(){
     if(this.OrcamentoValido()){
-      if(this.Orcamento.Preco >0)
-      this.store.dispatch(new AdicionarOrcamento()).subscribe(()=>{
-        setTimeout(()=>{
-          this.Finalizado = true;
-          localStorage.setItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento,"true");
-          if(isPlatformBrowser(PLATFORM_ID))
-            this.scrollService.scrollDown();
-
-          this.Loading = false;
-          if(this.status == StatusPagamento.aprovado || this.status == StatusPagamento.pendente){
-            this.Orcamento.Status = StatusOrcamento.enviado;
-            this.store.dispatch(new ResetarOrcamento())
-          }
-        },3500)
-      });
+      if(this.Orcamento.Preco >0) {
+        this.AdicionarOrcamento();
+        this.AdicionarPedido();
+      }
     }
   }
 
@@ -130,6 +126,32 @@ export class ResultadoPagamentoComponent implements OnInit {
     return this.Orcamento.Usuario.Email&&
     !this.Finalizado&&
     !localStorage.getItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento);
+  }
+
+  AdicionarOrcamento(){
+    //this.store.dispatch(new AdicionarOrcamento()).subscribe(()=>{
+      setTimeout(()=>{
+        this.Finalizado = true;
+        localStorage.setItem('Orcamento'+this.Orcamento.Produto[0].codOrcamento,"true");
+        if(isPlatformBrowser(PLATFORM_ID))
+          this.scrollService.scrollDown();
+
+        this.Loading = false;
+        if(this.status == StatusPagamento.aprovado || this.status == StatusPagamento.pendente){
+          this.Orcamento.Status = StatusOrcamento.enviado;
+          this.store.dispatch(new ResetarOrcamento())
+        }
+      },3500)
+    //});
+  }
+
+  AdicionarPedido(){
+    this.pedidoService.Incluir(this.Pedido).subscribe(()=>{
+      this.snack.open("Pedido enviado com sucesso.","fechar",{
+        verticalPosition:'top',
+        duration:5000
+      });
+    });
   }
 
   ngOnDestroy(){

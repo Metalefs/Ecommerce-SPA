@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="columns is-multiline">
+<div class="columns is-multiline of-x-hidden">
   <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column is-4">
     <div class="card-bg {{card?.class}}">
       <div [id]="card.class" class=" {{card?.class}}">
@@ -30,7 +30,7 @@
               </mat-card-title>
 
               <mat-card-content class="content">
-                <p [innerHtml]="card.content" class="subtitle">
+                <p [innerHtml]="card.content" class="subtitle is-size-7">
                 </p>
               </mat-card-content>
             </div>

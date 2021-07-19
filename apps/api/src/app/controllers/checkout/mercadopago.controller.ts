@@ -2,8 +2,11 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { ErrorHandler } from '../../_handlers/error-handler';
 
 import * as express from 'express';
-import { MercadoPagoService } from '../../services';
+import { MercadoPagoService, PedidoService, UsuarioService } from '../../services';
 import { UsuarioLogado } from '../../_handlers/Authentication';
+import { Pedido } from 'libs/data/src/lib/classes';
+import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
+import { ensureIsLogged } from '../../middleware/ensure-is-logged';
 
 const MercadoPagoController = express();
 
@@ -18,13 +21,75 @@ MercadoPagoController
     ErrorHandler.DefaultException(err, res)
   }
 })
-.post("/ipn", (req, res) => {
+.get("/ipn", (req, res) => {
   res.status(201).send();
-  console.log(req.query.id)
+  let merchant_order,payment = null;
+
+	switch(req.query["topic"]) {
+		case "payment":
+			payment = mercadoPagoService.FindPaymentById(req.query["id"].toString());
+			// Get the payment and the corresponding merchant_order reported by the IPN.
+			merchant_order = mercadoPagoService.FindMerchantOrderById(payment.order.id);
+			break;
+		// case "merchant_order":
+		// 	merchant_order = MercadoPago\MerchantOrder::find_by_id($_GET["id"]);
+		// 	break;
+	}
+
+	let paid_amount = 0;
+	merchant_order.payments.forEach(payment=> {
+		if (payment['status'] == 'approved'){
+			paid_amount += payment['transaction_amount'];
+		}
+	})
+
+	// If the payment's transaction amount is equal (or bigger) than the merchant_order's amount you can release your items
+	if(paid_amount >= merchant_order.total_amount){
+		if (merchant_order.shipments.length>0) { // The merchant_order has shipments
+			if(merchant_order.shipments[0].status == "ready_to_ship") {
+				console.log("Totally paid. Print the label and release your item.");
+			}
+		} else { // The merchant_order don't has any shipments
+			console.log("Totally paid. Release your item.");
+		}
+	} else {
+		console.log("Not paid yet. Do not release your item.");
+	}
 })
-.post("/hook", (req, res) => {
+.post("/hook", async (req, res) => {
   res.status(201).send();
-  console.log(req.query.id)
+
+  if(req.body)
+  console.log(req.body)
+
+  let payment:MercadoPagoPayment;
+
+  switch(req.body["type"]) {
+    case "payment":
+        payment = mercadoPagoService.FindPaymentById(req.body["id"]);
+        break;
+    // case "plan":
+    //     plan = MercadoPago\Plan.find_by_id(req.body["id"]);
+    //     break;
+    // case "subscription":
+    //     plan = MercadoPago\Subscription.find_by_id(req.body["id"]);
+    //     break;
+    // case "invoice":
+    //     plan = MercadoPago\Invoice.find_by_id(req.body["id"]);
+    //     break;
+  }
+  let servicoPedidos = new PedidoService();
+  let pedidosUsuario = await servicoPedidos.FiltrarPedidosPorIdUsuario(payment.payer.identification.number);
+
+  if(pedidosUsuario){
+    if(pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento == null)
+      pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento = [];
+
+    pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento.push(payment);
+
+    await servicoPedidos.AlterarSemUsuario(pedidosUsuario[pedidosUsuario?.length]);
+  }
+
 })
 .post("/process_payment", (req, res) => {
 
@@ -56,10 +121,13 @@ MercadoPagoController
   //     res.status(error.status).send(error);
   //   });
 })
-.post(RouteDictionary.Checkout, async (req: any, res) => {
+.post(RouteDictionary.Checkout, ensureIsLogged, async (req: any, res) => {
     try {
-      let preference = mercadoPagoService.getPreference(req.body.orcamento);
+      let orcamento = req.body.orcamento;
+      let preference = mercadoPagoService.getPreference(orcamento);
       res.send(await mercadoPagoService.checkout(preference));
+      let pedido = new Pedido(orcamento.Produto,orcamento.Empresa,orcamento.Status,orcamento.Preco,orcamento.Mensagem,orcamento.Usuario,orcamento.Dimensoes);
+      new PedidoService().InserirSemUsuario(pedido);
     }
     catch (err) {
       ErrorHandler.DefaultException(err, res)

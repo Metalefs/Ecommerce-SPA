@@ -3,21 +3,18 @@ import { MongoDocument } from './abstract/MongoDocument';
 import { Usuario } from './usuario';
 
 export class Feedback extends MongoDocument implements entidadeBase{
-    Nome:string;
-    Email:string;
+    Empresa:string;
     Usuario:Usuario;
     Titulo:string;
     Comentario:string;
     static readonly NomeID:string = "Feedback";
     constructor(
-    Nome:string,
-    Email:string,
+    Empresa:string,
     Usuario:Usuario,
     Titulo:string,
     Comentario:string){
         super();
-        this.Nome = Nome;
-        this.Email = Email;
+        this.Empresa = Empresa;
         this.Usuario = Usuario;
         this.Titulo = Titulo;
         this.Comentario = Comentario;

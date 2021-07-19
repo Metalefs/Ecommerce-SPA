@@ -121,9 +121,10 @@ export module UsuarioService {
 
     export async function createTempAccount(NovoUsuario : entities.Usuario) {
       // validate
-      let find = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email});
-      if (find != 0 && find != undefined) {
-          throw 'E-mail "' + NovoUsuario.Email + '" já está sendo usado!';
+      let findEmail = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email});
+      let findCPF = await Repository.FindOne(entities.Usuario.NomeID, {CPF: NovoUsuario.CPF});
+      if ((findEmail != 0 && findEmail != undefined)&&(findCPF != 0 && findCPF != undefined)) {
+          throw 'E-mail "' + NovoUsuario.Email + '" ou CPF já está sendo usado!';
       }
       // hash password
       if (NovoUsuario.Senha) {
@@ -160,6 +161,10 @@ export module UsuarioService {
 
     export async function getById(id:string) {
         return await Repository.FindOne(entities.Usuario.NomeID, {_id: id}) as entities.Usuario[];
+    }
+
+    export async function getByCPF(id:string) {
+        return await Repository.FindOne(entities.Usuario.NomeID, {CPF: id}) as entities.Usuario[];
     }
 
     export async function getByEmail(email:string) {

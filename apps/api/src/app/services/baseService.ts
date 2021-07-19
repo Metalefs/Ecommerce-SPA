@@ -28,11 +28,11 @@ export class BaseService {
     });
   }
 
-  async LerUltimo(){
-    return Repository.List(this.entity).then((x:any) => {
-      if(x){
+  async LerUltimo() {
+    return Repository.List(this.entity).then((x: any) => {
+      if (x) {
         let arr = [];
-        arr.push(x[x.length -1]);
+        arr.push(x[x.length - 1]);
         return arr[0];
       }
       return x;
@@ -82,6 +82,13 @@ export class BaseService {
       });
     }
     throw 'Usuario não autorizado.'
+  }
+  async AlterarSemUsuario(obj: MongoDocument) {
+    return Repository.Edit(this.entity, obj._id, obj).then(x => {
+      return x;
+    }).catch(err => {
+      throw `Erro ao alterar ${this.entity}. - ${err}`
+    });
   }
 
   async Deletar(Usuario: entities.Usuario, id: string) {

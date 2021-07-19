@@ -2,19 +2,16 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Select } from '@ngxs/store';
-import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
-import { Observable } from 'rxjs';
 import { MatTableFilter } from 'mat-table-filter';
 import { DEFAULT_ORCAMENTO } from 'apps/app-web/src/app/data/store/state/orcamento.state';
+import { OrcamentoService, PedidoService } from 'apps/app-web/src/app/data/service';
 @Component({
-  selector: 'personalizados-lopes-editar-orcamento',
-  templateUrl: './editar-orcamento.component.html',
-  styleUrls: ['./editar-orcamento.component.scss']
+  selector: 'personalizados-lopes-editar-pedido',
+  templateUrl: './editar-pedido.component.html',
+  styleUrls: ['./editar-pedido.component.scss']
 })
-export class EditarOrcamentoComponent implements OnInit {
-  @Select(OrcamentoState.ObterListaOrcamentos) Orcamentos$: Observable<Orcamento[]>;
+export class EditarPedidoComponent implements OnInit {
   dataSource: MatTableDataSource<Orcamento>;
   displayedColumns: string[] = [
     "Nome",
@@ -31,14 +28,11 @@ export class EditarOrcamentoComponent implements OnInit {
   filterType: MatTableFilter;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor() { }
+  constructor(private pedidoService:PedidoService) { }
   ngOnInit(): void {
     this.filterEntity = DEFAULT_ORCAMENTO;
     this.filterType = MatTableFilter.ANYWHERE;
-    this.Orcamentos$.subscribe(x=>{
-      x = x.sort((i,f)=>new Date(f.DataHoraCriacao).getTime() - new Date(i.DataHoraCriacao).getTime());
-      this.dataSource = new MatTableDataSource(x);
-    })
+    this.Atualizar();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -51,6 +45,17 @@ export class EditarOrcamentoComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  Atualizar(){
+    this.pedidoService.Ler().subscribe((f:Array<Orcamento>) =>{
+      f = f.sort((i,f)=>new Date(f.DataHoraCriacao).getTime() - new Date(i.DataHoraCriacao).getTime());
+      this.dataSource = new MatTableDataSource(f);
+    })
+  }
+  Excluir(elemento){
+    this.pedidoService.Remover(elemento._id).subscribe(x=>{
+      this.Atualizar()
+    });
   }
   toLocaleDateString(date){
     return new Date(date).toLocaleDateString()+" -<br>"+ new Date(date).toLocaleTimeString();

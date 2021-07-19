@@ -28,11 +28,15 @@ export let RouteDictionary = {
   Sobre: "/sobre/",
   Servico: "/servico/",
 
-  Orcamento: {
-    Padrao: "/orcamento/",
-    Pedidos: "/pedido/",
+  Pedidos: {
+    Raiz:"/pedido/",
+    PorUsuario:"/pedido-usuario/",
   },
 
+  Orcamento: {
+    Padrao: "/orcamento/",
+    PorUsuario: "/orcamento-usuario/",
+  },
   Feedback: "/feedback/",
   Tema: "/tema/",
 

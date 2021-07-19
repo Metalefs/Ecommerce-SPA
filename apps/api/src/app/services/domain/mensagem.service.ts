@@ -1,4 +1,4 @@
-import { entities, enums } from '@personalizados-lopes/data';
+import { entities } from '@personalizados-lopes/data';
 import { Mensagem, Produto } from 'libs/data/src/lib/classes';
 
 import { Repository } from '../../repositories/repository';
@@ -28,6 +28,10 @@ export class MensagemService extends BaseService {
     Orcamento.Produto.forEach(x=>produtos += x.Produto.Nome + ", ");
     Mensagem = Mensagem.replace("{{USUARIO}}", Orcamento.Usuario.Nome);
     Mensagem = Mensagem.replace("{{PRODUTO}}", produtos);
+    return Mensagem;
+  }
+  SubstituirChavesMensagemFeedback(Mensagem:string, Feedback:entities.Feedback){
+    Mensagem = Mensagem.replace("{{USUARIO}}", Feedback.Usuario.Nome);
     return Mensagem;
   }
   SubstituirChaves(Mensagem:string, Usuario:entities.Usuario){

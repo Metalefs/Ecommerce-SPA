@@ -3,6 +3,7 @@ import { Usuario } from './usuario';
 import { Feedback } from './feedback';
 import { InformacoesContato } from './informacoesContato';
 import { Orcamento } from './orcamento';
+import { Pedido } from './pedido';
 import { Produto } from './produto';
 import { Cliente } from './cliente';
 import { Servico } from './servico';
@@ -29,6 +30,7 @@ export {
     InformacoesContato,
     Cliente,
     Orcamento,
+    Pedido,
     Produto,
     Servico,
     Sobre,

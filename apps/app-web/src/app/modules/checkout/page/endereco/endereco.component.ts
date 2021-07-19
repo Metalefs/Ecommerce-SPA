@@ -101,8 +101,8 @@ export class EnderecoComponent implements OnInit {
       this.ErroCadastro = false;
       this.Orcamento$.subscribe(orcamento => {
         this.Loading = true;
+        this.cadastroTemporario();
         this.checkoutService.goCheckout(orcamento).subscribe(result => {
-          this.cadastroTemporario();
           this._init_point = result;
           this.Loading = false;
           this.Pagar = true;
@@ -123,7 +123,7 @@ export class EnderecoComponent implements OnInit {
   cadastroTemporario() {
     this.auth.currentUser.subscribe(usr => {
       if (!usr) {
-        this.auth.signup(this.Orcamento.Usuario)
+        this.auth.tempSignup(this.Orcamento.Usuario)
           .pipe(first())
           .subscribe(
             data => {

@@ -28,7 +28,7 @@
       >
         <div class="columns">
           <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
-            <h1 class="titulo-produto title">{{ Produto?.Nome }}</h1>
+            <h1 class="titulo-produto pb-2">{{ Produto?.Nome }}</h1>
             <ul class="list-unstyled">
               <li>
                 <p class="subtitle">
@@ -85,7 +85,7 @@
                   <div class="message is-white">
                     <div class="message-body px-0">
                       <div class="columns  mx-0 w-full is-multiline pb-1">
-                        <div class="column mh-full">
+                        <div class="column is-12-mobile mh-full">
                           <personalizados-lopes-selecao-quantidade-produto
                             [Produto]="Produto"
                             [ErroQuantidade]="ErroQuantidade"
@@ -93,14 +93,14 @@
                             (onQuantidadeChange)="setQuantidade($event)"
                           ></personalizados-lopes-selecao-quantidade-produto>
                         </div>
-                        <div class="column is-5 mh-full">
+                        <div class="column is-4 is-6-mobile mh-full">
                           <personalizados-lopes-selecao-tamanho-produto
                             [Produto]="Produto"
                             [ErroTamanho]="ErroTamanho"
                             [Erros]="Erros"
                           ></personalizados-lopes-selecao-tamanho-produto>
                         </div>
-                        <div class="column mh-full of-x-scroll">
+                        <div class="column mh-full is-6-mobile of-x-scroll">
                           <personalizados-lopes-cor-produto-selector
                             [Produto]="Produto"
                             (onSetColor)="setColor($event)"
@@ -115,7 +115,7 @@
           </div>
           <div class="column is-6" *ngIf="Produto?.Arte || Produto?.ArteSecundaria"></div>
           <div class="column is-6" *ngIf="Produto?.Arte || Produto?.ArteSecundaria">
-            <div
+            <perfect-scrollbar style="max-width: 600px; max-height: 400px;"
               class="txt-left of-x-scroll"
               *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
             >
@@ -123,7 +123,7 @@
                 [Produto]="Produto"
                 (onAbrirModalArte)="AbrirModalArte($event)"
               ></personalizados-lopes-exibicao-artes-produto>
-            </div>
+            </perfect-scrollbar>
           </div>
         </div>
         <div class="of-x-hidden">

@@ -20,7 +20,7 @@ export class OrcamentoController extends BaseController {
 const OrcamentoCtrl = new OrcamentoController(OrcamentoService)
 
 OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao,OrcamentoCtrl.Ler)
-.get(RouteDictionary.Orcamento.Pedidos, async (req: any, res) => {
+.get(RouteDictionary.Orcamento.PorUsuario, async (req: any, res) => {
   try {
     const usuario = await UsuarioLogado(req, res);
     const result = await OrcamentoService.FiltrarOrcamentosPorUsuario(usuario);
@@ -31,8 +31,8 @@ OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao,OrcamentoCtrl.Ler)
   }
 })
 .put(RouteDictionary.Orcamento.Padrao, ensureIsAdmin, OrcamentoCtrl.Editar)
-.post(RouteDictionary.Orcamento.Padrao, ensureIsAdmin, OrcamentoCtrl.Incluir)
-.delete(RouteDictionary.Orcamento + `:id`, ensureIsAdmin, OrcamentoCtrl.Remover);
+.post(RouteDictionary.Orcamento.Padrao, OrcamentoCtrl.Incluir)
+.delete(RouteDictionary.Orcamento.Padrao + `:id`, ensureIsAdmin, OrcamentoCtrl.Remover);
 
 export {
   OrcamentoRouter

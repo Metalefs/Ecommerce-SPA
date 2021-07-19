@@ -1,6 +1,6 @@
 import { Categoria } from './categoria.seed';
 import { Usuario } from './usuario.seed';
-import { Feedback } from './feedback.seed';
+//import { Feedback } from './feedback.seed';
 import { InformacoesContato } from './informacao-contato.seed';
 import { Orcamento } from './orcamento.seed';
 import { Produto } from './produto.seed';
@@ -15,7 +15,7 @@ export {
     Categoria,
     Usuario,
     Cliente,
-    Feedback,
+   // Feedback,
     InformacoesContato,
     Orcamento,
     Produto,

@@ -10,12 +10,12 @@ import { MercadoPagoResultadoPagamentoCheckout } from 'libs/data/src/lib/interfa
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
-import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
+import { CodProduto } from 'libs/data/src/lib/classes/pedido';
 
 export class OrcamentoStateModel{
-  Orcamentos: entities.Orcamento;
-  ListaOrcamentos: entities.Orcamento[];
+  Orcamento: entities.Orcamento;
+  ListaPedidos: entities.Orcamento[];
   areOrcamentosLoaded: boolean;
   openProduct:Produto
 }
@@ -33,12 +33,12 @@ let resultadoPagamentoMP: MercadoPagoResultadoPagamentoCheckout = {
   processing_mode:"", //aggregator&
   merchant_account_id:0,
 };
-export let DEFAULT_ORCAMENTO = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","","","",enderecoEntrega),"",resultadoPagamentoMP);
+export let DEFAULT_ORCAMENTO = new Orcamento([],"",StatusOrcamento.aberto,0,"",new Usuario("","","","","",enderecoEntrega));
 @State<OrcamentoStateModel>({
   name:"Orcamentos",
   defaults: {
-    Orcamentos: DEFAULT_ORCAMENTO,
-    ListaOrcamentos: [],
+    Orcamento: DEFAULT_ORCAMENTO,
+    ListaPedidos: [],
     areOrcamentosLoaded: false,
     openProduct:null,
   }
@@ -56,7 +56,7 @@ export class OrcamentoState {
 
   @Selector()
   static ObterOrcamentos(state: OrcamentoStateModel) {
-    return state.Orcamentos;
+    return state.Orcamento;
   }
 
   @Selector()
@@ -66,7 +66,7 @@ export class OrcamentoState {
 
   @Selector()
   static ObterListaOrcamentos(state: OrcamentoStateModel) {
-    return state.ListaOrcamentos;
+    return state.ListaPedidos;
   }
 
   @Action(LerOrcamento)
@@ -76,19 +76,19 @@ export class OrcamentoState {
       rslt = rslt.sort((x:any)=>x.Status);
       setState({
         ...state,
-        ListaOrcamentos: rslt as any as Orcamento[]
+        ListaPedidos: rslt as any as Orcamento[]
       });
     });
   }
 
   @Action(AdicionarOrcamento)
   Adicionar({getState,patchState}: StateContext<OrcamentoStateModel>){
-    return this.OrcamentoService.Incluir(getState().Orcamentos).subscribe((result) => {
+    return this.OrcamentoService.Incluir(getState().Orcamento).subscribe((result) => {
       const state = getState();
       if(this.auth.currentUserValue._id)
-        this.usuarioService.AtualizarInformacoes(state.Orcamentos.Usuario).subscribe();
+        this.usuarioService.AtualizarInformacoes(state.Orcamento.Usuario).subscribe();
       patchState({
-          Orcamentos: DEFAULT_ORCAMENTO
+          Orcamento: DEFAULT_ORCAMENTO
       });
     });
   }
@@ -99,10 +99,10 @@ export class OrcamentoState {
     if(payload.Status == StatusProduto.esgotado)
     return;
     let cod = new CodProduto(payload,new Date().toISOString());
-    state.Orcamentos.Produto.push(cod);
+    state.Orcamento.Produto.push(cod);
     this.atualizarPreco(state);
     patchState({
-        Orcamentos: state.Orcamentos
+        Orcamento: state.Orcamento
     });
     return cod;
   }
@@ -135,34 +135,34 @@ export class OrcamentoState {
       );
     let newprod = Object.assign(prod, payload);
     let cod = new CodProduto(newprod,new Date().toISOString());
-    state.Orcamentos.Produto.push(cod);
+    state.Orcamento.Produto.push(cod);
     this.atualizarPreco(state);
     patchState({
-        Orcamentos: state.Orcamentos
+        Orcamento: state.Orcamento
     });
   }
 
   @Action(RemoverProdutoOrcamento)
   RemoverProdutoOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {id,codOrcamento} : RemoverProdutoOrcamento){
     const state = getState();
-    state.Orcamentos.Produto = state.Orcamentos.Produto.filter(item => item.codOrcamento !== codOrcamento);
+    state.Orcamento.Produto = state.Orcamento.Produto.filter(item => item.codOrcamento !== codOrcamento);
 
     this.atualizarPreco(state);
     patchState({
-        Orcamentos: state.Orcamentos
+        Orcamento: state.Orcamento
     });
   }
 
   @Action(ResetarOrcamento)
   ResetarOrcamento({getState,patchState}: StateContext<OrcamentoStateModel>, {}: ResetarOrcamento){
     const state = getState();
-    let usuario = state.Orcamentos.Usuario;
-    state.Orcamentos = DEFAULT_ORCAMENTO;
-    state.Orcamentos.Usuario = usuario;
-    state.Orcamentos.Status = StatusOrcamento.aberto;
+    let usuario = state.Orcamento.Usuario;
+    state.Orcamento = DEFAULT_ORCAMENTO;
+    state.Orcamento.Usuario = usuario;
+    state.Orcamento.Status = StatusOrcamento.aberto;
     this.atualizarPreco(state);
     patchState({
-        Orcamentos: state.Orcamentos
+        Orcamento: state.Orcamento
     });
   }
 
@@ -170,13 +170,13 @@ export class OrcamentoState {
   Editar({getState,setState}: StateContext<OrcamentoStateModel>, {payload, id} : EditarOrcamento){
     return this.OrcamentoService.Editar(payload).subscribe(result => {
       const state = getState();
-      const Lista = [...state.ListaOrcamentos];
+      const Lista = [...state.ListaPedidos];
       const index = Lista.findIndex(item => item._id === id);
       Lista[index] = result;
       setState({
         ...state,
-        Orcamentos: result,
-        ListaOrcamentos: Lista
+        Orcamento: result,
+        ListaPedidos: Lista
       });
     })
   }
@@ -188,7 +188,7 @@ export class OrcamentoState {
     this.atualizarDimensoes(state);
     patchState({
       ...state,
-      Orcamentos: payload,
+      Orcamento: payload,
     });
   }
 
@@ -204,15 +204,15 @@ export class OrcamentoState {
   @Action(EditarProdutoOrcamentoLocal)
   EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id, codOrcamento} : EditarProdutoOrcamentoLocal){
     let state = getState();
-    const ListaCodProdutos = [...state.Orcamentos.Produto];
+    const ListaCodProdutos = [...state.Orcamento.Produto];
     const index = ListaCodProdutos.findIndex(item => item.codOrcamento === codOrcamento);
     ListaCodProdutos[index].Produto = payload;
-    const orc = state.Orcamentos;
+    const orc = state.Orcamento;
     orc.Produto = ListaCodProdutos;
     this.atualizarPreco(state);
     patchState({
       ...state,
-      Orcamentos: orc,
+      Orcamento: orc,
     });
   }
 
@@ -223,34 +223,35 @@ export class OrcamentoState {
         const state = getState();
         setState({
           ...state,
-          Orcamentos: DEFAULT_ORCAMENTO,
+          Orcamento: DEFAULT_ORCAMENTO,
         });
       })
     );
   }
 
   atualizarPreco(state:OrcamentoStateModel){
-    state.Orcamentos.Preco = 0;
-    state.Orcamentos.Produto.forEach(prod=>{
+    state.Orcamento.Preco = 0;
+    state.Orcamento.Produto.forEach(prod=>{
       if(!isNaN(prod.Produto.Preco))
-      state.Orcamentos.Preco +=
+      state.Orcamento.Preco +=
          prod.Produto.Status == StatusProduto.promocao? prod.Produto.PrecoPromocional : prod.Produto.Preco
        * prod.Produto.Quantidade;
     })
   }
+
   atualizarDimensoes(state:OrcamentoStateModel){
-    state.Orcamentos.Dimensoes = "";
+    state.Orcamento.Dimensoes = "";
     let peso = 0,
     altura = 0,
-    comprimento =  Math.max(...state.Orcamentos.Produto.map(o=> o.Produto.Dimensoes.Comprimento)),
-    largura =  Math.max(...state.Orcamentos.Produto.map(o=> o.Produto.Dimensoes.Largura));
+    comprimento =  Math.max(...state.Orcamento.Produto.map(o=> o.Produto.Dimensoes.Comprimento)),
+    largura =  Math.max(...state.Orcamento.Produto.map(o=> o.Produto.Dimensoes.Largura));
 
-    state.Orcamentos.Produto.forEach(prod=>{
+    state.Orcamento.Produto.forEach(prod=>{
       if(prod.Produto.Peso)
         peso += prod.Produto.Peso * prod.Produto.Quantidade;
       if(prod.Produto.Dimensoes.Altura)
         altura += prod.Produto.Dimensoes.Altura * prod.Produto.Quantidade;
     })
-    state.Orcamentos.Dimensoes += `${altura}x${largura}x${comprimento},${peso}`;
+    state.Orcamento.Dimensoes += `${altura}x${largura}x${comprimento},${peso}`;
   }
 }

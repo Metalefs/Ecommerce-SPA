@@ -100,6 +100,7 @@
     "ngx-mask": "^10.0.4",
     "ngx-page-scroll": "^7.0.5",
     "ngx-page-scroll-core": "^7.0.5",
+    "ngx-perfect-scrollbar": "^10.1.1",
     "ngx-sharebuttons": "^8.0.5",
     "ngx-slider": "0.0.5",
     "ngx-spinner": "^10.0.1",
