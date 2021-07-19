@@ -23,7 +23,7 @@
       </div>
 
       <div
-        class="column is-6-desktop z-index-1 is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
+        class="column pt-2 is-6-desktop z-index-1 is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
         style="display: grid;"
       >
 
@@ -31,6 +31,7 @@
           *ngIf="Produto"
           [Produto]="Produto"
           [items]="items"
+          class="mb-4"
         ></personalizados-lopes-exibicao-breadcrumb>
 
         <div class="columns">
@@ -67,7 +68,7 @@
                     <div class="message is-white">
                       <div class="message-body px-0">
                         <div class="columns  mx-0 w-full is-multiline pb-1">
-                          <div class="column is-4 is-6-mobile mh-full">
+                          <div class="column is-6-mobile mh-full">
                             <personalizados-lopes-selecao-tamanho-produto
                               [Produto]="Produto"
                               [ErroTamanho]="ErroTamanho"

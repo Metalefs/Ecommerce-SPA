@@ -41,7 +41,7 @@ export class CarouselState {
           const state = getState();
           setState({
             ...state,
-            Carousel: result,
+            Carousel: result as any,
             sobreLoaded: true
           });
         }));
