@@ -26,10 +26,18 @@
         class="column is-6-desktop z-index-1 is-12-tablet has-background-white bbr btr shadow-light shadow-light section"
         style="display: grid;"
       >
+
+        <personalizados-lopes-exibicao-breadcrumb
+          *ngIf="Produto"
+          [Produto]="Produto"
+          [items]="items"
+        ></personalizados-lopes-exibicao-breadcrumb>
+
         <div class="columns">
-          <div class="column is-12 {{ mobile ? 'txt-left' : 'txt-left' }}">
-            <h1 class="titulo-produto pb-2">{{ Produto?.Nome }}</h1>
-            <ul class="list-unstyled">
+          <!-- {{ mobile ? 'txt-left' : 'txt-left' }} -->
+          <div class="column is-12">
+            <h1 class="titulo-produto mb-4">{{ Produto?.Nome }}</h1>
+            <ul class="list-unstyled txt-right dis-flex flex-sb">
               <li>
                 <p class="subtitle">
                   <b>Modelo: </b> <span>{{ Produto?.Modelo || '' }}</span>
@@ -54,7 +62,44 @@
                 *ngIf="Produto?.Status != statusProduto.esgotado"
                 class="txt-left"
               >
+                <div class="columns">
+                  <div class="column is-12">
+                    <div class="message is-white">
+                      <div class="message-body px-0">
+                        <div class="columns  mx-0 w-full is-multiline pb-1">
+                          <div class="column is-4 is-6-mobile mh-full">
+                            <personalizados-lopes-selecao-tamanho-produto
+                              [Produto]="Produto"
+                              [ErroTamanho]="ErroTamanho"
+                              [Erros]="Erros"
+                            ></personalizados-lopes-selecao-tamanho-produto>
+                          </div>
+                          <div class="column mh-full is-6-mobile of-x-scroll">
+                            <personalizados-lopes-cor-produto-selector
+                              [Produto]="Produto"
+                              (onSetColor)="setColor($event)"
+                            ></personalizados-lopes-cor-produto-selector>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div>
+                  <div class="message is-white">
+                    <div class="">
+                      <personalizados-lopes-exibicao-preco-produto
+                        [Produto]="Produto"
+                      ></personalizados-lopes-exibicao-preco-produto>
+                    </div>
+                    <div class="w3-hide-small w3-text-grey font33">
+                      <i class="fas fa-barcode"></i>
+                      <i class="fab fa-cc-visa"></i>
+                      <i class="fab fa-cc-mastercard"></i>
+                      <i class="fab fa-cc-diners-club"></i>
+                      <i class="fab fa-cc-amex"></i>
+                    </div>
+                  </div>
                   <personalizados-lopes-bloco-pagamento-produto
                     [Produto]="Produto"
                     [isOrcamento]="isOrcamento"
@@ -62,6 +107,9 @@
                     [textoAdicionar]="textoAdicionar"
                     (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
                     (onDuplicarOrcamento)="DuplicarOrcamento()"
+                    [ErroQuantidade]="ErroQuantidade"
+                    [Erros]="Erros"
+                    (onQuantidadeChange)="setQuantidade($event)"
                   ></personalizados-lopes-bloco-pagamento-produto>
                 </div>
                 <mat-list *ngIf="!IsValid" class="w-full mx-0 border">
@@ -79,37 +127,6 @@
               >
                 <personalizados-lopes-botao-esgotado [Produto]="Produto">
                 </personalizados-lopes-botao-esgotado>
-              </div>
-              <div class="columns">
-                <div class="column is-12">
-                  <div class="message is-white">
-                    <div class="message-body px-0">
-                      <div class="columns  mx-0 w-full is-multiline pb-1">
-                        <div class="column is-12-mobile mh-full">
-                          <personalizados-lopes-selecao-quantidade-produto
-                            [Produto]="Produto"
-                            [ErroQuantidade]="ErroQuantidade"
-                            [Erros]="Erros"
-                            (onQuantidadeChange)="setQuantidade($event)"
-                          ></personalizados-lopes-selecao-quantidade-produto>
-                        </div>
-                        <div class="column is-4 is-6-mobile mh-full">
-                          <personalizados-lopes-selecao-tamanho-produto
-                            [Produto]="Produto"
-                            [ErroTamanho]="ErroTamanho"
-                            [Erros]="Erros"
-                          ></personalizados-lopes-selecao-tamanho-produto>
-                        </div>
-                        <div class="column mh-full is-6-mobile of-x-scroll">
-                          <personalizados-lopes-cor-produto-selector
-                            [Produto]="Produto"
-                            (onSetColor)="setColor($event)"
-                          ></personalizados-lopes-cor-produto-selector>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </form>
           </div>

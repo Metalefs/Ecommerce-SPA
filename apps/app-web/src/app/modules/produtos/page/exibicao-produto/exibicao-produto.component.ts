@@ -20,7 +20,6 @@ import { Title } from '@angular/platform-browser';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { BlogPostService } from '../../../blog/blog.service';
 
-import { MenuItem } from 'primeng/api';
 import AOS from 'aos'
 import { EditarProdutoAbertoOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 @Component({
@@ -51,7 +50,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
 
   selected = new FormControl(0);
 
-  items: MenuItem[];
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
     private activeRoute:ActivatedRoute,
@@ -86,10 +84,6 @@ export class ExibicaoProdutoComponent implements OnInit, OnDestroy {
     this.updatePageTitle(produto);
     this.CarregarPostsBlog();
 
-    this.items = [
-      {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria=" + this.Produto?.NomeCategoria},
-      {label:this.Produto?.Nome, styleClass:'desb'}
-    ];
     if(produto?.Quantidade == 0)
       produto.Quantidade = produto.QuantidadeMinima;
 
