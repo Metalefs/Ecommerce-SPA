@@ -189,7 +189,7 @@ export class CostumizationComponent implements OnInit {
       var a = self.__canvas.setActiveObject(oImg);
       var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
       self.Produto.Arte = url;
-      self.Produto.Estampas.push()
+      //self.Produto?.Estampas?.push()
       this.SaveDesign();
     });
   }

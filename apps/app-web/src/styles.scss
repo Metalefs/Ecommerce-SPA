@@ -267,15 +267,17 @@ li .p-menuitem-link span.p-menuitem-text {
 }
 .p-megamenu {
   border: none;
-  background: #f9fbfe;
+  background: #e6e0e0;
   opacity: 1 !important;
   z-index: 1;
+  padding: 10px;
+    margin: 10px 0px;
 }
 .p-breadcrumb ul li .p-menuitem-link .p-menuitem-text,
 .p-component {
   // font-size: 13px;
   font-family: $default_font;
-  // color: #23a1d1;
+  //color: #23a1d1;
   // font-weight: 400;
   @extend .hoverable;
 }
@@ -1259,4 +1261,7 @@ div.descricao-produto {
     border-spacing: 0;
     width: 100%;
   }
+}
+.p-megamenu .p-megamenu-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link .p-menuitem-text, .p-megamenu .p-megamenu-root-list > .p-menuitem.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+  color: #ffffff;
 }

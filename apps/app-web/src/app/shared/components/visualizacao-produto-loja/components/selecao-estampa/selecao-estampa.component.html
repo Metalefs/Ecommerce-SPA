@@ -2,18 +2,20 @@
   #swiperEl4
   (mouseenter)="onSwiperHover(true)"
   (mouseleave)="onSwiperHover(false)"
-  class="swiper-container z-index-1 px-1  mh-full bg-image"
+  class="swiper-container z-index-1 px-1 mh-full bg-image"
   [swiper]="swiperConfig$ | async"
 >
   <mat-label class="label is-small">Estampas</mat-label>
-  <div class="swiper-wrapper of-x-hidden mh-full">
-    <div class="swiper-slide
-    " *ngFor="let estampa of Estampas">
+  <perfect-scrollbar
+    style="max-width: 600px; max-height: 400px;"
+    class="swiper-wrapper of-x-hidden mh-full of-x-scroll"
+  >
+    <div class="swiper-slide" *ngFor="let estampa of Estampas">
       <personalizados-lopes-card-estampa
         [Estampa]="estampa"
         [is_edicao]="false"
         (onClick)="onSelecionarEstampa.emit($event)"
       ></personalizados-lopes-card-estampa>
     </div>
-  </div>
+  </perfect-scrollbar>
 </div>

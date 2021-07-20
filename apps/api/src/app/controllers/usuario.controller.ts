@@ -10,7 +10,7 @@ import { Usuario } from 'libs/data/src/lib/classes';
 import { UsuarioLogado } from '../_handlers/Authentication';
 
 const app = express();
-app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
+app.post(RouteDictionary.UsuarioBack.Login, (req : any, res, next) => {
     try{
       UsuarioService.authenticate(req.body)
           .then((user: entities.Usuario) => res.status(200).json(user))
@@ -19,7 +19,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     catch(ex){
       ErrorHandler.DefaultException(ex,res);
     }
-}).post(RouteDictionary.Usuario.Registro, (req,res, next) =>{
+}).post(RouteDictionary.UsuarioBack.Registro, (req,res, next) =>{
   try{
     UsuarioService.create(req.body.Usuario)
         .then((user: entities.Usuario | any) => res.json(user))
@@ -28,7 +28,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-}).post(RouteDictionary.Usuario.RegistroTemporario, (req,res, next) =>{
+}).post(RouteDictionary.UsuarioBack.RegistroTemporario, (req,res, next) =>{
   try{
     let user:Usuario = req.body.Usuario;
     let senha = UsuarioService.generateRandomPassword();
@@ -40,7 +40,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
   catch(ex){
     ErrorHandler.AuthorizationException(ex,res);
   }
-}).put(RouteDictionary.Usuario.AtualizarConta, (req,res, next) =>{
+}).put(RouteDictionary.UsuarioBack.AtualizarConta, (req,res, next) =>{
   try{
     UsuarioLogado(req, res)
     .catch(ex => ErrorHandler.AuthorizationException(ex, res))
@@ -57,7 +57,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.put(RouteDictionary.Usuario.TrocarSenha, (req,res, next) =>{
+.put(RouteDictionary.UsuarioBack.TrocarSenha, (req,res, next) =>{
   try{
     UsuarioLogado(req, res)
     .catch(ex => ErrorHandler.AuthorizationException(ex, res))
@@ -74,7 +74,7 @@ app.post(RouteDictionary.Usuario.Login, (req : any, res, next) => {
     ErrorHandler.AuthorizationException(ex,res);
   }
 })
-.post(RouteDictionary.Usuario.RecuperarSenha, (req,res, next) =>{
+.post(RouteDictionary.UsuarioBack.RecuperarSenha, (req,res, next) =>{
   try{
     console.log(req.body.email);
     UsuarioService.recoverPassword(req.body.email)

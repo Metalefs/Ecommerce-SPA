@@ -48,6 +48,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
   @Select(InformacoesContatoState.ObterInformacoesContato) InformacoesContato$: Observable<InformacoesContato>;
+  @Select(OrcamentoState.ObterProdutoAberto) Produto$: Observable<Produto>;
 
   areProdutosLoadedSub: Subscription;
   isOrcamento:boolean = false;
@@ -73,12 +74,9 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     private fb: FormBuilder,
     ) {
       AOS.refresh();
-    }
-
-
-  ngOnInit(): void {
-
   }
+
+  ngOnInit(): void {  }
   ngAfterViewInit(){
     this.activeRoute.params.subscribe(routeParams => {
       if(isPlatformBrowser(this.platform))
@@ -91,6 +89,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       AOS.refreshHard();
     })
   }
+
   LoadProduto(produto:Produto){
     this.updateViews(produto);
     this.gallery.AddImages(produto);
@@ -143,28 +142,42 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     this.IsValid = this.Erros.length > 0 ? false : true;
     if(!this.IsValid)
     return;
-    this.Orcamento$.subscribe(x=>{
-      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
-      if(!this.orcamentoId){
-        if(!this.Produto.Arte){
-          this.AbrirModalArte();
-        }else{
-          this.navegarParaCheckout();
-        }
+    if(!this.Produto){
+      this.Produto$.subscribe(produto => {
+        this.Produto = produto;
+        this.Orcamento$.subscribe(orcamento=>{
+          this.AlterarProdutoNoOrcamento(this.Produto, orcamento);
+        });
+      })
+    }
+    else{
+      this.Orcamento$.subscribe(orcamento=>{
+        this.AlterarProdutoNoOrcamento(this.Produto, orcamento);
+      });
+    }
+  }
+
+  AlterarProdutoNoOrcamento(produto:Produto, orcamento:Orcamento){
+    let ProdutosOrcamento = orcamento.Produto.filter(x=>x.Produto._id == produto._id);
+    if(!this.orcamentoId){
+      if(!produto.Arte){
+        this.AbrirModalArte();
+      }else{
+        this.navegarParaCheckout();
       }
-      else{
-        this.Produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
-        this.store.dispatch(new EditarProdutoOrcamentoLocal(this.Produto,this.Produto._id,this.orcamentoId));
-        if(!this.Produto.Arte){
-          this.AbrirModalArte();
-        }else{
-          this.navegarParaCheckout();
-          this.openCheckout();
-        }
+    }
+    else{
+      produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
+      this.store.dispatch(new EditarProdutoOrcamentoLocal(produto,produto._id,this.orcamentoId));
+      if(!produto.Arte){
+        this.AbrirModalArte();
+      }else{
+        this.navegarParaCheckout();
+        this.openCheckout();
       }
-      this.textoAdicionar = this.textoAtualizar;
-      this.produtoNoCheckout();
-    });
+    }
+    this.textoAdicionar = this.textoAtualizar;
+    this.produtoNoCheckout();
   }
 
   EstampaSelecionada:Estampa;

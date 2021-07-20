@@ -59,6 +59,16 @@ export let RouteDictionary = {
     RecuperarSenha: rota_user + "/recuperarSenha/",
     TrocarSenha: rota_user + "/trocarSenha/",
   },
+  UsuarioBack: {
+    Usuario: rota_user,
+    DeletarConta: "/deletarConta/",
+    AtualizarConta: "/atualizarConta/",
+    Login: "/login/",
+    Registro: "/registro/",
+    RegistroTemporario: "/registroTemporario/",
+    RecuperarSenha: "/recuperarSenha/",
+    TrocarSenha: "/trocarSenha/",
+  },
 
   Gerenciamento: "/gerenciamento/",
   Integracoes: {
