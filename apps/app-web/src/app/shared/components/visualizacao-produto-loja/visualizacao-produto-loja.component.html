@@ -42,14 +42,14 @@
               <ul class="list-unstyled txt-right dis-flex flex-sb">
                 <li>
                   <p class="subtitle">
-                    <b>Modelo: </b> <span>{{ Produto?.Modelo || '' }}</span>
+                    <b>Modelo: </b> <span>{{ Produto?.Modelo || 'N/A' }}</span>
                   </p>
                 </li>
                 <li>
                   <p class="subtitle">
                     <b>Marca: </b>
                     <span>{{
-                      Produto?.Marca?.Nome || Produto?.Marca || ''
+                      Produto?.Marca?.Nome || Produto?.Marca || 'N/A'
                     }}</span>
                   </p>
                 </li>

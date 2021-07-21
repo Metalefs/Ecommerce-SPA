@@ -93,7 +93,6 @@ export class AuthenticationService {
     return this.http
       .post<any>(
         `${environment.endpoint}` +
-          RouteDictionary.Usuario.Usuario +
           RouteDictionary.Usuario.Login,
         { Email, Senha }
       )
