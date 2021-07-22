@@ -99,9 +99,9 @@ export class EnderecoComponent implements OnInit {
   private CheckoutSeDadosValidos() {
     if (this.ValidarDados()) {
       this.ErroCadastro = false;
+      this.cadastroTemporario();
       this.Orcamento$.subscribe(orcamento => {
         this.Loading = true;
-        this.cadastroTemporario();
         this.checkoutService.goCheckout(orcamento).subscribe(result => {
           this._init_point = result;
           this.Loading = false;
@@ -121,19 +121,17 @@ export class EnderecoComponent implements OnInit {
   }
 
   cadastroTemporario() {
-    this.auth.currentUser.subscribe(usr => {
-      if (!usr) {
-        this.auth.tempSignup(this.Orcamento.Usuario)
-          .pipe(first())
-          .subscribe(
-            data => {
-              console.log(data);
-            },
-            error => {
-              this.snack.open('Erro ao cadastrar com senha temporária: ' + error, 'fechar', { duration: 5000 })
-            });
-      }
-    })
+    if (!this.auth.currentUserValue) {
+      this.auth.tempSignup(this.Orcamento.Usuario)
+        .pipe(first())
+        .subscribe(
+          data => {
+            console.log(data);
+          },
+          error => {
+            this.snack.open('Erro ao cadastrar com senha temporária: ' + error, 'fechar', { duration: 5000 })
+          });
+    }
   }
 
   ngOnDestroy() {

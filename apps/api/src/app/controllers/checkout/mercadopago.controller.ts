@@ -126,7 +126,7 @@ MercadoPagoController
       let orcamento = req.body.orcamento;
       let preference = mercadoPagoService.getPreference(orcamento);
       res.send(await mercadoPagoService.checkout(preference));
-      let pedido = new Pedido(orcamento.Produto,orcamento.Empresa,orcamento.Status,orcamento.Preco,orcamento.Mensagem,orcamento.Usuario,orcamento.Dimensoes);
+      let pedido = new Pedido(orcamento);
       new PedidoService().InserirSemUsuario(pedido);
     }
     catch (err) {

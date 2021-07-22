@@ -134,8 +134,8 @@
               routerLinkActive="active-nav"
               href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
             >
-              <i [class]="link.Picon"></i>
-              <span class="m-l-5">{{
+              <!-- <i [class]="link.Picon"></i> -->
+              <span class="">{{
                 link.name == 'Todos' ? 'Produtos' : link.name
               }}</span>
             </a>
@@ -152,17 +152,17 @@
                   link.name == 'inicio' ? 'inicio' : ''
                 }}"
               >
-                <i
+                <!-- <i
                   *ngIf="
                     link.Picon && (NavState$ | async)?.activeNav == link.name
                   "
                   [class]="link.Picon"
-                ></i>
-                <span class="m-l-5">{{
+                ></i> -->
+                <span class="">{{
                   link.name == 'Todos' ? 'Produtos' : link.name
                 }}</span>
               </a>
-              <div class="dropdown-content has-background-white box">
+              <div class="dropdown-content has-background-white">
                 <a
                   class="nav-link is-capitalized {{
                     link.name == 'inicio' ? 'inicio' : ''

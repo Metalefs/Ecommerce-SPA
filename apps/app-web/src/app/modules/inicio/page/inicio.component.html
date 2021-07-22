@@ -2,17 +2,17 @@
   <div class="pb-4">
     <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   </div>
-  <div class="hero is-small">
+  <div class="hero is-small ">
     <div class="hero-head  mat-elevation-z1">
       <div data-aos="zoom-up" class="px-1 has-background-light">
         <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
       </div>
     </div>
-    <div class="hero-foot">
+    <div class="hero-foot margin py-0">
       <section
         data-aos-offset="-10"
         data-aos="zoom-up"
-        class="py-0"
+        class=""
         *ngIf="(Clientes$ | async)?.length > 0"
       >
         <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>

@@ -4,6 +4,7 @@ import { MongoDocument } from './abstract/MongoDocument';
 import { Usuario} from './usuario';
 import { Produto } from './produto';
 import { MercadoPagoPayment, MercadoPagoResultadoPagamentoCheckout } from '../interfaces';
+import { Orcamento } from './orcamento';
 
 export class Pedido extends MongoDocument implements entidadeBase{
 
@@ -18,24 +19,16 @@ export class Pedido extends MongoDocument implements entidadeBase{
     HistoricoPagamento?:MercadoPagoPayment[];
     static readonly NomeID:string = "Pedido";
     constructor(
-      Produto:CodProduto[],
-      Empresa:string,
-      Status:StatusOrcamento,
-      Preco:number,
-      Mensagem:string,
-      Usuario?:Usuario,
-      Dimensoes?:string,
-      ResultadoPagamentoMP?:MercadoPagoResultadoPagamentoCheckout
+     orcamento:Orcamento
     ){
         super();
-        this.Produto = Produto;
-        this.Empresa = Empresa;
-        this.Status = Status;
-        this.Preco = Preco;
-        this.Mensagem = Mensagem;
-        this.Usuario = Usuario;
-        this.Dimensoes = Dimensoes;
-        this.ResultadoPagamentoMP = ResultadoPagamentoMP;
+        this.Produto = orcamento.Produto;
+        this.Empresa = orcamento.Empresa;
+        this.Status = orcamento.Status;
+        this.Preco = orcamento.Preco;
+        this.Mensagem = orcamento.Mensagem;
+        this.Usuario = orcamento.Usuario;
+        this.Dimensoes = orcamento.Dimensoes;
     }
 
     DataHoraCriacao: Date;

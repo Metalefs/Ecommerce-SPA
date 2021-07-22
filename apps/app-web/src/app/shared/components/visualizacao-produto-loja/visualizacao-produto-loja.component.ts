@@ -196,7 +196,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
         width:'99vw',
         height:'100vh',
         animation: {
-          to: "left",
+          to: "right",
           incomingOptions: {
             keyframeAnimationOptions: { easing: "ease", duration: 300 }
           },
@@ -204,7 +204,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
             keyframeAnimationOptions: { easing: "ease", duration: 300 }
           }
         },
-        position: { rowStart: "0" },
+        position: { rowEnd: "0" },
       })
       dialogref.afterClosed().subscribe(x=>{
         if(x?.Canvas){

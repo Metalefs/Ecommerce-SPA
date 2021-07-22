@@ -29,10 +29,18 @@ PedidoRouter.get(RouteDictionary.Pedidos.Raiz,PedidoCtrl.Ler)
     ErrorHandler.DefaultException(err, res)
   }
 })
+.get(RouteDictionary.Pedidos.Raiz + ":id", FiltrarPorId)
 .put(RouteDictionary.Pedidos.Raiz, ensureIsAdmin, PedidoCtrl.Editar)
 .post(RouteDictionary.Pedidos.Raiz, ensureIsAdmin, PedidoCtrl.Incluir)
 .delete(RouteDictionary.Pedidos + `:id`, ensureIsAdmin, PedidoCtrl.Remover);
-
+async function FiltrarPorId(req, res){
+  if (req.params.id)
+  PedidoService.FiltrarPorId(req.params.id)
+      .then(result => res.send(result))
+      .catch(err => ErrorHandler.DefaultException(err, res))
+  else
+    ErrorHandler.DefaultException("unknown", res);
+}
 export {
   PedidoRouter
 }

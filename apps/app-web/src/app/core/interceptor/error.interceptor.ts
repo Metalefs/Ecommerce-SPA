@@ -25,11 +25,11 @@ export class ErrorInterceptor implements HttpInterceptor {
               }
               case(409):{
                 // alert if 409 response returned from api
-                this.snack.open(err.erro,"Ok",{
+                this.snack.open(err.error.erro, "Ok",{
                   verticalPosition:"top",
                   duration: 5000
                 })
-                alert(err.erro);
+                alert(err.error.erro);
               }
             }
 

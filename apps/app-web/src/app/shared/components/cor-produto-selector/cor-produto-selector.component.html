@@ -1,6 +1,6 @@
 <div>
   <p class="is-size-7 dis-flex flex-m">
-    <span [ngClass]="{'is-hidden': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Cor:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
+    <span [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Selecione a opção de <strong>Cor</strong>:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
   </p>
   <div
     class="columns is-multiline flex-sb"
@@ -25,18 +25,16 @@
       />
       <div
         title="{{ cor?.Nome || cor.nome }}"
-        class="ColorlabelBackground is-rounded"
+        class="shadow-light is-rounded button is-outlined is-small"
+        [style.background]="cor?.Cor || cor?.cor"
         [ngClass]="{ 'is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome ) == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
-        (click)="setColor(cor)"
       >
-        <label
-          title="{{ cor.Nome || cor.nome }}"
-          [style.background]="cor?.Cor || cor?.cor"
-          class="border-light"
-          for="cor{{ i }}"
-        ></label>
-      </div>
-      <span (click)="setColor(cor)"></span>
+    </div>
+    <p
+      title="{{ cor.Nome || cor.nome }}"
+      class="border-light"
+      for="cor{{ i }}"
+    >{{cor?.Nome||cor?.nome}}</p>
     </div>
   </div>
 </div>

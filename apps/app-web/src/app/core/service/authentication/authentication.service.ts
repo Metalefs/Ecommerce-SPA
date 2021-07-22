@@ -70,7 +70,7 @@ export class AuthenticationService {
       .pipe(
         map((user) => {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          if (user.error == undefined) {
+          if (user.erro == undefined) {
             if (user.token) {
               localStorage.setItem('currentUser', JSON.stringify(user));
               this.currentUserSubject.next(user);
@@ -80,10 +80,10 @@ export class AuthenticationService {
               duration: 3000
             });
           } else {
-            this.snack.open(user.error, 'Fechar',{
+            this.snack.open(user.erro, 'Fechar',{
               duration: 3000
             });
-            throw user.error;
+            throw user.erro;
           }
         })
       );

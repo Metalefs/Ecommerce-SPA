@@ -6,102 +6,92 @@
   <ng-container *ngIf="TrocaImagem; then troca; else naotroca"> </ng-container>
 
   <ng-template #troca>
-
-      <mat-card
-        (mouseenter)="
-          this.imgProduto.classList.add('hide');
-          this.imgProduto.classList.remove('show')
-        "
-        (mouseout)="
-          this.imgProduto.classList.remove('hide');
-          this.imgProduto.classList.add('show')
-        "
-        matRipple
-        class="portfolio-item zoom of-y-scroll card"
-        [style.flexDirection]="flex_direction"
-      >
-        <div #imgProduto matRipple class="dis-flex flex-w w-full">
+    <mat-card
+      (mouseenter)="
+        this.imgProduto.classList.add('hide');
+        this.imgProduto.classList.remove('show')
+      "
+      (mouseout)="
+        this.imgProduto.classList.remove('hide');
+        this.imgProduto.classList.add('show')
+      "
+      matRipple
+      class="portfolio-item zoom of-y-scroll card"
+      [style.flexDirection]="flex_direction"
+    >
+      <div #imgProduto matRipple class="dis-flex flex-w w-full">
+        <span
+          class="prod-status"
+          *ngIf="Produto?.Status == statusProduto.promocao"
+        >
+          <span class="product-category"></span>
           <span
-            class="prod-status"
-            *ngIf="Produto?.Status == statusProduto.promocao"
+            [class]="
+              'subtitle is-size-7 is-capitalized product-badge status-' +
+              Produto.Status.toString().toLowerCase()
+            "
+            >{{
+              Produto?.Status == statusProduto.promocao
+                ? 'Promoção'
+                : translateStatusProduto(Produto.Status)
+            }}</span
           >
-            <span class="product-category"></span>
-            <span
-              [class]="
-                'subtitle is-size-7 is-capitalized product-badge status-' +
-                Produto.Status.toString().toLowerCase()
-              "
-              >{{
-                Produto?.Status == statusProduto.promocao
-                  ? 'Promoção'
-                  : translateStatusProduto(Produto.Status)
-              }}</span
+        </span>
+        <div class="pos-absolute z-index-1 top-0 right-0">
+          <div>
+            <a
+              matRipple
+              pageScroll
+              href="#topo"
+              class="dis-flex flex-m button shadow-light is-small"
+              title="Adicionar a cesta"
+              (click)="AdicionarAoOrcamento()"
             >
-          </span>
-          <div class="pos-absolute z-index-1 top-0 right-0">
-            <div>
-              <a
-            matRipple
-            pageScroll
-            href="#topo"
-            class="columns button"
-            title="Adicionar a cesta"
-            (click)="AdicionarAoOrcamento()"
-            mat-flat-button
-            >
-              <span class="flex-w flex-c-m"
-                ><span class="mr-1 pi pi-shopping-cart"></span
-              ></span>
+              <i class="mr-1 pi pi-shopping-cart"></i>
             </a>
-            </div>
-            <div>
-              <a
+          </div>
+          <div>
+            <a
               title="Mais informações"
               matRipple
               pageScroll
               href="#topo"
-              class="columns button"
-
+              class="dis-flex flex-m button shadow-light is-small"
               (click)="AbrirPreviewProduto()"
-              mat-flat-button
-              >
-              <span class="flex-w flex-c-m"
-                ><span class="mr-1 pi pi-window-maximize"></span
-              ></span>
+            >
+              <i class="mr-1 pi pi-window-maximize"></i>
             </a>
-            </div>
           </div>
-          <slideshow
-            mat-card-image
-            class=""
-            *ngIf="imageUrls.length"
-            [imageUrls]="imageUrls"
-            [arrowSize]="(Carrosel$ | async)?.arrowSize"
-            [showArrows]="false"
-            [disableSwiping]="false"
-            [autoPlay]="false"
-            [backgroundSize]="'contain'"
-            [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
-            [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
-            [showDots]="(Carrosel$ | async)?.showDots"
-            [dotColor]="'black'"
-            [showCaptions]="(Carrosel$ | async)?.showCaptions"
-            [captionColor]="(Carrosel$ | async)?.captionColor"
-            [captionBackground]="(Carrosel$ | async)?.captionBackground"
-            [lazyLoad]="true"
-            [hideOnNoSlides]="(Carrosel$ | async)?.hideOnNoSlides"
-            [fullscreen]="(Carrosel$ | async)?.fullscreen"
-            [autoPlayWaitForLazyLoad]="true"
-          >
-          </slideshow>
         </div>
-
-        <mat-card-header
-          class=" of-y-scroll"
-          (click)="AbrirPaginaProduto()"
+        <slideshow
+          mat-card-image
+          class=""
+          *ngIf="imageUrls.length"
+          [imageUrls]="imageUrls"
+          [arrowSize]="(Carrosel$ | async)?.arrowSize"
+          [showArrows]="false"
+          [disableSwiping]="false"
+          [autoPlay]="false"
+          [backgroundSize]="'contain'"
+          [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
+          [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
+          [showDots]="(Carrosel$ | async)?.showDots"
+          [dotColor]="'black'"
+          [showCaptions]="(Carrosel$ | async)?.showCaptions"
+          [captionColor]="(Carrosel$ | async)?.captionColor"
+          [captionBackground]="(Carrosel$ | async)?.captionBackground"
+          [lazyLoad]="true"
+          [hideOnNoSlides]="(Carrosel$ | async)?.hideOnNoSlides"
+          [fullscreen]="(Carrosel$ | async)?.fullscreen"
+          [autoPlayWaitForLazyLoad]="true"
         >
+        </slideshow>
+      </div>
+
+      <mat-card-header class="of-y-scroll" (click)="AbrirPaginaProduto()">
         <mat-card-title class="title titulo-produto">
-          <a
+          <div class="of-x-scroll txt-center">
+            <a
             matRipple
             class="reset-a"
             pageScroll
@@ -110,11 +100,14 @@
           >
             {{ Produto?.Nome }}
           </a>
-            <mat-card-subtitle class="mat-card-subtitle is-italic my-4 fw-100 subtitle is-size-7">
-                {{ Produto?.Subtitulo }}
-            </mat-card-subtitle>
-            <div class="mt-5 mb-3" *ngIf="Produto?.Rating.length > 0">
-              <star-rating
+          </div>
+          <mat-card-subtitle
+            class="mat-card-subtitle is-italic my-4 fw-100 subtitle is-size-7"
+          >
+            {{ Produto?.Subtitulo }}
+          </mat-card-subtitle>
+          <!-- <div class="mt-5 mb-3" *ngIf="Produto?.Rating.length > 0">
+            <star-rating
               [size]="'small'"
               [rating]="meanRating()"
               [hoverEnabled]="true"
@@ -123,63 +116,61 @@
               [step]="0.5"
               staticColor="ok"
               [starType]="'svg'"
-              ></star-rating>
-            </div>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-footer class="mx-0 px-0 z-index-2 w-full of-y-scroll">
-          <a
-            *ngIf="Produto.Status == statusProduto.esgotado"
-            (click)="AbrirPaginaProduto()"
-            routerLinkActive="router-link-active"
-            class="wp-btn button border is-rounded is-small py-3 box"
-            style="text-decoration: none;"
-          >
-            Esgotado
-          </a>
+            ></star-rating>
+          </div> -->
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="mx-0 mb-0 px-0 z-index-2 w-full of-y-scroll">
+        <a
+          *ngIf="Produto.Status == statusProduto.esgotado"
+          (click)="AbrirPaginaProduto()"
+          routerLinkActive="router-link-active"
+          class="wp-btn button border is-rounded is-small py-3 box"
+          style="text-decoration: none;"
+        >
+          Esgotado
+        </a>
 
-          <personalizados-lopes-exibicao-preco-produto
+        <personalizados-lopes-exibicao-preco-produto
+          class="txt-center"
           [Produto]="Produto"
         ></personalizados-lopes-exibicao-preco-produto>
-        </mat-card-footer>
 
-        <div class="z-index-1">
-          <div
-            class="content m-lr-auto flex-c-m dis-flex"
-            [style.width]="flex_direction == 'row' ? '45%' : '100%'"
-            [style.left]="'8%'"
-          >
-            <div
-              class="portfolio-overlay events-none w-full"
-              style="top: 10px;"
-            >
-              <div class="overlay-items w-full txt-center">
-                <p>
-                  {{
-                    Produto?.DescricaoRapida
-                      ? Produto?.DescricaoRapida
-                      : Produto?.Nome
-                  }}
-                </p>
-              </div>
+        <mat-divider></mat-divider>
+      </mat-card-actions>
+
+      <mat-card-footer class="w-full mx-0 py-2">
+        <a
+          title="Comprar"
+          matRipple
+          pageScroll
+          href="#topo"
+          class="button is-dark w-full"
+          (click)="AbrirPaginaProduto()"
+          routerLinkActive="router-link-active"
+          mat-flat-button
+          ><mat-icon class="material-icons-outlined">shopping_bag</mat-icon></a
+        >
+      </mat-card-footer>
+      <div class="z-index-1">
+        <div
+          class="content m-lr-auto flex-c-m dis-flex"
+          [style.width]="flex_direction == 'row' ? '45%' : '100%'"
+          [style.left]="'8%'"
+        >
+          <div class="portfolio-overlay events-none w-full" style="top: 10px;">
+            <div class="overlay-items w-full txt-center">
+              <p>
+                {{
+                  Produto?.DescricaoRapida
+                    ? Produto?.DescricaoRapida
+                    : Produto?.Nome
+                }}
+              </p>
             </div>
-            <a
-            title="Comprar"
-            matRipple
-            pageScroll
-            href="#topo"
-            class="reset-a button shadow-light hoverable is-success m-lr-auto"
-            style="top: 30%; left: 27%;"
-            (click)="AbrirPaginaProduto()"
-            routerLinkActive="router-link-active"
-            mat-flat-button
-            class=""
-            ><mat-icon class="material-icons-outlined"
-              >shopping_bag</mat-icon
-            ></a
-          >
           </div>
         </div>
+      </div>
     </mat-card>
 
     <figure
@@ -248,22 +239,19 @@
           matRipple
           pageScroll
           href="#topo"
-          class=" button is-small shadow-light hoverable m-lr-auto px-4"
+          class="button is-small shadow-light hoverable m-lr-auto px-4"
           [style.top]="flex_direction == 'row' ? '45%' : '35%'"
           [style.width]="flex_direction == 'row' ? '45%' : '45%'"
           (click)="AbrirPreviewProduto()"
           class=""
-          ><i class="pi pi-window-maximize"></i
-        ></button>
+        >
+          <i class="pi pi-window-maximize"></i>
+        </button>
       </div>
-      <mat-card-footer class="px-2 z-index-2">
+      <mat-card-actions class="px-2 z-index-2">
         <mat-card-header class="w-full txt-center pt-1">
           <mat-card-title class="w-full titulo-produto mb-0">
-            <a
-              matRipple
-              class="reset-a"
-              (click)="AbrirPaginaProduto()"
-            >
+            <a matRipple class="reset-a" (click)="AbrirPaginaProduto()">
               {{ Produto?.Nome }}
             </a>
             <div class="my-0">
@@ -296,10 +284,12 @@
             <ng-template #preco_promo>
               <div class="w-full" *ngIf="Produto?.Parcelas == 0">
                 <p class="is-size-7 linethr">
-                  <span class="is-size-7 preto6">de</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
+                  <span class="is-size-7 preto6">de</span> R$
+                  {{ Produto?.Preco.toFixed(2) || '0.00' }}
                 </p>
                 <p class="preco promocao preto6">
-                  <span class="is-size-7">Por</span> R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
+                  <span class="is-size-7">Por</span> R$
+                  {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
                 </p>
               </div>
             </ng-template>
@@ -374,7 +364,7 @@
           <div class="content a-i-c m-lr-auto w-full">
             <div
               class="portfolio-overlay events-none w-full"
-              style="top: 10px;left:0px"
+              style="top: 10px; left: 0px;"
               [style.width]="flex_direction == 'row' ? '50%' : '100%'"
             >
               <div class="overlay-items w-full txt-center">
@@ -403,14 +393,13 @@
             >
           </div>
         </div>
-      </mat-card-footer>
+      </mat-card-actions>
     </mat-card>
     <figure
       class="image is-64x64 img-orcamento"
       [ngClass]="isOrcamento ? 'active' : ''"
     >
       <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
-
     </figure>
   </ng-template>
 </ng-template>
@@ -420,11 +409,7 @@
     data-aos="flip-down"
     class="flex-w flex-c portfolio-item zoom mat-elevation-z4"
   >
-    <a
-      pageScroll
-      href="#PRODUTO"
-      (click)="AbrirPaginaProduto()"
-    >
+    <a pageScroll href="#PRODUTO" (click)="AbrirPaginaProduto()">
       <img
         src="{{ (Produto?.Imagem)[0] }}"
         alt="Foto de {{ Produto?.NomeCategoria }} {{ Produto?.Cor }} - {{

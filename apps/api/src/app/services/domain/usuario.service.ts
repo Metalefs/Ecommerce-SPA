@@ -121,14 +121,15 @@ export module UsuarioService {
 
     export async function createTempAccount(NovoUsuario : entities.Usuario) {
       // validate
-      let findEmail = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email});
-      let findCPF = await Repository.FindOne(entities.Usuario.NomeID, {CPF: NovoUsuario.CPF});
-      if ((findEmail != 0 && findEmail != undefined)&&(findCPF != 0 && findCPF != undefined)) {
+      let findEmail = await Repository.FindOne(entities.Usuario.NomeID, {Email: NovoUsuario.Email}).catch();
+      let findCPF = await Repository.FindOne(entities.Usuario.NomeID, {CPF: NovoUsuario.CPF}).catch();
+      console.log(findEmail,findCPF)
+      if (findEmail&&findCPF) {
           throw 'E-mail "' + NovoUsuario.Email + '" ou CPF já está sendo usado!';
       }
       // hash password
       if (NovoUsuario.Senha) {
-          NovoUsuario.Senha = bcrypt.hashSync(NovoUsuario.Senha, 10);
+        NovoUsuario.Senha = bcrypt.hashSync(NovoUsuario.Senha, 10);
       }else{
         NovoUsuario.Senha = generateRandomPassword();
       }

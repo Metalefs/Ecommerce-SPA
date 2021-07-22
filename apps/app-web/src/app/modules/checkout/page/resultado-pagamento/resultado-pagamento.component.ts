@@ -43,7 +43,7 @@ export class ResultadoPagamentoComponent implements OnInit {
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
       this.Orcamento = x;
-      this.Pedido = new Pedido(x.Produto,x.Empresa,x.Status,x.Preco,x.Mensagem,x.Usuario,x.Dimensoes);
+      this.Pedido = new Pedido(x);
 
       if(this.Orcamento.Produto){
         this.Orcamento.Produto.forEach(prod=>{

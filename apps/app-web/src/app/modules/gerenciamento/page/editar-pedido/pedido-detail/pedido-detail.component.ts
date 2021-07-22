@@ -21,8 +21,8 @@ export class PedidoDetailComponent implements OnInit {
   Pedido:Pedido;
   ngOnInit(): void {
     let id = this.activeRoute.snapshot.params['id'];
-    this.pedidoService.Ler().subscribe((x :Pedido[])=>{
-      this.Pedido = x.find(x=>x._id == id);
+    this.pedidoService.Filtrar(id).subscribe((x :Pedido[])=>{
+      this.Pedido = x[0];
     })
   }
 

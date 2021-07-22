@@ -2,10 +2,10 @@
   #swiperEl4
   (mouseenter)="onSwiperHover(true)"
   (mouseleave)="onSwiperHover(false)"
-  class="swiper-container z-index-1 px-1 mh-full bg-image"
+  class="swiper-container z-index-1 px-1 mh-full"
   [swiper]="swiperConfig$ | async"
 >
-  <mat-label class="label is-small">Estampas</mat-label>
+  <mat-label class="label is-small">Escolha a estampa do item!</mat-label>
   <div
     style="max-width: 600px; max-height: 400px;"
     class="swiper-wrapper of-x-hidden mh-full of-x-scroll"
