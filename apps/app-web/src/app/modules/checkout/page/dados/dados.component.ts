@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
@@ -28,16 +28,24 @@ export class DadosComponent implements OnInit, OnDestroy {
   registrarse:boolean=false;
   indeterminate = false;
   labelPosition: 'before' | 'after' = 'after';
-
-  dadosForm:FormGroup;
+  @Input() email:string;
+  @Output() onNextStep:EventEmitter<any> = new EventEmitter<any>();
+  public get dadosForm(): FormGroup {
+    return this.checkoutService.dadosForm;
+  }
+  public set dadosForm(value: FormGroup) {
+    this.checkoutService.dadosForm = value;
+  }
 
   usuario:Usuario = DEFAULT_ORCAMENTO.Usuario;
-  constructor(private scrollService:PageScrollService, public checkoutService: CheckoutService, private router:Router, private store: Store, private authService:AuthenticationService, private fb: FormBuilder) {
+  constructor(private scrollService:PageScrollService, public checkoutService: CheckoutService, private router:Router, private store: Store, private authService:AuthenticationService) {
     this.authService.currentUser.subscribe(x=>{
       if(x)
       this.usuario = x;
+      this.usuario.Email = this.email;
       this.Orcamento$.subscribe(o=>{
         this.Orcamento = o;
+        this.Orcamento.Usuario.Email = this.email;
         if(this.usuario){
           this.Orcamento.Usuario = this.usuario;
           this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
@@ -47,22 +55,12 @@ export class DadosComponent implements OnInit, OnDestroy {
           this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
         }
       })
-      this.dadosForm = this.fb.group({
-        nome: [this.usuario.Nome, [Validators.required ]],
-        email:[this.usuario.Email, [Validators.required ,Validators.email ]],
-        phone:[this.usuario.Telefone, [Validators.required, Validators.minLength(11)]],
-        cpf:  [this.usuario.CPF, [Validators.required, Validators.minLength(11)]],
-        Mensagem:   [this.Orcamento.Mensagem, []],
-        password:   [this.usuario.Senha, []],
-        registrarse:[this.registrarse, []],
-      });
+      this.checkoutService.BuildDadosForm(this.usuario,this.Orcamento,this.registrarse);
     });
     CheckoutService.DadosCompleto = true;
    }
 
   ngOnInit(): void {
-
-
     setTimeout(()=>{
       this.flip()
     },0)
@@ -82,18 +80,20 @@ export class DadosComponent implements OnInit, OnDestroy {
   }
 
   SubmeterDadosPessoais(){
-    this.ErroCadastro = true;
-    if(this.ValidarDados()){
-      let usuario = this.dadosForm.getRawValue() as any;
-      this.Orcamento.Usuario.Nome = usuario.nome;
-      this.Orcamento.Usuario.Email = usuario.email;
-      this.Orcamento.Usuario.Telefone = usuario.phone;
-      this.Orcamento.Usuario.CPF = usuario.cpf;
-      this.Orcamento.Usuario.Senha = usuario.password;
-      this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento)).subscribe(x=>{
-        this.router.navigateByUrl("/checkout/endereco");
-      })
+
+    if(!this.ValidarDados()){
+      this.ErroCadastro = true;
+      return;
     }
+
+    let usuario = this.dadosForm.getRawValue() as any;
+    this.Orcamento.Usuario.Nome = usuario.nome;
+    this.Orcamento.Usuario.Telefone = usuario.phone;
+    this.Orcamento.Usuario.CPF = usuario.cpf;
+    this.Orcamento.Usuario.Senha = usuario.password;
+    this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento)).subscribe(x=>{
+      this.onNextStep.emit();
+    })
   }
 
   ValidarDados(){

@@ -1,72 +1,99 @@
-<section class="pos-relative py-6 au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
-  <div class="checkout-background has-background-blue1-ck pos-fixed bellow-nav"></div>
-  <div class="btr bbr has-background-white px-3 box pt-4 py-3 af cs i2 i3 i4 w-full am de w-half z-index-2 ">
-    <div class="">
-      <div class="w-full of-x-scroll">
-        <mat-horizontal-stepper [linear]="true" #stepper class="">
-          <mat-step class="column" [completed]="IsDadosCompleto()" (click)="openPage('/checkout')" routerLinkActive="active" label="Carrinho">
+<div class="checkout-background has-background-blue1-ck pos-fixed bellow-nav"></div>
+<section class="section mh-full">
+  <div class="container">
+    <a class="logo block" routerLink="/"></a>
+    <div @slideInOut class="margin pos-relative au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
 
-          </mat-step>
-          <mat-step class="column" [completed]="IsDadosCompleto()" (click)="openPage('/checkout/dados')" routerLinkActive="active" label="Dados do comprador">
-
-          </mat-step>
-          <mat-step class="column" [completed]="IsDadosCompleto()&&IsEnderecoCompleto()" (click)="openPage('/checkout/endereco')" routerLinkActive="active" label="Dados da entrega">
-
-          </mat-step>
-          <mat-step class="column" [completed]="IsDadosCompleto()&&IsEnderecoCompleto()&&IsPagamentoCompleto()" label="Pagamento">
-
-          </mat-step>
-        </mat-horizontal-stepper>
-      </div>
-    </div>
-
-    <router-outlet @fadeIn #outlet2></router-outlet>
-    <ng-container *ngIf="!checkoutService.getValid()">
-      <div class="columns is-vcentered"  @fadeIn>
-        <div class="column is-3">
-          <figure class="image has-ratio"  @fadeIn>
-            <img src="/assets/images/figures/undraw_cancel_u1it.svg">
-          </figure>
-        </div>
+      <div class="columns is-3">
         <div class="column">
-          <mat-list class="px-2 mx-2 " @fadeIn>
-            <mat-list-item class="pb-2 box" @fadeIn *ngFor="let erro of checkoutService.getErros()">
-              <p class="subtitle is-size-6 has-text-danger"><mat-icon>error</mat-icon> {{erro}}</p>
-              <mat-divider></mat-divider>
-            </mat-list-item>
-          </mat-list>
+          <div class="box px-3 py-3 w-full z-index-2">
+            <div class="">
+              <div class="w-full of-x-scroll">
+                <mat-vertical-stepper [linear]="true"  #tabs [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                  <mat-step class="box" [stepControl]="emailForm" label="E-mail">
+                    <form [formGroup]="emailForm"
+                    class="w-full">
+                      <mat-form-field appearance="">
+                        <mat-label>Email</mat-label>
+                        <input matInput
+                          class="w-full"
+                          formControlName="email"
+                          [(ngModel)]="Orcamento.Usuario.Email"
+                          name="Email"
+                          type="email"
+                          placeholder="e-mail@dominio.com"
+                          required>
+                      </mat-form-field>
+                      <div>
+                        <button mat-raised-button matStepperNext>Próximo</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step class="box" [stepControl]="dadosForm" label="Dados pessoais">
+                    <personalizados-lopes-dados (onNextStep)="selected.setValue(2)"></personalizados-lopes-dados>
+                  </mat-step>
+                  <mat-step class="box" [stepControl]="enderecoForm" label="Dados da entrega">
+                    <personalizados-lopes-endereco (onNextStep)="selected.setValue(3); pagamento._init_point = $event"></personalizados-lopes-endereco>
+                  </mat-step>
+                  <mat-step class="box" label="Pagamento">
+                    <personalizados-lopes-pagamento #pagamento></personalizados-lopes-pagamento>
+                  </mat-step>
+                </mat-vertical-stepper>
+              </div>
+            </div>
+
+            <!-- <router-outlet @fadeIn #outlet2></router-outlet> -->
+
+            <mat-toolbar class="dis-flex flex-sb py-6 of-y-hidden">
+
+              <a class="is-size-7	">aviso legal</a>
+              <span class="spacer"></span>
+              <!-- <figure class="image px-4 ">
+                <img src="assets/images/icons/selos-seguranca-mp.gif" height="100">
+              </figure> -->
+              <figure class="image py-1 px-4 is-128x128">
+                <img src="assets/images/icons/bandeira-dos-cartoes-de-credito.png">
+              </figure>
+            </mat-toolbar>
+          </div>
+        </div>
+        <div class="column is-4">
+          <div class="box">
+            <personalizados-lopes-confirmacao></personalizados-lopes-confirmacao>
+          </div>
+
         </div>
       </div>
-    </ng-container>
-    <mat-toolbar class="dis-flex flex-sb py-6 of-y-hidden">
 
-      <a class="is-size-7	">aviso legal</a>
-      <span class="spacer"></span>
-      <!-- <figure class="image px-4 ">
-        <img src="assets/images/icons/selos-seguranca-mp.gif" height="100">
-      </figure> -->
-      <figure class="image py-1 px-4 is-128x128">
-        <img src="assets/images/icons/bandeira-dos-cartoes-de-credito.png">
-      </figure>
-      <!-- <a href="#"><img class="logo" src="assets/images/icons/Logo_dark.png" alt="LOGO"></a> -->
-    </mat-toolbar>
-  </div>
-
-  <ng-container *ngIf="checkoutService.getValid()">
-    <div class="columns  pos-sticky top-0 z-index-1 bellow-nav"  @fadeIn>
-      <div class="column is-3">
-        <figure class="image has-ratio check-img" @fadeIn>
-          <img src="/assets/images/figures/undraw_Confirmed_re_sef7.svg">
-        </figure>
-      </div>
-      <div class="column">
-        <mat-list class="px-2 mx-2 " @fadeIn>
-          <mat-list-item class="" @fadeIn >
-            <p class="subtitle is-size-6 has-text-success"><mat-icon>check</mat-icon> Seu pedido está valido!</p>
-            <mat-divider></mat-divider>
-          </mat-list-item>
-        </mat-list>
-      </div>
+      <ng-container *ngIf="!checkoutService.getValid()">
+        <div class="columns is-vcentered"  @fadeIn>
+          <div class="column is-3">
+            <figure class="image has-ratio"  @fadeIn>
+              <img src="/assets/images/figures/undraw_cancel_u1it.svg">
+            </figure>
+          </div>
+          <div class="column">
+            <mat-list class="px-2 mx-2 " @fadeIn>
+              <mat-list-item class="pb-2 box" @fadeIn *ngFor="let erro of checkoutService.getErros()">
+                <p class="subtitle is-size-6 has-text-danger"><mat-icon>error</mat-icon> {{erro}}</p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="checkoutService.getValid()">
+        <div class="columns  pos-sticky top-0 z-index-1 bellow-nav"  @fadeIn>
+          <div class="column">
+            <mat-list class="px-2 mx-2 " @fadeIn>
+              <mat-list-item class="box" @fadeIn >
+                <p class="subtitle is-size-6 has-text-success"><mat-icon>check</mat-icon> Seu pedido está valido!</p>
+                <mat-divider></mat-divider>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </div>
+      </ng-container>
     </div>
-  </ng-container>
+  </div>
 </section>

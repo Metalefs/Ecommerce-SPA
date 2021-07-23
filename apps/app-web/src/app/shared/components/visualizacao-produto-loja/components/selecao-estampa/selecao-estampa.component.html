@@ -1,16 +1,7 @@
-<div
-  #swiperEl4
-  (mouseenter)="onSwiperHover(true)"
-  (mouseleave)="onSwiperHover(false)"
-  class="swiper-container z-index-1 px-1 mh-full"
-  [swiper]="swiperConfig$ | async"
->
+<div>
   <mat-label class="label is-small">Escolha a estampa do item!</mat-label>
-  <div
-    style="max-width: 600px; max-height: 400px;"
-    class="swiper-wrapper of-x-hidden mh-full of-x-scroll"
-  >
-    <div class="swiper-slide" *ngFor="let estampa of Estampas">
+  <div class="columns is-multiline of-x-hidden mh-full of-x-scroll">
+    <div class="column is-4" *ngFor="let estampa of Estampas">
       <personalizados-lopes-card-estampa
         [Estampa]="estampa"
         [is_edicao]="false"

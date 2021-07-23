@@ -77,9 +77,7 @@ export class EditarCategoriaComponent implements OnInit {
     let method = "Editar";
     let name = "Categoria";
     let id = Categoria._id;
-    if (!Categoria.Caminho) {
-      Object.assign(Categoria, { Caminho: "" });
-    }
+
     if (!Categoria.Nicho) {
       Object.assign(Categoria, { Nicho: "" });
     }
@@ -122,7 +120,6 @@ export class EditarCategoriaComponent implements OnInit {
         result[1].value,
         result[2].value,
         result[3].value,
-        result[4].value,
       )
       Categoria._id = id;
       console.log(Categoria);

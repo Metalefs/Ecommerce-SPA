@@ -1,4 +1,12 @@
 <section class="">
+
+  <personalizados-lopes-exibicao-breadcrumb
+  *ngIf="Produto"
+  [Produto]="Produto"
+  [items]="items"
+  class="mb-4"
+></personalizados-lopes-exibicao-breadcrumb>
+
   <div class="px-1">
     <div *ngIf="!Produto">
       <div class="p-grid p-formgrid">
@@ -18,31 +26,23 @@
         ></personalizados-lopes-exibicao-imagem-produto>
       </div>
 
-      <div
-        class="column is-7-desktop is-12-tablet pt-0 px-0 z-index-1 has-background-white shadow-light"
+      <div class="column is-4-desktop is-12-tablet pt-0 px-0 z-index-1 has-background-white shadow-light"
       >
-        <personalizados-lopes-exibicao-breadcrumb
-          *ngIf="Produto"
-          [Produto]="Produto"
-          [items]="items"
-          class="mb-4"
-        ></personalizados-lopes-exibicao-breadcrumb>
-
         <div class="px-4">
           <div class="columns">
             <!-- {{ mobile ? 'txt-left' : 'txt-left' }} -->
             <div class="column is-12">
               <h1 class="titulo-produto mb-4">{{ Produto?.Nome }}</h1>
-              <ul class="list-unstyled txt-right dis-flex flex-sa">
+              <ul class="list-unstyled txt-right dis-flex">
                 <li>
                   <p class="subtitle">
-                    <b>Modelo: </b> <span>{{ Produto?.Modelo || 'N/A' }}</span>
+                    <b>Modelo: </b> <span class="fs-300">{{ Produto?.Modelo || 'N/A' }}</span>
                   </p>
                 </li>
                 <li>
                   <p class="subtitle">
                     <b>Marca: </b>
-                    <span>{{
+                    <span class="fs-300">{{
                       Produto?.Marca?.Nome || Produto?.Marca || 'N/A'
                     }}</span>
                   </p>
@@ -65,20 +65,20 @@
                           <div
                             class="columns flex-sa mx-0 w-full is-multiline pb-1"
                           >
-                            <div class="column is-6-mobile mh-full">
+                            <div class="column is-12 mh-full">
                               <personalizados-lopes-selecao-tamanho-produto
                                 [Produto]="Produto"
                                 [ErroTamanho]="ErroTamanho"
                                 [Erros]="Erros"
                               ></personalizados-lopes-selecao-tamanho-produto>
                             </div>
-                            <div class="column mh-full is-6-mobile of-x-scroll">
+                            <div class="column mh-full is-6 of-x-scroll">
                               <personalizados-lopes-cor-produto-selector
                                 [Produto]="Produto"
                                 (onSetColor)="setColor($event)"
                               ></personalizados-lopes-cor-produto-selector>
                             </div>
-                            <div class="column mh-full is-6-mobile of-x-scroll">
+                            <div class="column mh-full is-6 of-x-scroll">
                               <div class="of-x-hidden">
                                 <personalizados-lopes-selecao-estampa
                                   [Produto]="Produto"
@@ -93,48 +93,6 @@
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div class="message is-white">
-                      <div class="">
-                        <personalizados-lopes-exibicao-preco-produto
-                          [Produto]="Produto"
-                        ></personalizados-lopes-exibicao-preco-produto>
-                      </div>
-                      <div class="w3-hide-small w3-text-grey font33">
-                        <i class="fas fa-barcode"></i>
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-diners-club"></i>
-                        <i class="fab fa-cc-amex"></i>
-                      </div>
-                    </div>
-                    <personalizados-lopes-bloco-pagamento-produto
-                      [Produto]="Produto"
-                      [isOrcamento]="isOrcamento"
-                      [Form]="produtoForm"
-                      [textoAdicionar]="textoAdicionar"
-                      (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
-                      (onDuplicarOrcamento)="DuplicarOrcamento()"
-                      [ErroQuantidade]="ErroQuantidade"
-                      [Erros]="Erros"
-                      (onQuantidadeChange)="setQuantidade($event)"
-                    ></personalizados-lopes-bloco-pagamento-produto>
-                  </div>
-                  <mat-list *ngIf="!IsValid" class="w-full mx-0 border">
-                    <mat-list-item *ngFor="let erro of Erros">
-                      <p class="subtitle is-size-6 has-text-danger">
-                        *{{ erro.erro }}
-                      </p>
-                      <hr />
-                    </mat-list-item>
-                  </mat-list>
-                </div>
-                <div
-                  *ngIf="Produto?.Status == statusProduto.esgotado"
-                  class="box w-full"
-                >
-                  <personalizados-lopes-botao-esgotado [Produto]="Produto">
-                  </personalizados-lopes-botao-esgotado>
                 </div>
               </form>
             </div>
@@ -168,6 +126,51 @@
           >
             <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
           </figure>
+        </div>
+      </div>
+
+      <div class="column is-3">
+        <div class="box">
+          <div class="message is-white">
+            <div class="message-body">
+              <personalizados-lopes-exibicao-preco-produto
+                [Produto]="Produto"
+              ></personalizados-lopes-exibicao-preco-produto>
+            </div>
+            <div class="w3-hide-small w3-text-grey font33">
+              <i class="fas fa-barcode"></i>
+              <i class="fab fa-cc-visa"></i>
+              <i class="fab fa-cc-mastercard"></i>
+              <i class="fab fa-cc-diners-club"></i>
+              <i class="fab fa-cc-amex"></i>
+            </div>
+          </div>
+          <personalizados-lopes-bloco-pagamento-produto
+            [Produto]="Produto"
+            [isOrcamento]="isOrcamento"
+            [Form]="produtoForm"
+            [textoAdicionar]="textoAdicionar"
+            (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
+            (onDuplicarOrcamento)="DuplicarOrcamento()"
+            [ErroQuantidade]="ErroQuantidade"
+            [Erros]="Erros"
+            (onQuantidadeChange)="setQuantidade($event)"
+          ></personalizados-lopes-bloco-pagamento-produto>
+          <mat-list *ngIf="!IsValid" class="w-full mx-0 border">
+            <mat-list-item *ngFor="let erro of Erros">
+              <p class="subtitle is-size-6 has-text-danger">
+                *{{ erro.erro }}
+              </p>
+              <hr />
+            </mat-list-item>
+          </mat-list>
+          <div
+            *ngIf="Produto?.Status == statusProduto.esgotado"
+            class="box w-full"
+          >
+            <personalizados-lopes-botao-esgotado [Produto]="Produto">
+            </personalizados-lopes-botao-esgotado>
+          </div>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 <div class="">
   <div class="columns is-multiline">
-    <div class="column is-4">
+    <div class="column is-12">
       <personalizados-lopes-selecao-quantidade-produto
         [Produto]="Produto"
         [ErroQuantidade]="ErroQuantidade"
@@ -8,7 +8,7 @@
         (onQuantidadeChange)="onQuantidadeChange.emit($event)"
       ></personalizados-lopes-selecao-quantidade-produto>
     </div>
-    <div class="column">
+    <div class="column is-12">
       <ng-container
         *ngIf="
           findInvalidControlsRecursive();

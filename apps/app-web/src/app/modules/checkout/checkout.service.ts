@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
@@ -13,7 +14,34 @@ export class CheckoutService {
   public static PagamentoCompleto:boolean;
   public static valid:boolean;
   public static erros:string[] = [];
-  constructor(private MercadoPago:MercadoPagoCheckoutService) { }
+  constructor(private MercadoPago:MercadoPagoCheckoutService,
+    private fb: FormBuilder) { }
+  dadosForm:FormGroup;
+  enderecoForm:FormGroup;
+
+  BuildDadosForm(usuario,orcamento,registrarse){
+    this.dadosForm = this.fb.group({
+      nome: [usuario.Nome, [Validators.required ]],
+      phone:[usuario.Telefone, [Validators.required, Validators.minLength(11)]],
+      cpf:  [usuario.CPF, [Validators.required, Validators.minLength(11)]],
+      Mensagem:   [orcamento.Mensagem, []],
+      password:   [usuario.Senha, []],
+      registrarse:[registrarse, []],
+    });
+  }
+
+  BuildEnderecoForm(orcamento){
+    this.enderecoForm = this.fb.group({
+      cep: [orcamento.Usuario.EnderecoEntrega.CEP, [Validators.required]],
+      rua: [orcamento.Usuario.EnderecoEntrega.Rua, { disabled: true }, [Validators.required]],
+      numero: [orcamento.Usuario.EnderecoEntrega.Numero, [Validators.required]],
+      complemento: [orcamento.Usuario.EnderecoEntrega.Complemento, []],
+      bairro: [orcamento.Usuario.EnderecoEntrega.Bairro, { disabled: true }, [Validators.required]],
+      cidade: [orcamento.Usuario.EnderecoEntrega.Cidade, { disabled: true }, [Validators.required]],
+      estado: [orcamento.Usuario.EnderecoEntrega.Estado, { disabled: true }, [Validators.required]],
+    })
+  }
+
   Validate(Orcamento){
     CheckoutService.valid = false;
     CheckoutService.erros = [];

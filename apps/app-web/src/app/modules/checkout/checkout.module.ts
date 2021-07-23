@@ -19,8 +19,10 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ResultadoPagamentoComponent } from './page/resultado-pagamento/resultado-pagamento.component';
 import { PagamentoTransparenteComponent } from './page/pagamento-transparente/pagamento-transparente.component';
+import { PagamentoComponent } from './page/pagamento/pagamento.component';
+import { InsertCoupomComponent } from './page/insert-coupom/insert-coupom.component';
 @NgModule({
-  declarations: [CheckoutComponent, ConfirmacaoComponent, DadosComponent, EnderecoComponent, ResultadoPagamentoComponent, PagamentoTransparenteComponent],
+  declarations: [CheckoutComponent, ConfirmacaoComponent, DadosComponent, EnderecoComponent, ResultadoPagamentoComponent, PagamentoTransparenteComponent, PagamentoComponent, InsertCoupomComponent],
   imports: [
     CheckoutPageRoutes,
     CommonModule,

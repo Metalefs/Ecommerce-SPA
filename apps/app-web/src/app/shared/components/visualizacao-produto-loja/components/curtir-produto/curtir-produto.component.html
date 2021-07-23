@@ -17,10 +17,10 @@
         {{ Liked ? 'favorite' : 'favorite_border' }}</mat-icon
       >
     </p>
-    <mat-chip-list *ngIf="Liked" aria-label="Obrigado">
-      <mat-chip color="primary" class="px-2 py-2" selected
-        >Você curtiu este produto</mat-chip
-      >
-    </mat-chip-list>
   </button>
+  <mat-chip-list *ngIf="Liked" aria-label="Obrigado">
+    <mat-chip color="primary" class="px-2 py-2" selected
+      >Você curtiu este produto</mat-chip
+    >
+  </mat-chip-list>
 </div>

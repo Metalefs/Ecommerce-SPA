@@ -10,7 +10,7 @@ import { DocumentRef } from 'apps/app-web/src/app/shared/services/document.servi
   styleUrls: ['./header-footer.component.scss']
 })
 export class HeaderFooterComponent implements OnInit {
-  Cards:SobreCard[];
+  Cards:SobreCard[]|any;
   @Input() specify:string;
   loading:boolean = true;
   constructor(
@@ -55,7 +55,8 @@ export class HeaderFooterComponent implements OnInit {
           class:"yellow",
           link:"/showcase",
           id:"#topo",
-          content:`Veja as fotos dos ultimos produtos no instagram`
+          content:`Veja as fotos dos ultimos produtos no instagram`,
+          column_class:"is-6-touch"
         },
         {
           title:"Todos os produtos",
@@ -65,6 +66,7 @@ export class HeaderFooterComponent implements OnInit {
           link:"/produtos",
           id:"#topo",
           content:`Veja todos os produtos por categoria.`,
+          column_class:"is-6-touch"
           //img_src:img[0].Src
         },
         {
@@ -74,7 +76,8 @@ export class HeaderFooterComponent implements OnInit {
           class:"blue",
           link:"/orcamento",
           id:"#topo",
-          content:`Faça um orçamento ou <a href="/orcamento">Entre em Contato !</a>`
+          content:`Faça um orçamento ou <a href="/orcamento">Entre em Contato !</a>`,
+          column_class:"is-12-touch"
         },
       ];
       let elements = [];

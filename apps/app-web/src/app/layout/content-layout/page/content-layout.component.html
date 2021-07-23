@@ -1,7 +1,7 @@
 <div
   matRipple
   (click)="ToggleNav(0)"
-  class="nav-trigger is-hidden-desktop z-index-top"
+  class="nav-trigger z-index-top"
   [ngClass]="NavState.open ? 'is-active' : ''"
   role="button"
   title="Menu"
@@ -27,17 +27,17 @@
     (mouseover)="CloseNav()"
   >
     <section class="split-home">
-      <personalizados-lopes-header></personalizados-lopes-header>
+      <personalizados-lopes-header *ngIf="!url?.includes('checkout')"></personalizados-lopes-header>
       <main class="main-content has-background-light">
         <router-outlet #outlet="outlet"></router-outlet>
       </main>
+      <personalizados-lopes-footer *ngIf="!url?.includes('checkout')"></personalizados-lopes-footer>
     </section>
-    <personalizados-lopes-icone-whatsapp
+    <personalizados-lopes-icone-whatsapp *ngIf="!url?.includes('checkout')"
       [Whatsapp]="(InformacoesContato$ | async)?.Whatsapp"
       [Mensagem]="Mensagem"
     >
     </personalizados-lopes-icone-whatsapp>
-    <personalizados-lopes-scroll-top></personalizados-lopes-scroll-top>
-    <personalizados-lopes-footer></personalizados-lopes-footer>
+    <personalizados-lopes-scroll-top *ngIf="!url?.includes('checkout')"></personalizados-lopes-scroll-top>
   </div>
 </div>

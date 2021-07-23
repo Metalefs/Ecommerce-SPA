@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -29,7 +29,12 @@ export class EnderecoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   Orcamento: Orcamento;
   registerForm: FormGroup;
-  enderecoForm: FormGroup;
+  public get enderecoForm(): FormGroup {
+    return this.checkoutService.enderecoForm;
+  }
+  public set enderecoForm(value: FormGroup) {
+    this.checkoutService.enderecoForm = value;
+  }
 
   state = 'flipped';
 
@@ -42,7 +47,7 @@ export class EnderecoComponent implements OnInit {
   estados: Estado[];
   user: Usuario;
   _init_point: {};
-
+  @Output() onNextStep:EventEmitter<any> = new EventEmitter<any>();
   constructor(
     @Inject(PLATFORM_ID) private platform: object,
     private store: Store,
@@ -53,7 +58,7 @@ export class EnderecoComponent implements OnInit {
     private auth: AuthenticationService,
     private router: Router,
     private scrollService: PageScrollService,
-    private fb: FormBuilder, private pageScroll: PageScrollService
+    private pageScroll: PageScrollService
   ) {
 
   }
@@ -63,16 +68,10 @@ export class EnderecoComponent implements OnInit {
       this.Orcamento = x;
       if (this.Orcamento.Status == StatusOrcamento.enviado)
         this.Finalizado = true;
-      this.enderecoForm = this.fb.group({
-        cep: [this.Orcamento.Usuario.EnderecoEntrega.CEP, [Validators.required]],
-        rua: [this.Orcamento.Usuario.EnderecoEntrega.Rua, { disabled: true }, [Validators.required]],
-        numero: [this.Orcamento.Usuario.EnderecoEntrega.Numero, [Validators.required]],
-        complemento: [this.Orcamento.Usuario.EnderecoEntrega.Complemento, []],
-        bairro: [this.Orcamento.Usuario.EnderecoEntrega.Bairro, { disabled: true }, [Validators.required]],
-        cidade: [this.Orcamento.Usuario.EnderecoEntrega.Cidade, { disabled: true }, [Validators.required]],
-        estado: [this.Orcamento.Usuario.EnderecoEntrega.Estado, { disabled: true }, [Validators.required]],
-      })
-      this.enderecoForm.valueChanges.subscribe(data => {
+
+      this.checkoutService.BuildEnderecoForm(this.Orcamento);
+
+      this.checkoutService.enderecoForm.valueChanges.subscribe(data => {
         this.BindFormToModel();
       })
     })
@@ -111,6 +110,7 @@ export class EnderecoComponent implements OnInit {
           CheckoutService.DadosCompleto = true;
           CheckoutService.EnderecoCompleto = true;
           CheckoutService.PagamentoCompleto = true;
+          this.onNextStep.emit(this._init_point);
         });
       });
     } else {
@@ -168,7 +168,7 @@ export class EnderecoComponent implements OnInit {
   }
 
   ValidarDados() {
-    if (this.enderecoForm.valid &&
+    if (this.enderecoForm.valid && this.Orcamento.Usuario.Email &&
       this.Orcamento.Usuario.CPF)
       return true;
     return false;

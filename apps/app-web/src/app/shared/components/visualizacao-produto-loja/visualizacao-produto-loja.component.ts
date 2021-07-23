@@ -113,7 +113,10 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     else
       this.textoAdicionar = "Comprar";
 
-    this.Produto = produto;
+    this.Produto$.subscribe(produto => {
+
+      this.Produto = produto;
+    })
   }
 
   ngOnDestroy(){
@@ -142,19 +145,10 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     this.IsValid = this.Erros.length > 0 ? false : true;
     if(!this.IsValid)
     return;
-    if(!this.Produto){
-      this.Produto$.subscribe(produto => {
-        this.Produto = produto;
-        this.Orcamento$.subscribe(orcamento=>{
-          this.AlterarProdutoNoOrcamento(this.Produto, orcamento);
-        });
-      })
-    }
-    else{
-      this.Orcamento$.subscribe(orcamento=>{
-        this.AlterarProdutoNoOrcamento(this.Produto, orcamento);
-      });
-    }
+
+    this.Orcamento$.subscribe(orcamento=>{
+      this.AlterarProdutoNoOrcamento(this.Produto, orcamento);
+    });
   }
 
   AlterarProdutoNoOrcamento(produto:Produto, orcamento:Orcamento){
@@ -167,6 +161,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       }
     }
     else{
+      ProdutosOrcamento = orcamento.Produto.filter(x=>x.codOrcamento == this.orcamentoId);
       produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
       this.store.dispatch(new EditarProdutoOrcamentoLocal(produto,produto._id,this.orcamentoId));
       if(!produto.Arte){
@@ -215,7 +210,6 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
           }else{
             this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
           }
-          this.navegarParaCheckout();
         }
       })
     }

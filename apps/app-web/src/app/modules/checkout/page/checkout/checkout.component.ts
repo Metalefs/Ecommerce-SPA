@@ -2,51 +2,83 @@ import { isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Select } from '@ngxs/store';
-import { fade, sliderSide } from 'apps/app-web/src/app/animations';
+import { fade, slideInOut, sliderSide } from 'apps/app-web/src/app/animations';
 import { PageScrollService } from 'apps/app-web/src/app/shared/services/page-scroll.service';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { CheckoutService } from '../../checkout.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss'],
-  animations:[sliderSide,fade]
+  animations: [sliderSide, fade, slideInOut]
 })
 export class CheckoutComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
-  constructor(public checkoutService: CheckoutService, private scrollService:PageScrollService, @Inject(PLATFORM_ID) private platform:object, private router: Router) { }
-  valid:boolean = false;
-  erros:string[] = [];
+  constructor(
+    public checkoutService: CheckoutService,
+    private scrollService: PageScrollService,
+    @Inject(PLATFORM_ID) private platform: object,
+    private router: Router,
+    private fb:FormBuilder
+  ) { }
+  valid: boolean = false;
+  erros: string[] = [];
+  Orcamento:Orcamento;
+  public get dadosForm(): FormGroup {
+    return this.checkoutService.dadosForm;
+  }
+  public set dadosForm(value: FormGroup) {
+    this.checkoutService.dadosForm = value;
+  }
+  public get enderecoForm(): FormGroup {
+    return this.checkoutService.enderecoForm;
+  }
+  public set enderecoForm(value: FormGroup) {
+    this.checkoutService.enderecoForm = value;
+  }
+  emailForm: FormGroup;
+  selected = new FormControl(0);
+  email:string;
   ngOnInit(): void {
-    if(isPlatformBrowser(this.platform))
+    if (isPlatformBrowser(this.platform))
       this.scrollService.scrollTop();
     this.Validate();
+    this.Orcamento$.subscribe(orc => {
+      this.Orcamento = orc;
+      this.emailForm = this.fb.group({
+        email:  [orc.Usuario?.Email || '', Validators.required]
+      })
+    });
+    this.emailForm.statusChanges.subscribe(x=>{
+      this.email = this.emailForm.get("email").value;
+    })
   }
 
   prepareRoute(outlet: RouterOutlet) {
-    try{
+    try {
       return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
     }
-    catch(ex){
+    catch (ex) {
 
     }
   }
-  Validate(){
-    this.Orcamento$.subscribe(orc=>{this.checkoutService.Validate(orc)});
+  Validate() {
+    this.Orcamento$.subscribe(orc => { this.checkoutService.Validate(orc) });
   }
-  IsDadosCompleto(){
+  IsDadosCompleto() {
     return CheckoutService.DadosCompleto;
   }
-  IsEnderecoCompleto(){
+  IsEnderecoCompleto() {
     return CheckoutService.EnderecoCompleto;
   }
-  IsPagamentoCompleto(){
+  IsPagamentoCompleto() {
     return CheckoutService.PagamentoCompleto;
   }
-  openPage(url:string){
+  openPage(url: string) {
     this.router.navigate([url]);
   }
 }

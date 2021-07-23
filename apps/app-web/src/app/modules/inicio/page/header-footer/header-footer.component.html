@@ -6,8 +6,8 @@
   </div>
 </div>
 
-<div class="columns is-multiline of-x-hidden">
-  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="column is-4">
+<div class="columns is-multiline is-gapless of-x-hidden flex-sb">
+  <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="{{card.column_class}} column">
     <div class="card-bg {{card?.class}}">
       <div [id]="card.class" class=" {{card?.class}}">
         <mat-card class="of-y-scroll shadow-light" [attr.data-aos]="i == 0 ? '' : 'flip-left'">

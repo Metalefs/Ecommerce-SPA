@@ -1,0 +1,21 @@
+<div>
+  <div [@cardFlip]="state">
+    <!-- <div class=" w-full">
+      <figure class="image is-square">
+        <img src="/assets/images/figures/undraw_make_it_rain_iwk4.svg">
+
+      </figure>
+    </div> -->
+    <div class="has-text-left">
+      <h2 class="subtitle mb-0 pt-0"><strong>Já e quase seu, só falta clicar em Comprar!</strong></h2>
+      <span class="subtitle ">Entraremos em contato para combinar a entrega e o pagamento do seu pedido.</span>
+    </div>
+    <div class="a-i-c pt-3">
+
+      <div *ngIf="_init_point" class="w-full flex-w a-i-c flex-m flex-sb">
+        <personalizados-lopes-mercadopago-button [init_point]="_init_point" [disabled]="!checkoutService.getValid()">
+        </personalizados-lopes-mercadopago-button>
+      </div>
+    </div>
+  </div>
+</div>

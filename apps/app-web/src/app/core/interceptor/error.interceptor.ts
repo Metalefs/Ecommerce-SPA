@@ -28,6 +28,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.snack.open(err.error.erro, "Ok",{
                   verticalPosition:"top",
                   duration: 5000
+                });
+                this.snack.open("Você já possui login?", "Ok",{
+                  verticalPosition:"top",
+                  duration: 5000
                 })
                 alert(err.error.erro);
               }

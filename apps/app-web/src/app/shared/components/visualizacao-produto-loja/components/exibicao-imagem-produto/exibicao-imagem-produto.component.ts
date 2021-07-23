@@ -38,14 +38,14 @@ export class ExibicaoImagemProdutoComponent implements OnInit {
           if (res.matches) {
             this.mobile=true;
             return {
-              thumbPosition: ThumbnailsPosition.Bottom,
+              thumbPosition: ThumbnailsPosition.Left,
               thumbWidth: 80,
               thumbHeight: 80,
             };
           }else{
             this.mobile=false;
             return {
-              thumbPosition: ThumbnailsPosition.Bottom,
+              thumbPosition: ThumbnailsPosition.Left,
               thumbWidth: 120,
               thumbHeight: 90
             };

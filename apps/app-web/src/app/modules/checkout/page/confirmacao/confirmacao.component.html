@@ -1,15 +1,23 @@
-<ng-container *ngIf="(Orcamento$ |async)?.Produto.length > 0 then pedido else vazio"></ng-container>
+<ng-container
+  *ngIf="(Orcamento$ | async)?.Produto.length > 0; then pedido; else vazio"
+></ng-container>
 <ng-template #vazio>
-
   <div class="margin a-i-c flex-m m-lr-auto has-text-center w-full">
     <figure class="image has-ratio">
-      <img src="/assets/images/figures/undraw_empty_cart_co35.svg">
+      <img src="/assets/images/figures/undraw_empty_cart_co35.svg" />
     </figure>
     <div class="">
       <h1 class="subtitle mb-0 pt-0">Seu carrinho está vazio</h1>
-      <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
+      <span class="subtitle"
+        >Clique abaixo para voltar e adicionar produtos ao seu orçamento</span
+      >
       <div>
-        <a pageScroll href="#TOPO" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
+        <a
+          pageScroll
+          href="#TOPO"
+          [routerLink]="['/produtos/']"
+          routerLinkActive="router-link-active"
+        >
           <button mat-stroked-button mat-stroked-button class="button is-dark">
             Ver produtos
             <mat-icon>keyboard_arrow_right</mat-icon>
@@ -18,37 +26,35 @@
       </div>
     </div>
   </div>
-
 </ng-template>
 <ng-template #pedido>
-  <section @fadeIn class="section pt-2">
-
-    <section *ngIf="edit" class="shopping-cart dark">
+  <section @fadeIn>
+    <!-- <section *ngIf="edit" class="shopping-cart dark">
       <div *ngIf="edit" class="has-text-left summary">
         <h1 class="title is-size-5">Confira o seu pedido</h1>
         <p class="subtitle is-size-6">Revise seus produtos e continue para inserir seus dados pessoais.</p>
       </div>
-    </section>
+    </section> -->
 
     <div class="a-i-c">
+      <div class="w-full of-x-scroll">
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Subtototal
+              </mat-panel-title>
+              <mat-panel-description> R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }} </mat-panel-description>
+            </mat-expansion-panel-header>
+            <personalizados-lopes-tabela-edicao-orcamento
+              [edit]="edit"
+            ></personalizados-lopes-tabela-edicao-orcamento>
+          </mat-expansion-panel>
+        </mat-accordion>
 
-      <div class=" w-full px-2 of-x-scroll ">
-
-        <personalizados-lopes-tabela-edicao-orcamento
-          [edit]="edit"
-        ></personalizados-lopes-tabela-edicao-orcamento>
-
-        <div class="w-full py-4 block">
-          <div class="summary">
-            <h3>Carrinho</h3>
-            <div class="summary-item"><span class="text">Subtotal: </span><span class="price" id="cart-total"><span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2) ||
-              ''}}</span></span></div>
-          </div>
-
-        </div>
       </div>
 
-      <div *ngIf="edit" class="w-full">
+      <!-- <div *ngIf="edit" class="w-full">
         <button [routerLink]="['/checkout/dados/']" [disabled]="!checkoutService.getValid()" pageScroll href="#TOPO"
         routerLinkActive="router-link-active" class="button is-success w-full"><span
         class="nunitoParagraphy16 has-text-white">Finalizar pedido</span></button>
@@ -60,7 +66,7 @@
             produtos</span>
           </a>
         </a>
-      </div>
+      </div> -->
     </div>
   </section>
 </ng-template>

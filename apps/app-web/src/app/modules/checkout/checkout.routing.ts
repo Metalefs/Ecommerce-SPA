@@ -12,14 +12,14 @@ export const routes: Routes = [
     component: CheckoutComponent,
     data: { animation:'checkout' },
     children: [
+      // {
+      //   path: "",
+      //   // canActivate: [AuthGuard],
+      //   component: ConfirmacaoComponent,
+      //   data: { animation:'isLeft', title: 'Checkout' },
+      // },
       {
         path: "",
-        // canActivate: [AuthGuard],
-        component: ConfirmacaoComponent,
-        data: { animation:'isLeft', title: 'Checkout' },
-      },
-      {
-        path: "dados",
         // canActivate: [AuthGuard],
         component: DadosComponent,
         data: { animation:'isLeft', title: 'Checkout - Dados pessoais' },
