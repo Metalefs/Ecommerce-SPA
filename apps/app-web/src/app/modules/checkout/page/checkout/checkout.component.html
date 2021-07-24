@@ -30,10 +30,10 @@
                     </form>
                   </mat-step>
                   <mat-step class="box" [stepControl]="dadosForm" label="Dados pessoais">
-                    <personalizados-lopes-dados (onNextStep)="selected.setValue(2)"></personalizados-lopes-dados>
+                    <personalizados-lopes-dados [email]="email" (onNextStep)="selected.setValue(2)"></personalizados-lopes-dados>
                   </mat-step>
                   <mat-step class="box" [stepControl]="enderecoForm" label="Dados da entrega">
-                    <personalizados-lopes-endereco (onNextStep)="selected.setValue(3); pagamento._init_point = $event"></personalizados-lopes-endereco>
+                    <personalizados-lopes-endereco (onNextStep)="AbrirPagamento()"></personalizados-lopes-endereco>
                   </mat-step>
                   <mat-step class="box" label="Pagamento">
                     <personalizados-lopes-pagamento #pagamento></personalizados-lopes-pagamento>

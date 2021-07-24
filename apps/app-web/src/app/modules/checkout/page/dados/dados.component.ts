@@ -41,17 +41,16 @@ export class DadosComponent implements OnInit, OnDestroy {
   constructor(private scrollService:PageScrollService, public checkoutService: CheckoutService, private router:Router, private store: Store, private authService:AuthenticationService) {
     this.authService.currentUser.subscribe(x=>{
       if(x)
-      this.usuario = x;
-      this.usuario.Email = this.email;
+        this.usuario = x;
       this.Orcamento$.subscribe(o=>{
         this.Orcamento = o;
-        this.Orcamento.Usuario.Email = this.email;
         if(this.usuario){
           this.Orcamento.Usuario = this.usuario;
           this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
         }
         else{
           this.Orcamento.Usuario = this.Orcamento.Usuario.CPF ? this.Orcamento.Usuario: DEFAULT_ORCAMENTO.Usuario;
+          this.Orcamento.Usuario.Email = this.email;
           this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento))
         }
       })

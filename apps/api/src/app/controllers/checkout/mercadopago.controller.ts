@@ -2,11 +2,12 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { ErrorHandler } from '../../_handlers/error-handler';
 
 import * as express from 'express';
-import { MercadoPagoService, PedidoService, UsuarioService } from '../../services';
+import { CupomDescontoService, MercadoPagoService, PedidoService, UsuarioService } from '../../services';
 import { UsuarioLogado } from '../../_handlers/Authentication';
-import { Pedido } from 'libs/data/src/lib/classes';
+import { CupomDesconto, Orcamento, Pedido } from 'libs/data/src/lib/classes';
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
 import { ensureIsLogged } from '../../middleware/ensure-is-logged';
+import { TipoDesconto } from 'libs/data/src/lib/classes/cupom-desconto';
 
 const MercadoPagoController = express();
 
@@ -123,7 +124,25 @@ MercadoPagoController
 })
 .post(RouteDictionary.Checkout, ensureIsLogged, async (req: any, res) => {
     try {
-      let orcamento = req.body.orcamento;
+      let orcamento = req.body.orcamento as Orcamento;
+
+      let servicoCupomDesconto = new CupomDescontoService();
+      console.log(orcamento.CupomDesconto)
+      let cupom = await servicoCupomDesconto.Filtrar({Codigo:orcamento.CupomDesconto}) as CupomDesconto;
+      console.log(cupom)
+
+
+      if(cupom){
+        switch(cupom.Tipo){
+          case(TipoDesconto.Preco):{
+            orcamento.Preco =+ cupom.Valor;
+          }
+          case(TipoDesconto.Porcentagem):{
+            orcamento.Preco -= (orcamento.Preco * cupom.Valor) /100
+          }
+        }
+      }
+
       let preference = mercadoPagoService.getPreference(orcamento);
       res.send(await mercadoPagoService.checkout(preference));
       let pedido = new Pedido(orcamento);

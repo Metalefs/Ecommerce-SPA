@@ -31,8 +31,6 @@ app.post(RouteDictionary.UsuarioBack.Login, (req : any, res, next) => {
 }).post(RouteDictionary.UsuarioBack.RegistroTemporario, (req,res, next) =>{
   try{
     let user:Usuario = req.body.Usuario;
-    let senha = UsuarioService.generateRandomPassword();
-    user.Senha = senha;
     UsuarioService.createTempAccount(req.body.Usuario)
         .then((user: entities.Usuario | any) => res.json(user))
         .catch(reason => ErrorHandler.ConflictException(reason,res));

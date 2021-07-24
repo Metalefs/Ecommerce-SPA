@@ -14,7 +14,9 @@
   }
 }
 
-
+:host ::ng-deep exibicao-preco-produto .preco{
+  font-size: 30px !important;
+}
 
 .img-orcamento {
   display: none;

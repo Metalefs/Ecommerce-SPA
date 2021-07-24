@@ -18,6 +18,8 @@ export let RouteDictionary = {
   CorProduto:"/corProduto/",
 
   Categoria: "/categoria/",
+  Departamento: "/departamento/",
+  CupomDesconto: "/cupom-desconto/",
 
   Estampa: {
     Raiz: "/estampa/",
@@ -73,7 +75,8 @@ export let RouteDictionary = {
   Gerenciamento: "/gerenciamento/",
   Integracoes: {
     Raiz: "/integracoes/",
-    ChavePublicaMercadoPago: "/mercadoPagoPublicKey/"
+    ChavePublicaMercadoPago: "/mercadoPagoPublicKey/",
+    QuantidadeParcelas: "/quantidade-parcelas/",
   },
 
   Checkout: '/checkout/',

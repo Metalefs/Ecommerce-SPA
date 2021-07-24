@@ -27,6 +27,11 @@ IntegracoesRouter.get(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, async (re
   .then((result : Integracoes)  => res.send(result.public_key))
   .catch(err => ErrorHandler.DefaultException(err, res))
 })
+.get(RouteDictionary.Integracoes.QuantidadeParcelas, async (req: any, res) => {
+  IntegracoesService.LerUltimo()
+  .then((result : Integracoes)  => res.send(result.ParcelasPadrao))
+  .catch(err => ErrorHandler.DefaultException(err, res))
+})
 
 .put(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, IntegracoesCtrl.Editar)
 .post(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, IntegracoesCtrl.Incluir)

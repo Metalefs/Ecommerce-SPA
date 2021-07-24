@@ -20,17 +20,18 @@ import { CheckoutService } from '../../checkout.service';
   animations:[fade,slideInOut]
 })
 export class ConfirmacaoComponent implements OnInit {
+  @Input() edit = true;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   ErroCadastro:boolean = false;
   Total:number = 0;
-  @Input() edit = true;
+  Orcamento:Orcamento;
   constructor(public checkoutService: CheckoutService, private store:Store,private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(x=>{
-
+      this.Orcamento = x;
       if(x.Status == StatusOrcamento.enviado){
-        this.snack.open("Orçamento já foi enviado! Responderemos em até 48 horas.", "Fechar",{duration:5000}).afterOpened().subscribe(x=>{
+        this.snack.open("Pedido já foi enviado! Responderemos em até 48 horas.", "Fechar",{duration:5000}).afterOpened().subscribe(x=>{
           this.store.dispatch(new ResetarOrcamento());
         });
       }

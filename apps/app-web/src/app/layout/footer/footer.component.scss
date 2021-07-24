@@ -7,11 +7,7 @@
   z-index: 1;
   position: relative;
 }
-.footer{
-  @extend .z-top;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  overflow-y: hidden;
-}
+
 .base{
   color: $footercolor;
 }
@@ -66,28 +62,22 @@ a{
 }
 .footer-text{
   @extend .base;
-  font-size: 14px !important;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+
   & :hover{
     color: #3a3a3a;
   }
 }
 .footer-color{
   background: $background-light;
+  background: var(--darkgrey-darker);
 }
 .txt-justify.footer-text.has-text-white p{
   color: $footercolor
 }
 
-.footer::before{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 30%;
-  width: 298px;
-  height: 70px;
-  background-repeat: no-repeat;
-  background: url(/assets/images/footer_curve.svg);
-}
 h4{
   letter-spacing: 1px;
 }
@@ -102,111 +92,111 @@ h4{
 /**********************************/
 /********** Footer CSS ************/
 /**********************************/
-.footer {
+
+.footer{
+  @extend .z-top;
+  overflow-y: hidden;
   position: relative;
   padding: 60px 0 0 0;
-  background: $footerbg;
+  background: #fe0000;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
+  &::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 30%;
+    width: 298px;
+    height: 70px;
+    background-repeat: no-repeat;
+    background: url(/assets/images/footer_curve.svg);
+  }
+  .footer-widget {
+    position: relative;
+    width: 100%;
+    margin-bottom: 60px;
+    .title {
+      color: #ffffff;
+      letter-spacing: 1px;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      border-bottom: 3px double #ffffff;
+    }
+    p {
+      color: #ffffff;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        margin-bottom: 12px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        a{
+          color: $footercolor;
+           $footercolor-space: nowrap;
+          display: block;
+          line-height: 23px;
+          &:hover {
+            // padding-left: 10px;
+            color: #c5c3c3;
+          }
+          &::before {
+            content: "\e91b";
+            font-family: 'primeicons';
+            font-weight: 900;
+            padding-right: 5px;
+          }
+        }
+      }
+    }
+  }
+  .contact-info {
+    p {
+      margin-bottom: 10px;
+      color: $footercolor
+      i {
+        color: $footercolor;
+        margin-right: 5px;
+      }
+    }
+  }
+  .newsletter {
+    position: relative;
+    width: 100%;
+  }
+  .newsletter {
+    form{
+      position: relative;
+      width: 100%;
+    }
+    input {
+      width: 100%;
+      height: 35px;
+      padding: 0 15px;
+      border: 1px solid #ffffff;
+      border-radius: 4px;
+    }
+    .btn {
+      position: absolute;
+      width: 80px;
+      height: 35px;
+      top: 0;
+      right: 0;
+      padding: 0 10px;
+      border: none;
+      background: #111111;
+      font-size: 14px;
+      border: 1px solid #ffffff;
+      border-radius: 0 4px 4px 0;
+      &:hover {
+        background: #FF6F61;
+      }
+    }
+  }
 
-.footer .footer-widget {
-  position: relative;
-  width: 100%;
-  margin-bottom: 60px;
 }
-
-.footer .footer-widget .title {
-  color: #ffffff;
-  letter-spacing: 1px;
-  padding-bottom: 10px;
-  margin-bottom: 25px;
-  border-bottom: 3px double #ffffff;
-}
-
-.footer .footer-widget p {
-  color: #ffffff;
-}
-
-.footer .footer-widget ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.footer .footer-widget ul li {
-  margin-bottom: 12px;
-}
-
-.footer .footer-widget ul li:last-child {
-  margin-bottom: 0;
-}
-
-.footer .footer-widget ul li a{
-  color: $footercolor;
-   $footercolor-space: nowrap;
-  display: block;
-  line-height: 23px;
-}
-
-.footer .footer-widget ul li a:hover {
-  // padding-left: 10px;
-  color: #c5c3c3;
-}
-.footer .footer-widget ul li a::before {
-  content: "\e91b";
-  font-family: 'primeicons';
-  font-weight: 900;
-  padding-right: 5px;
-}
-
-
-.footer .contact-info p {
-  margin-bottom: 10px;
-  color: $footercolor
-}
-.footer > div.w-full.pink.shadow-light > div > div.column.text-center > a > p,
-.footer .contact-info p i {
-  color: $footercolor;
-  margin-right: 5px;
-}
-
-.footer .newsletter {
-  position: relative;
-  width: 100%;
-}
-
-.footer .newsletter form {
-  position: relative;
-  width: 100%;
-}
-
-.footer .newsletter input {
-  width: 100%;
-  height: 35px;
-  padding: 0 15px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-}
-
-.footer .newsletter .btn {
-  position: absolute;
-  width: 80px;
-  height: 35px;
-  top: 0;
-  right: 0;
-  padding: 0 10px;
-  border: none;
-  background: #111111;
-  // color: #ffffff;
-  font-size: 14px;
-  border: 1px solid #ffffff;
-  border-radius: 0 4px 4px 0;
-}
-
-.footer .newsletter .btn:hover {
-  background: #FF6F61;
-}
-
 .footer .newsletter input:focus,
 .footer .newsletter .btn:focus {
   box-shadow: none;

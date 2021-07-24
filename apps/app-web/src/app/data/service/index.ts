@@ -20,6 +20,7 @@ import { ComentarioProdutoService } from './comentarios/comentarioProdutoService
 import { CorProdutoService } from './cor-produto.service';
 import { TamanhoProdutoService } from './tamanho-produto.service';
 import { FornecedorProdutoService } from './fornecedor-produto.service';
+import { CupomDescontoService } from './cupom-desconto.service';
 
 export {
   SobreService,
@@ -44,6 +45,7 @@ export {
   FornecedorProdutoService,
   PedidoService,
   FeedbackService,
+  CupomDescontoService,
 }
 
 export let Services = [
@@ -69,4 +71,5 @@ export let Services = [
   FornecedorProdutoService,
   PedidoService,
   FeedbackService,
+  CupomDescontoService,
 ]

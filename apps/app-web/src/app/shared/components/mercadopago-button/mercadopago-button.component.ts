@@ -1,10 +1,12 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { fade } from '../../../animations';
 import { DocumentRef } from '../../services/document.service';
 @Component({
   selector: 'personalizados-lopes-mercadopago-button',
   templateUrl: './mercadopago-button.component.html',
-  styleUrls: ['./mercadopago-button.component.scss']
+  styleUrls: ['./mercadopago-button.component.scss'],
+  animations:[fade]
 })
 export class MercadopagoButtonComponent implements OnInit {
   @Input() init_point;

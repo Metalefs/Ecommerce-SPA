@@ -19,47 +19,31 @@ import { EstampaRouter } from './estampa.controller';
 import { TamanhoProdutoRouter } from './tamanho-produto.controller';
 import { CorProdutoRouter } from './cor-produto.controller';
 import { FornecedorProdutoRouter } from './fornecedor-produto.controller';
+import { DepartamentoRouter } from './departamentos.controller';
+import { CupomDescontoRouter } from './cupom-desconto.controller';
 
 export let Routers = [
   CategoriaRouter,
-
   InformacoesContatoRouter,
-
   OrcamentoRouter,
-
   ProdutoRouter,
-
   ClienteRouter,
-
   ServicoRouter,
-
   SobreRouter,
-
   TemaRouter,
-
   EmailNotificacaoRouter,
-
   MensagemRouter,
-
   ImagemRouter,
-
   ItemCarouselRouter,
-
   EstampaRouter,
-
   CarrouselRouter,
-
   MercadoPagoController,
-
   IntegracoesRouter,
-
   TamanhoProdutoRouter,
-
   CorProdutoRouter,
-
   FornecedorProdutoRouter,
-
   PedidoRouter,
-
   FeedbackRouter,
+  DepartamentoRouter,
+  CupomDescontoRouter
 ];

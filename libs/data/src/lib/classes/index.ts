@@ -22,6 +22,8 @@ import { Estampa } from './estampa';
 import { TamanhoProduto } from './tamanhoProduto';
 import { FornecedorProduto } from './fornecedorProduto';
 import { CorProduto } from './corProduto';
+import { Departamento } from './departamento';
+import { CupomDesconto } from './cupom-desconto';
 
 export {
     Categoria,
@@ -48,4 +50,6 @@ export {
     TamanhoProduto,
     FornecedorProduto,
     CorProduto,
+    Departamento,
+    CupomDesconto,
 }

@@ -1,0 +1,32 @@
+<div class="w-full dis-flex flex-sb">
+  <h1 class="title">Cupons</h1>
+  <button mat-fab color="primary" (click)="Criar()" class="navbar-end">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<table mat-table *ngIf='CupomDescontoTable' [dataSource]="CupomDescontoTable?.dataSource" class="table w-full mat-elevation-z8">
+
+  <ng-container matColumnDef="Codigo">
+      <th mat-header-cell *matHeaderCellDef> Código do cupom </th>
+      <td mat-cell *matCellDef="let element"> {{element?.Codigo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Tipo">
+      <th mat-header-cell *matHeaderCellDef> Tipo de cupom </th>
+      <td mat-cell *matCellDef="let element"> {{element?.Tipo}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Valor">
+      <th mat-header-cell *matHeaderCellDef> Valor do cupom </th>
+      <td mat-cell *matCellDef="let element"> {{element?.Valor}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Acoes">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let element">
+        <button mat-mini-fab (click)="Editar(element)"><mat-icon>edit</mat-icon></button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="CupomDescontoTable?.displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: CupomDescontoTable?.displayedColumns;"></tr>
+</table>

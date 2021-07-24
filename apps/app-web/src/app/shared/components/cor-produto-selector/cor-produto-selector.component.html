@@ -3,7 +3,7 @@
     <span [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Selecione a opção de <strong>Cor</strong>:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
   </p>
   <div
-    class="columns is-multiline flex-sb"
+    class="columns is-multiline"
     [ngClass]="{ 'is-danger': ErroCor }"
     *ngIf="Produto?.Cores"
   >
@@ -20,7 +20,6 @@
         alt="{{ cor.Nome }}"
         [value]="Produto?.Cor?.Nome ||Produto?.Cor?.nome "
         id="cor{{ i }}"
-
         [ngClass]="{ ' is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome)  == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
       />
       <div

@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Inject, ViewChild } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Select } from '@ngxs/store';
 import { fade, slideInOut, sliderSide } from 'apps/app-web/src/app/animations';
@@ -9,6 +9,8 @@ import { Orcamento } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
 import { CheckoutService } from '../../checkout.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { PagamentoComponent } from '../pagamento/pagamento.component';
+import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -18,11 +20,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class CheckoutComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
+  @ViewChild(PagamentoComponent)
+  pagamentoComponent: PagamentoComponent;
   constructor(
     public checkoutService: CheckoutService,
     private scrollService: PageScrollService,
     @Inject(PLATFORM_ID) private platform: object,
     private router: Router,
+    private auth:AuthenticationService,
     private fb:FormBuilder
   ) { }
   valid: boolean = false;
@@ -49,10 +54,10 @@ export class CheckoutComponent implements OnInit {
     this.Validate();
     this.Orcamento$.subscribe(orc => {
       this.Orcamento = orc;
-      this.emailForm = this.fb.group({
-        email:  [orc.Usuario?.Email || '', Validators.required]
-      })
     });
+    this.emailForm = this.fb.group({
+      email:  [{value:this.auth.currentUserValue?.Email,disabled:!!this.auth.currentUserValue}, Validators.required]
+    })
     this.emailForm.statusChanges.subscribe(x=>{
       this.email = this.emailForm.get("email").value;
     })
@@ -80,5 +85,9 @@ export class CheckoutComponent implements OnInit {
   }
   openPage(url: string) {
     this.router.navigate([url]);
+  }
+  AbrirPagamento(){
+    this.selected.setValue(3);
+    this.pagamentoComponent.Checkout();
   }
 }

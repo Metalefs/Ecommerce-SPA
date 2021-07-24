@@ -20,6 +20,8 @@ import { EstampaService } from './domain/estampa.service';
 import { TamanhoProdutoService } from './domain/tamanhoProduto.service';
 import { CorProdutoService } from './domain/corProduto.service';
 import { FornecedorProdutoService } from './domain/fornecedorProduto.service';
+import { DepartamentoService } from './domain/departamento.service';
+import { CupomDescontoService } from './domain/cupom-desconto.service';
 
 export {
   UsuarioService,
@@ -43,5 +45,7 @@ export {
   TamanhoProdutoService,
   CorProdutoService,
   FornecedorProdutoService,
-  FeedbackService
+  FeedbackService,
+  DepartamentoService,
+  CupomDescontoService
 }

@@ -12,7 +12,7 @@ import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/or
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { Orcamento, Usuario } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 import { CEPService, EstadoService } from '../../../../shared/services';
@@ -53,7 +53,6 @@ export class EnderecoComponent implements OnInit {
     private store: Store,
     private CEPService: CEPService,
     private EstadoService: EstadoService,
-    private snack: MatSnackBar,
     public checkoutService: CheckoutService,
     private auth: AuthenticationService,
     private router: Router,
@@ -95,42 +94,15 @@ export class EnderecoComponent implements OnInit {
     })
   }
 
-  private CheckoutSeDadosValidos() {
+  private async CheckoutSeDadosValidos() {
     if (this.ValidarDados()) {
       this.ErroCadastro = false;
-      this.cadastroTemporario();
-      this.Orcamento$.subscribe(orcamento => {
-        this.Loading = true;
-        this.checkoutService.goCheckout(orcamento).subscribe(result => {
-          this._init_point = result;
-          this.Loading = false;
-          this.Pagar = true;
-          if (isPlatformBrowser(this.platform))
-            this.scrollService.scrollTop()
-          CheckoutService.DadosCompleto = true;
-          CheckoutService.EnderecoCompleto = true;
-          CheckoutService.PagamentoCompleto = true;
-          this.onNextStep.emit(this._init_point);
-        });
-      });
-    } else {
+      this.onNextStep.emit(this._init_point);
+    }
+    else {
       this.ErroCadastro = true;
       if (!this.Orcamento.Usuario.CPF)
         this.router.navigateByUrl('/checkout/dados');
-    }
-  }
-
-  cadastroTemporario() {
-    if (!this.auth.currentUserValue) {
-      this.auth.tempSignup(this.Orcamento.Usuario)
-        .pipe(first())
-        .subscribe(
-          data => {
-            console.log(data);
-          },
-          error => {
-            this.snack.open('Erro ao cadastrar com senha temporária: ' + error, 'fechar', { duration: 5000 })
-          });
     }
   }
 
@@ -176,6 +148,8 @@ export class EnderecoComponent implements OnInit {
 
   BindFormToModel() {
     let form = this.enderecoForm.getRawValue();
+    if(this.user)
+      this.Orcamento.Usuario = this.user;
     this.Orcamento.Usuario.EnderecoEntrega.CEP = form.cep;
     this.Orcamento.Usuario.EnderecoEntrega.Rua = form.rua;
     this.Orcamento.Usuario.EnderecoEntrega.Numero = form.numero;

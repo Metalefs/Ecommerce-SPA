@@ -51,6 +51,8 @@ import { EditorModule } from '../../shared/components/editor/editor/editor.modul
 
 import { CardProdutoModule } from '../../shared/components/card-produto/card-produto.module';
 import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes-empresa/editar-configuracoes-empresa.component';
+import { EditarCupomDescontoComponent } from './page/editar-configuracoes-empresa/components/editar-cupom-desconto/editar-cupom-desconto.component';
+import { EditarCupomDescontoDialogComponent } from './page/editar-configuracoes-empresa/components/editar-cupom-desconto/dialogs/editar-cupom-desconto-dialog/editar-cupom-desconto-dialog.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes
     EditarBlogComponent,
     EditarPostComponent,
     EditarConfiguracoesEmpresaComponent,
+    EditarCupomDescontoComponent,
+    EditarCupomDescontoDialogComponent,
   ],
   imports: [
     CommonModule,

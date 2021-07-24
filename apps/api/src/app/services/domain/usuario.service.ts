@@ -127,26 +127,28 @@ export module UsuarioService {
       if (findEmail&&findCPF) {
           throw 'E-mail "' + NovoUsuario.Email + '" ou CPF já está sendo usado!';
       }
-      // hash password
-      if (NovoUsuario.Senha) {
-        NovoUsuario.Senha = bcrypt.hashSync(NovoUsuario.Senha, 10);
-      }else{
-        NovoUsuario.Senha = generateRandomPassword();
-      }
-      console.log("Usuario c/senha temporaria a ser criado:",NovoUsuario);
+
+      // give random password
+      NovoUsuario.Senha = generateRandomPassword();
+
+      console.log("Usuario c/senha temporaria a ser criado:", NovoUsuario);
       if(NovoUsuario.Email && NovoUsuario.Senha){
-          let emailService = new EmailService();
-          // save user
-          NovoUsuario.DataCriacao = new Date();
+        let emailService = new EmailService();
+        let senhaOriginal = NovoUsuario.Senha;
+
+        // save user
+        NovoUsuario.DataCriacao = new Date();
+        // hash password
+        NovoUsuario.Senha = bcrypt.hashSync(NovoUsuario.Senha, 10);
           await Repository.Insert(entities.Usuario.NomeID, NovoUsuario);
 
           const token = jwt.sign({ sub: NovoUsuario._id }, crypt_config.secret, { expiresIn: '7d' });
           console.log("usuário cadastrado com sucesso. token gerado", {...NovoUsuario,token});
 
           NovoUsuario.token = token;
-          updateUserToken(NovoUsuario);
-          emailService.SendRegistrationMessage(NovoUsuario);
-          emailService.SendUpdatePasswordMessage(NovoUsuario, NovoUsuario.Senha)
+          await updateUserToken(NovoUsuario);
+          await emailService.SendRegistrationMessage(NovoUsuario);
+          await emailService.SendUpdatePasswordMessage(NovoUsuario, senhaOriginal)
           return {
               ...NovoUsuario,
               token

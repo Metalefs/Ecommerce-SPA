@@ -54,19 +54,21 @@
 
       </div>
 
-      <!-- <div *ngIf="edit" class="w-full">
-        <button [routerLink]="['/checkout/dados/']" [disabled]="!checkoutService.getValid()" pageScroll href="#TOPO"
-        routerLinkActive="router-link-active" class="button is-success w-full"><span
-        class="nunitoParagraphy16 has-text-white">Finalizar pedido</span></button>
-        <a href="#topo" class="py-3" [routerLink]="['/produtos/']" routerLinkActive="router-link-active">
-          <a class="py-3 pb-3 subtitle w-full">
-            <span
-            class="nunitoParagraphy16"> Escolher
-            mais
-            produtos</span>
-          </a>
-        </a>
-      </div> -->
+      <div class="box">
+        <label for="code" class="label">Insira o código promocional</label>
+        <div class="control has-icons-left has-icons-right">
+          <input id="code" class="input" type="text" placeholder=""
+          [(ngModel)]="Orcamento.CupomDesconto"
+          >
+          <span class="icon is-small is-left">
+            <i class="pi pi-percentage"></i>
+          </span>
+          <span class="icon is-small is-right">
+            <i class="pi pi-angle-right"></i>
+          </span>
+        </div>
+        <span class="subtitle is-size-7">Apenas um código pode ser aplicado por pedido.</span>
+      </div>
     </div>
   </section>
 </ng-template>
