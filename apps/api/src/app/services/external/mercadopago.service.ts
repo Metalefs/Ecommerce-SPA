@@ -190,6 +190,7 @@ export class MercadoPagoService {
           }
           case(TipoDesconto.Porcentagem):{
             produto.Produto.Preco -= (produto.Produto.Preco * cupom.Valor) /100;
+            produto.Produto.Nome += ` (${(cupom.Valor)}% off)`;
             console.log('porcentagem desconto',(produto.Produto.Preco * cupom.Valor) /100)
             break;
           }
