@@ -1,0 +1,17 @@
+<div class='box'>
+  <label for='code' class='label'>Insira o código promocional</label>
+  <div class='control has-icons-left has-icons-right'>
+    <input id='code' class='input' type='text' placeholder=''
+           [ngModel]='ngModel'
+           (ngModelChange)='ngModelChange.emit($event)'
+    >
+    <span class='icon is-small is-left'>
+            <i class='pi pi-percentage'></i>
+          </span>
+    <span class='icon is-small is-right'>
+            <i class='pi pi-angle-right'></i>
+          </span>
+  </div>
+  <button class='button is -samll >"'
+  <span class='subtitle is-size-7'>Apenas um código pode ser aplicado por pedido.</span>
+</div>

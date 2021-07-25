@@ -61,6 +61,8 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   produtoForm:FormGroup;
   CEP:string="";
 
+  EstampaSelecionada:Estampa;
+  redirecionando:boolean = false;
   @ViewChild(ExibicaoImagemProdutoComponent) gallery:ExibicaoImagemProdutoComponent;
   constructor(
     @Inject(PLATFORM_ID) private platform: Object,
@@ -105,15 +107,15 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       {label:this.Produto?.Nome, styleClass:'desb'}
     ];
 
-    if(produto?.Quantidade == 0)
+    if(produto?.Quantidade === 0)
       produto.Quantidade = produto.QuantidadeMinima;
 
-    if(produto?.Status == StatusProduto.esgotado)
+    if(produto?.Status === StatusProduto.esgotado)
       this.textoAdicionar = this.textoEsgotado;
     else
       this.textoAdicionar = "Comprar";
 
-    this.Produto$.subscribe(produto => {
+    this.Produto$.subscribe((produto:Produto) => {
 
       this.Produto = produto;
     })
@@ -152,7 +154,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   }
 
   AlterarProdutoNoOrcamento(produto:Produto, orcamento:Orcamento){
-    let ProdutosOrcamento = orcamento.Produto.filter(x=>x.Produto._id == produto._id);
+    let ProdutosOrcamento = orcamento.Produto.filter(x=>x.Produto._id === produto._id);
     if(!this.orcamentoId){
       if(!produto.Arte){
         this.AbrirModalArte();
@@ -161,7 +163,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       }
     }
     else{
-      ProdutosOrcamento = orcamento.Produto.filter(x=>x.codOrcamento == this.orcamentoId);
+      ProdutosOrcamento = orcamento.Produto.filter(x=>x.codOrcamento === this.orcamentoId);
       produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
       this.store.dispatch(new EditarProdutoOrcamentoLocal(produto,produto._id,this.orcamentoId));
       if(!produto.Arte){
@@ -175,7 +177,6 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     this.produtoNoCheckout();
   }
 
-  EstampaSelecionada:Estampa;
   SelecionarEstampa(estampa:Estampa){
     this.EstampaSelecionada = estampa;
     this.AbrirModalArte(estampa);
@@ -184,7 +185,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   AbrirModalArte(estampa = null){
     this.IsValid = this.Erros.length > 0 ? false : true;
     if(this.IsValid){
-      let dialogref= this.dialog.open(ExibicaoArteProdutoComponent,{
+      const dialogref = this.dialog.open(ExibicaoArteProdutoComponent,{
         data:{Produto: this.Produto, Estampa: estampa},
         panelClass:['animate__animated','animate__bounceIn', 'border', 'bg-transp'],
         restoreFocus: false,
@@ -217,8 +218,8 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
 
   DuplicarOrcamento(){
     this.Orcamento$.subscribe(x=>{
-      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
-      if(ProdutosOrcamento?.length == 0){
+      const ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id === this.Produto._id);
+      if(ProdutosOrcamento?.length === 0){
         return
       }
       else{
@@ -235,9 +236,8 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     this.store.dispatch(new EditarCategoriaFiltroProduto(this.Produto.Categoria)).subscribe();
   }
 
-  redirecionando:boolean = false;
   navegarParaCheckout(){
-    // this.redirecionando = true;
+    this.redirecionando = true;
      setTimeout(()=>{
       this.router.navigateByUrl("/checkout");
     },
@@ -246,8 +246,8 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
 
   produtoNoCheckout(){
     return this.Orcamento$.subscribe(x=>{
-      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
-      if(ProdutosOrcamento?.length == 0){
+      const ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id === this.Produto._id);
+      if(ProdutosOrcamento?.length === 0){
         this.isOrcamento = false;
       }
       else{
@@ -279,8 +279,8 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
 
   EntrarEmContato(){
     this.InformacoesContato$.subscribe(x=>{
-      let Whatsapp = x.Whatsapp;
-      let Mensagem = `Olá, gostaria de ter mais informações sobre *${this.Produto.Nome}* ${this.Url}`;
+      const Whatsapp = x.Whatsapp;
+      const Mensagem = `Olá, gostaria de ter mais informações sobre *${this.Produto.Nome}* ${this.Url}`;
       if(isPlatformBrowser(this.platform))
         this.windowRef.nativeWindow.open( `https://wa.me/${Whatsapp}?text=${Mensagem}`, "_blank");
     })
@@ -305,7 +305,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   }
 
   Validar(){
-    let Erros:{erro:string,type:number}[] = [];
+    const Erros:{erro:string,type:number}[] = [];
     if(this.Produto.Quantidade < 1){
       Erros.push({erro:"Selecione uma quantidade para o produto", type:1});
     }

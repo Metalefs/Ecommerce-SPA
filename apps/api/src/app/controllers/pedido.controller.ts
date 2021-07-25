@@ -32,7 +32,7 @@ PedidoRouter.get(RouteDictionary.Pedidos.Raiz,PedidoCtrl.Ler)
 .get(RouteDictionary.Pedidos.Raiz + ":id", FiltrarPorId)
 .put(RouteDictionary.Pedidos.Raiz, ensureIsAdmin, PedidoCtrl.Editar)
 .post(RouteDictionary.Pedidos.Raiz, ensureIsAdmin, PedidoCtrl.Incluir)
-.delete(RouteDictionary.Pedidos + `:id`, ensureIsAdmin, PedidoCtrl.Remover);
+.delete(RouteDictionary.Pedidos.Raiz + `:id`, ensureIsAdmin, PedidoCtrl.Remover);
 async function FiltrarPorId(req, res){
   if (req.params.id)
   PedidoService.FiltrarPorId(req.params.id)

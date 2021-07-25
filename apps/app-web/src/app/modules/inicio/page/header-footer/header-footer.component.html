@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="columns is-multiline is-gapless of-x-hidden flex-sb">
+<div class="columns is-multiline is-2 of-x-hidden flex-sb">
   <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="{{card.column_class}} column">
     <div class="card-bg {{card?.class}}">
       <div [id]="card.class" class=" {{card?.class}}">

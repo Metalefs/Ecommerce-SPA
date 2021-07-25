@@ -56,7 +56,7 @@ export class HeaderFooterComponent implements OnInit {
           link:"/showcase",
           id:"#topo",
           content:`Veja as fotos dos ultimos produtos no instagram`,
-          column_class:"is-6-touch"
+          column_class:""
         },
         {
           title:"Todos os produtos",
@@ -65,8 +65,8 @@ export class HeaderFooterComponent implements OnInit {
           class:"red",
           link:"/produtos",
           id:"#topo",
-          content:`Veja todos os produtos por categoria.`,
-          column_class:"is-6-touch"
+          content:`Veja todos os produtos da loja por categoria.`,
+          column_class:""
           //img_src:img[0].Src
         },
         {

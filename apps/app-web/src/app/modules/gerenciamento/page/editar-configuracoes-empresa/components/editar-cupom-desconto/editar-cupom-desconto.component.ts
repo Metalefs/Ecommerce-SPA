@@ -4,8 +4,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { entities } from '@personalizados-lopes/data';
 import { CupomDescontoService } from 'apps/app-web/src/app/data/service';
 import { MaterialTable } from 'libs/data/src/lib/structures/MaterialTable';
+
 import { EditarIntegracaoDialogComponent } from '../editar-integracoes/dialogs/editar-integracao-dialog/editar-integracao-dialog.component';
 import { EditarCupomDescontoDialogComponent } from './dialogs/editar-cupom-desconto-dialog/editar-cupom-desconto-dialog.component';
+import { MatTableDataSource } from '@angular/material/table';
+import { CupomDesconto } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-editar-cupom-desconto',
@@ -36,22 +39,22 @@ export class EditarCupomDescontoComponent implements OnInit {
   }
 
   AtualizarTabela(){
-    this.servicoCupomDesconto.Ler().subscribe(x=>{
-      console.log(x);
-      this.CupomDescontoTable.dataSource = x;
+    this.servicoCupomDesconto.Ler().subscribe((cupons:CupomDesconto[])=>{
+      console.log(cupons);
+      this.CupomDescontoTable.dataSource = new MatTableDataSource<entities.CupomDesconto>(cupons);
     });
   }
 
   Criar(){
-    let CupomDesconto:entities.CupomDesconto = new entities.CupomDesconto("",1,0);
+    const cupomDesconto:entities.CupomDesconto = new entities.CupomDesconto("",1,0);
 
     const dialogRef = this.dialog.open(EditarCupomDescontoDialogComponent, {
       width: '90%',
-      data: CupomDesconto
+      data: cupomDesconto
     });
 
     dialogRef.afterClosed().subscribe((result :entities.CupomDesconto) => {
-      if(result == undefined)
+      if(result === undefined)
       return;
       this.servicoCupomDesconto.Incluir(result).subscribe(x=> {
         this.AtualizarTabela();
@@ -61,19 +64,19 @@ export class EditarCupomDescontoComponent implements OnInit {
       });
     });
   }
-  Editar(CupomDesconto:entities.CupomDesconto){
-    let id = CupomDesconto._id;
+  Editar(cupomDesconto:entities.CupomDesconto){
+    const id = cupomDesconto._id;
 
     const dialogRef = this.dialog.open(EditarCupomDescontoDialogComponent, {
       width: '90%',
-      data: CupomDesconto
+      data: cupomDesconto
     });
 
     dialogRef.afterClosed().subscribe((result :entities.CupomDesconto) => {
-      if(result == undefined)
+      if(result === undefined)
       return;
 
-      CupomDesconto._id = id;
+      result._id = id;
       this.servicoCupomDesconto.Editar(result).subscribe(x=> {
         this.AtualizarTabela();
         this._snackBar.open("Informação alterada com sucesso", "Fechar", {
@@ -83,8 +86,8 @@ export class EditarCupomDescontoComponent implements OnInit {
     });
   }
 
-  Remover(CupomDesconto:entities.CupomDesconto){
-    throw "not implemented";
+  Remover(cupomDesconto:entities.CupomDesconto){
+    throw Error("not implemented");
   }
 
 }

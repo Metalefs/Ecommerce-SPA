@@ -16,6 +16,8 @@ export class EditarCupomDescontoDialogComponent implements OnInit {
     { name:'Porcentagem', value:TipoDesconto.Porcentagem }
   ]
 
+  TiposDesconto = TipoDesconto;
+
   constructor(public dialogRef: MatDialogRef<EditarCupomDescontoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data:  CupomDesconto,
   ) {

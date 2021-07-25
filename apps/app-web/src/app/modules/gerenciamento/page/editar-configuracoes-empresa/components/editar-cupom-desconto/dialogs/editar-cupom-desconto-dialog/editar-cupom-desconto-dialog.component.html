@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="tem-cor-primaria">Alteracão de Integrações</h1>
+<h1 mat-dialog-title class="tem-cor-primaria">Alteracão de Cupom</h1>
 <div mat-dialog-content>
 
   <mat-form-field class="w-full">
@@ -8,8 +8,11 @@
   <mat-form-field  class="w-full"  appearance="fill">
     <mat-label>Tipo de cupom</mat-label>
     <mat-select matNativeControl [(ngModel)]="CupomDesconto.Tipo">
-      <mat-option *ngFor="let tipo of TiposCupom" [value]="tipo.value">
-        {{tipo.name}}
+      <mat-option [value]="TiposDesconto.Porcentagem">
+        Porcentagem
+      </mat-option>
+      <mat-option [value]="TiposDesconto.Preco">
+        Preço
       </mat-option>
     </mat-select>
   </mat-form-field>
