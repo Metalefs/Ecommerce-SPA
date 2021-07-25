@@ -11,7 +11,7 @@ import { TipoDesconto } from 'libs/data/src/lib/classes/cupom-desconto';
 
 const MercadoPagoController = express();
 
-let mercadoPagoService = new MercadoPagoService();
+const mercadoPagoService = new MercadoPagoService();
 
 MercadoPagoController
 .get(RouteDictionary.ListPayments, async (req: any, res) => {
@@ -39,7 +39,7 @@ MercadoPagoController
 
 	let paid_amount = 0;
 	merchant_order.payments.forEach(payment=> {
-		if (payment['status'] == 'approved'){
+		if (payment['status'] === 'approved'){
 			paid_amount += payment['transaction_amount'];
 		}
 	})
@@ -79,8 +79,8 @@ MercadoPagoController
     //     plan = MercadoPago\Invoice.find_by_id(req.body["id"]);
     //     break;
   }
-  let servicoPedidos = new PedidoService();
-  let pedidosUsuario = await servicoPedidos.FiltrarPedidosPorIdUsuario(payment.payer.identification.number);
+  const servicoPedidos = new PedidoService();
+  const pedidosUsuario = await servicoPedidos.FiltrarPedidosPorIdUsuario(payment.payer.identification.number);
 
   if(pedidosUsuario){
     if(pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento == null)
@@ -124,29 +124,27 @@ MercadoPagoController
 })
 .post(RouteDictionary.Checkout, ensureIsLogged, async (req: any, res) => {
     try {
-      let orcamento = req.body.orcamento as Orcamento;
-
-      let servicoCupomDesconto = new CupomDescontoService();
-      console.log(orcamento.CupomDesconto)
-      let cupom = await servicoCupomDesconto.Filtrar({Codigo:orcamento.CupomDesconto}) as CupomDesconto;
-      console.log(cupom)
-
+      const orcamento = req.body.orcamento as Orcamento;
+      const servicoCupomDesconto = new CupomDescontoService();
+      const cupom = await servicoCupomDesconto.Filtrar({Codigo:orcamento.CupomDesconto}) as CupomDesconto;
 
       if(cupom){
         switch(cupom.Tipo){
           case(TipoDesconto.Preco):{
-            orcamento.Preco =+ cupom.Valor;
+            orcamento.Preco -= cupom.Valor;
+            break;
           }
           case(TipoDesconto.Porcentagem):{
             orcamento.Preco -= (orcamento.Preco * cupom.Valor) /100
+            break;
           }
         }
       }
 
-      let preference = mercadoPagoService.getPreference(orcamento);
+      const preference = mercadoPagoService.getPreference(orcamento,cupom);
       res.send(await mercadoPagoService.checkout(preference));
-      let pedido = new Pedido(orcamento);
-      new PedidoService().InserirSemUsuario(pedido);
+      const pedido = new Pedido(orcamento);
+      await new PedidoService().InserirSemUsuario(pedido);
     }
     catch (err) {
       ErrorHandler.DefaultException(err, res)
