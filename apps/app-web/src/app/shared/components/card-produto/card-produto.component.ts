@@ -49,6 +49,9 @@ export class CardProdutoComponent implements OnInit {
         caption:"",
       });
     })
+    this.translateStatusProduto = this.translateStatusProduto.bind(this);
+    this.AdicionarAoOrcamento = this.AdicionarAoOrcamento.bind(this);
+    this.AbrirPreviewProduto = this.AbrirPreviewProduto.bind(this);
   }
 
   swiperConfig: SwiperConfigInterface = {
@@ -74,7 +77,7 @@ export class CardProdutoComponent implements OnInit {
   encodeURI(value:string){
     return encodeURIComponent(value);
   }
-  AdicionarAoOrcamento(produto:Produto){
+  AdicionarAoOrcamento(produto?:Produto){
     this.Orcamento$.subscribe(x=>{
 
       let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);

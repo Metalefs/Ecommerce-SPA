@@ -22,7 +22,7 @@ PedidoRouter.get(RouteDictionary.Pedidos.Raiz,PedidoCtrl.Ler)
 .get(RouteDictionary.Pedidos.PorUsuario, async (req: any, res) => {
   try {
     const usuario = await UsuarioLogado(req, res);
-    const result = await PedidoService.Filtrar(usuario);
+    const result = await PedidoService.Filtrar({'Usuario.CPF':usuario.CPF});
     res.send(result);
   }
   catch (err) {

@@ -186,6 +186,7 @@ export class MercadoPagoService {
         switch(+cupom.Tipo){
           case(TipoDesconto.Preco):{
             produto.Produto.Preco -= cupom.Valor;
+            produto.Produto.Nome += ` (${(cupom.Valor)} reais off cupom ${cupom.Codigo})`;
             break;
           }
           case(TipoDesconto.Porcentagem):{

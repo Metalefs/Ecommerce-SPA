@@ -116,7 +116,6 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       this.textoAdicionar = "Comprar";
 
     this.Produto$.subscribe((produto:Produto) => {
-
       this.Produto = produto;
     })
   }
@@ -154,7 +153,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
   }
 
   AlterarProdutoNoOrcamento(produto:Produto, orcamento:Orcamento){
-    let ProdutosOrcamento = orcamento.Produto.filter(x=>x.Produto._id === produto._id);
+    let produtosOrcamento = orcamento?.Produto?.filter(x=>x.Produto._id === produto._id);
     if(!this.orcamentoId){
       if(!produto.Arte){
         this.AbrirModalArte();
@@ -163,8 +162,15 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
       }
     }
     else{
-      ProdutosOrcamento = orcamento.Produto.filter(x=>x.codOrcamento === this.orcamentoId);
-      produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
+      try{
+        if(orcamento){
+          produtosOrcamento = orcamento?.Produto?.filter(x=>x.codOrcamento === this.orcamentoId);
+          produto.Quantidade += produtosOrcamento[0]?.Produto?.Quantidade || 0 ;
+        }
+      }
+      catch (exception){
+        throw Error(exception)
+      }
       this.store.dispatch(new EditarProdutoOrcamentoLocal(produto,produto._id,this.orcamentoId));
       if(!produto.Arte){
         this.AbrirModalArte();
