@@ -1,17 +1,15 @@
-<span
-  class='prod-status'
-  *ngIf='Produto?.Status == statusProduto.promocao'
->
-          <span class='product-category'></span>
-          <span
-            [class]="
-              'subtitle is-size-7 is-capitalized product-badge status-' +
-              Produto.Status.toString().toLowerCase()
-            "
-          >{{
-            Produto?.Status == statusProduto.promocao
-              ? 'Promoção'
-              : translateStatusProduto(Produto.Status)
-            }}</span
-          >
-        </span>
+<span class="prod-status" *ngIf="Produto?.Status == statusProduto.promocao">
+  <span class="product-category"></span>
+  <i class="pi pi-tag mx-2"></i>
+  <span
+    [class]="
+      'subtitle is-size-7 is-capitalized product-badge status-' +
+      Produto.Status.toString().toLowerCase()
+    "
+    >{{
+      Produto?.Status == statusProduto.promocao
+        ? 'Promoção'
+        : translateStatusProduto(Produto.Status)
+    }}</span
+  >
+</span>

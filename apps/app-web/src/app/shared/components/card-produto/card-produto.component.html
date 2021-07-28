@@ -76,7 +76,17 @@
           >
             Esgotado
           </a>
-
+          <div class="my-0">
+            <star-rating
+              [rating]="meanRating()"
+              [hoverEnabled]="true"
+              [readOnly]="true"
+              [showHalfStars]="true"
+              [step]="0.5"
+              staticColor="ok"
+              [starType]="'svg'"
+            ></star-rating>
+          </div>
           <personalizados-lopes-exibicao-preco-produto
             class="txt-center"
             [Produto]="Produto"
@@ -202,8 +212,24 @@
             </div>
           </mat-card-title>
         </mat-card-header>
-
-        <mat-divider class=""></mat-divider>
+        <a
+        matRipple
+        class="dis-flex flex-w w-full pos-absolute top-0 left-0"
+        [href]="'/produtos/' + Produto._id"
+      >
+        <span class="prod-status">
+          <i class="pi pi-tag product-category-icon"></i>
+          <span class="product-category"></span>
+          <span
+            [class]="
+              'subtitle is-size-7 is-capitalized product-badge status-' +
+              Produto.Status.toString().toLowerCase()
+            "
+          >
+            Em {{ Produto.Cores?.length }} cores</span
+          >
+        </span>
+      </a>
         <mat-card-actions
           class="w-full pos-relative z-index-1 txt-center left-0 bottom-0 is-3 preco of-y-scroll"
         >
@@ -265,35 +291,18 @@
                 >
               </p>
             </div>
-            <a
-              matRipple
-              class="dis-flex flex-w w-full"
-              [href]="'/produtos/' + Produto._id"
-            >
-              <span class="prod-status">
-                <i class="pi pi-tag product-category-icon"></i>
-                <span class="product-category"></span>
-                <span
-                  [class]="
-                    'subtitle is-size-7 is-capitalized product-badge status-' +
-                    Produto.Status.toString().toLowerCase()
-                  "
-                >
-                  Em {{ Produto.Cores?.length }} cores</span
-                >
-              </span>
-            </a>
+
           </div>
+          <button
+            href="javascript:void(0)"
+            class="button is-info is-small w-full top-0 left-0"
+            (click)="AdicionarAoOrcamento()"
+          >
+            <span class="is-fullwidth">
+              <span><mat-icon class="">add_shopping_cart</mat-icon> carrinho </span>
+            </span>
+          </button>
         </mat-card-actions>
-        <button
-          href="javascript:void(0)"
-          class="pos-absolute button is-small top-0 left-0"
-          (click)="AdicionarAoOrcamento()"
-        >
-          <span class="is-fullwidth">
-            <span><i class="pi pi-shopping-cart"></i> </span>
-          </span>
-        </button>
 
         <div class="z-index-1">
           <div class="content a-i-c m-lr-auto w-full">

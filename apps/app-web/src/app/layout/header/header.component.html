@@ -179,19 +179,19 @@
     </div>
     <div class="column is-2">
       <div class="">
-        <a
-        mat-ripple
+        <button
+        mat-mini-fab
+        color="accent"
         (click)="openCheckout()"
         title="Cesta de compras"
         aria-label="Botão abrir Orçamento"
-        color=""
         class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
       >
-        <i class="pi pi-shopping-cart"></i>
+        <mat-icon class="">shopping_bag</mat-icon>
         <a class="cart-counter">
           {{ (Orcamento$ | async)?.Produto.length || 0 }}
         </a>
-      </a>
+      </button>
       <div class="is-hidden-touch clickable">
         <a
           class="preco fw-500"

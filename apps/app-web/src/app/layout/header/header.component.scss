@@ -75,6 +75,7 @@
 }
 .mat-mini-fab .mat-button-wrapper{
   display: block !important;
+  border-bottom-right-radius: 10px;
 }
 .cart-counter{
   position: absolute;
@@ -85,7 +86,7 @@
   border-radius: 90px;
   width: 20px;
   top: -5px;
-  left: 17px;
+  // left: 17px;
   font-weight: 800;
 }
 .preco{
