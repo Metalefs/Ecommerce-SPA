@@ -18,6 +18,7 @@ import { CheckoutService } from '../../checkout.service';
 export class PagamentoComponent implements OnInit {
   _init_point:string;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
+  @Select(OrcamentoState.ObterСupomDesconto) CupomDesconto$: Observable<string>;
   Orcamento: Orcamento;
   state = 'flipped';
   user: Usuario;
@@ -33,7 +34,15 @@ export class PagamentoComponent implements OnInit {
     setTimeout(() => {
       this.flip()
     }, 0);
+    this.Orcamento$.subscribe(orcamento => {
+      this.Orcamento = orcamento;
+    });
+    this.CupomDesconto$.subscribe(cupom=>{
+      if(CheckoutService.EnderecoCompleto && this.checkoutService.enderecoForm.valid)
+        this.Checkout();
+    })
   }
+
   ngOnDestroy() {
     this.flip()
   }
@@ -47,10 +56,8 @@ export class PagamentoComponent implements OnInit {
   }
 
   public async Checkout(){
-    if(!this._init_point)
-    this.GetInitPoint();
-
     this.auth.currentUser.subscribe(async usr=>{
+      if(usr)
       this.user = usr;
     })
 
@@ -59,6 +66,9 @@ export class PagamentoComponent implements OnInit {
       if(this.Orcamento.Usuario?.Email)
       this.snack.open("Um perfil foi criado para você. Verifique mais informações no email : "+ this.Orcamento.Usuario?.Email, "Fechar")
     }
+
+    if(this.user)
+      this.GetInitPoint();
   }
 
   private GetInitPoint() {

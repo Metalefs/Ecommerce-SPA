@@ -80,16 +80,16 @@ export class CardProdutoComponent implements OnInit {
   AdicionarAoOrcamento(produto?:Produto){
     this.Orcamento$.subscribe(x=>{
 
-      let ProdutosOrcamento = x.Produto.filter(x=>x.Produto._id == this.Produto._id);
+      let produtoEstaNoOrcamento = x?.Produto?.filter(x=>x.Produto._id == this.Produto._id);
 
-      if(ProdutosOrcamento.length == 0){
+      if(produtoEstaNoOrcamento?.length == 0 || !produtoEstaNoOrcamento){
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;
 
       }
       else{
-        this.Produto.Quantidade += ProdutosOrcamento[0].Produto.Quantidade;
+        this.Produto.Quantidade += produtoEstaNoOrcamento[0].Produto.Quantidade;
 
         this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
         this.isOrcamento = true;
@@ -130,6 +130,7 @@ export class CardProdutoComponent implements OnInit {
       data:this.Produto,
       panelClass:['']
     });
+    this.store.dispatch(new EditarProdutoAbertoOrcamentoLocal(this.Produto))
   }
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);

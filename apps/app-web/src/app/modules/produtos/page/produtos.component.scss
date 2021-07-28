@@ -1,6 +1,15 @@
 .bg {
-  background: center/ cover no-repeat url(https://source.unsplash.com/daily?coloful);
+  background: center/ cover no-repeat url(https://source.unsplash.com/daily?colorful);
   background-attachment: fixed;
+}
+.card-header{
+  width: 30%!important;
+  margin: 0 auto;
+  background-color: #ffffffc2;
+  padding: 5px;
+  font-weight: 400!important;
+  text-align: center;
+  font-family: Oswald;
 }
 .skeleton{
   min-height: 577px;
@@ -15,6 +24,10 @@
       display: block;
     }
   }
+}
+
+.mat-expansion-panel-body{
+  padding:0 !important;
 }
 :host ::ng-deep .p-grid.p-nogutter{
   display: flex;

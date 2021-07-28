@@ -217,6 +217,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
           }else{
             this.store.dispatch(new EditarProdutoOrcamentoLocal(x,x._id,this.orcamentoId));
           }
+          this.openCheckout();
         }
       })
     }

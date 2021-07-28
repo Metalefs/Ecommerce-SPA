@@ -32,7 +32,7 @@
           [fullscreen]="(Carrosel$ | async)?.fullscreen"
           [autoPlayWaitForLazyLoad]="true">
         </slideshow>
-        <figure class='image is-4by3 is-hidden-touch'>
+        <figure class='image is-128x128 is-hidden-mobile'>
         </figure>
         <personalizados-lopes-card-produto-status-produto [Produto]='Produto' [statusProduto]='statusProduto'
                                                           [Produto.Status.toString().toLowerCase]='Produto.Status.toString().toLowerCase'
@@ -48,11 +48,11 @@
           </div>
         </div>
       </div>
-      <div class='card-title'>
+      <div class='card-title mt-3'>
         <div class="of-x-scroll txt-center">
           <a
             matRipple
-            class="reset-a"
+            class="reset-a titulo-produto"
             pageScroll
             href="#topo"
             (click)="AbrirPaginaProduto()"
@@ -61,11 +61,12 @@
           </a>
         </div>
       </div>
-      <div class='card-subtitle'>
-        {{ Produto?.Subtitulo }}
-      </div>
       <div class="card-content">
         <div class='content'>
+
+          <div class='card-subtitle'>
+            {{ Produto?.Subtitulo }}
+          </div>
           <a
             *ngIf="Produto.Status == statusProduto.esgotado"
             (click)="AbrirPaginaProduto()"

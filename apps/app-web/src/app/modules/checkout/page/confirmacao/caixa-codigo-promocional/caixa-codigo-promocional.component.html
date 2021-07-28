@@ -2,8 +2,7 @@
   <label for='code' class='label'>Insira o código promocional</label>
   <div class='control has-icons-left has-icons-right'>
     <input id='code' class='input' type='text' placeholder=''
-           [ngModel]='ngModel'
-           (ngModelChange)='ngModelChange.emit($event)'
+    name="codigo" ngDefaultControl [(ngModel)]='CodigoPromocional'
     >
     <span class='icon is-small is-left'>
       <i class='pi pi-percentage'></i>
@@ -13,5 +12,5 @@
     </span>
   </div>
   <span class='subtitle is-size-7'>Apenas um código pode ser aplicado por pedido.</span>
-  <button class='button is-small'>Aplicar</button>
+  <button class='button is-small' (click)="AplicarCodigo(CodigoPromocional)">Aplicar</button>
 </div>

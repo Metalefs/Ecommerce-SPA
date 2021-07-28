@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { UsuarioService, OrcamentoService} from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal } from '../actions/orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal, AplicarCodigoPromocional } from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, TamanhoProduto, Usuario } from 'libs/data/src/lib/classes';
@@ -17,7 +17,7 @@ export class OrcamentoStateModel{
   Orcamento: entities.Orcamento;
   ListaPedidos: entities.Orcamento[];
   areOrcamentosLoaded: boolean;
-  openProduct:Produto
+  openProduct:Produto;
 }
 let enderecoEntrega = new EnderecoEntrega("","","","","","","");
 let resultadoPagamentoMP: MercadoPagoResultadoPagamentoCheckout = {
@@ -62,6 +62,11 @@ export class OrcamentoState {
   @Selector()
   static ObterProdutoAberto(state: OrcamentoStateModel) {
     return state.openProduct;
+  }
+
+  @Selector()
+  static ObterСupomDesconto(state: OrcamentoStateModel) {
+    return state.Orcamento.CupomDesconto;
   }
 
   @Selector()
@@ -200,6 +205,18 @@ export class OrcamentoState {
       openProduct: payload,
     });
   }
+
+  @Action(AplicarCodigoPromocional)
+  AplicarCodigoPromocional({getState,patchState}: StateContext<OrcamentoStateModel>, {coupon} : AplicarCodigoPromocional){
+    let state = getState();
+    let orcamento = state.Orcamento;
+    orcamento.CupomDesconto = coupon;
+    patchState({
+      ...state,
+      Orcamento: orcamento,
+    });
+  }
+
 
   @Action(EditarProdutoOrcamentoLocal)
   EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id, codOrcamento} : EditarProdutoOrcamentoLocal){

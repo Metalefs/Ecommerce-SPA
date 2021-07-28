@@ -26,11 +26,9 @@ export class ContentLayoutComponent implements OnInit {
     });
     this.router.events.subscribe(event=>{
       if(event instanceof NavigationStart) {
-        console.log(event);
         this.url = event.url;
       }
       if(event instanceof NavigationEnd) {
-        console.log(event);
         this.url = event.url;
       }
     })

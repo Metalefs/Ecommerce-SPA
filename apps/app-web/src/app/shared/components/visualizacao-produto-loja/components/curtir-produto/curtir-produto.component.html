@@ -18,9 +18,7 @@
       >
     </p>
   </button>
-  <mat-chip-list *ngIf="Liked" aria-label="Obrigado">
-    <mat-chip color="primary" class="px-2 py-2" selected
-      >Você curtiu este produto</mat-chip
-    >
-  </mat-chip-list>
+  <p *ngIf="Liked" class="has-text-success" aria-label="Obrigado">
+    Você curtiu este produto
+  </p>
 </div>

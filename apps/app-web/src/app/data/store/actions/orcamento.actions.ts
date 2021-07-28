@@ -71,6 +71,12 @@ export class EditarProdutoAbertoOrcamentoLocal {
 
   constructor(public payload: entities.Produto) {}
 }
+export class AplicarCodigoPromocional {
+
+  static readonly type = '[Orcamento] Apply coupon'
+
+  constructor(public coupon: string) {}
+}
 
 export class RemoverOrcamento {
 
