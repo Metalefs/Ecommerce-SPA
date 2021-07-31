@@ -21,66 +21,52 @@
     </div>
     <div class="columns is-gapless is-multiline" *ngIf="Produto">
       <div class="column is-5-desktop is-12-tablet">
+        <div class="columns">
+          <!-- {{ mobile ? 'txt-left' : 'txt-left' }} -->
+          <div class="column is-12 message is-white px-0">
+            <div class="message-body">
+              <h1 class="titulo-produto mb-4">{{ Produto?.Nome }}</h1>
+
+            </div>
+          </div>
+        </div>
         <personalizados-lopes-exibicao-imagem-produto
           [_Produto]="Produto"
         ></personalizados-lopes-exibicao-imagem-produto>
+
       </div>
 
-      <div class="column is-4-desktop is-12-tablet pt-0 px-0 z-index-1 has-background-white shadow-light"
+      <div class="column is-4-desktop is-12-tablet px-0 z-index-1 has-background-white shadow-light"
       >
-        <div class="px-4">
-          <div class="columns">
-            <!-- {{ mobile ? 'txt-left' : 'txt-left' }} -->
-            <div class="column is-12 message is-white px-0">
-              <div class="message-body">
-                <h1 class="titulo-produto mb-4">{{ Produto?.Nome }}</h1>
-                <ul class="list-unstyled dis-flex flex-sb">
-                  <li>
-                    <p class="subtitle">
-                      <b>Modelo: </b> <span class="fs-300">{{ Produto?.Modelo || 'N/A' }}</span>
-                    </p>
-                  </li>
-                  <li>
-                    <p class="subtitle">
-                      <b>Marca: </b>
-                      <span class="fs-300">{{
-                        Produto?.Marca?.Nome || Produto?.Marca || 'N/A'
-                      }}</span>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div *ngIf="Produto" class="columns is-multiline pt-0">
-            <div class="column is-12-desktop is-12-tablet is-12-mobile pt-0">
+        <div class="px-2">
+          <div *ngIf="Produto" class="columns is-multiline ">
+            <div class="column is-12-desktop is-12-tablet is-12-mobile">
               <form *ngIf="produtoForm" action="" method="post">
                 <div
                   *ngIf="Produto?.Status != statusProduto.esgotado"
                   class="txt-left"
                 >
-                  <div class="columns py-1 pt-0">
-                    <div class="column is-12 pt-0">
-                      <div class="message is-white pt-0">
-                        <div class="message-body px-0 pt-0">
+                  <div class="columns py-1">
+                    <div class="column is-12">
+                      <div class="message is-white">
+                        <div class="message-body px-0">
                           <div
                             class="columns flex-sa mx-0 w-full is-multiline pb-1"
                           >
-                            <div class="column is-12 mh-full">
+                            <div class="column is-12 is-12-touch mh-full">
                               <personalizados-lopes-selecao-tamanho-produto
                                 [Produto]="Produto"
                                 [ErroTamanho]="ErroTamanho"
                                 [Erros]="Erros"
                               ></personalizados-lopes-selecao-tamanho-produto>
                             </div>
-                            <div class="column mh-full is-12 of-x-scroll">
+                            <div class="column is-12 is-12-touch of-x-scroll">
                               <personalizados-lopes-cor-produto-selector
                                 [Produto]="Produto"
                                 (onSetColor)="setColor($event)"
                               ></personalizados-lopes-cor-produto-selector>
                             </div>
-                            <div class="column mh-full is-12 is-12-touch of-x-scroll">
+                            <div class="column is-12 is-12-touch of-x-scroll">
                               <div class="of-x-hidden">
                                 <personalizados-lopes-selecao-estampa
                                   [Produto]="Produto"
