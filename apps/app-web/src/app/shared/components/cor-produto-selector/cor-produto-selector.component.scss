@@ -11,6 +11,7 @@ input[type='radio'] {
   border-radius: 50%;
   padding: 1px;
   border: 2px solid #e7e7e7;
+  box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -26,7 +27,6 @@ input[type='radio'] {
   }
 }
 .selected {
-  border-radius: 50px;
   background: #e0e0e0;
   box-shadow: inset 20px 20px 60px #bebebe,
               inset -20px -20px 60px #ffffff;

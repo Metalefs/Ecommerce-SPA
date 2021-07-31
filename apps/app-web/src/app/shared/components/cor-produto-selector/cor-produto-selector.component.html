@@ -1,9 +1,9 @@
 <div>
   <p class="is-size-7 dis-flex flex-m">
-    <span [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Selecione a opção de <strong>Cor</strong>:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
+    <span [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="has-text-weight-medium is-size-7">Escolha a <strong>Cor</strong>:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
   </p>
   <div
-    class="columns is-multiline"
+    class="columns is-multiline flex-sb"
     [ngClass]="{ 'is-danger': ErroCor }"
     *ngIf="Produto?.Cores"
   >
@@ -15,7 +15,7 @@
       class="hoverable column"
     >
       <input
-        class="mx-1 button is-rounded"
+        class="mx-1 button shadow-light"
         type="radio"
         alt="{{ cor.Nome }}"
         [value]="Produto?.Cor?.Nome ||Produto?.Cor?.nome "
@@ -24,16 +24,11 @@
       />
       <div
         title="{{ cor?.Nome || cor.nome }}"
-        class="shadow-light is-rounded button is-outlined is-small"
+        class="shadow-light button is-outlined is-small"
         [style.background]="cor?.Cor || cor?.cor"
         [ngClass]="{ 'is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome ) == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
       >
     </div>
-    <p
-      title="{{ cor.Nome || cor.nome }}"
-      class="subtitle is-size-7"
-      for="cor{{ i }}"
-    >{{cor?.Nome||cor?.nome}}</p>
     </div>
   </div>
 </div>

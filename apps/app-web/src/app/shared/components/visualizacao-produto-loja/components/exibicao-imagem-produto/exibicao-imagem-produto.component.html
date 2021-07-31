@@ -43,12 +43,30 @@
   </span>
   <ngx-imageviewer [src]="data.src"></ngx-imageviewer>
 </ng-template>
-  <div class="column is-12 pb-0 is-hidden-touch">
-    <div class="w-full flex-l px-3">
+  <div class="column is-12 px-3 is-hidden-touch">
+    <div class="w-full flex-l">
       <personalizados-lopes-exibicao-tags-produto [Produto]="Produto"></personalizados-lopes-exibicao-tags-produto>
       <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
       <personalizados-lopes-curtir-produto [Produto]="Produto"></personalizados-lopes-curtir-produto>
+
+
+      <personalizados-lopes-descricao-rapida-produto [Produto]="Produto"></personalizados-lopes-descricao-rapida-produto>
+
     </div>
+    <ul class="box content list-unstyled dis-flex flex-sb">
+      <li>
+        <p class="subtitle">
+          <b>Modelo: </b> <span class="fs-300">{{ Produto?.Modelo || 'N/A' }}</span>
+        </p>
+      </li>
+      <li>
+        <p class="subtitle">
+          <b>Marca: </b>
+          <span class="fs-300">{{
+            Produto?.Marca?.Nome || Produto?.Marca || 'N/A'
+          }}</span>
+        </p>
+      </li>
+    </ul>
   </div>
-  <personalizados-lopes-descricao-rapida-produto [Produto]="Produto"></personalizados-lopes-descricao-rapida-produto>
 </div>

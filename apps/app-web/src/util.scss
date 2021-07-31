@@ -251,8 +251,11 @@ input[type=number] {
   border-top-right-radius: 2rem;
 }
 .bg-transp{
-  background: rgb(30 35 66 / 50%);
+  background: rgb(30 35 66 / 20%);
   // background: linear-gradient(90deg, rgba(255,255,255,0.39986522545975245) 0%, rgba(255,255,255,1) 51%, rgba(0,212,255,0) 100%);
+}
+.has-background-pink-light{
+  background: hsl(287, 100%, 96%);
 }
 .is-invisible{
   visibility: hidden;

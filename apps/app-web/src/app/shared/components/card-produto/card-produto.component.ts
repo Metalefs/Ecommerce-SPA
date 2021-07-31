@@ -51,6 +51,7 @@ export class CardProdutoComponent implements OnInit {
     })
     this.translateStatusProduto = this.translateStatusProduto.bind(this);
     this.AdicionarAoOrcamento = this.AdicionarAoOrcamento.bind(this);
+    this.AbrirPaginaProduto = this.AbrirPaginaProduto.bind(this);
     this.AbrirPreviewProduto = this.AbrirPreviewProduto.bind(this);
   }
 
