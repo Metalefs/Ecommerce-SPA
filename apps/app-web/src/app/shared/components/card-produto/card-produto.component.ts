@@ -28,6 +28,26 @@ export class CardProdutoComponent implements OnInit {
 
   isOrcamento:boolean;
   Liked:boolean = false;
+
+  swiperConfig: SwiperConfigInterface = {
+    direction              : 'horizontal',
+    keyboard               : true,
+    loop                   : true,
+    loopFillGroupWithBlank : false,
+    preloadImages          : true,
+    lazy                   : true,
+    observer               : true,
+    navigation             : true,
+    allowSlidePrev:true,
+    allowSlideNext:true,
+    centeredSlides:true,
+    updateOnImagesReady: true,
+    slidesPerView          : 1,
+    autoplay: {
+      delay                : 4000,
+      disableOnInteraction : false,
+    },
+  };
   constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery, private router:Router) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
@@ -55,25 +75,6 @@ export class CardProdutoComponent implements OnInit {
     this.AbrirPreviewProduto = this.AbrirPreviewProduto.bind(this);
   }
 
-  swiperConfig: SwiperConfigInterface = {
-    direction              : 'horizontal',
-    keyboard               : true,
-    loop                   : true,
-    loopFillGroupWithBlank : false,
-    preloadImages          : true,
-    lazy                   : true,
-    observer               : true,
-    navigation             : true,
-    allowSlidePrev:true,
-    allowSlideNext:true,
-    centeredSlides:true,
-    updateOnImagesReady: true,
-    slidesPerView          : 1,
-    autoplay: {
-      delay                : 4000,
-      disableOnInteraction : false,
-    },
-  };
 
   encodeURI(value:string){
     return encodeURIComponent(value);
@@ -81,9 +82,9 @@ export class CardProdutoComponent implements OnInit {
   AdicionarAoOrcamento(produto?:Produto){
     this.Orcamento$.subscribe(x=>{
 
-      let produtoEstaNoOrcamento = x?.Produto?.filter(x=>x.Produto._id == this.Produto._id);
+      const produtoEstaNoOrcamento = x?.Produto?.filter(x=>x.Produto._id === this.Produto._id);
 
-      if(produtoEstaNoOrcamento?.length == 0 || !produtoEstaNoOrcamento){
+      if(produtoEstaNoOrcamento?.length === 0 || !produtoEstaNoOrcamento){
 
         this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
         this.isOrcamento = true;

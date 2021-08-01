@@ -26,6 +26,13 @@ input[type='radio'] {
     }
   }
 }
+
+input[type='radio'] {
+  display: none;
+  // width: 36px !important;
+  // height: 36px !important;
+  border-radius: 50%
+}
 .selected {
   background: #e0e0e0;
   box-shadow: inset 20px 20px 60px #bebebe,

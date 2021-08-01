@@ -8,7 +8,7 @@
     *ngIf="Produto?.Cores"
   >
     <div
-    *ngFor="let cor of Produto?.Cores; let i = index"
+      *ngFor="let cor of Produto?.Cores; let i = index"
       (click)="setColor(cor)"
       (mouseover)="hovercolor = cor"
       (mouseout)="hovercolor = null"
@@ -28,7 +28,7 @@
         [style.background]="cor?.Cor || cor?.cor"
         [ngClass]="{ 'is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome ) == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
       >
-    </div>
+      </div>
     </div>
   </div>
 </div>

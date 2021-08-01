@@ -1,0 +1,20 @@
+<mat-accordion class="px-0">
+  <mat-expansion-panel [expanded]="true" class="pl-0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Faixa de preço
+      </mat-panel-title>
+      <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="field">
+      <div class="control">
+        <ngx-slider
+          (userChange)="atualizarFiltroAtivo(false)"
+          [(highValue)]="maxValue"
+          [(value)]="value"
+          [options]="options"
+        ></ngx-slider>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

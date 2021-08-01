@@ -1,0 +1,18 @@
+<mat-form-field appearance='' class='w-full'>
+  <mat-label>Status</mat-label>
+  <mat-select
+    (selectionChange)='atualizarFiltroAtivo()'
+    [(ngModel)]='activeOrderStatus'
+    matNativeControl
+  >
+    <mat-option
+      *ngFor='let opt of orderStatus'
+      [value]='opt'
+      class='w-full'
+    >
+      <div class='box w-full'>
+        <p>{{ opt.name }}</p>
+      </div>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

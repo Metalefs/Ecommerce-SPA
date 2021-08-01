@@ -1,0 +1,14 @@
+<span class='p-input-icon-left w-full'>
+    <i class='pi pi-search'></i>
+    <input
+      (change)='atualizarFiltroAtivo()'
+      [(ngModel)]='activeSearchFilter'
+      class='border py-2'
+      matInput
+      pInputText
+      placeholder='Filtrar em {{ CategoriaAtiva?.Nome }}'
+      placeholder='Search'
+      type='text'
+      type='text'
+    />
+</span>

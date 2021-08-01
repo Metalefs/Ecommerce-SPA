@@ -206,6 +206,12 @@
   &.is-rounded {
     border-radius: 30px;
   }
+  &-title {
+    position: absolute;
+    z-index: 3;
+    background: #fefbff52;
+    pointer-events: none;
+  }
 }
 .portfolio-item {
   margin: 0px;

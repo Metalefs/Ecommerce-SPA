@@ -1,0 +1,94 @@
+<div class=''>
+  <p-dataView
+    *ngIf='(Filtro | async).FiltroProdutos?.length > 0'
+    [emptyMessage]="'Nenhum item encontrado'"
+    [layout]="mobileQuery.matches ? 'grid' : 'grid'"
+    [lazy]='false'
+    [loading]='loading'
+    [rows]='12'
+    [value]='Produtos'
+    class='w-full'
+    pageLinkSize='2'
+    paginatorPosition='bottom'
+    totalRecords='{{ total }}'
+  >
+    <ng-template pTemplate='header'>
+      <div
+        class='w-full columns is-vcentered flex-r dis-flex px-0 py-0 mx-0 flex-w is-mobile'
+      >
+        <div class='column is-hidden-tablet is-12-mobile'>
+          <personalizados-lopes-filtro-nome-produto></personalizados-lopes-filtro-nome-produto>
+        </div>
+        <div
+          class='column is-hidden-tablet is-6-mobile is-hidden-mobile'
+        >
+          <personalizados-lopes-selecao-quantidade-produtos></personalizados-lopes-selecao-quantidade-produtos>
+        </div>
+        <div class='column pb-1 is-6-desktop is-4-mobile'>
+          <div class='dis-flex w-full flex-r'>
+            <!-- <p-dataViewLayoutOptions class="column is-hidden-touch"></p-dataViewLayoutOptions> -->
+            <personalizados-lopes-selecao-ordenacao-produto></personalizados-lopes-selecao-ordenacao-produto>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template let-produto pTemplate='listItem'>
+      <ng-container class='mx-0 px-0'>
+        <div *ngIf='loading' class='column is-12 py-4'>
+          <div class='w-full mh-full skeleton'>
+            <p-skeleton height='100%' width='100vw'></p-skeleton>
+          </div>
+        </div>
+        <div *ngIf='filtroAtivo(produto) && !loading'
+             class='column is-12 py-4'
+        >
+          <personalizados-lopes-card-produto
+            [MostarOpcoes]='true'
+            [Produto]='produto'
+            [flex_direction]="'row'"
+          ></personalizados-lopes-card-produto>
+        </div>
+      </ng-container>
+    </ng-template>
+    <ng-template let-produto pTemplate='gridItem'>
+      <ng-container class='mx-0 px-0'>
+        <div *ngIf='loading'
+             class='column is-4 py-4 is-12-mobile'
+        >
+          <div class='w-full mh-full skeleton'>
+            <p-skeleton height='100%' width='100%'></p-skeleton>
+          </div>
+        </div>
+        <div *ngIf='filtroAtivo(produto) && !loading'
+             class='column is-4 py-4 is-12-mobile'
+        >
+          <personalizados-lopes-card-produto
+            [MostarOpcoes]='true'
+            [Produto]='produto'
+          ></personalizados-lopes-card-produto>
+        </div>
+      </ng-container>
+    </ng-template>
+  </p-dataView>
+  <ng-container
+    *ngIf='(Filtro | async).FiltroProdutos.length == 0'>
+    <personalizados-lopes-nenhum-produto-encontrado>
+    </personalizados-lopes-nenhum-produto-encontrado>
+  </ng-container>
+  <p-skeleton *ngIf='total == 0'></p-skeleton>
+</div>
+<div class='block'>
+  <div class='w-full is-hidden-desktop mb-3'>
+    <personalizados-lopes-selecao-faixa-preco-produto></personalizados-lopes-selecao-faixa-preco-produto>
+  </div>
+  <a
+    (click)='CarregarMaisProdutos()'
+    *ngIf='total > Produtos?.length'
+    [ngClass]="loading_more ? 'button is-loading' : ''"
+    class='px-3 w-full button wp-btn txt-center border-light'
+    mat-fab
+    title='Carregar mais produtos'
+  >
+    <mat-icon>add</mat-icon>
+  </a>
+</div>

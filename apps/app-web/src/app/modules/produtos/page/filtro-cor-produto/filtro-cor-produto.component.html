@@ -1,0 +1,34 @@
+<mat-accordion class="px-0">
+  <mat-expansion-panel [expanded]="true" class="pl-0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Cores
+      </mat-panel-title>
+      <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="columns is-multiline">
+      <div
+        class="hoverable column is-1"
+        *ngFor="let corProduto of CoresProdutos"
+      >
+        <input
+          class="mx-1 button shadow-light"
+          type="radio"
+          alt="{{ corProduto.Nome }}"
+          [value]="corProduto.Nome"
+          [ngClass]="{
+            ' is-focused selected': corProduto.Nome == corProduto.Nome
+          }"
+        />
+        <div
+          title="{{ corProduto.Nome }}"
+          class="shadow-light button is-outlined is-small"
+          [style.background]="corProduto?.Cor"
+          [ngClass]="{
+            ' is-focused selected': corProduto.Nome == corProduto.Nome
+          }"
+        ></div>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

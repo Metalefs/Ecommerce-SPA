@@ -1,0 +1,17 @@
+<mat-form-field appearance=''>
+  <mat-select
+    (selectionChange)='atualizarFiltroAtivo()'
+    [(ngModel)]='activeOrderLimit'
+    matNativeControl
+  >
+    <mat-option
+      *ngFor='let opt of orderLimit'
+      [value]='opt.id'
+      class='w-full'
+    >
+      <div class='box w-full'>
+        <p>{{ opt.name }}</p>
+      </div>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

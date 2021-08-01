@@ -1,0 +1,73 @@
+<mat-accordion class='px-0'>
+  <mat-expansion-panel [expanded]='true' class='pl-0'>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Categorias
+      </mat-panel-title>
+      <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list-item>
+      <mat-checkbox
+        (change)='SetCategoria(null); atualizarFiltroAtivo()'
+        [checked]='IsCategoriaAtiva(null)'
+        labelPosition='after'
+        matNativeControl
+      >
+        <a
+          [ngClass]=" IsCategoriaAtiva(null) ? 'active  ' : 'has-text-grey'
+                      "
+          class='dis-flex flex-sb flex-m'
+        >
+          <mat-icon
+            [ngClass]=" CategoriaAtiva?.Nome == defaultCategory
+                                  ? 'has-text-success'
+                                  : 'is-hidden'
+                              "
+          >
+            {{
+            CategoriaAtiva?.Nome == defaultCategory
+              ? 'check'
+              : ''
+            }}
+          </mat-icon>
+          <p class='texto-categorias'>{{ defaultCategory }}</p>
+        </a>
+      </mat-checkbox>
+    </mat-list-item>
+    <mat-list-item
+      *ngFor='let categoria of Categorias | async;let i = index'
+      [style.backgroundColor]='categoria?.Cor'
+      class='pointer w-full-m cat-item'
+    >
+      <mat-checkbox
+        (change)='SetCategoria(categoria);'
+        [checked]='IsCategoriaAtiva(categoria)'
+        labelPosition='after'
+        matNativeControl
+      >
+        <a
+          [ngClass]="IsCategoriaAtiva(categoria) ? 'active  texto-categoria-ativa': 'has-text-grey'"
+          class='dis-flex flex-sb flex-m'
+        >
+          <mat-icon
+            [ngClass]="
+                                CategoriaAtiva?.Nome == defaultCategory
+                                  ? 'has-text-success'
+                                  : 'is-hidden'
+                              "
+          >
+            {{
+            IsCategoriaAtiva(categoria) ||
+            CategoriaAtiva?.Nome == defaultCategory
+              ? 'check'
+              : ''
+            }}
+          </mat-icon>
+          <p class='texto-categorias'>
+            {{ categoria?.Nome }}
+          </p>
+        </a>
+      </mat-checkbox>
+    </mat-list-item>
+  </mat-expansion-panel>
+</mat-accordion>

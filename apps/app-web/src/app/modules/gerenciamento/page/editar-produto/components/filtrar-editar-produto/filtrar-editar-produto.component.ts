@@ -7,11 +7,10 @@ import { entities } from '@personalizados-lopes/data';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { ProdutoState, CategoriaState } from 'apps/app-web/src/app/data/store/state';
 import { order, orderPreco } from 'apps/app-web/src/app/helper/ObjHelper';
-import { TiposOrdenacao } from 'apps/app-web/src/app/modules/produtos/page/produtos.component';
 import { OrderType, OrderStatus } from 'apps/app-web/src/app/shared/models/interfaces';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
-import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
+import { FiltrarProdutoSearchQuery, TiposOrdenacao } from 'libs/data/src/lib/interfaces';
 import { Observable } from 'rxjs';
 import { EditarProdutoService } from '../../editar-produto.service';
 
