@@ -4,7 +4,7 @@ import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
-import { Categoria } from 'libs/data/src/lib/classes';
+import { Categoria, CorProduto, FornecedorProduto } from 'libs/data/src/lib/classes';
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { FiltrarProdutoSearchQuery, TiposOrdenacao } from 'libs/data/src/lib/interfaces';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
@@ -81,6 +81,22 @@ export class ProdutoStateService {
     { name: 'Esgotados', id: StatusProduto.esgotado },
     { name: 'Padrão', id: StatusProduto.padrao },
   ]
+  private _activeFornecedor: FornecedorProduto;
+  public get activeFornecedor(): FornecedorProduto {
+    return this._activeFornecedor;
+  }
+  public set activeFornecedor(value: FornecedorProduto) {
+    this._activeFornecedor = value;
+    this.atualizarFiltroAtivo();
+  }
+  private _activeCorProduto: CorProduto;
+  public get activeCorProduto(): CorProduto {
+    return this._activeCorProduto;
+  }
+  public set activeCorProduto(value: CorProduto) {
+    this._activeCorProduto = value;
+    this.atualizarFiltroAtivo();
+  }
   Parcelamento: boolean;
   MultiplasCores: boolean;
 
@@ -91,6 +107,7 @@ export class ProdutoStateService {
     Preco: "",
     Status: "",
     Marca: "",
+    Cor: "",
     Modelo: "",
     Tags: "",
   }
@@ -150,6 +167,8 @@ export class ProdutoStateService {
     this.loading = true;
     this.fQuery.Nome = this.activeSearchFilter || '';
     this.fQuery.Status = this.activeOrderStatus?.id.toString() ?? "";
+    this.fQuery.Marca = this.activeFornecedor?.Nome ?? "";
+    this.fQuery.Cor = (this.activeCorProduto?.Nome || "" ) ?? "";
     this.fQuery.NomeCategoria = this.CategoriasAtivas.map(x => x.Nome).filter((value, index, self) => self.indexOf(value) === index).join("|") || "";
     if (this.page > 1)
       this.page = 1;
@@ -188,6 +207,8 @@ export class ProdutoStateService {
       CategoriasAtivas: this.CategoriasAtivas.filter((value, index, self) => self.indexOf(value) === index),
       SearchFilter: this.activeSearchFilter,
       OrderFilter: this.activeOrderFilter,
+      MarcaFilter: this.activeFornecedor,
+      CorFilter: this.activeCorProduto,
       Produtos: this.Produtos.filter(z => this.filtroAtivo(z)),
     };
 

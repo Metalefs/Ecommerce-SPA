@@ -3,9 +3,9 @@
   <div
     class='hero-head bg txt-center w-full'
   >
-    <div class='card-header'>
+    <div class=''>
       <h1 class='txt-center w-full'>
-        Produtos Disponíveis
+
       </h1>
     </div>
   </div>
@@ -14,7 +14,7 @@
       <div [@cardFlip]='state' class='margin' id='Todos'>
         <div class='columns is-gapless'>
           <div class='column is-3-desktop is-3-tablet is-hidden-mobile'>
-            <div class='flex-c w-full portfolio pos-sticky top-0'>
+            <aside class='flex-c aside w-full portfolio pos-sticky top-0'>
 
               <div class='is-hidden-mobile w-full '>
 
@@ -25,14 +25,16 @@
                   </div>
                 </div>
 
-                <div>
-                  <personalizados-lopes-filtro-cor-produto></personalizados-lopes-filtro-cor-produto>
-                  <personalizados-lopes-checkbox-cores-produto></personalizados-lopes-checkbox-cores-produto>
-                </div>
-
-                <personalizados-lopes-selecao-categoria-produto></personalizados-lopes-selecao-categoria-produto>
-
                 <div class='px-2 mx-0 pt-2'>
+
+                  <div>
+                    <personalizados-lopes-filtro-cor-produto></personalizados-lopes-filtro-cor-produto>
+                    <personalizados-lopes-checkbox-cores-produto></personalizados-lopes-checkbox-cores-produto>
+
+                    <personalizados-lopes-filtro-fornecedor-produto></personalizados-lopes-filtro-fornecedor-produto>
+                  </div>
+
+                  <personalizados-lopes-selecao-categoria-produto></personalizados-lopes-selecao-categoria-produto>
 
                   <div class='w-full is-hidden-mobile'>
                     <personalizados-lopes-selecao-faixa-preco-produto>
@@ -44,13 +46,18 @@
                   <personalizados-lopes-selecao-status-produto></personalizados-lopes-selecao-status-produto>
                 </div>
               </div>
-            </div>
+            </aside>
           </div>
           <div
             class='column ml-0 pl-0 is-9-desktop is-9-tablet is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll'
           >
-            <div class='container'>
+            <div class='section'>
               <personalizados-lopes-exibicao-lista-produtos [mobileQuery]='mobileQuery'></personalizados-lopes-exibicao-lista-produtos>
+            </div>
+          </div>
+          <div class="column is-2">
+            <div class="section">
+              <div class="card"></div>
             </div>
           </div>
         </div>

@@ -9,11 +9,11 @@
     <div matRipple
          class="card is-shady portfolio-item zoom of-y-scroll card"
          [style.flexDirection]="flex_direction">
-         <div class='card-title  top-0 left-0 ml-3  w-full mt-3 px-3'>
+         <div class='card-title pos-absolute top-0 left-0 ml-3  w-full mt-3 px-3'>
           <div class="content w-full of-x-scroll">
             <a
               matRipple
-              class="reset-a titulo-produto title is-size-5"
+              class="reset-a titulo-produto title is-size-6"
               pageScroll
               href="#topo"
               (click)="AbrirPaginaProduto()"
@@ -22,7 +22,7 @@
             </a>
           </div>
         </div>
-      <div class="card-image">
+      <div class="card-image has-background-white">
         <slideshow
           *ngIf="imageUrls.length"
           [imageUrls]="imageUrls"
@@ -50,7 +50,7 @@
         <personalizados-lopes-card-produto-status-produto [Produto]='Produto' [statusProduto]='statusProduto'
                                                           [Produto.Status.toString().toLowerCase]='Produto.Status.toString().toLowerCase'
                                                           [translateStatusProduto]='translateStatusProduto'></personalizados-lopes-card-produto-status-produto>
-        <div class="pos-absolute z-index-1 top-0 right-0">
+        <div class="pos-absolute z-index-top top-0 right-0">
           <div>
             <personalizados-lopes-card-produto-btn-abrir-modal
               [AbrirPreviewProduto]='AbrirPreviewProduto'></personalizados-lopes-card-produto-btn-abrir-modal>
@@ -217,7 +217,7 @@
         </span>
       </a>
         <mat-card-actions
-          class="w-full columns"
+          class="w-full columns is-mobile"
         >
           <div class="column is-7">
             <ng-container
@@ -284,7 +284,7 @@
           <div class="column">
             <button
             href="javascript:void(0)"
-            class="button is-outlined is-info is-rounded w-full top-0 left-0"
+            class="button is-outlined is-info is-rounded top-0 left-0"
             (click)="AdicionarAoOrcamento()"
           >
             <span class="is-fullwidth">

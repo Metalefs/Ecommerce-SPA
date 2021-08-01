@@ -1,15 +1,16 @@
 .bg {
-  background: center/ cover no-repeat url(https://source.unsplash.com/daily?colorful);
-  background-attachment: fixed;
+  // background: center/ contain no-repeat url(https://source.unsplash.com/daily?colorful);
+  // background-attachment: fixed;
+  // background: #d2ced3;
+  box-shadow:  20px 20px 60px #bebebe,
+              -20px -20px 60px #ffffff;
+              margin: 0 auto;
+              padding: .5rem;
+              font-weight: 400!important;
+              text-align: center;
 }
 .card-header{
-  width: 30%!important;
-  margin: 0 auto;
-  background-color: #ffffffc2;
-  padding: 5px;
-  font-weight: 400!important;
-  text-align: center;
-  font-family: Oswald;
+  width: 50%!important;
 }
 .skeleton{
   min-height: 577px;

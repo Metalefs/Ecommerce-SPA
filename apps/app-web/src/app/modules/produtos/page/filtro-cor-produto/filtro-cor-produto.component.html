@@ -10,6 +10,7 @@
       <div
         class="hoverable column is-1"
         *ngFor="let corProduto of CoresProdutos"
+        (click)='CorProduto = corProduto'
       >
         <input
           class="mx-1 button shadow-light"

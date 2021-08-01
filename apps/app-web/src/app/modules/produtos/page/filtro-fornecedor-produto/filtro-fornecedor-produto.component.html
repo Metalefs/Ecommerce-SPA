@@ -1,0 +1,33 @@
+<mat-accordion class="px-0">
+  <mat-expansion-panel [expanded]="true" class="pl-0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Marcas
+      </mat-panel-title>
+      <mat-panel-description></mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="columns is-multiline">
+      <div
+        class="hoverable column"
+        *ngFor="let fornecedor of FornecedoresProdutos"
+        (click)="FornecedorProduto = fornecedor"
+      >
+        <a
+          title="{{ fornecedor.Nome }}"
+          class=""
+          [ngClass]="{
+            ' is-focused selected': fornecedor.Nome == fornecedor.Nome
+          }"
+        >
+          {{ fornecedor.Nome }}
+        </a>
+      </div>
+    </div>
+    <div class="" (click)="FornecedorProduto = null">
+      <a class=""
+      >
+        remover
+      </a>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

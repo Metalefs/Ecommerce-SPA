@@ -20,25 +20,23 @@
       </div>
     </div>
     <div class="columns is-gapless is-multiline" *ngIf="Produto">
+
       <div class="column is-5-desktop is-12-tablet">
         <div class="columns">
-          <!-- {{ mobile ? 'txt-left' : 'txt-left' }} -->
           <div class="column is-12 message is-white px-0">
             <div class="message-body">
               <h1 class="titulo-produto mb-4">{{ Produto?.Nome }}</h1>
-
             </div>
           </div>
         </div>
         <personalizados-lopes-exibicao-imagem-produto
           [_Produto]="Produto"
         ></personalizados-lopes-exibicao-imagem-produto>
-
       </div>
 
       <div class="column is-4-desktop is-6-tablet px-0 z-index-1 has-background-pink-light"
       >
-        <div class="px-2">
+        <div class="px-1 pos-sticky top-0">
           <div *ngIf="Produto" class="columns is-multiline ">
             <div class="column is-12-desktop is-12-tablet is-12-mobile">
               <form *ngIf="produtoForm" action="" method="post">

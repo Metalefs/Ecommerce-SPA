@@ -32,9 +32,10 @@ import { NenhumProdutoEncontradoComponent } from './page/nenhum-produto-encontra
 import { ExibicaoQuantidadeProdutosFiltradosComponent } from './page/exibicao-quantidade-produtos-filtrados/exibicao-quantidade-produtos-filtrados.component';
 import { FiltroCorProdutoComponent } from './page/filtro-cor-produto/filtro-cor-produto.component';
 import { ExibicaoListaProdutosComponent } from './page/exibicao-lista-produtos/exibicao-lista-produtos.component';
+import { FiltroFornecedorProdutoComponent } from './page/filtro-fornecedor-produto/filtro-fornecedor-produto.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, FiltroNomeProdutoComponent, ExibicaoProdutoComponent, FiltroCategoriaMobileComponent, ExibicaoCategoriasAtivasComponent, SelecaoQuantidadeProdutosComponent, SelecaoCategoriaProdutoComponent, CheckboxCoresProdutoComponent, SelecaoOrdenacaoProdutoComponent, SelecaoStatusProdutoComponent, SelecaoFaixaPrecoProdutoComponent, NenhumProdutoEncontradoComponent, ExibicaoQuantidadeProdutosFiltradosComponent, FiltroCorProdutoComponent, ExibicaoListaProdutosComponent],
+  declarations: [ProdutosComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, FiltroNomeProdutoComponent, ExibicaoProdutoComponent, FiltroCategoriaMobileComponent, ExibicaoCategoriasAtivasComponent, SelecaoQuantidadeProdutosComponent, SelecaoCategoriaProdutoComponent, CheckboxCoresProdutoComponent, SelecaoOrdenacaoProdutoComponent, SelecaoStatusProdutoComponent, SelecaoFaixaPrecoProdutoComponent, NenhumProdutoEncontradoComponent, ExibicaoQuantidadeProdutosFiltradosComponent, FiltroCorProdutoComponent, ExibicaoListaProdutosComponent, FiltroFornecedorProdutoComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

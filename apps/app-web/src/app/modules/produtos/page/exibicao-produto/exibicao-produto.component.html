@@ -6,22 +6,24 @@
        <h1 class="bg-transp card-header txt-center box ">{{ Produto?.Nome }}</h1>
     </div>
   </div> -->
-  <div class="">
+  <div class="has-background-light">
 
-    <personalizados-lopes-visualizacao-produto-loja
-    *ngIf="Produto"
-      [(Produto)]="Produto"
-      [orcamentoId]="orcamentoId"
-    ></personalizados-lopes-visualizacao-produto-loja>
-
-    <div class="has-background-light btr">
-      <personalizados-lopes-estatisticas-produto
+    <div class="margin">
+      <personalizados-lopes-visualizacao-produto-loja
       *ngIf="Produto"
-        [Produto]="Produto"
-      ></personalizados-lopes-estatisticas-produto>
+        [(Produto)]="Produto"
+        [orcamentoId]="orcamentoId"
+      ></personalizados-lopes-visualizacao-produto-loja>
     </div>
 
-    <div class="of-x-hidden block has-background-light">
+    <div class="of-x-hidden has-background-light">
+      <div class=" btr">
+        <personalizados-lopes-estatisticas-produto
+        *ngIf="Produto"
+          [Produto]="Produto"
+        ></personalizados-lopes-estatisticas-produto>
+      </div>
+
       <div class="py-3 px-3">
 
         <div data-aos="fade-up" data-aos-offset="200" *ngIf="Produto?._id">
@@ -58,6 +60,7 @@
           </div>
         </div>
       </div>
+
       <div class="w-full bg-daily-image flex-w flex-sa px-6">
         <a [routerLink]="'/produtos'" class="has-text-light">
           <button mat-icon-button>

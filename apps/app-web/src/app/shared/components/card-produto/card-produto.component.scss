@@ -93,6 +93,7 @@
   }
 }
 .titulo-produto {
+  color:black
 }
 .w-full-i {
   width: 400px;
@@ -204,13 +205,11 @@
 }
 .card {
   &.is-rounded {
-    border-radius: 30px;
+    border-top-left-radius: 30px;
   }
   &-title {
-    position: absolute;
     z-index: 3;
     background: #fefbff52;
-    pointer-events: none;
   }
 }
 .portfolio-item {
@@ -218,7 +217,9 @@
   display: block;
   border-radius: 0px;
   display: grid;
-  background: #ffffff;
+  background: #f0eeee;
+  box-shadow:  20px 20px 60px #bebebe,
+              -20px -20px 60px #ffffff;
   height: 100%;
   overflow: hidden;
   &:hover {

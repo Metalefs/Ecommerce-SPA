@@ -77,18 +77,22 @@
   </ng-container>
   <p-skeleton *ngIf='total == 0'></p-skeleton>
 </div>
-<div class='block'>
-  <div class='w-full is-hidden-desktop mb-3'>
+<div class='columns w-full a-i-c m-lr-auto flex-c-m'>
+  <div class='column is-12 is-hidden-desktop mb-3'>
     <personalizados-lopes-selecao-faixa-preco-produto></personalizados-lopes-selecao-faixa-preco-produto>
   </div>
-  <a
-    (click)='CarregarMaisProdutos()'
-    *ngIf='total > Produtos?.length'
-    [ngClass]="loading_more ? 'button is-loading' : ''"
-    class='px-3 w-full button wp-btn txt-center border-light'
-    mat-fab
-    title='Carregar mais produtos'
-  >
-    <mat-icon>add</mat-icon>
-  </a>
+  <div class="column is-12">
+    <div class="w-full a-i-c m-lr-auto flex-c-m">
+      <a
+        (click)='CarregarMaisProdutos()'
+        *ngIf='total > Produtos?.length'
+        [ngClass]="loading_more ? 'button is-loading' : ''"
+        class='px-3 button wp-btn txt-center border-light'
+        mat-fab
+        title='Carregar mais produtos'
+      >
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+  </div>
 </div>

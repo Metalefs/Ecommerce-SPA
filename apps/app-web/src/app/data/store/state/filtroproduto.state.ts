@@ -4,7 +4,7 @@ import { entities } from '@personalizados-lopes/data';
 import { EditarFiltroProduto, AdicionarFiltroProduto, RemoverFiltroProduto, AdicionarListaProdutosFiltroProduto, EditarCategoriaFiltroProduto, EditarSearchFiltroProduto } from '../actions/filtroproduto.actions';
 
 import { Injectable } from '@angular/core';
-import { Categoria } from 'libs/data/src/lib/classes';
+import { Categoria, CorProduto, FornecedorProduto } from 'libs/data/src/lib/classes';
 let defaultCategory = "Todos os produtos";
 export class FiltroProdutoStateModel{
   FiltroProdutos: entities.Produto[];
@@ -12,6 +12,8 @@ export class FiltroProdutoStateModel{
   CategoriasAtivas: entities.Categoria[];
   SearchFilter: string;
   OrderFilter: number;
+  MarcaFilter: FornecedorProduto;
+  CorFilter: CorProduto;
   areFiltroProdutosLoaded: boolean;
 }
 
@@ -23,6 +25,8 @@ export class FiltroProdutoStateModel{
     CategoriasAtivas: [new Categoria(defaultCategory,defaultCategory)],
     SearchFilter: "",
     OrderFilter: 0,
+    MarcaFilter: new FornecedorProduto("",""),
+    CorFilter: new CorProduto("",""),
     areFiltroProdutosLoaded: false
   }
 })
@@ -52,6 +56,8 @@ export class FiltroProdutoState {
         CategoriasAtivas : action.payload.CategoriasAtivas,
         SearchFilter : action.payload.SearchFilter,
         OrderFilter : action.payload.OrderFilter,
+        MarcaFilter : action.payload.MarcaFilter,
+        CorFilter : action.payload.CorFilter,
         FiltroProdutos : action.payload.Produtos
     });
   }
@@ -64,6 +70,8 @@ export class FiltroProdutoState {
       CategoriasAtivas : action.payload.CategoriasAtivas,
       SearchFilter : action.payload.SearchFilter,
       OrderFilter : action.payload.OrderFilter,
+      MarcaFilter : action.payload.MarcaFilter,
+      CorFilter : action.payload.CorFilter,
       FiltroProdutos : action.payload.Produtos
     });
   }
