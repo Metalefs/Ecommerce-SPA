@@ -9,10 +9,21 @@
     <div matRipple
          class="card is-rounded is-shady portfolio-item zoom of-y-scroll card"
          [style.flexDirection]="flex_direction">
+         <div class='card-title pos-absolute top-0 left-0 ml-3  w-full mt-3 px-3'>
+          <div class="content w-full of-x-scroll">
+            <a
+              matRipple
+              class="reset-a titulo-produto title is-size-5"
+              pageScroll
+              href="#topo"
+              (click)="AbrirPaginaProduto()"
+            >
+              {{ Produto?.Nome }}
+            </a>
+          </div>
+        </div>
       <div class="card-image">
         <slideshow
-          mat-card-image
-          class=""
           *ngIf="imageUrls.length"
           [imageUrls]="imageUrls"
           [arrowSize]="(Carrosel$ | async)?.arrowSize"
@@ -32,7 +43,9 @@
           [fullscreen]="(Carrosel$ | async)?.fullscreen"
           [autoPlayWaitForLazyLoad]="true">
         </slideshow>
-        <figure class='image is-128x128 is-hidden-mobile'>
+        <figure class='image is-128x128 is-hidden-touch'>
+        </figure>
+        <figure class='image is-32x32 is-hidden-desktop'>
         </figure>
         <personalizados-lopes-card-produto-status-produto [Produto]='Produto' [statusProduto]='statusProduto'
                                                           [Produto.Status.toString().toLowerCase]='Produto.Status.toString().toLowerCase'
@@ -44,22 +57,21 @@
           </div>
         </div>
       </div>
-      <div class='card-title mt-3 px-3'>
-        <div class="content of-x-scroll">
-          <a
-            matRipple
-            class="reset-a titulo-produto"
-            pageScroll
-            href="#topo"
-            (click)="AbrirPaginaProduto()"
-          >
-            {{ Produto?.Nome }}
-          </a>
-        </div>
-      </div>
+
       <div class="card-content">
         <div class='content'>
 
+          <div class="my-0">
+            <star-rating
+              [rating]="meanRating()"
+              [hoverEnabled]="true"
+              [readOnly]="true"
+              [showHalfStars]="true"
+              [step]="0.5"
+              staticColor="ok"
+              [starType]="'svg'"
+            ></star-rating>
+          </div>
           <div class='card-subtitle'>
             {{ Produto?.Subtitulo }}
           </div>
@@ -72,17 +84,6 @@
           >
             Esgotado
           </a>
-          <div class="my-0">
-            <star-rating
-              [rating]="meanRating()"
-              [hoverEnabled]="true"
-              [readOnly]="true"
-              [showHalfStars]="true"
-              [step]="0.5"
-              staticColor="ok"
-              [starType]="'svg'"
-            ></star-rating>
-          </div>
 
           <div class="hover-text">
             <div
@@ -105,7 +106,7 @@
           </div>
         </div>
       </div>
-      <footer class='card-footer dis-flex flex-m'>
+      <footer class='card-footer dis-flex flex-m flex-sb'>
         <personalizados-lopes-card-produto-btn-comprar
           [AbrirPaginaProduto]='AbrirPaginaProduto'></personalizados-lopes-card-produto-btn-comprar>
           <div class="w-full">
@@ -180,24 +181,22 @@
           <i class="pi pi-window-maximize"></i>
         </button>
       </div>
-      <mat-card-header class="w-full txt-center pt-1">
-        <mat-card-title class="w-full titulo-produto mb-0">
-          <a matRipple class="reset-a" (click)="AbrirPaginaProduto()">
-            {{ Produto?.Nome }}
-          </a>
-          <div class="my-0">
-            <star-rating
-              [rating]="meanRating()"
-              [hoverEnabled]="true"
-              [readOnly]="true"
-              [showHalfStars]="true"
-              [step]="0.5"
-              staticColor="ok"
-              [starType]="'svg'"
-            ></star-rating>
-          </div>
-        </mat-card-title>
-      </mat-card-header>
+      <mat-card-title class="fs-16 w-full mb-0 txt-center pt-1">
+        <a matRipple class="titulo-produto  reset-a" (click)="AbrirPaginaProduto()">
+          {{ Produto?.Nome }}
+        </a>
+        <div class="my-0">
+          <star-rating
+            [rating]="meanRating()"
+            [hoverEnabled]="true"
+            [readOnly]="true"
+            [showHalfStars]="true"
+            [step]="0.5"
+            staticColor="ok"
+            [starType]="'svg'"
+          ></star-rating>
+        </div>
+      </mat-card-title>
       <mat-card-actions class="px-2 z-index-2">
         <a
         matRipple

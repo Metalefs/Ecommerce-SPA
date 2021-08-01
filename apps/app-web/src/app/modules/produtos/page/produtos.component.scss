@@ -53,10 +53,31 @@
 .card{
   box-shadow: none;
 }
-.section{
+.hero{
   // animation: shrink 1s ease reverse;
   // animation-delay: 1s;
   margin: 0px auto;
+  $squared-size: 50vh;
+  &:after,&:before {
+     background-color: #ffffff73;
+     border-radius: 1rem;
+     content: "";
+     height: $squared-size;
+     width: 50vw ;
+     position: absolute;
+     transform: rotateZ(45deg);
+     z-index: -1;
+ }
+
+ &:before {
+   left: 0;
+   top: 927px;
+ }
+
+ &:after {
+     right: 0;
+     top: 370px;
+ }
 }
 
 .scroll-y{

@@ -7,7 +7,9 @@
       <mat-card-subtitle class="mb-0">{{Estampa?.Nome}}</mat-card-subtitle>
     </div>
   </mat-card-title>
-  <img mat-card-image width="200" height="200" src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
+  <figure class="image is-128x128">
+    <img mat-card-image width="200" height="200" src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
+  </figure>
   <mat-card-content>
     <p>{{Estampa?.Descricao}}</p>
     <p class="preco">R${{FormatarPreco(Estampa?.Preco)}}</p>
