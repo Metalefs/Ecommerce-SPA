@@ -47,7 +47,7 @@
           [fullscreen]="(Carrosel$ | async)?.fullscreen"
           [autoPlayWaitForLazyLoad]="true">
         </slideshow>
-        <figure class="image is-128x128 is-hidden-touch"></figure>
+        <figure class="image is-128x128 "></figure>
         <personalizados-lopes-card-produto-status-produto [Produto]='Produto' [statusProduto]='statusProduto'
                                                           [Produto.Status.toString().toLowerCase]='Produto.Status.toString().toLowerCase'
                                                           [translateStatusProduto]='translateStatusProduto'></personalizados-lopes-card-produto-status-produto>
@@ -183,7 +183,7 @@
         </button>
       </div>
       <mat-card-title class="fs-16 w-full mb-0 txt-center pt-1">
-        <a matRipple class="titulo-produto  reset-a" (click)="AbrirPaginaProduto()">
+        <a matRipple class="titulo-produto has-text-black reset-a" (click)="AbrirPaginaProduto()">
           {{ Produto?.Nome }}
         </a>
         <div class="my-0">

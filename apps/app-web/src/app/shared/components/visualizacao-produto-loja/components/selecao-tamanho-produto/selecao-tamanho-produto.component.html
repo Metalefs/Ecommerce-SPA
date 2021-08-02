@@ -4,7 +4,7 @@
   *ngIf="Produto?.Tamanhos"
 >
   <mat-label class="label"  [ngClass]="{'': !(Produto.Tamanho?.Nome || Produto?.Tamanho)}"
-    >Escolha o <strong>Tamanho</strong>: <b>{{Produto?.Tamanho?.Nome || Produto?.Tamanho || ''}} {{Produto?.FaixaTamanho?.Tamanho}}</b></mat-label>
+    >Escolha o <strong>Tamanho</strong>: </mat-label><span class=" is-size-7">{{Produto?.Tamanho?.Nome || Produto?.Tamanho || ''}} {{Produto?.FaixaTamanho?.Tamanho}}</span>
   <div
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"

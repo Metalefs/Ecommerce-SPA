@@ -1,7 +1,7 @@
 <div>
-  <p class="is-size-7 dis-flex flex-m">
-    <span [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="label">Escolha a <strong>Cor</strong>:  <strong class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</strong></span>
-  </p>
+  <div class="dis-flex flex-m">
+    <label [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="label">Escolha a <strong>Cor</strong>: </label>  <span class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</span>
+  </div>
   <div
     class="columns is-multiline flex-sb"
     [ngClass]="{ 'is-danger': ErroCor }"

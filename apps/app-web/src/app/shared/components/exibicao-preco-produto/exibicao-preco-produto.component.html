@@ -10,7 +10,7 @@
 <ng-template #preco_promo>
   <div class="">
     <p class="linethr"><span class="is-size-7 preto6">de</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}<span class="is-size-7 preto6"> Por</span> </p>
-    <p class="preco promocao ">
+    <p class="preco fs-18 promocao ">
       R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
     </p>
   </div>
@@ -18,7 +18,7 @@
 <div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
   <p class="preto6">
     {{ Produto.Parcelas }}x de
-    <span class="preco-produto"
+    <span class="preco-produto fs-18"
       ><b>R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b></span
     >
     sem juros
@@ -26,7 +26,7 @@
 </div>
 <ng-template #preco_normal>
   <div class="w-full">
-    <p class="preco "><span class="is-size-7 preto6"></span>R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
+    <p class="preco fs-18"><span class="is-size-7 preto6"></span>R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}</p>
   </div>
 </ng-template>
 </div>
