@@ -58,7 +58,7 @@ export class CardProdutoComponent implements OnInit {
 
   ];
   ngOnInit(): void {
-    this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) == 'true' ? true: false;
+    this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) === 'true' ? true: false;
     if(this.Produto.Imagem)
     this.Produto.Imagem.forEach(img=>{
       this.imageUrls.push({

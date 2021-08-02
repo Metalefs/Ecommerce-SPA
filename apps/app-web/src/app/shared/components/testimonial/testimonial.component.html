@@ -9,8 +9,9 @@
       </span>
     </div> -->
     <div class="titleContent pb-0 w-full">
+      <fa-icon class="has-text-light" [icon]="quoteL" [size]="'xl'"></fa-icon>
       <h1 class='testimonial-title has-text-info'>
-        O que nossos clientes dizem
+        O que os nossos clientes dizem sobre o nosso serviço
       </h1>
     </div>
     <div class="swiper-container" #swiperElTestimonial (mouseenter)="onSwiperHover( true )"
@@ -18,7 +19,6 @@
 
       <div class="swiper-button-prev z-index-top clickable hoverable"></div>
       <div class="swiper-button-next z-index-top clickable hoverable"></div>
-
 
       <div class="swiper-wrapper pt-3">
         <div class="swiper-slide" *ngFor='let item of sliderData'>

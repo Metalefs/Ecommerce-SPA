@@ -14,6 +14,7 @@ export class Orcamento extends MongoDocument implements entidadeBase{
 
     Dimensoes?:string;
     CupomDesconto?:string;
+    Entrega:EntregaOrcamento;
     static readonly NomeID:string = "Orcamento";
     constructor(
       Produto:CodProduto[],
@@ -23,6 +24,7 @@ export class Orcamento extends MongoDocument implements entidadeBase{
       Mensagem:string,
       CupomDesconto:string,
       Usuario?:Usuario,
+      Entrega?:EntregaOrcamento,
     ){
         super();
         this.Produto = Produto;
@@ -32,6 +34,7 @@ export class Orcamento extends MongoDocument implements entidadeBase{
         this.Mensagem = Mensagem;
         this.Usuario = Usuario;
         this.CupomDesconto = CupomDesconto;
+        this.Entrega = Entrega;
     }
 
     DataHoraCriacao: Date;
@@ -45,4 +48,8 @@ export class CodProduto {
     this.Produto  =  Produto;
     this.codOrcamento =  codOrcamento;
   }
+}
+export interface EntregaOrcamento{
+  cep:string,
+  dados:{}
 }

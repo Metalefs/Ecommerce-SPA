@@ -33,7 +33,7 @@ import { ExibicaoBreadcrumbComponent } from '../exibicao-breadcrumb/exibicao-bre
 import { BlocoPagamentoProdutoComponent } from './components/bloco-pagamento-produto/bloco-pagamento-produto.component';
 import { SelecaoEstampaComponent } from './components/selecao-estampa/selecao-estampa.component';
 import { VisualizacaoProdutoLojaComponent } from './visualizacao-produto-loja.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { StarRatingModule } from 'angular-star-rating';
 import { GalleryModule } from 'ng-gallery';
@@ -59,6 +59,7 @@ import { CorProdutoSelectorModule } from '../cor-produto-selector/cor-produto-se
     ShareIconsModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxPageScrollModule,
     NgxPageScrollCoreModule,
     SwiperModule,

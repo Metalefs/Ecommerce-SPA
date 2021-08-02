@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { NavState } from '../../../shared/models/interfaces';
 
-import { LerNavState, EditarNavState } from '../actions/navstate.actions'
+import { EditarNavState } from '../actions/navstate.actions'
 
 export class NavStateStateModel{
   NavState: NavState;

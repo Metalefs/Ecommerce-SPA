@@ -132,76 +132,79 @@
         </div>
       </div>
     </div>
-    <div class="column pl-6 is-2 is-hidden-mobile">
-      <div class="dropdown">
-        <i class="pi pi-user"></i>
-        <p  class=" of-x-scroll" style="border: none !important;">
-          <a class="w-full has-text-centered py-4 subtitle subtitle is-size-7 has-text-bold" title="Perfil">
-            {{ user?.Nome || 'ENTRAR' }}
-          </a>
-        </p>
-        <div class="dropdown-content w-full has-background-white box">
+
+    <div class="column">
+      <div class='columns'>
+        <div class="column pl-6 is-hidden-mobile">
+          <div class="dropdown">
+            <i class="pi pi-user"></i>
+            <p  class=" of-x-scroll" style="border: none !important;">
+              <a class="w-full has-text-centered subtitle subtitle is-size-7 has-text-bold" title="Perfil">
+                {{ user?.Nome || 'ENTRAR' }}
+              </a>
+            </p>
+            <div class="dropdown-content w-full has-background-white box">
+              <button
+                mat-menu-item
+                *ngIf="user"
+                href="#topo"
+                routerLinkActive="Active"
+                title="Meus dados"
+                pageScroll
+                [routerLink]="['/minha-conta/pessoal']"
+              >
+                Meus dados
+              </button>
+              <button
+                class=""
+                mat-menu-item
+                *ngIf="!user"
+                (click)="openLogin()"
+              >
+                Entrar
+              </button>
+              <button
+                mat-menu-item
+                *ngIf="user && user?.Tipo == TipoUsuario.admin"
+                href="#topo"
+                title="Gerenciamento"
+                routerLinkActive="Active"
+                pageScroll
+                [routerLink]="['/gerenciamento/app']"
+              >
+                Gerenciamento
+              </button>
+              <button mat-menu-item *ngIf="user" (click)="Logout()">
+                Sair
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="column">
           <button
-            mat-menu-item
-            *ngIf="user"
-            href="#topo"
-            routerLinkActive="Active"
-            title="Meus dados"
-            pageScroll
-            [routerLink]="['/minha-conta/pessoal']"
+            mat-mini-fab
+            color="accent"
+            (click)="openCheckout()"
+            title="Cesta de compras"
+            aria-label="Botão abrir Orçamento"
+            class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
           >
-            Meus dados
+            <mat-icon class="">shopping_bag</mat-icon>
+            <a class="cart-counter">
+              {{ (Orcamento$ | async)?.Produto.length || 0 }}
+            </a>
           </button>
-          <button
-            class=""
-            mat-menu-item
-            *ngIf="!user"
-            (click)="openLogin()"
-          >
-            Entrar
-          </button>
-          <button
-            mat-menu-item
-            *ngIf="user && user?.Tipo == TipoUsuario.admin"
-            href="#topo"
-            title="Gerenciamento"
-            routerLinkActive="Active"
-            pageScroll
-            [routerLink]="['/gerenciamento/app']"
-          >
-            Gerenciamento
-          </button>
-          <button mat-menu-item *ngIf="user" (click)="Logout()">
-            Sair
-          </button>
+          <div class="is-hidden-touch clickable">
+            <a
+              class="preco fw-500"
+              (click)="openCheckout()"
+              *ngIf="(Orcamento$ | async)?.Preco"
+            >
+              R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="column">
-      <div class="">
-        <button
-        mat-mini-fab
-        color="accent"
-        (click)="openCheckout()"
-        title="Cesta de compras"
-        aria-label="Botão abrir Orçamento"
-        class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
-      >
-        <mat-icon class="">shopping_bag</mat-icon>
-        <a class="cart-counter">
-          {{ (Orcamento$ | async)?.Produto.length || 0 }}
-        </a>
-      </button>
-      <div class="is-hidden-touch clickable">
-        <a
-          class="preco fw-500"
-          (click)="openCheckout()"
-          *ngIf="(Orcamento$ | async)?.Preco"
-        >
-          R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
-        </a>
-      </div>
-    </div>
     </div>
   </nav>
   <mat-toolbar-row

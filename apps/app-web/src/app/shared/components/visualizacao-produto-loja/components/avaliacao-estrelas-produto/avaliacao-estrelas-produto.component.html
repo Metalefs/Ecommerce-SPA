@@ -1,13 +1,10 @@
 <div>
   <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
   <div
-    *ngIf="Produto?.Rating.length > 10"
-    class="{{
-      mobile ? 'txt-left' : 'txt-left'
-    }} my-1 star-width dis-flex flex-w w-full"
+    class="
+     my-1 star-width dis-flex flex-w w-full"
   >
     <star-rating
-      [ngClass]="loading ? 'button is-loading' : ''"
       class="subtitle is-size-7"
       labelText="{{ meanRating() }}"
       [showHalfStars]="true"

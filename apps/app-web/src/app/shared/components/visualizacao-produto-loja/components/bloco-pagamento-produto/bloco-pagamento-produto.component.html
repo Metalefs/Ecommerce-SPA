@@ -9,6 +9,19 @@
       ></personalizados-lopes-selecao-quantidade-produto>
     </div>
     <div class="column is-12">
+      <form [formGroup]='cepForm'>
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Calcule frete e prazo</mat-label>
+          <input matInput (change)="AtualizarOrcamento()" [formControlName]="'cep'"
+                 placeholder="seu CEP">
+          <mat-error *ngIf="cepForm.get('cep').hasError('required')">
+            É necessário inserir um <strong>CEP</strong>
+          </mat-error>
+          <a class="button">Calcular</a>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="column is-12">
       <ng-container
         *ngIf="
           findInvalidControlsRecursive();

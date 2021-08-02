@@ -1,21 +1,46 @@
 <div id="INICIO" class="has-background-white">
+
   <div class="">
     <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
   </div>
+
   <div class="section">
     <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
+
+    <div class='columns flex-sa'>
+      <div class='column'>
+        <div class="box is-info is-outlined">
+          <div class="content">
+            <h4 class="title is-5">Escolha de 100+ produtos costumizáveis</h4>
+            Começe com qualquer um das nossas melhores estampas originais e costumize para satisfazer as suas necessidades, seja por imagem ou por texto.
+          </div>
+        </div>
+      </div>
+
+      <div class='column'>
+        <div class="box is-outlined">
+          <div class="content">
+            <h4 class="title is-5">Frete grátis a partir de 5 produtos</h4>
+            Acima de 5 produtos <span class='card has-background-warning'>Frete até 100% Grátis </span>
+            <br><a>Confira seu CEP aqui</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="section">
-    <section
-        data-aos-offset="-10"
-        data-aos="zoom-up"
-        class=""
-        *ngIf="(Clientes$ | async)?.length > 0"
-      >
-        <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
-    </section>
-  </div>
+
   <div class="section">
     <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
+  </div>
+
+  <div class="section">
+    <section
+      data-aos-offset="-10"
+      data-aos="zoom-up"
+      class=""
+      *ngIf="(Clientes$ | async)?.length > 0"
+    >
+      <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>
+    </section>
   </div>
 </div>

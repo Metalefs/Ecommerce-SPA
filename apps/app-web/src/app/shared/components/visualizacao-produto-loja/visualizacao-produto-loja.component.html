@@ -1,4 +1,4 @@
-<section class="">
+<section class="has-background-pink-light">
 
   <personalizados-lopes-exibicao-breadcrumb
   *ngIf="Produto"
@@ -23,12 +23,15 @@
 
       <div class="column is-5-desktop is-12-tablet">
         <div class="columns">
-          <div class="column is-12 message is-white px-0">
+          <div class="column is-12 message px-0">
             <div class="message-body">
-              <h1 class="titulo-produto mb-4">{{ Produto?.Nome }}</h1>
+              <h1 class="titulo-produto">{{ Produto?.Nome }}</h1>
             </div>
           </div>
         </div>
+        <personalizados-lopes-avaliacao-estrelas-produto
+        ></personalizados-lopes-avaliacao-estrelas-produto>
+
         <personalizados-lopes-exibicao-imagem-produto
           [_Produto]="Produto"
         ></personalizados-lopes-exibicao-imagem-produto>
@@ -64,15 +67,13 @@
                                 (onSetColor)="setColor($event)"
                               ></personalizados-lopes-cor-produto-selector>
                             </div>
-                            <div class="column is-12 is-12-touch of-x-scroll">
-                              <div class="of-x-hidden">
-                                <personalizados-lopes-selecao-estampa
-                                  [Produto]="Produto"
-                                  (onSelecionarEstampa)="
-                                    SelecionarEstampa($event)
-                                  "
-                                ></personalizados-lopes-selecao-estampa>
-                              </div>
+                            <div class="column is-12 is-12-touch">
+                              <personalizados-lopes-selecao-estampa
+                                [Produto]="Produto"
+                                (onSelecionarEstampa)="
+                                  SelecionarEstampa($event)
+                                "
+                              ></personalizados-lopes-selecao-estampa>
                             </div>
                           </div>
                         </div>

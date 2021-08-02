@@ -22,13 +22,14 @@
   }
 }
 .mat-card {
-  min-height: 100%;
+
   // max-height: 550px;
   background: #ffffff none repeat scroll 0% 0%;
   display: flex;
   align-items: center !important;
   border-left: 1px solid #e7e7e7;
   height: 100%;
+  min-height: 100%;
   min-height: 400px;
   // padding: 0 !important;
   //box-shadow: none;
@@ -92,9 +93,6 @@
     }
   }
 }
-.titulo-produto {
-  color:black
-}
 .w-full-i {
   width: 400px;
   margin: 0;
@@ -124,7 +122,7 @@
     display: block;
   }
   100% {
-    visibility: show;
+    visibility: visible;
     opacity: 1;
     position: relative;
     display: block !important;
@@ -132,7 +130,7 @@
 }
 @keyframes hide {
   0% {
-    visibility: show;
+    visibility: visible;
     opacity: 1;
     display: flex;
     position: relative;
@@ -155,7 +153,7 @@
     font-weight: 400;
   }
   &.promocao {
-    color: f05558;
+    color: #f05558;
   }
 }
 ::ng-deep .mat-card-header-text {
@@ -209,18 +207,27 @@
   }
   &-title {
     z-index: 3;
-    background: #fefbff52;
+    background: #2f2e3052;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
   }
 }
+
+.titulo-produto {
+  color: white;
+  text-transform: uppercase;
+}
 .portfolio-item {
-  margin: 0px;
-  display: block;
-  border-radius: 0px;
+  margin: 0;
+  border-radius: 0;
   display: grid;
   background: #f0eeee;
   box-shadow:  20px 20px 60px #bebebe,
               -20px -20px 60px #ffffff;
   height: 100%;
+  min-height: 400px;
   overflow: hidden;
   &:hover {
     .slideshow-container .slides:not(.link) {
