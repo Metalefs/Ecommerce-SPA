@@ -21,6 +21,7 @@ import { CheckoutService } from '../../checkout.service';
 })
 export class ConfirmacaoComponent implements OnInit {
   @Input() edit = true;
+  @Input() exibirTabela = true;
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   ErroCadastro:boolean = false;
   Total:number = 0;

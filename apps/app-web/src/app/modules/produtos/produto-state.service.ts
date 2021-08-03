@@ -215,7 +215,6 @@ export class ProdutoStateService {
 
     this.store.dispatch(new EditarFiltroProduto(filtroProduto)).subscribe(y => {
       this.delay(400).then(x => { this.loading = x; });
-      console.log(y);
       this.Produtos = y.Produtos.Produtos;
     });
   }

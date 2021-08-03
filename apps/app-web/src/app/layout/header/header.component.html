@@ -31,7 +31,7 @@
   >
     <div class="column is-1">
     </div>
-    <div class="column is-2-desktop is-9-mobile">
+    <div class="column is-2-desktop is-5-mobile">
       <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
         <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
       </a>
@@ -134,12 +134,12 @@
     </div>
 
     <div class="column">
-      <div class='columns is-vcentered'>
+      <div class='columns is-mobile is-vcentered'>
         <div class="column is-hidden-mobile">
           <div class="dropdown">
             <div class="w-full dis-flex flex-w">
               <p class="pi pi-user fs-20 dis-flex"></p>
-              <p class=" of-x-scroll" style="border: none !important;">
+              <p class="ml-2 of-x-scroll" style="border: none !important;">
                 <a class="w-full subtitle" title="Perfil">
                   {{ user?.Nome || 'ENTRAR' }}
                 </a>
@@ -188,22 +188,26 @@
             mat-mini-fab
             [routerLink]="['/produtos']" routerLinkActive="router-link-active"
             title="Favoritos"
+            color=""
             aria-label="Botão abrir Favoritos"
-            class="size4 boxshadow-none shadow-light has-background-warning trans-04"
+            class="size4 boxshadow-none shadow-light trans-04 has-text-black "
           >
-            <i class="pi pi-star"></i>
+            <i class="pi pi-heart fs-20"></i>
+            <a class="cart-counter">
+              {{FavCount}}
+            </a>
           </button>
         </div>
         <div class="column">
           <button
             mat-mini-fab
-            color="accent"
+            color=""
             (click)="openCheckout()"
             title="Cesta de compras"
             aria-label="Botão abrir Orçamento"
             class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
           >
-            <mat-icon class="">shopping_bag</mat-icon>
+            <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
             <a class="cart-counter">
               {{ (Orcamento$ | async)?.Produto.length || 0 }}
             </a>

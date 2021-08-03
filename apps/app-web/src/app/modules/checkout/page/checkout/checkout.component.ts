@@ -33,6 +33,7 @@ export class CheckoutComponent implements OnInit {
   valid: boolean = false;
   erros: string[] = [];
   Orcamento:Orcamento;
+  confirmar:boolean;
   public get dadosForm(): FormGroup {
     return this.checkoutService.dadosForm;
   }

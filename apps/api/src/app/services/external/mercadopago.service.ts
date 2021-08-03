@@ -186,12 +186,12 @@ export class MercadoPagoService {
         switch(+cupom.Tipo){
           case(TipoDesconto.Preco):{
             produto.Produto.Preco -= cupom.Valor;
-            produto.Produto.Nome += ` (${(cupom.Valor)} reais off cupom ${cupom.Codigo})`;
+            produto.Produto.Nome += ` (${(cupom.Valor)} reais off com cupom ${cupom.Codigo})`;
             break;
           }
           case(TipoDesconto.Porcentagem):{
             produto.Produto.Preco -= (produto.Produto.Preco * cupom.Valor) /100;
-            produto.Produto.Nome += ` (${(cupom.Valor)}% off cupom ${cupom.Codigo})`;
+            produto.Produto.Nome += ` (${(cupom.Valor)}% off com cupom ${cupom.Codigo})`;
             console.log('porcentagem desconto',(produto.Produto.Preco * cupom.Valor) /100)
             break;
           }

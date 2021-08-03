@@ -12,6 +12,10 @@ h1.cart-title{
   margin-top: 0;
   margin-bottom: 21px;
 }
+.exibicao-cart{
+  max-height: 500px;
+  overflow-y: scroll;
+}
 .checkout-background{
   top: 0;
   height: 30vh;

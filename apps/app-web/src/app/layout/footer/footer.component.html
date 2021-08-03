@@ -63,7 +63,7 @@
                     >{{ (InformacoesContato$ | async)?.Telefone }}</a
                   >
                 </p>
-                <p class="footer-text has-text-bold">
+                <p class="footer-text">
                   <i class="pi pi-mobile"></i>Whatsapp:
                   {{ (InformacoesContato$ | async)?.Whatsapp }}
                 </p>
@@ -120,7 +120,7 @@
                   />
                 </div>
                 <div class="column is-12 txt-center">
-                  <h4 class="has-text-white">Formas de pagamento</h4>
+                  <h4 class="footer-text">Formas de pagamento</h4>
                   <div class="w3-xxlarge w3-center">
                     <img loading="lazy" class="band-bloco" src="assets/images/icons/boleto.png">
                     <img loading="lazy" class="band-bloco" src="assets/images/icons/visa.png">
@@ -141,12 +141,12 @@
         <mat-toolbar-row class="w-full btr" style="white-space: break-spaces; ">
           <div class="w-full margin">
             <div class="w-full flex-sa txt-center">
-              <p class="has-text-light"><b [innerHtml]="(Sobre$ | async)?.Nome"></b> Todos os direitos reservados</p>
+              <p class="footer-text"><b [innerHtml]="(Sobre$ | async)?.Nome"></b> Todos os direitos reservados</p>
             </div>
           </div>
         </mat-toolbar-row>
-        <div class="w-full px-3 flex-sa  py-2"  title="Desenvolvido por Devportable - jackson.pires@devportable.com">
-          <p class="dis-flex flex-w has-text-light is-hidden-touch" [innerHTML]="(Sobre$|async)?.Descricao + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
+        <div class="w-full px-3 flex-sa py-2"  title="Desenvolvido por Devportable - jackson.pires@devportable.com">
+          <p class="dis-flex flex-w footer-text is-hidden-touch" [innerHTML]="(Sobre$|async)?.Descricao + '- Gateway de pagamento Mercadopago - Desenvolvido por Jackson Pires.'"> </p>
           <span>CNPJ : <span [innerHTML]="(Sobre$|async)?.CNPJ"></span></span>
         </div>
       </div>

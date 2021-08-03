@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   IsSobreLoadedSub: Subscription;
   links = NavLinksRes;
   @Select(NavStateState.ObterNavState) NavState$: Observable<NavState>;
-  @Select(ProdutoState.ObterListaProdutos) Produto$: Observable<Produto[]>;
+  @Select(ProdutoState.ObterListaFavoritos) Favoritos$: Observable<Produto[]>;
   @Select(CategoriaState.ObterListaCategorias) Categoria$: Observable<Categoria[]>;
   route: string;
   search:boolean=true;
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   TipoUsuario = TipoUsuario;
   galeria = {name:"Galeria",href:`/showcase`,queryParams:{}};
   Alerta:string = "Covid-19: Atendendo normalmente, na Personalizados Lopes você recebe em casa.";
-
+  FavCount:number;
   constructor(
     private AuthenticationService:AuthenticationService,
     private router: Router,
@@ -146,6 +146,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       cats.forEach(cat=>{
         this.links[1].options.push({nome:cat.Nome,link:`/produtos`,queryParams:{categoria:cat.Nome}})
       })
+    })
+
+    this.Favoritos$.subscribe(x=>{
+      this.FavCount = x?.length;
     })
 
     this.IsSobreLoadedSub = this.IsSobreLoaded$.pipe(

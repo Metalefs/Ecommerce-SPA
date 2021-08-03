@@ -3,14 +3,14 @@
   <div
     class='hero-head bg txt-center w-full'
   >
-    <div class=''>
+    <div class='card-header'>
       <h1 class='txt-center w-full'>
         Produtos na Loja
       </h1>
     </div>
   </div>
   <div class='hero-body py-0'>
-    <div class='section'>
+    <div class='section pt-2'>
       <div [@cardFlip]='state' class='margin' id='Todos'>
         <div class='columns is-gapless'>
           <div class='column is-3-desktop is-3-tablet is-hidden-mobile'>
@@ -56,7 +56,7 @@
                 <mat-tab label="Loja">
                   <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                 </mat-tab>
-                <mat-tab label="Favoritos">
+                <mat-tab label="Favoritos" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>
                 </mat-tab>
                 <mat-tab label="Comparação">
