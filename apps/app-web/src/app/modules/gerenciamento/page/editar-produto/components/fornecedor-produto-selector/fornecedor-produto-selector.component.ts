@@ -16,5 +16,4 @@ export class FornecedorProdutoSelectorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

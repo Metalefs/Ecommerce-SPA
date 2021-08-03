@@ -54,5 +54,4 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
   selectedFornecedor(event: any): void {
     this.Produto.Marca = event;
   }
-
 }

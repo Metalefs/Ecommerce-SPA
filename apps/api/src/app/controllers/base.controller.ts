@@ -1,5 +1,6 @@
 import { ErrorHandler } from '../_handlers/error-handler';
 import { UsuarioLogado } from '../_handlers/Authentication';
+import { BaseService } from '../services/baseService';
 
 /**
  * The App controller class where other controller inherits or
@@ -13,7 +14,7 @@ import { UsuarioLogado } from '../_handlers/Authentication';
    */
 
   _service;
-  constructor(service) {
+  constructor(service:BaseService) {
      this._service = service;
 
      this.Ler = this.Ler.bind(this);

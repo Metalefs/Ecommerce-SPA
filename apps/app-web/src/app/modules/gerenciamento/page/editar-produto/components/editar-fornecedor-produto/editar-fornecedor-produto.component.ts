@@ -47,10 +47,9 @@ export class EditarFornecedorProdutoComponent implements OnInit {
 
   Editar(fornecedor) {
     if (fornecedor) {
-
       let questions: QuestionBase<string>[] = [];
       let method = "Editar";
-      let name = "Cor Produto";
+      let name = "Fornecedor Produto";
       let id = fornecedor._id;
       Object.entries(fornecedor).forEach(([key, value]) => {
         if (key != "_id")

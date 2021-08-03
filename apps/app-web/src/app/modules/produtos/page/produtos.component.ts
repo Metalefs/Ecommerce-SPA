@@ -4,10 +4,6 @@ import { cardFlip, fade, slideInOut } from '../../../animations';
 import { ObterImagensCarousel } from '../../../helper/FileHelper';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ProdutoStateService } from '../produto-state.service';
-import { Produto } from 'libs/data/src/lib/classes';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { ProdutoState } from '../../../data/store/state';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -25,13 +21,8 @@ export class ProdutosComponent implements OnInit {
   private _mobileQueryListener: () => void;
 
   constructor(
-    private produtoStateService:ProdutoStateService,
-    media: MediaMatcher,
-    private cdr: ChangeDetectorRef) {
+    protected produtoStateService:ProdutoStateService) {
 
-      this.mobileQuery = media.matchMedia('(max-width: 600px)');
-      this._mobileQueryListener = () => cdr.detectChanges();
-      this.mobileQuery.addListener(this._mobileQueryListener);
     }
 
   ngOnInit(): void {

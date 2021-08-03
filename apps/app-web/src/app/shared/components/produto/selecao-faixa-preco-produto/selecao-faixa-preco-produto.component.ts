@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
-import { ProdutoStateService } from '../../produto-state.service';
+
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 
 @Component({
   selector: 'personalizados-lopes-selecao-faixa-preco-produto',

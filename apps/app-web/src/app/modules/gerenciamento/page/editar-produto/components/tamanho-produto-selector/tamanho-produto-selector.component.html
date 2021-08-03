@@ -6,7 +6,7 @@
     (selectionChange)="this.onSelected.emit($event.value)"
     [value]="[Produto?.Tamanho]"
   >
-    <ng-container *ngIf="getTamanhos()[0].Nome then object else simple"></ng-container>
+    <ng-container *ngIf="getTamanhos()[0]?.Nome then object else simple"></ng-container>
     <ng-template #simple>
       <mat-option *ngFor="let opt of getTamanhos()" [value]="opt">
         <div class="dis-flex flex-sb">

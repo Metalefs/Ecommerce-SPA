@@ -16,10 +16,10 @@ export class MensagemController extends BaseController {
 
 const MensagemCtrl = new MensagemController(MensagemService)
 
-MensagemRouter.get(RouteDictionary.Mensagem,MensagemCtrl.Ler);
-MensagemRouter.put(RouteDictionary.Mensagem,ensureIsAdmin, MensagemCtrl.Editar);
-MensagemRouter.post(RouteDictionary.Mensagem,ensureIsAdmin, MensagemCtrl.Incluir);
-MensagemRouter.delete(RouteDictionary.Mensagem + `:id`,ensureIsAdmin, MensagemCtrl.Remover);
+MensagemRouter.get(RouteDictionary.Mensagem,MensagemCtrl.Ler)
+.put(RouteDictionary.Mensagem,ensureIsAdmin, MensagemCtrl.Editar)
+.post(RouteDictionary.Mensagem,ensureIsAdmin, MensagemCtrl.Incluir)
+.delete(RouteDictionary.Mensagem + `:id`,ensureIsAdmin, MensagemCtrl.Remover);
 
 export {
   MensagemRouter

@@ -33,6 +33,8 @@ import { EditarTamanhoProdutoFormComponent } from './components/editar-tamanho-p
 import { EditarTamanhoProdutoDialogComponent } from './components/editar-tamanho-produto/dialogs/editar-tamanho-produto-dialog/editar-tamanho-produto-dialog.component';
 import { EditarFornecedorProdutoFormComponent } from './components/editar-fornecedor-produto/components/editar-fornecedor-produto-form/editar-fornecedor-produto-form.component';
 import { EditarDepartamentoComponent } from './components/editar-departamento/editar-departamento.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProdutoShared } from 'apps/app-web/src/app/shared/components/produto/produtoShared.module';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,7 @@ import { EditarDepartamentoComponent } from './components/editar-departamento/ed
     EditarProdutoFormModule,
     EditarEstampaModule,
     CardProdutoModule,
+    ProdutoShared
   ],
   exports: [
     SharedModule,

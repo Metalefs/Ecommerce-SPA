@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProdutoStateService } from '../../produto-state.service';
 
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 @Component({
   selector: 'personalizados-lopes-exibicao-quantidade-produtos-filtrados',
   templateUrl: './exibicao-quantidade-produtos-filtrados.component.html',

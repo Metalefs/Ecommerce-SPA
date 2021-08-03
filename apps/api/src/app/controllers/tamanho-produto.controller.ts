@@ -14,10 +14,10 @@ export class TamanhoProdutoController extends BaseController {
 
 const TamanhoProdutoCtrl = new TamanhoProdutoController(new TamanhoProdutoService())
 
-TamanhoProdutoRouter.get(RouteDictionary.TamanhoProduto,TamanhoProdutoCtrl.Ler);
-TamanhoProdutoRouter.put(RouteDictionary.TamanhoProduto, ensureIsAdmin, TamanhoProdutoCtrl.Editar);
-TamanhoProdutoRouter.post(RouteDictionary.TamanhoProduto, ensureIsAdmin, TamanhoProdutoCtrl.Incluir);
-TamanhoProdutoRouter.delete(RouteDictionary.TamanhoProduto + `:id`, ensureIsAdmin, TamanhoProdutoCtrl.Remover);
+TamanhoProdutoRouter.get(RouteDictionary.TamanhoProduto,TamanhoProdutoCtrl.Ler)
+.put(RouteDictionary.TamanhoProduto, ensureIsAdmin, TamanhoProdutoCtrl.Editar)
+.post(RouteDictionary.TamanhoProduto, ensureIsAdmin, TamanhoProdutoCtrl.Incluir)
+.delete(RouteDictionary.TamanhoProduto + `:id`, ensureIsAdmin, TamanhoProdutoCtrl.Remover);
 
 export {
   TamanhoProdutoRouter

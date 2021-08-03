@@ -7,6 +7,8 @@ import { entities } from '@personalizados-lopes/data';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { ProdutoState, CategoriaState } from 'apps/app-web/src/app/data/store/state';
 import { order, orderPreco } from 'apps/app-web/src/app/helper/ObjHelper';
+import { ProdutosComponent } from 'apps/app-web/src/app/modules/produtos/page/produtos.component';
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 import { OrderType, OrderStatus } from 'apps/app-web/src/app/shared/models/interfaces';
 import { Categoria, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
@@ -19,201 +21,138 @@ import { EditarProdutoService } from '../../editar-produto.service';
   templateUrl: './filtrar-editar-produto.component.html',
   styleUrls: ['./filtrar-editar-produto.component.scss']
 })
-export class FiltrarEditarProdutoComponent implements OnInit {
+export class FiltrarEditarProdutoComponent extends ProdutosComponent implements OnInit{
   @Output() onEditar:EventEmitter<any> = new EventEmitter<any>();
   @Output() onRemover:EventEmitter<any> = new  EventEmitter<any>();
 
-  fQuery:FiltrarProdutoSearchQuery={
-    Nome:"",
-    NomeCategoria:"Todos",
-    Preco:"",
-    Status:"",
-    Marca:"",
-    Modelo:"",
-    Tags:""
+
+  private _Produtos: Produto[];
+  public get Produtos(): Produto[] {
+    return this.produtoStateService.Produtos;
+  }
+  public set Produtos(value: Produto[]) {
+    this.produtoStateService.Produtos = value;
+  }
+  ProdutoToBeUpdated: Produto;
+  isUpdateActivated = false;
+
+  private _Categorias$;
+  public get Categorias$() {
+    return this.produtoStateService.Categorias$;
+  }
+  public set Categorias$(value) {
+    this.produtoStateService.Categorias$ = value;
+  }
+  private _CategoriaAtiva;
+  public get CategoriaAtiva() {
+    return this.produtoStateService.CategoriaAtiva;
+  }
+  public set CategoriaAtiva(value) {
+    this.produtoStateService.CategoriaAtiva = value;
+  }
+  private _ordertypes;
+  public get ordertypes() {
+    return this.produtoStateService.ordertypes;
+  }
+  public set ordertypes(value) {
+    this.produtoStateService.ordertypes = value;
+  }
+  private _activeOrderLimit;
+  public get activeOrderLimit() {
+    return this.produtoStateService.activeOrderLimit;
+  }
+  public set activeOrderLimit(value) {
+    this.produtoStateService.activeOrderLimit = value;
+  }
+  private _orderLimit;
+  public get orderLimit() {
+    return this.produtoStateService.orderLimit;
+  }
+  public set orderLimit(value) {
+    this.produtoStateService.orderLimit = value;
+  }
+  private _activeSearchFilter;
+  public get activeSearchFilter() {
+    return this.produtoStateService.activeSearchFilter;
+  }
+  public set activeSearchFilter(value) {
+    this.produtoStateService.activeSearchFilter = value;
+  }
+  private _activeOrderFilter;
+  public get activeOrderFilter() {
+    return this.produtoStateService.activeOrderFilter;
+  }
+  public set activeOrderFilter(value) {
+    this.produtoStateService.activeOrderFilter = value;
+  }
+  private _activeOrderStatus;
+  public get activeOrderStatus() {
+    return this.produtoStateService.activeOrderStatus;
+  }
+  public set activeOrderStatus(value) {
+    this.produtoStateService.activeOrderStatus = value;
+  }
+  private _orderStatus;
+  public get orderStatus() {
+    return this.produtoStateService.orderStatus;
+  }
+  public set orderStatus(value) {
+    this.produtoStateService.orderStatus = value;
+  }
+  private _Parcelamento;
+  public get Parcelamento() {
+    return this.produtoStateService.Parcelamento;
+  }
+  public set Parcelamento(value) {
+    this.produtoStateService.Parcelamento = value;
+  }
+  private _MultiplasCores;
+  public get MultiplasCores() {
+    return this.produtoStateService.MultiplasCores;
+  }
+  public set MultiplasCores(value) {
+    this.produtoStateService.MultiplasCores = value;
   }
 
-  Categorias: entities.Categoria[];
+  private _value;
+  public get value() {
+    return this.produtoStateService.value;
+  }
+  public set value(value) {
+    this.produtoStateService.value = value;
+  }
 
-  value: number = 1;
-  maxValue: number = 100;
-  options: Options = {
-    floor: 1,
-    ceil: 200,
-    translate: (value: number, label: LabelType): string => {
-      switch (label) {
-        case LabelType.Low:
-          return "<span>Minimo:</span> R$" + value;
-        case LabelType.High:
-          return "<span>Máximo:</span> R$" + value;
-        default:
-          return "";
-      }
-    }
-  };
-
-  @Select(ProdutoState.areProdutosLoaded) areProdutosLoaded$;
-  @Select(CategoriaState.ObterListaCategorias) Categorias$: Observable<Categoria[]>;
-  Produtos:Produto[];
-  ProdutoToBeUpdated: Produto;
-  pagina:number=1;
-  items:number=12;
-  total:number=0;
-  isUpdateActivated = false;
-  activeSearchFilter = "";
-  activeOrderFilter:number = TiposOrdenacao.nome;
-
-  page:number = 1;
-  activeOrderLimit:number = 10;
-  loading:boolean = false;
-  loading_more:boolean = false;
-
-  ordertypes:OrderType[]= [
-    {name:'nome (a-z)', id: TiposOrdenacao.nome},
-    {name:'nome (z-a)', id: TiposOrdenacao.nomeDesc},
-    {name:'maior preço', id: TiposOrdenacao.preco},
-    {name:'menor preço', id: TiposOrdenacao.precoDesc},
-  ]
-  orderLimit:OrderType[]= [
-    {name:'10 produtos por página', id: 10},
-    {name:'15 produtos por página', id: 15},
-    {name:'30 produtos por página', id: 30},
-    {name:'50 produtos por página', id: 50},
-  ]
-  activeOrderStatus : OrderStatus;
-  orderStatus:OrderStatus[]= [
-    {name:'Padrão', id: StatusProduto.padrao},
-    {name:'Novos', id: StatusProduto.novo},
-    {name:'Em promoção', id: StatusProduto.promocao},
-    {name:'Esgotados', id: StatusProduto.esgotado},
-  ]
-
-  Parcelamento:boolean;
-  MultiplasCores:boolean;
-  defaultCategory = "Todos os produtos";
-  CategoriaAtiva:Categoria;
+  private _maxValue;
+  public get maxValue() {
+    return this.produtoStateService.maxValue;
+  }
+  public set maxValue(value) {
+    this.produtoStateService.maxValue = value;
+  }
+  private _options;
+  public get options() {
+    return this.produtoStateService.options;
+  }
+  public set options(value) {
+    this.produtoStateService.options = value;
+  }
 
   constructor(
     protected store: Store,
     protected dialog: MatDialog,
     protected _snackBar: MatSnackBar,
     protected produtoService: EditarProdutoService,
+    protected produtoStateService: ProdutoStateService,
     protected authService: AuthenticationService
     ) {
-      this.fQuery={
-        Nome:"",
-        NomeCategoria:this.defaultCategory,
-        Preco:"",
-        Status:"",
-        Marca:"",
-        Modelo:"",
-        Tags:""
-      }
+      super(produtoStateService)
   }
 
-  ngOnInit(): void {
-    this.Atualizar();
-    this.atualizarFiltroAtivo();
+  filtroAtivo(produto){
+    return this.produtoStateService.filtroAtivo(produto);
   }
-
-  atualizarFiltroAtivo(){
-    this.loading = true;
-    this.fQuery.Nome = this.activeSearchFilter||''
-    this.fQuery.NomeCategoria  = this.CategoriaAtiva?.Nome||"Todos";
-    if(this.page > 1)
-      this.page =1;
-    this.produtoService.FiltrarProdutos(this.fQuery,this.page,this.activeOrderLimit).subscribe(async x=>{
-      this.total = x.total;
-      switch(+this.activeOrderFilter){
-        case TiposOrdenacao.nome:
-         x.items = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
-        break;
-
-        case TiposOrdenacao.nomeDesc:
-         x.items = x.items.sort((a, b) => this.order(a,b,true));
-        break;
-
-        case TiposOrdenacao.preco:
-         x.items = x.items.sort((a, b) => this.orderPreco(a,b,false));
-        break;
-
-        case TiposOrdenacao.precoDesc:
-         x.items = x.items.sort((a, b) => this.orderPreco(a,b,true));
-        break;
-      }
-      this.Produtos = x.items;
-      this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o=> o.Preco)) : this.Produtos[0].Preco);
-    })
-  }
-
-  changeOptions(ceil:number) {
-    const newOptions: Options = Object.assign({}, this.options);
-    newOptions.ceil = ceil;
-    this.options = newOptions;
-  }
-
-  filtroAtivo(produto:Produto){
-    if(produto){
-      if(this.matchSearchFilter(produto) &&
-          this.matchPriceFilter(produto) &&
-          this.matchStatusFilter(produto) &&
-          this.matchParcelamentoFilter(produto) &&
-          this.matchMultiplasCoresFilter(produto))
-          return this.CategoriaAtiva?.Nome == this.defaultCategory
-                  ||  this.CategoriaAtiva?.Nome == produto?.Categoria?.Nome || null;
-    }
-    return false;
-  }
-
-  matchParcelamentoFilter(produto:Produto){
-    if(this.Parcelamento)
-      return produto?.Parcelas > 0;
-    return true;
-  }
-  matchMultiplasCoresFilter(produto:Produto){
-    if(this.MultiplasCores)
-      return produto?.Cores.length > 1;
-    return true;
-  }
-  matchPriceFilter(produto:Produto){
-    if(this.value)
-      return produto?.Preco >= this.value && produto.Preco <= this.maxValue ;
-  }
-  matchStatusFilter(produto:Produto){
-    if(this.activeOrderStatus)
-      if(this.activeOrderStatus.id == StatusProduto.padrao)
-        return true;
-      else
-        return produto.Status >= this.activeOrderStatus.id;
-    return true;
-  }
-  matchSearchFilter(produto:Produto){
-    if(this.activeSearchFilter)
-    return this.activeSearchFilter.length > 0 ?
-     produto.Nome.toLocaleLowerCase().includes(this.activeSearchFilter.toLocaleLowerCase())
-     :
-     true;
-    return true;
-  }
-
-  order(a,b,desc){
-    return order(a,b,desc)
-  }
-  orderPreco(a,b,desc){
-    return orderPreco(a,b,desc)
-  }
-
-  SetCategoria(categoria:Categoria){
-    this.CategoriaAtiva = categoria == null ?
-    new Categoria(this.defaultCategory,this.defaultCategory)
-    :
-    this.CategoriaAtiva = categoria;
-    this.ResetPage();
-    this.atualizarFiltroAtivo();
-  }
-
-  ResetPage(){
-    this.page = 1;
+  CarregarMaisProdutos(){
+    this.produtoStateService.CarregarMaisProdutos();
   }
 
   async Remover(Produto){
@@ -223,25 +162,8 @@ export class FiltrarEditarProdutoComponent implements OnInit {
         this._snackBar.open("Produto "+Produto.Nome+" removido com sucesso", "Fechar", {
           duration: 3000
         });
-       this.Atualizar();
+       this.produtoStateService.Atualizar();
       });
     }
   }
-
-  Atualizar(){
-    this.produtoService.FiltrarProdutos(this.fQuery,1,50).subscribe(x=>{
-      this.Produtos = x.items;
-      this.total = x.total;
-    })
-  }
-
-  CarregarMaisProdutos(){
-    this.pagina++;
-    this.produtoService.FiltrarProdutos(this.fQuery,this.pagina,this.items).subscribe(x=>{
-      this.total = x.total;
-      x.items.forEach(item=>this.Produtos.push(item))
-      console.log(x);
-    })
-  }
-
 }

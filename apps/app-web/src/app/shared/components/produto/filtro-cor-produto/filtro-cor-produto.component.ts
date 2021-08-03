@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CorProdutoService } from 'apps/app-web/src/app/data/service';
 import { CorProduto } from '../../../../../../../../libs/data/src/lib/classes';
-import { ProdutoStateService } from '../../produto-state.service';
 
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 @Component({
   selector: 'personalizados-lopes-filtro-cor-produto',
   templateUrl: './filtro-cor-produto.component.html',

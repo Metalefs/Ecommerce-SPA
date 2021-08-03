@@ -15,9 +15,9 @@ export class CupomDescontoController extends BaseController {
 
 const CupomDescontoCtrl = new CupomDescontoController(new CupomDescontoService())
 
-CupomDescontoRouter.get(RouteDictionary.CupomDesconto, ensureIsAdmin, CupomDescontoCtrl.Ler);
-CupomDescontoRouter.put(RouteDictionary.CupomDesconto, ensureIsAdmin, CupomDescontoCtrl.Editar);
-CupomDescontoRouter.post(RouteDictionary.CupomDesconto, ensureIsAdmin, CupomDescontoCtrl.Incluir);
+CupomDescontoRouter.get(RouteDictionary.CupomDesconto, ensureIsAdmin, CupomDescontoCtrl.Ler)
+CupomDescontoRouter.put(RouteDictionary.CupomDesconto, ensureIsAdmin, CupomDescontoCtrl.Editar)
+CupomDescontoRouter.post(RouteDictionary.CupomDesconto, ensureIsAdmin, CupomDescontoCtrl.Incluir)
 CupomDescontoRouter.delete(RouteDictionary.CupomDesconto + `:id`, ensureIsAdmin, CupomDescontoCtrl.Remover);
 
 export {

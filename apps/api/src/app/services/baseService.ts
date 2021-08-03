@@ -83,6 +83,7 @@ export class BaseService {
     }
     throw 'Usuario não autorizado.'
   }
+
   async AlterarSemUsuario(obj: MongoDocument) {
     return Repository.Edit(this.entity, obj._id, obj).then(x => {
       return x;
@@ -107,6 +108,7 @@ export class BaseService {
       return Repository.Insert(this.entity, obj).then(x => {
         return x;
       }).catch(err => {
+        console.log(err);
         throw `Erro ao inserir ${this.entity}. - ${err}`
       });
     }

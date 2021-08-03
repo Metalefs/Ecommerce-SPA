@@ -39,6 +39,15 @@ export class EditarProdutoService {
   CriarPostagem(post: BlogPost){
     return this.blogService.create(post);
   }
+  CriarFornecedor(fornecedor:FornecedorProduto){
+    return this.fornecedorProdutoService.Incluir(fornecedor);
+  }
+  CriarCorProduto(corProduto:CorProduto){
+    return this.corProdutoService.Incluir(corProduto);
+  }
+  CriarTamanhoProduto(tamanho:TamanhoProduto){
+    return this.tamanhoProdutoService.Incluir(tamanho);
+  }
   SalvarImagemCliente(imagem: any){
     return this.servicoImagem.storeImage(PathDictionary.clientes, imagem);
   }

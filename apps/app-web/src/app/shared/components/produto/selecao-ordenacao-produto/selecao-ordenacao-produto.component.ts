@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OrderType } from '../../../../shared/models/interfaces';
-import { ProdutoStateService } from '../../produto-state.service';
+
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 
 @Component({
   selector: 'personalizados-lopes-selecao-ordenacao-produto',

@@ -15,10 +15,10 @@ export class TemaController extends BaseController {
 
 const TemaCtrl = new TemaController(TemaService)
 
-TemaRouter.get(RouteDictionary.Tema,TemaCtrl.Ler);
-TemaRouter.put(RouteDictionary.Tema, ensureIsAdmin, TemaCtrl.Editar);
-TemaRouter.post(RouteDictionary.Tema, ensureIsAdmin, TemaCtrl.Incluir);
-TemaRouter.delete(RouteDictionary.Tema + `:id`, ensureIsAdmin, TemaCtrl.Remover);
+TemaRouter.get(RouteDictionary.Tema,TemaCtrl.Ler)
+.put(RouteDictionary.Tema, ensureIsAdmin, TemaCtrl.Editar)
+.post(RouteDictionary.Tema, ensureIsAdmin, TemaCtrl.Incluir)
+.delete(RouteDictionary.Tema + `:id`, ensureIsAdmin, TemaCtrl.Remover);
 
 export {
   TemaRouter

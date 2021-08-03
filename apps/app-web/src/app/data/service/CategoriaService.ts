@@ -21,10 +21,4 @@ export class CategoriaService extends BaseService<Categoria> {
     super(RouteDictionary.Categoria,HttpClient,ErrorHandler)
    }
 
-    Remover(id: string): Observable<any>{
-      return this.http.delete<entities.Categoria>(environment.endpoint + RouteDictionary.Categoria + `/${id}`).pipe(
-          retry(3),
-          catchError(this.ErrorHandler.handleError)
-      );
-    }
 }

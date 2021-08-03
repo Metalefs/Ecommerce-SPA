@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FornecedorProdutoService } from 'apps/app-web/src/app/data/service';
 import { FornecedorProduto } from 'libs/data/src/lib/classes';
-import { ProdutoStateService } from '../../produto-state.service';
 
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 @Component({
   selector: 'personalizados-lopes-filtro-fornecedor-produto',
   templateUrl: './filtro-fornecedor-produto.component.html',

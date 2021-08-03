@@ -21,18 +21,18 @@ export class ProdutoController extends BaseController {
 
 const ProdutoCtrl = new ProdutoController(ProdutoService);
 
-ProdutoRouter.get(RouteDictionary.Produtos.Raiz, ListarProdutos);
-ProdutoRouter.put(RouteDictionary.Produtos.Raiz, ensureIsAdmin, ProdutoCtrl.Editar);
-ProdutoRouter.post(RouteDictionary.Produtos.Raiz, ensureIsAdmin, ProdutoCtrl.Incluir);
-ProdutoRouter.delete(RouteDictionary.Produtos.Raiz + `:id`, ensureIsAdmin, ProdutoCtrl.Remover)
+ProdutoRouter.get(RouteDictionary.Produtos.Raiz, ListarProdutos)
   .get(RouteDictionary.Produtos.EmDestaque, ListarProdutosEmDestaque)
   .get(RouteDictionary.Produtos.Raiz + '/:id', FiltrarPorId)
   .get(RouteDictionary.Produtos.Filtrar + ':page', FiltrarProdutos)
-  .get(RouteDictionary.Produtos.Semelhantes + ':id', FiltrarProdutosSemelhantes)
+  .get(RouteDictionary.Produtos.Semelhantes + '/:id', FiltrarProdutosSemelhantes)
+  .put(RouteDictionary.Produtos.Raiz, ensureIsAdmin, ProdutoCtrl.Editar)
+  .post(RouteDictionary.Produtos.Raiz, ensureIsAdmin, ProdutoCtrl.Incluir)
   .post(RouteDictionary.Produtos.Gostar, GostarProduto)
   .post(RouteDictionary.Produtos.Rate, AvaliarProduto)
   .post(RouteDictionary.Produtos.IncrementarVendas, IncrementarVenda)
-  .post(RouteDictionary.Produtos.IncrementarVisualizacoes, IncrementarVisualizacao);
+  .post(RouteDictionary.Produtos.IncrementarVisualizacoes, IncrementarVisualizacao)
+  .delete(RouteDictionary.Produtos.Raiz + `/:id`, ensureIsAdmin, ProdutoCtrl.Remover)
 
 export {
   ProdutoRouter

@@ -93,7 +93,7 @@ export class MongoClientService {
       });
     }
     catch (ex) {
-      return { erro: ex };
+      throw ex;
     }
   }
 
@@ -162,7 +162,7 @@ export class MongoClientService {
       });
     }
     catch (ex) {
-      return { erro: ex };
+      throw ex;
     }
   }
 

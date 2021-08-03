@@ -15,10 +15,10 @@ export class CorProdutoController extends BaseController {
 
 const CorProdutoCtrl = new CorProdutoController(new CorProdutoService())
 
-CorProdutoRouter.get(RouteDictionary.CorProduto,CorProdutoCtrl.Ler);
-CorProdutoRouter.put(RouteDictionary.CorProduto, ensureIsAdmin, CorProdutoCtrl.Editar);
-CorProdutoRouter.post(RouteDictionary.CorProduto, ensureIsAdmin, CorProdutoCtrl.Incluir);
-CorProdutoRouter.delete(RouteDictionary.CorProduto + `:id`, ensureIsAdmin, CorProdutoCtrl.Remover);
+CorProdutoRouter.get(RouteDictionary.CorProduto,CorProdutoCtrl.Ler)
+.put(RouteDictionary.CorProduto, ensureIsAdmin, CorProdutoCtrl.Editar)
+.post(RouteDictionary.CorProduto, ensureIsAdmin, CorProdutoCtrl.Incluir)
+.delete(RouteDictionary.CorProduto + `:id`, ensureIsAdmin, CorProdutoCtrl.Remover);
 
 export {
   CorProdutoRouter

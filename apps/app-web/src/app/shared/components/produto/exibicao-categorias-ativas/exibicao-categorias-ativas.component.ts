@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Categoria } from '../../../../../../../../libs/data/src/lib/classes';
-import { ProdutoStateService } from '../../produto-state.service';
 
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 @Component({
   selector: 'personalizados-lopes-exibicao-categorias-ativas',
   templateUrl: './exibicao-categorias-ativas.component.html',

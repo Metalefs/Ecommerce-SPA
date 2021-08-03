@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { entities } from '@personalizados-lopes/data';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 import { BlogPost, CorProduto, FornecedorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { EditarProdutoService } from './editar-produto.service';
@@ -20,6 +20,13 @@ import { CriarClienteDialogComponent } from '../editar-clientes/DialogComponents
 import { AdicionarCliente } from 'apps/app-web/src/app/data/store/actions/cliente.actions';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { CriarCategoriaDialogComponent } from './components/editar-categoria/DialogComponents/criar-dialog/criar-dialog.component';
+import { EditarFornecedorProdutoComponent } from './components/editar-fornecedor-produto/editar-fornecedor-produto.component';
+import { EditarFornecedorProdutoFormComponent } from './components/editar-fornecedor-produto/components/editar-fornecedor-produto-form/editar-fornecedor-produto-form.component';
+import { EditarCorProdutoFormComponent } from './components/editar-cor-produto/components/editar-cor-produto-form/editar-cor-produto-form.component';
+import { EditarTamanhoProdutoDialogComponent } from './components/editar-tamanho-produto/dialogs/editar-tamanho-produto-dialog/editar-tamanho-produto-dialog.component';
+import { DynFormQuestions, QuestionBase } from 'apps/app-web/src/app/shared/components/dynamic-form/question-base';
+import { TextboxQuestion } from 'apps/app-web/src/app/shared/components/dynamic-form/question-textbox';
+import { DynamicFormComponent } from 'apps/app-web/src/app/shared/components/dynamic-form/dynamic-form.component';
 @Injectable({
   providedIn: 'root'
 })
@@ -105,7 +112,7 @@ export class EditarProdutoComponentBase implements OnInit {
           post.DataHoraAlteracao = new Date();
           post.DataHoraCriacao = new Date();
           this.produtoService.CriarPostagem(post).then(() => {
-            this._snackBar.open("Adicionando postagem", "Fechar", {
+            this._snackBar.open("Postagem adicionada com sucesso", "Fechar", {
 
             });
           });
@@ -129,6 +136,84 @@ export class EditarProdutoComponentBase implements OnInit {
     });
   }
 
+
+  CriarFornecedor(){
+    const fornecedor = new FornecedorProduto('','');
+    let questions: QuestionBase<string>[] = [];
+      let method = "Editar";
+      let name = "Fornecedor Produto";
+      let id = fornecedor._id;
+      Object.entries(fornecedor).forEach(([key, value]) => {
+        if (key != "_id")
+          questions.push(
+            new TextboxQuestion({
+              key: key,
+              label: key,
+              value: value as string,
+              required: true,
+              type: "textbox",
+              order: 1
+            })
+          )
+      })
+      let Data = new DynFormQuestions(questions, method, name);
+      const dialogRef = this.dialog.open(DynamicFormComponent, {
+        width: '90%',
+        height: "100%",
+        data: Data,
+      });
+
+      dialogRef.afterClosed().subscribe((result: TextboxQuestion[]) => {
+        if (result == undefined)
+          return;
+        let fornecedor = new FornecedorProduto(
+          result[0].value,
+          result[1].value,
+        )
+        fornecedor._id = id;
+        this.produtoService.CriarFornecedor(fornecedor).subscribe(() => {
+          this._snackBar.open("Fornecedor adicionado com sucesso", "Fechar", {
+
+          });
+        });
+        this.CarregarFornecedores();
+      });
+  }
+
+  CriarCorProduto(){
+    const dialogRef = this.dialog.open(EditarCorProdutoFormComponent, {
+      width: '90%',
+      data: new CorProduto('','')
+    });
+    dialogRef.afterClosed().subscribe((corProduto: entities.CorProduto) => {
+      if (corProduto != undefined) {
+        this.produtoService.CriarCorProduto(corProduto).subscribe(() => {
+          this._snackBar.open("Cor adicionada com sucesso", "Fechar", {
+
+          });
+          this.CarregarCores();
+        });
+      }
+    });
+  }
+
+  CriarTamanhoProduto(){
+    const dialogRef = this.dialog.open(EditarTamanhoProdutoDialogComponent, {
+      width: '90%',
+      data: new TamanhoProduto('',[])
+    });
+    dialogRef.afterClosed().subscribe((tamanho: entities.TamanhoProduto) => {
+      if (tamanho != undefined) {
+        this.produtoService.CriarTamanhoProduto(tamanho).subscribe(() => {
+          this._snackBar.open("Tamanho adicionado com sucesso", "Fechar", {
+
+          });
+          this.CarregarTamanhos();
+        });
+      }
+    });
+  }
+
   CarregarCategorias(){
     this.produtoService.CarregarCategorias().subscribe(x=>{this.Categorias = x as any;});
   }
@@ -142,7 +227,7 @@ export class EditarProdutoComponentBase implements OnInit {
   }
 
   CarregarFornecedores(){
-    this.produtoService.CarregarFornecedores().subscribe(x=>{this.Fornecedores = x;});
+    this.produtoService.CarregarFornecedores().subscribe(x=>{this.Fornecedores = x});
   }
 
   upload($event){

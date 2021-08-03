@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProdutoStateService } from '../../produto-state.service';
+import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
 @Component({
   selector: 'personalizados-lopes-checkbox-cores-produto',
   templateUrl: './checkbox-cores-produto.component.html',

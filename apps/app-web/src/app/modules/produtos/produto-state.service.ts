@@ -275,9 +275,11 @@ export class ProdutoStateService {
 
   redefinirBusca() {
     this.SetCategoria(null);
-    this.activeSearchFilter = '',
-      this.activeOrderFilter = 0;
+    this.activeSearchFilter = '';
+    this.activeOrderFilter = 0;
     this.activeOrderStatus = this.orderStatus[0];
+    this.activeCorProduto = null;
+    this.activeFornecedor = null;
     this.Parcelamento = false;
     this.MultiplasCores = false;
     this.changeOptions(0);
@@ -324,7 +326,7 @@ export class ProdutoStateService {
       x.items.forEach(item => this.Produtos.push(item))
       this.loading_more = false;
 
-      this.AtualizarFiltroProduto();
+      this.Atualizar();
     })
   }
 

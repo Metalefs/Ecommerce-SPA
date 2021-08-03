@@ -15,10 +15,10 @@ export class DepartamentoController extends BaseController {
 
 const DepartamentoCtrl = new DepartamentoController(new DepartamentoService())
 
-DepartamentoRouter.get(RouteDictionary.Departamento,DepartamentoCtrl.Ler);
-DepartamentoRouter.put(RouteDictionary.Departamento, ensureIsAdmin, DepartamentoCtrl.Editar);
-DepartamentoRouter.post(RouteDictionary.Departamento, ensureIsAdmin, DepartamentoCtrl.Incluir);
-DepartamentoRouter.delete(RouteDictionary.Departamento + `:id`, ensureIsAdmin, DepartamentoCtrl.Remover);
+DepartamentoRouter.get(RouteDictionary.Departamento,DepartamentoCtrl.Ler)
+.put(RouteDictionary.Departamento, ensureIsAdmin, DepartamentoCtrl.Editar)
+.post(RouteDictionary.Departamento, ensureIsAdmin, DepartamentoCtrl.Incluir)
+.delete(RouteDictionary.Departamento + `:id`, ensureIsAdmin, DepartamentoCtrl.Remover);
 
 export {
   DepartamentoRouter

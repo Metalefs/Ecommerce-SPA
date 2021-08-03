@@ -17,10 +17,10 @@ export class ItemCarouselController extends BaseController {
 
 const ItemCarouselCtrl = new ItemCarouselController(ItemCarouselService)
 
-ItemCarouselRouter.get(RouteDictionary.ItemCarousel,ItemCarouselCtrl.Ler);
-ItemCarouselRouter.put(RouteDictionary.ItemCarousel, ensureIsAdmin, ItemCarouselCtrl.Editar);
-ItemCarouselRouter.post(RouteDictionary.ItemCarousel, ensureIsAdmin, ItemCarouselCtrl.Incluir);
-ItemCarouselRouter.delete(RouteDictionary.ItemCarousel + `:id`, ensureIsAdmin, ItemCarouselCtrl.Remover);
+ItemCarouselRouter.get(RouteDictionary.ItemCarousel,ItemCarouselCtrl.Ler)
+.put(RouteDictionary.ItemCarousel, ensureIsAdmin, ItemCarouselCtrl.Editar)
+.post(RouteDictionary.ItemCarousel, ensureIsAdmin, ItemCarouselCtrl.Incluir)
+.delete(RouteDictionary.ItemCarousel + `:id`, ensureIsAdmin, ItemCarouselCtrl.Remover);
 
 export {
   ItemCarouselRouter
