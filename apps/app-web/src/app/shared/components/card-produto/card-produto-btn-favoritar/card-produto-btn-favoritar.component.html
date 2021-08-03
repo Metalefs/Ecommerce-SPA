@@ -1,0 +1,10 @@
+<a
+  title='Favoritar'
+  matRipple
+  pageScroll
+  href='#topo'
+  class='button circle'
+  (click)="AdicionarFavorito()"
+>
+  <i class='mr-1 pi' [ngClass]="Favorito ? 'pi-star': 'pi-star-o'"></i>
+</a>

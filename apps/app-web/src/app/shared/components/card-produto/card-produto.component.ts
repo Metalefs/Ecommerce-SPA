@@ -11,8 +11,11 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal} from '../../../data/store/actions/orcamento.actions';
-import { CarouselState, OrcamentoState } from '../../../data/store/state';
+import { AdicionarComparacao, AdicionarFavorito, RemoverComparacao, RemoverFavorito } from '../../../data/store/actions/produto.actions';
+import { CarouselState, OrcamentoState, ProdutoState } from '../../../data/store/state';
+import { ProdutoStateModel } from '../../../data/store/state/produto.state';
 import { sum, translateEnum } from '../../../helper/ObjHelper';
+import { ProdutoStateService } from '../../../modules/produtos/produto-state.service';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
 import { PreviewProdutoComponent } from '../dialogs/preview-produto/preview-produto.component';
 
@@ -25,10 +28,11 @@ import { PreviewProdutoComponent } from '../dialogs/preview-produto/preview-prod
 export class CardProdutoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   @Select(CarouselState.ObterCarousel) Carrosel$: Observable<Carousel>;
+  @Select(ProdutoState.ObterListaFavoritos) Favoritos$: Observable<Produto[]>;
 
   isOrcamento:boolean;
   Liked:boolean = false;
-
+  Favorito:boolean = false;
   swiperConfig: SwiperConfigInterface = {
     direction              : 'horizontal',
     keyboard               : true,
@@ -48,7 +52,7 @@ export class CardProdutoComponent implements OnInit {
       disableOnInteraction : false,
     },
   };
-  constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery, private router:Router) { }
+  constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery, private router:Router, private pss:ProdutoStateService) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
@@ -73,11 +77,28 @@ export class CardProdutoComponent implements OnInit {
     this.AdicionarAoOrcamento = this.AdicionarAoOrcamento.bind(this);
     this.AbrirPaginaProduto = this.AbrirPaginaProduto.bind(this);
     this.AbrirPreviewProduto = this.AbrirPreviewProduto.bind(this);
+    this.AdicionarFavorito = this.AdicionarFavorito.bind(this);
+    this.AdicionarComparacao = this.AdicionarComparacao.bind(this);
+
+    this.Favoritos$.subscribe(favs=>{
+      if(favs)
+      this.Favorito = favs.findIndex(x=>x._id == this.Produto._id) != -1;
+    })
   }
 
 
   encodeURI(value:string){
     return encodeURIComponent(value);
+  }
+  AdicionarFavorito(){
+      this.store.dispatch(new AdicionarFavorito(this.Produto));
+      this.pss.atualizarFiltroAtivo();
+  }
+  AdicionarComparacao(){
+    this.store.dispatch(new AdicionarComparacao(this.Produto));
+  }
+  RemoverComparacao(){
+    this.store.dispatch(new RemoverComparacao(this.Produto));
   }
   AdicionarAoOrcamento(produto?:Produto){
     this.Orcamento$.subscribe(x=>{
@@ -112,7 +133,6 @@ export class CardProdutoComponent implements OnInit {
     return 0;
     return  (sum(this.Produto.Rating) / this.Produto.Rating.length).toFixed(1)
   }
-
   openCheckout(){
     this.dialog.open(CheckoutDisplayComponent, {
       restoreFocus: false,

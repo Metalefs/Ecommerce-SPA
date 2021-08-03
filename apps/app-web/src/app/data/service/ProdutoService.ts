@@ -12,7 +12,7 @@ import { PathDictionary } from 'libs/data/src/lib/routes/image-folders';
 import { isEmpty } from '../../helper/ObjHelper';
 import { Produto } from 'libs/data/src/lib/classes';
 import { ErrorHandler } from '../../core/error.handler';
-import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
+import { AcaoProduto, FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces';
 
 import { PaginationResponse } from 'libs/data/src/lib/interfaces';
 import { ImagemService } from './ImagemService';

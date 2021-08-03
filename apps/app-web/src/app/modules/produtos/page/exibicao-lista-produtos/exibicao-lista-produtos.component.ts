@@ -1,9 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Produto } from '../../../../../../../../libs/data/src/lib/classes';
-import { Select } from '@ngxs/store';
-import { ProdutoState } from '../../../../data/store/state';
-import { Observable } from 'rxjs';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ProdutoStateService } from '../../produto-state.service';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Produto } from '../../../../../../../../libs/data/src/lib/classes';
+import { OrcamentoState, ProdutoState } from 'apps/app-web/src/app/data/store/state';
+import { OrcamentoStateModel } from 'apps/app-web/src/app/data/store/state/orcamento.state';
+import { Observable } from 'rxjs';
+import { Select } from '@ngxs/store';
+import { ProdutoStateModel } from 'apps/app-web/src/app/data/store/state/produto.state';
 
 @Component({
   selector: 'personalizados-lopes-exibicao-lista-produtos',
@@ -11,9 +14,6 @@ import { ProdutoStateService } from '../../produto-state.service';
   styleUrls: ['./exibicao-lista-produtos.component.scss']
 })
 export class ExibicaoListaProdutosComponent implements OnInit {
-
-  @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
-
   public get Produtos(): Produto[] {
     return this.produtoStateService.Produtos;
   }
@@ -27,21 +27,12 @@ export class ExibicaoListaProdutosComponent implements OnInit {
   public set Filtro(value: any) {
     this.produtoStateService.Filtro$ = value;
   }
-
-  public get loading(): boolean {
-    return this.produtoStateService.loading;
-  }
-  public set loading(value: boolean) {
-    this.produtoStateService.loading = value;
-  }
-
   public get total(): number {
     return this.produtoStateService.total;
   }
   public set total(value: number) {
     this.produtoStateService.total = value;
   }
-
   public get loading_more() {
     return this.produtoStateService.loading_more;
   }
@@ -49,21 +40,23 @@ export class ExibicaoListaProdutosComponent implements OnInit {
   public set loading_more(value) {
     this.produtoStateService.loading_more = value;
   }
-  @Input()mobileQuery;
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
 
-  constructor(private produtoStateService:ProdutoStateService) {
-  }
+  constructor(
+    private produtoStateService:ProdutoStateService,
+    media: MediaMatcher,
+    private cdr: ChangeDetectorRef) {
+
+      this.mobileQuery = media.matchMedia('(max-width: 600px)');
+      this._mobileQueryListener = () => cdr.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
+    }
 
   ngOnInit(): void {
   }
 
   CarregarMaisProdutos(){
     this.produtoStateService.CarregarMaisProdutos();
-  }
-  atualizarFiltroAtivo(){
-    this.produtoStateService.atualizarFiltroAtivo();
-  }
-  filtroAtivo(produto){
-    return this.produtoStateService.filtroAtivo(produto);
   }
 }

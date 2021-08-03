@@ -50,6 +50,34 @@ export class RateProduto {
   constructor(public id: string, public rating:number){}
 }
 
+export class AdicionarFavorito {
+
+  static readonly type = '[Orcamento] Add favorite'
+
+  constructor(public produto: entities.Produto) {}
+}
+
+export class RemoverFavorito {
+
+  static readonly type = '[Orcamento] Remove favorite'
+
+  constructor(public produto: entities.Produto) {}
+}
+
+export class AdicionarComparacao {
+
+  static readonly type = '[Orcamento] Add comparison'
+
+  constructor(public produto: entities.Produto) {}
+}
+
+export class RemoverComparacao {
+
+  static readonly type = '[Orcamento] Remove comparison'
+
+  constructor(public produto: entities.Produto) {}
+}
+
 export class RemoverProduto {
 
   static readonly type = '[Produto] Remove'

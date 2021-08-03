@@ -1,7 +1,5 @@
 <div>
-  <div class="dis-flex flex-m">
-    <label [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="label">Escolha a <strong>Cor</strong>: </label>  <span class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</span>
-  </div>
+  <label [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="label">Escolha a <strong>Cor</strong>: </label>  <span class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</span>
   <div
     class="columns is-multiline flex-sb"
     [ngClass]="{ 'is-danger': ErroCor }"
@@ -24,7 +22,7 @@
       />
       <div
         title="{{ cor?.Nome || cor.nome }}"
-        class="shadow-light button is-outlined is-small"
+        class="shadow-light button is-outlined "
         [style.background]="cor?.Cor || cor?.cor"
         [ngClass]="{ 'is-focused selected': (Produto?.Cor?.Nome ||Produto?.Cor?.nome ) == (cor?.Nome||cor?.nome), 'is-danger': ErroCor }"
       >

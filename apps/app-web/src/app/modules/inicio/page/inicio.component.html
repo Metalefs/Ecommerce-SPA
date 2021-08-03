@@ -9,7 +9,7 @@
 
     <div class='columns flex-sa'>
       <div class='column'>
-        <div class="box is-info is-outlined">
+        <div class="box is-info is-outlined" style="min-height:145px">
           <div class="content">
             <h4 class="title is-5">Escolha de 100+ produtos costumizáveis</h4>
             Começe com qualquer um das nossas melhores estampas originais e costumize para satisfazer as suas necessidades, seja por imagem ou por texto.
@@ -18,7 +18,7 @@
       </div>
 
       <div class='column'>
-        <div class="box is-outlined">
+        <div class="box is-outlined" style="min-height:145px">
           <div class="content">
             <h4 class="title is-5">Frete grátis a partir de 5 produtos</h4>
             Acima de 5 produtos <span class='card has-background-warning'>Frete até 100% Grátis </span>
@@ -37,7 +37,7 @@
     <section
       data-aos-offset="-10"
       data-aos="zoom-up"
-      class=""
+      class="of-x-scroll"
       *ngIf="(Clientes$ | async)?.length > 0"
     >
       <app-testimonial [sliderData]="Clientes$ | async"></app-testimonial>

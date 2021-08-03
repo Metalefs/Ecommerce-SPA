@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto, IncrementarVendaProduto, IncrementarVisualizacoesProduto } from '../actions/produto.actions'
+import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto, IncrementarVendaProduto, IncrementarVisualizacoesProduto, AdicionarComparacao, AdicionarFavorito, RemoverComparacao, RemoverFavorito } from '../actions/produto.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
@@ -13,6 +13,8 @@ export class ProdutoStateModel{
   Page:number;
   Limit:number;
   Total:number;
+  Favoritos:Produto[];
+  Comparacao:Produto[];
 }
 
 @State<ProdutoStateModel>({
@@ -22,7 +24,9 @@ export class ProdutoStateModel{
     Page:1,
     Limit:12,
     Total:0,
-    areProdutosLoaded: false
+    areProdutosLoaded: false,
+    Favoritos: [],
+    Comparacao: [],
   }
 })
 @Injectable()
@@ -42,6 +46,15 @@ export class ProdutoState {
       return state.areProdutosLoaded;
   }
 
+  @Selector()
+  static ObterListaFavoritos(state: ProdutoStateModel) {
+    return state.Favoritos;
+  }
+
+  @Selector()
+  static ObterListaComparacao(state: ProdutoStateModel) {
+    return state.Comparacao;
+  }
   @Action(LerProduto)
   LerProduto({getState, setState}: StateContext<ProdutoStateModel>){
       return this.ProdutoService.Ler().pipe(
@@ -169,4 +182,60 @@ export class ProdutoState {
     );
   }
 
+
+  @Action(AdicionarFavorito)
+  AdicionarFavorito({getState,patchState}: StateContext<ProdutoStateModel>, {produto} : AdicionarFavorito){
+    let state = getState();
+    let favorites = state.Favoritos ?? [];
+    if(!favorites?.find(prod=>prod._id == produto._id))
+      favorites.push(produto);
+    else {
+      let idx = favorites?.findIndex(prod=>prod._id == produto._id);
+      favorites.splice(idx,1);
+    }
+    patchState({
+      ...state,
+      Favoritos: favorites,
+    });
+  }
+
+  @Action(RemoverFavorito)
+  RemoverFavorito({getState,patchState}: StateContext<ProdutoStateModel>, {produto} : RemoverFavorito){
+    let state = getState();
+    let favorites = state.Favoritos;
+    let idx = favorites?.findIndex(prod=>prod._id == produto._id);
+    favorites.splice(idx,1);
+    patchState({
+      ...state,
+      Favoritos: favorites,
+    });
+  }
+
+  @Action(AdicionarComparacao)
+  AdicionarComparacao({getState,patchState}: StateContext<ProdutoStateModel>, {produto} : AdicionarComparacao){
+    let state = getState();
+    let comparison = state.Comparacao ?? [];
+    if(!comparison?.find(prod=>prod._id == produto._id))
+      comparison.push(produto);
+    else {
+      let idx = comparison?.findIndex(prod=>prod._id == produto._id);
+      comparison.splice(idx,1);
+    }
+    patchState({
+      ...state,
+      Comparacao: comparison,
+    });
+  }
+
+  @Action(RemoverComparacao)
+  RemoverComparacao({getState,patchState}: StateContext<ProdutoStateModel>, {produto} : RemoverComparacao){
+    let state = getState();
+    let comparison = state.Favoritos;
+    let idx = comparison?.findIndex(prod=>prod._id == produto._id);
+    comparison.splice(idx,1);
+    patchState({
+      ...state,
+      Comparacao: comparison,
+    });
+  }
 }

@@ -13,8 +13,9 @@ import { tap } from 'rxjs/operators';
 import { ProdutoService } from '../../data/service';
 import { LerCategoria } from '../../data/store/actions/categoria.actions';
 import { EditarFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
-import { CategoriaState, ProdutoState, FiltroProdutoState } from '../../data/store/state';
+import { CategoriaState, ProdutoState, FiltroProdutoState, OrcamentoState } from '../../data/store/state';
 import { FiltroProdutoStateModel } from '../../data/store/state/filtroproduto.state';
+import { OrcamentoStateModel } from '../../data/store/state/orcamento.state';
 import { order, orderPreco } from '../../helper/ObjHelper';
 import { OrderType, OrderStatus } from '../../shared/models/interfaces';
 import { FiltroProduto } from '../../shared/models/interfaces/filtroProduto';
@@ -51,7 +52,6 @@ export class ProdutoStateService {
 
   @Select(ProdutoState.ObterListaProdutos) Produtos$: Observable<Produto[]>;
   Produtos: Produto[];
-
   @Select(FiltroProdutoState.ObterListaFiltroProdutos) Filtro$: Observable<FiltroProdutoStateModel>;
 
   activeSearchFilter = "";
@@ -193,10 +193,11 @@ export class ProdutoStateService {
       }
 
       this.Produtos = x.items;
+
       if (atualizarPreco)
         this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o => o.Preco)) : this.Produtos[0]?.Preco);
 
-      this.AtualizarFiltroProduto()
+      this.AtualizarFiltroProduto();
 
     })
   }
@@ -214,6 +215,8 @@ export class ProdutoStateService {
 
     this.store.dispatch(new EditarFiltroProduto(filtroProduto)).subscribe(y => {
       this.delay(400).then(x => { this.loading = x; });
+      console.log(y);
+      this.Produtos = y.Produtos.Produtos;
     });
   }
 

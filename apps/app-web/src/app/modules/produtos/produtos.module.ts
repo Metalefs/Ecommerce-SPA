@@ -33,9 +33,12 @@ import { ExibicaoQuantidadeProdutosFiltradosComponent } from './page/exibicao-qu
 import { FiltroCorProdutoComponent } from './page/filtro-cor-produto/filtro-cor-produto.component';
 import { ExibicaoListaProdutosComponent } from './page/exibicao-lista-produtos/exibicao-lista-produtos.component';
 import { FiltroFornecedorProdutoComponent } from './page/filtro-fornecedor-produto/filtro-fornecedor-produto.component';
+import { FavoritosComponent } from './page/exibicao-lista-produtos/favoritos/favoritos.component';
+import { DataviewProdutosComponent } from './page/exibicao-lista-produtos/dataview-produtos/dataview-produtos.component';
+import { ComparacaoComponent } from './page/exibicao-lista-produtos/comparacao/comparacao.component';
 
 @NgModule({
-  declarations: [ProdutosComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, FiltroNomeProdutoComponent, ExibicaoProdutoComponent, FiltroCategoriaMobileComponent, ExibicaoCategoriasAtivasComponent, SelecaoQuantidadeProdutosComponent, SelecaoCategoriaProdutoComponent, CheckboxCoresProdutoComponent, SelecaoOrdenacaoProdutoComponent, SelecaoStatusProdutoComponent, SelecaoFaixaPrecoProdutoComponent, NenhumProdutoEncontradoComponent, ExibicaoQuantidadeProdutosFiltradosComponent, FiltroCorProdutoComponent, ExibicaoListaProdutosComponent, FiltroFornecedorProdutoComponent],
+  declarations: [ProdutosComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, FiltroNomeProdutoComponent, ExibicaoProdutoComponent, FiltroCategoriaMobileComponent, ExibicaoCategoriasAtivasComponent, SelecaoQuantidadeProdutosComponent, SelecaoCategoriaProdutoComponent, CheckboxCoresProdutoComponent, SelecaoOrdenacaoProdutoComponent, SelecaoStatusProdutoComponent, SelecaoFaixaPrecoProdutoComponent, NenhumProdutoEncontradoComponent, ExibicaoQuantidadeProdutosFiltradosComponent, FiltroCorProdutoComponent, ExibicaoListaProdutosComponent, FiltroFornecedorProdutoComponent, FavoritosComponent, DataviewProdutosComponent, ComparacaoComponent],
   imports: [
     CommonModule,
     ProdutosPageRoutes,

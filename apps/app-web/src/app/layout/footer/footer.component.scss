@@ -23,7 +23,8 @@ a{
     .pi{
       margin-right:5px;
     }
-    .links{
+    &.links{
+      transition: .31s all;
       p{
         &::before {
           content:"\e932";
@@ -33,13 +34,11 @@ a{
         &:hover{
           color: gold !important;
           padding-left: 5px;
-          transition: .31s all;
         }
       }
       &.active{
         color: gold !important;
         padding-left: 5px;
-        transition: .31s all;
       }
       font-size: 16px;
     }

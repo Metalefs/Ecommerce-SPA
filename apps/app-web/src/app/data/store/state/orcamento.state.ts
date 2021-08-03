@@ -2,7 +2,7 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { UsuarioService, OrcamentoService} from '../../service';
 
-import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal, AplicarCodigoPromocional } from '../actions/orcamento.actions'
+import { LerOrcamento, EditarOrcamento, AdicionarOrcamento, RemoverOrcamento, AdicionarProdutoAoOrcamento, RemoverProdutoOrcamento, EditarOrcamentoLocal, EditarProdutoOrcamentoLocal, ResetarOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal, AplicarCodigoPromocional} from '../actions/orcamento.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { EnderecoEntrega, Orcamento, TamanhoProduto, Usuario } from 'libs/data/src/lib/classes';
@@ -216,7 +216,6 @@ export class OrcamentoState {
       Orcamento: orcamento,
     });
   }
-
 
   @Action(EditarProdutoOrcamentoLocal)
   EditarProdutoOrcamentoLocal({getState,patchState}: StateContext<OrcamentoStateModel>, {payload, id, codOrcamento} : EditarProdutoOrcamentoLocal){

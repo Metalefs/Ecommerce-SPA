@@ -27,7 +27,7 @@
         </div>
       <div class="card-image has-background-white">
         <slideshow
-          class='image has-ratio'
+          style="min-height: 300px !important;"
           *ngIf="imageUrls.length"
           [imageUrls]="imageUrls"
           [arrowSize]="(Carrosel$ | async)?.arrowSize"
@@ -47,7 +47,8 @@
           [fullscreen]="(Carrosel$ | async)?.fullscreen"
           [autoPlayWaitForLazyLoad]="true">
         </slideshow>
-        <figure class="image is-128x128 "></figure>
+        <figure class="image is-128x128 is-hidden-touch"></figure>
+        <figure class="image is-64x64 is-hidden-tablet"></figure>
         <personalizados-lopes-card-produto-status-produto [Produto]='Produto' [statusProduto]='statusProduto'
                                                           [Produto.Status.toString().toLowerCase]='Produto.Status.toString().toLowerCase'
                                                           [translateStatusProduto]='translateStatusProduto'></personalizados-lopes-card-produto-status-produto>
@@ -56,6 +57,19 @@
             <personalizados-lopes-card-produto-btn-abrir-modal
               [AbrirPreviewProduto]='AbrirPreviewProduto'></personalizados-lopes-card-produto-btn-abrir-modal>
           </div>
+
+          <div>
+            <personalizados-lopes-card-produto-btn-favoritar
+            [AdicionarFavorito]='AdicionarFavorito'
+            [Favorito]="Favorito"></personalizados-lopes-card-produto-btn-favoritar>
+          </div>
+
+          <div>
+              <personalizados-lopes-card-produto-btn-comparar
+              [AdicionarComparacao]='AdicionarComparacao'></personalizados-lopes-card-produto-btn-comparar>
+
+          </div>
+
         </div>
       </div>
 
@@ -87,6 +101,19 @@
           </a>
 
           <div class="hover-text">
+            <a
+              title="Comprar"
+              matRipple
+              pageScroll
+              href="#topo"
+              class="button shadow-light hoverable"
+              style="top: 37%; left: 27%;"
+              (click)="AbrirPaginaProduto()"
+              mat-flat-button
+              ><mat-icon class="material-icons-outlined"
+                >shopping_bag</mat-icon
+              ></a
+            >
             <div
               class="content m-lr-auto flex-c-m dis-flex"
               [style.width]="flex_direction == 'row' ? '45%' : '100%'"

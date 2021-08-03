@@ -2,6 +2,7 @@ import {TrocaSenha} from './trocaSenha';
 import {FiltrarProdutoSearchQuery} from './filtrarProdutoQuery';
 import {TiposOrdenacao} from './tipos-ordenacao';
 import {PaginationResponse} from './paginationResponse';
+import {AcaoProduto} from './acao-produto';
 import {MercadoPagoRefund} from './mercadoPagoRefund';
 import {MercadoPagoCheckout, mp_checkout_items, mp_payment_methods, mp_checkout_payer, mp_shipments} from './mercadoPagoCheckout';
 import {
@@ -17,6 +18,7 @@ export {
   TrocaSenha,
   FiltrarProdutoSearchQuery,
   PaginationResponse,
+  AcaoProduto,
   MercadoPagoRefund,
   MercadoPagoCheckout,
   MercadoPagoSearchPaymentResult,
