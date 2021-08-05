@@ -13,6 +13,7 @@
         min="{{ Produto?.QuantidadeMinima }}"
         class="quantidade-produto input"
         [(ngModel)]="Produto.Quantidade"
+        name="Quantidade"
       />
       <button mat-icon-button (click)="IncrementarQuantidade()">
         <mat-icon class="more">add</mat-icon>

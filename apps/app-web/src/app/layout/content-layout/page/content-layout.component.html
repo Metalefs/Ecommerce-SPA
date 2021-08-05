@@ -27,13 +27,13 @@
     [ngClass]="NavState.open ? 'main is-active' : ''"
     (mouseover)="CloseNav()"
   >
-    <section class="split-home has-background-pink-light">
+    <section class="split-home has-background-main">
       <personalizados-lopes-header *ngIf="!url?.includes('checkout')"></personalizados-lopes-header>
-      <main class="main-content has-background-pink-light">
+      <main class="main-content has-background-main">
         <router-outlet #outlet="outlet"></router-outlet>
       </main>
-      <personalizados-lopes-footer *ngIf="!url?.includes('checkout')"></personalizados-lopes-footer>
     </section>
+    <personalizados-lopes-footer *ngIf="!url?.includes('checkout')"></personalizados-lopes-footer>
     <personalizados-lopes-icone-whatsapp *ngIf="!url?.includes('checkout')"
       [Whatsapp]="(InformacoesContato$ | async)?.Whatsapp"
       [Mensagem]="Mensagem"

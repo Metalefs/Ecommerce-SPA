@@ -12,6 +12,7 @@ declare var require: any;
 export class EditorComponent implements OnInit {
   @Input() Conteudo:string;
   @Input() Disabled:boolean = false;
+  @Input() Name:string = "";
 
   @Output() Changed = new EventEmitter();
 

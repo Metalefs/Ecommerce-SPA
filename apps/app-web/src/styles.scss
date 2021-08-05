@@ -72,6 +72,9 @@ textarea {
 .has-background-light-custom {
   background: rgba(238, 238, 238, 0.877);
 }
+.has-background-main{
+  background: $main-background;
+}
 :host ::ng-deep #lightbox-lightbox > gallery {
   background-color: #000000bf !important;
   padding: 30px;
@@ -156,11 +159,13 @@ a {
   background: url(/assets/images/empresa/webb.png);
   //background-attachment: fixed;
 }
-.portfolio-item .slideshow-container a {
+.portfolio-item
+ {
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
-  background-size: contain !important;
+  background-size: cover !important;
   background-position: center !important;
+  object-fit: cover;
 }
 .slideshow-container {
   &:hover {

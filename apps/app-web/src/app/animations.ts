@@ -144,7 +144,7 @@ function slideToSide(direction) {
   return [
     query(':enter, :leave', [
       style({
-        position: 'absolute',
+        position: 'relative',
         // opacity: '.50',
         top: 0,
         [direction]: 0,

@@ -10,6 +10,7 @@
           matNativeControl
           (selectionChange)="SelecionarCategoria($event)"
           [(ngModel)]="Produto.NomeCategoria"
+          name="NomeCategoria"
           [value]="Produto.NomeCategoria"
         >
           <mat-option *ngFor="let opt of Categorias" [value]="opt.Nome">

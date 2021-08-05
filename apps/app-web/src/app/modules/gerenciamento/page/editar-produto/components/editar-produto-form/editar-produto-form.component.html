@@ -6,266 +6,275 @@
     (onSelecionarCategoria)="SelecionarCategoria($event)"
   ></personalizados-lopes-categoria-produto>
 
-  <div class="section">
-    <div class="columns">
-      <div class="column is-4">
-        <div class="pos-sticky top-0">
-          <personalizados-lopes-status-produto
-            [Produto]="Produto"
-          ></personalizados-lopes-status-produto>
-          <div>
-            <gallery
-              gallerize
-              id="myGallery"
-              class=""
-              *ngIf="galleryConfig$ | async; let config"
-              [counter]="false"
-              [nav]="false"
-              [thumbWidth]="config.thumbWidth"
-              [thumbHeight]="config.thumbHeight"
-              [thumbPosition]="config.thumbPosition"
-            >
-            </gallery>
-            <div class="file has-name pb-3">
-              <label class="file-label">
-                <input
-                  class="file-input"
-                  multiple
-                  type="file"
-                  (change)="upload($event)"
-                />
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="pi pi-cloud-upload"></i>
+  <form #formProduto action="">
+    <div class="section has-background-pink-light">
+      <div class="columns">
+        <div class="column is-4">
+          <div class="pos-sticky top-0">
+            <personalizados-lopes-status-produto
+              [Produto]="Produto"
+            ></personalizados-lopes-status-produto>
+            <div>
+              <gallery
+                gallerize
+                id="myGallery"
+                class=""
+                *ngIf="galleryConfig$ | async; let config"
+                [counter]="false"
+                [nav]="false"
+                [thumbWidth]="config.thumbWidth"
+                [thumbHeight]="config.thumbHeight"
+                [thumbPosition]="config.thumbPosition"
+              >
+              </gallery>
+              <div class="file has-name pb-3">
+                <label class="file-label">
+                  <input
+                    class="file-input"
+                    multiple
+                    type="file"
+                    (change)="upload($event)"
+                  />
+                  <span class="file-cta">
+                    <span class="file-icon">
+                      <i class="pi pi-cloud-upload"></i>
+                    </span>
+                    <span class="file-label">
+                      Escolha as imagens…
+                    </span>
+                    <span class="file-name">
+                      {{ fileNames }}
+                    </span>
                   </span>
-                  <span class="file-label">
-                    Escolha as imagens…
-                  </span>
-                  <span class="file-name">
-                    {{ fileNames }}
-                  </span>
-                </span>
-              </label>
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="column px-3 has-background-white z-index-2 pos-sticky">
-        <div class="columns is-multiline mb-0 pb-0">
-          <div class="column">
-            <mat-form-field appearance="fill" class="field w-full">
-              <div class="control"></div>
-              <input
-                matInput
-                class="input"
-                type="text"
-                [(ngModel)]="Produto.Nome"
-                placeholder="Nome"
-                title="Nome"
-              />
-            </mat-form-field>
-
-            <mat-divider></mat-divider>
-
-            <mat-form-field appearance="fill" class="my-4 field w-full">
-              <div class="control"></div>
-              <input
-                matInput
-                class="input"
-                type="text"
-                [(ngModel)]="Produto.Subtitulo"
-                placeholder="Subtitulo"
-              />
-            </mat-form-field>
-
-            <mat-divider></mat-divider>
-
-            <div class="descricao-produto w-full">
+        <div class="column px-3 has-background-white z-index-2 pos-sticky">
+          <div class="columns is-multiline mb-0 pb-0">
+            <div class="column">
               <mat-form-field appearance="fill" class="field w-full">
                 <div class="control"></div>
-                <textarea
-                  matInput
-                  class="input"
-                  type="text"
-                  [(ngModel)]="Produto.DescricaoRapida"
-                  placeholder="Texto de chamada"
-                ></textarea>
-              </mat-form-field>
-            </div>
-
-            <mat-divider></mat-divider>
-
-            <personalizados-lopes-fornecedor-produto-selector
-              (onSelected)="selectedFornecedor($event)"
-              [FornecedoresProduto]="Fornecedores"
-              [Produto]="Produto"
-            ></personalizados-lopes-fornecedor-produto-selector>
-
-            <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarFornecedor()">Criar Fornecedor</button>
-
-            <mat-divider></mat-divider>
-
-            <mat-form-field appearance="fill" class="field w-full">
-              <div class="control">
                 <input
                   matInput
                   class="input"
                   type="text"
-                  [(ngModel)]="Produto.Modelo"
-                  placeholder="Modelo"
+                  [(ngModel)]="Produto.Nome"
+                  placeholder="Nome"
+                  name="Nome"
+                  title="Nome"
                 />
+              </mat-form-field>
+
+              <mat-divider></mat-divider>
+
+              <mat-form-field appearance="fill" class="my-4 field w-full">
+                <div class="control"></div>
+                <input
+                  matInput
+                  class="input"
+                  type="text"
+                  name="Subtitulo"
+                  [(ngModel)]="Produto.Subtitulo"
+                  placeholder="Subtitulo"
+                />
+              </mat-form-field>
+
+              <mat-divider></mat-divider>
+
+              <div class="descricao-produto w-full">
+                <mat-form-field appearance="fill" class="field w-full">
+                  <div class="control"></div>
+                  <textarea
+                    matInput
+                    class="input"
+                    type="text"
+                    name="DescricaoRapida"
+                    [(ngModel)]="Produto.DescricaoRapida"
+                    placeholder="Texto de chamada"
+                  ></textarea>
+                </mat-form-field>
               </div>
-            </mat-form-field>
 
-            <mat-divider></mat-divider>
+              <mat-divider></mat-divider>
 
-            <div class="my-4 columns">
-              <mat-form-field appearance="fill" class="column field">
-                <mat-label>Preco</mat-label>
+              <personalizados-lopes-fornecedor-produto-selector
+                (onSelected)="selectedFornecedor($event)"
+                [FornecedoresProduto]="Fornecedores"
+                [Produto]="Produto"
+              ></personalizados-lopes-fornecedor-produto-selector>
+
+              <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarFornecedor()">Criar Fornecedor</button>
+
+              <mat-divider></mat-divider>
+
+              <mat-form-field appearance="fill" class="field w-full">
                 <div class="control">
                   <input
                     matInput
                     class="input"
-                    type="number"
-                    min="1"
-                    [(ngModel)]="Produto.Preco"
-                    [value]="Produto.Preco"
-                    placeholder="Preco"
+                    type="text"
+                    name="Modelo"
+                    [(ngModel)]="Produto.Modelo"
+                    placeholder="Modelo"
                   />
                 </div>
               </mat-form-field>
 
-  <!--            <mat-form-field appearance="fill" class="column field">-->
-  <!--              <mat-label>Preco Promocional</mat-label>-->
-  <!--              <div class="control">-->
-  <!--                <input-->
-  <!--                  matInput-->
-  <!--                  class="input"-->
-  <!--                  type="number"-->
-  <!--                  min="1"-->
-  <!--                  [(ngModel)]="Produto.PrecoPromocional"-->
-  <!--                  [value]="Produto.PrecoPromocional"-->
-  <!--                />-->
-  <!--              </div>-->
-  <!--            </mat-form-field>-->
+              <mat-divider></mat-divider>
 
-              <!-- <mat-divider></mat-divider>
-
-              <mat-form-field appearance="fill" class="column field">
-                <mat-label>Parcelas</mat-label>
-                <div class="control">
-                  <input
-                    matInput
-                    class="input"
-                    type="number"
-                    min="1"
-                    [(ngModel)]="Produto.Parcelas"
-                    [value]="Produto.Parcelas"
-                    placeholder="Parcelas"
-                  />
-                </div>
-              </mat-form-field> -->
-            </div>
-
-            <mat-divider></mat-divider>
-
-            <div class="columns my-4">
-              <div class="column">
-                <personalizados-lopes-quantidade-produto
-                  [Produto]="Produto"
-                  (onDecrescerQuantidade)="DecrescerQuantidade()"
-                  (onIncrementarQuantidade)="IncrementarQuantidade()"
-                  (onVerificarQuantidade)="VerificarQuantidade($event)"
-                ></personalizados-lopes-quantidade-produto>
-              </div>
-              <div class="column my-4">
-                <mat-form-field appearance="fill" class="field w-full">
-                  <mat-label>Quantidade Minima</mat-label>
+              <div class="my-4 columns">
+                <mat-form-field appearance="fill" class="column field">
+                  <mat-label>Preco</mat-label>
                   <div class="control">
                     <input
                       matInput
                       class="input"
                       type="number"
                       min="1"
-                      value="1"
-                      [(ngModel)]="Produto.QuantidadeMinima"
-                      [value]="Produto.QuantidadeMinima"
+                      name="Preco"
+                      [(ngModel)]="Produto.Preco"
+                      [value]="Produto.Preco"
+                      placeholder="Preco"
                     />
                   </div>
                 </mat-form-field>
+
+    <!--            <mat-form-field appearance="fill" class="column field">-->
+    <!--              <mat-label>Preco Promocional</mat-label>-->
+    <!--              <div class="control">-->
+    <!--                <input-->
+    <!--                  matInput-->
+    <!--                  class="input"-->
+    <!--                  type="number"-->
+    <!--                  min="1"-->
+    <!--                  [(ngModel)]="Produto.PrecoPromocional"-->
+    <!--                  [value]="Produto.PrecoPromocional"-->
+    <!--                />-->
+    <!--              </div>-->
+    <!--            </mat-form-field>-->
+
+                <!-- <mat-divider></mat-divider>
+
+                <mat-form-field appearance="fill" class="column field">
+                  <mat-label>Parcelas</mat-label>
+                  <div class="control">
+                    <input
+                      matInput
+                      class="input"
+                      type="number"
+                      min="1"
+                      [(ngModel)]="Produto.Parcelas"
+                      [value]="Produto.Parcelas"
+                      placeholder="Parcelas"
+                    />
+                  </div>
+                </mat-form-field> -->
               </div>
-            </div>
 
-            <mat-divider></mat-divider>
+              <mat-divider></mat-divider>
 
-            <div class="w-full py-3 mb-0">
-              <div class="columns is-mobile mb-0">
-                <div class="column is-6">
-                  <!-- Cor -->
-                  <personalizados-lopes-cor-produto-checkbox-selector
-                    (onSelected)="selectedCor($event)"
-                    [Multiple]="true"
-                    [Cores]="Cores"
+              <div class="columns my-4">
+                <div class="column">
+                  <personalizados-lopes-quantidade-produto
                     [Produto]="Produto"
-                  ></personalizados-lopes-cor-produto-checkbox-selector>
-                  <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarCorProduto()">Criar Cor</button>
+                    (onDecrescerQuantidade)="DecrescerQuantidade()"
+                    (onIncrementarQuantidade)="IncrementarQuantidade()"
+                    (onVerificarQuantidade)="VerificarQuantidade($event)"
+                  ></personalizados-lopes-quantidade-produto>
                 </div>
+                <div class="column my-4">
+                  <mat-form-field appearance="fill" class="field w-full">
+                    <mat-label>Quantidade Minima</mat-label>
+                    <div class="control">
+                      <input
+                        matInput
+                        class="input"
+                        type="number"
+                        min="1"
+                        value="1"
+                        name="QuantidadeMinima"
+                        [(ngModel)]="Produto.QuantidadeMinima"
+                        [value]="Produto.QuantidadeMinima"
+                      />
+                    </div>
+                  </mat-form-field>
+                </div>
+              </div>
 
-                <div class="column is-6">
-                  <!-- Tamanho -->
-                  <personalizados-lopes-tamanho-produto-selector
-                    (onSelected)="selectedTamanho($event)"
-                    [Multiple]="true"
-                    [TamanhosProduto]="Tamanhos"
-                    [Produto]="Produto"
-                  ></personalizados-lopes-tamanho-produto-selector>
-                  <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarTamanhoProduto()">Criar Tamanho</button>
+              <mat-divider></mat-divider>
+
+              <div class="w-full py-3 mb-0">
+                <div class="columns is-mobile mb-0">
+                  <div class="column is-6">
+                    <!-- Cor -->
+                    <personalizados-lopes-cor-produto-checkbox-selector
+                      (onSelected)="selectedCor($event)"
+                      [Multiple]="true"
+                      [Cores]="Cores"
+                      [Produto]="Produto"
+                    ></personalizados-lopes-cor-produto-checkbox-selector>
+                    <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarCorProduto()">Criar Cor</button>
+                  </div>
+
+                  <div class="column is-6">
+                    <!-- Tamanho -->
+                    <personalizados-lopes-tamanho-produto-selector
+                      (onSelected)="selectedTamanho($event)"
+                      [Multiple]="true"
+                      [TamanhosProduto]="Tamanhos"
+                      [Produto]="Produto"
+                    ></personalizados-lopes-tamanho-produto-selector>
+                    <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarTamanhoProduto()">Criar Tamanho</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
-  </div>
 
-  <div class="section">
-    <personalizados-lopes-dimensoes-produto
-      [Produto]="Produto"
-    ></personalizados-lopes-dimensoes-produto>
+    <div class="section">
+      <personalizados-lopes-dimensoes-produto
+        [Produto]="Produto"
+      ></personalizados-lopes-dimensoes-produto>
 
-    <personalizados-lopes-criacao-tags
-      [Produto]="Produto"
-      [tagCtrl]="tagCtrl"
-      (onAddTag)="addTag($event)"
-      (onRemoveTag)="removeTag($event)"
-    ></personalizados-lopes-criacao-tags>
+      <personalizados-lopes-criacao-tags
+        [Produto]="Produto"
+        [tagCtrl]="tagCtrl"
+        (onAddTag)="addTag($event)"
+        (onRemoveTag)="removeTag($event)"
+      ></personalizados-lopes-criacao-tags>
 
-    <mat-checkbox
-      matNativeControl
-      [(ngModel)]="Produto.Destaque"
-      [checked]="Produto.Destaque"
-    >
-      Destaque
-    </mat-checkbox>
-  </div>
+      <mat-checkbox
+        matNativeControl
+        [(ngModel)]="Produto.Destaque"
+        [checked]="Produto.Destaque"
+      >
+        Destaque
+      </mat-checkbox>
+    </div>
 
-  <div class="section">
-    <div class="columns is-multiline">
-      <div class="column is-12">
-        <personalizados-lopes-descricao-produto
-          [Produto]="Produto"
-        ></personalizados-lopes-descricao-produto>
-      </div>
+    <div class="section">
+      <div class="columns is-multiline">
+        <div class="column is-12">
+          <personalizados-lopes-descricao-produto
+            [Produto]="Produto"
+          ></personalizados-lopes-descricao-produto>
+        </div>
 
-      <div class="column is-12">
-        <personalizados-lopes-especificacao-produto
-          [Produto]="Produto"
-        ></personalizados-lopes-especificacao-produto>
+        <div class="column is-12">
+          <personalizados-lopes-especificacao-produto
+            [Produto]="Produto"
+          ></personalizados-lopes-especificacao-produto>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
 
   <div class="section">
     <personalizados-lopes-dicas-cadastro></personalizados-lopes-dicas-cadastro>

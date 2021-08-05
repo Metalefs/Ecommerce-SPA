@@ -108,17 +108,17 @@
             </div>
           </div>
 
-          <personalizados-lopes-botao-contato-whatsapp
-            (click)="EntrarEmContato()"
-          ></personalizados-lopes-botao-contato-whatsapp>
           <figure
-            class="image is-64x64 img-orcamento"
-            [ngClass]="isOrcamento ? 'active' : ''"
+          class="image is-64x64 img-orcamento"
+          [ngClass]="isOrcamento ? 'active' : ''"
           >
-            <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
-          </figure>
-        </div>
+          <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
+        </figure>
       </div>
+      <personalizados-lopes-botao-contato-whatsapp
+        (click)="EntrarEmContato()"
+      ></personalizados-lopes-botao-contato-whatsapp>
+    </div>
 
       <div class="column is-3">
         <div class="box">

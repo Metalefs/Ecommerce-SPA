@@ -158,7 +158,7 @@ export class CostumizationComponent implements OnInit {
     reader.onload = function (f) {
       var data = f.target.result;
       fabric.Image.fromURL(data, function (img) {
-        img.scaleToWidth(200);
+        img.scaleToWidth(100);
         var oImg = img.set({
           left: 0,
           top: 0,
@@ -167,7 +167,7 @@ export class CostumizationComponent implements OnInit {
 
         self.__canvas.add(oImg).renderAll();
         var a = self.__canvas.setActiveObject(oImg);
-        var dataURL = self.__canvas.toDataURL({ format: 'png', quality: 0.8 });
+        var dataURL = self.__canvas.toDataURL({ format: 'png', quality:1});
         self.SaveDesign();
       });
     };

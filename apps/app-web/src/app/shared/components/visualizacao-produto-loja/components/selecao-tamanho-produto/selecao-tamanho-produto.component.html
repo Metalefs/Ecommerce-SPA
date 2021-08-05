@@ -3,14 +3,15 @@
   [ngClass]="{ 'is-danger': ErroTamanho() }"
   *ngIf="Produto?.Tamanhos"
 >
-  <mat-label class="label"  [ngClass]="{'': !(Produto.Tamanho?.Nome || Produto?.Tamanho)}"
-    >Escolha o <strong>Tamanho</strong>: </mat-label><span class=" is-size-7">{{Produto?.Tamanho?.Nome || Produto?.Tamanho || ''}} {{Produto?.FaixaTamanho?.Tamanho}}</span>
-    <br>
+  <mat-label class="label is-medium"  [ngClass]="{'': !(Produto.Tamanho?.Nome || Produto?.Tamanho)}"
+    >Escolha o <strong>Tamanho</strong> da unidade: </mat-label>
+    <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome || Produto?.Tamanho || ''}} {{Produto?.FaixaTamanho?.Tamanho}}</span></p>
+
     <div
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
-    class="shadow-light button"
-    [ngClass]="{'is-active':(Produto.Tamanho?.Nome == opt?.Nome)}"
+    class="shadow-light button is-outlined is-primary"
+    [ngClass]="{'is-active is-hovered': Produto.Tamanho?.Nome == opt?.Nome || Produto.Tamanho == opt }"
 
   >
     <div (click)="SetTamanho(opt)">

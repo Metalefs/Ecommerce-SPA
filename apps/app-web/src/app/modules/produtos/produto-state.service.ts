@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Categoria, CorProduto, FornecedorProduto } from 'libs/data/src/lib/classes';
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
-import { FiltrarProdutoSearchQuery, TiposOrdenacao } from 'libs/data/src/lib/interfaces';
+import { FiltrarProdutoSearchQuery, PaginationResponse, TiposOrdenacao } from 'libs/data/src/lib/interfaces';
 import { NgDialogAnimationService } from 'ng-dialog-animation';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -174,32 +174,35 @@ export class ProdutoStateService {
       this.page = 1;
     this.produtoService.FiltrarProdutos(this.fQuery, this.page, this.activeOrderLimit).subscribe(async x => {
       this.total = x.total;
-      switch (+this.activeOrderFilter) {
-        case TiposOrdenacao.nome:
-          x.items = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
-          break;
-
-        case TiposOrdenacao.nomeDesc:
-          x.items = x.items.sort((a, b) => this.order(a, b, true));
-          break;
-
-        case TiposOrdenacao.preco:
-          x.items = x.items.sort((a, b) => this.orderPreco(a, b, false));
-          break;
-
-        case TiposOrdenacao.precoDesc:
-          x.items = x.items.sort((a, b) => this.orderPreco(a, b, true));
-          break;
-      }
-
       this.Produtos = x.items;
 
       if (atualizarPreco)
-        this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o => o.Preco)) : this.Produtos[0]?.Preco);
+      this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o => o.Preco)) : this.Produtos[0]?.Preco);
 
       this.AtualizarFiltroProduto();
 
+      this.OrdenarProdutos(x);
     })
+  }
+
+  private OrdenarProdutos(x: PaginationResponse<Produto>) {
+    switch (+this.activeOrderFilter) {
+      case TiposOrdenacao.nome:
+        this.Produtos = x.items.sort((a, b) => a.Nome.localeCompare(b.Nome));
+        break;
+
+      case TiposOrdenacao.nomeDesc:
+        this.Produtos = this.Produtos.sort((a, b) => this.order(a, b, true));
+        break;
+
+      case TiposOrdenacao.preco:
+        this.Produtos = this.Produtos.sort((a, b) => this.orderPreco(a, b, false));
+        break;
+
+      case TiposOrdenacao.precoDesc:
+        this.Produtos = this.Produtos.sort((a, b) => this.orderPreco(a, b, true));
+        break;
+    }
   }
 
   AtualizarFiltroProduto() {

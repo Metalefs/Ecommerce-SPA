@@ -34,11 +34,11 @@
 
         <mat-divider class="is-hidden-desktop"></mat-divider>
 
-        <div class="hero is-medium is-hidden-desktop">
+        <div class="section is-hidden-desktop">
           <div
             data-aos="fade-up"
             data-aos-offset="200"
-            class="hero-body"
+            class=""
             *ngIf="Produto?._id"
           >
             <personalizados-lopes-produto-swiper
@@ -51,8 +51,8 @@
 
         <mat-divider></mat-divider>
 
-        <div class="hero is-medium is-hidden-desktop" *ngIf="Blog?.length >= 2">
-          <div data-aos="fade-up" data-aos-offset="200" class="hero-body">
+        <div class="section is-hidden-desktop" *ngIf="Blog?.length >= 2">
+          <div data-aos="fade-up" data-aos-offset="200" class="">
             <personalizados-lopes-blog-swiper
               [TAGS]="Produto?.Tags"
               [Blog]="Blog"
