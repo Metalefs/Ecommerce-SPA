@@ -73,7 +73,7 @@
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card color="primary" class="box border-light hoverable" style="min-height: 200px;">
+        <mat-card class="message is-danger" style="min-height: 200px;">
           <mat-card-content>
             <p class="fw-500">{{rule}}</p>
           </mat-card-content>
@@ -90,7 +90,7 @@
     #toCheckout
     [disabled]="!Produto.Canvas"
     [ngClass]="{'wp-btn is-success':!toCheckout.disabled}">
-    {{!Produto.Canvas?"Adicione uma arte":"Continuar"}}
+    {{!Produto.Canvas?"Adicione uma arte":"Salvar"}}
   </button>
   <button mat-raised-button color=""
     [mat-dialog-close]="null"

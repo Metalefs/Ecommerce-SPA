@@ -69,11 +69,12 @@ export class CostumizationComponent implements OnInit {
     fabric.Object.prototype.cornerColor = '#131313';
     fabric.Object.prototype.transparentCorners = false;
     document.getElementById('fill-color').onchange = function (x) {
+        console.log(x)
         self.__canvas.getActiveObject().set("fill", x.returnValue);
         self.__canvas.renderAll();
       };
-    document.getElementById('font-family').onchange = function (x) {
-      self.__canvas.getActiveObject().set("fontFamily", x.returnValue);
+    document.getElementById('fontFamily').onchange = function (x) {
+      self.__canvas.getActiveObject().set("fontFamily", x.target['selectedOptions'][0].value);
       self.__canvas.renderAll();
     };
     this.radios5 = document.getElementsByName("fonttype");
@@ -82,23 +83,23 @@ export class CostumizationComponent implements OnInit {
         let div = document.getElementById(this.id) as any;
         if (div?.checked as any== true) {
           if (this.id == "text-cmd-bold") {
-            this.__canvas.getActiveObject().set("fontWeight", "bold");
+            self.__canvas.getActiveObject().set("fontWeight", "bold");
           }
           if (this.id == "text-cmd-italic") {
-            this.__canvas.getActiveObject().set("fontStyle", "italic");
+            self.__canvas.getActiveObject().set("fontStyle", "italic");
           }
           if (this.id == "text-cmd-underline") {
-            this.__canvas.getActiveObject().set("textDecoration", "underline");
+            self.__canvas.getActiveObject().set("textDecoration", "underline");
           }
         } else {
           if (this.id == "text-cmd-bold") {
-            this.__canvas.getActiveObject().set("fontWeight", "");
+            self.__canvas.getActiveObject().set("fontWeight", "");
           }
           if (this.id == "text-cmd-italic") {
-            this.__canvas.getActiveObject().set("fontStyle", "");
+            self.__canvas.getActiveObject().set("fontStyle", "");
           }
           if (this.id == "text-cmd-underline") {
-            this.__canvas.getActiveObject().set("textDecoration", "");
+            self.__canvas.getActiveObject().set("textDecoration", "");
           }
         }
         this.__canvas.renderAll();
@@ -222,6 +223,9 @@ export class CostumizationComponent implements OnInit {
     this.importOpen = true;
     let dialogRef = this.dialog.open(StockImageComponent, {
       panelClass:['animate__animated','animate__bounceIn', 'border'],
+      width:'50vw',
+      height:'80vh',
+
       data:{IdCategoria: this.Produto.Categoria._id}
     })
     let self = this;
@@ -229,7 +233,7 @@ export class CostumizationComponent implements OnInit {
       if(e){
         var imgObj = e.srcElement.currentSrc;
         fabric.Image.fromURL(imgObj, function (img) {
-          img.scaleToWidth(300);
+          img.scaleToWidth(200);
           var oImg = img.set({
             left: 0,
             top: 0,

@@ -1,5 +1,5 @@
 <div @fadeIn class="box columns is-multiline" *ngIf="this.Produto?.Arte">
-  <a>Como essa arte será usada no produto?</a>
+  <a (click)="onAbrirModalArte.emit()">Como essa arte será usada no produto?</a>
   <div class="column">
     <mat-card>
       <mat-card-header>

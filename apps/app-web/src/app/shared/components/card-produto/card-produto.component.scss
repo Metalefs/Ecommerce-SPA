@@ -240,24 +240,24 @@
       a{
         visibility: visible;
         pointer-events: default;
-        opacity: 1;
+        opacity: .8;
       }
     }
     .portfolio-overlay {
       transform: scale(1);
-      opacity: 1;
+      opacity: .8;
       visibility: visible;
       .overlay-items{
         visibility: visible;
-        opacity: 1;
+        opacity: .8;
         p {
-          opacity: 1;
+          opacity: .8;
           visibility: visible;
         }
       }
     }
     p {
-      opacity: 1;
+      opacity: .8;
       -webkit-transform: translateY(0);
       -moz-transform: translateY(0);
       transform: translateY(0);

@@ -8,18 +8,18 @@
     <div class="columns is-multiline container-modal">
       <div class="column is-4 category-list">
         <div class="category-item is-disabled" (click)="changeImgSrc(imgSrc)">
-          <span>Imagens</span>
+          <span class="button">Imagens</span>
         </div>
         <div class="category-item is-disabled" (click)="changeImgSrc(imgSrc)">
-          <span>Ilustrações</span> <em>Em breve..</em>
+          <span class="button">Ilustrações</span> <em>Em breve..</em>
         </div>
         <div class="category-item is-disabled" (click)="changeImgSrc(imgSrc)">
-          <span>Infantis</span> <em>Em breve..</em>
+          <span class="button">Infantis</span> <em>Em breve..</em>
         </div>
       </div>
       <div class="column is-8 is-12-mobile">
         <div class="columns is-vcentered is-multiline" >
-          <div class="column is-12-mobile" *ngFor="let item of list">
+          <div class="column clickable is-12-mobile" *ngFor="let item of list">
               <figure class="image is-128x128">
                 <img
                [src] = "item.Imagem[0].Src"
