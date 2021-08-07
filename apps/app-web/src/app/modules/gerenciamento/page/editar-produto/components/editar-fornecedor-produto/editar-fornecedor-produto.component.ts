@@ -39,6 +39,8 @@ export class EditarFornecedorProdutoComponent implements OnInit {
   }
 
   Remover(fornecedor:FornecedorProduto){
+    const accepts = confirm("Deletar?");
+    if(accepts)
     this.fornecedorProdutoService.Remover(fornecedor._id).subscribe((result:FornecedorProduto)=>{
       this.snackBar.open(`Fornecedor ${fornecedor.Nome} removido com sucesso.`, "Fechar", {verticalPosition:"top"});
       this.CarregarFornecedoresProduto();

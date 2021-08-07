@@ -189,13 +189,14 @@ export class EditarProdutoComponentBase implements OnInit {
       width: '90%',
       data: new CorProduto('','')
     });
-    dialogRef.afterClosed().subscribe((corProduto: entities.CorProduto) => {
+    dialogRef.componentInstance.onSend.subscribe((corProduto: entities.CorProduto) => {
       if (corProduto != undefined) {
         this.produtoService.CriarCorProduto(corProduto).subscribe(() => {
           this._snackBar.open("Cor adicionada com sucesso", "Fechar", {
 
           });
           this.CarregarCores();
+          dialogRef.close();
         });
       }
     });
