@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 
 @Component({
@@ -8,6 +8,8 @@ import { Produto, StatusProduto } from 'libs/data/src/lib/classes/produto';
 })
 export class StatusProdutoComponent implements OnInit {
   @Input() Produto:Produto;
+  @Output() onSelect:EventEmitter<any> = new EventEmitter<any>();
+
   statusProduto:string[] = [];
   constructor() { }
 

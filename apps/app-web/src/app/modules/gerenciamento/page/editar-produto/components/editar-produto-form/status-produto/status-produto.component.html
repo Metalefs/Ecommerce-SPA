@@ -3,7 +3,7 @@
     <mat-label>Status</mat-label>
     <mat-select
       matNativeControl
-      [(ngModel)]="Produto.Status"
+      (change)="onSelect.emit($event)"
       name="Status"
       [value]="Produto.Status"
     >

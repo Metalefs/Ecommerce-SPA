@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
 
 @Component({
@@ -8,7 +8,7 @@ import { Produto } from 'libs/data/src/lib/classes';
 })
 export class EspecificacaoProdutoComponent implements OnInit {
   @Input() Produto:Produto;
-
+  @Output() onChange:EventEmitter<any> = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {

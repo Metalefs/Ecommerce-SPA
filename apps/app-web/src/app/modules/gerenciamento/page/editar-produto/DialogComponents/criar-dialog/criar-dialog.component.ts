@@ -12,6 +12,7 @@ import { AuthenticationService } from 'apps/app-web/src/app/core/service/authent
 import { isPlatformBrowser } from '@angular/common';
 import { EditarProdutoService } from '../../editar-produto.service';
 import { EditarProdutoComponentBase } from '../../editar-produto.component.base';
+import { FormBuilder } from '@angular/forms';
 
 declare var require: any;
 
@@ -37,8 +38,9 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
     protected snack: MatSnackBar,
     protected authService: AuthenticationService,
     @Inject(PLATFORM_ID) private platformId: any,
+    protected fb:FormBuilder
   ) {
-    super(store,dialog,snack,produtoService,authService);
+    super(store,dialog,snack,produtoService,authService,fb);
     dialogRef.disableClose = true;
     this.Produto = this.ConstructProduct();
 

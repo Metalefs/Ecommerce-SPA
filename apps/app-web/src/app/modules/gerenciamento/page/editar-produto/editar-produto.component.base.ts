@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { entities } from '@personalizados-lopes/data';
@@ -8,10 +8,10 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { BlogPost, CorProduto, FornecedorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { EditarProdutoService } from './editar-produto.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
+import { isEmpty, translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { LabelType, Options } from '@angular-slider/ngx-slider';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdicionarCategoria } from 'apps/app-web/src/app/data/store/actions/categoria.actions';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { GalleryConfig } from 'ng-gallery';
@@ -35,7 +35,8 @@ export class EditarProdutoComponentBase implements OnInit {
   galleryConfig$: Observable<GalleryConfig>;
   enumStatusProduto = StatusProduto;
   fileNames:string="nenhum arquivo selecionado.";
-  Produto:Produto;
+  Produto: Produto;
+
   visible = true;
   selectable = true;
   removable = true;
@@ -68,20 +69,42 @@ export class EditarProdutoComponentBase implements OnInit {
       }
     }
   };
+  produtoForm:FormGroup;
 
   constructor(
     protected store: Store,
     protected dialog: MatDialog,
     protected _snackBar: MatSnackBar,
     protected produtoService: EditarProdutoService,
-    protected authService: AuthenticationService
+    protected authService: AuthenticationService,
+    protected fb:FormBuilder
     ) {
-
+      this.produtoForm = this.fb.group({
+        Categoria: [this.Produto?.Categoria,[Validators.required]],
+        Nome: [this.Produto?.Nome,[Validators.required]],
+        Subtitulo: [this.Produto?.Subtitulo,[Validators.required]],
+        DescricaoRapida: [this.Produto?.DescricaoRapida,[Validators.required]],
+        Marca: [this.Produto?.Marca,[Validators.required]],
+        Modelo: [this.Produto?.Modelo,[Validators.required]],
+        Preco: [this.Produto?.Preco,[Validators.required]],
+        Quantidade: [this.Produto?.Quantidade,[Validators.required]],
+        QuantidadeMinima: [this.Produto?.QuantidadeMinima,[Validators.required]],
+        Cores: [this.Produto?.Cores,[Validators.required]],
+        Dimensoes: [this.Produto?.Dimensoes,[Validators.required]],
+        Peso: [this.Produto?.Peso,[Validators.required]],
+        Tamanhos: [this.Produto?.Tamanhos,[Validators.required]],
+        Status: [this.Produto?.Status,[Validators.required]],
+        Tags: [this.Produto?.Tags,[Validators.required]],
+        Imagem: [this.Produto?.Imagem,[]],
+        Descricao: [this.Produto?.Descricao,[Validators.required]],
+        Especificacoes: [this.Produto?.Especificacoes,[Validators.required]],
+      })
   }
 
   ngOnInit(): void {
-  }
 
+
+  }
 
   CriarCategoria(): void {
     const dialogRef = this.dialog.open(CriarCategoriaDialogComponent, {
@@ -246,16 +269,14 @@ export class EditarProdutoComponentBase implements OnInit {
     if (input)
       input.value = '';
     this.tagCtrl.setValue(null);
+    this.produtoForm.get("Tags").setValue(this.Produto.Tags);
+
   }
   removeTag(tag: string){
     const index = this.Produto.Tags.indexOf(tag);
     if (index >= 0) {
       this.Produto.Tags.splice(index, 1);
     }
-  }
-
-  SelecionarCategoria($event){
-    this.Produto.Categoria = this.Categorias.filter(cat => cat.Nome == $event.value)[0];
   }
 
   IncrementarQuantidade(){
@@ -273,6 +294,8 @@ export class EditarProdutoComponentBase implements OnInit {
   VerificarQuantidade($event){
     if($event.target.value < this.Produto.QuantidadeMinima)
       this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+
+    this.produtoForm.get("Quantidade").setValue(this.Produto.Quantidade);
   }
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);

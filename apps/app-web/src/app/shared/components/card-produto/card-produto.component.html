@@ -335,36 +335,40 @@
         </mat-card-actions>
 
         <div class="z-index-1">
-          <div class="content a-i-c m-lr-auto w-full">
-            <div
-              class="portfolio-overlay events-none w-full"
-              style="top: 10px; left: 0px;"
-              [style.width]="flex_direction == 'row' ? '50%' : '100%'"
-            >
-              <div class="overlay-items w-full txt-center">
-                <p>
-                  {{
-                    Produto?.DescricaoRapida
-                      ? Produto?.DescricaoRapida
-                      : Produto?.Nome
-                  }}
-                </p>
-              </div>
-            </div>
+          <div class="hover-text">
             <a
               title="Comprar"
               matRipple
               pageScroll
               href="#topo"
-              class="reset-a button shadow-light hoverable is-success m-lr-auto"
+              class="button shadow-light hoverable"
               style="top: 37%; left: 27%;"
               (click)="AbrirPaginaProduto()"
               mat-flat-button
-              class=""
               ><mat-icon class="material-icons-outlined"
                 >shopping_bag</mat-icon
               ></a
             >
+            <div
+              class="content m-lr-auto flex-c-m dis-flex"
+              [style.width]="flex_direction == 'row' ? '45%' : '100%'"
+              [style.left]="'8%'"
+            >
+              <div
+                class="portfolio-overlay events-none w-full"
+                style="top: 10px;"
+              >
+                <div class="overlay-items w-full txt-center">
+                  <p>
+                    {{
+                      Produto?.DescricaoRapida
+                        ? Produto?.DescricaoRapida
+                        : Produto?.Nome
+                    }}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </mat-card-actions>

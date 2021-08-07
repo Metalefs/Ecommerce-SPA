@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
 
 @Component({
@@ -8,6 +8,11 @@ import { Produto } from 'libs/data/src/lib/classes';
 })
 export class DimensoesProdutoComponent implements OnInit {
   @Input() Produto:Produto;
+  @Output() onAlturaChange:EventEmitter<any> = new EventEmitter<any>();
+  @Output() onLarguraChange:EventEmitter<any> = new EventEmitter<any>();
+  @Output() onComprimentoChange:EventEmitter<any> = new EventEmitter<any>();
+  @Output() onPesoChange:EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit(): void {

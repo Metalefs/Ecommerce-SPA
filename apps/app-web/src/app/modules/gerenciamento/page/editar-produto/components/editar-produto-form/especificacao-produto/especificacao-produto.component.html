@@ -8,7 +8,7 @@
   </mat-card>
 
   <personalizados-lopes-editor
-    (Changed)="Produto.Especificacoes = $event"
+    (Changed)="Produto.Especificacoes = $event; onChange.emit($event)"
     [Conteudo]="Produto.Especificacoes"
     [Name]="'Especificacoes'"
   ></personalizados-lopes-editor>

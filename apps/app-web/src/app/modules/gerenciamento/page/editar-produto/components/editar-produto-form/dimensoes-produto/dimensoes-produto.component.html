@@ -11,8 +11,8 @@
           min="1"
           name="Dimensoes.Altura"
           placeholder="Altura em cm"
-          [(ngModel)]="Produto.Dimensoes.Altura"
-          [value]="Produto.QuantidadeMinima"
+          (change)="onAlturaChange.emit($event.value)"
+          [value]="Produto.Dimensoes.Altura"
         />
       </div>
     </mat-form-field>
@@ -26,8 +26,8 @@
           name="Dimensoes.Largura"
           min="1"
           placeholder="Largura em cm"
-          [(ngModel)]="Produto.Dimensoes.Largura"
-          [value]="Produto.QuantidadeMinima"
+          (change)="onLarguraChange.emit($event.value)"
+          [value]="Produto.Dimensoes.Altura"
         />
       </div>
     </mat-form-field>
@@ -41,7 +41,8 @@
           min="1"
           name="Dimensoes.Comprimento"
           placeholder="Comprimento em cm"
-          [(ngModel)]="Produto.Dimensoes.Comprimento"
+
+          (change)="onComprimentoChange.emit($event.value)"
           [value]="Produto.QuantidadeMinima"
         />
       </div>
@@ -57,7 +58,8 @@
         min="1"
         name="Peso"
         placeholder="Peso em gramas"
-        [(ngModel)]="Produto.Peso"
+
+        (change)="onPesoChange.emit($event.value)"
         [value]="Produto.Peso"
       />
     </div>

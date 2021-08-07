@@ -12,6 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { EditarProdutoComponentBase } from '../../editar-produto.component.base';
 import { EditarProdutoService } from '../../editar-produto.service';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { FormBuilder } from '@angular/forms';
 declare var require: any;
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
@@ -26,8 +27,7 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
   @ViewChild('auto1') matAutocompleteCor: MatAutocomplete;
   @ViewChild('auto2') matAutocompleteTamanho: MatAutocomplete;
 
-  @Input() Produto:Produto;
-
+  Produto: Produto;
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
@@ -38,9 +38,10 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
     protected store:Store,
     protected snack:MatSnackBar,
     protected produtoService:EditarProdutoService,
-    protected authService: AuthenticationService
+    protected authService: AuthenticationService,
+    protected fb:FormBuilder
   ) {
-    super(store,dialog,snack,produtoService,authService);
+    super(store,dialog,snack,produtoService,authService,fb);
     dialogRef.disableClose = true;
     this.Produto = data;
     if(!this.Produto.Cores){

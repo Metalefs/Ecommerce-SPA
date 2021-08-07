@@ -18,11 +18,15 @@ export class TamanhoProdutoSelectorComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.Produto)
+
+    console.log(this.TamanhosProduto)
   }
 
   getTamanhos() :any{
-    return this.Produto?.Tamanhos || this.TamanhosProduto;
+    if(this.Produto?._id)
+      return this.Produto?.Tamanhos || this.TamanhosProduto;
+    else
+      return this.TamanhosProduto;
   }
 
 
