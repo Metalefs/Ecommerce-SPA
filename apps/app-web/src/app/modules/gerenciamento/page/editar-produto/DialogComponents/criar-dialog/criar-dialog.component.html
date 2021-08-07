@@ -4,6 +4,7 @@
 
   <personalizados-lopes-editar-produto-form
     [Produto]="Produto"
+    (statusChange)="Status = $event"
   ></personalizados-lopes-editar-produto-form>
 
   <div class="py-3">
@@ -12,7 +13,7 @@
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="basic" [mat-dialog-close]="Produto">
+  <button mat-raised-button [disabled]="Status != 'VALID'" color="basic" (click)="salvar()">
     Enviar
   </button>
   <a mat-stroked-button (click)="CriarPostagem()">Criar postagem para o produto</a>

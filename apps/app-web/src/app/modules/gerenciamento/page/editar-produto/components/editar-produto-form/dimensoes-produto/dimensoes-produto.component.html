@@ -1,7 +1,7 @@
 <div>
   <h1>Dimensões</h1>
   <div class="columns">
-    <mat-form-field class="field column">
+    <mat-form-field class="field column is-3">
       <mat-label class="label">Altura</mat-label>
       <div class="control">
         <input
@@ -11,12 +11,12 @@
           min="1"
           name="Dimensoes.Altura"
           placeholder="Altura em cm"
-          (change)="onAlturaChange.emit($event.value)"
+          (change)="onAlturaChange.emit($event.target.value)"
           [value]="Produto.Dimensoes.Altura"
         />
       </div>
     </mat-form-field>
-    <mat-form-field class="field column">
+    <mat-form-field class="field column is-3">
       <mat-label class="label">Largura</mat-label>
       <div class="control">
         <input
@@ -26,12 +26,12 @@
           name="Dimensoes.Largura"
           min="1"
           placeholder="Largura em cm"
-          (change)="onLarguraChange.emit($event.value)"
+          (change)="onLarguraChange.emit($event.target.value)"
           [value]="Produto.Dimensoes.Altura"
         />
       </div>
     </mat-form-field>
-    <mat-form-field class="field column">
+    <mat-form-field class="field column is-3">
       <mat-label class="label">Comprimento</mat-label>
       <div class="control">
         <input
@@ -42,26 +42,26 @@
           name="Dimensoes.Comprimento"
           placeholder="Comprimento em cm"
 
-          (change)="onComprimentoChange.emit($event.value)"
+          (change)="onComprimentoChange.emit($event.target.value)"
           [value]="Produto.QuantidadeMinima"
         />
       </div>
     </mat-form-field>
-  </div>
-  <mat-form-field class="field column">
-    <mat-label class="label">Peso</mat-label>
-    <div class="control">
-      <input
-        matInput
-        class="input"
-        type="number"
-        min="1"
-        name="Peso"
-        placeholder="Peso em gramas"
+    <mat-form-field class="field column is-3">
+      <mat-label class="label">Peso</mat-label>
+      <div class="control">
+        <input
+          matInput
+          class="input"
+          type="number"
+          min="1"
+          name="Peso"
+          placeholder="Peso em gramas"
 
-        (change)="onPesoChange.emit($event.value)"
-        [value]="Produto.Peso"
-      />
-    </div>
-  </mat-form-field>
+          (change)="onPesoChange.emit($event.target.value)"
+          [value]="Produto.Peso"
+        />
+      </div>
+    </mat-form-field>
+  </div>
 </div>

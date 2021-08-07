@@ -3,7 +3,9 @@
     <mat-label>Status</mat-label>
     <mat-select
       matNativeControl
-      (change)="onSelect.emit($event)"
+      (onchange)="onSelect.emit($event)"
+      (selectionChange)='onSelect.emit($event)'
+
       name="Status"
       [value]="Produto.Status"
     >

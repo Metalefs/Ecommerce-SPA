@@ -20,11 +20,18 @@ export class CorProdutoComponent implements OnInit {
   @Output() onRemoveCor: EventEmitter<any> = new EventEmitter<any>();
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
+  selected;
+
   constructor() { }
 
   ngOnInit(): void {
+    // if(this.Produto){
+    //   this.selected = this.Produto.Tamanho ?? this.TamanhosProduto[0] ?? null;
+    // }
+    // else{
+    //   this.selected = this.TamanhosProduto[0] ?? null;
+    // }
   }
-
   addCor($event){
     this.onAddCor.emit($event);
   }

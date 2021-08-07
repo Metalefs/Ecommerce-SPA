@@ -1,17 +1,16 @@
 
-<mat-form-field appearance="fill" class="w-full">
+<mat-form-field class="w-full">
   <mat-label>Fornecedor</mat-label>
   <mat-select
     matNativeControl
+    [compareWith]="compareObjects"
+    [(value)]="selected"
     (selectionChange)="this.onSelected.emit($event.value)"
-    [value]="Produto?.Marca"
   >
     <mat-option *ngFor="let opt of FornecedoresProduto" [value]="opt" >
       <div class="dis-flex flex-sb">
         <p>{{ opt?.Nome }}</p>
-        <p>{{ opt?.Website }}</p>
       </div>
     </mat-option>
   </mat-select>
 </mat-form-field>
-

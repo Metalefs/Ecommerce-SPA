@@ -3,8 +3,10 @@
   <mat-select
     [multiple]="Multiple"
     matNativeControl
+    [compareWith]="compareObjects"
+    [(value)]="selected"
     (selectionChange)="this.onSelected.emit($event.value)"
-    [value]="[Produto?.Cor]"
+
   >
     <mat-option *ngFor="let opt of Cores" [value]="opt">
       <div class="dis-flex flex-sb">

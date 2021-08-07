@@ -2,10 +2,11 @@
 <div mat-dialog-content>
   <personalizados-lopes-editar-produto-form
     [Produto]="Produto"
+    (statusChange)="Status = $event"
   ></personalizados-lopes-editar-produto-form>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button color="basic" [mat-dialog-close]="Produto">
+  <button mat-raised-button color="basic" [disabled]="Status != 'VALID'" (click)="salvar()">
     Enviar
   </button>
   <button mat-raised-button color="basic" (click)="onNoClick()" cdkFocusInitial>

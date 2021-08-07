@@ -12,7 +12,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { EditarProdutoComponentBase } from '../../editar-produto.component.base';
 import { EditarProdutoService } from '../../editar-produto.service';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 declare var require: any;
 @Component({
   selector: 'personalizados-lopes-editar-dialog',
@@ -28,6 +29,7 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
   @ViewChild('auto2') matAutocompleteTamanho: MatAutocomplete;
 
   Produto: Produto;
+  Status:string;
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
@@ -85,10 +87,13 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
       console.log(img);
       galleryRef.addImage({ src:img, thumb: img });
     });
+
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
+  salvar(): void {
+    this.dialogRef.close(this.Produto);
+  }
 }

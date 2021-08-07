@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CorProdutoSelectorComponent } from './cor-produto-selector.component';
+import { CorProdutoCheckboxSelectorComponent } from './cor-produto-selector.component';
 
-describe('CorProdutoSelectorComponent', () => {
-  let component: CorProdutoSelectorComponent;
-  let fixture: ComponentFixture<CorProdutoSelectorComponent>;
+describe('CorProdutoCheckboxSelectorComponent', () => {
+  let component: CorProdutoCheckboxSelectorComponent;
+  let fixture: ComponentFixture<CorProdutoCheckboxSelectorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CorProdutoSelectorComponent ]
+      declarations: [ CorProdutoCheckboxSelectorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CorProdutoSelectorComponent);
+    fixture = TestBed.createComponent(CorProdutoCheckboxSelectorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

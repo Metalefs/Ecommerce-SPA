@@ -12,7 +12,7 @@
         (change)="VerificarQuantidade($event)"
         min="{{ Produto?.QuantidadeMinima }}"
         class="quantidade-produto input"
-        [(ngModel)]="Produto.Quantidade"
+        [value]="Produto.Quantidade"
         name="Quantidade"
       />
       <button mat-icon-button (click)="IncrementarQuantidade()">

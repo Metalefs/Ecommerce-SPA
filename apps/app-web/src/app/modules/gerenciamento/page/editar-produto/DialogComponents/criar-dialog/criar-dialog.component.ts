@@ -12,7 +12,7 @@ import { AuthenticationService } from 'apps/app-web/src/app/core/service/authent
 import { isPlatformBrowser } from '@angular/common';
 import { EditarProdutoService } from '../../editar-produto.service';
 import { EditarProdutoComponentBase } from '../../editar-produto.component.base';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 declare var require: any;
 
@@ -29,7 +29,7 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto1') matAutocompleteCor: MatAutocomplete;
   @ViewChild('auto2') matAutocompleteTamanho: MatAutocomplete;
-
+  Status:string;
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: entities.Produto,
     protected dialog: MatDialog,
@@ -84,10 +84,13 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
 
   ngOnInit() {
     this.CarregarCategorias();
-
   }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  salvar(): void {
+    this.dialogRef.close(this.Produto);
   }
 }

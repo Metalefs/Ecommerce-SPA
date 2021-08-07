@@ -36,7 +36,7 @@ export class EditarProdutoComponentBase implements OnInit {
   enumStatusProduto = StatusProduto;
   fileNames:string="nenhum arquivo selecionado.";
   Produto: Produto;
-
+  isValid:boolean = false;
   visible = true;
   selectable = true;
   removable = true;
@@ -79,26 +79,7 @@ export class EditarProdutoComponentBase implements OnInit {
     protected authService: AuthenticationService,
     protected fb:FormBuilder
     ) {
-      this.produtoForm = this.fb.group({
-        Categoria: [this.Produto?.Categoria,[Validators.required]],
-        Nome: [this.Produto?.Nome,[Validators.required]],
-        Subtitulo: [this.Produto?.Subtitulo,[Validators.required]],
-        DescricaoRapida: [this.Produto?.DescricaoRapida,[Validators.required]],
-        Marca: [this.Produto?.Marca,[Validators.required]],
-        Modelo: [this.Produto?.Modelo,[Validators.required]],
-        Preco: [this.Produto?.Preco,[Validators.required]],
-        Quantidade: [this.Produto?.Quantidade,[Validators.required]],
-        QuantidadeMinima: [this.Produto?.QuantidadeMinima,[Validators.required]],
-        Cores: [this.Produto?.Cores,[Validators.required]],
-        Dimensoes: [this.Produto?.Dimensoes,[Validators.required]],
-        Peso: [this.Produto?.Peso,[Validators.required]],
-        Tamanhos: [this.Produto?.Tamanhos,[Validators.required]],
-        Status: [this.Produto?.Status,[Validators.required]],
-        Tags: [this.Produto?.Tags,[Validators.required]],
-        Imagem: [this.Produto?.Imagem,[]],
-        Descricao: [this.Produto?.Descricao,[Validators.required]],
-        Especificacoes: [this.Produto?.Especificacoes,[Validators.required]],
-      })
+
   }
 
   ngOnInit(): void {
@@ -283,21 +264,34 @@ export class EditarProdutoComponentBase implements OnInit {
     this.Produto.Quantidade++;
     if(this.Produto.QuantidadeMinima < this.Produto.Quantidade)
       this.Produto.QuantidadeMinima = this.Produto.Quantidade;
-  }
-  DecrescerQuantidade(){
-    if(this.Produto.Quantidade > this.Produto.QuantidadeMinima)
-    this.Produto.Quantidade--;
-
-    if(this.Produto.QuantidadeMinima > this.Produto.Quantidade)
-    this.Produto.QuantidadeMinima = this.Produto.Quantidade;
-  }
-  VerificarQuantidade($event){
-    if($event.target.value < this.Produto.QuantidadeMinima)
-      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
 
     this.produtoForm.get("Quantidade").setValue(this.Produto.Quantidade);
+    this.produtoForm.get("QuantidadeMinima").setValue(this.Produto.QuantidadeMinima);
+  }
+  DecrescerQuantidade(){
+    this.Produto.Quantidade--;
+    if(this.Produto.QuantidadeMinima > this.Produto.Quantidade)
+    this.Produto.QuantidadeMinima = this.Produto.Quantidade;
+
+    this.produtoForm.get("Quantidade").setValue(this.Produto.Quantidade);
+    this.produtoForm.get("QuantidadeMinima").setValue(this.Produto.QuantidadeMinima);
+  }
+  VerificarQuantidade($event){
+    const quantidade = $event.target.value;
+
+    if(this.Produto.QuantidadeMinima >0){
+      if(quantidade < this.Produto.QuantidadeMinima)
+      this.Produto.Quantidade = this.Produto.QuantidadeMinima;
+    }
+    else{
+      this.Produto.Quantidade = quantidade;
+    }
+
+    this.produtoForm.get("Quantidade").setValue(this.Produto.Quantidade);
+    this.produtoForm.get("QuantidadeMinima").setValue(this.Produto.QuantidadeMinima);
   }
   translateStatusProduto(status){
     return translateEnum(StatusProduto,status);
   }
+
 }

@@ -1,13 +1,12 @@
 <div>
 
-  <form #formProduto [formGroup]="produtoForm" action="">
+  <form *ngIf="produtoForm" [formGroup]="produtoForm" action="">
     <personalizados-lopes-categoria-produto
       [Produto]="Produto"
       [Categorias]="Categorias"
       (onCriarCategoria)="CriarCategoria()"
       (onSelecionarCategoria)="SelecionarCategoria($event)"
     ></personalizados-lopes-categoria-produto>
-
 
     <div class="section has-background-pink-light">
       <div class="columns">
@@ -54,7 +53,7 @@
             </div>
 
             <pre class="box">
-              {{formProduto.value | json}}
+              {{produtoForm.value | json}}
             </pre>
 
           </div>
@@ -62,7 +61,8 @@
 
         <div class="column px-3 has-background-white z-index-2 pos-sticky">
           <div class="columns is-multiline mb-0 pb-0">
-            <div class="column">
+
+            <div class="column is-6">
               <mat-form-field  class="field w-full">
                 <div class="control"></div>
                 <input
@@ -74,10 +74,10 @@
                   title="Nome"
                 />
               </mat-form-field>
+            </div>
 
-              <mat-divider></mat-divider>
-
-              <mat-form-field  class="my-4 field w-full">
+            <div class="column is-6">
+              <mat-form-field  class="field w-full">
                 <div class="control"></div>
                 <input
                   matInput
@@ -87,9 +87,9 @@
                   placeholder="Subtitulo"
                 />
               </mat-form-field>
+            </div>
 
-              <mat-divider></mat-divider>
-
+            <div class="column is-12">
               <div class="descricao-produto w-full">
                 <mat-form-field  class="field w-full">
                   <div class="control"></div>
@@ -102,19 +102,18 @@
                   ></textarea>
                 </mat-form-field>
               </div>
+            </div>
 
-              <mat-divider></mat-divider>
-
+            <div class="column is-6">
               <personalizados-lopes-fornecedor-produto-selector
                 (onSelected)="selectedFornecedor($event)"
                 [FornecedoresProduto]="Fornecedores"
                 [Produto]="Produto"
               ></personalizados-lopes-fornecedor-produto-selector>
-
               <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarFornecedor()">Criar Fornecedor</button>
+            </div>
 
-              <mat-divider></mat-divider>
-
+            <div class="column is-6">
               <mat-form-field  class="field w-full">
                 <div class="control">
                   <input
@@ -126,10 +125,9 @@
                   />
                 </div>
               </mat-form-field>
-
-              <mat-divider></mat-divider>
-
-              <div class="my-4 columns">
+            </div>
+            <div class="column is-6">
+              <div class="columns">
                 <mat-form-field  class="column field">
                   <mat-label>Preco</mat-label>
                   <div class="control">
@@ -138,17 +136,16 @@
                       class="input"
                       type="number"
                       min="1"
+                      matPrefix="R$"
                       formControlName="Preco"
                       placeholder="Preco"
                     />
                   </div>
                 </mat-form-field>
-
               </div>
-
-              <mat-divider></mat-divider>
-
-              <div class="columns my-4">
+            </div>
+            <div class="column is-12">
+              <div class="columns">
                 <div class="column">
                   <personalizados-lopes-quantidade-produto
                     [Produto]="Produto"
@@ -157,7 +154,7 @@
                     (onVerificarQuantidade)="VerificarQuantidade($event)"
                   ></personalizados-lopes-quantidade-produto>
                 </div>
-                <div class="column my-4">
+                <!-- <div class="column my-4">
                   <mat-form-field  class="field w-full">
                     <mat-label>Quantidade Minima</mat-label>
                     <div class="control">
@@ -171,11 +168,11 @@
                       />
                     </div>
                   </mat-form-field>
-                </div>
+                </div> -->
               </div>
+            </div>
 
-              <mat-divider></mat-divider>
-
+            <div class="column is-12">
               <div class="w-full py-3 mb-0">
                 <div class="columns is-mobile mb-0">
                   <div class="column is-6">
@@ -192,66 +189,63 @@
                   <div class="column is-6">
                     <!-- Tamanho -->
                     <personalizados-lopes-tamanho-produto-selector *ngIf="Tamanhos"
-                    [TamanhosProduto]="Tamanhos"
-                    (onSelected)="SelecionarTamanho($event)"
-                    [Multiple]="true"
-                    [Produto]="Produto"
-                  ></personalizados-lopes-tamanho-produto-selector>
+                      [TamanhosProduto]="Tamanhos"
+                      (onSelected)="SelecionarTamanho($event)"
+                      [Multiple]="true"
+                      [Produto]="Produto"
+                    ></personalizados-lopes-tamanho-produto-selector>
                     <button mat-raised-button color="primary" class="button is-rounded is-uppercase" (click)="CriarTamanhoProduto()">Criar Tamanho</button>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="column is-12">
+              <personalizados-lopes-dimensoes-produto
+                  [Produto]="Produto"
+                  (onAlturaChange)="setAltura($event)"
+                  (onLarguraChange)="setLargura($event)"
+                  (onComprimentoChange)="setComprimento($event)"
+                  (onPesoChange)="setPeso($event)"
+                ></personalizados-lopes-dimensoes-produto>
+
+                <personalizados-lopes-criacao-tags
+                  [Produto]="Produto"
+                  [tagCtrl]="tagCtrl"
+                  (onAddTag)="addTag($event)"
+                  (onRemoveTag)="removeTag($event)"
+                ></personalizados-lopes-criacao-tags>
+
+                <mat-checkbox
+                  matNativeControl
+                  [value]="Produto.Destaque"
+                  formControlName="Destaque"
+                  [checked]="Produto.Destaque"
+                >
+                  Destaque
+                </mat-checkbox>
+            </div>
+
+            <div class="column is-12">
+              <personalizados-lopes-descricao-produto
+                [Produto]="Produto"
+                (onChange)="setDescricao($event)"
+              ></personalizados-lopes-descricao-produto>
+            </div>
+
+            <div class="column is-12">
+              <personalizados-lopes-especificacao-produto
+                [Produto]="Produto"
+                (onChange)="setEspecificacao($event)"
+              ></personalizados-lopes-especificacao-produto>
+            </div>
+
           </div>
-
-
-        </div>
-
-      </div>
-    </div>
-
-    <div class="section">
-      <personalizados-lopes-dimensoes-produto
-        [Produto]="Produto"
-        (onAlturaChange)="setAltura($event)"
-        (onLarguraChange)="setLargura($event)"
-        (onComprimentoChange)="setComprimento($event)"
-        (onPesoChange)="setPeso($event)"
-      ></personalizados-lopes-dimensoes-produto>
-
-      <personalizados-lopes-criacao-tags
-        [Produto]="Produto"
-        [tagCtrl]="tagCtrl"
-        (onAddTag)="addTag($event)"
-        (onRemoveTag)="removeTag($event)"
-      ></personalizados-lopes-criacao-tags>
-
-      <mat-checkbox
-        matNativeControl
-        [(ngModel)]="Produto.Destaque"
-        [checked]="Produto.Destaque"
-      >
-        Destaque
-      </mat-checkbox>
-    </div>
-
-    <div class="section">
-      <div class="columns is-multiline">
-        <div class="column is-12">
-          <personalizados-lopes-descricao-produto
-            [Produto]="Produto"
-            (onChange)="setDescricao($event)"
-          ></personalizados-lopes-descricao-produto>
-        </div>
-
-        <div class="column is-12">
-          <personalizados-lopes-especificacao-produto
-            [Produto]="Produto"
-            (onChange)="setEspecificacao($event)"
-          ></personalizados-lopes-especificacao-produto>
         </div>
       </div>
     </div>
+
+
   </form>
 
   <div class="section">

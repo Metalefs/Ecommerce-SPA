@@ -14,20 +14,26 @@ export class TamanhoProdutoSelectorComponent implements OnInit {
   @Output() onSelected:EventEmitter<any> = new EventEmitter<any>();
   @Output() onEditar:EventEmitter<any> = new EventEmitter<any>();
   @Output() onRemover:EventEmitter<any> = new EventEmitter<any>();
+  selected;
 
   constructor() { }
 
   ngOnInit(): void {
-
-    console.log(this.TamanhosProduto)
+    if(this.Produto){
+      this.selected = this.Produto.Tamanho ?? this.TamanhosProduto[0] ?? null;
+    }
+    else{
+      this.selected = this.TamanhosProduto[0] ?? null;
+    }
   }
 
   getTamanhos() :any{
-    if(this.Produto?._id)
-      return this.Produto?.Tamanhos || this.TamanhosProduto;
-    else
-      return this.TamanhosProduto;
+    return this.TamanhosProduto;
   }
 
+  compareObjects(o1: any, o2: any): boolean {
+    if(o1&&o2)
+    return o1._id === o2._id
+  }
 
 }
