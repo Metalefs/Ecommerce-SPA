@@ -278,7 +278,7 @@ export class EditarProdutoComponentBase implements OnInit {
     this.produtoForm.get("QuantidadeMinima").setValue(this.Produto.QuantidadeMinima);
   }
   VerificarQuantidade($event){
-    const quantidade = $event.target.value;
+    const quantidade = $event.value || $event;
 
     if(this.Produto.QuantidadeMinima >0){
       if(quantidade < this.Produto.QuantidadeMinima)

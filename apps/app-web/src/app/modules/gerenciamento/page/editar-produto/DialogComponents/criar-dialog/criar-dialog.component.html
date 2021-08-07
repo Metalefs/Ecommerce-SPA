@@ -5,7 +5,8 @@
   <personalizados-lopes-editar-produto-form
     [Produto]="Produto"
     (statusChange)="Status = $event"
-  ></personalizados-lopes-editar-produto-form>
+    (produtoFormulario)="produtoFormulario = $event"
+    ></personalizados-lopes-editar-produto-form>
 
   <div class="py-3">
   </div>

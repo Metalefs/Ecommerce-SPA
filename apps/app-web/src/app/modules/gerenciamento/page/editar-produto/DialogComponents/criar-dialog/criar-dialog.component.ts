@@ -30,6 +30,7 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
   @ViewChild('auto1') matAutocompleteCor: MatAutocomplete;
   @ViewChild('auto2') matAutocompleteTamanho: MatAutocomplete;
   Status:string;
+  produtoFormulario;
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: entities.Produto,
     protected dialog: MatDialog,
@@ -91,6 +92,7 @@ export class CriarProdutoDialogComponent extends EditarProdutoComponentBase impl
   }
 
   salvar(): void {
-    this.dialogRef.close(this.Produto);
+    const auxProduto = {...this.Produto, ...this.produtoFormulario};
+    this.dialogRef.close(auxProduto);
   }
 }

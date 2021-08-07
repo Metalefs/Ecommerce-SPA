@@ -26,6 +26,7 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
   @Output() onSelectedCor:EventEmitter<any> = new EventEmitter<any>();
   @Output() onSelectedTamanho:EventEmitter<any> = new EventEmitter<any>();
   @Output() statusChange:EventEmitter<any> = new EventEmitter<any>();
+  @Output() produtoFormulario:EventEmitter<any> = new EventEmitter<any>();
   Valid:boolean;
   constructor(public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
     protected produtoService: EditarProdutoService,
@@ -73,6 +74,9 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
     this.produtoForm.statusChanges.subscribe(status=>{
       this.isValid = status =='VALID';
       this.statusChange.emit(status)
+      if(this.isValid){
+        this.produtoFormulario.emit(this.produtoForm.getRawValue())
+      }
     })
 
   }

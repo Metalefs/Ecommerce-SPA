@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { fade } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { EditarProdutoDialogComponent } from './DialogComponents/editar-dialog/editar-dialog.component';
+import { ProdutoStateService } from '../../../produtos/produto-state.service';
 
 @Component({
   selector: 'personalizados-lopes-editar-produto',
@@ -25,7 +26,9 @@ export class EditarProdutoComponent implements OnInit {
     protected dialog: MatDialog,
     protected _snackBar: MatSnackBar,
     protected produtoService: EditarProdutoService,
-    protected authService: AuthenticationService
+    protected authService: AuthenticationService,
+
+    protected produtoStateService: ProdutoStateService,
     ) {
   }
 
@@ -46,6 +49,7 @@ export class EditarProdutoComponent implements OnInit {
             verticalPosition:"top"
           });
         });
+        this.produtoStateService.Atualizar()
       }
     });
   }
@@ -67,6 +71,7 @@ export class EditarProdutoComponent implements OnInit {
           this._snackBar.open("Produto alterado com sucesso", "Fechar", {
             duration: 3000
           });
+          this.produtoStateService.Atualizar()
         });
       }
     });

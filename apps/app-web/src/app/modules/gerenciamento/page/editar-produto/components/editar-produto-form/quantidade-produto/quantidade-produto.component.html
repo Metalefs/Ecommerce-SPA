@@ -9,7 +9,7 @@
         placeholder="{{ Produto?.QuantidadeMinima }}"
         value="{{ Produto?.QuantidadeMinima }}"
         type="number"
-        (change)="VerificarQuantidade($event)"
+        (keyup)="VerificarQuantidade($event)"
         min="{{ Produto?.QuantidadeMinima }}"
         class="quantidade-produto input"
         [value]="Produto.Quantidade"

@@ -30,6 +30,8 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
 
   Produto: Produto;
   Status:string;
+  produtoFormulario;
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: any,
     public dialogRef: MatDialogRef<EditarProdutoDialogComponent>,
@@ -94,6 +96,7 @@ export class EditarProdutoDialogComponent extends EditarProdutoComponentBase imp
     this.dialogRef.close();
   }
   salvar(): void {
-    this.dialogRef.close(this.Produto);
+    const auxProduto = {...this.Produto, ...this.produtoFormulario};
+    this.dialogRef.close(auxProduto);
   }
 }

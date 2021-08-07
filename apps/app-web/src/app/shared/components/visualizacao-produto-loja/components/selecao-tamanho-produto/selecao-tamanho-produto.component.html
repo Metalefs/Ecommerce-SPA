@@ -5,7 +5,7 @@
 >
   <mat-label class="label is-medium"  [ngClass]="{'': !(Produto.Tamanho?.Nome || Produto?.Tamanho)}"
     >Escolha o <strong>Tamanho</strong> da unidade: </mat-label>
-    <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome || Produto?.Tamanho || ''}} {{Produto?.FaixaTamanho?.Tamanho}}</span></p>
+    <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome || Produto?.Tamanho || ''}} {{Produto?.FaixaTamanho?.Tamanho?.Nome ?? ''}}</span></p>
 
     <div
     *ngFor="let opt of Produto?.Tamanhos"
