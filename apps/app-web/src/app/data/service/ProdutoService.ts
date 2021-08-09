@@ -53,7 +53,7 @@ export class ProdutoService {
     query += '&preco=' + fields.Preco;
     query += '&status=' + fields.Status;
     query += '&marca=' + fields.Marca;
-    query += '&cor=' + fields.Cor;
+    query += '&cores=' + fields.Cores;
     query += '&modelo=' + fields.Modelo;
     query += '&tags=' + fields.Tags;
     query += '&limit=' + limit;

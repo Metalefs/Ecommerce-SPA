@@ -72,12 +72,19 @@ async function FiltrarProdutos(req, res) {
       :
       sQuery.NomeCategoria = new RegExp('.*', 'gi');
 
+
   if (req.query.preco) sQuery.Preco = new RegExp(decodeURI(escapeRegex(req.query.preco)), 'gi');
   if (req.query.status) sQuery.Status = parseInt(req.query.status);
-  if (req.query.marca) sQuery.Marca = new RegExp(decodeURI(escapeRegex(req.query.marca)), 'gi');
-  if (req.query.cor) sQuery.Cor = new RegExp(decodeURI(escapeRegex(req.query.cor)), 'gi');
+  if (req.query.marca) sQuery.Marca = new RegExp(decodeURI(req.query.marca), 'gi');
+  if (req.query.cores){
+    sQuery.Cores= {$elemMatch:{Nome:new RegExp('.*', 'gi')}};
+    sQuery.Cores.$elemMatch.Nome = new RegExp(decodeURI(req.query.cores), 'gi');
+  }
   if (req.query.modelo) sQuery.Modelo = new RegExp(decodeURI(escapeRegex(req.query.modelo)), 'gi');
   if (req.query.tags) sQuery.Tags = new RegExp(decodeURI(req.query.tags).replace('\\', '').split(',').join('|'), 'gi');
+
+  console.log(sQuery);
+
   ProdutoService.Search(sQuery, limit, page)
     .then(x => res.send(x))
     .catch(err => ErrorHandler.DefaultException(err, res));

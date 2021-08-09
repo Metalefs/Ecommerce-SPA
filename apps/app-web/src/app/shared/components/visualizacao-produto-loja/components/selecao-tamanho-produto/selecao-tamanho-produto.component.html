@@ -12,7 +12,6 @@
     [value]="opt"
     class="shadow-light button is-outlined is-primary"
     [ngClass]="{'is-active is-hovered': Produto.Tamanho?.Nome == opt?.Nome || Produto.Tamanho == opt }"
-
   >
     <div (click)="SetTamanho(opt)">
       <p>{{ opt.Nome || opt}}</p>

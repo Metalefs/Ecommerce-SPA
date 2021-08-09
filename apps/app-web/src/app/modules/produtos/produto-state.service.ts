@@ -107,7 +107,7 @@ export class ProdutoStateService {
     Preco: "",
     Status: "",
     Marca: "",
-    Cor: "",
+    Cores: "",
     Modelo: "",
     Tags: "",
   }
@@ -168,7 +168,7 @@ export class ProdutoStateService {
     this.fQuery.Nome = this.activeSearchFilter || '';
     this.fQuery.Status = this.activeOrderStatus?.id.toString() ?? "";
     this.fQuery.Marca = this.activeFornecedor?.Nome ?? "";
-    this.fQuery.Cor = (this.activeCorProduto?.Nome || "" ) ?? "";
+    this.fQuery.Cores = (this.activeCorProduto?.Nome || "" ) ?? "";
     this.fQuery.NomeCategoria = this.CategoriasAtivas.map(x => x.Nome).filter((value, index, self) => self.indexOf(value) === index).join("|") || "";
     if (this.page > 1)
       this.page = 1;

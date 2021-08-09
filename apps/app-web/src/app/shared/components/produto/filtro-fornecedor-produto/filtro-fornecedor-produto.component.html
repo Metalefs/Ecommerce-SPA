@@ -6,28 +6,18 @@
       </mat-panel-title>
       <mat-panel-description></mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-list class="">
-      <mat-list-item
-        class="hoverable column"
-        *ngFor="let fornecedor of FornecedoresProdutos"
-        (click)="FornecedorProduto = fornecedor"
-      >
-        <button
-          title="{{ fornecedor.Nome }}"
-          class=""
-          [ngClass]="{
-            ' is-focused selected': fornecedor.Nome == fornecedor.Nome
-          }"
-        >
-          {{ fornecedor.Nome }}
-        </button>
-        <div class="" (click)="FornecedorProduto = null">
-          <buton class=""
-          >
-             remover
-          </buton>
-        </div>
-      </mat-list-item>
-    </mat-list>
+    <a
+      *ngFor="let fornecedor of FornecedoresProdutos"
+      (click)="FornecedorProduto = fornecedor"
+      title="{{ fornecedor.Nome }}"
+      class="w-full button"
+    >{{ fornecedor.Nome }}
+    </a>
+    <a
+      (click)="FornecedorProduto = null"
+      class="w-full button"
+    >Sem marca
+    </a>
+
   </mat-expansion-panel>
 </mat-accordion>
