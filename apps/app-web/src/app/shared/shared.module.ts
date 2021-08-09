@@ -48,9 +48,7 @@ import { TagProdutoSwiperComponent } from './components/tag-produto-swiper/tag-p
 import { BlogSwiperComponent } from './components/blog-swiper/blog-swiper.component';
 import { EditorModule } from './components/editor/editor/editor.module';
 import { AutocompleteDropdownModule } from './components/autocomplete-dropdown/autocomplete-dropdown.module';
-import { CorProdutoSelectorComponent } from './components/cor-produto-selector/cor-produto-selector.component';
 import { ExibicaoPrecoProdutoModule } from './components/exibicao-preco-produto/exibicao-preco-produto.module';
-import { CardEstampaComponent } from './components/card-estampa/card-estampa.component';
 
 import { CorProdutoCheckboxSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/cor-produto-selector/cor-produto-selector.component';
 import { TamanhoProdutoSelectorComponent } from '../modules/gerenciamento/page/editar-produto/components/tamanho-produto-selector/tamanho-produto-selector.component';

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { AuthenticationService } from '../../../../../core/service/authentication/authentication.service';
 import { entities } from '@personalizados-lopes/data';
-import { SideNavState } from '../../../../../layout/content-layout/page/content-layout.component';
+import { SideNavState } from '../../../../../components/layout/content-layout/page/content-layout.component';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';

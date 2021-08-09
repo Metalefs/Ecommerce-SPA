@@ -1,6 +1,5 @@
 import { LabelType, Options } from '@angular-slider/ngx-slider';
-import { MediaMatcher } from '@angular/cdk/layout';
-import { ChangeDetectorRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
@@ -15,12 +14,11 @@ import { LerCategoria } from '../../data/store/actions/categoria.actions';
 import { EditarFiltroProduto } from '../../data/store/actions/filtroproduto.actions';
 import { CategoriaState, ProdutoState, FiltroProdutoState, OrcamentoState } from '../../data/store/state';
 import { FiltroProdutoStateModel } from '../../data/store/state/filtroproduto.state';
-import { OrcamentoStateModel } from '../../data/store/state/orcamento.state';
 import { order, orderPreco } from '../../helper/ObjHelper';
 import { OrderType, OrderStatus } from '../../shared/models/interfaces';
 import { FiltroProduto } from '../../shared/models/interfaces/filtroProduto';
-import { FiltroCategoria, FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
-import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
+import { FiltroCategoria, FiltroCategoriaDialogComponent } from './page/components/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
+import { FiltroOrdenacao, FiltroOrdenacaoDialogComponent } from './page/components/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -132,6 +130,7 @@ export class ProdutoStateService {
   LerParametros() {
     this.activeRoute.queryParams.filter(params => params.categoria)
       .subscribe(params => {
+        if(params.categoria != this.CategoriaAtiva.Nome)
         this.SetCategoria(new Categoria(params.categoria, ""));
         this.atualizarFiltroAtivo();
       })

@@ -11,6 +11,7 @@ import { CheckoutService } from '../../checkout.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PagamentoComponent } from '../pagamento/pagamento.component';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -28,7 +29,9 @@ export class CheckoutComponent implements OnInit {
     @Inject(PLATFORM_ID) private platform: object,
     private router: Router,
     private auth:AuthenticationService,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private snack:MatSnackBar
+
   ) { }
   valid: boolean = false;
   erros: string[] = [];
@@ -74,6 +77,20 @@ export class CheckoutComponent implements OnInit {
   }
   Validate() {
     this.Orcamento$.subscribe(orc => { this.checkoutService.Validate(orc) });
+  }
+  FinalizarCompra(){
+    this.Orcamento$.subscribe(orc => {
+      this.checkoutService.Validate(orc);
+      if(this.checkoutService.getValid()){
+        this.confirmar = true;
+      }
+      else{
+        this.snack.open("Não foi possível completar a validação do seu pedido. Por favor, verifique os dados e tente novamente","Fechar").afterDismissed().subscribe(()=>{
+          let errors = this.checkoutService.getErros().join(", ");
+          this.snack.open(`Verifique os erros: ${errors}`,"Ok")
+        })
+      }
+    });
   }
   IsDadosCompleto() {
     return CheckoutService.DadosCompleto;

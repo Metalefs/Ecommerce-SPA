@@ -27,41 +27,33 @@
           <mat-card-content class="dashboard-card-content">
             <div class="columns is-multiline">
               <ng-container *ngFor="let produto of Produtos">
-                <ng-container *ngIf="filtroAtivo(produto) then produtoCard else empty"></ng-container>
-                <ng-template #produtoCard class="column is-4">
-                  <div class="produto-card">
-                    <div @fadeIn>
-                      <button
-                        mat-fab-button
-                        class="more-button"
-                        mat-raised-button
-                        color="accent"
-                        [matMenuTriggerFor]="menu"
-                        aria-label="Toggle menu"
-                      >
-                        <mat-icon>more_vert</mat-icon>
-                      </button>
-                      <mat-menu #menu="matMenu" xPosition="before">
-                        <button
-                          mat-menu-item
-                          (click)="this.onEditar.emit(produto)"
-                        >
-                          Editar
-                        </button>
-                        <button mat-menu-item (click)="Remover(produto)">
-                          Remover
-                        </button>
-                      </mat-menu>
-                      <personalizados-lopes-card-produto
-                        [Produto]="produto"
-                      ></personalizados-lopes-card-produto>
-                    </div>
-                  </div>
-                </ng-template>
-                <ng-template #empty></ng-template>
+                <div *ngIf="filtroAtivo(produto)" class="column is-4" class="produto-card">
+                  <button
+                    mat-fab-button
+                    class="more-button"
+                    mat-raised-button
+                    color="accent"
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Toggle menu"
+                  >
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <button
+                      mat-menu-item
+                      (click)="this.onEditar.emit(produto)"
+                    >
+                      Editar
+                    </button>
+                    <button mat-menu-item (click)="Remover(produto)">
+                      Remover
+                    </button>
+                  </mat-menu>
+                  <personalizados-lopes-card-produto @fadeIn
+                    [Produto]="produto"
+                  ></personalizados-lopes-card-produto>
+                </div>
               </ng-container>
-
-
               <a
                 *ngIf="total > Produtos?.length"
                 (click)="CarregarMaisProdutos()"

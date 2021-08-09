@@ -1,6 +1,6 @@
 <ng-container *ngIf="(ProdutosTag)?.length >0 then data else nodata"></ng-container>
 <ng-template #nodata>
-  <div class="w-full">
+  <div class="w-full section">
     <p>Não encontramos nenhum produto relacionado ainda..
     </p>
     Não encontrou o que queria?
@@ -16,7 +16,7 @@
   </div>
 </ng-template>
 <ng-template #data>
-<div class="w-full">
+<div class="w-full section">
   <div #swiperEl2
   (mouseenter)="onSwiperHover( true )" (mouseleave)="onSwiperHover( false )"
   class="swiper-container w-full z-index-1 px-1" [swiper]="swiperConfig$ |async">

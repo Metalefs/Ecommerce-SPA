@@ -1,4 +1,4 @@
-<mat-accordion class="px-0">
+<mat-accordion class="">
   <mat-expansion-panel [expanded]="true" class="px-0">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -8,7 +8,7 @@
     </mat-expansion-panel-header>
     <div class="columns is-multiline">
       <div
-        class="hoverable column is-1"
+        class="hoverable column"
         *ngFor="let corProduto of CoresProdutos"
         (click)='CorProduto = corProduto'
       >

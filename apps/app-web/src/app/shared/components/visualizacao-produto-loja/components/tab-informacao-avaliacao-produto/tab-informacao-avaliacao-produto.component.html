@@ -1,6 +1,6 @@
 <mat-tab-group class="has-background-white">
   <mat-tab label="Informações" (click)="AdicionarDescricao(this.Produto)">
-    <div class="block has-background-white py-3 px-3">
+    <div class="block has-background-white px-3 py-3 of-y-hidden">
       <div class="w-full is-multiline">
         <div class="descricao-produto column is-12-touch is-12 w-full"
           [innerHTML]="(el?.innerHTML)"></div>
@@ -9,9 +9,8 @@
           <div [innerHTML]="(Produto?.Especificacoes)"></div>
         </div>
       </div>
+      <personalizados-lopes-exibicao-tags-produto [Produto]="Produto"></personalizados-lopes-exibicao-tags-produto>
     </div>
-    <personalizados-lopes-exibicao-tags-produto [Produto]="Produto"></personalizados-lopes-exibicao-tags-produto>
-
   </mat-tab>
   <mat-tab label="Avaliações">
     <personalizados-lopes-avaliacao-produto [Produto]="Produto"></personalizados-lopes-avaliacao-produto>

@@ -1,25 +1,19 @@
-import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Select, Store } from '@ngxs/store';
-import { entities } from '@personalizados-lopes/data';
+import { Store } from '@ngxs/store';
+import { fade } from 'apps/app-web/src/app/animations';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
-import { ProdutoState, CategoriaState } from 'apps/app-web/src/app/data/store/state';
-import { order, orderPreco } from 'apps/app-web/src/app/helper/ObjHelper';
 import { ProdutosComponent } from 'apps/app-web/src/app/modules/produtos/page/produtos.component';
 import { ProdutoStateService } from 'apps/app-web/src/app/modules/produtos/produto-state.service';
-import { OrderType, OrderStatus } from 'apps/app-web/src/app/shared/models/interfaces';
-import { Categoria, Produto } from 'libs/data/src/lib/classes';
-import { StatusProduto } from 'libs/data/src/lib/classes/produto';
-import { FiltrarProdutoSearchQuery, TiposOrdenacao } from 'libs/data/src/lib/interfaces';
-import { Observable } from 'rxjs';
+import { Produto } from 'libs/data/src/lib/classes';
 import { EditarProdutoService } from '../../editar-produto.service';
 
 @Component({
   selector: 'personalizados-lopes-filtrar-editar-produto',
   templateUrl: './filtrar-editar-produto.component.html',
-  styleUrls: ['./filtrar-editar-produto.component.scss']
+  styleUrls: ['./filtrar-editar-produto.component.scss'],
+  animations: [fade]
 })
 export class FiltrarEditarProdutoComponent extends ProdutosComponent implements OnInit{
   @Output() onEditar:EventEmitter<any> = new EventEmitter<any>();

@@ -5,6 +5,9 @@
     matNativeControl
     (selectionChange)="this.onSelected.emit($event.value)"
     [value]="[Produto?.Tamanho]"
+
+    [compareWith]="compareObjects"
+    [(value)]="selected"
   >
     <ng-container *ngIf="getTamanhos()[0]?.Nome then object else simple"></ng-container>
     <ng-template #simple>

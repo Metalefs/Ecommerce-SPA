@@ -18,6 +18,7 @@ export class FiltroFornecedorProdutoComponent implements OnInit {
   }
   public set FornecedorProduto(value: any) {
     this.produtoStateService.activeFornecedor = value;
+    this.produtoStateService.Atualizar();
   }
   constructor(
     private produtoStateService:ProdutoStateService,

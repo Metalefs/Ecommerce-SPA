@@ -87,7 +87,14 @@ export class EditarCupomDescontoComponent implements OnInit {
   }
 
   Remover(cupomDesconto:entities.CupomDesconto){
-    throw Error("not implemented");
+    let confirmacao = confirm("Deletar ?");
+    if(confirmacao)
+    this.servicoCupomDesconto.Remover(cupomDesconto._id).subscribe(x=>{
+      this.AtualizarTabela();
+      this._snackBar.open("cupomDesconto "+ cupomDesconto.Codigo +" removido com sucesso", "Fechar", {
+
+      });
+    });
   }
 
 }

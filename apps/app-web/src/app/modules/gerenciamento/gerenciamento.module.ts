@@ -53,6 +53,8 @@ import { CardProdutoModule } from '../../shared/components/card-produto/card-pro
 import { EditarConfiguracoesEmpresaComponent } from './page/editar-configuracoes-empresa/editar-configuracoes-empresa.component';
 import { EditarCupomDescontoComponent } from './page/editar-configuracoes-empresa/components/editar-cupom-desconto/editar-cupom-desconto.component';
 import { EditarCupomDescontoDialogComponent } from './page/editar-configuracoes-empresa/components/editar-cupom-desconto/dialogs/editar-cupom-desconto-dialog/editar-cupom-desconto-dialog.component';
+import { ListEmailsComponent } from './page/editar-emails/list-emails/list-emails.component';
+import { ListImagensComponent } from './page/editar-imagem/components/list-imagens/list-imagens.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +85,8 @@ import { EditarCupomDescontoDialogComponent } from './page/editar-configuracoes-
     EditarConfiguracoesEmpresaComponent,
     EditarCupomDescontoComponent,
     EditarCupomDescontoDialogComponent,
+    ListEmailsComponent,
+    ListImagensComponent,
   ],
   imports: [
     CommonModule,

@@ -16,13 +16,13 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { PrimeNgModule } from '../../shared/primeng.module';
 
-import { ExibicaoProdutoComponent } from './page/exibicao-produto/exibicao-produto.component';
-import { FiltroCategoriaDialogComponent } from './page/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
-import { FiltroOrdenacaoDialogComponent } from './page/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
-import { ExibicaoListaProdutosComponent } from './page/exibicao-lista-produtos/exibicao-lista-produtos.component';
-import { FavoritosComponent } from './page/exibicao-lista-produtos/favoritos/favoritos.component';
-import { DataviewProdutosComponent } from './page/exibicao-lista-produtos/dataview-produtos/dataview-produtos.component';
-import { ComparacaoComponent } from './page/exibicao-lista-produtos/comparacao/comparacao.component';
+import { ExibicaoProdutoComponent } from './page/components/exibicao-produto/exibicao-produto.component';
+import { FiltroCategoriaDialogComponent } from './page/components/dialogs/filtro-categoria-dialog/filtro-categoria-dialog.component';
+import { FiltroOrdenacaoDialogComponent } from './page/components/dialogs/filtro-ordenacao-dialog/filtro-ordenacao-dialog.component';
+import { ExibicaoListaProdutosComponent } from './page/components/exibicao-lista-produtos/exibicao-lista-produtos.component';
+import { FavoritosComponent } from './page/components/exibicao-lista-produtos/favoritos/favoritos.component';
+import { DataviewProdutosComponent } from './page/components/exibicao-lista-produtos/dataview-produtos/dataview-produtos.component';
+import { ComparacaoComponent } from './page/components/exibicao-lista-produtos/comparacao/comparacao.component';
 
 @NgModule({
   declarations: [ProdutosComponent, FiltroCategoriaDialogComponent, FiltroOrdenacaoDialogComponent, ExibicaoProdutoComponent, ExibicaoListaProdutosComponent, FavoritosComponent, DataviewProdutosComponent, ComparacaoComponent],

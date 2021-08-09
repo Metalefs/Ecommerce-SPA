@@ -18,7 +18,6 @@ export class ProdutosComponent implements OnInit {
   state = "flipped"
 
   mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
 
   constructor(
     protected produtoStateService:ProdutoStateService) {

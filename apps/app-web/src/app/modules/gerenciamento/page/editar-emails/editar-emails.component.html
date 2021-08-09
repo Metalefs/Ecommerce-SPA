@@ -8,52 +8,11 @@
     <p>Configurar mensagem de e-mail</p>
     <personalizados-lopes-editor [Conteudo]=" "></personalizados-lopes-editor>
   </div>
+
   <div class="column">
     <button mat-raised-button (click)="CheckAll()">Todos</button>
     <button mat-mini-fab (click)="Criar()"><mat-icon>add</mat-icon></button>
-    <table mat-table [dataSource]="emailTable?.dataSource" class="mat-elevation-z8">
-
-      <ng-container matColumnDef="checked">
-        <mat-header-cell *matHeaderCellDef>Check</mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <mat-checkbox [(ngModel)]="element.checked"></mat-checkbox>
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Email">
-          <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let element"> {{element?.Email}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let element"> {{element?.Nome}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="Produto">
-        <th mat-header-cell *matHeaderCellDef> Produto </th>
-        <td mat-cell *matCellDef="let element">
-          <div *ngIf="element?.ProdutoNotificacao">
-            <figure class="image is-64x64">
-              <img src="{{element?.ProdutoNotificacao.Imagem || ''}}">
-            </figure>
-             {{element?.ProdutoNotificacao.Nome || ''}}
-          </div>
-        </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="Acoes">
-          <th mat-header-cell *matHeaderCellDef> Ações </th>
-          <td mat-cell *matCellDef="let element">
-              <button mat-mini-fab (click)="Editar(element)"><mat-icon>edit</mat-icon></button>
-              <button mat-mini-fab (click)="Remover(element)"><mat-icon>remove</mat-icon></button>
-          </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="emailTable.displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: emailTable.displayedColumns;"></tr>
-    </table>
+    <personalizados-lopes-list-emails [Table]="emailTable"></personalizados-lopes-list-emails>
   </div>
 
 </div>

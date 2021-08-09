@@ -1,0 +1,99 @@
+@import '../../../../../../theme/cores.scss';
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap');
+.card-header{
+  width: 30%!important;
+  margin: 0 auto;
+  background-color: #ffffffc2;
+  padding: 5px;
+  font-weight: 400!important;
+  font-family: Oswald;
+}
+@keyframes show {
+  0% {
+    visibility: hidden;
+    opacity: 0;
+    // display: none;
+  }
+  100% {
+    visibility: show !important;
+    opacity: 1 !important;
+    // display: initial !important;
+    position: absolute !important;
+  }
+}
+@keyframes hide {
+  0% {
+    visibility: show;
+    opacity: 1;
+    // display: initial;
+    // position: relative;
+  }
+  100% {
+    display: none !important;
+    opacity: 0 !important;
+    // position: absolute;
+    visibility: hidden !important;
+    position: absolute !important;
+  }
+}
+
+.prod-disclaimer {
+  position: absolute;
+  bottom: 400px;
+  right: 0;
+  left: 100px;
+  z-index: 2;
+  background: #ffffff;
+  z-index: 11;
+  text-align: center;
+  color: #524a4a;
+  font-weight: 400;
+  width: 80%;
+  margin: 0 auto;
+  opacity: 0.2;
+}
+
+
+.desb {
+  opacity: 0.5;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    min-height: 82vh;
+  }
+
+  .preco {
+    font-size: 1.8em;
+  }
+}
+
+.bg-azul {
+  background: #b92626;
+}
+
+.titulo-produto {
+  margin-bottom: 10px;
+  font-size: 20px !important;
+  line-height: 47px;
+  // text-transform: uppercase;
+  color: #161616;
+  line-height: 130%;
+  font-weight: bold;
+}
+
+.mh-70 {
+  min-height: 70%;
+}
+
+@media only screen and (max-width: 1023px) {
+  .bg {
+    padding-top: 0;
+  }
+}
+@media (min-width: 1024px){
+
+  .section {
+      min-height: auto;
+  }
+}

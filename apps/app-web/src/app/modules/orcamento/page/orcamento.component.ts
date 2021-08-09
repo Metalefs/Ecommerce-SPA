@@ -23,6 +23,8 @@ export class OrcamentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.EnviarOrcamento = this.EnviarOrcamento.bind(this);
+
   }
 
   EnviarOrcamento(){
@@ -35,7 +37,7 @@ export class OrcamentoComponent implements OnInit {
   }
 
   EnviarMensagemOrcamento(orcamento:Orcamento){
-    if(orcamento.Usuario?.Nome && orcamento.Usuario?.Email && orcamento.Mensagem){
+    if(orcamento.Usuario?.Nome != ""  && orcamento.Usuario?.Email  != "" && orcamento.Mensagem != "" ){
       this.store.dispatch(new AdicionarOrcamento()).subscribe(x=>{
         this.snack.open("Orçamento enviado com sucesso. Responderemos dentro de 24 horas", "Fechar",{duration:3000});
       });

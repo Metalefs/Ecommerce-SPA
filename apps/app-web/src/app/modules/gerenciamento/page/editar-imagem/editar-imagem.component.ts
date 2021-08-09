@@ -22,20 +22,13 @@ import { ImagemService } from 'apps/app-web/src/app/data/service';
 export class EditarImagemComponent implements OnInit {
   tabs : Array<{name:string,table: MatTableDataSource<Imagem>}>;
   selected = new FormControl(0);
-  displayedColumns:string[] = [
-    "Src",
-    "Nome",
-    "Tipo",
-    "Acoes",
-  ];
+
   EmpresaTable: MatTableDataSource<Imagem>;
   ProdutoTable: MatTableDataSource<Imagem>;
   ClienteTable: MatTableDataSource<Imagem>;
   EstampaTable: MatTableDataSource<Imagem>;
   Imagems:any;
   Loading:boolean = true;
-  filterEntity: Imagem;
-  filterType: MatTableFilter;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
@@ -70,8 +63,6 @@ export class EditarImagemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.filterEntity = new Imagem('','','');
-    this.filterType = MatTableFilter.ANYWHERE;
     this.AtualizarTabela();
   }
   applyFilter(event: Event) {

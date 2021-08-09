@@ -37,21 +37,17 @@ export class TagProdutoSwiperComponent implements OnInit {
     swiperConfig$: Observable<SwiperConfigInterface>;
     ngOnInit(): void {
       let fQuery:FiltrarProdutoSearchQuery={
-        Nome:"",
-        NomeCategoria:"",
-        Preco:"",
-        Status:"",
-        Marca:"",
-        Modelo:"",
-        Tags:this.TAGS[0],
+        Nome: "",
+        NomeCategoria: "",
+        Preco: "",
+        Status: "",
+        Marca: "",
+        Cores: "",
+        Modelo: "",
+        Tags:this.TAGS.join(","),
       }
       this.service.FiltrarProdutos(fQuery,1,20).subscribe(x=>{
-       this.TAGS.forEach((tag)=>{
-          x.items.filter(prod=>prod.Tags.filter((prodtag) => prodtag==tag)).forEach(match=>{
-            this.ProdutosTag.push(match);
-            this.ProdutosTag = removeDuplicates(this.ProdutosTag,"_id")
-          })
-        });
+       this.ProdutosTag = x.items;
       })
       this.swiperConfig$ = this.breakpointObserver.observe([
         Breakpoints.HandsetPortrait

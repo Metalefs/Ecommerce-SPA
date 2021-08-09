@@ -8,35 +8,11 @@
       <ng-container *ngIf="!((Orcamento$ | async)?.Produto[0] == undefined)then Produtos else Padrao"></ng-container>
 
       <ng-template #Produtos>
-        <div class="columns mt-4 mb-6">
-          <div class="column ">
-            <div class="columns is-vcentered">
-              <div class="column-is-10"  data-aos="zoom-up">
-                <h1 class="title">Dados de contato</h1>
-                <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
-                <button mat-flat-button (click)="EnviarOrcamento()" class="w-full wp-btn has-text-white submit">Enviar</button>
-              </div>
-            </div>
-          </div>
-          <div class="column bg-contato"  data-aos="zoom-up">
-            <h1 class="title">Resumo do orçamento</h1>
-            <personalizados-lopes-tabela-produtos></personalizados-lopes-tabela-produtos>
-          </div>
-        </div>
+        <personalizados-lopes-formulario-produtos-orcamento [Orcamento]="(Orcamento$|async)" [EnviarOrcamento]="EnviarOrcamento"></personalizados-lopes-formulario-produtos-orcamento>
       </ng-template>
 
       <ng-template #Padrao>
-        <div class="columns is-vcentered">
-          <div class="column"  data-aos="zoom-up">
-            <personalizados-lopes-card-contato></personalizados-lopes-card-contato>
-          </div>
-          <div class="column"  data-aos="zoom-up">
-            <personalizados-lopes-formulario [compact]="true" [Orcamento]="(Orcamento$ | async)"></personalizados-lopes-formulario>
-            <div class="w-full flex-w flex-m">
-              <button mat-flat-button (click)="EnviarOrcamento()" class="w-full wp-btn has-text-white submit">Enviar</button>
-            </div>
-          </div>
-        </div>
+        <personalizados-lopes-formulario-contato-orcamento [Orcamento]="(Orcamento$|async)" [EnviarOrcamento]="EnviarOrcamento"></personalizados-lopes-formulario-contato-orcamento>
       </ng-template>
     </div>
 

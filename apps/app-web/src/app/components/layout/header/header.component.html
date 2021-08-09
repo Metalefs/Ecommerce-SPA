@@ -1,0 +1,234 @@
+<mat-toolbar
+  class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top is-hidden"
+  style="overflow-y: visible; z-index: 20;height:30px"
+>
+  <div class="flex-sb">
+    <a
+      href="tel:{{ (InfoContato$ | async)?.Telefone }}"
+      class="subtitle is-size-7 hoverable navbar-item px-2 has-text-centered mb-0 is-hidden-mobile"
+    >
+      <i class="pi pi-mobile"></i>
+      <span>{{ (InfoContato$ | async)?.Telefone }}</span>
+    </a>
+    <a
+      [routerLink]="['checkout']"
+      class="subtitle is-size-7 hoverable navbar-item level-item px-2 has-text-centered"
+    >
+      <span class="is-hidden-mobile fw-300">Finalizar pedido </span>
+    </a>
+  </div>
+</mat-toolbar>
+<div class="pos-sticky z-index-top top-0 " style="overflow-y: visible;">
+  <nav
+    class="navbar columns is-vcentered w-full is-mobile z-index-top  mx-0"
+    style="z-index: 20;"
+  >
+    <div class="column is-1">
+    </div>
+    <div class="column is-2-desktop is-5-mobile">
+      <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
+        <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
+      </a>
+    </div>
+    <div class="column is-6-desktop is-hidden-mobile pr-6"  *ngIf="search">
+      <form
+        type="get"
+        class="is-6 w-full nav-item mr-5 ml-3 pr-2 has-background-white shadow-light"
+        action="/produtos/?nome={{
+          search_filter
+        }}?categoria=Todos os produtos"
+      >
+        <div class="py-2 w-full">
+          <div class="w-full dis-flex">
+            <button
+              mat-icon-button
+              type="submit"
+              (click)="executar_pesquisa()"
+              class="boxshadow-none has-background-white mx-1"
+            >
+              <mat-icon>search</mat-icon>
+            </button>
+
+            <div @fadeIn class="w-full" *ngIf="search">
+              <personalizados-lopes-autocomplete-dropdown
+                (VerTodosResultados)="executar_pesquisa()"
+                (SearchValueChanged)="handleSearchValue($event)"
+              ></personalizados-lopes-autocomplete-dropdown>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="column is-5-desktop  is-hidden">
+      <div
+        class="columns is-mobile is-vcentered link-section flex-c-m"
+      >
+        <div *ngFor="let link of links" class="column px-0">
+          <ng-container
+            *ngIf="link.options; then dropdown; else normal"
+          ></ng-container>
+          <ng-template #normal>
+            <a
+              (click)="SetActiveNav(link)"
+              class="nav-link  {{
+                link.name == 'inicio' ? 'inicio' : ''
+              }}"
+              pageScroll
+              [routerLink]="link.href"
+              routerLinkActive="active-nav"
+              href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
+            >
+              <!-- <i [class]="link.Picon"></i> -->
+              <span class="">{{
+                link.name == 'Todos' ? 'Produtos' : link.name
+              }}</span>
+            </a>
+          </ng-template>
+
+          <ng-template #dropdown>
+            <div class="dropdown w-full">
+              <a
+                (click)="SetActiveNav(link)"
+                [routerLink]="link.href"
+                pageScroll
+                routerLinkActive="active-nav"
+                class="nav-link w-full {{
+                  link.name == 'inicio' ? 'inicio' : ''
+                }}"
+              >
+                <!-- <i
+                  *ngIf="
+                    link.Picon && (NavState$ | async)?.activeNav == link.name
+                  "
+                  [class]="link.Picon"
+                ></i> -->
+                <span class="">{{
+                  link.name == 'Todos' ? 'Produtos' : link.name
+                }}</span>
+              </a>
+              <div class="dropdown-content has-background-white">
+                <a
+                  class="nav-link is-capitalized {{
+                    link.name == 'inicio' ? 'inicio' : ''
+                  }} px-2 of-x-scroll "
+                  pageScroll
+                  routerLinkActive="Active"
+                  href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
+                  mat-menu-item
+                  [routerLink]="opt.link"
+                  [queryParams]="opt.queryParams"
+                  *ngFor="let opt of link.options"
+                  >{{ opt.nome }}</a
+                >
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class='columns is-mobile is-vcentered'>
+        <div class="column is-hidden-mobile">
+          <div class="dropdown">
+            <div class="w-full dis-flex flex-c-m">
+              <i class="pi pi-user fs-20"></i>
+                <span class="ml-2 of-x-scroll" style="border: none !important;">
+                <a class="w-full subtitle" title="Perfil">
+                  {{ user?.Nome || 'ENTRAR' }}
+                </a>
+              </span>
+            </div>
+
+            <div class="dropdown-content w-full has-background-white box">
+              <button
+                mat-menu-item
+                *ngIf="user"
+                href="#topo"
+                routerLinkActive="Active"
+                title="Meus dados"
+                pageScroll
+                [routerLink]="['/minha-conta/pessoal']"
+              >
+                Meus dados
+              </button>
+              <button
+                class=""
+                mat-menu-item
+                *ngIf="!user"
+                (click)="openLogin()"
+              >
+                Entrar
+              </button>
+              <button
+                mat-menu-item
+                *ngIf="user && user?.Tipo == TipoUsuario.admin"
+                href="#topo"
+                title="Gerenciamento"
+                routerLinkActive="Active"
+                pageScroll
+                [routerLink]="['/gerenciamento/app']"
+              >
+                Gerenciamento
+              </button>
+              <button mat-menu-item *ngIf="user" (click)="Logout()">
+                Sair
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <button
+            mat-mini-fab
+            [routerLink]="['/produtos']" routerLinkActive="router-link-active"
+            title="Favoritos"
+            color=""
+            aria-label="Botão abrir Favoritos"
+            class="size4 boxshadow-none shadow-light trans-04 has-text-black "
+          >
+            <i class="pi pi-heart fs-20"></i>
+            <a class="cart-counter">
+              {{FavCount}}
+            </a>
+          </button>
+        </div>
+        <div class="column">
+          <button
+            mat-mini-fab
+            color=""
+            (click)="openCheckout()"
+            title="Cesta de compras"
+            aria-label="Botão abrir Orçamento"
+            class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
+          >
+            <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+            <a class="cart-counter">
+              {{ (Orcamento$ | async)?.Produto.length || 0 }}
+            </a>
+          </button>
+          <div class="is-hidden-touch clickable">
+            <a
+              class="preco fw-500"
+              (click)="openCheckout()"
+              *ngIf="(Orcamento$ | async)?.Preco"
+            >
+              R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <mat-toolbar-row
+    [ngClass]="
+      (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'
+        ? 'produtos-nav-under'
+        : 'produtos-nav-under'
+    "
+  >
+  </mat-toolbar-row>
+</div>
+<!-- <personalizados-lopes-mega-menu
+  [Categorias]="Categoria$ | async"
+  class="is-hidden-touch"
+></personalizados-lopes-mega-menu> -->

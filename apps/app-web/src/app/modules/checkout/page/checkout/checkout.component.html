@@ -16,7 +16,7 @@
           <div class="column">
             <div class="box">
               <personalizados-lopes-confirmacao [exibirTabela]='false'></personalizados-lopes-confirmacao>
-              <a *ngIf="(Orcamento$ | async)?.Produto.length > 0" mat-flat-button class="button is-primary w-full is-uppercase" (click)="confirmar = true">
+              <a *ngIf="(Orcamento$ | async)?.Produto.length > 0" mat-flat-button class="button is-primary w-full is-uppercase" (click)="FinalizarCompra()">
                 <mat-icon class="material-icons-outlined">shopping_bag</mat-icon> Finalizar Compra
               </a>
             </div>

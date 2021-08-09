@@ -11,12 +11,14 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { OrcamentoComponent } from './page/orcamento.component';
 import { OrcamentoPageRoutes } from './orcamento.routing';
-import { FormularioComponent } from './page/formulario/formulario.component';
-import { TabelaProdutosComponent } from './page/tabela-produtos/tabela-produtos.component';
-import { CardContatoComponent } from './page/card-contato/card-contato.component';
+import { FormularioComponent } from './page/components/formulario/formulario.component';
+import { TabelaProdutosComponent } from './page/components/tabela-produtos/tabela-produtos.component';
+import { CardContatoComponent } from './page/components/card-contato/card-contato.component';
+import { FormularioProdutosOrcamentoComponent } from './page/components/formulario-produtos-orcamento/formulario-produtos-orcamento.component';
+import { FormularioContatoOrcamentoComponent } from './page/components/formulario-contato-orcamento/formulario-contato-orcamento.component';
 
 @NgModule({
-  declarations: [OrcamentoComponent, FormularioComponent, TabelaProdutosComponent, CardContatoComponent],
+  declarations: [OrcamentoComponent, FormularioComponent, TabelaProdutosComponent, CardContatoComponent, FormularioProdutosOrcamentoComponent, FormularioContatoOrcamentoComponent],
   imports: [
     OrcamentoPageRoutes,
     CommonModule,
