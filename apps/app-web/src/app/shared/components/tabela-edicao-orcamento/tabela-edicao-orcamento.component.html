@@ -52,11 +52,13 @@
                   [value]="element.Produto.Tamanho">
                   <mat-option *ngFor="let opt of element.Produto.Tamanhos" [value]="opt" class="w-full">
                     <div class="" (click)="SetarTamanho(element, opt)">
-                      <p>{{opt}}</p>
+                      <p>{{opt.Nome || opt}}</p>
                     </div>
                   </mat-option>
                 </mat-select>
               </mat-form-field>
+              <personallizados-lopes-selecao-tamanho-produto-edicao [Produto]="element.Produto">
+              </personallizados-lopes-selecao-tamanho-produto-edicao>
             </ng-container>
             <ng-container *ngIf="!element?.Produto?.Cor">
               <personalizados-lopes-cor-produto-selector [Produto]="element?.Produto" (onSetColor)="setColor($event,element)"></personalizados-lopes-cor-produto-selector>
@@ -78,10 +80,8 @@
             </ng-container>
           </a>
           <ng-container *ngIf="!element?.Produto?.Tamanho">
-            <personalizados-lopes-tamanho-produto-selector
-              [Produto]="element?.Produto"
-              (onSelected)="selectedTamanho($event,element)"
-            ></personalizados-lopes-tamanho-produto-selector>
+            <personallizados-lopes-selecao-tamanho-produto-edicao [Produto]="element.Produto">
+            </personallizados-lopes-selecao-tamanho-produto-edicao>
           </ng-container>
           <ng-container *ngIf="!element?.Produto?.Cor">
             <personalizados-lopes-cor-produto-selector [Produto]="element?.Produto" (onSetColor)="setColor($event,element)"></personalizados-lopes-cor-produto-selector>
