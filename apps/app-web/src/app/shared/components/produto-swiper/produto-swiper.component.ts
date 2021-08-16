@@ -114,8 +114,8 @@ export class ProdutoSwiperComponent implements OnInit {
                     autoHeight             : true,
                     height                 : 400,
                     keyboard               : true,
-                    loop                   : true,
-                    loopFillGroupWithBlank : true,
+                    loop                   : false,
+                    loopFillGroupWithBlank : false,
                     spaceBetween           : 22,
                     preloadImages          : true,
                     lazy                   : true,
@@ -136,8 +136,8 @@ export class ProdutoSwiperComponent implements OnInit {
 
 
 
-      this.pService.Ler().subscribe(x=>{
-        this.Produtos=x.items.sort();
+      this.pService.LerDestaques().subscribe(x=>{
+        this.Produtos=x.sort();
         switch(this.TipoOrdenacao){
           case TipoOrdenacaoSwiperProduto.Vendas:{
             this.Produtos.sort((a,b)=>b.Vendas - a.Vendas);
