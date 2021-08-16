@@ -2,16 +2,17 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { ErrorHandler } from '../../_handlers/error-handler';
 
 import * as express from 'express';
-import { CupomDescontoService, MercadoPagoService, PedidoService, UsuarioService } from '../../services';
+import { CupomDescontoService, PedidoService } from '../../services';
 import { UsuarioLogado } from '../../_handlers/Authentication';
 import { CupomDesconto, Orcamento, Pedido } from 'libs/data/src/lib/classes';
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
 import { ensureIsLogged } from '../../middleware/ensure-is-logged';
 import { TipoDesconto } from 'libs/data/src/lib/classes/cupom-desconto';
+import { MercadoPagoClient } from '../../client/integrations/mercadopago.client';
 
 const MercadoPagoController = express();
 
-const mercadoPagoService = new MercadoPagoService();
+const mercadoPagoService = new MercadoPagoClient();
 
 MercadoPagoController
 .get(RouteDictionary.ListPayments, async (req: any, res) => {

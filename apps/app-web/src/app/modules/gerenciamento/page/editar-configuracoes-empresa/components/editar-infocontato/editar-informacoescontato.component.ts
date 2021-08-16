@@ -74,7 +74,8 @@ export class EditarInformacoesContatoComponent implements OnInit {
         result[3].value,
         result[4].value,
         result[5].value,
-        result[6].value
+        result[6].value,
+        result[7].value,
       )
       InformacoesContato._id = id;
       this.store.dispatch( new EditarInformacoesContato(InformacoesContato,InformacoesContato._id)).subscribe(x=> {

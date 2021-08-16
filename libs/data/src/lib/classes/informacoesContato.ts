@@ -9,6 +9,7 @@ export class InformacoesContato extends MongoDocument implements entidadeBase{
     Whatsapp:string;
     Instagram:string;
     Facebook:string;
+    CEP:string;
     static readonly NomeID:string = "InformacoesContato";
     constructor(
         Telefone:string,
@@ -18,6 +19,7 @@ export class InformacoesContato extends MongoDocument implements entidadeBase{
         Whatsapp:string,
         Instagram:string,
         Facebook:string,
+        CEP:string,
         ){
         super();
             this.Telefone = Telefone;
@@ -27,6 +29,7 @@ export class InformacoesContato extends MongoDocument implements entidadeBase{
             this.Whatsapp = Whatsapp;
             this.Instagram = Instagram;
             this.Facebook = Facebook;
+            this.CEP = CEP;
     }
     DataHoraCriacao: Date;
     DataHoraAlteracao: Date;

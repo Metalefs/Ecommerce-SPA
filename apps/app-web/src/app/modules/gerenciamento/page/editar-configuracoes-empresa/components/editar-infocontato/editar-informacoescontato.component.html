@@ -20,6 +20,11 @@
       <td mat-cell *matCellDef="let element"> {{element?.Endereco}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="CEP">
+      <th mat-header-cell *matHeaderCellDef> CEP </th>
+      <td mat-cell *matCellDef="let element"> {{element?.CEP}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="Whatsapp">
         <th mat-header-cell *matHeaderCellDef> Whatsapp </th>
         <td mat-cell *matCellDef="let element"> {{element?.Whatsapp}} </td>

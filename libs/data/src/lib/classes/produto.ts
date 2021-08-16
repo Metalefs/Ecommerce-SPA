@@ -127,4 +127,5 @@ export interface Dimensoes{
   Altura:number;
   Largura:number;
   Comprimento:number;
+  Peso?:number;
 }

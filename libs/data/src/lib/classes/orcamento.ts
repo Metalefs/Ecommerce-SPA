@@ -3,6 +3,7 @@ import { entidadeBase } from '../interfaces/entity';
 import { MongoDocument } from './abstract/MongoDocument';
 import { Usuario} from './usuario';
 import { Produto } from '.';
+import { Dimensoes } from './produto';
 export class Orcamento extends MongoDocument implements entidadeBase{
 
     Usuario?:Usuario;
@@ -13,6 +14,7 @@ export class Orcamento extends MongoDocument implements entidadeBase{
     Mensagem:string;
 
     Dimensoes?:string;
+    DimensoesObjs?:Dimensoes[];
     CupomDesconto?:string;
     Entrega:EntregaOrcamento;
     static readonly NomeID:string = "Orcamento";

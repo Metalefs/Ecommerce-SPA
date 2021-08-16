@@ -14,7 +14,6 @@ import { MensagemService } from './domain/mensagem.service';
 import { ImagemService } from './domain/imagem.service';
 import { ItemCarouselService } from './domain/item-carousel.service';
 import { CarouselService } from './domain/carousel.service';
-import { MercadoPagoService } from './external/mercadopago.service';
 import { IntegracoesService } from './domain/integracoes.service';
 import { EstampaService } from './domain/estampa.service';
 import { TamanhoProdutoService } from './domain/tamanhoProduto.service';
@@ -39,7 +38,6 @@ export {
   ImagemService,
   ItemCarouselService,
   CarouselService,
-  MercadoPagoService,
   IntegracoesService,
   EstampaService,
   TamanhoProdutoService,

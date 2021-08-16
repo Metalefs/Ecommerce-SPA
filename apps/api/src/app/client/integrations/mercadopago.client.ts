@@ -4,15 +4,15 @@ import { MercadoPagoCheckout, MercadoPagoPayment, MercadoPagoRefund, mp_checkout
 import { mp_checkout_payer_address, mp_shipping } from 'libs/data/src/lib/interfaces/mercadoPagoCheckout';
 import { mp_payment_additional_info, mp_payment_additional_info_payer, mp_payment_additional_info_payer_address, mp_payment_payer } from 'libs/data/src/lib/interfaces/mercadoPagoPayment';
 import { ActualSearchPaymentResponse } from 'libs/data/src/lib/interfaces/mercadoPagoSearchPaymentResult';
-import { IntegracoesService } from '../domain/integracoes.service';
 import { TipoDesconto } from '../../../../../../libs/data/src/lib/classes/cupom-desconto';
+import { IntegracoesService } from '../../services';
 
 const CALLBACK_URL = "https://www.personalizadoslopes.com.br/checkout/success";
 
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
 let MP_AT: Integracoes;
-export class MercadoPagoService {
+export class MercadoPagoClient {
 
   FindPaymentById(id:string|number):MercadoPagoPayment{
     const filters = {
@@ -343,6 +343,7 @@ export class MercadoPagoService {
   }
 
   getTransactionAmount(orcamento: Orcamento): number {
+     //TODO = REFACTOR CHECKING ALL PRODUCT PRICES WITH DB
     return orcamento.Preco;
   }
 

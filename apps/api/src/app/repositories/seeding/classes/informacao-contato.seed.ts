@@ -9,4 +9,5 @@ export let InformacoesContato =
             "5531975422706",
             "personalizadoslopes",
             "groups/325360348263388",
+            "33823-390",
       )
