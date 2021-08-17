@@ -29,14 +29,16 @@ export class CorreiosClient {
 
     const cepOrigem = await informacoesContatoService.LerPrimeiro() as InformacoesContato;
     const cepDestino = cep;
-    const peso = produto.Peso.toString();
+    const peso = produto.Peso?.toString() ?? 2;
     const comprimento = produto.Dimensoes.Comprimento.toString();
     const altura = produto.Dimensoes.Altura.toString();
     const largura = produto.Dimensoes.Largura.toString();
 
     const args = this.getPrecoPrazoArgs(cepOrigem.CEP,cepDestino,peso,comprimento,altura,largura);
     console.log(args);
-    return await calcularPrecoPrazo(args);
+    return await calcularPrecoPrazo(args).catch(err => {
+      console.log(err);return Error(err)
+    });
   }
 
   async RastrearEncomendas(codRastreio:string[]){
