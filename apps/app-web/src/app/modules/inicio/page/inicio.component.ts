@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { entities } from '@personalizados-lopes/data';
-import { ClienteState } from 'apps/app-web/src/app/data/store/state';
+import { ClienteState, OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { BlogPost, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/operators';
 import { ProdutoService } from '../../../data/service';
@@ -24,6 +24,7 @@ import { ExibicaoPrecoPrazoCepComponent } from '../../../shared/components/dialo
 })
 export class InicioComponent implements OnInit {
   @Select(ClienteState.ObterListaClientes) Clientes$: Observable<entities.Cliente[]>;
+  @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<entities.Orcamento>;
   Produtos:Array<Produto>;
   user:Usuario;
   slidesPerView:number=5;
@@ -100,14 +101,19 @@ export class InicioComponent implements OnInit {
   }
 
   AbrirEstimativaPrecoFrete(){
-    this.dialog.open(ExibicaoPrecoPrazoCepComponent, {
-      restoreFocus: false,
-      width:'512px',
-      height:'100vh',
-      position:{
-        left:'0'
-      },
-      panelClass:['no-padding']
-    });
+    this.Orcamento$.subscribe(orc=>{
+      this.dialog.open(ExibicaoPrecoPrazoCepComponent, {
+        restoreFocus: false,
+        width:'512px',
+        height:'100vh',
+        position:{
+          left:'0'
+        },
+        panelClass:['no-padding'],
+        data:{
+          cep:orc.Usuario?.EnderecoEntrega.CEP ?? null
+        }
+      });
+    })
   }
 }

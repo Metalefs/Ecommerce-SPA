@@ -19,7 +19,7 @@ export class CorreiosClient {
     const altura = orcamento.DimensoesObjs.map(x=>x.Altura).reduce((a,b)=>a+b).toString()
     const largura = orcamento.DimensoesObjs.map(x=>x.Largura).reduce((a,b)=>a+b).toString()
 
-    const args = this.getPrecoPrazoArgs(cepOrigem,cepDestino,peso,comprimento,altura,largura);
+    const args = this.getPrecoPrazoArgs(cepOrigem.CEP,cepDestino,peso,comprimento,altura,largura);
 
     return await calcularPrecoPrazo(args);
   }
@@ -34,8 +34,8 @@ export class CorreiosClient {
     const altura = produto.Dimensoes.Altura.toString();
     const largura = produto.Dimensoes.Largura.toString();
 
-    const args = this.getPrecoPrazoArgs(cepOrigem,cepDestino,peso,comprimento,altura,largura);
-
+    const args = this.getPrecoPrazoArgs(cepOrigem.CEP,cepDestino,peso,comprimento,altura,largura);
+    console.log(args);
     return await calcularPrecoPrazo(args);
   }
 

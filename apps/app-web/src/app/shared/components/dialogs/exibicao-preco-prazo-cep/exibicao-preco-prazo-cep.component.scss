@@ -1,0 +1,18 @@
+.w3-indigo, .w3-hover-indigo:hover {
+  color: #fff!important;
+  background: royalblue;
+}
+.w3-right {
+  float: right!important;
+}
+.w3-badge, .w3-tag {
+  position: absolute;
+  /* top: 13px; */
+  right: 5px;
+  color: #000000;
+  padding: 5px 10px;
+  z-index: 3;
+  font-size: small;
+  border-radius: 0.51em;
+
+}

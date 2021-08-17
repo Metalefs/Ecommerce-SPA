@@ -21,8 +21,8 @@ CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorProduto + `:id`
       })
   }
 })
-CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorCep + `:cep`, async (req, res) => {
-  const cep = req.params.cep;
+CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorCep + `:id`, async (req, res) => {
+  const cep = req.params.id;
   if (cep) {
     const produto = new Produto(
       "",
@@ -37,8 +37,10 @@ CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorCep + `:cep`, a
       new CorProduto("", ""),
       0
     );
-    produto.Dimensoes = {Altura:4,Largura:4,Comprimento:4,Peso:2}
-    correiosClient.CalcularPrecoPrazoPorProduto(produto[0], cep).then(result => {
+    produto.Dimensoes = {Altura:20,Largura:20,Comprimento:20,Peso:2}
+    produto.Peso = 1;
+    console.log(cep);
+    correiosClient.CalcularPrecoPrazoPorProduto(produto, cep).then(result => {
       res.send(result);
     })
   }

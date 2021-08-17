@@ -22,17 +22,39 @@
     <section class="section py-2 vh-full-nav">
 
       <div class="a-i-c py-2">
-        <div class="w-full of-x-scroll">
+        <ng-container *ngIf="Fretes then fretes else inserirCEP"></ng-container>
 
-          <div class="cotado w3-pale-green w3-leftbar w3-white w3-round margin-bottom w3-border-green">
-            <div class="w3-padding">Economico <b>(Até 11 dias)</b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
-            <div class="w3-padding">R$ 17,74 por pedido!</div>
+        <ng-template #fretes>
+          <div class="w-full of-x-scroll" >
+
+            <div class="box button is-success is-outlined" *ngFor="let frete of Fretes">
+              <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b>(Até {{frete.PrazoEntrega}} dia(s))</b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
+              <div class="w3-padding">R$ {{frete.Valor}} por pedido!</div>
+            </div>
+
           </div>
+        </ng-template>
+        <ng-template #inserirCEP>
+          <div class="w-full of-x-scroll" >
 
-        </div>
-        <div class="w-full of-x-scroll">
+            <form [formGroup]='cepForm'>
+              <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Calcule frete e prazo</mat-label>
+                <input matInput (change)="AtualizarOrcamento()" [formControlName]="'cep'" [(ngModel)]="CEP"
+                       placeholder="seu CEP" type="number">
+                <mat-error *ngIf="cepForm.get('cep').hasError('required')">
+                  É necessário inserir um <strong>CEP</strong>
+                </mat-error>
+                <button [disabled]="cepForm.invalid" class="button" (click)="CalcularFreteProduto()">Calcular</button>
+              </mat-form-field>
+            </form>
 
-          <table class="w3-table w3-bordered w3-border w3-medium">
+          </div>
+        </ng-template>
+
+        <div class="w-full of-x-scroll block">
+
+          <table class="table">
             <tbody><tr><td>Usamos <b>Correios ou Motoboy</b> para os envios.</td></tr>
             <tr><td>Nos prazos exibidos ja estão <b>incluídos</b> o prazo de <b>5 dias</b> da fabricação.</td></tr>
             <tr><td>Os prazos são contados em <b>dias úteis</b> a partir da data de aprovação do pedido.</td></tr>

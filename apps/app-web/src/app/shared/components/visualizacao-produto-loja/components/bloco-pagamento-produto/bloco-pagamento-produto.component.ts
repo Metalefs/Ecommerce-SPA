@@ -1,11 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Select, Store } from '@ngxs/store';
 import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { Observable } from 'rxjs';
+import { ExibicaoPrecoPrazoCepComponent } from '../../../dialogs/exibicao-preco-prazo-cep/exibicao-preco-prazo-cep.component';
 
 @Component({
   selector: 'personalizados-lopes-bloco-pagamento-produto',
@@ -28,16 +30,32 @@ export class BlocoPagamentoProdutoComponent implements OnInit {
   Orcamento:Orcamento;
   constructor(
     private store:Store,
-    private fb:FormBuilder) { }
+    private fb:FormBuilder,
+    private dialog:MatDialog) { }
 
   ngOnInit(): void {
     this.Orcamento$.subscribe(orcamento=>{
       this.Orcamento = orcamento;
     })
     this.cepForm = this.fb.group({
-        cep:[this.Orcamento?.Entrega?.cep||'']
+        cep:[this.Orcamento?.Entrega?.cep||'',[Validators.required, Validators.maxLength(9)]]
       }
     )
+  }
+  CalcularFreteProduto(){
+    this.dialog.open(ExibicaoPrecoPrazoCepComponent, {
+      restoreFocus: false,
+      width:'512px',
+      height:'100vh',
+      position:{
+        left:'0'
+      },
+      panelClass:['no-padding'],
+      data:{
+        cep: this.cepForm.get("cep").value,
+        produto: this.Produto
+      }
+    });
   }
   findInvalidControlsRecursive():boolean {
     return findInvalidControlsRecursiveform(this.Form)
