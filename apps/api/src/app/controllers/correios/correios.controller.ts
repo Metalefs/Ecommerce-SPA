@@ -5,6 +5,7 @@ import { CorreiosClient } from '../../client/integrations/correios.client';
 import { ProdutoService } from '../../services';
 import { CorProduto, Produto, TamanhoProduto } from 'libs/data/src/lib/classes';
 import { Categoria } from '../../repositories/seeding/classes/categoria.seed';
+import { ErrorHandler } from '../../_handlers/error-handler';
 
 const CorreiosRouter = express();
 
@@ -18,8 +19,12 @@ CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorProduto + `:id`
     if (produto && cep)
       correiosClient.CalcularPrecoPrazoPorProduto(produto[0], cep).then(result => {
         res.send(result);
+      }).catch(err=>{
+        ErrorHandler.DefaultException(err,res);
       })
   }
+  else
+  ErrorHandler.DefaultException("Não foi possível calcular o preco do frete",res);
 })
 CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorCep + `:id`, async (req, res) => {
   const cep = req.params.id;
@@ -42,8 +47,12 @@ CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorCep + `:id`, as
     console.log(cep);
     correiosClient.CalcularPrecoPrazoPorProduto(produto, cep).then(result => {
       res.send(result);
+    }).catch(err=>{
+      ErrorHandler.DefaultException(err,res);
     })
   }
+  else
+  ErrorHandler.DefaultException("Não foi possível calcular o preco do frete",res);
 })
   .get(RouteDictionary.Correios.CalcularPrecoPrazoPorOrcamento, (req, res) => {
 
