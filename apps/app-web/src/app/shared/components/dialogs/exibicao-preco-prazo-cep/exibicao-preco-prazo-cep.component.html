@@ -1,0 +1,55 @@
+<mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top " style="height: 37px;">
+
+</mat-toolbar>
+<div class="of-x-scroll px-2 mh-full">
+
+  <p>
+    <mat-toolbar color="" class="pri-toolbar">
+      <mat-toolbar-row class="pt-3">
+        <h2 class="subtitle mb-0 pt-0">Estimativa para o CEP {{CEP}}</h2>
+        <span class="spacer"></span>
+        <button mat-icon-button
+        aria-label="fechar carrinho"
+        (click)="delayClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </p>
+
+  <div>
+
+    <section class="section py-2 vh-full-nav">
+
+      <div class="a-i-c py-2">
+        <div class="w-full of-x-scroll">
+
+          <div class="cotado w3-pale-green w3-leftbar w3-white w3-round margin-bottom w3-border-green">
+            <div class="w3-padding">Economico <b>(Até 11 dias)</b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
+            <div class="w3-padding">R$ 17,74 por pedido!</div>
+          </div>
+
+        </div>
+        <div class="w-full of-x-scroll">
+
+          <table class="w3-table w3-bordered w3-border w3-medium">
+            <tbody><tr><td>Usamos <b>Correios ou Motoboy</b> para os envios.</td></tr>
+            <tr><td>Nos prazos exibidos ja estão <b>incluídos</b> o prazo de <b>5 dias</b> da fabricação.</td></tr>
+            <tr><td>Os prazos são contados em <b>dias úteis</b> a partir da data de aprovação do pedido.</td></tr>
+            <tr><td>Todos os pedidos possuem <b>rastreamento</b> no Personalizados Lopes.</td></tr>
+            </tbody>
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+    <div class="w-full container px-6 mb-6">
+      <a (click)="delayClose()"
+        [routerLink]="['/checkout/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
+        class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
+          Pedido</span></a>
+    </div>
+  </div>
+</div>

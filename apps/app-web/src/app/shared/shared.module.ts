@@ -65,6 +65,8 @@ import { PreviewProdutoModule } from './components/dialogs/preview-produto/previ
 import { CardEstampaModule } from './components/card-estampa/card-estampa.module';
 import { CorProdutoSelectorModule } from './components/cor-produto-selector/cor-produto-selector.module';
 import { SelecaoTamanhoProdutoEdicaoComponent } from './components/selecao-tamanho-produto-edicao/selecao-tamanho-produto-edicao.component';
+import { ExibicaoPrecoPrazoCepComponent } from './components/dialogs/exibicao-preco-prazo-cep/exibicao-preco-prazo-cep.component';
+import { ExibicaoDescontoCepComponent } from './components/dialogs/exibicao-desconto-cep/exibicao-desconto-cep.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -112,6 +114,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     StockImageComponent,
     ImportacaoComponent,
     SelecaoTamanhoProdutoEdicaoComponent,
+    ExibicaoPrecoPrazoCepComponent,
+    ExibicaoDescontoCepComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
 import {TrocaSenha} from './trocaSenha';
 import {FiltrarProdutoSearchQuery} from './filtrarProdutoQuery';
+import {PrecoPrazoCep} from './preco-prazo-cep';
 import {TiposOrdenacao} from './tipos-ordenacao';
 import {PaginationResponse} from './paginationResponse';
 import {AcaoProduto} from './acao-produto';
@@ -17,6 +18,7 @@ import {MercadoPagoResultadoPagamentoCheckout} from './mercadoPagoResultadoPagam
 export {
   TrocaSenha,
   FiltrarProdutoSearchQuery,
+  PrecoPrazoCep,
   PaginationResponse,
   AcaoProduto,
   MercadoPagoRefund,

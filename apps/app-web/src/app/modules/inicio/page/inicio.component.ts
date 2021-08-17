@@ -13,6 +13,8 @@ import { TipoOrdenacaoSwiperProduto } from '../../../shared/components/produto-s
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
 import { fade, slideInOut } from '../../../animations';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { MatDialog } from '@angular/material/dialog';
+import { ExibicaoPrecoPrazoCepComponent } from '../../../shared/components/dialogs/exibicao-preco-prazo-cep/exibicao-preco-prazo-cep.component';
 
 @Component({
   selector: 'personalizados-lopes-inicio',
@@ -31,7 +33,8 @@ export class InicioComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private produtoService: ProdutoService,
-    private breakpointObserver: BreakpointObserver) {
+    private breakpointObserver: BreakpointObserver,
+    private dialog:MatDialog) {
       this.swiperConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
       ]).pipe(
@@ -84,7 +87,6 @@ export class InicioComponent implements OnInit {
     Tags:"",
   }
   ngOnInit(): void {
-
     this.authService.currentUser.subscribe(x=>{
       this.user = x;
     })
@@ -95,5 +97,17 @@ export class InicioComponent implements OnInit {
 
   CanView(post:BlogPost){
     return CanViewPost(post,this.user);
+  }
+
+  AbrirEstimativaPrecoFrete(){
+    this.dialog.open(ExibicaoPrecoPrazoCepComponent, {
+      restoreFocus: false,
+      width:'512px',
+      height:'100vh',
+      position:{
+        left:'0'
+      },
+      panelClass:['no-padding']
+    });
   }
 }

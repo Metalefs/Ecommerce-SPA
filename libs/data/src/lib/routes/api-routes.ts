@@ -82,6 +82,7 @@ export let RouteDictionary = {
   Correios: {
     Raiz:'/correios',
     CalcularPrecoPrazoPorProduto : "/prazo-para-produto/",
+    CalcularPrecoPrazoPorCep : "/prazo-para-cep/",
     CalcularPrecoPrazoPorOrcamento : "/prazo-para-orcamento",
     RastrearEncomendas : "/rastrear-encomenda/",
   },
