@@ -6,6 +6,15 @@
        <h1 class="bg-transp card-header txt-center box ">{{ Produto?.Nome }}</h1>
     </div>
   </div> -->
+
+
+  <personalizados-lopes-exibicao-breadcrumb
+    *ngIf="Produto"
+    [Produto]="Produto"
+    class="mb-4"
+  ></personalizados-lopes-exibicao-breadcrumb>
+
+
   <div class="has-background-light">
 
     <div class="margin">

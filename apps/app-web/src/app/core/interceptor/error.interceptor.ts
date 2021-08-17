@@ -5,10 +5,12 @@ import { catchError } from 'rxjs/operators';
 
 import { AuthenticationService } from '../../core/service/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginFormComponent } from '../../shared/components/login/login-form.component';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: AuthenticationService, private snack:MatSnackBar) { }
+    constructor(private authenticationService: AuthenticationService, private snack:MatSnackBar, private dialog: MatDialog) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
@@ -16,9 +18,17 @@ export class ErrorInterceptor implements HttpInterceptor {
               case(400): {
                   // auto logout if 401 response returned from api
                   this.authenticationService.logout();
-                  this.snack.open("Sua sessão expirou.","Ok",{
+                  this.snack.open("Seu acesso expirou.","Ok",{
                     verticalPosition:"top",
                     duration: 5000
+                  }).afterDismissed().subscribe(()=>{
+                    this.snack.open("Por favor, entre novamente.","Ok",{
+                      verticalPosition:"top",
+                      duration: 5000,
+
+                    }).afterDismissed().subscribe(()=>{
+                      this.dialog.open(LoginFormComponent);
+                    })
                   })
                   // location.reload(true);
                   break;

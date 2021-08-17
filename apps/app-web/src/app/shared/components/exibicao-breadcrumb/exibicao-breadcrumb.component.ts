@@ -17,6 +17,10 @@ export class ExibicaoBreadcrumbComponent implements OnInit {
   ngOnInit(): void {
     this.home = {icon: 'pi pi-home', url:"/produtos"};
 
+    this.items = [
+      {label:this.Produto?.NomeCategoria, url:"/produtos/?categoria=" + this.Produto?.NomeCategoria},
+      {label:this.Produto?.Nome, styleClass:'desb'}
+    ];
   }
 
 }

@@ -55,14 +55,15 @@ export class ProdutoService {
   }
 
   FiltrarProdutos(fields: FiltrarProdutoSearchQuery, page: number = 1, limit: number = 12): Observable<PaginationResponse<Produto>> {
-    let query = '?nome=' + fields.Nome;
-    query += '&categoria=' + fields.NomeCategoria;
-    query += '&preco=' + fields.Preco;
-    query += '&status=' + fields.Status;
-    query += '&marca=' + fields.Marca;
-    query += '&cores=' + fields.Cores;
-    query += '&modelo=' + fields.Modelo;
-    query += '&tags=' + fields.Tags;
+    let query = '?nome=' + fields.Nome ?? "";
+    query += '&categoria=' + fields.NomeCategoria ?? "";
+    query += '&preco=' + fields.Preco ?? "";
+    query += '&status=' + fields.Status ?? "";
+    query += '&marca=' + fields.Marca ?? "";
+    if(fields.Cores)
+    query += '&cores=' + fields.Cores ?? "";
+    query += '&modelo=' + fields.Modelo ?? "";
+    query += '&tags=' + fields.Tags ?? "";
     query += '&limit=' + limit;
 
     return this.http.get<PaginationResponse<Produto>>(environment.endpoint + RouteDictionary.Produtos.Filtrar + `${page}/` + query).pipe(

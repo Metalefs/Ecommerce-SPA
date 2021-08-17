@@ -1,11 +1,19 @@
 
 :host ::ng-deep .cookie-law-wrapper{
-  // background:rgb(255, 255, 255);
-  padding-top:0;
-  padding-bottom:0;
-  box-shadow:rgba(172, 171, 171, 0.3) 0px -1px 10px 0px;
-  background:white;
-    width: 100%;
+  width: 100%;
+  background-color: rgba(79, 79, 79, 0.8);
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 16px;
+  font-family: "Roboto";
+  text-align: justify;
+  z-index: 999999;
+  background: url(../assets/images/inicio/vKVHZSV-oreo-wallpaper.jpg);
+  background-position: right;
+  background-size: cover;
 }
 
 :host ::ng-deep .cookie-law-wrapper .copy span:nth-child(1){
