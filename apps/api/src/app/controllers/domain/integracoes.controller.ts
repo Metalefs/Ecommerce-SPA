@@ -1,11 +1,11 @@
 import * as express from 'express';
-import * as Services from "../services";
-import BaseController from './base.controller';
+import * as Services from "../../services";
+import BaseController from '../base.controller';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { ErrorHandler } from '../_handlers/error-handler';
+import { ErrorHandler } from '../../_handlers/error-handler';
 
 import { Integracoes } from 'libs/data/src/lib/classes';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
 
 const IntegracoesRouter = express();
 let IntegracoesService = new Services.IntegracoesService();

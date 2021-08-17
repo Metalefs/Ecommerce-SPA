@@ -1,13 +1,13 @@
-import * as Services from '../services';
+import * as Services from '../../services';
 import * as express from 'express';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { ErrorHandler } from '../_handlers/error-handler';
+import { ErrorHandler } from '../../_handlers/error-handler';
 
-import { escapeRegex } from '../_handlers/regexescape';
+import { escapeRegex } from '../../_handlers/regexescape';
 import { FiltrarProdutoSearchQuery } from 'libs/data/src/lib/interfaces/filtrarProdutoQuery';
 import { Produto } from 'libs/data/src/lib/classes';
-import BaseController from './base.controller';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+import BaseController from '../base.controller';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
 
 const ProdutoRouter = express();
 

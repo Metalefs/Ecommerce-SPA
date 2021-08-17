@@ -1,9 +1,9 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import * as Services from "../services";
+import * as Services from "../../services";
 import * as express from 'express';
-import { ErrorHandler } from '../_handlers/error-handler';
-import BaseController from './base.controller';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+import { ErrorHandler } from '../../_handlers/error-handler';
+import BaseController from '../base.controller';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
 const SobreRouter = express();
 
 let SobreService: Services.SobreService = new Services.SobreService();

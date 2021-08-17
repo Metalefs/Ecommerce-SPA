@@ -79,6 +79,13 @@ export let RouteDictionary = {
     QuantidadeParcelas: "/quantidade-parcelas/",
   },
 
+  Correios: {
+    Raiz:'/correios',
+    CalcularPrecoPrazoPorProduto : "/prazo-para-produto/",
+    CalcularPrecoPrazoPorOrcamento : "/prazo-para-orcamento",
+    RastrearEncomendas : "/rastrear-encomenda/",
+  },
+
   Checkout: '/checkout/',
   Refund: '/refund/',
   ListPayments: '/listPayments/'

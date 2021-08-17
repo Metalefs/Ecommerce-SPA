@@ -1,11 +1,11 @@
-import * as Services from "../services";
+import * as Services from "../../services";
 import * as express from 'express';
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { ErrorHandler } from '../_handlers/error-handler';
-import { UsuarioLogado } from '../_handlers/Authentication';
+import { ErrorHandler } from '../../_handlers/error-handler';
+import { UsuarioLogado } from '../../_handlers/Authentication';
 
-import BaseController from './base.controller';
-import { ensureIsAdmin } from "../middleware/ensure-is-admin";
+import BaseController from '../base.controller';
+import { ensureIsAdmin } from "../../middleware/ensure-is-admin";
 
 const FeedbackRouter = express();
 

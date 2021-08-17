@@ -1,9 +1,9 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import * as Services from "../services";
+import * as Services from "../../services";
 
 import * as express from 'express';
-import BaseController from './base.controller';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
+import BaseController from '../base.controller';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
 const ServicoRouter = express()
 
 let ServicoService: Services.ServicoService = new Services.ServicoService();

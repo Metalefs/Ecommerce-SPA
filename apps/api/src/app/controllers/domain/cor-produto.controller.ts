@@ -1,9 +1,9 @@
 import * as express from 'express';
 
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
-import { CorProdutoService } from '../services';
-import BaseController from './base.controller';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
+import { CorProdutoService } from '../../services';
+import BaseController from '../base.controller';
 
 const CorProdutoRouter = express();
 

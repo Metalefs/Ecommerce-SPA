@@ -1,11 +1,11 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import * as Services from "../services";
+import * as Services from "../../services";
 
 import * as express from 'express';
-import BaseController from './base.controller';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
-import { ErrorHandler } from '../_handlers/error-handler';
-import { UsuarioLogado } from '../_handlers/Authentication';
+import BaseController from '../base.controller';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
+import { ErrorHandler } from '../../_handlers/error-handler';
+import { UsuarioLogado } from '../../_handlers/Authentication';
 const PedidoRouter = express()
 
 let PedidoService: Services.PedidoService = new Services.PedidoService();

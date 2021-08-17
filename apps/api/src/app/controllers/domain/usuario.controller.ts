@@ -1,13 +1,13 @@
-import { UsuarioService } from '../services';
+import { UsuarioService } from '../../services';
 
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { entities } from '@personalizados-lopes/data';
 
 import * as express from 'express';
-import { ErrorHandler } from '../_handlers/error-handler';
+import { ErrorHandler } from '../../_handlers/error-handler';
 import { Usuario } from 'libs/data/src/lib/classes';
 
-import { UsuarioLogado } from '../_handlers/Authentication';
+import { UsuarioLogado } from '../../_handlers/Authentication';
 
 const app = express();
 app.post(RouteDictionary.UsuarioBack.Login, (req : any, res, next) => {

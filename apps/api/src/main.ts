@@ -2,7 +2,8 @@ import { Connection } from './app/client/MongoConnection';
 import { Routers } from './app/controllers';
 import { SeedingService } from './app/services/seeding/seeding.service';
 import * as express from 'express';
-import * as ControllerUsuario from './app/controllers/usuario.controller';
+import * as ControllerUsuario from './app/controllers/domain/usuario.controller';
+import * as CorreiosRouter from './app/controllers/correios/correios.controller';
 
 (async function configureConnection() {
   Connection.db().then(() => {
@@ -27,6 +28,7 @@ import * as ControllerUsuario from './app/controllers/usuario.controller';
 
     app.use("/", Routers);
     app.use("/usuario", [ControllerUsuario.app]);
+    app.use("/correios", [CorreiosRouter.CorreiosRouter]);
 
     app.post("/seed", function (req, res) {
       let seedingService: SeedingService = new SeedingService();

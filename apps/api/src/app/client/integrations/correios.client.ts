@@ -1,21 +1,20 @@
 import {calcularPrecoPrazo, CepResponse, consultarCep, rastrearEncomendas} from 'correios-brasil';
-import { Orcamento } from 'libs/data/src/lib/classes';
-import { SobreService } from '../../services';
+import { InformacoesContato, Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { InformacoesContatoService, SobreService } from '../../services';
 
-export module Correios {
-  const ServicoSobre = new SobreService();
+export class CorreiosClient {
 
-  async function ConsultarCep(cep:string) : Promise<CepResponse>{
-    //
+  async ConsultarCep(cep:string) : Promise<CepResponse>{
     return await consultarCep(cep) as CepResponse;
   }
 
   //TODO = REFACTOR GETTING ALL PRODUCT DIMENTIONS FROM DB
-  async function CalcularPrecoPrazo(orcamento:Orcamento){
-    const CEP = await this.ServicoSobre.LerPrimeiro().CEP;
+  async CalcularPrecoPrazoPorOrcamento(orcamento:Orcamento){
+    const informacoesContatoService = new InformacoesContatoService();
 
+    const CEP = await informacoesContatoService.LerPrimeiro() as InformacoesContato;
     const args = {
-      sCepOrigem: CEP,
+      sCepOrigem: CEP.CEP??"33823-390",
       sCepDestino: orcamento.Usuario.EnderecoEntrega.CEP,
       nVlPeso: orcamento.DimensoesObjs.map(x=>x.Peso).reduce((a,b)=>a+b).toString(),
       nCdFormato: '1',
@@ -26,12 +25,30 @@ export module Correios {
       nVlDiametro: '0',
     };
 
-    return calcularPrecoPrazo(args).then((response) => {
-      console.log(response);
-    });
+    return await calcularPrecoPrazo(args);
   }
 
-  async function RastrearEncomendas(codRastreio:string[]){
+  async CalcularPrecoPrazoPorProduto(produto:Produto, cep:string){
+    const informacoesContatoService = new InformacoesContatoService();
+
+    const CEP = await informacoesContatoService.LerPrimeiro() as InformacoesContato;
+    console.log(produto,cep,CEP.CEP)
+    const args = {
+      sCepOrigem: CEP.CEP??"33823-390",
+      sCepDestino: cep,
+      nVlPeso: produto.Peso.toString(),
+      nCdFormato: '1',
+      nVlComprimento: produto.Dimensoes.Comprimento.toString(),
+      nVlAltura: produto.Dimensoes.Altura.toString(),
+      nVlLargura: produto.Dimensoes.Largura.toString(),
+      nCdServico: ['04014', '04510'], //Array com os códigos de serviço 04014 = SEDEX à vista // 04510 = PAC à vista
+      nVlDiametro: '0',
+    };
+
+    return await calcularPrecoPrazo(args);
+  }
+
+  async RastrearEncomendas(codRastreio:string[]){
     return await rastrearEncomendas(codRastreio);
   }
 }

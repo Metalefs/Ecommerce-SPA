@@ -1,10 +1,10 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
-import * as Services from "../services";
+import * as Services from "../../services";
 import * as express from 'express';
 
-import { ErrorHandler } from '../_handlers/error-handler';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
-import BaseController from './base.controller';
+import { ErrorHandler } from '../../_handlers/error-handler';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
+import BaseController from '../base.controller';
 
 const EstampaRouter = express();
 let EstampaService: Services.EstampaService = new Services.EstampaService();

@@ -99,6 +99,7 @@ export class EditarProdutoFormComponent extends EditarProdutoComponentBase imple
 
   SelecionarTamanho(event: any): void {
     this.Produto.Tamanhos = event;
+    console.log(event);
     this.produtoForm.get("Tamanhos").setValue(this.Produto.Tamanhos);
   }
 

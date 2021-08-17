@@ -1,10 +1,10 @@
 import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import * as express from 'express';
-import * as Services from "../services";
-import { ErrorHandler } from '../_handlers/error-handler';
-import { escapeRegex } from '../_handlers/regexescape';
-import { ensureIsAdmin } from '../middleware/ensure-is-admin';
-import BaseController from './base.controller';
+import * as Services from "../../services";
+import { ErrorHandler } from '../../_handlers/error-handler';
+import { escapeRegex } from '../../_handlers/regexescape';
+import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
+import BaseController from '../base.controller';
 
 let CategoriaService: Services.CategoriaService = new Services.CategoriaService();
 const CategoriaRouter = express();
