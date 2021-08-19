@@ -62,7 +62,7 @@ export class BlocoPagamentoProdutoComponent implements OnInit {
   }
   AtualizarOrcamento(){
     if(!this.Orcamento.Entrega){
-      this.Orcamento.Entrega = {cep:'',dados:{}};
+      this.Orcamento.Entrega = {cep:'', dados:{cep:this.cepForm.get('cep').value,precos:[]}};
     }
     this.Orcamento.Entrega.cep = this.cepForm.get('cep').value;
     this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento));

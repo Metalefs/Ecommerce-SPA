@@ -19,6 +19,7 @@ import { CardProdutoBtnAdicionarCarrinhoComponent } from './card-produto-btn-adi
 import { CardProdutoBtnAbrirModalComponent } from './card-produto-btn-abrir-modal/card-produto-btn-abrir-modal.component';
 import { CardProdutoBtnFavoritarComponent } from './card-produto-btn-favoritar/card-produto-btn-favoritar.component';
 import { CardProdutoBtnCompararComponent } from './card-produto-btn-comparar/card-produto-btn-comparar.component';
+import { UiModule } from '@personalizados-lopes/ui';
 
 @NgModule({
   declarations: [CardProdutoComponent, CardProdutoBtnComprarComponent,CardProdutoBtnAdicionarCarrinhoComponent,CardProdutoBtnAbrirModalComponent, CardProdutoBtnFavoritarComponent, CardProdutoBtnCompararComponent],
@@ -33,7 +34,8 @@ import { CardProdutoBtnCompararComponent } from './card-produto-btn-comparar/car
     StarRatingModule.forRoot(),
     GalleryModule,
     SlideshowModule,
-    ExibicaoPrecoProdutoModule
+    ExibicaoPrecoProdutoModule,
+    UiModule
   ],
   exports: [
     CardProdutoComponent,

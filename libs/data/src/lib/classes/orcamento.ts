@@ -4,6 +4,7 @@ import { MongoDocument } from './abstract/MongoDocument';
 import { Usuario} from './usuario';
 import { Produto } from '.';
 import { Dimensoes } from './produto';
+import { PrecoPrazoCep } from '../interfaces';
 export class Orcamento extends MongoDocument implements entidadeBase{
 
     Usuario?:Usuario;
@@ -53,5 +54,5 @@ export class CodProduto {
 }
 export interface EntregaOrcamento{
   cep:string,
-  dados:{}
+  dados:PrecoPrazoCep
 }

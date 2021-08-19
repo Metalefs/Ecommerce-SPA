@@ -68,6 +68,7 @@ import { SelecaoTamanhoProdutoEdicaoComponent } from './components/selecao-taman
 import { ExibicaoPrecoPrazoCepComponent } from './components/dialogs/exibicao-preco-prazo-cep/exibicao-preco-prazo-cep.component';
 import { ExibicaoDescontoCepComponent } from './components/dialogs/exibicao-desconto-cep/exibicao-desconto-cep.component';
 
+import { UiModule } from "@personalizados-lopes/ui"
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   navigation: {
@@ -147,7 +148,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AutocompleteDropdownModule,
     ExibicaoPrecoProdutoModule,
     PreviewProdutoModule,
-    CardEstampaModule
+    CardEstampaModule,
+    UiModule
   ],
   exports: [
     CommonModule,
@@ -200,7 +202,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ImportacaoComponent,
     VisualizacaoProdutoLojaModule,
     PreviewProdutoModule,
-    CardEstampaModule
+    CardEstampaModule,
+    UiModule
   ],
   providers: [
     {

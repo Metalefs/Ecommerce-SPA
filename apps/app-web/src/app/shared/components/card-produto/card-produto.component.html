@@ -6,9 +6,10 @@
   <ng-container *ngIf="TrocaImagem; then troca; else naotroca"> </ng-container>
 
   <ng-template #troca>
-    <div
+    <app-card
       matRipple
-      class="card portfolio-item zoom of-y-scroll card"
+      class="portfolio-item zoom"
+      customClass="card py-0"
       [style.flexDirection]="flex_direction"
     >
       <div class="card-image has-background-white">
@@ -160,7 +161,7 @@
       >
         <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
       </figure>
-    </div>
+    </app-card>
   </ng-template>
 
   <ng-template #naotroca>

@@ -17,16 +17,13 @@
           type="radio"
           alt="{{ corProduto.Nome }}"
           [value]="corProduto.Nome"
-          [ngClass]="{
-            ' is-focused selected': corProduto.Nome == corProduto.Nome
-          }"
         />
         <div
           title="{{ corProduto.Nome }}"
           class="shadow-light button is-outlined is-small"
           [style.background]="corProduto?.Cor"
           [ngClass]="{
-            ' is-focused selected': corProduto.Nome == corProduto.Nome
+            ' is-focused selected': CorProduto?.Nome == corProduto.Nome
           }"
         ></div>
       </div>

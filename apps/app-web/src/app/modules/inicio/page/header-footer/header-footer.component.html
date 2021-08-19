@@ -10,7 +10,7 @@
   <a *ngFor="let card of Cards;let i = index;" [routerLink]="card.link" href="{{card.id}}" pageScroll class="is-12-touch column">
     <div class="card-bg {{card?.class}}">
       <div [id]="card.class" class=" {{card?.class}}">
-        <div class="card is-shady of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
+        <app-card customClass="card is-shady of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
 
           <div class='card-content'>
             <div class="media ">
@@ -35,7 +35,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </app-card>
       </div>
     </div>
   </a>

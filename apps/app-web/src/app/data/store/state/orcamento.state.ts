@@ -33,7 +33,7 @@ let resultadoPagamentoMP: MercadoPagoResultadoPagamentoCheckout = {
   processing_mode: "", //aggregator&
   merchant_account_id: 0,
 };
-export let DEFAULT_ORCAMENTO = new Orcamento([], "", StatusOrcamento.aberto, 0, "", "", new Usuario("", "", "", "", "", enderecoEntrega), { cep: '', dados: {} });
+export let DEFAULT_ORCAMENTO = new Orcamento([], "", StatusOrcamento.aberto, 0, "", "", new Usuario("", "", "", "", "", enderecoEntrega), { cep: '', dados: {cep:'',precos:[]} });
 @State<OrcamentoStateModel>({
   name: "Orcamentos",
   defaults: {

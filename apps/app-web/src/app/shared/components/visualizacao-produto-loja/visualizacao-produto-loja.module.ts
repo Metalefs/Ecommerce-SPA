@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareButtonModule } from 'ngx-sharebuttons/button';
-
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ShareModule } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
@@ -70,7 +71,8 @@ import { CorProdutoSelectorModule } from '../cor-produto-selector/cor-produto-se
     MaterialModule,
     ExibicaoPrecoProdutoModule,
     CardEstampaModule,
-    CorProdutoSelectorModule
+    CorProdutoSelectorModule,
+    NgxMaskModule
   ],
   exports: [
     FontAwesomeModule,
@@ -97,7 +99,8 @@ import { CorProdutoSelectorModule } from '../cor-produto-selector/cor-produto-se
     SelecaoEstampaComponent,
     BotaoEsgotadoComponent,
     CardEstampaModule,
-    CorProdutoSelectorModule
+    CorProdutoSelectorModule,
+    NgxMaskModule
   ]
 })
 export class VisualizacaoProdutoLojaModule { }

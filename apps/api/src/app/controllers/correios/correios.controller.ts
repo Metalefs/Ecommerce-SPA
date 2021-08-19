@@ -15,12 +15,21 @@ CorreiosRouter.get(RouteDictionary.Correios.CalcularPrecoPrazoPorCep + `:id`, Ca
 .get(RouteDictionary.Correios.CalcularPrecoPrazoPorOrcamento, (req, res) => {
 
 })
-.get(RouteDictionary.Correios.RastrearEncomendas + `:id`, (req, res) => {
-
-})
+.get(RouteDictionary.Correios.RastrearEncomendas + `:id`, RastrearEncomendas)
 
 export {
   CorreiosRouter
+}
+async function RastrearEncomendas(req,res){
+  if (!req.params.id){
+    ErrorHandler.DefaultException("Não foi possível obter os dados de rastreamento", res);
+    return;
+  }
+  correiosClient.RastrearEncomendas([req.params.id]).then(result => {
+    res.send(result);
+  }).catch(err=>{
+    ErrorHandler.DefaultException(err, res);
+  })
 }
 
 async function CalcularPrecoPrazoPorProduto(req,res){

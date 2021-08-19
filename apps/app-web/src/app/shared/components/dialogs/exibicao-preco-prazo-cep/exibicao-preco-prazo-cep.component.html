@@ -35,13 +35,13 @@
           </div>
         </ng-template>
         <ng-template #inserirCEP>
-          <div class="w-full of-x-scroll" >
+          <div class="w-full of-x-scroll section" >
 
             <form [formGroup]='cepForm'>
               <mat-form-field class="w-full" appearance="fill">
                 <mat-label>Calcule frete e prazo</mat-label>
                 <input matInput (change)="AtualizarOrcamento()" [formControlName]="'cep'" [(ngModel)]="CEP"
-                       placeholder="seu CEP" type="number">
+                       placeholder="seu CEP" type="number" [mask]="'00000-000'">
                 <mat-error *ngIf="cepForm.get('cep').hasError('required')">
                   É necessário inserir um <strong>CEP</strong>
                 </mat-error>
@@ -52,7 +52,7 @@
           </div>
         </ng-template>
 
-        <div class="w-full of-x-scroll block">
+        <div class="w-full of-x-scroll section">
 
           <table class="table">
             <tbody><tr><td>Usamos <b>Correios ou Motoboy</b> para os envios.</td></tr>
@@ -67,11 +67,11 @@
       </div>
 
     </section>
-    <div class="w-full container px-6 mb-6">
+    <!-- <div class="w-full container px-6 mb-6">
       <a (click)="delayClose()"
         [routerLink]="['/checkout/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
         class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
           Pedido</span></a>
-    </div>
+    </div> -->
   </div>
 </div>

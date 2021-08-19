@@ -1,7 +1,7 @@
 
 :host ::ng-deep .cookie-law-wrapper{
   width: 100%;
-  background-color: rgba(79, 79, 79, 0.8);
+  background-color: rgb(79 79 79 / 45%);
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
@@ -11,7 +11,7 @@
   font-family: "Roboto";
   text-align: justify;
   z-index: 999999;
-  background: url(../assets/images/inicio/vKVHZSV-oreo-wallpaper.jpg);
+ // background: url(../assets/images/inicio/vKVHZSV-oreo-wallpaper.jpg);
   background-position: right;
   background-size: cover;
 }

@@ -3,7 +3,7 @@ import { entidadeBase } from '../interfaces/entity';
 import { MongoDocument } from './abstract/MongoDocument';
 import { Usuario} from './usuario';
 import { Produto } from './produto';
-import { MercadoPagoPayment, MercadoPagoResultadoPagamentoCheckout } from '../interfaces';
+import { MercadoPagoPayment, MercadoPagoResultadoPagamentoCheckout, PrecoPrazoCep } from '../interfaces';
 import { Orcamento } from './orcamento';
 
 export class Pedido extends MongoDocument implements entidadeBase{
@@ -17,6 +17,7 @@ export class Pedido extends MongoDocument implements entidadeBase{
     Dimensoes?:string;
     ResultadoPagamentoMP:MercadoPagoResultadoPagamentoCheckout;
     HistoricoPagamento?:MercadoPagoPayment[];
+    dados:PrecoPrazoCep;
     static readonly NomeID:string = "Pedido";
     constructor(
      orcamento:Orcamento
