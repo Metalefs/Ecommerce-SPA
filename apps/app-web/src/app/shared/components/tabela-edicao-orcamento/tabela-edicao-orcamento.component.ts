@@ -111,6 +111,12 @@ export class TabelaEdicaoOrcamentoComponent implements OnInit {
       this.EditarOrcamento(element);
     }
   }
+  SetFaixaTamanho(element:CodProduto,tamanho){
+    if(element){
+      element.Produto.FaixaTamanho = tamanho;
+      this.EditarOrcamento(element);
+    }
+  }
 
   EditarOrcamento(element:CodProduto){
     this.store.dispatch(new EditarProdutoOrcamentoLocal(element.Produto,element.Produto._id,element.codOrcamento)).subscribe(store =>{

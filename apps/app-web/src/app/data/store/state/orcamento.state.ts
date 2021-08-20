@@ -226,6 +226,7 @@ export class OrcamentoState {
     const orc = state.Orcamento;
     orc.Produto = ListaCodProdutos;
     this.atualizarPreco(state);
+    this.atualizarDimensoes(state);
     patchState({
       ...state,
       Orcamento: orc,

@@ -40,12 +40,12 @@
               routerLinkActive="router-link-active"
               class="titulo-produto ">{{element?.Produto.Nome}}
               <p class="titulo-produto">{{element?.Produto.Cor?.nome}}</p>
-              <ng-container *ngIf="element?.Produto?.Tamanho">
-                <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome == null ? (Produto?.Tamanho || '') : Produto?.Tamanho?.Nome}} {{Produto?.FaixaTamanho?.Tamanho || ''}}</span></p>
+              <ng-container *ngIf="element?.Produto?.Tamanho?.Nome && Produto?.FaixaTamanho?.Tamanhos">
+                <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome == null ? '' : Produto?.Tamanho?.Nome}} {{Produto?.FaixaTamanho?.Tamanho || ''}}</span></p>
               </ng-container>
             </a>
 
-            <ng-container *ngIf="!element?.Produto?.Tamanho">
+            <ng-container *ngIf="!element?.Produto?.Tamanho && Produto?.FaixaTamanho?.Tamanhos">
               <mat-form-field class=" " appearance="fill">
                 <mat-label>Tamanho:</mat-label>
                 <mat-select matNativeControl [(ngModel)]="element.Produto.Tamanho"
@@ -76,7 +76,30 @@
             class="titulo-produto ">{{element?.Produto.Nome}}
             <p class="subtitle">{{element?.Produto.Cor?.Nome || element?.Produto.Cor?.nome}}</p>
             <ng-container *ngIf="element?.Produto?.Tamanho">
-              <p class="subtitle">{{element?.Produto?.Tamanho?.Nome || element?.Produto?.Tamanho}}</p>
+              <div
+                *ngFor="let opt of Produto?.Tamanhos"
+                [value]="opt"
+                class="shadow-light button is-outlined is-primary"
+                [ngClass]="{
+                  'is-active is-hovered':
+                    Produto.Tamanho?.Nome == opt?.Nome || Produto.Tamanho == opt
+                }"
+              >
+                <div (click)="SetarTamanho(opt)">
+                  <p>{{ opt.Nome || opt }}</p>
+                </div>
+                <div
+                  *ngFor="let faixa of Produto?.Tamanho?.Tamanhos"
+                  [value]="faixa"
+                  class="shadow-light button"
+                  [ngClass]="{ 'is-active': Produto.FaixaTamanho?.Tamanho == faixa }"
+                  (click)="SetFaixaTamanho(faixa)"
+                >
+                  <div>
+                    <p class="is-size-6">{{ faixa.Tamanho }}</p>
+                  </div>
+                </div>
+              </div>
             </ng-container>
           </a>
           <ng-container *ngIf="!element?.Produto?.Tamanho">

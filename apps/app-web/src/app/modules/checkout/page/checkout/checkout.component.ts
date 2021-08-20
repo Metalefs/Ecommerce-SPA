@@ -107,6 +107,7 @@ export class CheckoutComponent implements OnInit {
     this.Orcamento.Entrega.dados = {cep:this.CEP, precos:frete};
     this.Orcamento.Entrega.cep = this.CEP;
     this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
+    this.FreteSelecionado = frete;
   }
   NomeTransportadora(codigo){
     return codigo == "04014" ? 'SEDEX' : "PAC"
