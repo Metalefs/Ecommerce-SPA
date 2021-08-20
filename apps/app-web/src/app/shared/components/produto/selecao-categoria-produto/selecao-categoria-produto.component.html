@@ -18,7 +18,7 @@
                       "
           class='dis-flex flex-sb flex-m'
         >
-          <mat-icon
+          <!-- <mat-icon
             [ngClass]=" CategoriaAtiva?.Nome == defaultCategory
                                   ? 'has-text-success'
                                   : 'is-hidden'
@@ -29,7 +29,7 @@
               ? 'check'
               : ''
             }}
-          </mat-icon>
+          </mat-icon> -->
           <p class='texto-categorias'>{{ defaultCategory }}</p>
         </a>
       </mat-checkbox>
@@ -49,7 +49,7 @@
           [ngClass]="IsCategoriaAtiva(categoria) ? 'active  texto-categoria-ativa': 'has-text-grey'"
           class='dis-flex flex-sb flex-m'
         >
-          <mat-icon
+          <!-- <mat-icon
             [ngClass]="
                                 CategoriaAtiva?.Nome == defaultCategory
                                   ? 'has-text-success'
@@ -62,7 +62,7 @@
               ? 'check'
               : ''
             }}
-          </mat-icon>
+          </mat-icon> -->
           <p class='texto-categorias'>
             {{ categoria?.Nome }}
           </p>

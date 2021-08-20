@@ -41,7 +41,7 @@
               class="titulo-produto ">{{element?.Produto.Nome}}
               <p class="titulo-produto">{{element?.Produto.Cor?.nome}}</p>
               <ng-container *ngIf="element?.Produto?.Tamanho">
-                <p class="subtitle">{{element?.Produto?.Tamanho}}</p>
+                <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome == null ? (Produto?.Tamanho || '') : Produto?.Tamanho?.Nome}} {{Produto?.FaixaTamanho?.Tamanho || ''}}</span></p>
               </ng-container>
             </a>
 

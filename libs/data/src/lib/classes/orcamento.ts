@@ -53,6 +53,6 @@ export class CodProduto {
   }
 }
 export interface EntregaOrcamento{
-  cep:string,
-  dados:PrecoPrazoCep
+  cep?:string,
+  dados?:PrecoPrazoCep
 }

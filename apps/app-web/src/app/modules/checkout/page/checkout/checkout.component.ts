@@ -12,6 +12,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { PagamentoComponent } from '../pagamento/pagamento.component';
 import { AuthenticationService } from 'apps/app-web/src/app/core/service/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CorreiosService } from 'apps/app-web/src/app/data/service/correios/correios.service';
+import { PrecoPrazoEvent } from 'correios-brasil/dist';
+import { OrcamentoService } from 'apps/app-web/src/app/data/service';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -23,6 +26,7 @@ export class CheckoutComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   @ViewChild(PagamentoComponent)
   pagamentoComponent: PagamentoComponent;
+
   constructor(
     public checkoutService: CheckoutService,
     private scrollService: PageScrollService,
@@ -30,13 +34,20 @@ export class CheckoutComponent implements OnInit {
     private router: Router,
     private auth:AuthenticationService,
     private fb:FormBuilder,
-    private snack:MatSnackBar
+    private snack:MatSnackBar,
+    private servicoCorreios:CorreiosService,
+    private orcamentoService:OrcamentoService,
 
   ) { }
   valid: boolean = false;
   erros: string[] = [];
   Orcamento:Orcamento;
   confirmar:boolean;
+  Fretes:PrecoPrazoEvent[];
+  CEP:string;
+  cepForm:FormGroup;
+  FreteSelecionado:PrecoPrazoEvent;
+
   public get dadosForm(): FormGroup {
     return this.checkoutService.dadosForm;
   }
@@ -58,12 +69,17 @@ export class CheckoutComponent implements OnInit {
     this.Validate();
     this.Orcamento$.subscribe(orc => {
       this.Orcamento = orc;
+      this.CEP = this.Orcamento.Entrega.cep
     });
     this.emailForm = this.fb.group({
       email:  [{value:this.auth.currentUserValue?.Email,disabled:!!this.auth.currentUserValue}, Validators.required]
     })
     this.emailForm.statusChanges.subscribe(x=>{
       this.email = this.emailForm.get("email").value;
+    })
+    this.CalcularFreteProduto();
+    this.cepForm = this.fb.group({
+      cep:[this.CEP||'']
     })
   }
 
@@ -77,6 +93,23 @@ export class CheckoutComponent implements OnInit {
   }
   Validate() {
     this.Orcamento$.subscribe(orc => { this.checkoutService.Validate(orc) });
+  }
+  CalcularFreteProduto(){
+    if(this.Orcamento){
+      this.orcamentoService.Incluir(this.Orcamento).subscribe((x:Orcamento) => {
+        this.servicoCorreios.CalcularPrecoPrazoPorOrcamento(x._id).subscribe(fretes=>{
+          this.Fretes = fretes;
+        });
+      })
+    }
+  }
+  SelecionarFrete(frete){
+    this.Orcamento.Entrega.dados = {cep:this.CEP, precos:frete};
+    this.Orcamento.Entrega.cep = this.CEP;
+    this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
+  }
+  NomeTransportadora(codigo){
+    return codigo == "04014" ? 'SEDEX' : "PAC"
   }
   FinalizarCompra(){
     this.Orcamento$.subscribe(orc => {

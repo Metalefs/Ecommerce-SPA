@@ -26,4 +26,10 @@ export class OrcamentoService extends BaseService<Orcamento> {
       catchError(this.ErrorHandler.handleError) // then handle the error
     );
   }
+  InserirOrcamentoEmail(item: any){
+    return this.http.post<Orcamento>(environment.endpoint + RouteDictionary.Orcamento.PadraoEmail, {item}).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
 }

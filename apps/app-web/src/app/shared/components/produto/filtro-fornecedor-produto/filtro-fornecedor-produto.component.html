@@ -10,12 +10,12 @@
       *ngFor="let fornecedor of FornecedoresProdutos"
       (click)="FornecedorProduto = fornecedor"
       title="{{ fornecedor.Nome }}"
-      class="w-full button"
+      class="w-full"
     >{{ fornecedor.Nome }}
     </a>
     <a
       (click)="FornecedorProduto = null"
-      class="w-full button is-size-7"
+      class="w-full is-size-7"
     >Remover filtro de marca
     </a>
 

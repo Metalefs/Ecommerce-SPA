@@ -163,9 +163,9 @@ a {
  {
   -webkit-transform: scaleX(1) !important;
   transform: scaleX(1) !important;
-  background-size: cover !important;
+  background-size: contain !important;
   background-position: center !important;
-  object-fit: cover;
+  object-fit: contain;
 }
 .slideshow-container {
   &:hover {
@@ -191,6 +191,7 @@ a {
   // &:hover{
   //   background:  #dedede none repeat scroll 0% 0%
   // }
+  background-size: contain !important;
 }
 .slideshow-container .slick-dots li button {
   border: none !important;

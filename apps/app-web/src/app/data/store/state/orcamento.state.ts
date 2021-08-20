@@ -33,7 +33,7 @@ let resultadoPagamentoMP: MercadoPagoResultadoPagamentoCheckout = {
   processing_mode: "", //aggregator&
   merchant_account_id: 0,
 };
-export let DEFAULT_ORCAMENTO = new Orcamento([], "", StatusOrcamento.aberto, 0, "", "", new Usuario("", "", "", "", "", enderecoEntrega), { cep: '', dados: {cep:'',precos:[]} });
+export let DEFAULT_ORCAMENTO = new Orcamento([], "", StatusOrcamento.aberto, 0, "", "", new Usuario("", "", "", "", "", enderecoEntrega), { cep: '', dados: {cep:''} });
 @State<OrcamentoStateModel>({
   name: "Orcamentos",
   defaults: {
@@ -88,7 +88,7 @@ export class OrcamentoState {
 
   @Action(AdicionarOrcamento)
   Adicionar({ getState, patchState }: StateContext<OrcamentoStateModel>) {
-    return this.OrcamentoService.Incluir(getState().Orcamento).subscribe((result) => {
+    return this.OrcamentoService.InserirOrcamentoEmail(getState().Orcamento).subscribe((result) => {
       const state = getState();
       if (this.auth.currentUserValue._id)
         this.usuarioService.AtualizarInformacoes(state.Orcamento.Usuario).subscribe();
@@ -253,6 +253,7 @@ export class OrcamentoState {
           prod.Produto.Status == StatusProduto.promocao ? prod.Produto.PrecoPromocional : prod.Produto.Preco
             * prod.Produto.Quantidade;
     })
+    state.Orcamento.Preco += parseFloat(state.Orcamento?.Entrega?.dados?.precos?.Valor || "0");
   }
 
   atualizarDimensoes(state: OrcamentoStateModel) {

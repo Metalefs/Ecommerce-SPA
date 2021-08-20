@@ -26,6 +26,13 @@ export class OrcamentoService extends BaseService {
   }
   async Inserir(Usuario:entities.Usuario, Orcamento:entities.Orcamento){
     console.log("inserindo orçamento")
+
+    return Repository.Insert(entities.Orcamento.NomeID, Orcamento).then(async x => {
+      return x;
+    });
+  }
+  async InserirOrcamentoEmail(Orcamento:entities.Orcamento){
+    console.log("inserindo orçamento")
     return Repository.Insert(entities.Orcamento.NomeID, Orcamento).then(async x => {
       let ServicoMensagens = new MensagemService();
       let ServicoInfoContato = new InformacoesContatoService();

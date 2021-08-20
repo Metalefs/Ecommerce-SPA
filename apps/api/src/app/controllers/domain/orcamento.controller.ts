@@ -9,7 +9,7 @@ import { ensureIsAdmin } from "../../middleware/ensure-is-admin";
 
 const OrcamentoRouter = express();
 
-let OrcamentoService: Services.OrcamentoService = new Services.OrcamentoService();
+const OrcamentoService: Services.OrcamentoService = new Services.OrcamentoService();
 
 export class OrcamentoController extends BaseController {
   constructor(service:Services.OrcamentoService) {
@@ -32,6 +32,11 @@ OrcamentoRouter.get(RouteDictionary.Orcamento.Padrao,OrcamentoCtrl.Ler)
 })
 .put(RouteDictionary.Orcamento.Padrao, ensureIsAdmin, OrcamentoCtrl.Editar)
 .post(RouteDictionary.Orcamento.Padrao, OrcamentoCtrl.Incluir)
+.post(RouteDictionary.Orcamento.PadraoEmail, async (req,res) => {
+  OrcamentoService.InserirOrcamentoEmail(req.body.item)
+          .then(result => res.send(result))
+          .catch(err => ErrorHandler.DefaultException(err, res))
+})
 .delete(RouteDictionary.Orcamento.Padrao + `:id`, ensureIsAdmin, OrcamentoCtrl.Remover);
 
 export {

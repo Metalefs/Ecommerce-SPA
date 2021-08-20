@@ -8,16 +8,12 @@ export class CorreiosClient {
     return await consultarCep(cep) as CepResponse;
   }
 
-  //TODO = REFACTOR GETTING ALL PRODUCT DIMENTIONS FROM DB
-  async CalcularPrecoPrazoPorOrcamento(orcamento:Orcamento){
+  //TODO = Para envios normais (PAC, SEDEX E E-SEDEX), as dimensões não podem passar de 105 centímetros e os mínimos são C=16  L=11  A=2.
+  async CalcularPrecoPrazo(peso, comprimento, altura, largura, cep:string){
     const informacoesContatoService = new InformacoesContatoService();
 
     const cepOrigem = await informacoesContatoService.LerPrimeiro() as InformacoesContato;
-    const cepDestino = orcamento.Usuario.EnderecoEntrega.CEP;
-    const peso = orcamento.DimensoesObjs.map(x=>x.Peso).reduce((a,b)=>a+b).toString();
-    const comprimento = orcamento.DimensoesObjs.map(x=>x.Comprimento).reduce((a,b)=>a+b).toString();
-    const altura = orcamento.DimensoesObjs.map(x=>x.Altura).reduce((a,b)=>a+b).toString()
-    const largura = orcamento.DimensoesObjs.map(x=>x.Largura).reduce((a,b)=>a+b).toString()
+    const cepDestino = cep;
 
     const args = this.getPrecoPrazoArgs(cepOrigem.CEP,cepDestino,peso,comprimento,altura,largura);
 
@@ -25,20 +21,13 @@ export class CorreiosClient {
   }
 
   async CalcularPrecoPrazoPorProduto(produto:Produto, cep:string){
-    const informacoesContatoService = new InformacoesContatoService();
 
-    const cepOrigem = await informacoesContatoService.LerPrimeiro() as InformacoesContato;
-    const cepDestino = cep;
     const peso = produto.Peso?.toString() ?? 2;
     const comprimento = produto.Dimensoes.Comprimento.toString();
     const altura = produto.Dimensoes.Altura.toString();
     const largura = produto.Dimensoes.Largura.toString();
 
-    const args = this.getPrecoPrazoArgs(cepOrigem.CEP,cepDestino,peso,comprimento,altura,largura);
-    console.log(args);
-    return await calcularPrecoPrazo(args).catch(err => {
-      console.log(err);return Error(err)
-    });
+    return await this.CalcularPrecoPrazo(peso,comprimento,altura,largura,cep);
   }
 
   async RastrearEncomendas(codRastreio:string[]){

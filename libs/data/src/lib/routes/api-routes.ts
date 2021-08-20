@@ -37,6 +37,7 @@ export let RouteDictionary = {
 
   Orcamento: {
     Padrao: "/orcamento/",
+    PadraoEmail: "/orcamento-email/",
     PorUsuario: "/orcamento-usuario/",
   },
   Feedback: "/feedback/",
@@ -83,7 +84,7 @@ export let RouteDictionary = {
     Raiz:'/correios',
     CalcularPrecoPrazoPorProduto : "/prazo-para-produto/",
     CalcularPrecoPrazoPorCep : "/prazo-para-cep/",
-    CalcularPrecoPrazoPorOrcamento : "/prazo-para-orcamento",
+    CalcularPrecoPrazoPorOrcamento : "/prazo-para-orcamento/",
     RastrearEncomendas : "/rastrear-encomenda/",
   },
 

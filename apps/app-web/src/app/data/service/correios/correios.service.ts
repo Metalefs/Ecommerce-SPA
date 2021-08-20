@@ -6,7 +6,7 @@ import { environment } from 'apps/app-web/src/environments/environment';
 import { Observable } from 'rxjs';
 import { PrecoPrazoEvent } from 'correios-brasil/dist';
 import { catchError, retry } from 'rxjs/operators';
-import { Produto } from 'libs/data/src/lib/classes';
+import { Orcamento, Produto } from 'libs/data/src/lib/classes';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +22,12 @@ export class CorreiosService {
   }
   CalcularPrecoPrazoPorProduto(cep, produto:Produto): Observable<Array<PrecoPrazoEvent>> {
     return this.http.get<Array<PrecoPrazoEvent>>(`${environment.endpoint}${RouteDictionary.Correios.Raiz}${RouteDictionary.Correios.CalcularPrecoPrazoPorProduto}${produto._id}/?cep=${cep}`).pipe(
+      retry(3),
+      catchError(this.ErrorHandler.handleError)
+    );
+  }
+  CalcularPrecoPrazoPorOrcamento(idOrcamento:string): Observable<Array<PrecoPrazoEvent>> {
+    return this.http.get<Array<PrecoPrazoEvent>>(`${environment.endpoint}${RouteDictionary.Correios.Raiz}${RouteDictionary.Correios.CalcularPrecoPrazoPorOrcamento}${idOrcamento}`).pipe(
       retry(3),
       catchError(this.ErrorHandler.handleError)
     );
