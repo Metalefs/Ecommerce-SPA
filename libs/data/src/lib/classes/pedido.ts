@@ -18,6 +18,7 @@ export class Pedido extends MongoDocument implements entidadeBase{
     ResultadoPagamentoMP:MercadoPagoResultadoPagamentoCheckout;
     HistoricoPagamento?:MercadoPagoPayment[];
     Frete:PrecoPrazoCep;
+    CodRastreamento:string;
     static readonly NomeID:string = "Pedido";
     constructor(
      orcamento:Orcamento

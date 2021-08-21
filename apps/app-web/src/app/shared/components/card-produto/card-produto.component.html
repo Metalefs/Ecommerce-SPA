@@ -151,7 +151,7 @@
           [AbrirPaginaProduto]="AdicionarAoOrcamento"
         ></personalizados-lopes-card-produto-btn-comprar>
         <div class="">
-          <p class="preco preto6">
+          <p class="preco">
             R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
           </p>
         </div>
@@ -276,7 +276,7 @@
                   <span class="is-size-7 preto6">de</span> R$
                   {{ Produto?.Preco.toFixed(2) || '0.00' }}
                 </p>
-                <p class="preco promocao preto6">
+                <p class="preco promocao">
                   <span class="is-size-7">Por</span> R$
                   {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
                 </p>
@@ -284,7 +284,7 @@
             </ng-template>
             <ng-template #preco_normal>
               <div class="w-full" *ngIf="Produto?.Parcelas == 0">
-                <p class="preco preto6">
+                <p class="preco ">
                   R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
                 </p>
               </div>

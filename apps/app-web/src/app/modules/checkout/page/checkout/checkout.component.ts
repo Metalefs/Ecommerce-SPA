@@ -100,6 +100,7 @@ export class CheckoutComponent implements OnInit {
   }
   CalcularFreteProduto(){
     if(this.Orcamento){
+      if(this.Orcamento.Entrega.cep)
       this.orcamentoService.Incluir(this.Orcamento).subscribe((x:Orcamento) => {
         this.servicoCorreios.CalcularPrecoPrazoPorOrcamento(x._id).subscribe(fretes=>{
           this.Fretes = fretes;

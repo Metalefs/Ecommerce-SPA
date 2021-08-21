@@ -82,7 +82,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     keyboard               : true,
                     loop                   : false,
                     loopFillGroupWithBlank : false,
-                    preloadImages          : false,
+                    preloadImages          : true,
                     lazy                   : false,
                     observer               : true,
                     spaceBetween           : 1,
@@ -118,7 +118,7 @@ export class ProdutoSwiperComponent implements OnInit {
                     loopFillGroupWithBlank : false,
                     spaceBetween           : 22,
                     preloadImages          : true,
-                    lazy                   : true,
+                    lazy                   : false,
                     observer               : true,
                     slidesPerView          : this.Produtos.length > this.slidesPerView ? this.slidesPerView : this.Produtos.length,
                     navigation: {

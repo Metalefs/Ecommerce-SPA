@@ -55,7 +55,7 @@ export class ProdutoStateService {
   activeSearchFilter = "";
   activeOrderFilter: number = TiposOrdenacao.nomeDesc;
   page: number = 1;
-  activeOrderLimit: number = 10;
+  activeOrderLimit: number = 40;
   total: number = 0;
 
   loading: boolean = false;
@@ -325,10 +325,14 @@ export class ProdutoStateService {
     this.loading_more = true;
     this.produtoService.FiltrarProdutos(this.fQuery, this.page, this.activeOrderLimit).subscribe(x => {
       this.total = x.total;
+
       x.items.forEach(item => this.Produtos.push(item))
       this.loading_more = false;
 
-      this.Atualizar();
+      this.changeOptions(this.Produtos.length > 1 ? Math.max(...this.Produtos.map(o => o.Preco)) : this.Produtos[0]?.Preco);
+
+      this.AtualizarFiltroProduto();
+      this.OrdenarProdutos(x);
     })
   }
 

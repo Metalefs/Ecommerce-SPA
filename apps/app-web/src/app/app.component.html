@@ -1,9 +1,10 @@
 <ng-container [ngSwitch]="DeployState">
   <personalizados-lopes-content-layout *ngSwitchCase="AppDeploymentState.Deployed"></personalizados-lopes-content-layout>
 
-  <cookie-law #cookieLaw position="bottom"
-  name="ng4topCookieLaw" expiration="1"
-  class="py-1 dis-flex flex-sa has-text-centered z-index-top shadow-light">
+  <cookie-law *ngIf="!dismissed"
+    #cookieLaw position="bottom"
+    name="ng4topCookieLaw" expiration="1"
+    class="dis-flex flex-sa has-text-centered z-index-top shadow-light">
   <div class="columns is-vcentered">
     <div class="column">
       <h2 class="subtitle has-text-white">Para melhorar a sua experiência neste site, salvamos alguns dados por meio de cookies.

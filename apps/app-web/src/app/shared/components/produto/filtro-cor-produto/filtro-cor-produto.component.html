@@ -20,7 +20,7 @@
         />
         <div
           title="{{ corProduto.Nome }}"
-          class="shadow-light button is-outlined is-small"
+          class="button is-outlined is-small"
           [style.background]="corProduto?.Cor"
           [ngClass]="{
             ' is-focused selected': CorProduto?.Nome == corProduto.Nome
@@ -29,10 +29,10 @@
       </div>
       <a
       (click)="CorProduto = null"
-        class="w-full button is-size-7"
+      class="w-full button is-size-7"
       >Remover filtro de cor
-      </a>
-      <personalizados-lopes-checkbox-cores-produto></personalizados-lopes-checkbox-cores-produto>
-    </div>
-  </mat-expansion-panel>
+    </a>
+  </div>
+  <personalizados-lopes-checkbox-cores-produto></personalizados-lopes-checkbox-cores-produto>
+</mat-expansion-panel>
 </mat-accordion>

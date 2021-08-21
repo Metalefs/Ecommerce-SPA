@@ -20,6 +20,7 @@ import { LerItemCarousel } from './data/store/actions/item-carousel.actions';
 import { LerCarousel } from './data/store/actions/carousel.actions';
 import { LerProduto } from './data/store/actions/produto.actions';
 import { IntegracoesService } from './data/service';
+import { CookieLawComponent } from 'angular2-cookie-law';
 
 declare let gtag: Function;
 declare let Mercadopago: any;
@@ -34,8 +35,9 @@ export class AppComponent {
   DeployState: AppDeploymentState = AppDeploymentState.Deployed;
   loading: boolean = true;
   carregandoOque: string = '';
+  dismissed:boolean;
   @ViewChild('cookieLaw')
-  private cookieLawEl: any;
+  cookieLawEl: CookieLawComponent;
 
   constructor(
     private store: Store,
@@ -77,6 +79,9 @@ export class AppComponent {
         });
     }
   }
+  ngAfterViewInit(){
+    this.cookieLawEl?.isSeen.subscribe(x=>this.dismissed = x);
+  }
 
   LerServicosAPI() {
     this.store.dispatch(new LerCarousel()).subscribe(() => this.carregandoOque = 'Obtendo imagens');
@@ -114,6 +119,7 @@ export class AppComponent {
 
   dismissCookieLaw() {
     this.cookieLawEl.dismiss();
+
   }
 
 }

@@ -93,7 +93,7 @@
             <mat-form-field class="w-full" appearance="fill">
               <mat-label>Calcule frete e prazo</mat-label>
               <input matInput [formControlName]="'cep'" [(ngModel)]="Orcamento.Entrega.cep"
-                     placeholder="seu CEP" type="number" [mask]="'00000-000'">
+                     placeholder="seu CEP" [mask]="'00000-000'">
               <mat-error *ngIf="cepForm.get('cep').hasError('required')">
                 É necessário inserir um <strong>CEP</strong>
               </mat-error>

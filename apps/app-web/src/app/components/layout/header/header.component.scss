@@ -80,13 +80,13 @@
 .cart-counter{
   position: absolute;
   text-align: center;
-  color: white;
+  color: #fff;
   font-size: 10px;
-  background: $red;
-  border-radius: 90px;
+  background: #ff0000b0;
+  border-radius: 50%;
   width: 20px;
   top: -5px;
-  right: 0px;
+  /* right: 0; */
   font-weight: 800;
 }
 .preco{

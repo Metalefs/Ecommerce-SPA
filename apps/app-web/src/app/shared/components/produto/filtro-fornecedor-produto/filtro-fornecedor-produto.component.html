@@ -6,13 +6,16 @@
       </mat-panel-title>
       <mat-panel-description></mat-panel-description>
     </mat-expansion-panel-header>
-    <a
-      *ngFor="let fornecedor of FornecedoresProdutos"
-      (click)="FornecedorProduto = fornecedor"
-      title="{{ fornecedor.Nome }}"
-      class="w-full"
-    >{{ fornecedor.Nome }}
-    </a>
+    <mat-list>
+      <mat-list-item  *ngFor="let fornecedor of FornecedoresProdutos">
+          <a
+            (click)="FornecedorProduto = fornecedor"
+            title="{{ fornecedor.Nome }}"
+            class="w-full"
+          >{{ fornecedor.Nome }}
+          </a>
+      </mat-list-item>
+    </mat-list>
     <a
       (click)="FornecedorProduto = null"
       class="w-full is-size-7"
