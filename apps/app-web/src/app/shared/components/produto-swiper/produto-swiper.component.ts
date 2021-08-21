@@ -134,8 +134,6 @@ export class ProdutoSwiperComponent implements OnInit {
             })
             );
 
-
-
       this.pService.LerDestaques().subscribe(x=>{
         this.Produtos=x.sort();
         switch(this.TipoOrdenacao){

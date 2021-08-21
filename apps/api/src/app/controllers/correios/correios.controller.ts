@@ -32,11 +32,13 @@ async function CalcularPrecoPrazoPorOrcamento(req,res){
   const products = orcamento[0].Produto.map(x=>x.Produto);
   let volumes:number[] = [];
   let peso = 1;
+  // C=16 L=11 A=2.
+
   //1ª Etapa – Calcula o cm³ de cada produto do carrinho
   products.forEach(product=>{
-    volumes.push((product.Dimensoes?.Comprimento || 1
-    * product.Dimensoes?.Largura || 1
-    * product.Dimensoes?.Altura || 1) * product.Quantidade);
+    volumes.push((product.Dimensoes?.Comprimento || 16
+    * product.Dimensoes?.Largura || 11
+    * product.Dimensoes?.Altura || 2) * product.Quantidade);
     peso += product.Peso || 1;
   })
   //2ª Etapa – Soma todos os volumes

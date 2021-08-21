@@ -16,6 +16,8 @@ export class Integracoes extends MongoDocument implements entidadeBase {
  marketplace_fee?:number;//Comissão de Mercado cobrada pelo proprietário do aplicativo. Valor por defeito: 0 em moeda local
  binary_mode:boolean;//Quando definido como true, o pagamento só pode ter os status approved ou rejected. Caso contrário, o status in_process é adicionado.
 
+ descontoCompras?:number;
+ valorMinimoDescontoCompras?:number;
  constructor(
   MP_access_token:string,
   ParcelasPadrao:number,

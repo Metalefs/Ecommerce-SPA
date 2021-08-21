@@ -44,7 +44,7 @@ export class CheckoutService {
     })
   }
 
-  Validate(Orcamento){
+  Validate(Orcamento:Orcamento){
     CheckoutService.valid = false;
     CheckoutService.erros = [];
 
@@ -61,6 +61,10 @@ export class CheckoutService {
       if(prd.Produto.Status == StatusProduto.esgotado)
       CheckoutService.erros.push(`${prd.Produto.Nome} está esgotado.`);
     })
+
+    if(!Orcamento.Entrega.dados.precos)
+      CheckoutService.erros.push(`Selecione uma opção de frete.`);
+
 
     CheckoutService.valid = CheckoutService.erros.length == 0;
   }

@@ -2,9 +2,9 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { ErrorHandler } from '../../_handlers/error-handler';
 
 import * as express from 'express';
-import { CupomDescontoService, PedidoService } from '../../services';
+import { CupomDescontoService, IntegracoesService, PedidoService } from '../../services';
 import { UsuarioLogado } from '../../_handlers/Authentication';
-import { CupomDesconto, Orcamento, Pedido } from 'libs/data/src/lib/classes';
+import { CupomDesconto, Integracoes, Orcamento, Pedido } from 'libs/data/src/lib/classes';
 import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
 import { ensureIsLogged } from '../../middleware/ensure-is-logged';
 import { TipoDesconto } from 'libs/data/src/lib/classes/cupom-desconto';
@@ -129,6 +129,9 @@ MercadoPagoController
       const servicoCupomDesconto = new CupomDescontoService();
       const cupom = await servicoCupomDesconto.Filtrar({Codigo:orcamento.CupomDesconto}) as CupomDesconto;
 
+      const integracoesService = new IntegracoesService();
+      const integracoes = await integracoesService.LerUltimo() as Integracoes;
+
       if(cupom){
         switch(cupom.Tipo){
           case(TipoDesconto.Preco):{
@@ -139,6 +142,13 @@ MercadoPagoController
             orcamento.Preco -= (orcamento.Preco * cupom.Valor) /100
             break;
           }
+        }
+      }
+
+
+      if(integracoes.valorMinimoDescontoCompras && integracoes.descontoCompras){
+        if(orcamento.Preco >= integracoes.valorMinimoDescontoCompras){
+          orcamento.Preco -= integracoes.descontoCompras;
         }
       }
 

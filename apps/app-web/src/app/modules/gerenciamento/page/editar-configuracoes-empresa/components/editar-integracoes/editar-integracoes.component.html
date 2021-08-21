@@ -12,6 +12,14 @@
       <th mat-header-cell *matHeaderCellDef> Quantidade de Parcelas Padrão </th>
       <td mat-cell *matCellDef="let element"> {{element?.ParcelasPadrao}} </td>
   </ng-container>
+  <ng-container matColumnDef="descontoCompras">
+      <th mat-header-cell *matHeaderCellDef> Desconto para compras </th>
+      <td mat-cell *matCellDef="let element"> {{element?.descontoCompras}} </td>
+  </ng-container>
+  <ng-container matColumnDef="valorMinimoDescontoCompras">
+    <th mat-header-cell *matHeaderCellDef> Valor para desconto para compras </th>
+    <td mat-cell *matCellDef="let element"> {{element?.valorMinimoDescontoCompras}} </td>
+</ng-container>
   <ng-container matColumnDef="ResumoCartao">
       <th mat-header-cell *matHeaderCellDef> Resumo do cartão </th>
       <td mat-cell *matCellDef="let element"> {{element?.ResumoCartao}} </td>

@@ -92,7 +92,10 @@ export class CheckoutComponent implements OnInit {
     }
   }
   Validate() {
-    this.Orcamento$.subscribe(orc => { this.checkoutService.Validate(orc) });
+    this.Orcamento$.subscribe(orc => {
+       this.checkoutService.Validate(orc);
+       this.FreteSelecionado = orc.Entrega.dados.precos;
+    });
   }
   CalcularFreteProduto(){
     if(this.Orcamento){
@@ -107,6 +110,7 @@ export class CheckoutComponent implements OnInit {
     this.Orcamento.Entrega.dados = {cep:this.CEP, precos:frete};
     this.Orcamento.Entrega.cep = this.CEP;
     this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
+    this.checkoutService.Validate(this.Orcamento);
     this.FreteSelecionado = frete;
   }
   NomeTransportadora(codigo){

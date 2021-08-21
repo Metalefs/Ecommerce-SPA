@@ -64,6 +64,8 @@ export class EditarIntegracoesComponent implements OnInit {
       "MP_access_token",
       "MP_public_key",
       "ParcelasPadrao",
+      "descontoCompras",
+      "valorMinimoDescontoCompras",
       "ResumoCartao",
       "auto_return",
       "collector_id",

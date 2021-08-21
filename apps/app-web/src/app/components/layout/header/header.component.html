@@ -28,10 +28,10 @@
         <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
       </a>
     </div>
-    <div class="column is-6-desktop is-hidden-mobile pr-6"  *ngIf="search">
+    <div class="column is-hidden-mobile"  *ngIf="search">
       <form
         type="get"
-        class="is-6 w-full nav-item mr-5 ml-3 pr-2 has-background-white shadow-light"
+        class="is-6 w-full nav-item has-background-white"
         action="/produtos/?nome={{
           search_filter
         }}?categoria=Todos os produtos"
