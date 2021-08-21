@@ -17,7 +17,7 @@ export class Pedido extends MongoDocument implements entidadeBase{
     Dimensoes?:string;
     ResultadoPagamentoMP:MercadoPagoResultadoPagamentoCheckout;
     HistoricoPagamento?:MercadoPagoPayment[];
-    dados:PrecoPrazoCep;
+    Frete:PrecoPrazoCep;
     static readonly NomeID:string = "Pedido";
     constructor(
      orcamento:Orcamento
@@ -30,6 +30,7 @@ export class Pedido extends MongoDocument implements entidadeBase{
         this.Mensagem = orcamento.Mensagem;
         this.Usuario = orcamento.Usuario;
         this.Dimensoes = orcamento.Dimensoes;
+        this.Frete = orcamento.Entrega.dados;
     }
 
     DataHoraCriacao: Date;

@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CorreiosService } from 'apps/app-web/src/app/data/service/correios/correios.service';
+import { NomeTransportadora } from 'apps/app-web/src/app/helper/FreteHelper';
 import { PrecoPrazoEvent } from 'correios-brasil/dist';
 import { Produto } from 'libs/data/src/lib/classes';
 @Component({
@@ -41,7 +42,7 @@ export class ExibicaoPrecoPrazoCepComponent implements OnInit {
   }
 
   NomeTransportadora(codigo){
-    return codigo == "04014" ? 'SEDEX' : "PAC"
+    return NomeTransportadora(codigo);
   }
 
   close(){

@@ -110,7 +110,13 @@
   </mat-list>
 
   <mat-divider></mat-divider>
+  <p>Escolha de frete</p>
+  <div class="box button is-info" *ngIf="Pedido.Frete">
+    <div class="w3-padding">{{NomeTransportadora(Pedido.Frete.Codigo)}} <b> (Até {{Pedido.Frete.PrazoEntrega}} dia(s)) </b> </div>
+    <div class="w3-padding">R$ {{Pedido.dados.Valor}} </div>
+  </div>
 
+  <mat-divider></mat-divider>
   <div class="py-2">
     <personalizados-lopes-exibicao-perfil [user]="Pedido.Usuario"></personalizados-lopes-exibicao-perfil>
   </div>

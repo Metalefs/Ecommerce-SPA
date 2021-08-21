@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { CorreiosService } from 'apps/app-web/src/app/data/service/correios/correios.service';
 import { PrecoPrazoEvent } from 'correios-brasil/dist';
 import { OrcamentoService } from 'apps/app-web/src/app/data/service';
+import { NomeTransportadora } from 'apps/app-web/src/app/helper/FreteHelper';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -114,7 +115,7 @@ export class CheckoutComponent implements OnInit {
     this.FreteSelecionado = frete;
   }
   NomeTransportadora(codigo){
-    return codigo == "04014" ? 'SEDEX' : "PAC"
+    return NomeTransportadora(codigo);
   }
   FinalizarCompra(){
     this.Orcamento$.subscribe(orc => {

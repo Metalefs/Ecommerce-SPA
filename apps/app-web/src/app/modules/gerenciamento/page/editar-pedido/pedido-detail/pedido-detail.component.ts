@@ -6,6 +6,8 @@ import { Pedido } from 'libs/data/src/lib/classes';
 import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MercadoPagoCheckoutService } from 'apps/app-web/src/app/shared/services';
 import { PedidoService } from 'apps/app-web/src/app/data/service';
+import { NomeTransportadora} from 'apps/app-web/src/app/helper/FreteHelper';
+
 @Component({
   selector: 'personalizados-lopes-pedido-detail',
   templateUrl: './pedido-detail.component.html',
@@ -59,5 +61,9 @@ export class PedidoDetailComponent implements OnInit {
         this.snack.open("Pedido removido","Fechar");
       });
     }
+  }
+
+  NomeTransportadora(codigo){
+    return NomeTransportadora(codigo);
   }
 }

@@ -145,7 +145,6 @@ MercadoPagoController
         }
       }
 
-
       if(integracoes.valorMinimoDescontoCompras && integracoes.descontoCompras){
         if(orcamento.Preco >= integracoes.valorMinimoDescontoCompras){
           orcamento.Preco -= integracoes.descontoCompras;
