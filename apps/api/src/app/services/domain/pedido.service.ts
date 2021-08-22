@@ -1,9 +1,11 @@
 import { entities } from '@personalizados-lopes/data';
 import { InformacoesContato, Pedido, Sobre, Usuario } from 'libs/data/src/lib/classes';
-import { InformacoesContatoService, MensagemService, SobreService } from '..';
 import { Repository } from '../../repositories/repository';
 import { BaseService } from '../baseService';
 import { EmailService } from '../external/email.service';
+import { InformacoesContatoService } from './informacoescontato.service';
+import { MensagemService } from './mensagem.service';
+import { SobreService } from './sobre.service';
 
 export class PedidoService extends BaseService {
 
@@ -30,6 +32,7 @@ export class PedidoService extends BaseService {
   }
   async EnviarCodigoRastreamento(usuario:Usuario, idPedido:string, codRastreamento:string){
     let pedido = this.FiltrarPorId(idPedido)[0] as Pedido;
+    console.log(pedido);
     pedido.CodRastreamento = codRastreamento;
     return this.Alterar(usuario,pedido).then(async x => {
       let ServicoMensagens = new MensagemService();

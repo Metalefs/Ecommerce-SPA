@@ -46,6 +46,7 @@ async function FiltrarPorId(req, res){
 }
 async function EnviarCodigoRastreamento(req,res){
  const codRequest = req.body as EnviarCodRastreamentoRequest;
+ console.log(codRequest);
  PedidoService.EnviarCodigoRastreamento(res.locals.user, codRequest.idPedido, codRequest.codRastreamento)
   .then(result => res.send(result))
   .catch(err => ErrorHandler.DefaultException(err, res))

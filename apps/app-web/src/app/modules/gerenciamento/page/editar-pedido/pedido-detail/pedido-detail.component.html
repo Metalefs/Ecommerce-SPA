@@ -34,6 +34,18 @@
   </h4>
 
   <mat-divider></mat-divider>
+  <form [formGroup]="codRastreamentoForm">
+    <mat-form-field class="w-full" appearance="fill">
+      <mat-label>Adicionar Código Rastreamento</mat-label>
+      <input matInput formControlName="codigo"
+        placeholder="Ex: AA123456789BR;AA987654321BR;AA100833276BR.">
+      <mat-error *ngIf="codRastreamentoForm.get('codigo').hasError('required')">
+        É necessário inserir um <strong>código</strong>
+      </mat-error>
+    </mat-form-field>
+    <button mat-flat-button type="button" [disabled]="codRastreamentoForm.invalid" (click)="EnviarCodigoRastreamento()">Adicionar</button>
+  </form>
+  <mat-divider></mat-divider>
 
   <div class="py-2">
     <h1>Itens do pedido:</h1>

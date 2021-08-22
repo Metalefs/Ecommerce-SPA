@@ -7,6 +7,7 @@ import { StatusOrcamento } from 'libs/data/src/lib/enums';
 import { MercadoPagoCheckoutService } from 'apps/app-web/src/app/shared/services';
 import { PedidoService } from 'apps/app-web/src/app/data/service';
 import { NomeTransportadora} from 'apps/app-web/src/app/helper/FreteHelper';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'personalizados-lopes-pedido-detail',
@@ -14,10 +15,12 @@ import { NomeTransportadora} from 'apps/app-web/src/app/helper/FreteHelper';
   styleUrls: ['./pedido-detail.component.scss']
 })
 export class PedidoDetailComponent implements OnInit {
+  codRastreamentoForm:FormGroup;
   constructor(
     private pedidoService: PedidoService,
     private snack:MatSnackBar,
     private activeRoute: ActivatedRoute,
+    private fb:FormBuilder,
     private ServicoMercadoPago: MercadoPagoCheckoutService) { }
 
   Pedido:Pedido;
@@ -25,6 +28,9 @@ export class PedidoDetailComponent implements OnInit {
     let id = this.activeRoute.snapshot.params['id'];
     this.pedidoService.Filtrar(id).subscribe((x :Pedido[])=>{
       this.Pedido = x[0];
+      this.codRastreamentoForm = this.fb.group({
+        codigo:[this.Pedido.CodRastreamento || "", Validators.required]
+      })
     })
   }
 
@@ -61,6 +67,20 @@ export class PedidoDetailComponent implements OnInit {
         this.snack.open("Pedido removido","Fechar");
       });
     }
+  }
+
+  EnviarCodigoRastreamento(){
+    const COD = this.codRastreamentoForm.get("codigo").value;
+    this.pedidoService.EnviarCodigoRastreamento(this.Pedido._id, COD).subscribe(x=>{
+      this.CarregarPedido();
+    })
+  }
+
+  CarregarPedido(){
+    let id = this.activeRoute.snapshot.params['id'];
+    this.pedidoService.Filtrar(id).subscribe((x :Pedido[])=>{
+      this.Pedido = x[0];
+    })
   }
 
   NomeTransportadora(codigo){
