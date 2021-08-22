@@ -8,6 +8,7 @@ import { RouteDictionary } from 'libs/data/src/lib/routes/api-routes';
 import { ErrorHandler } from '../../core/error.handler';
 import { BaseService } from './base/base.service';
 import { Pedido } from 'libs/data/src/lib/classes';
+import { EnviarCodRastreamentoRequest } from 'libs/data/src/lib/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,16 @@ export class PedidoService extends BaseService<Pedido> {
 
   FiltrarPedidosPorUsuario(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(environment.endpoint + RouteDictionary.Pedidos.PorUsuario).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.ErrorHandler.handleError) // then handle the error
+    );
+  }
+  EnviarCodigoRastreamento(idPedido:string, codRastreamento:string): Observable<Pedido[]> {
+    const payload: EnviarCodRastreamentoRequest = {
+      idPedido,
+      codRastreamento
+    }
+    return this.http.put<Pedido[]>(environment.endpoint + RouteDictionary.Pedidos.Raiz + RouteDictionary.Pedidos.CodigoRastreamento, payload).pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.ErrorHandler.handleError) // then handle the error
     );

@@ -33,6 +33,7 @@ export let RouteDictionary = {
   Pedidos: {
     Raiz:"/pedido/",
     PorUsuario:"/pedido-usuario/",
+    CodigoRastreamento:"codigo-rastreamento/",
   },
 
   Orcamento: {

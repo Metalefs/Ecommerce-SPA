@@ -1,4 +1,5 @@
 import {TrocaSenha} from './trocaSenha';
+import {EnviarCodRastreamentoRequest} from './enviarCodRastreamentoRequest';
 import {FiltrarProdutoSearchQuery} from './filtrarProdutoQuery';
 import {PrecoPrazoCep} from './preco-prazo-cep';
 import {TiposOrdenacao} from './tipos-ordenacao';
@@ -17,6 +18,7 @@ import {MercadoPagoSearchPaymentResult} from './mercadoPagoSearchPaymentResult';
 import {MercadoPagoResultadoPagamentoCheckout} from './mercadoPagoResultadoPagamentoCheckout';
 export {
   TrocaSenha,
+  EnviarCodRastreamentoRequest,
   FiltrarProdutoSearchQuery,
   PrecoPrazoCep,
   PaginationResponse,

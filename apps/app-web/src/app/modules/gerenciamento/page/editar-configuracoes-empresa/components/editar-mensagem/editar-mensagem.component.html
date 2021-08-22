@@ -57,6 +57,13 @@
         </td>
       </ng-container>
 
+      <ng-container matColumnDef="EmailCadastroCodRastreamentoPedido">
+        <th mat-header-cell *matHeaderCellDef>Email Cadastro Código Rastreamento Pedido</th>
+        <td mat-cell *matCellDef="let element">
+          <div [innerHTML]="element?.EmailCadastroCodRastreamentoPedido"></div>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="Acoes">
         <th mat-header-cell *matHeaderCellDef>Ações</th>
         <td mat-cell *matCellDef="let element">

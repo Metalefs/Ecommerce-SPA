@@ -6,6 +6,8 @@ import BaseController from '../base.controller';
 import { ensureIsAdmin } from '../../middleware/ensure-is-admin';
 import { ErrorHandler } from '../../_handlers/error-handler';
 import { UsuarioLogado } from '../../_handlers/Authentication';
+import { EnviarCodRastreamentoRequest } from 'libs/data/src/lib/interfaces';
+import { Pedido } from 'libs/data/src/lib/classes';
 const PedidoRouter = express()
 
 let PedidoService: Services.PedidoService = new Services.PedidoService();
@@ -31,6 +33,7 @@ PedidoRouter.get(RouteDictionary.Pedidos.Raiz,PedidoCtrl.Ler)
 })
 .get(RouteDictionary.Pedidos.Raiz + ":id", FiltrarPorId)
 .put(RouteDictionary.Pedidos.Raiz, ensureIsAdmin, PedidoCtrl.Editar)
+.put(RouteDictionary.Pedidos.Raiz + RouteDictionary.Pedidos.CodigoRastreamento, ensureIsAdmin, EnviarCodigoRastreamento)
 .post(RouteDictionary.Pedidos.Raiz, ensureIsAdmin, PedidoCtrl.Incluir)
 .delete(RouteDictionary.Pedidos.Raiz + `:id`, ensureIsAdmin, PedidoCtrl.Remover);
 async function FiltrarPorId(req, res){
@@ -40,6 +43,12 @@ async function FiltrarPorId(req, res){
       .catch(err => ErrorHandler.DefaultException(err, res))
   else
     ErrorHandler.DefaultException("unknown", res);
+}
+async function EnviarCodigoRastreamento(req,res){
+ const codRequest = req.body as EnviarCodRastreamentoRequest;
+ PedidoService.EnviarCodigoRastreamento(res.locals.user, codRequest.idPedido, codRequest.codRastreamento)
+  .then(result => res.send(result))
+  .catch(err => ErrorHandler.DefaultException(err, res))
 }
 export {
   PedidoRouter

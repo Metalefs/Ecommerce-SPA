@@ -1,5 +1,5 @@
 import { entities } from '@personalizados-lopes/data';
-import { Mensagem, Produto } from 'libs/data/src/lib/classes';
+import { Mensagem, Pedido, Produto } from 'libs/data/src/lib/classes';
 
 import { Repository } from '../../repositories/repository';
 import { BaseService } from '../baseService';
@@ -44,9 +44,45 @@ export class MensagemService extends BaseService {
     return Mensagem;
   }
   SubstituirChavesReestoqueProduto(Mensagem:string, produto:Produto, link:string){
-    let fotoProduto=`<figure><img src="${produto.Imagem[0] || ''} width="500" height="500"/></figure>`
-    Mensagem = Mensagem.replace("{{PRODUTO}}", `<div> <h1>${produto.Nome}</h1> ${fotoProduto} </div>`);
+    Mensagem = Mensagem.replace("{{PRODUTO}}", `<div> <h1>${produto.Nome}</h1> ${this.obterFotoProdutoHTML(produto)} </div>`);
     Mensagem = Mensagem.replace("{{LINKPRODUTO}}", '<a href="'+link+'">Página do produto</a>');
     return Mensagem;
+  }
+  SubstituirEmailCadastroCodRastreamentoPedido(Mensagem:string, pedido:Pedido, codRastreamento:string){
+    Mensagem = Mensagem.replace("{{USUARIO}}", `<div> <h1>${pedido.Usuario.Nome}</h1> </div>`);
+    Mensagem = Mensagem.replace("{{PEDIDO}}", `<div>  <h1>Pedido</h1> ${this.tabelaProdutosPedido(pedido)} </div>`);
+    Mensagem = Mensagem.replace("{{CODIGORASTREAMENTO}}", `<a href="https://www2.correios.com.br/sistemas/rastreamento/?objetos=${codRastreamento}">Abrir no site dos correios > ${codRastreamento}</a> <hr> Caso o botão não funcione, copie e cole o link a seguir no navegador: https://www2.correios.com.br/sistemas/rastreamento/?objetos=${codRastreamento}`);
+    return Mensagem;
+  }
+  private obterFotoProdutoHTML(produto:Produto){
+    return  `<figure><img src="${produto.Imagem[0] || ''} width="500" height="500"/></figure>`
+  }
+  private tabelaProdutosPedido(pedido:Pedido){
+    let LinhasProdutos = "";
+    for(let i = 0; i < pedido.Produto.length; i++){
+      LinhasProdutos+= `
+        <tr>
+          <td>
+            ${this.obterFotoProdutoHTML(pedido.Produto[i].Produto)} <p>${pedido.Produto[i].Produto.Nome}</p>
+          </td>
+          <td>
+            <p>${pedido.Produto[i].Produto.Preco}</p>
+          </td>
+        </tr>
+      `;
+    }
+    let Table = `
+    <table>
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Preço</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${LinhasProdutos}
+      </tbody>
+    </table>
+    `;
   }
 }

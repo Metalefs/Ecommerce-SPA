@@ -9,6 +9,7 @@ export class MensagemEmail extends MongoDocument implements entidadeBase{
   EmailProdutoReestocado:string;
   EmailRecuperacaoSenha:string;
   EmailRecebimentoFeedback:string;
+  EmailCadastroCodRastreamentoPedido:string;
   static readonly NomeID:string = "Mensagem";
   constructor(
   Whatsapp:string,
@@ -18,6 +19,7 @@ export class MensagemEmail extends MongoDocument implements entidadeBase{
   EmailProdutoReestocado?:string,
   EmailRecuperacaoSenha?:string,
   EmailRecebimentoFeedback?:string,
+  EmailCadastroCodRastreamentoPedido?:string,
   ){
     super();
     this.Whatsapp = Whatsapp;
@@ -27,6 +29,7 @@ export class MensagemEmail extends MongoDocument implements entidadeBase{
     this.EmailProdutoReestocado = EmailProdutoReestocado;
     this.EmailRecuperacaoSenha = EmailRecuperacaoSenha;
     this.EmailRecebimentoFeedback = EmailRecebimentoFeedback;
+    this.EmailCadastroCodRastreamentoPedido = EmailCadastroCodRastreamentoPedido;
   }
   DataHoraCriacao: Date;
   DataHoraAlteracao: Date;
