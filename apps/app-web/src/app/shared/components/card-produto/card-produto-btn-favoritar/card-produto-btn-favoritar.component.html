@@ -4,7 +4,8 @@
   pageScroll
   href='#topo'
   class='button circle'
+  [ngClass]="Favorito ? 'has-background-danger is-danger has-text-white': ''"
   (click)="AdicionarFavorito()"
 >
-  <i class='mr-1 pi' [ngClass]="Favorito ? 'pi-heart  is-danger': 'pi-heart'"></i>
+  <i class=' pi pi-heart'></i>
 </a>

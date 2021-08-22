@@ -1,7 +1,7 @@
 <div class="container-app columns is-gapless is-multiline py-4 w-full mx-0">
   <div
     data-aos="zoom-in"
-    class="column is-9 section border-light"
+    class="column is-9 is-12-mobile section border-light"
   >
     <figure data-aos="zoom-in">
       <img [src]="(Produto?.Imagem)[0]" class="prod-img" />
@@ -15,8 +15,8 @@
         class="controls txt-center shadow-light pos-relative z-index-top"
       >
         <a id="add" class="button" (click)="addText()"><p>Inserir texto</p></a>
-        <a class="button" (click)="addStockImg()"><p>Inserir um Design</p></a>
         <a class="button" (click)="importFile()"><p>Importar uma foto</p></a>
+        <a class="button" (click)="addStockImg()"><p>Inserir um Design</p></a>
       </div>
       <div class="item-selected box w-full">
         <p>Escolher Fontes e Cores</p>

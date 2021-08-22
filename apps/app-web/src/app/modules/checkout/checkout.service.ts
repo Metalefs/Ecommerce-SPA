@@ -62,7 +62,7 @@ export class CheckoutService {
       CheckoutService.erros.push(`${prd.Produto.Nome} está esgotado.`);
     })
 
-    if(!Orcamento.Entrega.dados.precos)
+    if(!Orcamento.Entrega?.dados?.precos?.Valor)
       CheckoutService.erros.push(`Selecione uma opção de frete.`);
 
 

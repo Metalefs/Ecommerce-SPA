@@ -64,7 +64,7 @@ a{
   }
 }
 .footer-color{
-  background: var(--darkgrey-dark2);
+  background: $footerbg;
 }
 .txt-justify.footer-text.has-text-white p{
   color: $footercolor
@@ -156,8 +156,6 @@ h4{
   .newsletter {
     position: relative;
     width: 100%;
-  }
-  .newsletter {
     form{
       position: relative;
       width: 100%;

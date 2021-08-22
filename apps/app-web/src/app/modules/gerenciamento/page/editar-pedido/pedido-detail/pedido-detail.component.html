@@ -11,10 +11,10 @@
 
 <div class="section">
   <mat-chip-list
-   [ngClass]="Pedido.Status == 0 ? 'Aberto' : 'Respondido'"
+   [ngClass]="Pedido?.Status == 0 ? 'Aberto' : 'Respondido'"
    >
    <mat-chip>
-    {{Pedido.Status == 0 ? 'Aberto' : 'Respondido'}}
+    {{Pedido?.Status == 0 ? 'Aberto' : 'Respondido'}}
    </mat-chip>
   </mat-chip-list>
 
@@ -61,9 +61,6 @@
           </td>
           <td>
             <div class="column is-10-desktop is-12-mobile box">
-              <figure>
-                <img [src]="produto.Produto.Imagem[0]"  class="prod-img">
-              </figure>
               <personalizados-lopes-exibicao-canvas-design-produto
                 [Produto]="produto.Produto"
               ></personalizados-lopes-exibicao-canvas-design-produto>
@@ -111,9 +108,10 @@
 
   <mat-divider></mat-divider>
   <p>Escolha de frete</p>
-  <div class="box button is-info" *ngIf="Pedido.Frete">
+  <div class="box button is-info of-y-scroll" *ngIf="Pedido.Frete">
     <div class="w3-padding">{{NomeTransportadora(Pedido.Frete.Codigo)}} <b> (Até {{Pedido.Frete.PrazoEntrega}} dia(s)) </b> </div>
-    <div class="w3-padding">R$ {{Pedido.dados.Valor}} </div>
+    <hr>
+    <div class="w3-padding">R$ {{Pedido.Frete.Valor}} </div>
   </div>
 
   <mat-divider></mat-divider>
@@ -133,7 +131,7 @@
   </mat-card>
 
   <a mat-flat-button class="border my-4" (click)="Responder(Pedido)" color="primary">
-    {{Pedido.Status == 1 ? 'Marcar como Aberto' : 'Marcar como Respondido'}}
+    {{Pedido?.Status == 1 ? 'Marcar como Aberto' : 'Marcar como Respondido'}}
   </a>
 
   <div class="content">

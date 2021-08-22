@@ -32,7 +32,7 @@ export class HeaderFooterComponent implements OnInit {
           link:"/produtos",
           id:"#topo",
           content:`Para personalizar.`,
-          //img_src:x.filter(x=>x.Nome == "GIF Produtos")[0].Src
+          //img_src:img.filter(x=>x.Nome == "GIF Produtos")[0].Src
         },
       ] : this.specify == 'orc' ?
       [
@@ -47,7 +47,17 @@ export class HeaderFooterComponent implements OnInit {
         },
       ] :
       [
-
+        {
+          title:"Todos os produtos",
+          icon:"photo_library",
+          color:"#FF4A4A",
+          class:"red",
+          link:"/produtos",
+          id:"#topo",
+          content:`Veja todos os produtos da loja por categoria.`,
+          column_class:"",
+          //img_src:img[0].Src
+        },
         {
           title:"Galeria de fotos",
           icon:"image",
@@ -57,17 +67,6 @@ export class HeaderFooterComponent implements OnInit {
           id:"#topo",
           content:`Veja as fotos dos ultimos produtos no instagram`,
           column_class:""
-        },
-        {
-          title:"Todos os produtos",
-          icon:"photo_library",
-          color:"#FF4A4A",
-          class:"red",
-          link:"/produtos",
-          id:"#topo",
-          content:`Veja todos os produtos da loja por categoria.`,
-          column_class:""
-          //img_src:img[0].Src
         },
         {
           title:"Orçamento e contato",

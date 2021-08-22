@@ -71,6 +71,10 @@ export class CheckoutComponent implements OnInit {
     this.Orcamento$.subscribe(orc => {
       this.Orcamento = orc;
       this.CEP = this.Orcamento.Entrega.cep
+      this.CalcularFreteProduto();
+
+      if(orc.Entrega?.dados?.precos)
+      this.SelecionarFrete(orc.Entrega.dados.precos);
     });
     this.emailForm = this.fb.group({
       email:  [{value:this.auth.currentUserValue?.Email,disabled:!!this.auth.currentUserValue}, Validators.required]
@@ -78,7 +82,6 @@ export class CheckoutComponent implements OnInit {
     this.emailForm.statusChanges.subscribe(x=>{
       this.email = this.emailForm.get("email").value;
     })
-    this.CalcularFreteProduto();
     this.cepForm = this.fb.group({
       cep:[this.CEP||'']
     })
@@ -95,7 +98,6 @@ export class CheckoutComponent implements OnInit {
   Validate() {
     this.Orcamento$.subscribe(orc => {
        this.checkoutService.Validate(orc);
-       this.FreteSelecionado = orc.Entrega.dados.precos;
     });
   }
   CalcularFreteProduto(){
@@ -113,6 +115,7 @@ export class CheckoutComponent implements OnInit {
     this.Orcamento.Entrega.cep = this.CEP;
     this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
     this.checkoutService.Validate(this.Orcamento);
+    this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
     this.FreteSelecionado = frete;
   }
   NomeTransportadora(codigo){
@@ -125,9 +128,9 @@ export class CheckoutComponent implements OnInit {
         this.confirmar = true;
       }
       else{
-        this.snack.open("Não foi possível completar a validação do seu pedido. Por favor, verifique os dados e tente novamente","Fechar").afterDismissed().subscribe(()=>{
+        this.snack.open("Não foi possível completar a validação do seu pedido. Por favor, verifique os dados e tente novamente","Fechar",{verticalPosition:"top"}).afterDismissed().subscribe(()=>{
           let errors = this.checkoutService.getErros().join(", ");
-          this.snack.open(`Verifique os erros: ${errors}`,"Ok")
+          this.snack.open(`Verifique os erros: ${errors}`,"Ok",{verticalPosition:"top"})
         })
       }
     });
