@@ -5,7 +5,7 @@
   height: 30px;
 }
 
-.social {
+.how-social {
   position: relative;
   width: 100%;
   display: flex;
@@ -44,10 +44,12 @@
   color: #999999;
   font-size: 15px;
   transition: all 0.5s ease-in;
-  // box-shadow: 2px 0px 0px #3636360a, 1px 0px 1px #4a4a4a63;
+  box-shadow: 2px 0px 0px #3636360a, 1px 0px 1px #4a4a4a63;
   background-color: #fff;
   border-radius: 5%;
-
+  &:hover{
+    transform: scale(110%);
+  }
   &.facebook{ a:hover {
     background-color: #4267b2;
     color: #fff;
@@ -56,6 +58,8 @@
 
   &.instagram {
     background: none;
+    color:white;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     a:hover {
       background: linear-gradient(to top, #b224ef, #7579ff);
       color: #fff;

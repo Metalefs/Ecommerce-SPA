@@ -6,7 +6,7 @@
   <p>
     <mat-toolbar color="" class="pri-toolbar">
       <mat-toolbar-row class="pt-3">
-        <h2 class="subtitle mb-0 pt-0">Estimativa para o CEP {{CEP}}</h2>
+        <h2 class="subtitle mb-0 pt-0">Estimativa para o CEP {{CEP| mask: '00000-000'}}</h2>
         <span class="spacer"></span>
         <button mat-icon-button
         aria-label="fechar carrinho"
@@ -40,8 +40,8 @@
             <form [formGroup]='cepForm'>
               <mat-form-field class="w-full" appearance="fill">
                 <mat-label>Calcule frete e prazo</mat-label>
-                <input matInput (change)="AtualizarOrcamento()" [formControlName]="'cep'" [(ngModel)]="CEP"
-                       placeholder="seu CEP" type="number" [mask]="'00000-000'">
+                <input matInput [formControlName]="'cep'" [(ngModel)]="CEP"
+                       placeholder="seu CEP" type="" [mask]="'00000-000'">
                 <mat-error *ngIf="cepForm.get('cep').hasError('required')">
                   É necessário inserir um <strong>CEP</strong>
                 </mat-error>
