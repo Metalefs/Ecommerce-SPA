@@ -108,7 +108,7 @@ export class MercadoPagoClient {
   async checkout(preference) {
     return mercadopago.preferences.create(preference).then(response => {
       // Este es el checkout generado o link al que nos vamos a posicionar para pagar
-      console.log(response.body);
+      // console.log(response.body);
       const init_point = response.body.init_point
       const id = response.body.id;
       return { result: init_point, id };
@@ -158,6 +158,7 @@ export class MercadoPagoClient {
       binary_mode: MP_AT.binary_mode,
       external_reference: reference,
       notification_url: "https://personalizadoslopes-api.herokuapp.com/hook",
+      coupon_amount:cupom?.Valor,
     };
   }
 
@@ -180,16 +181,22 @@ export class MercadoPagoClient {
     const valorCupom = parseFloat(cupom?.Valor.toString() || "0");
     orcamento.Produto.forEach(produto => {
       if(cupom){
+        let precoProduto = produto.Produto.Preco;
+        let quantidadeItemsOrcamento = orcamento.Produto.length;
+        let distribuicaoDesconto = valorCupom / quantidadeItemsOrcamento;
+        let porcentagemDesconto = (precoProduto * distribuicaoDesconto) / 100;
         switch(+cupom.Tipo){
           case(TipoDesconto.Preco):{
-            produto.Produto.Preco -= (valorCupom / orcamento.Produto.length);
+            produto.Produto.Preco -= valorCupom / quantidadeItemsOrcamento;
             produto.Produto.Nome += ` (${(valorCupom)} reais off com cupom ${cupom.Codigo})`;
             break;
           }
           case(TipoDesconto.Porcentagem):{
-            produto.Produto.Preco -= ((produto.Produto.Preco * (valorCupom / orcamento.Produto.length)) /100);
+            console.log('preco produto', produto.Produto.Preco)
+            console.log('desconto', porcentagemDesconto)
+            produto.Produto.Preco -= porcentagemDesconto;
+            console.log('preco com desconto', produto.Produto.Preco)
             produto.Produto.Nome += ` (${(valorCupom)}% off com cupom ${cupom.Codigo})`;
-            console.log('porcentagem desconto',(produto.Produto.Preco * cupom.Valor) /100)
             break;
           }
         }

@@ -248,13 +248,13 @@ export class OrcamentoState {
 
   atualizarPreco(state: OrcamentoStateModel) {
     state.Orcamento.Preco = 0;
+    state.Orcamento.Preco += parseFloat(state.Orcamento?.Entrega?.dados?.precos?.Valor.toString().replace(',','.') || "0");
     state.Orcamento.Produto.forEach(prod => {
       if (!isNaN(prod.Produto.Preco))
         state.Orcamento.Preco +=
           prod.Produto.Status == StatusProduto.promocao ? prod.Produto.PrecoPromocional : prod.Produto.Preco
             * prod.Produto.Quantidade;
     })
-    state.Orcamento.Preco += parseFloat(state.Orcamento?.Entrega?.dados?.precos?.Valor || "0");
   }
 
   atualizarDimensoes(state: OrcamentoStateModel) {

@@ -29,6 +29,7 @@ export interface MercadoPagoCheckout {
   taxes?:object[];//Definição de impostos diferenciados. Disponível apenas para o Mercado Livre Colombia.
   tracks?:object[];//Tracks que serão executados durante a interação do usuário no fluxo de Pagamento.
   total_amount?:number;
+  coupon_amount?:number;
 }
 export interface mp_checkout_back_urls{
   success:string,

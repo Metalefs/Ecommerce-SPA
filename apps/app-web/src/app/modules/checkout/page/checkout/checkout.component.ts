@@ -16,6 +16,7 @@ import { CorreiosService } from 'apps/app-web/src/app/data/service/correios/corr
 import { PrecoPrazoEvent } from 'correios-brasil/dist';
 import { OrcamentoService } from 'apps/app-web/src/app/data/service';
 import { NomeTransportadora } from 'apps/app-web/src/app/helper/FreteHelper';
+import { PrecoPrazoCep } from 'libs/data/src/lib/interfaces';
 
 @Component({
   selector: 'personalizados-lopes-checkout',
@@ -47,7 +48,13 @@ export class CheckoutComponent implements OnInit {
   Fretes:PrecoPrazoEvent[];
   CEP:string;
   cepForm:FormGroup;
-  FreteSelecionado:PrecoPrazoEvent;
+  private _FreteSelecionado: PrecoPrazoEvent;
+  public get FreteSelecionado(): PrecoPrazoEvent {
+    return CheckoutService.Frete;
+  }
+  public set FreteSelecionado(value: PrecoPrazoEvent) {
+    CheckoutService.Frete = value;
+  }
 
   public get dadosForm(): FormGroup {
     return this.checkoutService.dadosForm;
@@ -73,8 +80,8 @@ export class CheckoutComponent implements OnInit {
       this.CEP = this.Orcamento.Entrega.cep
       this.CalcularFreteProduto();
 
-      if(orc.Entrega?.dados?.precos)
-      this.SelecionarFrete(orc.Entrega.dados.precos);
+      this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
+
     });
     this.emailForm = this.fb.group({
       email:  [{value:this.auth.currentUserValue?.Email,disabled:!!this.auth.currentUserValue}, Validators.required]
@@ -102,21 +109,24 @@ export class CheckoutComponent implements OnInit {
   }
   CalcularFreteProduto(){
     if(this.Orcamento){
-      if(this.Orcamento.Entrega.cep)
-      this.orcamentoService.Incluir(this.Orcamento).subscribe((x:Orcamento) => {
-        this.servicoCorreios.CalcularPrecoPrazoPorOrcamento(x._id).subscribe(fretes=>{
-          this.Fretes = fretes;
-        });
-      })
+      if(this.Orcamento.Entrega.cep){
+        this.orcamentoService.Incluir(this.Orcamento).subscribe((x:Orcamento) => {
+          this.servicoCorreios.CalcularPrecoPrazoPorOrcamento(x._id).subscribe(fretes=>{
+            this.Fretes = fretes;
+          });
+        })
+      }
     }
   }
-  SelecionarFrete(frete){
-    this.Orcamento.Entrega.dados = {cep:this.CEP, precos:frete};
-    this.Orcamento.Entrega.cep = this.CEP;
-    this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
-    this.checkoutService.Validate(this.Orcamento);
-    this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
-    this.FreteSelecionado = frete;
+  SelecionarFrete(frete:PrecoPrazoEvent){
+    if(frete.Valor != "0"){
+
+      this.Orcamento.Entrega.dados = {cep:this.CEP, precos:frete};
+      this.Orcamento.Entrega.cep = this.CEP;
+      this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);
+      CheckoutService.Frete = frete;
+      this.checkoutService.Validate(this.Orcamento);
+    }
   }
   NomeTransportadora(codigo){
     return NomeTransportadora(codigo);

@@ -154,10 +154,6 @@ MercadoPagoController
         }
       }
 
-      if(orcamento.Entrega?.dados?.precos?.Erro == "0"){
-        orcamento.Preco += parseFloat(orcamento.Entrega?.dados?.precos.Valor);
-      }
-
       const pedido = new Pedido(orcamento);
       const ref = await new PedidoService().InserirSemUsuario(pedido) as Pedido;
 

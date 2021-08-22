@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { PrecoPrazoEvent } from 'correios-brasil/dist';
 import { Orcamento } from 'libs/data/src/lib/classes';
 import { CodProduto } from 'libs/data/src/lib/classes/orcamento';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
+import { PrecoPrazoCep } from 'libs/data/src/lib/interfaces';
 import { EditarOrcamentoLocal } from '../../data/store/actions/orcamento.actions';
 import { MercadoPagoCheckoutService } from '../../shared/services/checkout/MercadoPagoService';
 
@@ -16,6 +18,7 @@ export class CheckoutService {
   public static PagamentoCompleto:boolean;
   public static valid:boolean;
   public static erros:string[] = [];
+  public static Frete:PrecoPrazoEvent;
   constructor(private MercadoPago:MercadoPagoCheckoutService,
     private fb: FormBuilder, private store:Store) { }
   dadosForm:FormGroup;
@@ -62,7 +65,7 @@ export class CheckoutService {
       CheckoutService.erros.push(`${prd.Produto.Nome} está esgotado.`);
     })
 
-    if(!Orcamento.Entrega?.dados?.precos?.Valor)
+    if(!Orcamento.Entrega?.dados?.precos?.Valor || CheckoutService.Frete?.Valor == "0" || !CheckoutService.Frete)
       CheckoutService.erros.push(`Selecione uma opção de frete.`);
 
 
