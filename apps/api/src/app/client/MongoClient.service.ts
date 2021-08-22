@@ -150,13 +150,11 @@ export class MongoClientService {
       const { _id, DataHoraCriacao, ...queryWithoutIdAndCreationDate } = query;
 
       let self = this;
-      console.log(query);
       return new Promise((resolve, reject) :any => {
         Connection.db().then((db:any)=>db.collection(collection).updateOne({ "_id": new ObjectId(id) }, { $set: queryWithoutIdAndCreationDate }, async function (err: any, result: any) {
           if (err) {
             reject(err);
           }
-          console.log("Editado", result.nModified)
           resolve(await self.FindOne(collection, { "_id": new ObjectId(id) }).catch(x => reject(x)));
         }));
       });

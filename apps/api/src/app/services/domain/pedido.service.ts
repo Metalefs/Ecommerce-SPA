@@ -31,10 +31,9 @@ export class PedidoService extends BaseService {
     });
   }
   async EnviarCodigoRastreamento(usuario:Usuario, idPedido:string, codRastreamento:string){
-    let pedido = this.FiltrarPorId(idPedido)[0] as Pedido;
-    console.log(pedido);
-    pedido.CodRastreamento = codRastreamento;
-    return this.Alterar(usuario,pedido).then(async x => {
+    let pedido = await this.FiltrarPorId(idPedido) as Pedido;
+    pedido[0].CodRastreamento = codRastreamento;
+    return this.Alterar(usuario,pedido[0]).then(async (x:Pedido) => {
       let ServicoMensagens = new MensagemService();
       let ServicoInfoContato = new InformacoesContatoService();
       let ServicoSobre = new SobreService();
@@ -42,12 +41,12 @@ export class PedidoService extends BaseService {
       const InfoContato = await ServicoInfoContato.LerPrimeiro() as InformacoesContato;
       const Sobre = await ServicoSobre.LerPrimeiro() as Sobre;
       const msg = await ServicoMensagens.Ler();
+      let mensagem = ServicoMensagens.SubstituirEmailCadastroCodRastreamentoPedido(msg[0].EmailCadastroCodRastreamentoPedido, x, codRastreamento);
 
-      let mensagem = ServicoMensagens.SubstituirEmailCadastroCodRastreamentoPedido(msg[0].EmailCadastroCodRastreamentoPedido, pedido, codRastreamento);
       await emailService.SendHtmlMessage(
         {
-          to: pedido.Usuario.Email,
-          toName:pedido.Usuario.Nome,
+          to: x.Usuario.Email,
+          toName:x.Usuario.Nome,
           from:InfoContato.Email,
           fromName:Sobre.Nome,
           subject:`Pedido no ${Sobre.Nome}`,

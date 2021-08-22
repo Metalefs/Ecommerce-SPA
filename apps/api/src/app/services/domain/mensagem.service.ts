@@ -49,24 +49,24 @@ export class MensagemService extends BaseService {
     return Mensagem;
   }
   SubstituirEmailCadastroCodRastreamentoPedido(Mensagem:string, pedido:Pedido, codRastreamento:string){
-    Mensagem = Mensagem.replace("{{USUARIO}}", `<div> <h1>${pedido.Usuario.Nome}</h1> </div>`);
+    Mensagem = Mensagem.replace("{{USUARIO}}", `<div> <h1>${pedido?.Usuario?.Nome}</h1> </div>`);
     Mensagem = Mensagem.replace("{{PEDIDO}}", `<div>  <h1>Pedido</h1> ${this.tabelaProdutosPedido(pedido)} </div>`);
     Mensagem = Mensagem.replace("{{CODIGORASTREAMENTO}}", `<a href="https://www2.correios.com.br/sistemas/rastreamento/?objetos=${codRastreamento}">Abrir no site dos correios > ${codRastreamento}</a> <hr> Caso o botão não funcione, copie e cole o link a seguir no navegador: https://www2.correios.com.br/sistemas/rastreamento/?objetos=${codRastreamento}`);
     return Mensagem;
   }
   private obterFotoProdutoHTML(produto:Produto){
-    return  `<figure><img src="${produto.Imagem[0] || ''} width="500" height="500"/></figure>`
+    return  `<figure><img src="${produto?.Imagem[0] || ''} width="500" height="500"/></figure>`
   }
   private tabelaProdutosPedido(pedido:Pedido){
     let LinhasProdutos = "";
-    for(let i = 0; i < pedido.Produto.length; i++){
+    for(let i = 0; i < pedido?.Produto?.length; i++){
       LinhasProdutos+= `
         <tr>
           <td>
-            ${this.obterFotoProdutoHTML(pedido.Produto[i].Produto)} <p>${pedido.Produto[i].Produto.Nome}</p>
+            ${this.obterFotoProdutoHTML(pedido?.Produto[i]?.Produto)} <p>${pedido?.Produto[i]?.Produto?.Nome}</p>
           </td>
           <td>
-            <p>${pedido.Produto[i].Produto.Preco}</p>
+            <p>${pedido?.Produto[i]?.Produto?.Preco}</p>
           </td>
         </tr>
       `;
@@ -84,5 +84,6 @@ export class MensagemService extends BaseService {
       </tbody>
     </table>
     `;
+    return Table;
   }
 }

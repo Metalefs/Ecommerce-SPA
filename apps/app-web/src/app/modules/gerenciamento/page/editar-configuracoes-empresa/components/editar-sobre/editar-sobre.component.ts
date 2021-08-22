@@ -37,17 +37,28 @@ export class EditarSobreComponent implements OnInit {
       let name = "Sobre";
       let id = sobre._id;
       Object.entries(sobre).forEach(([key, value]) => {
-        if(key != "_id")
-        questions.push(
-          new EmailMessageQuestion({
-            key: key,
-            label: key,
-            value: value,
-            required: true,
-            type:"textarea",
-            order: 1
-          })
-        )
+        if(key != "_id" && key != "Nome")
+          questions.push(
+            new EmailMessageQuestion({
+              key: key,
+              label: key,
+              value: value,
+              required: true,
+              type:"textarea",
+              order: 1
+            })
+          )
+        else if (key == "Nome")
+          questions.push(
+            new TextboxQuestion({
+              key: key,
+              label: key,
+              value: value,
+              required: true,
+              type:"textarea",
+              order: 1
+            })
+          )
       })
 
       let Data = new DynFormQuestions(questions,method,name);
