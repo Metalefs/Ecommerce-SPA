@@ -84,12 +84,14 @@ MercadoPagoController
   const pedidosUsuario = await servicoPedidos.FiltrarPedidosPorIdUsuario(payment.payer.identification.number);
 
   if(pedidosUsuario){
-    if(pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento == null)
-      pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento = [];
+    let pedidoRef = pedidosUsuario.find(pedido=>pedido._id == payment.external_reference);
 
-    pedidosUsuario[pedidosUsuario?.length].HistoricoPagamento.push(payment);
+    if(pedidoRef.HistoricoPagamento == null)
+      pedidoRef.HistoricoPagamento = [];
 
-    await servicoPedidos.AlterarSemUsuario(pedidosUsuario[pedidosUsuario?.length]);
+      pedidoRef.HistoricoPagamento.push(payment);
+
+    await servicoPedidos.AlterarSemUsuario(pedidoRef);
   }
 
 })
@@ -151,10 +153,16 @@ MercadoPagoController
         }
       }
 
-      const preference = mercadoPagoService.getPreference(orcamento,cupom);
-      res.send(await mercadoPagoService.checkout(preference));
+      if(orcamento.Entrega?.dados?.precos?.Erro == "0"){
+        orcamento.Preco += parseFloat(orcamento.Entrega?.dados?.precos.Valor);
+      }
+
       const pedido = new Pedido(orcamento);
-      await new PedidoService().InserirSemUsuario(pedido);
+      const ref = await new PedidoService().InserirSemUsuario(pedido) as Pedido;
+
+      const preference = mercadoPagoService.getPreference(orcamento, ref._id.toString(), cupom);
+      res.send(await mercadoPagoService.checkout(preference));
+
     }
     catch (err) {
       ErrorHandler.DefaultException(err, res)

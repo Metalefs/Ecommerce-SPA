@@ -29,17 +29,6 @@
 
 <!-- Add custom template to image items -->
 
-<ng-template #itemTemplate
-             let-index="index"
-             let-type="type"
-             let-data="data"
-             let-currIndex="currIndex">
-  <span *ngIf="type === 'image' && index === currIndex"
-        class="item-text">
-    {{data?.title}}
-  </span>
-  <ngx-imageviewer [src]="data.src"></ngx-imageviewer>
-</ng-template>
   <div class="column is-12 px-3 is-hidden-touch">
     <div class="w-full flex-l">
       <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>

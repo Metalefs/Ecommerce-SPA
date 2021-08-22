@@ -106,7 +106,6 @@ export class MercadoPagoClient {
   }
 
   async checkout(preference) {
-    console.log(preference);
     return mercadopago.preferences.create(preference).then(response => {
       // Este es el checkout generado o link al que nos vamos a posicionar para pagar
       console.log(response.body);
@@ -142,12 +141,12 @@ export class MercadoPagoClient {
     }
   }
 
-  getPreference(orcamento: Orcamento, cupom?:CupomDesconto): MercadoPagoCheckout {
+  getPreference(orcamento: Orcamento, reference: string, cupom?:CupomDesconto): MercadoPagoCheckout {
     return {
-      items: this.getItems(orcamento,cupom[0]),
+      items: this.getItems(orcamento, cupom[0]),
       payer: this.getPayer(orcamento),
       payment_methods: this.getPaymentMethod(orcamento, MP_AT),
-      //shipments: this.getShipments(orcamento),
+      shipments: this.getShipments(orcamento),
       back_urls: {
         success: "https://www.personalizadoslopes.com.br/checkout/success",
         failure: "https://www.personalizadoslopes.com.br/checkout/failure",
@@ -157,9 +156,7 @@ export class MercadoPagoClient {
       additional_info: '',
       auto_return: MP_AT.auto_return,
       binary_mode: MP_AT.binary_mode,
-      // client_id: parseInt(MP_AT.client_id.toString()),
-      // collector_id: parseInt(MP_AT.collector_id.toString()),
-      // client_secret: MP_AT.client_secret,
+      external_reference: reference,
       notification_url: "https://personalizadoslopes-api.herokuapp.com/hook",
     };
   }
@@ -185,19 +182,18 @@ export class MercadoPagoClient {
       if(cupom){
         switch(+cupom.Tipo){
           case(TipoDesconto.Preco):{
-            produto.Produto.Preco -= cupom.Valor;
+            produto.Produto.Preco += -(cupom.Valor / orcamento.Produto.length);
             produto.Produto.Nome += ` (${(cupom.Valor)} reais off com cupom ${cupom.Codigo})`;
             break;
           }
           case(TipoDesconto.Porcentagem):{
-            produto.Produto.Preco -= (produto.Produto.Preco * cupom.Valor) /100;
+            produto.Produto.Preco += -((produto.Produto.Preco * (cupom.Valor / orcamento.Produto.length)) /100);
             produto.Produto.Nome += ` (${(cupom.Valor)}% off com cupom ${cupom.Codigo})`;
             console.log('porcentagem desconto',(produto.Produto.Preco * cupom.Valor) /100)
             break;
           }
         }
       }
-      console.log(produto.Produto.Preco)
       items.push(
         {
           id: produto.Produto._id,
@@ -300,7 +296,7 @@ export class MercadoPagoClient {
 
   getShipments(orcamento: Orcamento): mp_shipments {
     return {
-      mode: 'custom',
+      //mode: 'custom',
       //local_pickup: false,
       // modes: [
       //   "custom",
@@ -309,8 +305,8 @@ export class MercadoPagoClient {
       //   "me2"
       // ],
       //dimensions: orcamento.Dimensoes,
-      //default_shipping_method:0,
-      free_shipping: false,
+      default_shipping_method:0,
+      //free_shipping: false,
       cost: this.getShippingCost(orcamento),
       receiver_address: this.getRecieverAdress(orcamento)
     }
@@ -348,7 +344,8 @@ export class MercadoPagoClient {
   }
 
   getShippingCost(orcamento: Orcamento): number {
-    return 25;
+    console.log(orcamento.Entrega.dados.precos,parseFloat(orcamento.Entrega.dados.precos.Valor));
+    return parseFloat(orcamento.Entrega.dados.precos.Valor);
   }
 
   unicoProduto(orcamento: Orcamento): boolean {

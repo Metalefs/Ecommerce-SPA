@@ -10,7 +10,14 @@ import { ShareModule } from 'ngx-sharebuttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { StarRatingModule } from 'angular-star-rating';
+import { SlideshowModule } from 'ng-simple-slideshow';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';;
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from  'ng-gallery/lightbox';
 import { PrimeNgModule } from '../../primeng.module';
 import { MaterialModule } from '../../material.module';
 
@@ -34,17 +41,12 @@ import { ExibicaoBreadcrumbComponent } from '../exibicao-breadcrumb/exibicao-bre
 import { BlocoPagamentoProdutoComponent } from './components/bloco-pagamento-produto/bloco-pagamento-produto.component';
 import { SelecaoEstampaComponent } from './components/selecao-estampa/selecao-estampa.component';
 import { VisualizacaoProdutoLojaComponent } from './visualizacao-produto-loja.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { StarRatingModule } from 'angular-star-rating';
-import { GalleryModule } from 'ng-gallery';
-import { SlideshowModule } from 'ng-simple-slideshow';
-import { SwiperModule } from 'ngx-swiper-wrapper';
 import { ExibicaoPrecoProdutoModule } from '../exibicao-preco-produto/exibicao-preco-produto.module';
 
 import { BotaoEsgotadoComponent } from './components/botao-esgotado/botao-esgotado.component';
 import { CardEstampaModule } from '../card-estampa/card-estampa.module';
 import { CorProdutoSelectorModule } from '../cor-produto-selector/cor-produto-selector.module';
+import { LIGHTBOX_CONFIG } from 'ng-gallery/lightbox';
 
 @NgModule({
   declarations: [VisualizacaoProdutoLojaComponent, BotaoEsgotadoComponent, EstatisticasProdutoComponent, TabInformacaoAvaliacaoProdutoComponent, BotoesCompartilhamentoProdutoComponent, AvaliacaoEstrelasProdutoComponent, CurtirProdutoComponent, ExibicaoImagemProdutoComponent, DescricaoRapidaProdutoComponent, ExibicaoTagsProdutoComponent, AvaliacaoProdutoComponent, SelecaoQuantidadeProdutoComponent, SelecaoTamanhoProdutoComponent, MensagemComprarProdutoDesabilitadoComponent, BotaoComprarProdutoComponent, BotaoContatoWhatsappComponent, ExibicaoArtesProdutoComponent, ExibicaoDadosPagamentoComponent, ExibicaoBreadcrumbComponent, BlocoPagamentoProdutoComponent, SelecaoEstampaComponent],
@@ -66,6 +68,7 @@ import { CorProdutoSelectorModule } from '../cor-produto-selector/cor-produto-se
     SwiperModule,
     StarRatingModule.forRoot(),
     GalleryModule,
+    LightboxModule,
     SlideshowModule,
     PrimeNgModule,
     MaterialModule,
@@ -101,6 +104,14 @@ import { CorProdutoSelectorModule } from '../cor-produto-selector/cor-produto-se
     CardEstampaModule,
     CorProdutoSelectorModule,
     NgxMaskModule
+  ],
+  providers: [
+    {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false
+      }
+    }
   ]
 })
 export class VisualizacaoProdutoLojaModule { }

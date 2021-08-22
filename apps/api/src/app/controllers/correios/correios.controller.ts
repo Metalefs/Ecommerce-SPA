@@ -53,7 +53,7 @@ async function CalcularPrecoPrazoPorOrcamento(req,res){
 
   let comprimento = raizCubicaVolume > C ? raizCubicaVolume : C,
   largura = raizCubicaVolume > L ? raizCubicaVolume : L,
-  altura = raizCubicaVolume > A ? raizCubicaVolume :A;
+  altura = raizCubicaVolume > A ? raizCubicaVolume : A;
 
   correiosClient.CalcularPrecoPrazo(peso, comprimento, altura, largura, cep).then(result => {
     res.send(result);

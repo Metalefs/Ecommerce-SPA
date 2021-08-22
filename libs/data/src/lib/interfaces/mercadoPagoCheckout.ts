@@ -101,7 +101,7 @@ export interface mp_paymentID{
   id:string;
 }
 export interface mp_shipments{
-  mode:string;//  Modo de envio.
+  mode?:string;//  Modo de envio.
   modes?:string[];//  Modo de envio.
   // custom   // Custom shipping.
   // me2   // Mercado Envíos.
