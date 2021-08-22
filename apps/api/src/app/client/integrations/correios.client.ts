@@ -30,6 +30,39 @@ export class CorreiosClient {
     return await this.CalcularPrecoPrazo(peso,comprimento,altura,largura,cep);
   }
 
+  async CalcularPrecoPrazoPorOrcamento(orcamento:Orcamento){
+    const cep = orcamento[0].Entrega.cep;
+
+    const products = orcamento[0].Produto.map(x=>x.Produto);
+    let volumes:number[] = [];
+    let peso = 1;
+    const C=16, L=11, A=2.
+    //1ª Etapa – Calcula o cm³ de cada produto do carrinho
+    const  FatorCubagem = 6000;
+    products.forEach(product=>{
+      let comprimento = product.Dimensoes?.Comprimento || C,
+      largura = product.Dimensoes?.Largura || L,
+      altura = product.Dimensoes?.Altura || A;
+      let cubagem = ((comprimento * largura * altura) * product.Quantidade) / FatorCubagem;
+      volumes.push(cubagem);
+      peso += product.Peso || 1;
+    })
+    console.log(volumes,peso);
+    //2ª Etapa – Soma todos os volumes
+    const somaVolumes = volumes.reduce((a,b)=>a+b);
+
+    console.log(somaVolumes);
+    //3ª Etapa – Calcula raiz cúbica dos somatórios dos volumes
+    const raizCubicaVolume = Math.cbrt(somaVolumes);
+    console.log(raizCubicaVolume);
+
+    let comprimento = raizCubicaVolume > C ? raizCubicaVolume : C,
+    largura = raizCubicaVolume > L ? raizCubicaVolume : L,
+    altura = raizCubicaVolume > A ? raizCubicaVolume : A;
+
+    return await this.CalcularPrecoPrazo(peso,comprimento,altura,largura,cep);
+  }
+
   async RastrearEncomendas(codRastreio:string[]){
     return await rastrearEncomendas(codRastreio);
   }

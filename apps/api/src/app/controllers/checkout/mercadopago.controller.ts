@@ -9,6 +9,7 @@ import { MercadoPagoPayment } from 'libs/data/src/lib/interfaces';
 import { ensureIsLogged } from '../../middleware/ensure-is-logged';
 import { TipoDesconto } from 'libs/data/src/lib/classes/cupom-desconto';
 import { MercadoPagoClient } from '../../client/integrations/mercadopago.client';
+import { CorreiosClient } from '../../client/integrations/correios.client';
 
 const MercadoPagoController = express();
 

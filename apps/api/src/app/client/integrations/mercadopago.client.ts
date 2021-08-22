@@ -177,18 +177,18 @@ export class MercadoPagoClient {
   getItems(orcamento: Orcamento, cupom?:CupomDesconto): mp_checkout_items[] {
 
     const items: mp_checkout_items[] = [];
-    console.log(cupom)
+    const valorCupom = parseFloat(cupom?.Valor.toString() || "0");
     orcamento.Produto.forEach(produto => {
       if(cupom){
         switch(+cupom.Tipo){
           case(TipoDesconto.Preco):{
-            produto.Produto.Preco += -(cupom.Valor / orcamento.Produto.length);
-            produto.Produto.Nome += ` (${(cupom.Valor)} reais off com cupom ${cupom.Codigo})`;
+            produto.Produto.Preco -= (valorCupom / orcamento.Produto.length);
+            produto.Produto.Nome += ` (${(valorCupom)} reais off com cupom ${cupom.Codigo})`;
             break;
           }
           case(TipoDesconto.Porcentagem):{
-            produto.Produto.Preco += -((produto.Produto.Preco * (cupom.Valor / orcamento.Produto.length)) /100);
-            produto.Produto.Nome += ` (${(cupom.Valor)}% off com cupom ${cupom.Codigo})`;
+            produto.Produto.Preco -= ((produto.Produto.Preco * (valorCupom / orcamento.Produto.length)) /100);
+            produto.Produto.Nome += ` (${(valorCupom)}% off com cupom ${cupom.Codigo})`;
             console.log('porcentagem desconto',(produto.Produto.Preco * cupom.Valor) /100)
             break;
           }
@@ -298,12 +298,12 @@ export class MercadoPagoClient {
     return {
       //mode: 'custom',
       //local_pickup: false,
-      // modes: [
-      //   "custom",
-      //   "not_specified",
-      //   "me1",
-      //   "me2"
-      // ],
+      modes: [
+        "custom",
+        "not_specified",
+        "me1",
+        "me2"
+      ],
       //dimensions: orcamento.Dimensoes,
       default_shipping_method:0,
       //free_shipping: false,
