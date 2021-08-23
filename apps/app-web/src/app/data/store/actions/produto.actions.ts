@@ -14,6 +14,12 @@ export class AdicionarProduto {
   constructor(public payload: entities.Produto) {}
 }
 
+export class AbrirPreviewProduto {
+
+  static readonly type = '[Produto] Open Preview'
+
+  constructor(public payload: entities.Produto) {}
+}
 
 export class EditarProduto {
 

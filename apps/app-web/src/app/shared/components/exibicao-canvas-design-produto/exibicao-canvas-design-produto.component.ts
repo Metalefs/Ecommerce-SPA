@@ -20,7 +20,8 @@ export class ExibicaoCanvasDesignProdutoComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platform: Object,) { }
 
   ngOnInit(): void {
-    this.canvasId='design-canvas'+this.Produto._id;
+    const rand = Math.random().toString().substr(2, 8);
+    this.canvasId='design-canvas'+this.Produto._id+rand;
   }
 
   ngAfterViewInit(){

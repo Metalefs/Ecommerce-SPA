@@ -2,10 +2,12 @@ import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { entities } from '@personalizados-lopes/data';
 import { ProdutoService } from '../../service';
 
-import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto, IncrementarVendaProduto, IncrementarVisualizacoesProduto, AdicionarComparacao, AdicionarFavorito, RemoverComparacao, RemoverFavorito } from '../actions/produto.actions'
+import { LerProduto, EditarProduto, AdicionarProduto, RemoverProduto, GostarProduto, RateProduto, IncrementarVendaProduto, IncrementarVisualizacoesProduto, AdicionarComparacao, AdicionarFavorito, RemoverComparacao, RemoverFavorito, AbrirPreviewProduto } from '../actions/produto.actions'
 import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Produto } from 'libs/data/src/lib/classes';
+import { MatDialog } from '@angular/material/dialog';
+import { PreviewProdutoComponent } from '../../../shared/components/dialogs/preview-produto/preview-produto.component';
 
 export class ProdutoStateModel{
   Produtos: entities.Produto[];
@@ -32,7 +34,7 @@ export class ProdutoStateModel{
 @Injectable()
 export class ProdutoState {
 
-  constructor(private ProdutoService:ProdutoService){
+  constructor(private ProdutoService:ProdutoService, private dialog:MatDialog){
 
   }
 
@@ -82,6 +84,18 @@ export class ProdutoState {
         });
 
     }))
+  }
+
+  @Action(AbrirPreviewProduto)
+  async AbrirPreviewProduto({getState,patchState}: StateContext<ProdutoStateModel>, {payload} : AbrirPreviewProduto){
+
+    this.dialog.open(PreviewProdutoComponent, {
+      width:'80vw',
+      height:'80vh',
+      restoreFocus: false,
+      data:payload,
+      panelClass:['']
+    });
   }
 
   @Action(EditarProduto)

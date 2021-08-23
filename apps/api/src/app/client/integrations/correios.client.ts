@@ -35,7 +35,7 @@ export class CorreiosClient {
 
     const products = orcamento[0].Produto.map(x=>x.Produto);
     let volumes:number[] = [];
-    let peso = 1;
+    let peso = 0;
     const C=16, L=11, A=2.
     //1ª Etapa – Calcula o cm³ de cada produto do carrinho
     const  FatorCubagem = 6000;
@@ -45,9 +45,9 @@ export class CorreiosClient {
       altura = product.Dimensoes?.Altura || A;
       let cubagem = ((comprimento * largura * altura) * product.Quantidade) / FatorCubagem;
       volumes.push(cubagem);
-      peso += product.Peso || 1;
+      peso += parseFloat(product.Peso)||1;
     })
-    console.log(volumes,peso);
+    console.log(volumes, peso);
     //2ª Etapa – Soma todos os volumes
     const somaVolumes = volumes.reduce((a,b)=>a+b);
 
@@ -60,7 +60,7 @@ export class CorreiosClient {
     largura = raizCubicaVolume > L ? raizCubicaVolume : L,
     altura = raizCubicaVolume > A ? raizCubicaVolume : A;
 
-    return await this.CalcularPrecoPrazo(peso,comprimento,altura,largura,cep);
+    return await this.CalcularPrecoPrazo(peso, comprimento, altura, largura, cep);
   }
 
   async RastrearEncomendas(codRastreio:string[]){

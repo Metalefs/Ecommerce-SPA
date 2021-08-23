@@ -11,13 +11,11 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal} from '../../../data/store/actions/orcamento.actions';
-import { AdicionarComparacao, AdicionarFavorito, RemoverComparacao, RemoverFavorito } from '../../../data/store/actions/produto.actions';
+import { AbrirPreviewProduto, AdicionarComparacao, AdicionarFavorito, RemoverComparacao, RemoverFavorito } from '../../../data/store/actions/produto.actions';
 import { CarouselState, OrcamentoState, ProdutoState } from '../../../data/store/state';
-import { ProdutoStateModel } from '../../../data/store/state/produto.state';
 import { sum, translateEnum } from '../../../helper/ObjHelper';
 import { ProdutoStateService } from '../../../modules/produtos/produto-state.service';
 import { CheckoutDisplayComponent } from '../dialogs/checkout-display/checkout-display.component';
-import { PreviewProdutoComponent } from '../dialogs/preview-produto/preview-produto.component';
 
 @Component({
   selector: 'personalizados-lopes-card-produto',
@@ -145,13 +143,7 @@ export class CardProdutoComponent implements OnInit {
     });
   }
   AbrirPreviewProduto(){
-    this.dialog.open(PreviewProdutoComponent, {
-      width:'80vw',
-      height:'80vh',
-      restoreFocus: false,
-      data:this.Produto,
-      panelClass:['']
-    });
+    this.store.dispatch(new AbrirPreviewProduto(this.Produto))
     this.store.dispatch(new EditarProdutoAbertoOrcamentoLocal(this.Produto))
   }
   translateStatusProduto(status){
