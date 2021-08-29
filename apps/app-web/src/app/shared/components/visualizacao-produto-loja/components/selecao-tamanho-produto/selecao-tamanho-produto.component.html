@@ -4,43 +4,35 @@
   *ngIf="Produto?.Tamanhos"
 >
   <mat-label
-    class="label is-medium"
+    class="label is-small"
     [ngClass]="{ '': !(Produto.Tamanho?.Nome || Produto?.Tamanho) }"
     >Escolha o <strong>Tamanho</strong> da unidade:
   </mat-label>
-  <p>
-    <span class="is-size-7"
-      >{{
-        Produto?.Tamanho?.Nome == null
-          ? Produto?.Tamanho || ''
-          : Produto?.Tamanho?.Nome
-      }}
-      {{ Produto?.FaixaTamanho?.Tamanho || '' }}</span
-    >
-  </p>
 
   <div
+  (click)="SetTamanho(opt)"
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
     class="shadow-light button is-outlined is-primary"
     [ngClass]="{
       'is-active is-hovered':
-        Produto.Tamanho?.Nome == opt?.Nome || Produto.Tamanho == opt
+        Produto.Tamanho?.Nome ? Produto.Tamanho.Nome == opt?.Nome : Produto.Tamanho == opt
     }"
   >
-    <div (click)="SetTamanho(opt)">
+    <div>
       <p>{{ opt.Nome || opt }}</p>
     </div>
-    <div
+
+  </div>
+  <div
       *ngFor="let faixa of Produto?.Tamanho?.Tamanhos"
       [value]="faixa"
-      class="shadow-light button"
-      [ngClass]="{ 'is-active': Produto.FaixaTamanho?.Tamanho == faixa }"
+      class="shadow-light button is-warning is-outlined"
+      [ngClass]="{'is-hovered is-active': this.Produto.FaixaTamanho == faixa }"
       (click)="SetFaixaTamanho(faixa)"
     >
       <div>
         <p class="is-size-6">{{ faixa.Tamanho }}</p>
       </div>
     </div>
-  </div>
 </div>

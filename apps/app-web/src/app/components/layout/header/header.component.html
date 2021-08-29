@@ -31,7 +31,7 @@
     <div class="column is-hidden-mobile"  *ngIf="search">
       <form
         type="get"
-        class="is-6 w-full nav-item has-background-white"
+        class="is-6 w-full rounded nav-item has-background-white"
         action="/produtos/?nome={{
           search_filter
         }}?categoria=Todos os produtos"
@@ -177,6 +177,7 @@
         </div>
         <div class="column">
           <button
+           *ngIf="FavCount > 0"
             mat-mini-fab
             [routerLink]="['/produtos']" routerLinkActive="router-link-active"
             title="Favoritos"
@@ -185,7 +186,7 @@
             class="size4 boxshadow-none shadow-light trans-04 has-text-black "
           >
             <i class="pi pi-heart fs-20"></i>
-            <a class="cart-counter">
+            <a class="cart-counter" >
               {{FavCount}}
             </a>
           </button>
@@ -200,7 +201,7 @@
             class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
           >
             <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-            <a class="cart-counter">
+            <a class="cart-counter" *ngIf="(Orcamento$ | async)?.Produto.length > 0">
               {{ (Orcamento$ | async)?.Produto.length || 0 }}
             </a>
           </button>

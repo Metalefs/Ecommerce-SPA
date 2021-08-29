@@ -195,7 +195,7 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
         data:{Produto: this.Produto, Estampa: estampa},
         panelClass:['animate__animated','animate__bounceIn', 'border', 'bg-transp'],
         restoreFocus: false,
-        width:'95vw',
+        width:'98vw',
         height:'100vh',
         animation: {
           to: "right",

@@ -2,14 +2,14 @@
   <p-skeleton *ngIf="!Produto" styleClass="skeleton "></p-skeleton>
   <div
     class="
-     my-1 star-width dis-flex flex-w w-full"
+     my-1 px-3 star-width dis-flex flex-w w-full"
   >
     <star-rating
       class="subtitle is-size-7"
       labelText="{{ meanRating() }}"
       [showHalfStars]="true"
       [step]="0.5"
-      size="medium"
+      size="small"
       [rating]="meanRating()"
       staticColor="ok"
       [hoverEnabled]="true"

@@ -5,7 +5,7 @@
   >
     <div class='card-header'>
       <h1 class='txt-center w-full of-x-scroll'>
-        Produtos na Loja
+        Loja
       </h1>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class='section pt-2'>
       <div [@cardFlip]='state' class='margin' id='Todos'>
         <div class='columns'>
-          <div class='column is-2-desktop is-2-tablet is-hidden-mobile'>
+          <div class='column is-3-desktop is-3-tablet is-hidden-mobile'>
             <aside class='flex-c aside w-full portfolio pos-sticky top-0'>
 
               <div class='is-hidden-mobile w-full '>
@@ -48,20 +48,19 @@
             </aside>
           </div>
           <div
-            class='column ml-0 pl-0 is-10-desktop is-10-tablet is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll'
+            class='column ml-0 pl-0 is-9-desktop is-9-tablet is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll'
           >
-            <div class='section'>
+            <div class='section pt-0'>
               <mat-tab-group>
                 <mat-tab label="Loja">
                   <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                 </mat-tab>
-                <mat-tab label="Favoritos" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+                <mat-tab [label]="'Favoritos ' + FavCount" >
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>
                 </mat-tab>
               </mat-tab-group>
             </div>
           </div>
-
         </div>
       </div>
     </div>

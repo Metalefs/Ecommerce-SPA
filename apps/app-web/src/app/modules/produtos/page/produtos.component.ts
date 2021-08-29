@@ -4,6 +4,10 @@ import { cardFlip, fade, slideInOut } from '../../../animations';
 import { ObterImagensCarousel } from '../../../helper/FileHelper';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ProdutoStateService } from '../produto-state.service';
+import { Select } from '@ngxs/store';
+import { ProdutoState } from '../../../data/store/state';
+import { Observable } from 'rxjs';
+import { Produto } from 'libs/data/src/lib/classes';
 
 @Component({
   selector: 'personalizados-lopes-produtos',
@@ -12,7 +16,8 @@ import { ProdutoStateService } from '../produto-state.service';
   animations: [cardFlip, fade, slideInOut]
 })
 export class ProdutosComponent implements OnInit {
-
+  @Select(ProdutoState.ObterListaFavoritos) Favoritos$: Observable<Produto[]>;
+  FavCount:number;
   imagens: [{ path: string }] = [{ path: ObterImagensCarousel()[0] }];
 
   state = "flipped"
@@ -31,6 +36,9 @@ export class ProdutosComponent implements OnInit {
     setTimeout(() => {
       this.flip()
     }, 0)
+    this.Favoritos$.subscribe(x=>{
+      this.FavCount = x?.length;
+    })
 
   }
 

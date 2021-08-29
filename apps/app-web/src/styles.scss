@@ -217,7 +217,8 @@ a {
 .p-button {
   color: #ffffff;
   background: #e0e0ea;
-  border: 0px;
+  //border: 0px;
+  margin-right: 10px;
 }
 .p-autocomplete-item {
   cursor: pointer;
@@ -298,7 +299,7 @@ li .p-menuitem-link span.p-menuitem-text {
   z-index: 20;
 }
 .p-autocomplete-dd .p-autocomplete-dropdown {
-  border-radius: 0px !important;
+  // border-radius: 0px !important;
 }
 .p-dataview .p-dataview-content {
   background: transparent;
@@ -638,7 +639,7 @@ img {
 
 .preco {
   font-size: 1.2em;
-  color: #0d42f0;
+  color: #00d1b2;
   font-weight: 500;
   strong {
     // color:#fe0000;
@@ -802,7 +803,7 @@ img {
 //   overflow-y: auto !important;
 // }
 .mat-dialog-content {
-  max-height: 78vh;
+  max-height: 78vh !important;
 }
 /***/
 

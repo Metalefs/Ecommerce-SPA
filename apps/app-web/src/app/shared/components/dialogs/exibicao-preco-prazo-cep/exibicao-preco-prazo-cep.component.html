@@ -1,22 +1,18 @@
 <mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top " style="height: 37px;">
+  <span class="spacer"></span>
+  <button mat-icon-button
+  aria-label="fechar carrinho"
+  (click)="delayClose()">
+    <mat-icon>close</mat-icon>
+  </button>
 
 </mat-toolbar>
 <div class="of-x-scroll px-2 mh-full">
 
-  <p>
-    <mat-toolbar color="" class="pri-toolbar">
-      <mat-toolbar-row class="pt-3">
-        <h2 class="subtitle mb-0 pt-0">Estimativa para o CEP {{CEP| mask: '00000-000'}}</h2>
-        <span class="spacer"></span>
-        <button mat-icon-button
-        aria-label="fechar carrinho"
-        (click)="delayClose()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
-  </p>
+  <nav class="navbar pt-3">
+      <h2 class="subtitle mb-0 pt-0">Estimativa para o CEP {{CEP| mask: '00000-000'}}</h2>
 
+  </nav>
   <div>
 
     <section class="section py-2 vh-full-nav">
@@ -27,9 +23,18 @@
         <ng-template #fretes>
           <div class="w-full of-x-scroll" >
 
-            <div class="box button is-success is-outlined" *ngFor="let frete of Fretes">
-              <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b>(Até {{frete.PrazoEntrega}} dia(s))</b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
-              <div class="w3-padding">R$ {{frete.Valor}} por pedido!</div>
+            <div class="box card is-success is-outlined" *ngFor="let frete of Fretes">
+              <ng-container *ngIf="frete.Valor == '0,00' then invalido else normal"></ng-container>
+              <ng-template #invalido>
+                <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b>Disponível no checkout</b></div>
+
+                <div class="w3-padding">Houve um erro ao carregar os detalhes do frete :|</div>
+              </ng-template>
+              <ng-template #normal>
+                <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b>(Até {{frete.PrazoEntrega}} dia(s))</b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
+
+                <div class="w3-padding">R$ {{frete.Valor}} por pedido!</div>
+              </ng-template>
             </div>
 
           </div>

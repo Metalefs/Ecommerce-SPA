@@ -4,11 +4,6 @@
 </a>
 <div mat-dialog-content class="margin w-half">
   <div class="columns is-multiline is-vcentered">
-
-    <div class="column is-12">
-      <personalizados-lopes-costumization #customization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
-    </div>
-
     <div class="column is-12">
       <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
@@ -68,22 +63,25 @@
     </div>
   </div>
 
+    <div class="column is-12">
+      <personalizados-lopes-costumization #customization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
+    </div>
+
+
   <div class="">
-    <h4 class="has-text-danger py-3"><mark>*Atenção às regras de personalização!</mark></h4>
+    <h4 class="has-text-danger py-3">Atenção às regras de personalização!</h4>
 
     <div class="columns is-vcentered">
       <div class="column" *ngFor="let rule of rules">
-        <mat-card class="message is-danger" style="min-height: 200px;">
-          <mat-card-content>
-            <p class="fw-500">{{rule}}</p>
-          </mat-card-content>
-        </mat-card>
+        <app-card class="button is-danger" style="min-height: 200px;">
+          <p class="fw-500">{{rule}}</p>
+        </app-card>
       </div>
     </div>
   </div>
 </div>
 
-<div mat-dialog-actions>
+<div>
   <button mat-raised-button color=""
     [mat-dialog-close]="Produto"
     class="button is-medium is-rounded w-full"

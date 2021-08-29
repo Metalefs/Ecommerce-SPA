@@ -4,15 +4,15 @@
   <cookie-law *ngIf="!dismissed"
     #cookieLaw position="bottom"
     name="ng4topCookieLaw" expiration="1"
-    class="dis-flex flex-sa has-text-centered z-index-top shadow-light">
-  <div class="columns is-vcentered">
-    <div class="column">
+    class="dis-flex flex-sa has-text-centered z-index-top shadow-light w-full">
+  <div class="columns is-vcentered w-full">
+    <div class="column is-6">
       <h2 class="subtitle has-text-white">Para melhorar a sua experiência neste site, salvamos alguns dados por meio de cookies.
       </h2>
     </div>
-    <div class="column">
+    <div class="column is-6">
       <a
-      class="button is-success wp-btn"
+      class="button "
       (click)="dismissCookieLaw()">
       ENTENDI E FECHAR
     </a>

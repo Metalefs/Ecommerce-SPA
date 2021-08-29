@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { DocumentRef } from 'apps/app-web/src/app/shared/services/document.service';
 import { Produto } from 'libs/data/src/lib/classes';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'personalizados-lopes-tab-informacao-avaliacao-produto',
@@ -9,6 +12,7 @@ import { Produto } from 'libs/data/src/lib/classes';
 })
 export class TabInformacaoAvaliacaoProdutoComponent implements OnInit {
   @Input() Produto:Produto;
+  @Select(OrcamentoState.ObterProdutoAberto) Produto$: Observable<Produto>;
 
   el: HTMLElement;
   constructor(
@@ -16,8 +20,11 @@ export class TabInformacaoAvaliacaoProdutoComponent implements OnInit {
 
   ngOnInit(): void {
     this.AdicionarDescricao(this.Produto);
-  }
+    this.Produto$.subscribe(x=>{
 
+      this.AdicionarDescricao(x);
+    })
+  }
   AdicionarDescricao(produto:Produto){
     let element:HTMLElement = this.document.nativeDocument.createElement("div");
 
