@@ -20,7 +20,7 @@
         <div class="column">
           <div class="">
             <p>{{produto?.Nome}} - </p>
-            <p *ngIf="produto?.Marca">{{produto?.Marca}} - </p>
+            <p *ngIf="produto?.Marca">{{produto?.Marca?.Nome || produto?.Marca}} - </p>
             <p *ngIf="produto?.Modelo">{{produto?.Modelo}} - </p>
             <p>R${{produto.Preco.toFixed(2)}}</p>
           </div>

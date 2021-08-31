@@ -267,12 +267,7 @@ export class CostumizationComponent implements OnInit {
 
     this.DesignSaved.emit(json);
 
-    // var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(json_data);
-    // document.querySelector('#list').innerHTML = '<a href="" id="downloadAnchorElem"></a>';
-    // var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    // dlAnchorElem.setAttribute("href",     dataStr     );
-    // dlAnchorElem.setAttribute("download", "scene.json");
-    // dlAnchorElem.click();
+
   }
 
   deleteObject(eventData, target) {

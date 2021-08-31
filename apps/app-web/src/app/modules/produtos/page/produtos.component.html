@@ -55,7 +55,7 @@
                 <mat-tab label="Loja">
                   <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                 </mat-tab>
-                <mat-tab [label]="'Favoritos ' + FavCount" >
+                <mat-tab [label]="'Favoritos ' + FavCount || ''" >
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>
                 </mat-tab>
               </mat-tab-group>
