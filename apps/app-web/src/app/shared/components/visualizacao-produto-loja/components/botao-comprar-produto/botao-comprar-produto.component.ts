@@ -18,6 +18,7 @@ export class BotaoComprarProdutoComponent implements OnInit {
   @Input() textoAdicionar:string;
 
   @Output() onAdicionarAoOrcamento:EventEmitter<any> = new EventEmitter<any>()
+  @Output() onAdicionarAoCarrinho:EventEmitter<any> = new EventEmitter<any>()
   @Output() onDuplicarOrcamento:EventEmitter<any> = new EventEmitter<any>()
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
 

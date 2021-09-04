@@ -3,7 +3,7 @@
     (selectionChange)='atualizarFiltroAtivo()'
     [(ngModel)]='activeOrderFilter'
     matNativeControl
-  >
+  >Ordernar por
     <mat-option
       *ngFor='let opt of ordertypes'
       [value]='opt.id'

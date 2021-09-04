@@ -5,7 +5,7 @@ import { entities } from '@personalizados-lopes/data';
 import { ClienteState, OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { BlogPost, Produto, Usuario } from 'libs/data/src/lib/classes';
 import { map } from 'rxjs/operators';
-import { ProdutoService } from '../../../data/service';
+import { IntegracoesService, ProdutoService } from '../../../data/service';
 import { CanViewPost } from '../../../helper/ObjHelper';
 import { AuthenticationService } from '../../../core/service/authentication/authentication.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -31,10 +31,12 @@ export class InicioComponent implements OnInit {
   tipoOrdenacaoSliderProduto=TipoOrdenacaoSwiperProduto;
   mobile:boolean;
   swiperConfig$: Observable<SwiperConfigInterface>;
+  valorMinimoDesconto:number;
   constructor(
     private authService: AuthenticationService,
     private produtoService: ProdutoService,
     private breakpointObserver: BreakpointObserver,
+    private intergracoesService: IntegracoesService,
     private dialog:MatDialog) {
       this.swiperConfig$ = breakpointObserver.observe([
         Breakpoints.HandsetPortrait
@@ -93,6 +95,9 @@ export class InicioComponent implements OnInit {
     })
     this.produtoService.FiltrarProdutos(this.fQuery,1,6).subscribe(x=>{
       this.Produtos = x.items;
+    })
+    this.intergracoesService.ObterValorMinimoDesconto().subscribe(x=>{
+      this.valorMinimoDesconto = x as unknown as number;
     })
   }
 

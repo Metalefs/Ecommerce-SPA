@@ -5,7 +5,9 @@ import { Select, Store } from '@ngxs/store';
 import { EditarOrcamentoLocal } from 'apps/app-web/src/app/data/store/actions/orcamento.actions';
 import { OrcamentoState } from 'apps/app-web/src/app/data/store/state';
 import { findInvalidControlsRecursiveform } from 'apps/app-web/src/app/helper/FormHelper';
+import { translateEnum } from 'apps/app-web/src/app/helper/ObjHelper';
 import { Orcamento, Produto } from 'libs/data/src/lib/classes';
+import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Observable } from 'rxjs';
 import { ExibicaoPrecoPrazoCepComponent } from '../../../dialogs/exibicao-preco-prazo-cep/exibicao-preco-prazo-cep.component';
 
@@ -20,6 +22,7 @@ export class BlocoPagamentoProdutoComponent implements OnInit {
   @Input() Form:FormGroup;
   @Input() textoAdicionar:string;
   @Output() onAdicionarAoOrcamento:EventEmitter<any> = new EventEmitter<any>()
+  @Output() onAdicionarAoCarrinho:EventEmitter<any> = new EventEmitter<any>()
   @Output() onDuplicarOrcamento:EventEmitter<any> = new EventEmitter<any>()
 
   @Input() ErroQuantidade : Function;
@@ -66,5 +69,9 @@ export class BlocoPagamentoProdutoComponent implements OnInit {
     }
     this.Orcamento.Entrega.cep = this.cepForm.get('cep').value;
     this.store.dispatch(new EditarOrcamentoLocal(this.Orcamento));
+
+  }
+  translateEnum(obj){
+    return translateEnum(StatusProduto,obj);
   }
 }

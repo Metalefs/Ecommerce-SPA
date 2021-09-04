@@ -1,4 +1,4 @@
-<section class="has-background-pink-light">
+<section class="">
 
   <div class="px-1">
     <div *ngIf="!Produto">
@@ -20,7 +20,8 @@
             <div class="message-body">
               <h1 class="titulo-produto">{{ Produto?.Nome }}</h1>
 
-              <p class="subtitle is-size-6">Referência: {{Produto._id}}</p>
+              <p class="
+               is-size-6">Referência: {{Produto._id}}</p>
             </div>
           </div>
         </div>
@@ -32,7 +33,7 @@
         ></personalizados-lopes-exibicao-imagem-produto>
       </div>
 
-      <div class="column is-4-desktop is-6-tablet px-0 z-index-1 has-background-pink-light"
+      <div class="column is-4-desktop is-6-tablet px-0 z-index-1 "
       >
         <div class="px-1 pos-sticky top-0">
           <div *ngIf="Produto" class="columns is-multiline ">
@@ -51,14 +52,14 @@
                         <div
                         class="columns flex-sa mx-0 w-full is-multiline pb-1"
                         >
-                        <div class="column is-6 mh-full">
+                        <div class="column is-6-desktop is-12-mobile mh-full">
                               <personalizados-lopes-selecao-tamanho-produto
                                 [Produto]="Produto"
                                 [ErroTamanho]="ErroTamanho"
                                 [Erros]="Erros"
                               ></personalizados-lopes-selecao-tamanho-produto>
                             </div>
-                            <div class="column is-6 of-x-scroll">
+                            <div class="column is-6-desktop is-12-mobile of-x-scroll">
                               <personalizados-lopes-cor-produto-selector
                                 [Produto]="Produto"
                                 (onSetColor)="setColor($event)"
@@ -115,26 +116,13 @@
 
       <div class="column is-3-desktop is-6-tablet">
         <div class="box">
-          <div class="message is-white">
-            <div class="message-body">
-              <personalizados-lopes-exibicao-preco-produto
-                [Produto]="Produto"
-              ></personalizados-lopes-exibicao-preco-produto>
-            </div>
-            <div class="w3-hide-small w3-text-grey font33">
-              <i class="fas fa-barcode"></i>
-              <i class="fab fa-cc-visa"></i>
-              <i class="fab fa-cc-mastercard"></i>
-              <i class="fab fa-cc-diners-club"></i>
-              <i class="fab fa-cc-amex"></i>
-            </div>
-          </div>
           <personalizados-lopes-bloco-pagamento-produto
             [Produto]="Produto"
             [isOrcamento]="isOrcamento"
             [Form]="produtoForm"
             [textoAdicionar]="textoAdicionar"
             (onAdicionarAoOrcamento)="AdicionarAoOrcamento()"
+            (onAdicionarAoCarrinho)="AdicionarAoCarrinho()"
             (onDuplicarOrcamento)="DuplicarOrcamento()"
             [ErroQuantidade]="ErroQuantidade"
             [Erros]="Erros"

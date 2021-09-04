@@ -6,7 +6,17 @@
        <h1 class="bg-transp card-header txt-center box ">{{ Produto?.Nome }}</h1>
     </div>
   </div> -->
-
+  <div *ngIf="!Produto" class="box">
+    <div class="p-grid p-formgrid">
+      <div class="p-field p-col-12 p-md-6">
+        <p-skeleton styleClass="mb-2 pb-2"></p-skeleton>
+        <p-skeleton width="10rem" styleClass="mb-2 pb-2"></p-skeleton>
+        <p-skeleton width="5rem" styleClass="mb-2 pb-2"></p-skeleton>
+        <p-skeleton height="2rem" styleClass="mb-2 pb-2"></p-skeleton>
+        <p-skeleton width="10rem" height="4rem"></p-skeleton>
+      </div>
+    </div>
+  </div>
 
   <personalizados-lopes-exibicao-breadcrumb
     *ngIf="Produto"

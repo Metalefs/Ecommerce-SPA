@@ -13,19 +13,36 @@
       [style.flexDirection]="flex_direction"
       [style.display]="'grid'"
     >
+      <span
+        class="prod-status"
+        *ngIf="Produto?.Status == statusProduto.promocao"
+      >
+        <span class="product-category"></span>
+        <span
+          [class]="
+            'subtitle is-size-7 is-capitalized product-badge status-' +
+            Produto.Status.toString().toLowerCase()
+          "
+          >{{
+            Produto?.Status == statusProduto.promocao
+              ? 'Promoção'
+              : translateStatusProduto(Produto.Status)
+          }}</span
+        >
+      </span>
       <div class="card-image has-background-white">
         <slideshow
           style="min-height: 300px !important;"
           *ngIf="imageUrls.length"
           [imageUrls]="imageUrls"
           [arrowSize]="(Carrosel$ | async)?.arrowSize"
-          [showArrows]="false"
+          [showArrows]="true"
           [disableSwiping]="false"
           [autoPlay]="false"
           [backgroundSize]="'contain'"
           [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
           [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
-          [showDots]="(Carrosel$ | async)?.showDots"
+          [showDots]="true"
           [dotColor]="'black'"
           [showCaptions]="(Carrosel$ | async)?.showCaptions"
           [captionColor]="(Carrosel$ | async)?.captionColor"
@@ -71,19 +88,41 @@
         [ngClass]="{ 'pos-absolute': flex_direction == false }"
         class="card-title top-0 left-0 w-full"
       >
-        <div class="content w-full txt-center of-x-scroll px-3">
-          <a
-            matRipple
-            class="reset-a titulo-produto txt-center"
-            pageScroll
-            href="#topo"
-            (click)="AbrirPaginaProduto()"
-          >
-            {{ Produto?.Nome }}
-          </a>
+      <div class="">
+        <ng-container
+          *ngIf="
+            Produto.Status == enumStatusProduto.promocao;
+            then preco_promo;
+            else preco_normal
+          "
+        >
+        </ng-container>
+        <ng-template #preco_promo>
+          <div class="">
+            <p class="linethr"><span class="is-size-7 preto6">de</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}<span class="is-size-7 preto6"> Por</span> </p>
+            <p class="preco fs-18 promocao ">
+              R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
+            </p>
+          </div>
+        </ng-template>
+        <div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+          <p class="preto6">
+            {{ Produto.Parcelas }}x de
+            <span class="preco-produto fs-18"
+              ><b>R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b></span
+            >
+            sem juros
+          </p>
         </div>
+        <ng-template #preco_normal>
+          <p class="preco">
+            R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
+          </p>
+        </ng-template>
       </div>
-      <div class="card-content">
+
+      </div>
+      <div class="card-content my-0">
         <div class="content">
           <div class="my-0">
             <star-rating
@@ -94,11 +133,12 @@
               [step]="0.5"
               staticColor="ok"
               [starType]="'svg'"
+              size="small"
             ></star-rating>
           </div>
-          <div class="card-subtitle txt-center">
+          <!-- <div class="card-subtitle txt-center">
             {{ Produto?.Subtitulo }}
-          </div>
+          </div> -->
           <a
             *ngIf="Produto.Status == statusProduto.esgotado"
             (click)="AbrirPaginaProduto()"
@@ -130,7 +170,7 @@
             >
               <div
                 class="portfolio-overlay events-none w-full"
-                style="top: 10px;"
+                style="top: 80px;"
               >
                 <div class="overlay-items w-full txt-center">
                   <p>
@@ -146,14 +186,20 @@
           </div>
         </div>
       </div>
-      <footer class="card-footer dis-flex flex-m flex-sb px-3">
-        <personalizados-lopes-card-produto-btn-comprar
-          [AbrirPaginaProduto]="AdicionarAoOrcamento"
-        ></personalizados-lopes-card-produto-btn-comprar>
-        <div class="">
-          <p class="preco">
-            R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
-          </p>
+      <!-- <personalizados-lopes-card-produto-btn-comprar
+        [AbrirPaginaProduto]="AdicionarAoOrcamento"
+      ></personalizados-lopes-card-produto-btn-comprar> -->
+      <footer class="card-footer px-3">
+        <div class="content w-full txt-center of-x-scroll px-3">
+          <a
+            matRipple
+            class="reset-a subtitle is-size-7 txt-center"
+            pageScroll
+            href="#topo"
+            (click)="AbrirPaginaProduto()"
+          >
+            {{ Produto?.Nome }}
+          </a>
         </div>
       </footer>
       <figure
@@ -178,7 +224,7 @@
       "
       matRipple
       style="height: 100%;"
-      class="portfolio-item of-y-scroll z-index-top card"
+      class="portfolio-item of-y-scroll z-index-top box"
       [style.backgroundColor]="Produto?.Categoria?.Cor"
       [style.flexDirection]="flex_direction"
     >
@@ -228,18 +274,19 @@
           (click)="AbrirPaginaProduto()"
         >
           {{ Produto?.Nome }}
+          <div class="my-0">
+            <star-rating
+              [rating]="meanRating()"
+              [hoverEnabled]="true"
+              [readOnly]="true"
+              [showHalfStars]="true"
+              [step]="0.5"
+              staticColor="ok"
+              [starType]="'svg'"
+            ></star-rating>
+          </div>
         </a>
-        <div class="my-0">
-          <star-rating
-            [rating]="meanRating()"
-            [hoverEnabled]="true"
-            [readOnly]="true"
-            [showHalfStars]="true"
-            [step]="0.5"
-            staticColor="ok"
-            [starType]="'svg'"
-          ></star-rating>
-        </div>
+
       </mat-card-title>
       <mat-card-actions class="px-2 z-index-2">
         <a

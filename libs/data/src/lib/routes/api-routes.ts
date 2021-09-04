@@ -79,6 +79,7 @@ export let RouteDictionary = {
     Raiz: "/integracoes/",
     ChavePublicaMercadoPago: "/mercadoPagoPublicKey/",
     QuantidadeParcelas: "/quantidade-parcelas/",
+    ValorMinimoDesconto: "/valor-minimo-desconto/",
   },
 
   Correios: {

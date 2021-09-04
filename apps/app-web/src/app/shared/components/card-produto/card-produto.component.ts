@@ -27,7 +27,7 @@ export class CardProdutoComponent implements OnInit {
   @Select(OrcamentoState.ObterOrcamentos) Orcamento$: Observable<Orcamento>;
   @Select(CarouselState.ObterCarousel) Carrosel$: Observable<Carousel>;
   @Select(ProdutoState.ObterListaFavoritos) Favoritos$: Observable<Produto[]>;
-
+  enumStatusProduto = StatusProduto;
   isOrcamento:boolean;
   Liked:boolean = false;
   Favorito:boolean = false;

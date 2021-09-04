@@ -1,5 +1,5 @@
 <mat-accordion class="px-0">
-  <mat-expansion-panel [expanded]="true" class="pl-0 of-x-scroll">
+  <mat-expansion-panel [expanded]="false" class="pl-0 of-x-scroll">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Marcas
@@ -8,12 +8,12 @@
     </mat-expansion-panel-header>
     <mat-list>
       <mat-list-item  *ngFor="let fornecedor of FornecedoresProdutos">
-          <a
+          <button
             (click)="FornecedorProduto = fornecedor"
             title="{{ fornecedor.Nome }}"
             class="w-full"
           >{{ fornecedor.Nome }}
-          </a>
+          </button>
       </mat-list-item>
     </mat-list>
     <a

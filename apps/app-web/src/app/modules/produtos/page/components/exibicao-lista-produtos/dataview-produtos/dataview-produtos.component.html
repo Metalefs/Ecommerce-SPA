@@ -52,14 +52,14 @@
   <ng-template let-produto pTemplate='gridItem'>
     <ng-container class='mx-0 px-0'>
       <div *ngIf='loading'
-           class='column is-4 py-4 is-12-mobile'
+           class='column is-3 py-4 is-12-mobile'
       >
         <div class='w-full mh-full skeleton'>
           <p-skeleton height='100%' width='100%'></p-skeleton>
         </div>
       </div>
       <div *ngIf='filtroAtivo(produto) && !loading'
-           class='column pl-0 is-4 py-4 is-12-mobile'
+           class='column pl-0 is-3 py-4 is-12-mobile'
       >
         <personalizados-lopes-card-produto
           [MostarOpcoes]='true'

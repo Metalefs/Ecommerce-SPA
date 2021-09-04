@@ -31,4 +31,10 @@ export class IntegracoesService extends BaseService<Integracoes> {
       catchError(this.ErrorHandler.handleError) // then handle the error
     );
   }
+  ObterValorMinimoDesconto(): Observable<entities.Integracoes> {
+    return this.HttpClient.get<entities.Integracoes>(environment.endpoint + RouteDictionary.Integracoes.ValorMinimoDesconto).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.ErrorHandler.handleError) // then handle the error
+    );
+  }
 }

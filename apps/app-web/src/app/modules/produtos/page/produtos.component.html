@@ -5,13 +5,13 @@
   >
     <div class='card-header'>
       <h1 class='txt-center w-full of-x-scroll'>
-        Loja
+        Encontre o Produto Perfeito
       </h1>
     </div>
   </div>
   <div class='hero-body py-0'>
-    <div class='section pt-2'>
-      <div [@cardFlip]='state' class='margin' id='Todos'>
+    <div class=' pt-2'>
+      <div [@cardFlip]='state' class='' id='Todos'>
         <div class='columns'>
           <div class='column is-3-desktop is-3-tablet is-hidden-mobile'>
             <aside class='flex-c aside w-full portfolio pos-sticky top-0'>
@@ -19,10 +19,10 @@
               <div class='is-hidden-mobile w-full '>
 
                 <div>
-                  <personalizados-lopes-exibicao-quantidade-produtos-filtrados></personalizados-lopes-exibicao-quantidade-produtos-filtrados>
                   <div class='hoverable bo-0 bos-0'>
                     <personalizados-lopes-exibicao-categorias-ativas></personalizados-lopes-exibicao-categorias-ativas>
                   </div>
+                  <personalizados-lopes-exibicao-quantidade-produtos-filtrados></personalizados-lopes-exibicao-quantidade-produtos-filtrados>
                 </div>
 
                 <div class='pt-2'>
@@ -50,12 +50,12 @@
           <div
             class='column ml-0 pl-0 is-9-desktop is-9-tablet is-12-mobile produto-column mh-full of-y-scroll-desktop of-y-scroll'
           >
-            <div class='section pt-0'>
+            <div class=' pt-0'>
               <mat-tab-group>
                 <mat-tab label="Loja">
                   <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                 </mat-tab>
-                <mat-tab [label]="'Favoritos ' + FavCount || ''" >
+                <mat-tab *ngIf="FavCount > 0" [label]="'Favoritos ' + FavCount || ''" >
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>
                 </mat-tab>
               </mat-tab-group>

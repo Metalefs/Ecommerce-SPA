@@ -32,6 +32,11 @@ IntegracoesRouter.get(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, async (re
   .then((result : Integracoes)  => res.send(result.ParcelasPadrao))
   .catch(err => ErrorHandler.DefaultException(err, res))
 })
+.get(RouteDictionary.Integracoes.ValorMinimoDesconto, async (req: any, res) => {
+  IntegracoesService.LerUltimo()
+  .then((result : Integracoes)  => res.send(result.valorMinimoDescontoCompras))
+  .catch(err => ErrorHandler.DefaultException(err, res))
+})
 
 .put(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, IntegracoesCtrl.Editar)
 .post(RouteDictionary.Integracoes.Raiz, ensureIsAdmin, IntegracoesCtrl.Incluir)

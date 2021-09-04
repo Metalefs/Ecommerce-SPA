@@ -152,6 +152,28 @@ export class VisualizacaoProdutoLojaComponent implements OnInit {
     });
   }
 
+  AdicionarAoCarrinho(){
+    this.Orcamento$.subscribe(x=>{
+
+      const produtoEstaNoOrcamento = x?.Produto?.filter(x=>x.Produto._id === this.Produto._id);
+
+      if(produtoEstaNoOrcamento?.length === 0 || !produtoEstaNoOrcamento){
+
+        this.store.dispatch(new AdicionarProdutoAoOrcamento(this.Produto));
+        this.isOrcamento = true;
+
+      }
+      else{
+        this.Produto.Quantidade += produtoEstaNoOrcamento[0].Produto.Quantidade;
+
+        this.store.dispatch(new DuplicarProdutoOrcamento(this.Produto));
+        this.isOrcamento = true;
+      }
+      this.openCheckout();
+
+    });
+  }
+
   AlterarProdutoNoOrcamento(produto:Produto, orcamento:Orcamento){
     let produtosOrcamento = orcamento?.Produto?.filter(x=>x.Produto._id === produto._id);
     if(!this.orcamentoId){

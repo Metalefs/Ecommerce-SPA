@@ -23,6 +23,25 @@
       </form>
     </div>
     <div class="column is-12">
+      <div class="message is-white">
+        <div class="message-body">
+          <personalizados-lopes-exibicao-preco-produto
+            [Produto]="Produto"
+          ></personalizados-lopes-exibicao-preco-produto>
+          <mat-chip-list>
+            <mat-chip>{{translateEnum(Produto.Status)}}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <div class="w3-hide-small w3-text-grey font33">
+          <i class="fas fa-barcode"></i>
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-diners-club"></i>
+          <i class="fab fa-cc-amex"></i>
+        </div>
+      </div>
+    </div>
+    <div class="column is-12">
       <ng-container
         *ngIf="
           findInvalidControlsRecursive();
@@ -43,6 +62,9 @@
           [textoAdicionar]="textoAdicionar"
           (onAdicionarAoOrcamento)="
           onAdicionarAoOrcamento.emit($event)
+          "
+          (onAdicionarAoCarrinho)="
+          onAdicionarAoCarrinho.emit($event)
           "
           (onDuplicarOrcamento)="
           onDuplicarOrcamento.emit($event)
