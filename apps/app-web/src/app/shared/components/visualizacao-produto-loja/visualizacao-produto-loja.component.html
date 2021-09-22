@@ -66,12 +66,7 @@
                               ></personalizados-lopes-cor-produto-selector>
                             </div>
                             <div class="column is-12 is-12-touch">
-                              <personalizados-lopes-selecao-estampa
-                                [Produto]="Produto"
-                                (onSelecionarEstampa)="
-                                  SelecionarEstampa($event)
-                                "
-                              ></personalizados-lopes-selecao-estampa>
+                              <personalizados-lopes-descricao-rapida-produto [Produto]="Produto"></personalizados-lopes-descricao-rapida-produto>
                             </div>
                           </div>
                         </div>
@@ -81,6 +76,7 @@
                 </div>
               </form>
             </div>
+
             <div
               class="column is-6"
               *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
@@ -98,6 +94,7 @@
                   [Produto]="Produto"
                   (onAbrirModalArte)="AbrirModalArte($event)"
                 ></personalizados-lopes-exibicao-artes-produto>
+
               </perfect-scrollbar>
             </div>
           </div>
@@ -108,6 +105,12 @@
           >
           <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
         </figure>
+        <personalizados-lopes-selecao-estampa
+                                [Produto]="Produto"
+                                (onSelecionarEstampa)="
+                                  SelecionarEstampa($event)
+                                "
+            ></personalizados-lopes-selecao-estampa>
         <personalizados-lopes-botao-contato-whatsapp
           (click)="EntrarEmContato()"
         ></personalizados-lopes-botao-contato-whatsapp>

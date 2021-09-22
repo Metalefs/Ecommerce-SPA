@@ -4,11 +4,12 @@
     class='hero-head bg txt-center w-full'
   >
     <div class='card-header'>
-      <h1 class='txt-center w-full of-x-scroll'>
+      <h1 class='title is-3'>
         Encontre o Produto Perfeito
       </h1>
     </div>
   </div>
+
   <div class='hero-body py-0'>
     <div class=' pt-2'>
       <div [@cardFlip]='state' class='' id='Todos'>
@@ -17,13 +18,6 @@
             <aside class='flex-c aside w-full portfolio pos-sticky top-0'>
 
               <div class='is-hidden-mobile w-full '>
-
-                <div>
-                  <div class='hoverable bo-0 bos-0'>
-                    <personalizados-lopes-exibicao-categorias-ativas></personalizados-lopes-exibicao-categorias-ativas>
-                  </div>
-                  <personalizados-lopes-exibicao-quantidade-produtos-filtrados></personalizados-lopes-exibicao-quantidade-produtos-filtrados>
-                </div>
 
                 <div class='pt-2'>
 
@@ -53,6 +47,16 @@
             <div class=' pt-0'>
               <mat-tab-group>
                 <mat-tab label="Loja">
+                  <mat-list>
+                    <mat-list-item *ngIf="filterState.CategoriaAtiva"><div>
+                      <div class='hoverable bo-0 bos-0 w-full my-5 px-0 mx-0'>
+                        <personalizados-lopes-exibicao-categorias-ativas></personalizados-lopes-exibicao-categorias-ativas>
+                      </div>
+                    </div></mat-list-item>
+                    <mat-list-item *ngIf="filterState.activeCorProduto">Cor: {{filterState.activeCorProduto.Nome}}</mat-list-item>
+                    <mat-list-item *ngIf="filterState.activeFornecedor">Fornecedor: {{filterState.activeFornecedor.Nome}}</mat-list-item>
+                    <mat-list-item *ngIf="filterState.activeOrderStatus">Status: {{filterState.activeOrderStatus.name}}</mat-list-item>
+                  </mat-list>
                   <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                 </mat-tab>
                 <mat-tab *ngIf="FavCount > 0" [label]="'Favoritos ' + FavCount || ''" >

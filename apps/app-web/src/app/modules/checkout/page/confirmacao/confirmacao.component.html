@@ -46,7 +46,7 @@
               </mat-panel-title>
               <mat-panel-description> R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }} </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="exibicao-cart">
+            <div class="exibicao-cart of-y-scroll">
               <personalizados-lopes-tabela-edicao-orcamento *ngIf="exibirTabela"
                 [edit]="edit"
               ></personalizados-lopes-tabela-edicao-orcamento>

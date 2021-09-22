@@ -2,22 +2,51 @@
 <section class="section mh-full">
   <div class="container">
     <a class="logo block" routerLink="/"></a>
-    <h1 class="cart-title">Meu carrinho</h1>
+    <h1 class="cart-title title is-3">Meu carrinho</h1>
+    <ul class="progress-indicator">
+      <li [ngClass]="{'completed':confirmar}"> <span class="bubble"></span> Confirmação. </li>
+      <li [ngClass]="{'completed':selected && emailForm?.valid}"> <span class="bubble"></span> Email. </li>
+      <li [ngClass]="{'completed':emailForm?.valid && dadosForm?.valid}"> <span class="bubble"></span> Dados pessoais. </li>
+      <li [ngClass]="{'completed':emailForm?.valid && dadosForm?.valid && enderecoForm?.valid}"> <span class="bubble"></span> Entrega. </li>
+    </ul>
     <div @slideInOut class="margin pos-relative au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
-
       <ng-container *ngIf="confirmar then pagamento else confirmacao"></ng-container>
       <ng-template #confirmacao @slideInOut>
-        <div class="columns w-full is-3">
-          <div class="column">
+        <div class="columns w-full is-3 pb-1 mb-0">
+          <div class="column is-12">
             <div class="box exibicao-cart">
               <personalizados-lopes-tabela-edicao-orcamento></personalizados-lopes-tabela-edicao-orcamento>
             </div>
           </div>
+        </div>
+        <div class="columns w-full pt-1">
+          <div class="column is-6">
+            <form [formGroup]='cepForm'>
+              <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Calcule frete e prazo</mat-label>
+                <input matInput [formControlName]="'cep'" [(ngModel)]="Orcamento.Entrega.cep"
+                       placeholder="seu CEP" [mask]="'00000-000'">
+                <mat-error *ngIf="cepForm.get('cep').hasError('required')">
+                  É necessário inserir um <strong>CEP</strong>
+                </mat-error>
+                <button [disabled]="cepForm.invalid" class="button" (click)="CalcularFreteProduto()">Calcular</button>
+              </mat-form-field>
+            </form>
+            <mat-radio-group class="example-radio-group" [(ngModel)]="FreteSelecionado">
+              <mat-radio-button class="example-radio-button" (click)="SelecionarFrete(frete)" *ngFor="let frete of Fretes" [value]="frete">
+                <div class="box button is-success of-y-scroll" [ngClass]="FreteSelecionado?.Codigo == frete.Codigo ? '': 'is-outlined'">
+                  <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b> (Até {{frete.PrazoEntrega}} dia(s)) </b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
+                  <div class="w3-padding">R$ {{frete.Valor}} por pedido!</div>
+                </div>
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
           <div class="column">
-            <div class="box">
+            <div class="">
               <personalizados-lopes-confirmacao [exibirTabela]='false'></personalizados-lopes-confirmacao>
               <a *ngIf="(Orcamento$ | async)?.Produto.length > 0" mat-flat-button class="button is-primary w-full is-uppercase" (click)="FinalizarCompra()">
-                <mat-icon class="material-icons-outlined">shopping_bag</mat-icon> Finalizar Compra
+                Avançar
+                <svg class="svg-inline--fa fa-chevron-right fa-w-10" data-prefix="fad" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M188.74 256l56.78 56.89L91.21 466.9a24 24 0 0 1-33.94 0l-22.7-22.65a23.93 23.93 0 0 1 0-33.84z"></path><path class="fa-primary" fill="currentColor" d="M91.25 45.06l194.33 194a23.93 23.93 0 0 1 0 33.84l-40 40-211-211.34a23.92 23.92 0 0 1 0-33.84l22.7-22.65a24 24 0 0 1 33.97-.01z"></path></g></svg>
               </a>
             </div>
           </div>
@@ -87,29 +116,7 @@
           </div>
         </div>
       </ng-template>
-      <div class="columns w-full">
-        <div class="column is-6">
-          <form [formGroup]='cepForm'>
-            <mat-form-field class="w-full" appearance="fill">
-              <mat-label>Calcule frete e prazo</mat-label>
-              <input matInput [formControlName]="'cep'" [(ngModel)]="Orcamento.Entrega.cep"
-                     placeholder="seu CEP" [mask]="'00000-000'">
-              <mat-error *ngIf="cepForm.get('cep').hasError('required')">
-                É necessário inserir um <strong>CEP</strong>
-              </mat-error>
-              <button [disabled]="cepForm.invalid" class="button" (click)="CalcularFreteProduto()">Calcular</button>
-            </mat-form-field>
-          </form>
-          <mat-radio-group class="example-radio-group" [(ngModel)]="FreteSelecionado">
-            <mat-radio-button class="example-radio-button" (click)="SelecionarFrete(frete)" *ngFor="let frete of Fretes" [value]="frete">
-              <div class="box button is-success of-y-scroll" [ngClass]="FreteSelecionado?.Codigo == frete.Codigo ? '': 'is-outlined'">
-                <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b> (Até {{frete.PrazoEntrega}} dia(s)) </b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
-                <div class="w3-padding">R$ {{frete.Valor}} por pedido!</div>
-              </div>
-            </mat-radio-button>
-          </mat-radio-group>
-        </div>
-      </div>
+
       <ng-container *ngIf="!checkoutService.getValid()">
         <div class="columns is-vcentered"  @fadeIn>
           <div class="column is-3">
@@ -127,6 +134,8 @@
           </div>
         </div>
       </ng-container>
+
+
       <ng-container *ngIf="checkoutService.getValid()">
         <div class="columns  pos-sticky top-0 z-index-1 bellow-nav"  @fadeIn>
           <div class="column">

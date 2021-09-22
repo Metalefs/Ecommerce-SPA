@@ -19,6 +19,10 @@
 .shadow{
   box-shadow: 0 10px 60px #00000057;
 }
+
+.hero figure image{
+  transform: rotate(30deg);
+}
 @keyframes show{
   0%{
     visibility: hidden;

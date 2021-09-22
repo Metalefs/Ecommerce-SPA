@@ -20,7 +20,12 @@ export class ProdutosComponent implements OnInit {
   FavCount:number;
   imagens: [{ path: string }] = [{ path: ObterImagensCarousel()[0] }];
 
-  state = "flipped"
+  _filterState:any;
+  public get filterState() {
+    return this.produtoStateService;
+  }
+
+  state = "flipped";
 
   mobileQuery: MediaQueryList;
 

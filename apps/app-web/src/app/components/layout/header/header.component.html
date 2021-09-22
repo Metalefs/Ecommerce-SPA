@@ -133,7 +133,7 @@
               <i class="pi pi-user fs-20"></i>
                 <span class="ml-2 of-x-scroll" style="border: none !important;">
                 <a class="w-full fw-500 subtitle" mat-menu-item title="Perfil">
-                  {{ user?.Nome || 'ENTRAR' }}
+                  {{ user?.Nome || 'Entrar' }}
                 </a>
               </span>
             </div>
@@ -193,7 +193,6 @@
         </div>
         <div class="column">
           <button
-            mat-mini-fab
             color=""
             (click)="openCheckout()"
             title="Cesta de compras"
@@ -201,6 +200,7 @@
             class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
           >
             <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+            Seu carrinho
             <a class="cart-counter" *ngIf="(Orcamento$ | async)?.Produto.length > 0">
               {{ (Orcamento$ | async)?.Produto.length || 0 }}
             </a>
@@ -218,14 +218,14 @@
       </div>
     </div>
   </nav>
-  <mat-toolbar-row
+  <!-- <mat-toolbar-row
     [ngClass]="
       (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'
         ? 'produtos-nav-under'
         : 'produtos-nav-under'
     "
   >
-  </mat-toolbar-row>
+  </mat-toolbar-row> -->
 </div>
 <!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"
