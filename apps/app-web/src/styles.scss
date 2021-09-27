@@ -623,7 +623,6 @@ img {
 .mat-dialog-container {
   display: block;
   padding: 10px !important;
-  border-radius: 0px !important;
   box-sizing: border-box;
   overflow: auto;
   outline: 0;
@@ -1079,36 +1078,39 @@ div.descricao-produto {
   background-attachment: fixed;
 }
 
-.curve {
+section.curve {
   position: absolute;
   height: 250px;
   width: 100%;
   bottom: 0;
   text-align: center;
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    transform: translate(85%, 60%);
+    background-color: hsl(216, 21%, 16%);
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 100% 50%;
+    width: 55%;
+    height: 100%;
+    background-color: #3c31dd;
+    transform: translate(-4%, 40%);
+    z-index: -1;
+  }
 }
 
-.curve::before {
-  content: '';
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 55%;
-  height: 100%;
-  transform: translate(85%, 60%);
-  background-color: hsl(216, 21%, 16%);
-}
 
-.curve::after {
-  content: '';
-  display: block;
-  position: absolute;
-  border-radius: 100% 50%;
-  width: 55%;
-  height: 100%;
-  background-color: #3c31dd;
-  transform: translate(-4%, 40%);
-  z-index: -1;
-}
+
+
+
 
 /* Bubble bg with plain CSS */
 

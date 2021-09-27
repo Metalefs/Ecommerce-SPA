@@ -1,8 +1,8 @@
 <footer class="footer footer-color flex-w flex-sb py-0 px-0 of-x-scroll">
-  <div class="a-i-c flex-w flex-sb px-0 margin">
-    <div class="hero w-full is-small">
+  <div class="a-i-c flex-w flex-sb">
+    <div class="hero w-full is-medium">
       <div class="w-full hero-head">
-        <div class="px-2 bbr has-background-info w-full dis-flex flex-sa flex-m">
+        <div class="px-2 bbr has-background-danger w-full dis-flex flex-sa flex-m">
 
           <div class="columns is-gapless is-multiline is-vcentered">
             <div class="column pb-0 mt-2 w-full dis-flex flex-m flex-c">
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-body ">
+      <div class="hero-body" style="padding:0 10%">
         <div class="columns is-multiline">
           <div class="column social">
             <div class="footer-widget">
@@ -143,7 +143,7 @@
         <mat-toolbar-row class="w-full btr" style="white-space: break-spaces; ">
           <div class="w-full margin">
             <div class="w-full flex-sa txt-center">
-              <p class="footer-text"><b [innerHtml]="(Sobre$ | async)?.Nome"></b> Todos os direitos reservados</p>
+              <p class="footer-text"><em [innerHtml]="(Sobre$ | async)?.Nome"></em> Todos os direitos reservados</p>
             </div>
           </div>
         </mat-toolbar-row>

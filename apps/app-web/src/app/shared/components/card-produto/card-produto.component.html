@@ -42,7 +42,7 @@
           [backgroundSize]="'contain'"
           [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
           [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
-          [showDots]="true"
+          [showDots]="false"
           [dotColor]="'black'"
           [showCaptions]="(Carrosel$ | async)?.showCaptions"
           [captionColor]="(Carrosel$ | async)?.captionColor"
@@ -163,7 +163,7 @@
                 >shopping_bag</mat-icon
               ></a
             >
-            <div
+            <!-- <div
               class="content m-lr-auto flex-c-m dis-flex"
               [style.width]="flex_direction == 'row' ? '45%' : '100%'"
               [style.left]="'8%'"
@@ -182,7 +182,7 @@
                   </p>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

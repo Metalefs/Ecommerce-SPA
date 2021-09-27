@@ -11,7 +11,7 @@
   [dropdown]="true">
   <ng-template let-produto pTemplate="item">
     <a [href]="'/produtos/'+produto?._id">
-      <div class="produto-item columns is-gapless is-mobile of-x-scroll">
+      <div class="produto-item columns is-gapless is-mobile of-x-scroll button">
         <div class="column is-3">
           <figure class="image is-64x64">
             <img src="{{produto?.Imagem[0]}}">

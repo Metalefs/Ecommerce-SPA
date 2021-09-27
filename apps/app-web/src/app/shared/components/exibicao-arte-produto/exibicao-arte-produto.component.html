@@ -22,7 +22,7 @@
         </mat-card>
       </ng-template>
       <ng-template #novaArte>
-        <div class="px-2 txt-center">
+        <div class="px-2 txt-center"  *ngIf="Produto?.Arte">
 
           <div class="column px-2">
             <button @fadeIn *ngIf="!Produto.ArteSecundaria" mat-flat-button

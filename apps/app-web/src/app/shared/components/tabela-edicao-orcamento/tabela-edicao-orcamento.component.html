@@ -8,13 +8,14 @@
           <figure class="image is-64x64"  (click)="AbrirModalArte(element)">
             <img src="{{element?.Produto.Imagem[0]}}">
           </figure>
-          <figure class="image is-64x64 d-block " (click)="AbrirModalArte(element)">
+          <figure class="image is-64x64 d-block button" (click)="AbrirModalArte(element)">
 
             <ng-container *ngIf="element?.Produto.Arte then arte else novaArte"></ng-container>
             <ng-template #arte>
 
-              <figure class="image is-64x64 is-pri-image">
-                <img src="{{element?.Produto.Arte || ''}}" class="">
+              <figure class="image is-64x64 is-pri-image dis-flex flex-c-m">
+                <mat-icon>image</mat-icon>
+                <span class="pos-absolute bott0m-0">Ver arte</span>
               </figure>
 
               <figure *ngIf="element?.Produto.ArteSecundaria" class="image is-64x64 is-sec-image">

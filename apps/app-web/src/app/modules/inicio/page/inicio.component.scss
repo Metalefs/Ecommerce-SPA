@@ -20,9 +20,20 @@
   box-shadow: 0 10px 60px #00000057;
 }
 
-.hero figure image{
-  transform: rotate(30deg);
+.main-image {
+  width: 100%;
+  // height: 25rem;
+  z-index: 0;
+  overflow: hidden;
 }
+
+.main-image img {
+  width: 110%;
+  height: 100%;
+  object-fit: cover;
+  // transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
+}
+
 @keyframes show{
   0%{
     visibility: hidden;
@@ -73,5 +84,25 @@
 }
 
 .custom-shape-divider-top-1629771262 .shape-fill {
+  fill: #f1f2faeb;
+}
+.custom-shape-divider-top-1632745448 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1632745448 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 139px;
+}
+
+.custom-shape-divider-top-1632745448 .shape-fill {
   fill: #FFFFFF;
 }

@@ -11,12 +11,13 @@
   &.active {
     text-decoration: underline;
   }
+  margin-top: .5rem;
 }
 
 .texto-categorias{
-  // color: rgb(87, 87, 87);
+  //color: rgb(87, 87, 87);
   letter-spacing: -1px;
-  // font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 .texto-categoria-ativa{

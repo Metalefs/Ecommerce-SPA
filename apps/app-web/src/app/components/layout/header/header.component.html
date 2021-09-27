@@ -1,6 +1,6 @@
 <mat-toolbar
   class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top is-hidden"
-  style="overflow-y: visible; z-index: 20;height:30px"
+  style="overflow-y: visible; z-index: 20; height: 30px;"
 >
   <div class="flex-sb">
     <a
@@ -18,25 +18,23 @@
     </a>
   </div>
 </mat-toolbar>
-<div class="pos-sticky z-index-top top-0 " style="overflow-y: visible;">
+<div class="pos-sticky z-index-top top-0" style="overflow-y: visible;">
   <nav
-    class="navbar columns is-vcentered w-full is-mobile z-index-top  mx-0"
+    class="navbar columns is-vcentered w-full is-mobile z-index-top mx-0"
     style="z-index: 20;"
   >
-    <div class="column ml-6 is-2-desktop is-5-mobile">
-      <a @fadeIn href="#" class="logo ml-5 flex-m a-i-c">
+    <div class="column is-2-desktop is-5-mobile">
+      <a @fadeIn href="#" class="logo flex-m a-i-c">
         <!-- <img loading="lazy" class="logo " src="" alt="LOGO"> -->
       </a>
     </div>
-    <div class="column is-hidden-mobile"  *ngIf="search">
+    <div class="column is-hidden-mobile" *ngIf="search">
       <form
         type="get"
         class="is-6 w-full rounded nav-item has-background-white"
-        action="/produtos/?nome={{
-          search_filter
-        }}?categoria=Todos os produtos"
+        action="/produtos/?nome={{ search_filter }}?categoria=Todos os produtos"
       >
-        <div class="py-2 w-full">
+        <div class=" w-full">
           <div class="w-full dis-flex">
             <button
               mat-icon-button
@@ -57,10 +55,8 @@
         </div>
       </form>
     </div>
-    <div class="column is-5-desktop  is-hidden">
-      <div
-        class="columns is-mobile is-vcentered link-section flex-c-m"
-      >
+    <div class="column is-5-desktop is-hidden">
+      <div class="columns is-mobile is-vcentered link-section flex-c-m">
         <div *ngFor="let link of links" class="column px-0">
           <ng-container
             *ngIf="link.options; then dropdown; else normal"
@@ -68,9 +64,7 @@
           <ng-template #normal>
             <a
               (click)="SetActiveNav(link)"
-              class="nav-link  {{
-                link.name == 'inicio' ? 'inicio' : ''
-              }}"
+              class="nav-link  {{ link.name == 'inicio' ? 'inicio' : '' }}"
               pageScroll
               [routerLink]="link.href"
               routerLinkActive="active-nav"
@@ -126,15 +120,13 @@
     </div>
 
     <div class="column">
-      <div class='columns is-mobile is-vcentered'>
+      <div class="columns is-mobile is-vcentered">
         <div class="column is-hidden-mobile">
           <div class="dropdown">
-            <div class="w-full dis-flex flex-c-m">
+            <div class="w-full dis-flex flex-c-m button">
               <i class="pi pi-user fs-20"></i>
-                <span class="ml-2 of-x-scroll" style="border: none !important;">
-                <a class="w-full fw-500 subtitle" mat-menu-item title="Perfil">
+              <span class="w-full fw-500 of-x-scroll has-text-white" mat-menu-item title="Perfil">
                   {{ user?.Nome || 'Entrar' }}
-                </a>
               </span>
             </div>
 
@@ -175,45 +167,54 @@
             </div>
           </div>
         </div>
-        <div class="column">
+        <!-- <div class="column">
           <button
-           *ngIf="FavCount > 0"
+            *ngIf="FavCount > 0"
             mat-mini-fab
-            [routerLink]="['/produtos']" routerLinkActive="router-link-active"
+            [routerLink]="['/produtos']"
+            routerLinkActive="router-link-active"
             title="Favoritos"
             color=""
             aria-label="Botão abrir Favoritos"
-            class="size4 boxshadow-none shadow-light trans-04 has-text-black "
+            class="size4 boxshadow-none shadow-light trans-04 has-text-black"
           >
             <i class="pi pi-heart fs-20"></i>
-            <a class="cart-counter" >
-              {{FavCount}}
+            <a class="cart-counter">
+              {{ FavCount }}
             </a>
           </button>
-        </div>
+        </div> -->
         <div class="column">
           <button
+            class="button"
             color=""
             (click)="openCheckout()"
             title="Cesta de compras"
             aria-label="Botão abrir Orçamento"
-            class="size4 boxshadow-none how-social shadow-light orcamento trans-04"
           >
-            <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-            Seu carrinho
-            <a class="cart-counter" *ngIf="(Orcamento$ | async)?.Produto.length > 0">
+            <span class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+                />
+              </svg>
+            </span>
+            <span class="is-hidden-touch">
+              Seu carrinho
+            </span>
+            <span class="badge">
               {{ (Orcamento$ | async)?.Produto.length || 0 }}
-            </a>
-          </button>
-          <div class="is-hidden-touch clickable">
-            <a
-              class="preco fw-500"
-              (click)="openCheckout()"
+            </span>
+            <span class="subtitle is-size-7 has-text-light is-hidden-touch clickable"
               *ngIf="(Orcamento$ | async)?.Preco"
             >
               R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
-            </a>
-          </div>
+            </span>
+          </button>
         </div>
       </div>
     </div>
