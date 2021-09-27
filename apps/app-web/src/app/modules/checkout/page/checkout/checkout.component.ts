@@ -112,6 +112,9 @@ export class CheckoutComponent implements OnInit {
       if(this.Orcamento?.Entrega?.cep){
         this.orcamentoService.Incluir(this.Orcamento).subscribe((x:Orcamento) => {
           this.servicoCorreios.CalcularPrecoPrazoPorOrcamento(x._id).subscribe(fretes=>{
+            if(fretes.some(x=>x.Valor == '0,00'))
+              alert("Erro ao calcular frete");
+
             this.Fretes = fretes;
           });
         })
@@ -119,8 +122,10 @@ export class CheckoutComponent implements OnInit {
     }
   }
   SelecionarFrete(frete:PrecoPrazoEvent){
-    if(frete.Valor != "0"){
-
+    if(frete.Valor == '0,00'){
+      return;
+    }
+    if(frete.Valor != "0,00"){
       this.Orcamento.Entrega.dados = {cep:this.CEP, precos:frete};
       this.Orcamento.Entrega.cep = this.CEP;
       this.checkoutService.AlterarOrcamentoLocal(this.Orcamento);

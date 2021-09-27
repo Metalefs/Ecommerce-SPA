@@ -11,6 +11,8 @@
     </ul>
     <div @slideInOut class="margin pos-relative au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
       <ng-container *ngIf="confirmar then pagamento else confirmacao"></ng-container>
+
+
       <ng-template #confirmacao @slideInOut>
         <div class="columns w-full is-3 pb-1 mb-0">
           <div class="column is-12">
@@ -53,6 +55,14 @@
         </div>
       </ng-template>
       <ng-template #pagamento>
+
+      <div *ngIf="confirmar" class="w-full my-3">
+        <button mat-icon-button (click)="confirmar = false">
+          <mat-icon>chevron_left</mat-icon>
+          <span>Voltar</span>
+        </button>
+      </div>
+
         <div class="columns w-full is-multiline is-3">
           <div class="column is-8">
             <div class="box px-3 py-3 w-full z-index-2">
