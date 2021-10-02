@@ -1,11 +1,5 @@
 <div class="bbr has-background-white">
-  <!-- -->
 
-  <!-- <div class="hero is-small hoverable bg mb-1">
-    <div class="hero-head txt-center has-text-white w-full" style="padding: 30px 0;">
-       <h1 class="bg-transp card-header txt-center box ">{{ Produto?.Nome }}</h1>
-    </div>
-  </div> -->
   <div *ngIf="!Produto" class="box">
     <div class="p-grid p-formgrid">
       <div class="p-field p-col-12 p-md-6">
@@ -18,13 +12,7 @@
     </div>
   </div>
 
-  <personalizados-lopes-exibicao-breadcrumb
-    *ngIf="Produto"
-    [Produto]="Produto"
-    class="my-4"
-  ></personalizados-lopes-exibicao-breadcrumb>
-
-  <div class="margin">
+  <div class="">
     <personalizados-lopes-visualizacao-produto-loja
     *ngIf="Produto"
       [(Produto)]="Produto"

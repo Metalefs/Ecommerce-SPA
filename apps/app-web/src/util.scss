@@ -185,15 +185,14 @@ input[type=number] {
   border-radius: 4px;
 }
 .titulo-produto{
-  // text-transform: uppercase;
-  // font-size: 15px!important;
-  line-height: 1.7rem;
-  // font-weight: 600;
-  // color: #495057;
-  line-height: 1.7rem;
-  color: #0d8bc7;
-  font-weight: 600;
-  font-size: medium;
+  margin: 0;
+  display: block;
+  color: black;
+  text-align: inherit;
+  margin-bottom: 0;
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 1.625rem;
 }
 
 input{

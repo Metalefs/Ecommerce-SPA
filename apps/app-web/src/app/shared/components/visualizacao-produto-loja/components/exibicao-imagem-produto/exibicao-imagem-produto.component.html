@@ -29,28 +29,4 @@
 
 <!-- Add custom template to image items -->
 
-  <div class="column is-12 px-3 is-hidden-touch">
-    <div class="w-full flex-l">
-      <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
-      <personalizados-lopes-curtir-produto [Produto]="Produto"></personalizados-lopes-curtir-produto>
-
-
-
-    </div>
-    <ul class="box content list-unstyled dis-flex flex-sb flex-m">
-      <li>
-        <p class="subtitle">
-          <b>Modelo: </b> <span class="fs-300">{{ Produto?.Modelo || 'N/A' }}</span>
-        </p>
-      </li>
-      <li>
-        <p class="subtitle">
-          <b>Marca: </b>
-          <span class="fs-300">{{
-            Produto?.Marca?.Nome || Produto?.Marca || 'N/A'
-          }}</span>
-        </p>
-      </li>
-    </ul>
-  </div>
 </div>

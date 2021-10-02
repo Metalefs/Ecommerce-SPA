@@ -6,14 +6,15 @@
   <mat-label
     class="label is-small"
     [ngClass]="{ '': !(Produto.Tamanho?.Nome || Produto?.Tamanho) }"
-    >Escolha o <strong>Tamanho</strong> da unidade:
+    >
+    Tamanho:
   </mat-label>
 
   <div
   (click)="SetTamanho(opt)"
     *ngFor="let opt of Produto?.Tamanhos"
     [value]="opt"
-    class="shadow-light button is-outlined is-primary"
+    class="shadow-light button is-outlined is-info"
     [ngClass]="{
       'is-active is-hovered':
         Produto.Tamanho?.Nome ? Produto.Tamanho.Nome == opt?.Nome : Produto.Tamanho == opt

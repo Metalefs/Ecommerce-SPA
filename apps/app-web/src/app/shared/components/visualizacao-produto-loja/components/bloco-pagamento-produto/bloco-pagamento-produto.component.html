@@ -8,20 +8,7 @@
         (onQuantidadeChange)="onQuantidadeChange.emit($event)"
       ></personalizados-lopes-selecao-quantidade-produto>
     </div>
-    <div class="column is-12">
-      <form [formGroup]='cepForm'>
-        <mat-form-field class="w-full" appearance="fill">
-          <mat-label>Calcule frete e prazo</mat-label>
-          <input matInput (change)="AtualizarOrcamento()" [formControlName]="'cep'"
-          [mask]="'00000-000'"
-                 placeholder="seu CEP">
-          <mat-error *ngIf="cepForm.get('cep').hasError('required')">
-            É necessário inserir um <strong>CEP</strong>
-          </mat-error>
-          <button [disabled]="cepForm.invalid" class="submit" (click)="CalcularFreteProduto()">Calcular</button>
-        </mat-form-field>
-      </form>
-    </div>
+
     <div class="column is-12">
       <div class="message is-white">
         <div class="message-body">
@@ -71,6 +58,20 @@
           "
         ></personalizados-lopes-botao-comprar-produto>
       </ng-template>
+    </div>
+    <div class="column is-12">
+      <form [formGroup]='cepForm'>
+        <mat-form-field class="w-full" appearance="fill">
+          <mat-label>Calcule frete e prazo</mat-label>
+          <input matInput (change)="AtualizarOrcamento()" [formControlName]="'cep'"
+          [mask]="'00000-000'"
+                 placeholder="seu CEP">
+          <mat-error *ngIf="cepForm.get('cep').hasError('required')">
+            É necessário inserir um <strong>CEP</strong>
+          </mat-error>
+          <button [disabled]="cepForm.invalid" class="submit" (click)="CalcularFreteProduto()">Calcular</button>
+        </mat-form-field>
+      </form>
     </div>
   </div>
 </div>

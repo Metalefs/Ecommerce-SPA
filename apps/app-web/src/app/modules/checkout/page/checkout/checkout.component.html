@@ -137,14 +137,13 @@
           <div class="column">
             <mat-list class="px-2 mx-2 " @fadeIn>
               <mat-list-item class="pb-2 box" @fadeIn *ngFor="let erro of checkoutService.getErros()">
-                <p class="subtitle is-size-6 has-text-danger"><mat-icon>error</mat-icon> {{erro}}</p>
+                <p class="subtitle is-size-6 has-text-danger mb-0"><mat-icon>error</mat-icon> {{erro}}</p>
                 <mat-divider></mat-divider>
               </mat-list-item>
             </mat-list>
           </div>
         </div>
       </ng-container>
-
 
       <ng-container *ngIf="checkoutService.getValid()">
         <div class="columns  pos-sticky top-0 z-index-1 bellow-nav"  @fadeIn>

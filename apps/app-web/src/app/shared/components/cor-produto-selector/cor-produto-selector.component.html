@@ -1,5 +1,8 @@
 <div>
-  <label [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="label is-small">Escolha a <strong>Cor</strong>: </label>  <span class=" is-size-7">{{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}</span>
+  <label [ngClass]="{'': !(Produto?.Cor?.Nome ||Produto?.Cor?.nome)}" class="label is-small">Cor: </label>
+  <span [style.background]="Produto?.Cor?.Cor || ''">
+    {{( Produto?.Cor?.nome || Produto?.Cor?.Nome )|| (hovercolor?.Nome||hovercolor?.nome) }}
+  </span>
   <div
     class="columns is-multiline flex-sb"
     [ngClass]="{ 'is-danger': ErroCor }"

@@ -24,7 +24,7 @@
             </ng-template>
             <ng-template #novaArte>
               <div class="px-2 txt-center">
-                <em>Sem Arte</em>
+                <mat-icon>warning</mat-icon>
                 <label class="file-label">
                   <div class="file-input" type="file" (click)="AbrirModalArte(element)"></div>
                   <span class="file-cta">
@@ -39,8 +39,8 @@
           <div class="is-hidden-desktop ml-3">
             <a href="#topo" [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
               routerLinkActive="router-link-active"
-              class="titulo-produto ">{{element?.Produto.Nome}}
-              <p class="titulo-produto">{{element?.Produto.Cor?.nome}}</p>
+              class="title is-size-5 ">{{element?.Produto.Nome}}
+              <p class="">{{element?.Produto.Cor?.nome}}</p>
               <ng-container *ngIf="element?.Produto?.Tamanho?.Nome && Produto?.FaixaTamanho?.Tamanhos">
                 <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome == null ? '' : Produto?.Tamanho?.Nome}} {{Produto?.FaixaTamanho?.Tamanho || ''}}</span></p>
               </ng-container>
@@ -74,7 +74,7 @@
         <div class="column is-hidden-touch">
           <a href="#topo" [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
             routerLinkActive="router-link-active"
-            class="titulo-produto ">{{element?.Produto.Nome}}
+            class="title is-size-5 ">{{element?.Produto.Nome}}
             <p class="subtitle">{{element?.Produto.Cor?.Nome || element?.Produto.Cor?.nome}}</p>
             <ng-container *ngIf="element?.Produto?.Tamanho">
               <div

@@ -233,7 +233,7 @@
   height: 208px;
 }
 app-card{
-  padding: 8px 16px;
+  // padding: 8px 16px;
 }
 .portfolio-item {
   margin: 0;
@@ -413,6 +413,10 @@ app-card{
 .card-content{
   padding: 16px;
   .--inner{
+    .svg-icon{
+      width: 1em;
+      height: 1em;
+    }
     .product{
       &-type{
         margin: 0px;

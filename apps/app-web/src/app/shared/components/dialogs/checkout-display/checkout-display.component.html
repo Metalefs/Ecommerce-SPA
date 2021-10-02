@@ -15,8 +15,6 @@
 </mat-toolbar>
 <div class="of-x-scroll px-2 mh-full" mat-dialog-content>
 
-
-
   <ng-container *ngIf="(Orcamento$ |async)?.Produto.length > 0 then pedido else vazio"></ng-container>
 
   <ng-template #vazio>
@@ -90,7 +88,7 @@
       <div class="column"></div>
       <div class="column"></div>
       <div class="column has-text-right">
-        <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2)}}</span></p>
+        <p class="subtitle">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2)}}</span></p>
       </div>
     </div>
   </mat-toolbar-row>

@@ -2,11 +2,11 @@
   <mat-card class="clickable"
   (click)='onClick.emit(Estampa)'
 >
-  <mat-card-title class="mb-0">
+  <!-- <mat-card-title class="mb-0">
     <div class="mb-0">
       <mat-card-subtitle class="mb-0">{{Estampa?.Nome}}</mat-card-subtitle>
     </div>
-  </mat-card-title>
+  </mat-card-title> -->
   <figure class="image is-32x32">
     <img mat-card-image class="is-rounded" src="{{(Estampa?.Imagem)[0]?.Src}}" alt="Foto de {{Estampa?.Descricao}}">
   </figure>

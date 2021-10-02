@@ -19,9 +19,9 @@
       [translateStatusProduto]="translateStatusProduto"
     ></personalizados-lopes-card-produto-status-produto>
 
-    <personalizados-lopes-card-produto-imagem></personalizados-lopes-card-produto-imagem>
+    <personalizados-lopes-card-produto-imagem [Produto]="Produto"></personalizados-lopes-card-produto-imagem>
 
-    <div class="card-content">
+    <div class="card-content" (click)="AbrirPaginaProduto()">
       <div class="--inner">
         <span class="product-type">{{Produto.Categoria.Nome}}</span>
         <div class="product-info">
@@ -33,10 +33,9 @@
           </p>
         </div>
         <span
-          class="hhh4j4-1 ldRYl sc-bdVaJa glcarn"
-          data-testid="house-card-area"
+          class=""
           ><svg
-            class="MuiSvgIcon-root jss83"
+            class="svg-icon"
             focusable="false"
             viewBox="0 0 24 24"
             aria-hidden="true"
@@ -48,7 +47,7 @@
               d="M21.75 7.5H2.25a.75.75 0 00-.75.75v7.5a.75.75 0 00.75.75h19.5a.75.75 0 00.75-.75v-7.5a.75.75 0 00-.75-.75zM21 15H3V9h3v3h1.5V9h3.75v3h1.5V9h3.75v3H18V9h3v6z"
             ></path>
           </svg>
-          {{Produto.Dimensoes}}
+          {{Produto.Dimensoes.Altura}}x{{Produto.Dimensoes.Largura}}x{{Produto.Dimensoes.Comprimento}},{{Produto.Dimensoes.Peso}}
         </span>
       </div>
     </div>

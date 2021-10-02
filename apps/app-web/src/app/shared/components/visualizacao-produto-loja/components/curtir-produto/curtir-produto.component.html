@@ -4,8 +4,8 @@
     title="Gostei"
     matBadge="{{ Produto?.Likes }}"
     matBadgeColor="accent"
+    mat-raised-button
     (click)="Like()"
-    mat-icon-button
     [ngClass]="Liked ? 'liked disabled' : ''"
     [ngClass]="loading ? ' is-loading' : ''"
   >
@@ -16,6 +16,7 @@
       >
         {{ Liked ? 'favorite' : 'favorite_border' }}</mat-icon
       >
+      Favoritar
     </p>
   </button>
   <p *ngIf="Liked" class="has-text-info px-3" aria-label="Obrigado">
