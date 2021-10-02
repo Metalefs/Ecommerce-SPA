@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { entities } from '@personalizados-lopes/data';
-import { translateEnum } from '../../../../helper/ObjHelper';
 import { StatusProduto } from '../../../../../../../../libs/data/src/lib/classes/produto';
+import { Produto } from 'libs/data/src/lib/classes';
+
 
 @Component({
   selector: 'personalizados-lopes-card-produto-status-produto',

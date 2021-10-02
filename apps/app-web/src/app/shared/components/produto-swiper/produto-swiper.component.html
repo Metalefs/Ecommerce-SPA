@@ -23,9 +23,9 @@
             <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
             </ng-container>
             <ng-template #Inclusao>
-              <mat-toolbar>
-                <a class="title is-size-4 txt-center w-full" [routerLink]="['/produtos']" href="#topo" pageScroll>Recentes</a>
-              </mat-toolbar>
+              <nav class="nav">
+                <a class="title is-size-4 txt-center w-full" [routerLink]="['/produtos']" href="#topo" pageScroll>Últimos produtos na <a class="select a">loja</a></a>
+              </nav>
             </ng-template>
             <ng-template #Outro>
               <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Vendas then Vendas else Visualizacoes">

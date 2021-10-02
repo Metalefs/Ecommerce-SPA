@@ -10,6 +10,8 @@ import { NavLinks, Link } from 'apps/app-web/src/app/shared/models/interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { EmailNotificacaoService } from 'apps/app-web/src/app/data/service';
 
+declare let KUTE: any;
+
 @Component({
   selector: 'personalizados-lopes-footer',
   templateUrl: './footer.component.html',
@@ -76,6 +78,16 @@ export class FooterComponent implements OnInit, OnDestroy {
   ngOnInit(){
     this.Carregar();
   }
+
+  ngAfterViewInit(){
+    const tween = KUTE.fromTo(
+      '#blob1',
+      { path: '#blob1' },
+      { path: '#blob2' },
+      { repeat: 999, duration: 3000, yoyo: true }
+    ).start();
+  }
+
   ngOnDestroy(){
     this.IsSobreLoadedSub.unsubscribe();
     this.IsInformacoesContatoLoadedSub.unsubscribe();

@@ -1,9 +1,9 @@
 <personalizados-lopes-filtro-categoria-mobile></personalizados-lopes-filtro-categoria-mobile>
-<div class='hero is-small'>
+<div class='hero is-small pt-0'>
   <div
-    class='hero-head bg txt-center w-full'
+    class='hero-head bg txt-center my-0 w-full'
   >
-    <div class='card-header section'>
+    <div class='card-header mt-3 section'>
       <h1 class='title is-3'>
         Encontre o Produto Perfeito
       </h1>
@@ -47,12 +47,12 @@
             <div class=' pt-0'>
               <mat-tab-group>
                 <mat-tab label="Loja">
-                  <mat-list class="box py-4 mb-0">
-                    <mat-list-item *ngIf="filterState.CategoriaAtiva"><div>
-                      <div class='hoverable bo-0 bos-0 w-full my-5 px-0 mx-0'>
+                  <mat-list class="box">
+                    <mat-list-item *ngIf="filterState.CategoriaAtiva">
+                      <div class='hoverable bo-0 bos-0 w-full px-0 mx-0'>
                         <personalizados-lopes-exibicao-categorias-ativas></personalizados-lopes-exibicao-categorias-ativas>
                       </div>
-                    </div></mat-list-item>
+                    </mat-list-item>
                     <mat-list-item *ngIf="filterState.activeCorProduto">Cor: {{filterState.activeCorProduto.Nome}}</mat-list-item>
                     <mat-list-item *ngIf="filterState.activeFornecedor">Fornecedor: {{filterState.activeFornecedor.Nome}}</mat-list-item>
                     <mat-list-item *ngIf="filterState.activeOrderStatus">Status: {{filterState.activeOrderStatus.name}}</mat-list-item>

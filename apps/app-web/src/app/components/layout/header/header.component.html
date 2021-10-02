@@ -203,17 +203,17 @@
                 />
               </svg>
             </span>
-            <span class="is-hidden-touch">
-              Seu carrinho
+            <span class="is-hidden-touch has-text-white" mat-menu-item>
+              Seu Carrinho
             </span>
             <span class="badge">
               {{ (Orcamento$ | async)?.Produto.length || 0 }}
             </span>
-            <span class="subtitle is-size-7 has-text-light is-hidden-touch clickable"
+            <!-- <span class="subtitle is-size-7 has-text-light is-hidden-touch clickable"
               *ngIf="(Orcamento$ | async)?.Preco"
             >
               R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
-            </span>
+            </span> -->
           </button>
         </div>
       </div>

@@ -18,10 +18,11 @@
         <div class="columns">
           <div class="column is-12 message px-0">
             <div class="message-body">
-              <h1 class="titulo-produto">{{ Produto?.Nome }}</h1>
+              <h1 class="titulo-produto fs-17">{{ Produto?.Nome }}</h1>
 
               <p class="
-               is-size-6">Referência: {{Produto._id}}</p>
+               is-size-6">Referência: </p>
+               <span class="subtitle fs-11">{{Produto._id}}</span>
             </div>
           </div>
         </div>
@@ -77,43 +78,28 @@
               </form>
             </div>
 
-            <div
-              class="column is-6"
-              *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
-            ></div>
-            <div
-              class="column is-6"
-              *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
-            >
-              <perfect-scrollbar
-                style="max-width: 600px; max-height: 400px;"
-                class="txt-left of-x-scroll"
-                *ngIf="Produto?.Arte || Produto?.ArteSecundaria"
-              >
-                <personalizados-lopes-exibicao-artes-produto
-                  [Produto]="Produto"
-                  (onAbrirModalArte)="AbrirModalArte($event)"
-                ></personalizados-lopes-exibicao-artes-produto>
-
-              </perfect-scrollbar>
-            </div>
           </div>
+          <personalizados-lopes-selecao-estampa
+          [Produto]="Produto"
+          (onSelecionarEstampa)="
+          SelecionarEstampa($event)
+          "
+          >
+          <personalizados-lopes-exibicao-artes-produto
+            [Produto]="Produto"
+            (onAbrirModalArte)="AbrirModalArte($event)"
+          ></personalizados-lopes-exibicao-artes-produto>
 
-          <figure
+        </personalizados-lopes-selecao-estampa>
+        <personalizados-lopes-botao-contato-whatsapp
+        (click)="EntrarEmContato()"
+        ></personalizados-lopes-botao-contato-whatsapp>
+        <figure
           class="image is-64x64 img-orcamento"
           [ngClass]="isOrcamento ? 'active' : ''"
           >
           <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
         </figure>
-        <personalizados-lopes-selecao-estampa
-                                [Produto]="Produto"
-                                (onSelecionarEstampa)="
-                                  SelecionarEstampa($event)
-                                "
-            ></personalizados-lopes-selecao-estampa>
-        <personalizados-lopes-botao-contato-whatsapp
-          (click)="EntrarEmContato()"
-        ></personalizados-lopes-botao-contato-whatsapp>
       </div>
     </div>
 

@@ -3,433 +3,133 @@
 ></ng-container>
 
 <ng-template #Padrao>
-  <ng-container *ngIf="TrocaImagem; then troca; else naotroca"> </ng-container>
+  <app-card
+    matRipple
+    class="portfolio-item zoom"
+    customClass="card py-0 of-y-hidden of-x-hidden"
+    [style.flexDirection]="flex_direction"
+    [style.display]="'grid'"
+  >
+    <personalizados-lopes-card-produto-status-produto
+      [Produto]="Produto"
+      [statusProduto]="statusProduto"
+      [Produto.Status.toString().toLowerCase]="
+        Produto.Status.toString().toLowerCase
+      "
+      [translateStatusProduto]="translateStatusProduto"
+    ></personalizados-lopes-card-produto-status-produto>
 
-  <ng-template #troca>
-    <app-card
-      matRipple
-      class="portfolio-item zoom"
-      customClass="card py-0 of-y-hidden of-x-hidden"
-      [style.flexDirection]="flex_direction"
-      [style.display]="'grid'"
-    >
-      <span
-        class="prod-status"
-        *ngIf="Produto?.Status == statusProduto.promocao"
-      >
-        <span class="product-category"></span>
+    <personalizados-lopes-card-produto-imagem></personalizados-lopes-card-produto-imagem>
+
+    <div class="card-content">
+      <div class="--inner">
+        <span class="product-type">{{Produto.Categoria.Nome}}</span>
+        <div class="product-info">
+          <p class="product-name">
+            {{Produto.Nome}}
+          </p>
+          <p class="product-description">
+            {{Produto.DescricaoRapida}}
+          </p>
+        </div>
         <span
-          [class]="
-            'subtitle is-size-7 is-capitalized product-badge status-' +
-            Produto.Status.toString().toLowerCase()
-          "
-          >{{
-            Produto?.Status == statusProduto.promocao
-              ? 'Promoção'
-              : translateStatusProduto(Produto.Status)
-          }}</span
-        >
-      </span>
-      <div class="card-image has-background-white">
-        <slideshow
-          style="min-height: 300px !important;"
-          *ngIf="imageUrls.length"
-          [imageUrls]="imageUrls"
-          [arrowSize]="(Carrosel$ | async)?.arrowSize"
-          [showArrows]="true"
-          [disableSwiping]="false"
-          [autoPlay]="false"
-          [backgroundSize]="'contain'"
-          [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
-          [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
-          [showDots]="false"
-          [dotColor]="'black'"
-          [showCaptions]="(Carrosel$ | async)?.showCaptions"
-          [captionColor]="(Carrosel$ | async)?.captionColor"
-          [captionBackground]="(Carrosel$ | async)?.captionBackground"
-          [lazyLoad]="true"
-          [hideOnNoSlides]="(Carrosel$ | async)?.hideOnNoSlides"
-          [fullscreen]="(Carrosel$ | async)?.fullscreen"
-          [autoPlayWaitForLazyLoad]="true"
-        >
-        </slideshow>
-        <figure class="image is-128x128 is-hidden-touch"></figure>
-        <figure class="image is-64x64 is-hidden-tablet"></figure>
-        <personalizados-lopes-card-produto-status-produto
-          [Produto]="Produto"
-          [statusProduto]="statusProduto"
-          [Produto.Status.toString().toLowerCase]="
-            Produto.Status.toString().toLowerCase
-          "
-          [translateStatusProduto]="translateStatusProduto"
-        ></personalizados-lopes-card-produto-status-produto>
-        <div class="pos-absolute z-index-top top-0 right-0">
-          <div>
-            <personalizados-lopes-card-produto-btn-abrir-modal
-              [AbrirPreviewProduto]="AbrirPreviewProduto"
-            ></personalizados-lopes-card-produto-btn-abrir-modal>
-          </div>
-
-          <div class="flex flex-c ">
-            <personalizados-lopes-card-produto-btn-favoritar
-              [AdicionarFavorito]="AdicionarFavorito"
-              [Favorito]="Favorito"
-            ></personalizados-lopes-card-produto-btn-favoritar>
-          </div>
-
-          <!-- <div>
-            <personalizados-lopes-card-produto-btn-comparar
-              [AdicionarComparacao]="AdicionarComparacao"
-            ></personalizados-lopes-card-produto-btn-comparar>
-          </div> -->
-        </div>
-      </div>
-      <div
-        [ngClass]="{ 'pos-absolute': flex_direction == false }"
-        class="card-title top-0 left-0 w-full"
-      >
-      <div class="">
-        <ng-container
-          *ngIf="
-            Produto.Status == enumStatusProduto.promocao;
-            then preco_promo;
-            else preco_normal
-          "
-        >
-        </ng-container>
-        <ng-template #preco_promo>
-          <div class="">
-            <p class="linethr"><span class="is-size-7 preto6">de</span> R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}<span class="is-size-7 preto6"> Por</span> </p>
-            <p class="preco fs-18 promocao ">
-              R$ {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
-            </p>
-          </div>
-        </ng-template>
-        <div class="my-1" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
-          <p class="preto6">
-            {{ Produto.Parcelas }}x de
-            <span class="preco-produto fs-18"
-              ><b>R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b></span
-            >
-            sem juros
-          </p>
-        </div>
-        <ng-template #preco_normal>
-          <p class="preco">
-            R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
-          </p>
-        </ng-template>
-      </div>
-
-      </div>
-      <div class="card-content my-0">
-        <div class="content">
-          <div class="my-0">
-            <star-rating
-              [rating]="meanRating()"
-              [hoverEnabled]="true"
-              [readOnly]="true"
-              [showHalfStars]="true"
-              [step]="0.5"
-              staticColor="ok"
-              [starType]="'svg'"
-              size="small"
-            ></star-rating>
-          </div>
-          <!-- <div class="card-subtitle txt-center">
-            {{ Produto?.Subtitulo }}
-          </div> -->
-          <a
-            *ngIf="Produto.Status == statusProduto.esgotado"
-            (click)="AbrirPaginaProduto()"
-            routerLinkActive="router-link-active"
-            class="wp-btn button border is-rounded is-small py-3 box"
-            style="text-decoration: none;"
+          class="hhh4j4-1 ldRYl sc-bdVaJa glcarn"
+          data-testid="house-card-area"
+          ><svg
+            class="MuiSvgIcon-root jss83"
+            focusable="false"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            fill="none"
+            style="font-size: 16px;"
           >
-            Esgotado
-          </a>
-
-          <div class="hover-text">
-            <a
-              title="Comprar"
-              matRipple
-              pageScroll
-              href="#topo"
-              class="button shadow-light hoverable"
-              style="top: 33%; left: 27%;"
-              (click)="AbrirPaginaProduto()"
-              mat-flat-button
-              ><mat-icon class="material-icons-outlined"
-                >shopping_bag</mat-icon
-              ></a
-            >
-            <!-- <div
-              class="content m-lr-auto flex-c-m dis-flex"
-              [style.width]="flex_direction == 'row' ? '45%' : '100%'"
-              [style.left]="'8%'"
-            >
-              <div
-                class="portfolio-overlay events-none w-full"
-                style="top: 80px;"
-              >
-                <div class="overlay-items w-full txt-center">
-                  <p>
-                    {{
-                      Produto?.DescricaoRapida
-                        ? Produto?.DescricaoRapida
-                        : Produto?.Nome
-                    }}
-                  </p>
-                </div>
-              </div>
-            </div> -->
-          </div>
-        </div>
+            <path
+              fill="currentColor"
+              d="M21.75 7.5H2.25a.75.75 0 00-.75.75v7.5a.75.75 0 00.75.75h19.5a.75.75 0 00.75-.75v-7.5a.75.75 0 00-.75-.75zM21 15H3V9h3v3h1.5V9h3.75v3h1.5V9h3.75v3H18V9h3v6z"
+            ></path>
+          </svg>
+          {{Produto.Dimensoes}}
+        </span>
       </div>
-      <!-- <personalizados-lopes-card-produto-btn-comprar
-        [AbrirPaginaProduto]="AdicionarAoOrcamento"
-      ></personalizados-lopes-card-produto-btn-comprar> -->
-      <footer class="card-footer px-3">
-        <div class="content w-full txt-left of-x-scroll px-3">
-          <a
-            matRipple
-            class="reset-a subtitle is-size-7"
-            pageScroll
-            href="#topo"
-            (click)="AbrirPaginaProduto()"
+    </div>
+
+    <div class="product-card-footer">
+      <div class="m82tat-1 tOXvs">
+        <p
+          class="product-price-sm"
+        >
+          Por R$&nbsp;{{ Produto.Preco }}
+        </p>
+        <p class="product-installments" *ngIf="Produto.Parcelas && Produto.Parcelas > 0">
+          {{ Produto.Parcelas }}x de
+          <span class="preco-produto fs-18"
+            ><b
+              >R${{ (Produto.Preco / Produto.Parcelas).toFixed(2) }}</b
+            ></span
           >
-            {{ Produto?.Nome }}
-          </a>
-        </div>
-      </footer>
-      <figure
-        class="image is-64x64 img-orcamento"
-        [ngClass]="isOrcamento ? 'active' : ''"
-      >
-        <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
-      </figure>
-    </app-card>
-  </ng-template>
-
-  <ng-template #naotroca>
-    <mat-card
-      @fadeIn
-      (mouseenter)="
-        this.imgProduto.classList.add('hide');
-        this.imgProduto.classList.remove('show')
-      "
-      (mouseout)="
-        this.imgProduto.classList.remove('hide');
-        this.imgProduto.classList.add('show')
-      "
-      matRipple
-      style="height: 100%;"
-      class="portfolio-item of-y-scroll z-index-top box"
-      [style.backgroundColor]="Produto?.Categoria?.Cor"
-      [style.flexDirection]="flex_direction"
-    >
-      <div #imgProduto matRipple class="dis-flex flex-w w-full">
-        <slideshow
-          mat-card-image
-          *ngIf="imageUrls.length"
-          [imageUrls]="imageUrls"
-          [arrowSize]="(Carrosel$ | async)?.arrowSize"
-          [showArrows]="false"
-          [disableSwiping]="false"
-          [backgroundSize]="'contain'"
-          [autoPlay]="false"
-          [backgroundPosition]="(Carrosel$ | async)?.backgroundPosition"
-          [backgroundRepeat]="(Carrosel$ | async)?.backgroundRepeat"
-          [showDots]="(Carrosel$ | async)?.showDots"
-          [dotColor]="'black'"
-          [showCaptions]="(Carrosel$ | async)?.showCaptions"
-          [captionColor]="(Carrosel$ | async)?.captionColor"
-          [captionBackground]="(Carrosel$ | async)?.captionBackground"
-          [lazyLoad]="(Carrosel$ | async)?.lazyLoad"
-          [hideOnNoSlides]="(Carrosel$ | async)?.hideOnNoSlides"
-          [fullscreen]="(Carrosel$ | async)?.fullscreen"
-          [autoPlayWaitForLazyLoad]="true"
-        >
-        </slideshow>
+          sem juros
+        </p>
       </div>
-      <div class="pos-absolute z-index-1 top-0 right-0">
-        <button
-          title="Mais informações"
-          matRipple
-          pageScroll
-          href="#topo"
-          class="button is-small shadow-light hoverable m-lr-auto px-4"
-          [style.top]="flex_direction == 'row' ? '45%' : '35%'"
-          [style.width]="flex_direction == 'row' ? '45%' : '45%'"
-          (click)="AbrirPreviewProduto()"
-          class=""
-        >
-          <i class="pi pi-window-maximize"></i>
-        </button>
-      </div>
-      <mat-card-title class="fs-16 w-full mb-0 txt-center pt-1">
-        <a
-          matRipple
-          class="titulo-produto has-text-black reset-a"
-          (click)="AbrirPaginaProduto()"
-        >
-          {{ Produto?.Nome }}
-          <div class="my-0">
-            <star-rating
-              [rating]="meanRating()"
-              [hoverEnabled]="true"
-              [readOnly]="true"
-              [showHalfStars]="true"
-              [step]="0.5"
-              staticColor="ok"
-              [starType]="'svg'"
-            ></star-rating>
-          </div>
-        </a>
 
-      </mat-card-title>
-      <mat-card-actions class="px-2 z-index-2">
-        <a
-          matRipple
-          class="dis-flex flex-w w-full pos-absolute top-0 left-0"
-          [href]="'/produtos/' + Produto._id"
-        >
-          <span class="prod-status">
-            <i class="pi pi-tag product-category-icon"></i>
-            <span class="product-category"></span>
-            <span
-              [class]="
-                'subtitle is-size-7 is-capitalized product-badge status-' +
-                Produto.Status.toString().toLowerCase()
-              "
-            >
-              Em {{ Produto.Cores?.length }} cores</span
-            >
-          </span>
-        </a>
-        <mat-card-actions class="w-full columns is-mobile is-vcentered">
-          <div class="column is-7">
-            <ng-container
-              *ngIf="
-                Produto?.Status == statusProduto.promocao;
-                then preco_promo;
-                else preco_normal
-              "
-            >
-            </ng-container>
-            <ng-template #preco_promo>
-              <div class="w-full" *ngIf="Produto?.Parcelas == 0">
-                <p class="is-size-7 linethr">
-                  <span class="is-size-7 preto6">de</span> R$
-                  {{ Produto?.Preco.toFixed(2) || '0.00' }}
-                </p>
-                <p class="preco promocao">
-                  <span class="is-size-7">Por</span> R$
-                  {{ Produto?.PrecoPromocional.toFixed(2) || '0.00' }}
-                </p>
-              </div>
-            </ng-template>
-            <ng-template #preco_normal>
-              <div class="w-full" *ngIf="Produto?.Parcelas == 0">
-                <p class="preco ">
-                  R$ {{ Produto?.Preco.toFixed(2) || '0.00' }}
-                </p>
-              </div>
-            </ng-template>
-            <div class="my-0" *ngIf="Produto.Parcelas && Produto.Parcelas >= 0">
-              <p class="parcelas" *ngIf="Produto.Parcelas > 1">
-                Em até {{ Produto.Parcelas }}x de
-                <span class="parcelas">
-                  <b
-                    >R${{
-                      (Produto.Status == statusProduto.promocao
-                        ? Produto.PrecoPromocional
-                        : Produto.Preco / Produto.Parcelas
-                      ).toFixed(2)
-                    }}</b
-                  ></span
-                >
-                sem juros
-              </p>
-              <p class="parcelas" *ngIf="Produto.Parcelas == 1">
-                <span class="parcelas">
-                  Á vista por
-                  <b
-                    >R${{
-                      (Produto.Status == statusProduto.promocao
-                        ? Produto.PrecoPromocional
-                        : Produto.Preco / Produto.Parcelas
-                      ).toFixed(2)
-                    }}</b
-                  >
-                  sem juros</span
-                >
-              </p>
-            </div>
-            <div class="card-subtitle fw-400">
-              {{ Produto?.Subtitulo }}
-            </div>
-          </div>
-          <div class="column">
-            <button
-              href="javascript:void(0)"
-              class="button is-outlined w-full is-info is-rounded top-0 left-0"
-              title='Adicionar ao carrinho'
-              (click)="AdicionarAoOrcamento()"
-            >
-              <span class="is-fullwidth">
-                <span><mat-icon class="">add_shopping_cart</mat-icon> </span>
-              </span>
-            </button>
-          </div>
-        </mat-card-actions>
-
-        <div class="z-index-1">
-          <div class="hover-text">
-            <a
-              title="Comprar"
-              matRipple
-              pageScroll
-              href="#topo"
-              class="button shadow-light hoverable"
-              style="top: 33%; left: 27%;"
-              (click)="AbrirPaginaProduto()"
-              mat-flat-button
-              ><mat-icon class="material-icons-outlined"
-                >shopping_bag</mat-icon
-              ></a
-            >
-            <div
-              class="content m-lr-auto flex-c-m dis-flex"
-              [style.width]="flex_direction == 'row' ? '45%' : '100%'"
-              [style.left]="'8%'"
-            >
-              <div
-                class="portfolio-overlay events-none w-full"
-                style="top: 10px;"
-              >
-                <div class="overlay-items w-full txt-center">
-                  <p>
-                    {{
-                      Produto?.DescricaoRapida
-                        ? Produto?.DescricaoRapida
-                        : Produto?.Nome
-                    }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="z-index-top top-0 right-0">
+        <div>
+          <personalizados-lopes-card-produto-btn-abrir-modal
+            [AbrirPreviewProduto]="AbrirPreviewProduto"
+          ></personalizados-lopes-card-produto-btn-abrir-modal>
         </div>
-      </mat-card-actions>
-    </mat-card>
-    <figure
-      class="image is-64x64 img-orcamento"
-      [ngClass]="isOrcamento ? 'active' : ''"
+
+        <div class="flex flex-c">
+          <personalizados-lopes-card-produto-btn-favoritar
+            [AdicionarFavorito]="AdicionarFavorito"
+            [Favorito]="Favorito"
+          ></personalizados-lopes-card-produto-btn-favoritar>
+        </div>
+      </div>
+    </div>
+
+    <a
+      *ngIf="Produto.Status == statusProduto.esgotado"
+      (click)="AbrirPaginaProduto()"
+      routerLinkActive="router-link-active"
+      class="wp-btn button border is-rounded is-small py-3 box"
+      style="text-decoration: none;"
     >
-      <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
-    </figure>
-  </ng-template>
+      Esgotado
+    </a>
+
+    <div class="my-0">
+      <star-rating
+        [rating]="meanRating()"
+        [hoverEnabled]="true"
+        [readOnly]="true"
+        [showHalfStars]="true"
+        [step]="0.5"
+        staticColor="ok"
+        [starType]="'svg'"
+        size="small"
+      ></star-rating>
+    </div>
+    <!-- <div class="hover-text">
+      <a
+        title="Comprar"
+        matRipple
+        pageScroll
+        href="#topo"
+        class="button shadow-light hoverable"
+        style="top: 33%; left: 27%;"
+        (click)="AbrirPaginaProduto()"
+        mat-flat-button
+        ><mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+      </a>
+    </div> -->
+  </app-card>
+
+  <figure
+    class="image is-64x64 img-orcamento"
+    [ngClass]="isOrcamento ? 'active' : ''"
+  >
+    <img src="{{ (Produto?.Imagem)[0] }}" alt="" />
+  </figure>
 </ng-template>
 
 <ng-template #Minimalista>

@@ -13,7 +13,7 @@
         <app-card customClass="card is-shady of-y-scroll" [attr.data-aos]="i == 0 ? '' : 'flip-left'">
 
           <div class='card-content'>
-            <div class="media ">
+            <div class="media flex-c-m">
               <div class="media-left">
                 <a *ngIf="card.img_src" [routerLink]="card.link" href="{{card.id}}" pageScroll class="w-full ">
                   <img loading="lazy" mat-card-image height="200"  src="{{card.img_src}}" class="">

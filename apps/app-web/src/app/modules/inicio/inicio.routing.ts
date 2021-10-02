@@ -6,7 +6,7 @@ export const routes: Routes = [
   {
     path: '',
     component: InicioComponent,
-    data: { animation:'isLeft', title: 'Inicio' }
+    data: { animation:'isLeft', title: 'Página inicial' }
   }
 ];
 @NgModule({

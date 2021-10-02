@@ -21,21 +21,21 @@
   <personalizados-lopes-exibicao-breadcrumb
     *ngIf="Produto"
     [Produto]="Produto"
-    class="mb-4"
+    class="my-4"
   ></personalizados-lopes-exibicao-breadcrumb>
 
+  <div class="margin">
+    <personalizados-lopes-visualizacao-produto-loja
+    *ngIf="Produto"
+      [(Produto)]="Produto"
+      [orcamentoId]="orcamentoId"
+    ></personalizados-lopes-visualizacao-produto-loja>
+  </div>
 
-  <div class="has-background-light">
+  <div class="mt-2 has-background-light">
 
-    <div class="margin">
-      <personalizados-lopes-visualizacao-produto-loja
-      *ngIf="Produto"
-        [(Produto)]="Produto"
-        [orcamentoId]="orcamentoId"
-      ></personalizados-lopes-visualizacao-produto-loja>
-    </div>
 
-    <div class="margin has-background-light">
+    <div class=" has-background-light">
       <div class=" btr">
         <personalizados-lopes-estatisticas-produto
         *ngIf="Produto"

@@ -5,7 +5,7 @@
 <div mat-dialog-content class="margin w-half">
   <div class="columns is-multiline is-vcentered">
     <div class="column is-12">
-      <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
+      <!-- <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
       <ng-template #arte>
         <mat-card>
           <mat-card-header>
@@ -20,9 +20,9 @@
             </a>
           </mat-card-actions>
         </mat-card>
-      </ng-template>
-      <ng-template #novaArte>
-        <div class="px-2 txt-center"  *ngIf="Produto?.Arte">
+      </ng-template> -->
+      <ng-container #novaArte>
+        <div class="px-2 txt-center" *ngIf="Produto?.Arte">
 
           <div class="column px-2">
             <button @fadeIn *ngIf="!Produto.ArteSecundaria" mat-flat-button
@@ -44,7 +44,7 @@
             </button>
           </div>
         </div>
-      </ng-template>
+      </ng-container>
     </div>
     <div @fadeIn *ngIf="Produto?.ArteSecundaria" class="column is-3">
       <mat-card>

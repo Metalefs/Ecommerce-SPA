@@ -1,8 +1,4 @@
-<mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top " style="height: 37px;">
-
-</mat-toolbar>
-<div class="of-x-scroll px-2 mh-full">
-
+<mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top " style="height: 37px;" mat-dialog-title>
   <p>
     <mat-toolbar color="" class="pri-toolbar">
       <mat-toolbar-row class="pt-3">
@@ -16,6 +12,10 @@
       </mat-toolbar-row>
     </mat-toolbar>
   </p>
+</mat-toolbar>
+<div class="of-x-scroll px-2 mh-full" mat-dialog-content>
+
+
 
   <ng-container *ngIf="(Orcamento$ |async)?.Produto.length > 0 then pedido else vazio"></ng-container>
 
@@ -82,16 +82,16 @@
           produtos</a>
       </button>
     </div>
-    <mat-toolbar class="w-full pos-fixed bottom-0 pri-toolbar">
-        <mat-toolbar-row>
-          <div class="columns">
-            <div class="column"></div>
-            <div class="column"></div>
-            <div class="column has-text-right">
-              <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2)}}</span></p>
-            </div>
-          </div>
-        </mat-toolbar-row>
-      </mat-toolbar>
   </ng-template>
 </div>
+<mat-toolbar class="w-full pos-fixed bottom-0 pri-toolbar" mat-dialog-actions>
+  <mat-toolbar-row>
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column"></div>
+      <div class="column has-text-right">
+        <p class="titulo-produto">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2)}}</span></p>
+      </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

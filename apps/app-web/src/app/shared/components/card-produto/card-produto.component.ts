@@ -6,8 +6,6 @@ import { entities } from '@personalizados-lopes/data';
 import { Carousel, Orcamento, Produto } from 'libs/data/src/lib/classes';
 import { StatusProduto } from 'libs/data/src/lib/classes/produto';
 import { Gallery } from 'ng-gallery';
-import { IImage } from 'ng-simple-slideshow';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Observable } from 'rxjs';
 import { fade, slideInOut } from '../../../animations';
 import { AdicionarProdutoAoOrcamento, DuplicarProdutoOrcamento, EditarProdutoAbertoOrcamentoLocal} from '../../../data/store/actions/orcamento.actions';
@@ -31,46 +29,17 @@ export class CardProdutoComponent implements OnInit {
   isOrcamento:boolean;
   Liked:boolean = false;
   Favorito:boolean = false;
-  swiperConfig: SwiperConfigInterface = {
-    direction              : 'horizontal',
-    keyboard               : true,
-    loop                   : true,
-    loopFillGroupWithBlank : false,
-    preloadImages          : true,
-    lazy                   : true,
-    observer               : true,
-    navigation             : true,
-    allowSlidePrev:true,
-    allowSlideNext:true,
-    centeredSlides:true,
-    updateOnImagesReady: true,
-    slidesPerView          : 1,
-    autoplay: {
-      delay                : 4000,
-      disableOnInteraction : false,
-    },
-  };
+
   constructor(private store: Store,private dialog:MatDialog, private gallery: Gallery, private router:Router, private pss:ProdutoStateService) { }
   @Input() Produto:entities.Produto;
   @Input() MostarOpcoes: boolean = true;
   @Input() TrocaImagem: boolean = true;
   @Input() flex_direction: string = 'column';
   statusProduto=StatusProduto;
-  imageUrls: (string | IImage)[] = [
 
-  ];
   ngOnInit(): void {
     this.Liked = localStorage.getItem(`heartproduto${this.Produto._id}`) === 'true' ? true: false;
-    if(this.Produto.Imagem)
-    this.Produto.Imagem.forEach(img=>{
-      this.imageUrls.push({
-        url:img,
-        href:"",
-        backgroundSize:"cover",
-        backgroundPosition:"center",
-        caption:"",
-      });
-    })
+
     this.translateStatusProduto = this.translateStatusProduto.bind(this);
     this.AdicionarAoOrcamento = this.AdicionarAoOrcamento.bind(this);
     this.AbrirPaginaProduto = this.AbrirPaginaProduto.bind(this);

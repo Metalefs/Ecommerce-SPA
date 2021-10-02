@@ -1,6 +1,7 @@
 @import './_variables.scss';
 @import './theme/cores.scss';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 @import '~ngx-sharebuttons/themes/default/default-theme';
 @import '~ngx-sharebuttons/themes/modern/modern-light-theme';
 @import '~ngx-sharebuttons/themes/modern/modern-dark-theme';
@@ -219,6 +220,7 @@ a {
   background: #e0e0ea;
   border: 0px;
   margin-right: 10px;
+  margin-top: 2px;
 }
 .p-autocomplete-item {
   cursor: pointer;
@@ -325,14 +327,13 @@ li .p-menuitem-link span.p-menuitem-text {
   pointer-events: all !important;
   cursor: pointer !important;
   background: transparent;
-
   color: white;
   border-radius: 20px;
   text-align: center;
   transition: all 0.5s ease-in-out;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   animation: hideArr 1s ease forwards !important;
-  background: rgb(219, 95, 23);
+  background: #f14668;
   &::after {
     font-size: 30px !important;
   }
@@ -461,6 +462,7 @@ canvas {
 .canvas-container {
 
   height: 400px;
+  width: 100% !important;
   position: relative;
   user-select: none;
   margin: auto;

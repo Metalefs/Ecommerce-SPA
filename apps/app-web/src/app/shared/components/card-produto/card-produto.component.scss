@@ -3,22 +3,35 @@
     position: absolute;
     top: 13px;
     left: 5px;
-    color: #000000;
-    padding: 5px 10px;
-    z-index: 3;
-    border-radius: 0.51em;
     background: white;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 16px;
+    color: rgb(46, 46, 46);
+    display: inline-flex;
+    padding: 3px 8px;
+    vertical-align: middle;
   }
   &-cores {
     position: absolute;
     max-width: 170px;
     top: -5px;
     left: -35;
-    color: #000000;
-    padding: 5px 10px;
     z-index: 3;
-    border-radius: 0.51em;
     background: white;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 16px;
+    color: rgb(46, 46, 46);
+    display: inline-flex;
+    padding: 3px 8px;
+    vertical-align: middle;
   }
 }
 .mat-card {
@@ -219,6 +232,9 @@
 .card-image{
   height: 208px;
 }
+app-card{
+  padding: 8px 16px;
+}
 .portfolio-item {
   margin: 0;
   border-radius: 0;
@@ -229,10 +245,17 @@
   height: 100%;
   min-height: 400px;
   overflow: hidden;
-  box-shadow: rgb(0 0 0 / 20%) 0px 2px 6px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: none;
+  box-sizing: border-box;
+  border: 1px solid rgb(222, 222, 222);
+  border-radius: 8px;
+  transition: all 300ms ease 0s;
+  cursor: pointer;
   &:hover {
-    box-shadow: rgba(105, 109, 140, 0.4) 0px 0px 16.8766px !important;
-    background: #ffffffc9 none repeat scroll 0% 0%;
+    border-color: rgba(255, 255, 255, 0);
+    box-shadow: rgb(46 46 46 / 20%) 0px 2px 4px 0px, rgb(46 46 46 / 3%) 0px 4px 8px 0px;
     .slideshow-container .slides:not(.link) {
       &:hover {
         background: #e5e5e5 none repeat scroll 0% 0%;
@@ -386,17 +409,76 @@
   }
 }
 
-:host ::ng-deep slideshow {
-  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  &.mat-card-image {
-    // border-radius: 30px;
+
+.card-content{
+  padding: 16px;
+  .--inner{
+    .product{
+      &-type{
+        margin: 0px;
+        display: block;
+        color: rgb(46, 46, 46);
+        text-align: inherit;
+        font-size: 0.75rem;
+        font-weight: 500;
+        line-height: 1.125rem;
+      }
+      &-info{
+        max-width: initial;
+        display: grid;
+        margin: 8px 0px;
+        min-height: 44px;
+        .product-name{
+          margin: 0px;
+          display: block;
+          color: inherit;
+          text-align: inherit;
+          font-size: 1rem;
+          font-weight: 500;
+          line-height: 1.5rem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+
+        .product-description{
+          margin: 0px;
+          display: block;
+          color: inherit;
+          text-align: inherit;
+          font-size: 0.875rem;
+          font-weight: 400;
+          line-height: 1.3125rem;
+        }
+      }
+    }
   }
 }
-
-.btn-vejamais {
-  background: rgba(0, 0, 0, 1);
-  border-radius: 5px;
-}
-.mat-accent {
-  background: rgb(231, 5, 81); //    background: #788dc4;
+.product-card-footer{
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  padding: 0px 16px 16px;
+  .product-price-sm{
+    margin: 0px;
+    display: inline;
+    color: rgb(117, 117, 117);
+    text-align: inherit;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.125rem;
+  }
+  .product-installments{
+    margin: 0px;
+    display: inline;
+    color: rgb(25, 79, 72);
+    text-align: inherit;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.3125rem;
+  }
 }

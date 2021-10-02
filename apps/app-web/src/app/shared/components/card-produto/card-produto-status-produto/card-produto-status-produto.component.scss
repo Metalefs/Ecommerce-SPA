@@ -1,0 +1,18 @@
+.prod{
+  &-status {
+    position: absolute;
+    top: 13px;
+    left: 5px;
+    background: white;
+    box-sizing: border-box;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(222, 222, 222);
+    border-radius: 16px;
+    color: rgb(46, 46, 46);
+    display: inline-flex;
+    padding: 3px 8px;
+    vertical-align: middle;
+  }
+}
