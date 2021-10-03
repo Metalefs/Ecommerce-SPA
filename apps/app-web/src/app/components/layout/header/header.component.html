@@ -121,52 +121,7 @@
 
     <div class="column">
       <div class="columns is-mobile is-vcentered">
-        <div class="column is-hidden-mobile">
-          <div class="dropdown">
-            <div class="w-full dis-flex flex-c-m button">
-              <i class="pi pi-user fs-20"></i>
-              <span class="w-full fw-500 of-x-scroll has-text-white" mat-menu-item title="Perfil">
-                  {{ user?.Nome || 'Entrar' }}
-              </span>
-            </div>
 
-            <div class="dropdown-content w-full has-background-white box">
-              <button
-                mat-menu-item
-                *ngIf="user"
-                href="#topo"
-                routerLinkActive="Active"
-                title="Meus dados"
-                pageScroll
-                [routerLink]="['/minha-conta/pessoal']"
-              >
-                Meus dados
-              </button>
-              <button
-                class=""
-                mat-menu-item
-                *ngIf="!user"
-                (click)="openLogin()"
-              >
-                Entrar
-              </button>
-              <button
-                mat-menu-item
-                *ngIf="user && user?.Tipo == TipoUsuario.admin"
-                href="#topo"
-                title="Gerenciamento"
-                routerLinkActive="Active"
-                pageScroll
-                [routerLink]="['/gerenciamento/app']"
-              >
-                Gerenciamento
-              </button>
-              <button mat-menu-item *ngIf="user" (click)="Logout()">
-                Sair
-              </button>
-            </div>
-          </div>
-        </div>
         <!-- <div class="column">
           <button
             *ngIf="FavCount > 0"
@@ -215,6 +170,52 @@
               R${{ (Orcamento$ | async)?.Preco.toFixed(2) || '' }}
             </span> -->
           </button>
+        </div>
+        <div class="column is-hidden-mobile">
+          <div class="dropdown">
+            <div class="w-full dis-flex flex-c-m button">
+              <i class="pi pi-user fs-20"></i>
+              <span class="w-full fw-500 of-x-scroll has-text-white" mat-menu-item title="Perfil">
+                  {{ user?.Nome || 'Entrar' }}
+              </span>
+            </div>
+
+            <div class="dropdown-content w-full has-background-white box">
+              <button
+                mat-menu-item
+                *ngIf="user"
+                href="#topo"
+                routerLinkActive="Active"
+                title="Meus dados"
+                pageScroll
+                [routerLink]="['/minha-conta/pessoal']"
+              >
+                Meus dados
+              </button>
+              <button
+                class=""
+                mat-menu-item
+                *ngIf="!user"
+                (click)="openLogin()"
+              >
+                Entrar
+              </button>
+              <button
+                mat-menu-item
+                *ngIf="user && user?.Tipo == TipoUsuario.admin"
+                href="#topo"
+                title="Gerenciamento"
+                routerLinkActive="Active"
+                pageScroll
+                [routerLink]="['/gerenciamento/app']"
+              >
+                Gerenciamento
+              </button>
+              <button mat-menu-item *ngIf="user" (click)="Logout()">
+                Sair
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

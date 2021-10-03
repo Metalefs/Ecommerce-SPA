@@ -1,17 +1,29 @@
 <div class="section" id="showcase">
 
   <div class="flex-s w-full container">
-    <h1 class="title is-3 ">Showcase</h1>
-    <h3 class="subtitle  is-5 pl-6">Últimos produtos</h3>
+    <h1 class="title is-3 ">Destaques</h1>
+    <h3 class="subtitle  is-5 pl-6">Veja</h3>
+
+    <div class="box">
+      <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
+    </div>
   </div>
 
-  <div class="px-6 pt-4 ">
-    <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
-    <div class="columns has-5-cols is-multiline is-gapless portfolio-container">
-      <div class="column is-3 is-12-mobile" *ngFor="let produto of Produtos$ | async">
-        <personalizados-lopes-card-produto class="portfolio-item" [Produto]="produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>
+  <div class="section">
+
+    <div class="flex-s w-full container">
+      <h3 class="subtitle  is-5 pl-6">Últimas postagens</h3>
+    </div>
+
+    <div class="px-6 pt-4 ">
+      <div class="elfsight-app-a3129aea-c851-4ae2-86bb-658ad1e67eba"></div>
+      <div class="columns has-5-cols is-multiline is-gapless portfolio-container">
+        <div class="column is-3 is-12-mobile" *ngFor="let produto of Produtos$ | async">
+          <personalizados-lopes-card-produto class="portfolio-item" [Produto]="produto" [MostarOpcoes]="false"></personalizados-lopes-card-produto>
+        </div>
       </div>
     </div>
+
   </div>
 
 </div>

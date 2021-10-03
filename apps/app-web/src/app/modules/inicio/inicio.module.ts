@@ -6,7 +6,6 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 
 import { InicioComponent } from './page/inicio.component';
 import { InicioPageRoutes } from './inicio.routing';
-import { CarrouselComponent } from './page/carrousel/carrousel.component';
 
 import { SlideshowModule } from 'ng-simple-slideshow';
 import { SharedModule } from '../../shared/shared.module';
@@ -14,7 +13,7 @@ import { HeaderFooterComponent } from './page/header-footer/header-footer.compon
 import { UiModule } from '@personalizados-lopes/ui';
 
 @NgModule({
-  declarations: [InicioComponent, CarrouselComponent, HeaderFooterComponent],
+  declarations: [InicioComponent, HeaderFooterComponent],
   imports: [
     CommonModule,
     InicioPageRoutes,
@@ -26,7 +25,6 @@ import { UiModule } from '@personalizados-lopes/ui';
   ],
   exports:[
     SlideshowModule,
-    CarrouselComponent,
     UiModule
   ]
 })

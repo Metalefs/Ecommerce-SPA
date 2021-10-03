@@ -7,7 +7,7 @@ export const routes: Routes = [
   {
     path: '',
     component: ProdutosComponent,
-    data: { animation:'', title: 'Listando Produtos' }
+    data: { animation:'isRight', title: 'Listando Produtos' }
   },
   {
     path: ':id',

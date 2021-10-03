@@ -1,4 +1,3 @@
-
 <personalizados-lopes-exibicao-breadcrumb
   *ngIf="Produto"
   [Produto]="Produto"
@@ -25,14 +24,11 @@
     </div>
 
     <div class="margin section">
-
       <div class="columns is-gapless is-multiline" *ngIf="Produto">
-
         <div class="column is-5-desktop is-12-tablet">
           <div class="columns">
             <div class="column is-12">
-
-              <div class="message-body">
+              <div class="message-body my-2">
                 <h1 class="titulo-produto fs-17">{{ Produto?.Nome }}</h1>
                 <personalizados-lopes-descricao-rapida-produto
                   [Produto]="Produto"
@@ -44,7 +40,7 @@
           </div>
           <personalizados-lopes-avaliacao-estrelas-produto></personalizados-lopes-avaliacao-estrelas-produto>
 
-          <div class="column is-12 px-3 is-hidden-touch">
+          <div class="column is-12 is-hidden-touch">
             <ul class="content list-unstyled dis-flex flex-sa flex-m">
               <li>
                 <p class="subtitle">
@@ -108,15 +104,23 @@
                     </form>
                   </div>
                 </div>
-                <personalizados-lopes-selecao-estampa
-                  [Produto]="Produto"
-                  (onSelecionarEstampa)="SelecionarEstampa($event)"
-                >
-                  <personalizados-lopes-exibicao-artes-produto
-                    [Produto]="Produto"
-                    (onAbrirModalArte)="AbrirModalArte($event)"
-                  ></personalizados-lopes-exibicao-artes-produto>
-                </personalizados-lopes-selecao-estampa>
+                <div class="columns">
+                  <div class="column is-12">
+                    <div class="message is-white">
+                      <div class="message-body px-0">
+                        <personalizados-lopes-selecao-estampa
+                          [Produto]="Produto"
+                          (onSelecionarEstampa)="SelecionarEstampa($event)"
+                        >
+                          <personalizados-lopes-exibicao-artes-produto
+                            [Produto]="Produto"
+                            (onAbrirModalArte)="AbrirModalArte($event)"
+                          ></personalizados-lopes-exibicao-artes-produto>
+                        </personalizados-lopes-selecao-estampa>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <figure
                   class="image is-64x64 img-orcamento"
                   [ngClass]="isOrcamento ? 'active' : ''"
@@ -166,21 +170,18 @@
           </div>
         </div>
 
-        <div class="column is-12-desktop">
+        <div class="column is-12-desktop mt-3">
           <personalizados-lopes-tab-informacao-avaliacao-produto
             [Produto]="Produto"
           ></personalizados-lopes-tab-informacao-avaliacao-produto>
         </div>
       </div>
-
     </div>
 
     <div class="margin container">
-
       <personalizados-lopes-botao-contato-whatsapp
-      (click)="EntrarEmContato()"
+        (click)="EntrarEmContato()"
       ></personalizados-lopes-botao-contato-whatsapp>
     </div>
-
   </div>
 </section>

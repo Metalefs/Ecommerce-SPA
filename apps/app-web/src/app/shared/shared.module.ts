@@ -66,6 +66,7 @@ import { CardEstampaModule } from './components/card-estampa/card-estampa.module
 import { CorProdutoSelectorModule } from './components/cor-produto-selector/cor-produto-selector.module';
 import { SelecaoTamanhoProdutoEdicaoComponent } from './components/selecao-tamanho-produto-edicao/selecao-tamanho-produto-edicao.component';
 import { ExibicaoPrecoPrazoCepComponent } from './components/dialogs/exibicao-preco-prazo-cep/exibicao-preco-prazo-cep.component';
+import { CarrouselComponent } from './components/carrousel/carrousel.component';
 
 import { UiModule } from "@personalizados-lopes/ui"
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -115,6 +116,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ImportacaoComponent,
     SelecaoTamanhoProdutoEdicaoComponent,
     ExibicaoPrecoPrazoCepComponent,
+    CarrouselComponent,
   ],
   imports: [
     CommonModule,
@@ -201,7 +203,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     VisualizacaoProdutoLojaModule,
     PreviewProdutoModule,
     CardEstampaModule,
-    UiModule
+    UiModule,
+    CarrouselComponent
   ],
   providers: [
     {

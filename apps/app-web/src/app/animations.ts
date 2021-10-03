@@ -55,7 +55,7 @@ function slideTo(direction) {
   return [
     query(':enter, :leave', [
       style({
-        position: 'absolute',
+        position: 'relative',
         // opacity: '.50',
         [direction]: 0,
         zIndex: 1,
