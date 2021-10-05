@@ -7,16 +7,23 @@
     class=" dis-flex flex-sa has-text-centered z-index-top shadow-light w-full">
   <div class="columns is-vcentered w-full">
     <div class="column is-6">
-      <h2 class="subtitle has-text-white">Para melhorar a sua experiência neste site, salvamos alguns dados por meio de cookies.
+      <h2 class="subtitle">Para melhorar a sua experiência neste site, salvamos alguns dados por meio de cookies.
       </h2>
     </div>
-    <a class="column is-6 card" (click)="dismissCookieLaw()">
-      <a
-      class=""
-      >
-      Prosseguir
-    </a>
-    </a>
+    <button
+      class="w-full is-rounded dis-flex flex-w flex-m"
+      title="Ok"
+      matBadgeColor="accent"
+      (click)="dismissCookieLaw()"
+      mat-raised-button
+    >
+      <p>
+        <mat-icon class="heartbutton color-light-red">
+          done
+        </mat-icon>
+        Prosseguir
+      </p>
+    </button>
   </div>
 </cookie-law>
 </ng-container>
