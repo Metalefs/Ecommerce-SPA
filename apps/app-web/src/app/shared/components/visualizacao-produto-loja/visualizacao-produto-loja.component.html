@@ -17,17 +17,18 @@
       </div>
     </div>
 
-    <div class="section">
-      <personalizados-lopes-exibicao-imagem-produto
-        [_Produto]="Produto"
-      ></personalizados-lopes-exibicao-imagem-produto>
-    </div>
-
     <div class="margin section">
       <div class="columns is-gapless is-multiline" *ngIf="Produto">
         <div class="column is-5-desktop is-12-tablet">
           <div class="columns">
             <div class="column is-12">
+
+              <div class="section">
+                <personalizados-lopes-exibicao-imagem-produto
+                  [_Produto]="Produto"
+                ></personalizados-lopes-exibicao-imagem-produto>
+              </div>
+
               <div class="message-body my-2">
                 <h1 class="titulo-produto fs-17">{{ Produto?.Nome }}</h1>
                 <personalizados-lopes-descricao-rapida-produto
