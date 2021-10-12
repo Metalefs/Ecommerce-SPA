@@ -19,5 +19,13 @@ export class PreviewProdutoComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  close(){
+    this.dialogRef.close();
+  }
 
+  delayClose(off:number = 0){
+    setTimeout(()=>{
+      this.close()
+    },off);
+  }
 }

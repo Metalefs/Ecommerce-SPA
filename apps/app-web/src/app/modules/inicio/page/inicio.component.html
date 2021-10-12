@@ -1,49 +1,37 @@
 <div id="INICIO" class="has-background-white">
-  <div class="hero is-small mt-4">
+  <div class="hero is-fullheight mt-4">
     <div class="hero-head">
-      <div class="custom-shape-divider-top-1629771262">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-            class="shape-fill"
-          ></path>
-        </svg>
-      </div>
       <div class="main-image ">
         <img [src]="MainImageSrc" class="mat-elevation-z2" alt="Banner do site." />
       </div>
     </div>
 
-    <div class="hero-body pt-0 py-0 dis-block">
-      <div class="bg-image section">
-        <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
-      </div>
+    <div class="hero-body bg-image pt-0 py-0 dis-block">
+
       <div class="container">
         <personalizados-lopes-produto-swiper></personalizados-lopes-produto-swiper>
       </div>
     </div>
 
-    <div class="hero-foot">
+    <div class="">
       <div class="section has-background-danger pos-relative">
+        <div class="custom-shape-divider-top-1632745448 z-index-0">
+          <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+              class="shape-fill"
+            ></path>
+          </svg>
+        </div>
+        <div class="z-index-2">
+          <personalizados-lopes-header-footer></personalizados-lopes-header-footer>
+        </div>
         <div class="columns flex-sa">
-          <div class="custom-shape-divider-top-1632745448 z-index-1">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-                class="shape-fill"
-              ></path>
-            </svg>
-          </div>
           <div class="column z-index-2">
             <app-card
               customClass="box is-info is-outlined mat-elevation-z2"
@@ -93,4 +81,5 @@
       <app-testimonial [sliderData]="Clientes$ | async"> </app-testimonial>
     </section>
   </div>
+
 </div>

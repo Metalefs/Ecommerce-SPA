@@ -1,4 +1,17 @@
-<div>
+<mat-toolbar class="pos-sticky top-0" mat-dialog-title>
+  <p>
+    <mat-toolbar-row class="pt-3">
+      <h1>{{Produto.Nome}}</h1>
+      <span class="spacer"></span>
+      <button mat-icon-button
+      aria-label="fechar pagina do produto"
+      (click)="delayClose()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </p>
+</mat-toolbar>
+<div mat-dialog-content>
   <personalizados-lopes-visualizacao-produto-loja
   [Produto]="Produto"
   ></personalizados-lopes-visualizacao-produto-loja>
