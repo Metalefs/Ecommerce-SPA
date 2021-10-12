@@ -83,7 +83,7 @@
           <ng-template matExpansionPanelContent>
             <div class="dropdown-mobile">
               <mat-list-item matRipple *ngFor="let link of linksProdutos">
-              <div class="dropdown-content-mobile has-background-white box of-y-scroll">
+              <div class="dropdown-content-mobile has-background-white box">
                 <a class="nav-link {{link.name == 'inicio' ? 'inicio': ''}}"(pageScrollFinish)="ToggleNav(0)"  pageScroll routerLinkActive="Active"
                   href="#{{link.name == 'Todos' ? 'topo' : link.name}}" [routerLink]="opt.link"
                   [queryParams]="opt.queryParams" *ngFor="let opt of link.options">{{opt.nome}}</a>

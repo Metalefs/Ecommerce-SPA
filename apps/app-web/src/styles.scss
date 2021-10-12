@@ -827,9 +827,9 @@ img {
   padding: 30px;
   margin-bottom: 30px;
 }
-.section-block.summary {
-  border: 1px solid #ee0d0d42;
-}
+// .section-block.summary {
+//   border: 1px solid #ee0d0d42;
+// }
 .section-block.summary h1 {
   display: block;
   text-align: center;
@@ -975,6 +975,7 @@ img {
   border-radius: 0;
   &-mobile {
     display: block;
+    overflow-y: scroll;
   }
   &:hover .dropdown-content {
     opacity: 1;
