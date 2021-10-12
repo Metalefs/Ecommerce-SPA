@@ -147,6 +147,14 @@
     background: orange;
   }
 }
-.mat-tab-body-content {
-  overflow: hidden;
+:host ::ng-deep {
+  .mat-tab-body-content {
+    overflow: hidden !important;
+  }
+  .mat-tab-labels{
+    background: #f14668;
+  }
+  .mat-tab-label .mat-tab-label-content{
+    color:white;
+  }
 }
