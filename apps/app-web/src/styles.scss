@@ -975,7 +975,6 @@ img {
   border-radius: 0;
   &-mobile {
     display: block;
-    overflow-y: scroll;
   }
   &:hover .dropdown-content {
     opacity: 1;
@@ -1012,6 +1011,7 @@ img {
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1;
       height: 60px;
+      overflow-y: scroll;
     }
     & a {
       font-weight: 400;

@@ -119,8 +119,8 @@
       </div>
     </div>
 
-    <div class="column">
-      <div class="columns is-mobile is-vcentered">
+    <div class="column flex-r of-x-hidden">
+      <div class="columns is-mobile is-vcentered ">
 
         <!-- <div class="column">
           <button
@@ -171,11 +171,11 @@
             </span> -->
           </button>
         </div>
-        <div class="column is-hidden-mobile">
+        <div class="column px-0">
           <div class="dropdown">
             <div class="w-full dis-flex flex-c-m button">
               <i class="pi pi-user fs-20"></i>
-              <span class="w-full fw-500 of-x-scroll has-text-white" mat-menu-item title="Perfil">
+              <span class="w-full fw-500 of-x-scroll has-text-white is-hidden-mobile" mat-menu-item title="Perfil">
                   {{ user?.Nome || 'Entrar' }}
               </span>
             </div>

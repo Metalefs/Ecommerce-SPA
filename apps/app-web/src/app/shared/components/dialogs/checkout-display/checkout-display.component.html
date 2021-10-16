@@ -1,94 +1,111 @@
-<mat-toolbar class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top " style="height: 37px;" mat-dialog-title>
+<mat-toolbar
+  class="w-full dis-flex flex-m py-0 flex-c a-i-c z-index-top of-y-hidden of-x-hidden"
+  style="height: 37px;"
+  mat-dialog-title
+>
   <p>
     <mat-toolbar color="" class="pri-toolbar">
       <mat-toolbar-row class="pt-3">
-        <h2 class="subtitle mb-0 pt-0">{{(Orcamento$ |async)?.Produto.length > 0 ? "Meu carrinho" : "Seu carrinho está vazio"}}</h2>
+        <h2 class="subtitle mb-0 pt-0">
+          {{
+            (Orcamento$ | async)?.Produto.length > 0
+              ? 'Meu carrinho'
+              : 'Seu carrinho está vazio'
+          }}
+        </h2>
         <span class="spacer"></span>
-        <button mat-icon-button
-        aria-label="fechar carrinho"
-        (click)="delayClose()">
+        <button
+          mat-icon-button
+          aria-label="fechar carrinho"
+          (click)="delayClose()"
+        >
           <mat-icon>close</mat-icon>
         </button>
       </mat-toolbar-row>
     </mat-toolbar>
   </p>
 </mat-toolbar>
-<div class="of-x-scroll px-2 mh-full" mat-dialog-content>
-
-  <ng-container *ngIf="(Orcamento$ |async)?.Produto.length > 0 then pedido else vazio"></ng-container>
+<div class="of-x-hidden px-2" mat-dialog-content>
+  <ng-container
+    *ngIf="(Orcamento$ | async)?.Produto.length > 0; then pedido; else vazio"
+  ></ng-container>
 
   <ng-template #vazio>
-
     <div @fadeIn class="px-3">
-      <div class=" w-full">
+      <div class="w-full">
         <figure class="image is-square">
-          <img src="/assets/images/figures/undraw_empty_cart_co35.svg">
-
+          <img src="/assets/images/figures/undraw_empty_cart_co35.svg" />
         </figure>
       </div>
       <div class="has-text-left">
-
-        <span class="subtitle">Clique abaixo para voltar e adicionar produtos ao seu orçamento</span>
+        <span class="subtitle"
+          >Clique abaixo para voltar e adicionar produtos ao seu orçamento</span
+        >
       </div>
       <div class="a-i-c pt-3">
-
         <a
-        pageScroll
-        href="#topo"
-        (click)="delayClose(1300)"
-        [routerLink]="['/produtos/']"
-        routerLinkActive="router-link-active">
+          pageScroll
+          href="#topo"
+          (click)="delayClose(1300)"
+          [routerLink]="['/produtos/']"
+          routerLinkActive="router-link-active"
+        >
           <button mat-stroked-button mat-stroked-button class="button is-dark">
             Ver produtos
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </a>
-
       </div>
     </div>
-
   </ng-template>
   <ng-template #pedido>
-
     <section class="section py-2 vh-full-nav">
-
-      <div class="a-i-c  py-2">
-
+      <div class="a-i-c py-2">
         <div class="w-full of-x-scroll">
-
           <personalizados-lopes-tabela-edicao-orcamento>
           </personalizados-lopes-tabela-edicao-orcamento>
-
         </div>
-
       </div>
-
     </section>
-    <div class="w-full container px-6 ">
-      <a (click)="delayClose()"
-        [routerLink]="['/checkout/']" pageScroll href="#TOPO" routerLinkActive="router-link-active"
-        class="button is-success w-full"><span class="nunitoParagraphy16 has-text-white">Finalizar
-          Pedido</span></a>
-      <button class="py-3 pb-3  w-full">
-        <a
-        href="#topo"
+    <div class="w-full container px-6">
+      <a
+        (click)="delayClose()"
+        [routerLink]="['/checkout/']"
         pageScroll
-        class="py-3"
-        (pageScrollFinish)="close()"
-        [routerLink]="['/produtos/']" routerLinkActive="router-link-active">Escolher
-          mais
-          produtos</a>
+        href="#TOPO"
+        routerLinkActive="router-link-active"
+        class="button is-success w-full"
+        ><span class="nunitoParagraphy16 has-text-white">Finalizar Pedido</span>
+      </a>
+      <button class="py-3 pb-3 w-full">
+        <a
+          href="#topo"
+          pageScroll
+          class="py-3"
+          (pageScrollFinish)="close()"
+          [routerLink]="['/produtos/']"
+          routerLinkActive="router-link-active"
+          >Escolher mais produtos</a
+        >
       </button>
     </div>
   </ng-template>
 </div>
-<mat-toolbar class="w-full pos-fixed bottom-0 pri-toolbar" mat-dialog-actions>
+<mat-toolbar
+  class="w-full pos-fixed bottom-0 pri-toolbar mb-4 of-x-hidden"
+  mat-dialog-actions
+>
   <mat-toolbar-row>
     <div class="columns">
       <div class="column"></div>
       <div class="column"></div>
       <div class="column has-text-right">
-        <p class="subtitle">Total: <span class="preco">R${{(Orcamento$|async)?.Preco.toFixed(2)}}</span></p>
+        <p class="subtitle">
+          Total:
+          <span class="preco"
+            >R${{ (Orcamento$ | async)?.Preco.toFixed(2) }}</span
+          >
+        </p>
       </div>
     </div>
   </mat-toolbar-row>
