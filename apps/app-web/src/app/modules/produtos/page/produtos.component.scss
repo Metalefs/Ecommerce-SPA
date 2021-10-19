@@ -1,6 +1,8 @@
+@import '../../../../variables';
+
 .bg {
   // https://source.unsplash.com/daily?abstract
-  background: center/ cover no-repeat url(https://source.unsplash.com/daily?abstract);
+  background: center/ cover no-repeat url(/assets/images/abstract-colorful.jfif);
   background-attachment: fixed;
   // background: #d2ced3;
   box-shadow:  20px 20px 60px #bebebe,
@@ -152,7 +154,7 @@
     overflow: hidden !important;
   }
   .mat-tab-labels{
-    background: #f14668;
+    background: $red2;
   }
   .mat-tab-label .mat-tab-label-content{
     color:white;

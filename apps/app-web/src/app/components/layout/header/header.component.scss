@@ -94,9 +94,8 @@ form.rounded{
   z-index: 11;
   &:nth-child(1){
     box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
-    background-image: linear-gradient(
-      180deg
-      ,#fff 0%,#f5f5f5 60%,#ebebeb 100%);
+    background-color: #8a2b06;
+    margin-bottom: 0;
     // background: #FFFFFF;
     //background: $background-light;
   }
@@ -192,7 +191,7 @@ form.rounded{
 
   /* nav-link-color */
 
-  color: rgba(0, 0, 0, 0.8);
+  color: rgba(255, 255, 255, 0.8);
   &.active-nav{
     // animation: selected 2s ease-out forwards;
     i{

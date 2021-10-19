@@ -18,10 +18,10 @@
     </a>
   </div>
 </mat-toolbar>
-<div class="pos-sticky z-index-top top-0" style="overflow-y: visible;">
+<div class="pos-sticky z-index-top top-0" style="overflow-y: visible !important;">
   <nav
-    class="navbar columns is-vcentered w-full is-mobile z-index-top mx-0 mb-4"
-    style="z-index: 20;"
+    class="navbar columns is-vcentered w-full is-mobile z-index-top mx-0"
+    style="z-index: 20;overflow-y: visible !important;"
   >
     <div class="column is-2-desktop is-5-mobile">
       <a @fadeIn href="#" class="logo flex-m a-i-c">
@@ -55,7 +55,7 @@
         </div>
       </form>
     </div>
-    <div class="column is-5-desktop is-hidden">
+    <div class="column is-5-desktop is-hidden-touch">
       <div class="columns is-mobile is-vcentered link-section flex-c-m">
         <div *ngFor="let link of links" class="column px-0">
           <ng-container
@@ -71,9 +71,9 @@
               href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
             >
               <!-- <i [class]="link.Picon"></i> -->
-              <span class="">{{
+              <p class="">{{
                 link.name == 'Todos' ? 'Produtos' : link.name
-              }}</span>
+              }}</p>
             </a>
           </ng-template>
 
@@ -94,9 +94,9 @@
                   "
                   [class]="link.Picon"
                 ></i> -->
-                <span class="">{{
+                <p class="">{{
                   link.name == 'Todos' ? 'Produtos' : link.name
-                }}</span>
+                }}</p>
               </a>
               <div class="dropdown-content has-background-white">
                 <a
@@ -119,7 +119,7 @@
       </div>
     </div>
 
-    <div class="column flex-r of-x-hidden">
+    <div class="column flex-r">
       <div class="columns is-mobile is-vcentered ">
 
         <!-- <div class="column">
@@ -141,7 +141,7 @@
         </div> -->
         <div class="column">
           <button
-            class="button"
+            class="button pr-0"
             color=""
             (click)="openCheckout()"
             title="Cesta de compras"
@@ -158,7 +158,7 @@
                 />
               </svg>
             </span>
-            <span class="is-hidden-touch has-text-white" mat-menu-item>
+            <span class="is-hidden-touch has-text-white px-0" mat-menu-item>
               Seu Carrinho
             </span>
             <span class="badge">
@@ -220,14 +220,14 @@
       </div>
     </div>
   </nav>
-  <!-- <mat-toolbar-row
+  <mat-toolbar-row
     [ngClass]="
       (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'
         ? 'produtos-nav-under'
         : 'produtos-nav-under'
     "
   >
-  </mat-toolbar-row> -->
+  </mat-toolbar-row>
 </div>
 <!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"

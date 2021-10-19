@@ -91,7 +91,7 @@ export class AppComponent {
     this.store.dispatch(new LerInformacoesContato()).subscribe(() => this.carregandoOque = '');
     this.store.dispatch(new LerCliente()).subscribe(
       () => {
-        this.spinner.hide();
+        this.hideSpiner();
         this.carregandoOque = 'Carregando'
       }
     );
@@ -99,6 +99,10 @@ export class AppComponent {
     this.store.dispatch(new LerServico()).subscribe();
     this.store.dispatch(new LerCategoria()).subscribe();
     this.store.dispatch(new LerMensagem()).subscribe();
+  }
+
+  hideSpiner(){
+    this.spinner.hide();
   }
 
   ngOnInit() {

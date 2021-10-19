@@ -2,6 +2,7 @@
 @import './theme/cores.scss';
 @import url('https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
 $gray-web: rgba(123, 123, 123, 1);
 $white: rgba(255, 255, 255, 1);
 $capri: rgba(58, 184, 255, 1);
@@ -24,11 +25,12 @@ $gradient-radial: radial-gradient(#7B7B7Bff, #FFFFFFff, #3AB8FFff, #FDB23Cff, #F
 
 //$default_font:'Titillium Web', sans-serif;
 //$default_font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji", sans-serif;
-$default_font:'Work Sans', sans-serif;
+//$default_font:'Work Sans', sans-serif;
+$default_font:'Rubik', sans-serif;
 
 $background-light : #f1f2fa;
 $main-background : #ededed;
-$navcolor : rgba(0,0,0,.6);
+$navcolor : rgb(255, 255, 255);
 //$footercolor : rgb(255, 255, 255);
 $footercolor : #ffffffd9;
 $footerbg : #FF4A4A;

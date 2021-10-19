@@ -28,5 +28,5 @@
 </cookie-law>
 </ng-container>
 <!-- <personalizados-lopes-loading-cube *ngIf="loading" [Mensagem]="carregandoOque"></personalizados-lopes-loading-cube> -->
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise-fade" [fullScreen] = "true"><p style="color: white" > {{carregandoOque}} </p></ngx-spinner>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise-fade" [fullScreen] = "true"><a class="button z-index-top" (click)="hideSpiner()">Fechar</a><p style="color: white" > {{carregandoOque}} </p></ngx-spinner>
 
