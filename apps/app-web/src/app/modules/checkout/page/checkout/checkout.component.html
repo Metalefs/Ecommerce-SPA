@@ -10,10 +10,9 @@
       <li [ngClass]="{'completed':this.selected.value >= 3 }"> <span class="bubble"></span> Entrega. </li>
     </ul>
     <div @slideInOut class="margin pos-relative au am de ft iv cs ct iw cw cz fn bf d3 d4 d5 d6 ">
-      <ng-container *ngIf="confirmar then pagamento else confirmacao"></ng-container>
+      <!-- <ng-container *ngIf="confirmar then pagamento else confirmacao"></ng-container> -->
 
-
-      <ng-template #confirmacao @slideInOut>
+      <!--<ng-template #confirmacao @slideInOut> -->
         <div class="columns w-full is-3 pb-1 mb-0">
           <div class="column is-12">
             <div class="box exibicao-cart">
@@ -36,7 +35,7 @@
             </form>
             <mat-radio-group class="example-radio-group" [(ngModel)]="FreteSelecionado">
               <mat-radio-button class="example-radio-button" (click)="SelecionarFrete(frete)" *ngFor="let frete of Fretes" [value]="frete">
-                <div class="box button is-info of-y-scroll" style="min-height: 60px;" [ngClass]="FreteSelecionado?.Codigo == frete.Codigo ? '': 'is-outlined'">
+                <div class="box button is-info of-y-scroll" style="min-height: 83px;" [ngClass]="FreteSelecionado?.Codigo == frete.Codigo ? '': 'is-outlined'">
                   <div class="w3-padding">{{NomeTransportadora(frete.Codigo)}} <b> (Até {{frete.PrazoEntrega}} dia(s)) </b> <span class="w3-right w3-tag w3-indigo">Receba em Casa</span></div>
                   <div class="w3-padding">R$ {{frete.Valor}} por pedido!</div>
                 </div>
@@ -45,87 +44,87 @@
           </div>
           <div class="column">
             <div class="">
-              <personalizados-lopes-confirmacao [exibirTabela]='false'></personalizados-lopes-confirmacao>
-              <a *ngIf="(Orcamento$ | async)?.Produto.length > 0" mat-flat-button class="button is-primary w-full is-uppercase" (click)="FinalizarCompra()">
+              <!-- <personalizados-lopes-confirmacao [exibirTabela]='false'></personalizados-lopes-confirmacao> -->
+              <a *ngIf="(Orcamento$ | async)?.Produto.length > 0 && FreteSelecionado?.Codigo" pageScroll href="#pagamento1" mat-flat-button class="button is-primary w-full is-uppercase" (click)="FinalizarCompra()">
                 Avançar
                 <svg class="svg-inline--fa fa-chevron-right fa-w-10" data-prefix="fad" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg=""><g class="fa-group"><path class="fa-secondary" fill="currentColor" d="M188.74 256l56.78 56.89L91.21 466.9a24 24 0 0 1-33.94 0l-22.7-22.65a23.93 23.93 0 0 1 0-33.84z"></path><path class="fa-primary" fill="currentColor" d="M91.25 45.06l194.33 194a23.93 23.93 0 0 1 0 33.84l-40 40-211-211.34a23.92 23.92 0 0 1 0-33.84l22.7-22.65a24 24 0 0 1 33.97-.01z"></path></g></svg>
               </a>
             </div>
           </div>
         </div>
-      </ng-template>
-      <ng-template #pagamento>
+      <!-- </ng-template> -->
+      <!-- <ng-template #pagamento>
 
-      <div *ngIf="confirmar" class="w-full my-3">
-        <button mat-icon-button (click)="confirmar = false">
-          <mat-icon>chevron_left</mat-icon>
-          <span>Voltar</span>
-        </button>
-      </div>
+        <div *ngIf="confirmar" class="w-full my-3">
+          <button mat-icon-button (click)="confirmar = false">
+            <mat-icon>chevron_left</mat-icon>
+            <span>Voltar</span>
+          </button>
+        </div>
 
-        <div class="columns w-full is-multiline is-3">
-          <div class="column is-8">
-            <div class="box px-3 py-3 w-full z-index-2">
-              <div class="">
-                <div class="w-full of-x-scroll">
-                  <mat-vertical-stepper [linear]="true"  #tabs [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-                    <mat-step class="box" [stepControl]="emailForm" label="E-mail">
-                      <form [formGroup]="emailForm"
-                      class="w-full">
-                        <mat-form-field appearance="">
-                          <mat-label>Email</mat-label>
-                          <input matInput
-                            class="w-full"
-                            formControlName="email"
-                            [(ngModel)]="Orcamento.Usuario.Email"
-                            name="Email"
-                            type="email"
-                            placeholder="e-mail@dominio.com"
-                            required>
-                            <mat-error *ngIf="emailForm.get('email').hasError('required')">
-                              O e-mail é obrigatório
-                            </mat-error>
-                        </mat-form-field>
-                        <div>
-                          <button mat-raised-button matStepperNext class="button is-primary is-uppercase w-full">Ir para Informações de contato</button>
-                        </div>
-                      </form>
-                    </mat-step>
-                    <mat-step class="box" [stepControl]="dadosForm" label="Dados pessoais">
-                      <personalizados-lopes-dados [email]="email" (onNextStep)="selected.setValue(2)"></personalizados-lopes-dados>
-                    </mat-step>
-                    <mat-step class="box" [stepControl]="enderecoForm" label="Dados da entrega">
-                      <personalizados-lopes-endereco (onNextStep)="AbrirPagamento()"></personalizados-lopes-endereco>
-                    </mat-step>
-                    <mat-step class="box" label="Pagamento">
-                      <personalizados-lopes-pagamento #pagamento></personalizados-lopes-pagamento>
-                    </mat-step>
-                  </mat-vertical-stepper>
-                </div>
+      </ng-template> -->
+      <div class="columns w-full is-multiline is-3">
+        <div class="column is-8">
+          <div class="box px-3 py-3 w-full z-index-2">
+            <div class="" id="pagamento1">
+              <div class="w-full of-x-scroll">
+                <mat-vertical-stepper [linear]="true"  #tabs [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                  <mat-step class="box" [stepControl]="emailForm" label="E-mail">
+                    <form [formGroup]="emailForm"
+                    class="w-full">
+                      <mat-form-field appearance="">
+                        <mat-label>Email</mat-label>
+                        <input matInput
+                          class="w-full"
+                          formControlName="email"
+                          [(ngModel)]="Orcamento.Usuario.Email"
+                          name="Email"
+                          type="email"
+                          placeholder="e-mail@dominio.com"
+                          required>
+                          <mat-error *ngIf="emailForm.get('email').hasError('required')">
+                            O e-mail é obrigatório
+                          </mat-error>
+                      </mat-form-field>
+                      <div>
+                        <button mat-raised-button matStepperNext class="button is-primary is-uppercase w-full">Ir para Informações de contato</button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step class="box" [stepControl]="dadosForm" label="Dados pessoais">
+                    <personalizados-lopes-dados [email]="email" (onNextStep)="selected.setValue(2)"></personalizados-lopes-dados>
+                  </mat-step>
+                  <mat-step class="box" [stepControl]="enderecoForm" label="Dados da entrega">
+                    <personalizados-lopes-endereco (onNextStep)="AbrirPagamento()"></personalizados-lopes-endereco>
+                  </mat-step>
+                  <mat-step class="box" label="Pagamento">
+                    <personalizados-lopes-pagamento #pagamento></personalizados-lopes-pagamento>
+                  </mat-step>
+                </mat-vertical-stepper>
               </div>
-
-              <!-- <router-outlet @fadeIn #outlet2></router-outlet> -->
-
-              <mat-toolbar class="dis-flex flex-sb py-6 of-y-hidden">
-
-                <a class="is-size-7	">aviso legal</a>
-                <span class="spacer"></span>
-                <!-- <figure class="image px-4 ">
-                  <img src="assets/images/icons/selos-seguranca-mp.gif" height="100">
-                </figure> -->
-                <figure class="image px-4 is-64x64">
-                  <img src="assets/images/icons/bandeira-dos-cartoes-de-credito.png">
-                </figure>
-              </mat-toolbar>
             </div>
-          </div>
-          <div class="column is-4">
-            <div class="box">
-              <personalizados-lopes-confirmacao></personalizados-lopes-confirmacao>
-            </div>
+
+            <!-- <router-outlet @fadeIn #outlet2></router-outlet> -->
+
+            <mat-toolbar class="dis-flex flex-sb py-6 of-y-hidden">
+
+              <a class="is-size-7	">aviso legal</a>
+              <span class="spacer"></span>
+              <!-- <figure class="image px-4 ">
+                <img src="assets/images/icons/selos-seguranca-mp.gif" height="100">
+              </figure> -->
+              <figure class="image px-4 is-64x64">
+                <img src="assets/images/icons/bandeira-dos-cartoes-de-credito.png">
+              </figure>
+            </mat-toolbar>
           </div>
         </div>
-      </ng-template>
+        <div class="column is-4">
+          <div class="box">
+            <personalizados-lopes-confirmacao></personalizados-lopes-confirmacao>
+          </div>
+        </div>
+      </div>
 
       <ng-container *ngIf="!checkoutService.getValid()">
         <div class="columns is-vcentered"  @fadeIn>

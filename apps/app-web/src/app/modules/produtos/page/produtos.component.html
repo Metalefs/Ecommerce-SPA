@@ -14,7 +14,7 @@
     <div class=' pt-2'>
       <div [@cardFlip]='state' class='' id='Todos'>
         <div class='columns'>
-          <div class='column is-3-desktop is-3-tablet is-hidden-mobile mt-1 has-background-light'>
+          <div class='column is-3-desktop is-3-tablet is-hidden-touch mt-1 has-background-light'>
             <aside class='box flex-c aside w-full portfolio pos-sticky top-0 pl-1'>
 
               <div class='is-hidden-mobile w-full '>
@@ -42,7 +42,7 @@
             </aside>
           </div>
           <div
-            class='column px-0 ml-0 pt-1 is-9-desktop is-9-tablet is-12-mobile produto-column mh-full of-y-hidden'
+            class='column ml-0 pt-1 is-9-desktop is-12-tablet is-12-mobile produto-column mh-full of-y-hidden'
           >
             <div class='of-y-hidden'>
               <mat-tab-group>
@@ -57,7 +57,9 @@
                     <mat-list-item *ngIf="filterState.activeFornecedor">Fornecedor: {{filterState.activeFornecedor.Nome}}</mat-list-item>
                     <mat-list-item *ngIf="filterState.activeOrderStatus">Status: {{filterState.activeOrderStatus.name}}</mat-list-item>
                   </mat-list>
-                  <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
+                  <div class="px-2">
+                    <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
+                  </div>
                 </mat-tab>
                 <mat-tab *ngIf="FavCount > 0" [label]="'Favoritos ' + FavCount || ''" >
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>

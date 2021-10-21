@@ -41,8 +41,14 @@
         <nav class="level dis-flex flex-sa of-x-scroll">
           <div class="level-item has-text-centered size2 bor1">
             <div>
+              <p class="heading has-text-light"></p>
+              <p class="title has-text-white"></p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered size2 bor1">
+            <div>
               <p class="heading has-text-light">Avaliações</p>
-              <p class="title has-text-white">{{ Produto?.Rating.length }}</p>
+              <p class="title has-text-white">{{ Produto?.Rating.length || 0 }}</p>
             </div>
           </div>
           <!-- <div class="level-item has-text-centered">

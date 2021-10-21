@@ -151,7 +151,7 @@
                   [ErroQuantidade]="ErroQuantidade"
                   [Erros]="Erros"
                   (onQuantidadeChange)="setQuantidade($event)"
-                ></personalizados-lopes-bloco-pagamento-produto>
+                >
                 <mat-list *ngIf="!IsValid" class="w-full mx-0 border">
                   <mat-list-item *ngFor="let erro of Erros">
                     <p class="subtitle is-size-6 has-text-danger">
@@ -160,6 +160,8 @@
                     <hr />
                   </mat-list-item>
                 </mat-list>
+              </personalizados-lopes-bloco-pagamento-produto>
+                
                 <div
                   *ngIf="Produto?.Status == statusProduto.esgotado"
                   class="box w-full"

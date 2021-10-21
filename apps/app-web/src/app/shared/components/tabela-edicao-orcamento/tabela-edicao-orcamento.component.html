@@ -8,7 +8,7 @@
           <figure class="image is-64x64"  (click)="AbrirModalArte(element)">
             <img src="{{element?.Produto.Imagem[0]}}">
           </figure>
-          <figure class="image is-64x64 d-block button" (click)="AbrirModalArte(element)">
+          <div class="d-block button" (click)="AbrirModalArte(element)">
 
             <ng-container *ngIf="element?.Produto.Arte then arte else novaArte"></ng-container>
             <ng-template #arte>
@@ -24,7 +24,6 @@
             </ng-template>
             <ng-template #novaArte>
               <div class="px-2 txt-center">
-                <mat-icon>warning</mat-icon>
                 <label class="file-label">
                   <div class="file-input" type="file" (click)="AbrirModalArte(element)"></div>
                   <span class="file-cta">
@@ -35,7 +34,7 @@
                 </label>
               </div>
             </ng-template>
-          </figure>
+          </div>
           <div class="is-hidden-desktop ml-3">
             <a href="#topo" [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
               routerLinkActive="router-link-active"

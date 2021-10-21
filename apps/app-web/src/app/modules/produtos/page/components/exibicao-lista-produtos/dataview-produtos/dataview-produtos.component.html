@@ -25,20 +25,20 @@
       <div class='column pb-1 is-6-desktop is-4-mobile'>
         <div class='dis-flex w-full flex-r flex-m'>
           <personalizados-lopes-selecao-ordenacao-produto></personalizados-lopes-selecao-ordenacao-produto>
-          <p-dataViewLayoutOptions class='px-2 is-hidden-touch'></p-dataViewLayoutOptions>
+          <!-- <p-dataViewLayoutOptions class='px-2 is-hidden-touch'></p-dataViewLayoutOptions> -->
         </div>
       </div>
     </div>
   </ng-template>
   <ng-template let-produto pTemplate='listItem'>
-    <ng-container class='mx-0 px-0'>
+    <ng-container class='mx-0 '>
       <div *ngIf='loading' class='column is-12 py-4'>
         <div class='w-full mh-full skeleton'>
           <p-skeleton height='100%' width='100vw'></p-skeleton>
         </div>
       </div>
       <div *ngIf='filtroAtivo(produto) && !loading'
-           class='column is-12 py-4'
+           class='column is-12 py-4 px-2'
       >
         <personalizados-lopes-card-produto
           [MostarOpcoes]='true'
@@ -52,14 +52,14 @@
   <ng-template let-produto pTemplate='gridItem'>
     <ng-container class='mx-0 px-0'>
       <div *ngIf='loading'
-           class='column is-3 py-4 is-12-mobile'
+           class='column is-4-desktop is-4-tablet py-4 is-12-mobile'
       >
         <div class='w-full mh-full skeleton'>
           <p-skeleton height='100%' width='100%'></p-skeleton>
         </div>
       </div>
       <div *ngIf='filtroAtivo(produto) && !loading'
-           class='column is-3 py-4 is-12-mobile'
+           class='column is-4-desktop is-4-tablet py-4 is-12-mobile'
       >
         <personalizados-lopes-card-produto
           [MostarOpcoes]='true'

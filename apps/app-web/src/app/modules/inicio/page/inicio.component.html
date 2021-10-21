@@ -37,18 +37,14 @@
         </svg>
       </div>
 
-      <div class="columns flex-sa">
+      <div class="columns flex-sa is-multiline">
         <div class="column z-index-2">
           <app-card
             customClass="box is-info is-outlined mat-elevation-z2"
             style="min-height: 145px;"
           >
             <div class="content">
-              <span
-                className="iconify"
-                data-icon="fontelico:emo-coffee"
-                data-width="150"
-              ></span>
+              
               <h4 class="subtitle is-6">
                 Escolha de 100+ produtos costumizáveis
               </h4>
@@ -60,7 +56,7 @@
           </app-card>
         </div>
 
-        <div class="column z-index-2">
+        <div class="column is-12-touch z-index-2">
           <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
             <div class="content">
               <h4 class="subtitle is-6">
@@ -74,6 +70,33 @@
               <a (click)="AbrirEstimativaPrecoFrete()"
                 >Confira seu CEP aqui</a
               >
+            </div>
+          </app-card>
+        </div>
+
+        <div class="column is-12-touch z-index-2">
+          <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
+            <div class="content">
+              <span
+                class="iconify"
+                data-icon="ic:baseline-password"
+              ></span>
+              <h3 class="title">Sem senha</h3>
+              <h4 class="subtitle is-6">
+                Você não precisa criar login e senha para realizar uma compra, é super fácil e rápido.
+              </h4>
+            </div>
+          </app-card>
+        </div>
+
+        <div class="column is-12-touch z-index-2">
+          <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
+            <div class="content">
+              <span class="iconify" data-icon="clarity:dollar-line"></span>
+              <h3 class="title">Multi Formas de Pagamento</h3>
+              <h4 class="subtitle is-6">
+               Você pode dividir a compra em dois cartões, pagar no crédito ou débito, Paypal ou PIX.
+              </h4>
             </div>
           </app-card>
         </div>
