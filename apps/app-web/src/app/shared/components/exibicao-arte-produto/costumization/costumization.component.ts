@@ -32,6 +32,7 @@ export class CostumizationComponent implements OnInit {
   constructor(public dialog: NgDialogAnimationService,@Inject(PLATFORM_ID) private platform: Object) {}
 
   importOpen:boolean=false;
+  imageIndex:number=0;
   ngOnInit(): void {
     this.SaveDesign = this.SaveDesign.bind(this);
     this.deleteObject = this.deleteObject.bind(this);
@@ -49,7 +50,18 @@ export class CostumizationComponent implements OnInit {
       // setTimeout(()=>{this.importFile()},2000)
     }
   }
+  prevImage(){
+    if(this.imageIndex-1 < 0)
+      return
 
+    this.imageIndex--;
+  }
+  nextImage(){
+    if(this.imageIndex+1 >= this.Produto.Imagem.length)
+      return
+
+    this.imageIndex++;
+  }
   setup(){
 
     this.__canvas.on('selection:created', ()=>{this.onObjectSelected()});
@@ -183,7 +195,7 @@ export class CostumizationComponent implements OnInit {
       var oImg = img.set({
         left: 0,
         top: 0,
-        angle: 5,
+        angle: 0,
       });
 
       self.__canvas.add(oImg).renderAll();

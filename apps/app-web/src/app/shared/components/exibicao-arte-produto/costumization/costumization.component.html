@@ -1,14 +1,24 @@
 <div class="container-app columns is-gapless is-multiline py-4 w-full mx-0">
   <div class="column is-9 is-10-mobile section border-light" data-aos="zoom-in">
     <figure data-aos="zoom-in">
-      <img [src]="(Produto?.Imagem)[0]" class="prod-img" />
+      <img [src]="(Produto?.Imagem)[imageIndex]" #image class="prod-img" />
+      <div class="img-indexControll dis-flex flex-m flex-sb">
+        <button class="button btn btn-small" (click)="prevImage()">
+          <span class="iconify" data-icon="fluent:previous-24-filled"></span>
+
+        </button>
+        <span class="iconify" data-icon="tabler:slideshow"></span>
+        <button class="button btn btn-small" (click)="nextImage()">
+          <span class="iconify" data-icon="fluent:next-24-filled"></span>
+
+        </button>
+      </div>
     </figure>
     <canvas id="c" height="400"></canvas>
   </div>
   <div class="column is-2 mh-full shadow-light">
     <div class="controls-container">
       <div
-        data-aos="zoom-in"
         class="controls txt-center shadow-light pos-relative z-index-top"
       >
         <a id="add" class="button" (click)="addText()"><p>Inserir texto</p></a>

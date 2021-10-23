@@ -82,7 +82,7 @@ form.rounded{
   left: 0;
   width: 100%;
   /* height: 5rem; */
-  background-color: #8a2b06;
+  //background-color: #8a2b06;
   color: white;
   display: flex;
   justify-content: space-between;
@@ -97,7 +97,7 @@ form.rounded{
     background-color: #8a2b06;
     margin-bottom: 0;
     // background: #FFFFFF;
-    //background: $background-light;
+    background: $background-light;
   }
 }
 .bg-light{
@@ -191,7 +191,6 @@ form.rounded{
 
   /* nav-link-color */
 
-  color: rgba(255, 255, 255, 0.8);
   &.active-nav{
     // animation: selected 2s ease-out forwards;
     i{
@@ -312,9 +311,11 @@ form.rounded{
     height: 28px;
   }
 
-
 }
 @media (min-width:1023px){
+  .flex-r-desktop{
+    justify-content: flex-end;
+  }
   .flex-sb-c{
     display: block;
     justify-content:initial;

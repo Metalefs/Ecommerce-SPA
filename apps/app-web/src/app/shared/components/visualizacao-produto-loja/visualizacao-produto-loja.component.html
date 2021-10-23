@@ -22,14 +22,14 @@
         <div class="column is-3-desktop is-6-tablet px-0 z-index-1">
           <div class="px-1 pos-sticky top-0">
             <div *ngIf="Produto" class="columns is-multiline">
-              <div class="column is-12-desktop is-12-tablet is-12-mobile">
+              <div class="column is-12-desktop is-12-tablet is-12-mobile has-text-centered">
                 <form *ngIf="produtoForm" action="" method="post">
                   <div
                     *ngIf="Produto?.Status != statusProduto.esgotado"
                     class="txt-left"
                   >
                     <div class="columns py-1">
-                      <div class="column is-12">
+                      <div class="column is-12 pl-0">
                         <div class="message is-white">
                           <div class="message-body px-0">
                             <div
@@ -95,17 +95,17 @@
         </div>
         <div class="column is-9">
           <div class="columns box box-offset is-vcentered">
-            
+
             <div class="column is-7-desktop is-12-tablet">
               <div class="columns">
                 <div class="column is-12">
-    
+
                   <div class="section">
                     <personalizados-lopes-exibicao-imagem-produto
                       [_Produto]="Produto"
                     ></personalizados-lopes-exibicao-imagem-produto>
                   </div>
-    
+
                   <div class=" my-2">
                     <h1 class="titulo-produto fs-17">{{ Produto?.Nome }}</h1>
                     <personalizados-lopes-descricao-rapida-produto
@@ -117,7 +117,7 @@
                 </div>
               </div>
               <personalizados-lopes-avaliacao-estrelas-produto></personalizados-lopes-avaliacao-estrelas-produto>
-    
+
               <div class="column is-12 is-hidden-touch">
                 <ul class="content list-unstyled dis-flex flex-sa flex-m">
                   <li>
@@ -161,7 +161,7 @@
                   </mat-list-item>
                 </mat-list>
               </personalizados-lopes-bloco-pagamento-produto>
-                
+
                 <div
                   *ngIf="Produto?.Status == statusProduto.esgotado"
                   class="box w-full"
