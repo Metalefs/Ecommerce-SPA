@@ -57,7 +57,7 @@
     </div>
     <div class="column is-5-desktop is-hidden-touch">
       <div class="columns is-mobile is-vcentered link-section flex-c-m">
-        <div *ngFor="let link of links" class="column px-0">
+        <div *ngFor="let link of links" class="column is-2 px-0">
           <ng-container
             *ngIf="link.options; then dropdown; else normal"
           ></ng-container>
@@ -70,10 +70,10 @@
               routerLinkActive="active-nav"
               href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
             >
-              <!-- <i [class]="link.Picon"></i> -->
-              <p class="">{{
+              <i [class]="link.Picon"></i>
+              <!-- <p class="">{{
                 link.name == 'Todos' ? 'Produtos' : link.name
-              }}</p>
+              }}</p> -->
             </a>
           </ng-template>
 
@@ -88,15 +88,12 @@
                   link.name == 'inicio' ? 'inicio' : ''
                 }}"
               >
-                <!-- <i
-                  *ngIf="
-                    link.Picon && (NavState$ | async)?.activeNav == link.name
-                  "
+                <i
                   [class]="link.Picon"
-                ></i> -->
-                <p class="">{{
+                ></i>
+                <!-- <p class="">{{
                   link.name == 'Todos' ? 'Produtos' : link.name
-                }}</p>
+                }}</p> -->
               </a>
               <div class="dropdown-content has-background-white">
                 <a

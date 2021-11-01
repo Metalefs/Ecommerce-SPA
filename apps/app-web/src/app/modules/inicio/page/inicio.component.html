@@ -44,7 +44,7 @@
             style="min-height: 145px;"
           >
             <div class="content">
-              
+
               <h4 class="subtitle is-6">
                 Escolha de 100+ produtos costumizáveis
               </h4>
@@ -104,13 +104,10 @@
     </div>
   </div>
   <div class="section px-0 mat-elevation-z2">
-    <section
-      data-aos-offset="-10"
-      data-aos="zoom-up"
-      class="of-x-scroll"
-      *ngIf="(Clientes$ | async)?.length > 0"
-    >
-      <app-testimonial [sliderData]="Clientes$ | async"> </app-testimonial>
+    <section class=" of-x-scroll" *ngIf="(Clientes$ | async)?.length > 0">
+      <div class="">
+        <app-testimonial [sliderData]="Clientes$ | async"> </app-testimonial>
+      </div>
     </section>
   </div>
 

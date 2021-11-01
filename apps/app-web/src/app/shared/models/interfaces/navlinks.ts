@@ -55,11 +55,11 @@ environment.production ? [
     ]
   },
   {name: "Loja",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
-  {name: "Contato",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
+  {name: "Contato",   href:"./orcamento", Picon:'pi pi-phone', group:GrupoNavLink.duvidas},
   {name: "Notícias",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ] : [
   {
-    name: "Home", href:"/inicio", icon:'home', Picon:"", group:GrupoNavLink.none,
+    name: "Home", href:"/inicio", icon:'home', Picon:"pi pi-home", group:GrupoNavLink.none,
     options:[
       // {nome:"Inicio",link:`/inicio`,queryParams:{}},
       {nome:"Empresa",link:`/empresa`,queryParams:{}},
@@ -67,7 +67,7 @@ environment.production ? [
       {nome:"Galeria",link:`/showcase`,queryParams:{}},
     ]
   },
-  {name: "Loja",   href:"./produtos", Picon:"", group:GrupoNavLink.produtos},
-  {name: "Contato",   href:"./orcamento", Picon:'pi pi-envelope', group:GrupoNavLink.duvidas},
+  {name: "Loja",   href:"./produtos", Picon:"pi pi-shopping-cart", group:GrupoNavLink.produtos},
+  {name: "Contato",   href:"./orcamento", Picon:'pi pi-phone', group:GrupoNavLink.duvidas},
   {name: "Notícias",      href:"./blog",     Picon:'pi pi-comment', group:GrupoNavLink.duvidas},
 ];
