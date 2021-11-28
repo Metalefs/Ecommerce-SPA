@@ -529,7 +529,6 @@ canvas {
   }
 }
 .wp-btn {
-  background-color: $red;
   background-image: linear-gradient(to bottom,#00c3d6,#2196f3);
   background-image: linear-gradient(to bottom, #5eef91, #56c700);
   background-repeat: repeat-x;
@@ -639,9 +638,9 @@ img {
 }
 
 .preco {
-  font-size: 1.2em;
-  color: #00d1b2;
-  font-weight: 500;
+  // font-size: 1.2em;
+  // color: #00d1b2;
+  font-weight: 400;
   strong {
     // color:#fe0000;
     font-size: 1.2em;
@@ -985,7 +984,6 @@ img {
   &-content {
     position: absolute;
     border-radius: 0;
-    width: 100%;
     min-width: 120px;
     z-index: 20;
     opacity: 0;

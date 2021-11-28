@@ -31,7 +31,7 @@
     <div class="column is-2 is-hidden-mobile" *ngIf="search">
       <form
         type="get"
-        class="is-6 w-full rounded nav-item has-background-white"
+        class="is-6 w-full"
         action="/produtos/?nome={{ search_filter }}?categoria=Todos os produtos"
       >
         <div class=" w-full">
@@ -57,7 +57,7 @@
     </div>
     <div class="column is-5-desktop is-hidden-touch">
       <div class="columns is-mobile is-vcentered link-section flex-c-m">
-        <div *ngFor="let link of links" class="column is-2 px-0">
+        <div *ngFor="let link of links" class="column is-3 px-0">
           <ng-container
             *ngIf="link.options; then dropdown; else normal"
           ></ng-container>
@@ -71,9 +71,9 @@
               href="#{{ link.name == 'Todos' ? 'topo' : link.name }}"
             >
               <i [class]="link.Picon"></i>
-              <!-- <p class="">{{
+              <p class="">{{
                 link.name == 'Todos' ? 'Produtos' : link.name
-              }}</p> -->
+              }}</p>
             </a>
           </ng-template>
 
@@ -91,9 +91,9 @@
                 <i
                   [class]="link.Picon"
                 ></i>
-                <!-- <p class="">{{
+                <p class="">{{
                   link.name == 'Todos' ? 'Produtos' : link.name
-                }}</p> -->
+                }}</p>
               </a>
               <div class="dropdown-content has-background-white">
                 <a
@@ -115,7 +115,7 @@
         </div>
       </div>
     </div>
-    <div class="column px-0 flex-r-desktop">
+    <div class="column">
       <div class="columns is-mobile is-vcentered ">
 
         <!-- <div class="column">
@@ -225,7 +225,7 @@
   >
   </mat-toolbar-row>
 </div>
-<personalizados-lopes-mega-menu
+<!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"
   class="is-hidden-touch z-index-top"
-></personalizados-lopes-mega-menu>
+></personalizados-lopes-mega-menu> -->

@@ -24,9 +24,10 @@ $gradient-bottom-left: linear-gradient(315deg, #7B7B7Bff, #FFFFFFff, #3AB8FFff, 
 $gradient-radial: radial-gradient(#7B7B7Bff, #FFFFFFff, #3AB8FFff, #FDB23Cff, #FE0000ff);
 
 //$default_font:'Titillium Web', sans-serif;
-$default_font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji", sans-serif;
+//$default_font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji", sans-serif;
 //$default_font:'Work Sans', sans-serif;
 //$default_font:'Rubik', sans-serif;
+$default_font:'Roboto', sans-serif;
 
 $background-light : #f1f2fa;
 $main-background : #ededed;
@@ -35,7 +36,7 @@ $navcolor : rgb(0, 0, 0);
 $footercolor : #ffffffd9;
 $footerbg : #FF4A4A;
 $naviconcolor : #f70404;
-$navlinkbordercolor : #e6dbdb41;
+$navlinkbordercolor : #ffc6c6e7;
 $navlinkweight: 400;
 $navlinksize: 1rem;
 

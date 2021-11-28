@@ -1,4 +1,4 @@
-<mat-accordion class="background-light ">
+<mat-accordion class="background-light">
   <mat-expansion-panel [expanded]="false" class="background-light px-0">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -7,33 +7,29 @@
       <mat-panel-description></mat-panel-description>
     </mat-expansion-panel-header>
     <div class="columns is-multiline">
-      <div
-        class="hoverable column"
-        *ngFor="let corProduto of CoresProdutos"
-        (click)='CorProduto = corProduto'
-      >
-        <input
-          class="mx-1 button shadow-light"
-          type="radio"
-          alt="{{ corProduto.Nome }}"
-          [value]="corProduto.Nome"
-        />
-        <div
-          title="{{ corProduto.Nome }}"
-          class="button is-outlined is-small"
-          [style.background]="corProduto?.Cor"
-          [ngClass]="{
-            ' is-focused selected': CorProduto?.Nome == corProduto.Nome
-          }"
-        ></div>
-        <p class="subtitle is-size-6">{{corProduto?.Nome}}</p>
+      <div class="column is-6" *ngFor="let corProduto of CoresProdutos">
+        <div class="box clickable d-flex flex-c-m" (click)="CorProduto = corProduto">
+          <input
+            class="mx-1 button shadow-light"
+            type="radio"
+            alt="{{ corProduto.Nome }}"
+            [value]="corProduto.Nome"
+          />
+          <div
+            title="{{ corProduto.Nome }}"
+            class="button is-outlined is-small"
+            [style.background]="corProduto?.Cor"
+            [ngClass]="{
+              ' is-focused selected': CorProduto?.Nome == corProduto.Nome
+            }"
+          ></div>
+          <p class="subtitle is-size-6">{{ corProduto?.Nome }}</p>
+        </div>
       </div>
-      <a
-      (click)="CorProduto = null"
-      class="w-full button is-size-7"
-      >Remover filtro de cor
-    </a>
-  </div>
-  <personalizados-lopes-checkbox-cores-produto></personalizados-lopes-checkbox-cores-produto>
-</mat-expansion-panel>
+      <a (click)="CorProduto = null" class="w-full button is-size-7"
+        >Remover filtro de cor
+      </a>
+    </div>
+    <personalizados-lopes-checkbox-cores-produto></personalizados-lopes-checkbox-cores-produto>
+  </mat-expansion-panel>
 </mat-accordion>

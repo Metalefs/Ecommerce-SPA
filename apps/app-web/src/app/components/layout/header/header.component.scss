@@ -90,7 +90,7 @@ form.rounded{
   padding: 0.5rem 10%;
   padding-top: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  z-index: 10;
+  overflow-x: clip;
   z-index: 11;
   &:nth-child(1){
     box-shadow: rgba(133, 133, 133, 0.12) 0px 2px 4px;
@@ -188,7 +188,10 @@ form.rounded{
   align-items: center;
   text-align: center;
   text-transform: capitalize;
+  :hover{
 
+    background: #4879b81f
+  }
   /* nav-link-color */
 
   &.active-nav{
@@ -226,7 +229,7 @@ form.rounded{
     //   color: $naviconcolor
     // }
     color: $navcolor;
-
+    font-weight: 600;
   }
 }
 .active-nav{
@@ -240,7 +243,12 @@ form.rounded{
 .inicio{
   border-left: none;
 }
-
+.pi{
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+  margin-right:10px;
+}
 @keyframes selected{
   0%{
     color: gray;

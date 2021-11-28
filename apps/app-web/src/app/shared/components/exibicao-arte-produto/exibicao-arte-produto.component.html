@@ -3,6 +3,19 @@
   <a mat-button color="basic" class="close bo-0" [mat-dialog-close]="" cdkFocusInitial>
     <mat-icon>close</mat-icon>
   </a>
+
+  <div class="">
+    <h4 class="has-text-danger py-3">Atenção às regras de personalização!</h4>
+
+    <div class="columns is-vcentered">
+      <div class="column" *ngFor="let rule of rules">
+        <app-card class="button is-danger" style="min-height: 200px;">
+          <p class="fw-500">{{rule}}</p>
+        </app-card>
+      </div>
+    </div>
+  </div>
+
   <div class="columns is-multiline is-vcentered">
     <div class="column is-12">
       <!-- <ng-container *ngIf="Produto?.Arte then arte else novaArte"></ng-container>
@@ -67,18 +80,6 @@
       <personalizados-lopes-costumization #customization (DesignSaved)="attCanvas($event)" [Produto]="Produto"></personalizados-lopes-costumization>
     </div>
 
-
-  <div class="">
-    <h4 class="has-text-danger py-3">Atenção às regras de personalização!</h4>
-
-    <div class="columns is-vcentered">
-      <div class="column" *ngFor="let rule of rules">
-        <app-card class="button is-danger" style="min-height: 200px;">
-          <p class="fw-500">{{rule}}</p>
-        </app-card>
-      </div>
-    </div>
-  </div>
 </div>
 
 <div>

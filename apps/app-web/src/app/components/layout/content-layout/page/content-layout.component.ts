@@ -43,6 +43,9 @@ export class ContentLayoutComponent implements OnInit {
     if(this.NavState.open)
     this.NavState.open = false;
   }
+  showHeader(){
+    return true;//!this.url?.includes('checkout')
+  }
   prepareRoute(outlet: RouterOutlet) {
     try{
       return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];

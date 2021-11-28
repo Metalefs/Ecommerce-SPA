@@ -28,17 +28,17 @@
     (mouseover)="CloseNav()"
   >
     <section class="split-home has-background-main">
-      <personalizados-lopes-header *ngIf="!url?.includes('checkout')"></personalizados-lopes-header>
+      <personalizados-lopes-header *ngIf="showHeader()"></personalizados-lopes-header>
       <main class="main-content has-background-main">
         <router-outlet #outlet="outlet"></router-outlet>
       </main>
     </section>
-    <personalizados-lopes-footer *ngIf="!url?.includes('checkout')"></personalizados-lopes-footer>
-    <personalizados-lopes-icone-whatsapp *ngIf="!url?.includes('checkout')"
+    <personalizados-lopes-footer *ngIf="showHeader()"></personalizados-lopes-footer>
+    <personalizados-lopes-icone-whatsapp *ngIf="showHeader()"
       [Whatsapp]="(InformacoesContato$ | async)?.Whatsapp"
       [Mensagem]="Mensagem"
     >
     </personalizados-lopes-icone-whatsapp>
-    <personalizados-lopes-scroll-top *ngIf="!url?.includes('checkout')"></personalizados-lopes-scroll-top>
+    <personalizados-lopes-scroll-top *ngIf="showHeader()"></personalizados-lopes-scroll-top>
   </div>
 </div>

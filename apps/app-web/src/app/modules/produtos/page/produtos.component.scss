@@ -153,9 +153,18 @@
     overflow: hidden !important;
   }
   .mat-tab-labels{
-    background: $red2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
   }
   .mat-tab-label .mat-tab-label-content{
-    color:white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
   }
 }

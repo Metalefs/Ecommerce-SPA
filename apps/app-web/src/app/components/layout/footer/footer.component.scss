@@ -10,10 +10,14 @@
 
 .base{
   color: $footercolor;
+  font-family: 'Roboto';
 }
 span{
   color:  $footercolor;
   text-transform: lowercase;
+}
+.pi{
+  margin: 0 5px;
 }
 a{
   @extend .base;
@@ -22,7 +26,6 @@ a{
   &.footer-text {
     .pi{
       margin-right:5px;
-      font-weight: 500;
     }
     &.links{
       transition: .31s all;

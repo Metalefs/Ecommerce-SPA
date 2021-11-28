@@ -15,7 +15,7 @@
 
               <figure class="image is-64x64 is-pri-image dis-flex flex-c-m">
                 <mat-icon>image</mat-icon>
-                <span class="pos-absolute bott0m-0">Ver arte</span>
+                <!-- <span class="pos-absolute bott0m-0">Ver arte</span> -->
               </figure>
 
               <figure *ngIf="element?.Produto.ArteSecundaria" class="image is-64x64 is-sec-image">
@@ -38,7 +38,7 @@
           <div class="is-hidden-desktop ml-3">
             <a href="#topo" [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
               routerLinkActive="router-link-active"
-              class="title is-size-5 ">{{element?.Produto.Nome}}
+              class="title is-size-6 ">{{element?.Produto.Nome}}
               <p class="">{{element?.Produto.Cor?.nome}}</p>
               <ng-container *ngIf="element?.Produto?.Tamanho?.Nome && Produto?.FaixaTamanho?.Tamanhos">
                 <p><span class=" is-size-7">{{Produto?.Tamanho?.Nome == null ? '' : Produto?.Tamanho?.Nome}} {{Produto?.FaixaTamanho?.Tamanho || ''}}</span></p>
@@ -73,7 +73,7 @@
         <div class="column is-hidden-touch">
           <a href="#topo" [routerLink]="['/produtos/'+element?.Produto._id+'/'+element?.codOrcamento]"
             routerLinkActive="router-link-active"
-            class="title is-size-5 ">{{element?.Produto.Nome}}
+            class="title is-size-6 ">{{element?.Produto.Nome}}
             <p class="subtitle">{{element?.Produto.Cor?.Nome || element?.Produto.Cor?.nome}}</p>
             <ng-container *ngIf="element?.Produto?.Tamanho">
               <div

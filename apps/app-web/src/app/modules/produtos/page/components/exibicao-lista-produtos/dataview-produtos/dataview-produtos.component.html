@@ -23,9 +23,15 @@
         <personalizados-lopes-selecao-quantidade-produtos></personalizados-lopes-selecao-quantidade-produtos>
       </div>
       <div class='column pb-1 is-6-desktop is-4-mobile'>
-        <div class='dis-flex w-full flex-r flex-m'>
-          <personalizados-lopes-selecao-ordenacao-produto></personalizados-lopes-selecao-ordenacao-produto>
-          <!-- <p-dataViewLayoutOptions class='px-2 is-hidden-touch'></p-dataViewLayoutOptions> -->
+        <div class='columns is-vcentered'>
+          <div class="column">
+            <personalizados-lopes-selecao-ordenacao-produto></personalizados-lopes-selecao-ordenacao-produto>
+
+          </div>
+          <div class="column">
+            <p-dataViewLayoutOptions class='px-2 is-hidden-touch'></p-dataViewLayoutOptions>
+
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +65,7 @@
         </div>
       </div>
       <div *ngIf='filtroAtivo(produto) && !loading'
-           class='column is-4-desktop is-4-tablet py-4 is-12-mobile'
+           class='column is-3-desktop is-4-tablet py-4 is-12-mobile'
       >
         <personalizados-lopes-card-produto
           [MostarOpcoes]='true'

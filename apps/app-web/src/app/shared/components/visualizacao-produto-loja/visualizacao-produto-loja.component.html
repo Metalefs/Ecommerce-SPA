@@ -22,7 +22,9 @@
         <div class="column is-3-desktop is-6-tablet px-0 z-index-1">
           <div class="px-1 pos-sticky top-0">
             <div *ngIf="Produto" class="columns is-multiline">
-              <div class="column is-12-desktop is-12-tablet is-12-mobile has-text-centered">
+              <div
+                class="column is-12-desktop is-12-tablet is-12-mobile has-text-centered"
+              >
                 <form *ngIf="produtoForm" action="" method="post">
                   <div
                     *ngIf="Produto?.Status != statusProduto.esgotado"
@@ -38,26 +40,24 @@
                               <div
                                 class="column is-12-desktop is-12-mobile mh-full"
                               >
-                              <h2 class="title">Personalização</h2>
-                              <div class="box px-2 py-2">
-
-                                <personalizados-lopes-selecao-tamanho-produto
-                                  [Produto]="Produto"
-                                  [ErroTamanho]="ErroTamanho"
-                                  [Erros]="Erros"
+                                <h2 class="title">Personalização</h2>
+                                <div class="px-2 py-2">
+                                  <personalizados-lopes-selecao-tamanho-produto
+                                    [Produto]="Produto"
+                                    [ErroTamanho]="ErroTamanho"
+                                    [Erros]="Erros"
                                   ></personalizados-lopes-selecao-tamanho-produto>
-                              </div>
+                                </div>
                               </div>
                               <div
                                 class="column is-12-desktop is-12-mobile of-x-scroll"
                               >
-                              <div class="box px-2 py-2">
-
-                                <personalizados-lopes-cor-produto-selector
-                                  [Produto]="Produto"
-                                  (onSetColor)="setColor($event)"
-                                ></personalizados-lopes-cor-produto-selector>
-                              </div>
+                                <div class="px-2 py-2">
+                                  <personalizados-lopes-cor-produto-selector
+                                    [Produto]="Produto"
+                                    (onSetColor)="setColor($event)"
+                                  ></personalizados-lopes-cor-produto-selector>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -95,18 +95,16 @@
         </div>
         <div class="column is-9">
           <div class="columns box box-offset is-vcentered">
-
             <div class="column is-7-desktop is-12-tablet">
               <div class="columns">
                 <div class="column is-12">
-
                   <div class="section">
                     <personalizados-lopes-exibicao-imagem-produto
                       [_Produto]="Produto"
                     ></personalizados-lopes-exibicao-imagem-produto>
                   </div>
 
-                  <div class=" my-2">
+                  <div class="my-2">
                     <h1 class="titulo-produto fs-17">{{ Produto?.Nome }}</h1>
                     <personalizados-lopes-descricao-rapida-produto
                       [Produto]="Produto"
@@ -152,16 +150,15 @@
                   [Erros]="Erros"
                   (onQuantidadeChange)="setQuantidade($event)"
                 >
-                <mat-list *ngIf="!IsValid" class="w-full mx-0 border">
-                  <mat-list-item *ngFor="let erro of Erros">
-                    <p class="subtitle is-size-6 has-text-danger">
-                      *{{ erro.erro }}
-                    </p>
-                    <hr />
-                  </mat-list-item>
-                </mat-list>
-              </personalizados-lopes-bloco-pagamento-produto>
-
+                  <mat-list *ngIf="!IsValid" class="w-full mx-0">
+                    <mat-list-item *ngFor="let erro of Erros">
+                      <p class="subtitle is-size-6 has-text-danger">
+                        *{{ erro.erro }}
+                      </p>
+                      <hr />
+                    </mat-list-item>
+                  </mat-list>
+                </personalizados-lopes-bloco-pagamento-produto>
                 <div
                   *ngIf="Produto?.Status == statusProduto.esgotado"
                   class="box w-full"
@@ -169,7 +166,12 @@
                   <personalizados-lopes-botao-esgotado [Produto]="Produto">
                   </personalizados-lopes-botao-esgotado>
                 </div>
-                <div class="w-full flex-l">
+                <div class="w-full flex-l mx-3">
+                  <div class="margin container">
+                    <personalizados-lopes-botao-contato-whatsapp
+                      (click)="EntrarEmContato()"
+                    ></personalizados-lopes-botao-contato-whatsapp>
+                  </div>
                   <personalizados-lopes-botoes-compartilhamento-produto></personalizados-lopes-botoes-compartilhamento-produto>
                   <personalizados-lopes-curtir-produto
                     [Produto]="Produto"
@@ -186,12 +188,6 @@
           ></personalizados-lopes-tab-informacao-avaliacao-produto>
         </div>
       </div>
-    </div>
-
-    <div class="margin container">
-      <personalizados-lopes-botao-contato-whatsapp
-        (click)="EntrarEmContato()"
-      ></personalizados-lopes-botao-contato-whatsapp>
     </div>
   </div>
 </section>

@@ -4,7 +4,7 @@
     title="Gostei"
     matBadge="{{ Produto?.Likes }}"
     matBadgeColor="accent"
-    mat-raised-button
+    mat-flat-button
     (click)="Like()"
     [ngClass]="Liked ? 'liked disabled' : ''"
     [ngClass]="loading ? ' is-loading' : ''"

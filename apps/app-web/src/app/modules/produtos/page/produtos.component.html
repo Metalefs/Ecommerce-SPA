@@ -4,9 +4,7 @@
     class='hero-head bg txt-center my-0 w-full'
   >
     <div class='card-header mt-3 section'>
-      <h1 class='title is-3'>
-        Encontre o Produto Perfeito
-      </h1>
+
     </div>
   </div>
 
@@ -14,8 +12,8 @@
     <div class=' pt-2'>
       <div [@cardFlip]='state' class='' id='Todos'>
         <div class='columns'>
-          <div class='column is-3-desktop is-3-tablet is-hidden-touch mt-1'>
-            <aside class='box flex-c aside w-full portfolio pos-sticky top-0 pl-1'>
+          <div class='column is-3-desktop is-3-tablet is-hidden-touch'>
+            <aside class='section w-full pos-sticky top-0'>
 
               <div class='is-hidden-mobile w-full '>
 
@@ -44,7 +42,7 @@
           <div
             class='column ml-0 pt-1 is-9-desktop is-12-tablet is-12-mobile produto-column mh-full of-y-hidden'
           >
-            <div class='of-y-hidden'>
+            <div class='section of-y-hidden'>
               <mat-tab-group>
                 <mat-tab label="Loja" class="of-y-hidden">
                   <mat-list class="box pb-2 mb-0">
@@ -57,11 +55,11 @@
                     <mat-list-item *ngIf="filterState.activeFornecedor">Fornecedor: {{filterState.activeFornecedor.Nome}}</mat-list-item>
                     <mat-list-item *ngIf="filterState.activeOrderStatus">Status: {{filterState.activeOrderStatus.name}}</mat-list-item>
                   </mat-list>
-                  <div class="px-2">
+                  <div class="px-2 has-background-white">
                     <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                   </div>
                 </mat-tab>
-                <mat-tab *ngIf="FavCount > 0" [label]="'Favoritos ' + FavCount || ''" >
+                <mat-tab  [label]="'Favoritos ' + FavCount || ''" >
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>
                 </mat-tab>
               </mat-tab-group>

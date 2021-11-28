@@ -1,4 +1,4 @@
-<div id="INICIO" class="has-background-white">
+<section class="section mh-full" id="INICIO" class="has-background-white">
   <div class="hero">
     <div class="hero-head">
       <div class="main-image ">
@@ -21,94 +21,91 @@
     </div>
 
   </div>
-  <div class="">
-    <div class="section has-background-warning pos-relative">
-      <div class="custom-shape-divider-top-1632745448 z-index-0">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
+  <div class="section has-background-warning pos-relative">
+    <div class="custom-shape-divider-top-1632745448 z-index-0">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>
+
+    <div class="columns flex-sa is-multiline is-vcentered">
+      <div class="column z-index-2">
+        <app-card
+          customClass="box is-info is-outlined mat-elevation-z2"
+          style="min-height: 145px;"
         >
-          <path
-            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-            class="shape-fill"
-          ></path>
-        </svg>
+          <div class="content">
+
+            <h4 class="subtitle is-6">
+              Escolha de 100+ produtos costumizáveis
+            </h4>
+            <p>
+              Começe com qualquer um das nossas melhores estampas originais
+              e costumize para satisfazer as suas necessidades.
+            </p>
+          </div>
+        </app-card>
       </div>
 
-      <div class="columns flex-sa is-multiline">
-        <div class="column z-index-2">
-          <app-card
-            customClass="box is-info is-outlined mat-elevation-z2"
-            style="min-height: 145px;"
-          >
-            <div class="content">
+      <div class="column is-12-touch z-index-2">
+        <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
+          <div class="content">
+            <h4 class="subtitle is-6">
+              Frete grátis a partir de {{ valorMinimoDesconto }} reais em
+              compras
+            </h4>
+            Acima de R${{ valorMinimoDesconto }}
+            <span class="card has-background-warning"
+              >Frete até 100% Grátis </span
+            ><br />
+            <a (click)="AbrirEstimativaPrecoFrete()"
+              >Confira seu CEP aqui</a
+            >
+          </div>
+        </app-card>
+      </div>
 
-              <h4 class="subtitle is-6">
-                Escolha de 100+ produtos costumizáveis
-              </h4>
-              <p>
-                Começe com qualquer um das nossas melhores estampas originais
-                e costumize para satisfazer as suas necessidades.
-              </p>
-            </div>
-          </app-card>
-        </div>
+      <div class="column is-12-touch z-index-2">
+        <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
+          <div class="content">
+            <span
+              class="iconify"
+              data-icon="ic:baseline-password"
+            ></span>
+            <h3 class="title">Sem senha</h3>
+            <h4 class="subtitle is-6">
+              Você não precisa criar login e senha para realizar uma compra, é super fácil e rápido.
+            </h4>
+          </div>
+        </app-card>
+      </div>
 
-        <div class="column is-12-touch z-index-2">
-          <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
-            <div class="content">
-              <h4 class="subtitle is-6">
-                Frete grátis a partir de {{ valorMinimoDesconto }} reais em
-                compras
-              </h4>
-              Acima de R${{ valorMinimoDesconto }}
-              <span class="card has-background-warning"
-                >Frete até 100% Grátis </span
-              ><br />
-              <a (click)="AbrirEstimativaPrecoFrete()"
-                >Confira seu CEP aqui</a
-              >
-            </div>
-          </app-card>
-        </div>
-
-        <div class="column is-12-touch z-index-2">
-          <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
-            <div class="content">
-              <span
-                class="iconify"
-                data-icon="ic:baseline-password"
-              ></span>
-              <h3 class="title">Sem senha</h3>
-              <h4 class="subtitle is-6">
-                Você não precisa criar login e senha para realizar uma compra, é super fácil e rápido.
-              </h4>
-            </div>
-          </app-card>
-        </div>
-
-        <div class="column is-12-touch z-index-2">
-          <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
-            <div class="content">
-              <span class="iconify" data-icon="clarity:dollar-line"></span>
-              <h3 class="title">Multi Formas de Pagamento</h3>
-              <h4 class="subtitle is-6">
-               Você pode dividir a compra em dois cartões, pagar no crédito ou débito, Paypal ou PIX.
-              </h4>
-            </div>
-          </app-card>
-        </div>
+      <div class="column is-12-touch z-index-2">
+        <app-card customClass="box is-outlined mat-elevation-z2" style="min-height: 145px;">
+          <div class="content">
+            <span class="iconify" data-icon="clarity:dollar-line"></span>
+            <h3 class="title">Multi Formas de Pagamento</h3>
+            <h4 class="subtitle is-6">
+             Você pode dividir a compra em dois cartões, pagar no crédito ou débito, Paypal ou PIX.
+            </h4>
+          </div>
+        </app-card>
       </div>
     </div>
   </div>
-  <div class="section px-0 mat-elevation-z2">
+  <div class="section has-background-warning mat-elevation-z2">
     <section class=" of-x-scroll" *ngIf="(Clientes$ | async)?.length > 0">
       <div class="">
         <app-testimonial [sliderData]="Clientes$ | async"> </app-testimonial>
       </div>
     </section>
   </div>
-
-</div>
+</section>

@@ -98,7 +98,6 @@ export class ProdutoStateService {
   Parcelamento: boolean;
   MultiplasCores: boolean;
 
-
   fQuery: FiltrarProdutoSearchQuery = {
     Nome: "",
     NomeCategoria: "",
@@ -109,7 +108,6 @@ export class ProdutoStateService {
     Modelo: "",
     Tags: "",
   }
-
 
   constructor(
     private dialog: NgDialogAnimationService,
