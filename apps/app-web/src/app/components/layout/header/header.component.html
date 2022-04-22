@@ -1,5 +1,5 @@
 <mat-toolbar
-  class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top is-hidden"
+  class="dis-flex bg-light has-background-dark has-text-dark flex-r z-index-top is-hidden "
   style="overflow-y: visible; z-index: 20; height: 30px;"
 >
   <div class="flex-sb">
@@ -18,7 +18,7 @@
     </a>
   </div>
 </mat-toolbar>
-<div class="pos-sticky top-0" style="overflow-y: visible !important;z-index: 11;">
+<div class="pos-sticky top-0  mat-elevation-z4" style="overflow-y: visible !important;z-index: 11;">
   <nav
     class="navbar columns is-vcentered w-full is-mobile z-index-top mx-0"
     style="z-index: 20;overflow-y: visible !important;"
@@ -216,14 +216,14 @@
       </div>
     </div>
   </nav>
-  <mat-toolbar-row
+  <!-- <mat-toolbar-row
     [ngClass]="
       (NavState$ | async)?.activeNav.toLocaleLowerCase() == 'Todos'
         ? 'produtos-nav-under'
         : 'produtos-nav-under'
     "
   >
-  </mat-toolbar-row>
+  </mat-toolbar-row> -->
 </div>
 <!-- <personalizados-lopes-mega-menu
   [Categorias]="Categoria$ | async"

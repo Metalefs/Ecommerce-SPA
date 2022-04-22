@@ -13,7 +13,7 @@
       <div [@cardFlip]='state' class='' id='Todos'>
         <div class='columns'>
           <div class='column is-3-desktop is-3-tablet is-hidden-touch'>
-            <aside class='section w-full pos-sticky top-0'>
+            <aside class=' w-full pos-sticky top-0'>
 
               <div class='is-hidden-mobile w-full '>
 
@@ -34,15 +34,17 @@
 
                   <mat-divider></mat-divider>
 
-                  <personalizados-lopes-selecao-status-produto></personalizados-lopes-selecao-status-produto>
+                  <div class="container">
+                    <personalizados-lopes-selecao-status-produto></personalizados-lopes-selecao-status-produto>
+                  </div>
                 </div>
               </div>
             </aside>
           </div>
           <div
-            class='column ml-0 pt-1 is-9-desktop is-12-tablet is-12-mobile produto-column mh-full of-y-hidden'
+            class='column ml-0 pt-1 is-9-desktop is-9-tablet is-12-mobile produto-column mh-full of-y-hidden'
           >
-            <div class='section of-y-hidden'>
+            <div class='of-y-hidden'>
               <mat-tab-group>
                 <mat-tab label="Loja" class="of-y-hidden">
                   <mat-list class="box pb-2 mb-0">
@@ -59,7 +61,7 @@
                     <personalizados-lopes-exibicao-lista-produtos></personalizados-lopes-exibicao-lista-produtos>
                   </div>
                 </mat-tab>
-                <mat-tab  [label]="'Favoritos ' + FavCount || ''" >
+                <mat-tab  [label]="'Favoritos'" >
                   <personalizados-lopes-favoritos></personalizados-lopes-favoritos>
                 </mat-tab>
               </mat-tab-group>

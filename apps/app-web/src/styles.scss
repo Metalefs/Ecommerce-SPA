@@ -28,6 +28,7 @@ body {
   width: 100%;
   min-width: 100vw;
   background-color: #fafaff;
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;
@@ -308,10 +309,10 @@ li .p-menuitem-link span.p-menuitem-text {
 }
 .swiper-container {
   &:hover > .swiper-button-prev {
-    animation: showArr 1s ease forwards !important;
+    animation: showArr .21s ease forwards !important;
   }
   &:hover > .swiper-button-next {
-    animation: showArr 1s ease forwards !important;
+    animation: showArr .21s ease forwards !important;
   }
 }
 .swiper-slide {

@@ -176,7 +176,7 @@ form.rounded{
   // min-height: 15px;
   line-height: 30px;
   transition: 0.25s all ease-in-out;
-  border-left: 1px solid $navlinkbordercolor;
+  //border-left: 1px solid $navlinkbordercolor;
   color: $navcolor;
   font-family: Public Sans;
   font-style: normal;
@@ -199,7 +199,7 @@ form.rounded{
     i{
       color:$naviconcolor
     }
-    font-weight: 600;
+    //font-weight: 600;
     //color:$naviconcolor;
     &::before{
       content: "";
@@ -246,7 +246,7 @@ form.rounded{
 .pi{
   font-size: 1.5rem;
   color: #fff;
-  font-weight: bold;
+  //font-weight: bold;
   margin-right:10px;
 }
 @keyframes selected{
