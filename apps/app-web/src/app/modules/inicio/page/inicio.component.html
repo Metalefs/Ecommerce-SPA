@@ -2,7 +2,8 @@
   <div class="hero">
     <div class="hero-head">
       <div class="main-image ">
-        <img [src]="MainImageSrc" class="" alt="Banner do site." />
+        <!-- <img [src]="MainImageSrc" height="300" class="" alt="Banner do site." /> -->
+        <personalizados-lopes-carrousel></personalizados-lopes-carrousel>
       </div>
     </div>
 
@@ -21,7 +22,7 @@
     </div>
 
   </div>
-  <div class="section has-background-warning pos-relative">
+  <div class="section has-background-dark pos-relative">
     <div class="custom-shape-divider-top-1632745448 z-index-0">
       <svg
         data-name="Layer 1"
@@ -101,7 +102,7 @@
       </div>
     </div>
   </div>
-  <div class="section has-background-warning mat-elevation-z2">
+  <div class="section has-background-dark mat-elevation-z2">
     <section class=" of-x-scroll" *ngIf="(Clientes$ | async)?.length > 0">
       <div class="">
         <app-testimonial [sliderData]="Clientes$ | async"> </app-testimonial>

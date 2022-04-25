@@ -735,7 +735,7 @@ img {
   font-size: 15px;
 }
 .titulo {
-  font-family: Open Sans !important;
+  font-family: $default_font !important;
   font-style: normal;
   font-weight: bold;
   font-size: large;
@@ -747,7 +747,7 @@ img {
 }
 
 .header {
-  font-family: Open Sans !important;
+  font-family: $default_font !important;
   font-style: normal;
   font-weight: bold;
   font-size: 1em;

@@ -32,7 +32,7 @@ export class InicioComponent implements OnInit {
   mobile:boolean;
   swiperConfig$: Observable<SwiperConfigInterface>;
   valorMinimoDesconto:number;
-  MainImageSrc:string = '../../../../assets/images/inicio/carousel/FAIXA10.jpg';
+  MainImageSrc:string = '../../../../assets/images/inicio/carousel/equipamentos-necessarios-empresa-serigrafia.jpg';
   constructor(
     private authService: AuthenticationService,
     private produtoService: ProdutoService,

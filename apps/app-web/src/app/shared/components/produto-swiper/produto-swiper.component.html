@@ -23,7 +23,7 @@
             <ng-container *ngIf="TipoOrdenacao==tipoOrdenacaoSwiperProduto.Inclusao then Inclusao else Outro">
             </ng-container>
             <ng-template #Inclusao>
-              <nav class="nav">
+              <nav class="nav py-3">
                 <a class="title is-size-4 txt-center w-full" [routerLink]="['/produtos']" href="#topo" pageScroll>Últimos produtos na <a class=" a">loja</a></a>
               </nav>
             </ng-template>

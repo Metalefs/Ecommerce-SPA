@@ -20,8 +20,8 @@ form.rounded{
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: #363636;
-  color: white !important;
+  background-color: #ffffff;
+  color: black !important;
   padding: 0.75rem 1.2rem;
   display: flex;
   justify-content: space-around;
@@ -32,7 +32,7 @@ form.rounded{
 
 .button:hover,
 .button:active {
-  background-color: #2c0d00;
+  //background-color: #2c0d00;
 }
 
 .icon {
@@ -245,7 +245,7 @@ form.rounded{
 }
 .pi{
   font-size: 1.5rem;
-  color: #fff;
+  //color: #fff;
   //font-weight: bold;
   margin-right:10px;
 }

@@ -25,13 +25,13 @@
     </mat-toolbar>
   </p>
 </mat-toolbar>
-<div class="of-x-hidden px-2" mat-dialog-content>
+<div class="of-x-hidden mx-2" mat-dialog-content>
   <ng-container
     *ngIf="(Orcamento$ | async)?.Produto.length > 0; then pedido; else vazio"
   ></ng-container>
 
   <ng-template #vazio>
-    <div @fadeIn class="px-3">
+    <div @fadeIn class="container px-3">
       <div class="w-full">
         <figure class="image is-square">
           <img src="/assets/images/figures/undraw_empty_cart_co35.svg" />
